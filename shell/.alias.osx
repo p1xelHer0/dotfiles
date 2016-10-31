@@ -1,0 +1,8 @@
+# Exclude OSX specific files in ZIP archives
+alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
+
+# Start screen saver
+alias afk="/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
+
+# Log off
+alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
