@@ -11,20 +11,21 @@ brew tap caskroom/versions
 apps=(
   android-studio                                # android
   atom                                          # utils
-  discord                                       # utils
+  brave                                         # browser
+  discord                                       # communication
   dropbox                                       # utils
-  firefox                                       # utils
-  firefoxnightly                                # utils
+  firefox                                       # browser
+  firefoxnightly                                # browser
   flux                                          # utils
   gitkraken                                     # utils
-  google-chrome                                 # utils
-  google-chrome-canary                          # utils
+  google-chrome                                 # browser
+  google-chrome-canary                          # browser
   intel-haxm                                    # android (emulator perf)
   iterm2-nightly                                # utils
   java                                          # android
-  opera                                         # utils
+  opera                                         # browser
   react-native-debugger                         # js
-  slack                                         # utils
+  slack                                         # communication
   spotify                                       # utils
   vlc                                           # utils
 )
