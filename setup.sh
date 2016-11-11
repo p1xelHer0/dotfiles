@@ -56,10 +56,14 @@ ln -fs ~/dotfiles/vim/.vimrc $HOME
 ln -fs ~/dotfiles/xcode/FontAndColorThemes $HOME/Library/Developer/Xcode/UserData
 
 
-# Terminal & iTerm 2
+# Terminal & iTerm 2 & Hyper
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
+
+# hyper
+ln -fs ~/dotfiles/hyper/.hyper.js $HOME
+ln -fs ~/dotfiles/hyper/.hyper_plugins $HOME
 
 # Install iTerm theme
 open "${HOME}/dotfiles/iterm/themes/p1xelher0.itermcolors"
