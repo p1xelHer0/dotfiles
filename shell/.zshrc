@@ -5,7 +5,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+
 ZSH_THEME=p1xelHer0
+# ZSH_THEME=p1xelHer0-powerline
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,12 +47,9 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx zsh-syntax-highlighting)
+plugins=(zsh-syntax-highlighting)
 
 # User configuration
-
-# 10ms for key sequences
-KEYTIMEOUT=1
 
 # Load nvm
 export NVM_DIR="/Users/pontusnagy/.nvm"
@@ -137,17 +136,19 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 # Load fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
+# Loading of environments has been moved to aliases
+
 # Load jenv
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+# if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # Load pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # Load stack (does not work...?)
 # if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
 
 # Load rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # npm tab completion
 . <(npm completion)
