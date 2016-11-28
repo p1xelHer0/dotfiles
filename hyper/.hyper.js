@@ -19,7 +19,7 @@ const colorScheme = {
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 12,
+    fontSize: 11,
 
     // font family with optional fallbacks
     fontFamily: '"Fira Code", "DejaVu Sans Mono", "Lucida Console", monospace',
@@ -99,7 +99,12 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [],
+  plugins: [
+    'hyper-blink',
+    'hypercwd',
+    'hyperterm-paste',
+    'hyperterm-themed-scrollbar'
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
