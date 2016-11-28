@@ -9,6 +9,7 @@
   "dependencies": {
     "hyper-blink": "latest",
     "hypercwd": "latest",
+    "hyperterm-cursor": "latest",
     "hyperterm-paste": "latest",
     "hyperterm-themed-scrollbar": "latest"
   }

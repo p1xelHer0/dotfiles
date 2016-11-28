@@ -102,6 +102,7 @@ module.exports = {
   plugins: [
     'hyper-blink',
     'hypercwd',
+    'hyperterm-cursor',
     'hyperterm-paste',
     'hyperterm-themed-scrollbar'
   ],
