@@ -1,43 +1,13 @@
-// p1xelHer0 theme
-// A color scheme by Pontus Nagy @p1xelHer0
-
-const colorScheme = {
-  veryLightBrown:   '#cbbca7',
-  lightBrown:       '#948875',
-  brown:            '#60584c',
-  darkBrown:        '#433d35',
-  veryDarkBrown:    '#332f28',
-  red:              '#d25552',
-  orange:           '#fca465',
-  yellow:           '#ecd560',
-  green:            '#a1bf7e',
-  cyan:             '#67c4a5',
-  blue:             '#80bbd7',
-  purple:           '#bdaae7'
-}
-
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 11,
+    fontSize: 12,
 
     // font family with optional fallbacks
     fontFamily: '"Fira Code", "DejaVu Sans Mono", "Lucida Console", monospace',
 
-    // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: colorScheme.purple,
-
     // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
     cursorShape: 'BLOCK',
-
-    // color of the text
-    foregroundColor: colorScheme.veryLightBrown,
-
-    // terminal background color
-    backgroundColor: colorScheme.veryDarkBrown,
-
-    // border color (window, tabs)
-    borderColor: colorScheme.darkBrown,
 
     // custom css to embed in the main window
     css: '',
@@ -46,29 +16,7 @@ module.exports = {
     termCSS: '',
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    padding: '4px 6px',
-
-    // the full list. if you're going to provide the full color palette,
-    // including the 6 x 6 color cubes and the grayscale map, just provide
-    // an array here instead of a color map object
-    colors: {
-      black: colorScheme.lightBrown,
-      white: colorScheme.veryLightBrown,
-      red: colorScheme.red,
-      yellow: colorScheme.orange,
-      green: colorScheme.green,
-      cyan: colorScheme.cyan,
-      blue: colorScheme.blue,
-      magenta: colorScheme.purple,
-      lightBlack: colorScheme.lightBrown,
-      lightWhite: colorScheme.veryLightBrown,
-      lightRed: colorScheme.red,
-      lightYellow: colorScheme.orange,
-      lightGreen: colorScheme.green,
-      lightCyan: colorScheme.cyan,
-      lightBlue: colorScheme.blue,
-      lightMagenta: colorScheme.purple
-    },
+    padding: '4px 6px 16px 6px',
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -85,12 +33,21 @@ module.exports = {
     bell: 'SOUND',
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: false,
 
     // URL to custom bell
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+
+    // plugin configs
+    installDevTools: {
+      extensions: [
+        'REACT_DEVELOPER_TOOLS',
+        'REDUX_DEVTOOLS'
+      ],
+      forceDownload: false
+    }
   },
 
   // a list of plugins to fetch and install from npm
@@ -100,11 +57,14 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    'hyper-blink',
-    'hypercwd',
-    'hyperterm-cursor',
-    'hyperterm-paste',
-    'hyperterm-themed-scrollbar'
+    'hyper-blink',                // blinking cursor
+    'hypercwd',                   // open tabs/panes in cwd
+    'hyperline',                  // bottom status bar
+    'hyperterm-cursor',           // transparent cursor
+    'hyperterm-install-devtools', // devtools
+    'hyper-p1xelher0',            // theme
+    'hyperterm-paste',            // safe copy-pasting
+    'hyperterm-themed-scrollbar'  // scorllbar that looks good
   ],
 
   // in development, you can create a directory under

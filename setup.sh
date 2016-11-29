@@ -63,7 +63,8 @@ defaults write com.apple.terminal StringEncodings -array 4
 
 # hyper
 ln -fs ~/dotfiles/hyper/.hyper.js $HOME
-ln -fs ~/dotfiles/hyper/.hyper_plugins $HOME
+# points to my theme repository
+ln -fs ~/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local
 
 # Install iTerm theme
 open "${HOME}/dotfiles/iterm/themes/p1xelher0.itermcolors"

@@ -33,6 +33,7 @@ set ai                " set auto-indenting on for programming
 set laststatus=2      " display the status line always
 set nocompatible      " vi compatible is LAME
 set number            " line numbers
+set encoding=utf-8    " I kinda like utf-8
 set ruler             " show the cursor position all the time
 set showmatch         " automatically show matching brackets
 set tw=79             " text width
