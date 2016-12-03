@@ -23,7 +23,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'neomake/neomake'
 Plug 'benjie/neomake-local-eslint.vim'
 
-# utils
+" utils
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
