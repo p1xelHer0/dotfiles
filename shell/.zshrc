@@ -50,6 +50,9 @@ HIST_STAMPS="dd.mm.yyyy"
 plugins=(zsh-syntax-highlighting)
 
 # User configuration
+#
+# use italics
+export TERM=xterm-256color-italic
 
 # Load nvm
 export NVM_DIR="/Users/pontusnagy/.nvm"
