@@ -23,9 +23,12 @@ apps=(
   intel-haxm                                    # android (emulator perf)
   iterm2-nightly                                # terminal
   java                                          # android
+  mamp                                          # utils
   opera                                         # browser
   react-native-debugger                         # js
+  skype                                         # communication
   slack                                         # communication
+  spectacle                                     # utils
   spotify                                       # utils
   vlc                                           # utils
 )
