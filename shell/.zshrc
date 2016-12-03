@@ -50,7 +50,7 @@ HIST_STAMPS="dd.mm.yyyy"
 plugins=(zsh-syntax-highlighting)
 
 # User configuration
-#
+
 # use italics
 export TERM=xterm-256color-italic
 
@@ -142,16 +142,16 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 # Loading of environments has been moved to aliases
 
 # Load jenv
-# if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # Load pyenv
-# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; eval "$(pyenv virtualenv-init -)"; fi
 
 # Load stack (does not work...?)
 # if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
 
 # Load rbenv
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # npm tab completion
 . <(npm completion)

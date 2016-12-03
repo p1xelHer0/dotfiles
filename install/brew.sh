@@ -36,6 +36,7 @@ apps=(
   jenv                                          # java
   maven                                         # android/java
   pyenv                                         # python
+  pyenv-virtualenv                              # python
   rbevn                                         # ruby
   neovim/neovim/neovim                          # utils
   watchman                                      # js (react-native dependency)

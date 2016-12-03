@@ -85,6 +85,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+let g:python_host_prog = '/Users/pontusnagy/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/pontusnagy/.pyenv/versions/neovim3/bin/python'
+
 " lint settings
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 1

@@ -11,3 +11,4 @@ gem update --system
 
 # We'll be using bundler for Cocoapods for react-native
 gem install bundler cocoapods
+gem install neovim
