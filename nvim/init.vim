@@ -20,10 +20,10 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 
 Plug 'Raimondi/delimitMate'
-Plug 'vim-syntastic/syntastic'
-Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'neomake/neomake'
+Plug 'benjie/neomake-local-eslint.vim'
 
-" utils"
+# utils
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
@@ -33,6 +33,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/vim-emoji'
 
 call plug#end()
+
+filetype plugin indent on
 
 " fix slight delay after pressing ESC then O http://ksjoberg.com/vim-esckeys.html
 set timeout timeoutlen=500 ttimeoutlen=100
@@ -84,23 +86,9 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " lint settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-let g:syntastic_css_checkers = ['stylelint']
+autocmd! BufWritePost * Neomake
+let g:neomake_open_list = 1
+let g:neomake_javascript_enabled_makers = ['eslint', 'jshint']
 
 " allow JSX in normal JS files
 let g:jsx_ext_required = 0

@@ -44,13 +44,8 @@ ln -fs ~/dotfiles/atom/snippets.cson $HOME/.atom
 # points to my stylesheet repository instead
 ln -fs ~/dev/repo/private/p1xelher0-stylesheet/styles.less $HOME/.atom
 
-# vim
-ln -fs ~/dotfiles/vim/.vim $HOME
-ln -fs ~/dotfiles/vim/.vimrc $HOME
-
-# vim
-ln -fs ~/dotfiles/vim/.vim $HOME
-ln -fs ~/dotfiles/vim/.vimrc $HOME
+# nvim
+ln -fs ~/dotfiles/nvim/init.vim $HOME/.config/nvim
 
 # xcode themes
 ln -fs ~/dotfiles/xcode/FontAndColorThemes $HOME/Library/Developer/Xcode/UserData
@@ -66,7 +61,10 @@ ln -fs ~/dotfiles/hyper/.hyper.js $HOME
 # points to my theme repository
 ln -fs ~/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local
 
-# Install iTerm theme
+# iterm
+cd ~/dotfiles/iterm
+# enable italics by adding terminfo
+tic xterm-256color-italic.terminfo
 open "${HOME}/dotfiles/iterm/themes/p1xelher0.itermcolors"
 
 

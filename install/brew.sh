@@ -34,16 +34,13 @@ apps=(
   gradle                                        # android/java
   haskell-stack                                 # haskell
   jenv                                          # java
-  macvim --env-std --override-system-vim        # utils
   maven                                         # android/java
-  pkg-config                                    # (zeromq dependency)
   pyenv                                         # python
   rbevn                                         # ruby
-  vim --with-python --with-ruby --with-perl     # utils
+  neovim/neovim/neovim                          # utils
   watchman                                      # js (react-native dependency)
   wget                                          # utils
   wifi-password                                 # utils
-  zeromq                                        # python (hydrogen atom, jupyter notebook)
 )
 
 brew install "${apps[@]}"
