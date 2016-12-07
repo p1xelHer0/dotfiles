@@ -1,5 +1,6 @@
 # Open dotfiles in Atom
-alias dotfiles="atom $HOME/dotfiles --dev"
+alias dotfiles="vim $HOME/dotfiles"
+alias vimrc="vim $HOME/.config/nvim/init.vim"
 
 # List npm modules global/local
 alias ng="npm list -g --depth=0 2>/dev/null"

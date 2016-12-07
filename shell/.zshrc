@@ -58,14 +58,16 @@ export TERM=xterm-256color-italic
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+source $HOME/dotfiles/shell/.colors
+
 # Load nvm
 export NVM_DIR="/Users/pontusnagy/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 NODE_VERSION=$(node --version | grep -v -)
 
-# use atom
-export EDITOR=atom
+# try to use vim (nvim)
+export EDITOR=vim
 
 # React native (nvm)
 export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native

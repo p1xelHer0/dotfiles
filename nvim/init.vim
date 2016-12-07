@@ -83,7 +83,7 @@ set visualbell
 set lazyredraw
 set synmaxcol=120
 
-" theme
+set showcmd
 
 " theme and style related
 " syntax enable - default neovim
@@ -96,9 +96,9 @@ if filereadable(expand("$HOME/.vimrc_background"))
 endif
 
 " italic for this and html attributes in jsx
-hi htmlArg cterm=italic
-hi jsThis cterm=italic
-hi xmlAttrib cterm=italic
+highlight htmlArg cterm=italic
+highlight jsThis cterm=italic
+highlight xmlAttrib cterm=italic
 
 " keep it at 80
 let &colorcolumn=join(range(80,999),",")
@@ -130,8 +130,8 @@ nmap <Leader><Space>, :ll<CR>         " go to current error/warning
 nmap <Leader><Space>n :lnext<CR>      " next error/warning
 nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
-let g:python_host_prog = '/Users/pontusnagy/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/pontusnagy/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 " autocompletion
 let g:deoplete#enable_at_startup = 1

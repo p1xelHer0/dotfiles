@@ -3,7 +3,7 @@ function s:CheckColorScheme()
     let g:base16colorspace=256
   endif
 
-  let s:config_file = expand('$HOME/.vim/.base16')
+  let s:config_file = expand('$HOME/dotfiles/shell/.base16')
 
   if filereadable(s:config_file)
     let s:config = readfile(s:config_file, '', 2)
@@ -21,10 +21,10 @@ function s:CheckColorScheme()
     endif
   else " default
     set background=dark
-    color base16-tomorrow-dark
+    color base16-oceanicnext
   endif
 
-  execute 'highlight Comment ' . pinnacle#italicize('Comment')
+  " execute 'highlight Comment ' . pinnacle#italicize('Comment')
   execute 'highlight link EndOfBuffer ColorColumn'
 
   " Allow for overrides:

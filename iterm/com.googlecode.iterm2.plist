@@ -57,9 +57,9 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>684 206 551 265 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 189 796 473 0 0 1440 878 </string>
+	<string>269 144 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 83 1439 795 0 0 1440 878 </string>
+	<string>0 233 929 639 0 0 1440 878 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -589,7 +589,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SourceCodePro-Medium 12</string>
+			<string>SourceCodePro-Light 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -658,6 +658,10 @@
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>1993897E-83C5-4732-B79C-C148B533DFF8</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>502835359.30052698</real>
 	<key>PointerActions</key>
@@ -706,6 +710,8 @@
 	<key>SULastCheckTime</key>
 	<date>2016-12-07T20:42:50Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>ShowFullScreenTabBar</key>
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>

@@ -8,7 +8,7 @@
 # Recolored to match p1xelHer0-theme
 
 # VCS
-YS_VCS_PROMPT_PREFIX1=" %{$fg[black]%}on%{$reset_color%} "
+YS_VCS_PROMPT_PREFIX1=" %{$fg[blue]%}on%{$reset_color%} "
 YS_VCS_PROMPT_PREFIX2=":%{$fg[cyan]%}"
 YS_VCS_PROMPT_SUFFIX="%{$reset_color%}"
 YS_VCS_PROMPT_DIRTY=" %{$fg[red]%}x"
@@ -50,10 +50,10 @@ local exit_code="%(?,,%{$reset_color%}C:%{$fg[red]%}%?%{$reset_color%})"
 # $
 PROMPT="
 %{$terminfo[bold]$fg[red]%}#%{$reset_color%} \
-%(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[yellow]%}%n) \
-%{$fg[black]%}@ \
+%(#,%{$bg[yellow]%}%{$fg[blue]%}%n%{$reset_color%},%{$fg[yellow]%}%n) \
+%{$fg[blue]%}@ \
 %{$reset_color%}%m \
-%{$fg[black]%}in \
+%{$fg[blue]%}in \
 %{$terminfo[bold]$fg[cyan]%}%~%{$reset_color%}\
 ${hg_info}\
 ${git_info}\
