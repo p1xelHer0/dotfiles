@@ -128,8 +128,8 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 
-# Show the ~/Library folder
-chflags nohidden ~/Library
+# Show the $HOME/Library folder
+chflags nohidden $HOME/Library
 
 # Show the /Volumes folder
 sudo chflags nohidden /Volumes

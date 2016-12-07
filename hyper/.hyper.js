@@ -16,7 +16,7 @@ module.exports = {
     termCSS: '',
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    padding: '4px 6px 16px 6px',
+    padding: '4px 6px',
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -41,6 +41,56 @@ module.exports = {
     // for advanced config flags please refer to https://hyper.is/#cfg
 
     // plugin configs
+    hyperline: {
+      background: 'transparent',
+      color: 'black',
+      plugins: [
+        /* {
+          name: 'hostname',
+          options: {
+            color: 'lightBlue'
+          }
+        }, */
+        {
+          name: 'memory',
+          options: {
+            color: 'blue'
+          }
+        },
+        {
+          name: 'uptime',
+          options: {
+            color: 'magenta'
+          }
+        },
+        {
+          name: 'cpu',
+          options: {
+            colors: {
+              high: 'red',
+              moderate: 'yellow',
+              low: 'green'
+            }
+          }
+        },
+        {
+          name: 'network',
+          options: {
+            color: 'lightCyan'
+          }
+        },
+        {
+          name: 'battery',
+          options: {
+            colors: {
+              fine: 'lightGreen',
+              critical: 'lightRed'
+            }
+          }
+        }
+      ]
+    },
+
     installDevTools: {
       extensions: [
         'REACT_DEVELOPER_TOOLS',
@@ -59,7 +109,7 @@ module.exports = {
   plugins: [
     'hyper-blink',                // blinking cursor
     'hypercwd',                   // open tabs/panes in cwd
-    'hyperline',                  // bottom status bar
+    // 'hyperline',                  // bottom status bar
     'hyperterm-cursor',           // transparent cursor
     'hyperterm-install-devtools', // devtools
     'hyper-p1xelher0',            // theme
@@ -68,7 +118,7 @@ module.exports = {
   ],
 
   // in development, you can create a directory under
-  // `~/.hyper_plugins/local/` and include it here
+  // `$HOME/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
   localPlugins: []
 };

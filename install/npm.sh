@@ -16,6 +16,8 @@ npm config set save-exact = true
 
 # Globally install with npm
 packages=(
+  babel-cli
+  eslint
   grunt
   gulp
   mocha
@@ -23,8 +25,9 @@ packages=(
   react-native-cli
   serve
   standard
-  yarnpkg
+  tern
   webpack
+  yarnpkg
 )
 
 npm install -g "${packages[@]}"

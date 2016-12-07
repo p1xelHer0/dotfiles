@@ -1,5 +1,5 @@
 # Open dotfiles in Atom
-alias dotfiles="atom ~/dotfiles --dev"
+alias dotfiles="atom $HOME/dotfiles --dev"
 
 # List npm modules global/local
 alias ng="npm list -g --depth=0 2>/dev/null"
@@ -12,6 +12,9 @@ alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([
 # Recursively remove Apple meta files
 alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
 alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+
+# vim -> nvim
+alias vim=nvim
 
 # Reload shell
 alias rl="exec $SHELL"

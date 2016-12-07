@@ -19,3 +19,6 @@ pyenv which python  # Note the path
 
 # update pip
 pip install --upgrade pip
+
+# in nvim
+:UpdateRemotePlugins
