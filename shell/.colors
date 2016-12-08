@@ -1,6 +1,6 @@
 #
 # Colors
-" https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.vim/after/plugin/color.vim
+# https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.vim/after/plugin/color.vim
 #
 
 BASE16_CONFIG=$HOME/dotfiles/shell/.base16
