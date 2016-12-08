@@ -33,8 +33,8 @@ echo "done"
 # WARNING, THIS OVERRIDES YOUR FILES WITHOUT CONSENT, BE CAREFUL (-f means force)
 
 # zsh + oh-my-zsh
-ln -fs $HOME/dotfiles/oh-my-zsh/themes/p1xelHer0.zsh-theme $HOME/.oh-my-zsh/themes
-ln -fs $HOME/dotfiles/shell/.zshrc $HOME
+ln -fs $HOME/dotfiles/zsh/themes/p1xelHer0.zsh-theme $HOME/.oh-my-zsh/themes
+ln -fs $HOME/dotfiles/zsh/.zshrc $HOME
 
 # atom
 ln -fs $HOME/dotfiles/atom/config.cson $HOME/.atom
@@ -65,9 +65,10 @@ ln -fs $HOME/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local
 # iterm
 cd $HOME/dotfiles/iterm
 # enable italics by adding terminfo
-tic xterm-256color-italic.terminfo
-open "${HOME}/dotfiles/iterm/themes/p1xelher0.itermcolors"
+tic ${HOME}/dotfiles/iterm/xterm-256color-italic.terminfo
 
+# tmux
+ln -fs $HOME/dotfiles/tmux/.tmux.conf $HOME
 
 # Atom
 

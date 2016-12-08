@@ -110,13 +110,17 @@ autocmd WinLeave * setlocal nocursorline
 " | line cursor in --INSERT-- - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" lightline
-
 " fix slight delay after pressing ESC then O http://ksjoberg.com/vim-esckeys.html
 set timeout timeoutlen=500 ttimeoutlen=100
 
 " keymappings
 let mapleader=","
+
+" switch windows with ctrl hjkl
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " F10 prints the current highlight rules for cursor selection
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
