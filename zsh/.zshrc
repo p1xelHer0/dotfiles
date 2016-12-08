@@ -6,8 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
-ZSH_THEME=bureau
-# ZSH_THEME=p1xelHer0-powerline
+ZSH_THEME=p1xelHer0
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -151,7 +150,8 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # Load pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; eval "$(pyenv virtualenv-init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv virtualenv > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # Load stack (does not work...?)
 # if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi

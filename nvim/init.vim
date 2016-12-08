@@ -38,7 +38,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-bufferline'
 Plug 'chriskempson/base16-vim'
-Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
@@ -95,19 +94,38 @@ if filereadable(expand("$HOME/.vimrc_background"))
   source $HOME/.vimrc_background
 endif
 
+" split border
+set fillchars+=vert:│
+highlight VertSplit ctermbg=18
+
+highlight link CursorLineNr DiffText
+
+" NonText same color as bg, it's only shown at the current line in INSERT mode
+highlight NonText ctermfg=bg
+
 " italic for this and html attributes in jsx
 highlight htmlArg cterm=italic
 highlight jsThis cterm=italic
 highlight xmlAttrib cterm=italic
 
-" keep it at 80
-let &colorcolumn=join(range(80,999),",")
+" autoresize windows on terminal resize
+autocmd VimResized * execute "normal! \<c-w>="
 
-" only show cursor line in current active window
-autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+" http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
+autocmd VimEnter * autocmd WinEnter * let w:created=1
+autocmd VimEnter * let w:created=1
 
-" | line cursor in --INSERT-- - neovim specific
+" Disable paste mode on leaving INSERT mode.
+autocmd InsertLeave * set nopaste
+
+" Make current window more obvious by turning off/adjusting some features in
+" non-current windows.
+autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 80), ',+')
+autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(1, 999), ',')
+autocmd InsertEnter * setlocal cursorline
+autocmd InsertLeave,WinLeave * setlocal nocursorline
+
+" | line cursor in INSERT - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " fix slight delay after pressing ESC then O http://ksjoberg.com/vim-esckeys.html
@@ -156,9 +174,9 @@ let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
-" deoplete tab-complete (except for UtilSnips)
+" deoplete tab-complete (except for UtilSnips, which is not used right now)
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
+" let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " close the preview window when you're not using it
@@ -173,16 +191,16 @@ endif
 autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
 " lint settings
-autocmd! BufWritePost * Neomake
-let g:neomake_open_list = 1
+autocmd! InsertLeave,BufWritePost,BufEnter * Neomake
+let g:neomake_open_list = 0
 
 let g:neomake_warning_sign = {
-\ 'text': ' ',
+\ 'text': '×',
 \ 'texthl': 'WarningMsg',
 \ }
 
 let g:neomake_error_sign = {
-\ 'text': ' ',
+\ 'text': '×',
 \ 'texthl': 'ErrorMsg',
 \ }
 
@@ -200,6 +218,10 @@ endif
 if executable(local_flow)
   let g:flow#flowpath = local_flow
 endif
+
+highlight NeomakeMessageSignDefault ctermfg=2 ctermbg=5
+highlight NeomakeWarningSignDefault ctermfg=3 ctermbg=5
+highlight NeomakeErrorSignDefault ctermfg=1 ctermbg=5
 
 " syntax highlighting for flow
 let g:javascript_plugin_flow = 1
@@ -221,6 +243,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unmerged"  : "U",
     \ "Deleted"   : "D",
     \ "Dirty"     : "X",
-    \ "Clean"     : "C",
+    \ "Clean"     : "✓",
     \ "Unknown"   : "?"
     \ }
