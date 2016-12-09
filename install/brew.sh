@@ -38,6 +38,7 @@ apps=(
   pyenv                                         # python
   pyenv-virtualenv                              # python
   rbevn                                         # ruby
+  reattach-to-user-namespace                    # tmux copy-paste fix
   neovim/neovim/neovim                          # utils
   watchman                                      # js (react-native dependency)
   wget                                          # utils

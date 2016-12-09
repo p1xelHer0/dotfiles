@@ -54,6 +54,7 @@ set tabstop=2
 " set autoindent        - default neovim
 " set backspace=indent,eol,start  - default neovim
 
+set cursorline
 set hidden
 set list                " display tabs and trailing spaces
 set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬
@@ -98,7 +99,7 @@ endif
 set fillchars+=vert:│
 highlight VertSplit ctermbg=18
 
-highlight link CursorLineNr DiffText
+highlight CursorLineNr cterm=bold ctermfg=3
 
 " NonText same color as bg, it's only shown at the current line in INSERT mode
 highlight NonText ctermfg=bg
@@ -111,19 +112,28 @@ highlight xmlAttrib cterm=italic
 " autoresize windows on terminal resize
 autocmd VimResized * execute "normal! \<c-w>="
 
+" keep it at 80
+" let &l:colorcolumn='+' . join(range(0, 80), ',+')
+
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 autocmd VimEnter * autocmd WinEnter * let w:created=1
 autocmd VimEnter * let w:created=1
 
-" Disable paste mode on leaving INSERT mode.
+" disable paste mode on leaving INSERT mode.
 autocmd InsertLeave * set nopaste
 
-" Make current window more obvious by turning off/adjusting some features in
-" non-current windows.
-autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 80), ',+')
-autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(1, 999), ',')
-autocmd InsertEnter * setlocal cursorline
-autocmd InsertLeave,WinLeave * setlocal nocursorline
+" make current window more obvious by turning off/adjusting some features in
+" non-current windows
+
+" colorcolumn
+" if exists('+colorcolumn')
+  " autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 80), ',+')
+  " autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(0, 255), ',')
+" endif
+
+" show cursorline only in NORMAL
+" autocmd InsertLeave,VimEnter,WinEnter * setlocal cursorline
+" autocmd InsertEnter,WinLeave * setlocal nocursorline
 
 " | line cursor in INSERT - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -132,7 +142,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set timeout timeoutlen=500 ttimeoutlen=100
 
 " keymappings
-let mapleader=","
+let mapleader="\<Space>"
 
 " switch windows with ctrl hjkl
 noremap <C-h> <C-w>h
@@ -140,7 +150,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" F10 prints the current highlight rules for cursor selection
+" f10 prints the current highlight rules for cursor selection
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -220,8 +230,11 @@ if executable(local_flow)
 endif
 
 highlight NeomakeMessageSignDefault ctermfg=2 ctermbg=5
+highlight link NeomakeMessageSign NeomakeMessageSignDefault
 highlight NeomakeWarningSignDefault ctermfg=3 ctermbg=5
-highlight NeomakeErrorSignDefault ctermfg=1 ctermbg=5
+highlight link NeomakeWarningSign NeomakeWarningSignDefault
+highlight NeomakeErrorSignDefault ctermfg=6 ctermbg=5
+highlight link NeomakeErrorSign NeomakeErrorSignDefault
 
 " syntax highlighting for flow
 let g:javascript_plugin_flow = 1
@@ -234,6 +247,14 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeHighlightCursorline=0
+
+" toggle NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+
+" open NERDTree when opening a directory or just starting vim
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "M",
