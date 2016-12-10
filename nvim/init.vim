@@ -1,8 +1,9 @@
 " hello 🤔
 
+""" plugins
 call plug#begin()
 
-" syntax
+"" syntax
 " Plug 'ElmCast/elm-vim'
 Plug 'gko/vim-coloresque'
 Plug 'hail2u/vim-css3-syntax'
@@ -10,12 +11,12 @@ Plug 'leshill/vim-json'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'othree/xml.vim'
+" Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'
-Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown'
 
 " autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'SirVer/ultisnips'
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'ervandew/supertab'
@@ -28,9 +29,9 @@ Plug 'neomake/neomake'
 
 " utils
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " point to homebrew fzf
-Plug 'Raimondi/delimitMate'
-Plug 'Townk/vim-autoclose'
-Plug 'Valloric/MatchTagAlways'
+Plug 'raimondi/delimitMate'
+Plug 'townk/vim-autoclose'
+Plug 'valloric/matchtagalways'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 
@@ -43,6 +44,9 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
+
+""" Settings
+
 " filetype indent plugin on - default neovim
 
 " indention
@@ -54,38 +58,36 @@ set tabstop=2
 " set autoindent        - default neovim
 " set backspace=indent,eol,start  - default neovim
 
-set cursorline
-set hidden
-set list                " display tabs and trailing spaces
+set cursorline          " highlight current cursorline
+set list                " display the listchars
 set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬
-
 set clipboard=unnamed   " normal OS clipboard interaction
 set copyindent          " copy the previous indentation on autoindenting
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is all lowercase
-" set wildmenu          - default neovim
-" set incsearch         - show search matches as you type - default neovim
+set showmatch           " automatically show matching brackets
+" set autoread          " auto reload files changed - default neovim
+" set laststatus=2      " display the status line always - default neovim
+" set wildmenu          " enable the wildmenu - default neovim
+" set incsearch         " show search matches as you type - default neovim
 " set hlsearch          " highlight search terms - default neovim
 
-set showmatch           " automatically show matching brackets
-" set autoread          " automatically reload files changed outside of Vim  - default neovim
-" set laststatus=2      " display the status line always - default neovim
-
-set number              " line numbers
-set relativenumber
+set number              " enable line numbers
+set relativenumber      " enable relative line number
 set ruler               " show the cursor position all the time
-set scrolloff=5
+set scrolloff=5         " keep 5 lines above the cursor while scrolling
 
-set visualbell
-" set encoding=utf-8    - default neovim
-" set history=10000     - default neovim
+set visualbell          " disable error sound, enable the visual one instead
+" set encoding=utf-8    " use utf-8 - default neovim
+" set history=10000     " remember more commands - default neovim
 
-set lazyredraw
-set synmaxcol=120
+set lazyredraw          " disable redraw while executing macros (perf)
+set synmaxcol=120       " only syntax highligh so much (perf)
 
-set showcmd
+set showcmd             " show command on the last line (for learning)
 
-" theme and style related
+
+""" ui
 " syntax enable - default neovim
 
 " load theme from base16-shell
@@ -98,10 +100,9 @@ endif
 " split border
 set fillchars+=vert:│
 highlight VertSplit ctermbg=18
-
 highlight CursorLineNr cterm=bold ctermfg=3
 
-" NonText same color as bg, it's only shown at the current line in INSERT mode
+" NonText same color as bg, only shown at the current line in INSERT mode
 highlight NonText ctermfg=bg
 
 " italic for this and html attributes in jsx
@@ -122,9 +123,7 @@ autocmd VimEnter * let w:created=1
 " disable paste mode on leaving INSERT mode.
 autocmd InsertLeave * set nopaste
 
-" make current window more obvious by turning off/adjusting some features in
-" non-current windows
-
+" make current window more obvious
 " colorcolumn
 " if exists('+colorcolumn')
   " autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 80), ',+')
@@ -135,13 +134,19 @@ autocmd InsertLeave * set nopaste
 " autocmd InsertLeave,VimEnter,WinEnter * setlocal cursorline
 " autocmd InsertEnter,WinLeave * setlocal nocursorline
 
-" | line cursor in INSERT - neovim specific
+" set curosor to | in INSERT - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" fix slight delay after pressing ESC then O http://ksjoberg.com/vim-esckeys.html
+" fix slight delay after pressing ESC then O (???)
+" http://ksjoberg.com/vim-esckeys.html/
 set timeout timeoutlen=500 ttimeoutlen=100
 
-" keymappings
+" paths to python2/3 envs - neovim specific
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+
+
+""" keymappings + plugin settings
 let mapleader="\<Space>"
 
 " switch windows with ctrl hjkl
@@ -155,17 +160,14 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" neomake
+"" neomake
 nmap <Leader><Space>o :lopen<CR>      " open location window
 nmap <Leader><Space>c :lclose<CR>     " close location window
 nmap <Leader><Space>, :ll<CR>         " go to current error/warning
 nmap <Leader><Space>n :lnext<CR>      " next error/warning
 nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
-
-" autocompletion
+"" deoplete (automcompletion)
 let g:deoplete#enable_at_startup = 1
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
@@ -180,7 +182,7 @@ let g:deoplete#omni#functions.javascript = [
 
 set completeopt=longest,menuone,preview
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs']
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
@@ -192,7 +194,8 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-" tern
+"" tern
+" https://ternjs.net/
 if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 1
@@ -200,20 +203,21 @@ if exists('g:plugs["tern_for_vim"]')
 endif
 autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
-" lint settings
+" neomake (linting)
 autocmd! InsertLeave,BufWritePost,BufEnter * Neomake
 let g:neomake_open_list = 0
 
-let g:neomake_warning_sign = {
-\ 'text': '×',
-\ 'texthl': 'WarningMsg',
-\ }
+"let g:neomake_warning_sign = {
+"\ 'text': '×',
+"\ 'texthl': 'WarningMsg',
+"\ }
 
-let g:neomake_error_sign = {
-\ 'text': '×',
-\ 'texthl': 'ErrorMsg',
-\ }
+"let g:neomake_error_sign = {
+"\ 'text': '×',
+"\ 'texthl': 'ErrorMsg',
+"\ }
 
+" eslint > jshint
 let g:neomake_javascript_enabled_makers = ['eslint', 'jshint']
 
 " allow jsx in normal js files
@@ -229,19 +233,24 @@ if executable(local_flow)
   let g:flow#flowpath = local_flow
 endif
 
-highlight NeomakeMessageSignDefault ctermfg=2 ctermbg=5
-highlight link NeomakeMessageSign NeomakeMessageSignDefault
-highlight NeomakeWarningSignDefault ctermfg=3 ctermbg=5
-highlight link NeomakeWarningSign NeomakeWarningSignDefault
-highlight NeomakeErrorSignDefault ctermfg=6 ctermbg=5
-highlight link NeomakeErrorSign NeomakeErrorSignDefault
+"highlight NeomakeMessageSignDefault NONE
+"highlight NeomakeWarningSignDefault NONE
+"highlight NeomakeErrorSignDefault NONE
+
+"highlight NeomakeMessageSignDefault ctermfg=2 ctermbg=18
+"highlight link NeomakeMessageSign NeomakeMessageSignDefault
+"highlight NeomakeWarningSignDefault ctermfg=3 ctermbg=18
+"highlight link NeomakeWarningSign NeomakeWarningSignDefault
+"highlight NeomakeErrorSignDefault ctermfg=6 ctermbg=18
+"highlight link NeomakeErrorSign NeomakeErrorSignDefault
 
 " syntax highlighting for flow
 let g:javascript_plugin_flow = 1
 
+" libraries I tend to use
 let g:used_javascript_libs = 'ramda,react'
 
-" NERDTree
+"" NERDTree
 let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
 let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
@@ -256,14 +265,14 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "M",
-    \ "Staged"    : "+",
-    \ "Untracked" : "A",
-    \ "Renamed"   : "R",
-    \ "Unmerged"  : "U",
-    \ "Deleted"   : "D",
-    \ "Dirty"     : "X",
-    \ "Clean"     : "✓",
-    \ "Unknown"   : "?"
-    \ }
+" let g:NERDTreeIndicatorMapCustom = {
+    "\ "Modified"  : "M",
+    "\ "Staged"    : "+",
+    "\ "Untracked" : "A",
+    "\ "Renamed"   : "R",
+    "\ "Unmerged"  : "U",
+    "\ "Deleted"   : "D",
+    "\ "Dirty"     : "X",
+    "\ "Clean"     : "✓",
+    "\ "Unknown"   : "?"
+    "\ }
