@@ -50,8 +50,6 @@ plugins=(zsh-syntax-highlighting)
 
 # User configuration
 
-export TERM=xterm-256color
-
 # base16-shell
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -67,21 +65,24 @@ NODE_VERSION=$(node --version | grep -v -)
 # try to use vim (nvim)
 export EDITOR=vim
 
-# React native (nvm)
+### $PATH
+
+## React native
+# react native (nvm)
 export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
-
-export STACK_PACKAGES=$HOME/.local/bin
-
-# Xcode simctl needed for react-native emulator
+# xcode simctl needed for react-native emulator
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
 
-# jenv
+## haskell
+export STACK_PACKAGES=$HOME/.local/bin
+
+## java (jenv)
 export JENV=$HOME/.jenv/bin
 
-# pyenv
+## python (pyenv)
 export PYENV_ROOT=$HOME/.pyenv
 
-# Android env vars
+## android
 export ANT_HOME=/usr/local/opt/ant
 export MAVEN_HOME=/usr/local/opt/maven
 export GRADLE_HOME=/usr/local/opt/gradle
@@ -89,6 +90,8 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
 
 # export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+
+# set the path
 
 export PATH=$REACT_NATIVE_HOME:$PATH
 
@@ -130,32 +133,32 @@ export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
 # alias zshconfig="mate $HOME/.zshrc"
 # alias ohmyzsh="mate $HOME/.oh-my-zsh"
 
-# Load oh-my-zsh
+# load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Load aliases
+# load aliases
 source $HOME/dotfiles/shell/.alias
 source $HOME/dotfiles/shell/.alias.osx
 
-# Load fasd
+# load fasd
 if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
-# Load fzf
+# load fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
-# Loading of environments has been moved to aliases
+# loading of environments has been moved to aliases
 
-# Load jenv
+# load jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-# Load pyenv
+# load pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv virtualenv > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-# Load stack (does not work...?)
+# load stack (does not work...?)
 # if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
 
-# Load rbenv
+# load rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # npm tab completion
