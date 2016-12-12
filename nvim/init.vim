@@ -16,7 +16,7 @@ Plug 'pangloss/vim-javascript'
 " Plug 'tpope/vim-markdown'
 
 " autocompletion
-Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'SirVer/ultisnips'
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'ervandew/supertab'
@@ -29,9 +29,9 @@ Plug 'neomake/neomake'
 
 " utils
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " point to homebrew fzf
-Plug 'raimondi/delimitMate'
-Plug 'townk/vim-autoclose'
-Plug 'valloric/matchtagalways'
+Plug 'Raimondi/delimitMate'
+Plug 'Townk/vim-autoclose'
+Plug 'Valloric/MatchTagAlways'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 
@@ -85,6 +85,7 @@ set lazyredraw          " disable redraw while executing macros (perf)
 set synmaxcol=120       " only syntax highligh so much (perf)
 
 set showcmd             " show command on the last line (for learning)
+set shortmess+=I        " no splash screen
 
 
 """ ui
@@ -147,7 +148,10 @@ let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 
 """ keymappings + plugin settings
+
 let mapleader="\<Space>"
+
+"" universal mappings
 
 " switch windows with ctrl hjkl
 noremap <C-h> <C-w>h
@@ -155,17 +159,60 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+" yank to the end of the line with Y
+noremap Y y$
+
+
+"" normal mappings
+
+" <Leader><Leader> -- open last buffer
+nnoremap <Leader><Leader> <C-^>
+
+" avoid unintentional switches to Ex mode.
+nmap Q q
+
+" I will probably missclick this as well...
+nnoremap K <nop>
+
+" repeat last macro if in a normal buffer
+nnoremap <expr><CR> empty(&buftype) ? '@@' : '<CR>'
+
+" quit, write and xit quicker
+nnoremap <Leader>q :quit<CR>
+nnoremap <Leader>w :write<CR>
+nnoremap <Leader>x :xit<CR>
+
+" store relative line number jumps in the jumplist if they exceed a threshold
+nnoremap <expr>k (v:count > 5 ? "m'" . v:count : '') . 'k'
+nnoremap <expr>j (v:count > 5 ? "m'" . v:count : '') . 'j'
+
 " f10 prints the current highlight rules for cursor selection
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-"" neomake
-nmap <Leader><Space>o :lopen<CR>      " open location window
-nmap <Leader><Space>c :lclose<CR>     " close location window
-nmap <Leader><Space>, :ll<CR>         " go to current error/warning
-nmap <Leader><Space>n :lnext<CR>      " next error/warning
-nmap <Leader><Space>p :lprev<CR>      " previous error/warning
+" toggle NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+
+" neomake
+nnoremap <Leader>o :lopen<CR>           " open location window
+nnoremap <Leader><Leader>o :lclose<CR>  " close location window
+nnoremap <silent><Right> :ll<CR>        " go to current error/warning
+nnoremap <silent><Down> :lnext<CR>      " next error/warning
+nnoremap <silent><Up> :lprev<CR>        " previous error/warning
+
+" tern
+autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
+
+"" insert mappings
+
+" deoplete tab-complete (except for UtilSnips, which is not used right now)
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+" let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+""" plugins settings
 
 "" deoplete (automcompletion)
 let g:deoplete#enable_at_startup = 1
@@ -186,11 +233,6 @@ let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs']
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
-" deoplete tab-complete (except for UtilSnips, which is not used right now)
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-" let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
 
@@ -198,13 +240,12 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 " https://ternjs.net/
 if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_argument_hints = 'on_hold'
-  let g:tern_show_signature_in_pum = 1
+  let g:tern_show_signature_in_pum = 0
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
-autocmd FileType javascript nnoremap <silent> <buffer> gb :TernDef<CR>
 
-" neomake (linting)
-autocmd! InsertLeave,BufWritePost,BufEnter * Neomake
+"" neomake (linting)
+autocmd! InsertLeave,BufWritePost * Neomake
 let g:neomake_open_list = 0
 
 "let g:neomake_warning_sign = {
@@ -223,7 +264,7 @@ let g:neomake_javascript_enabled_makers = ['eslint', 'jshint']
 " allow jsx in normal js files
 let g:jsx_ext_required = 0
 
-" flow
+"" flow
 " use locally installed flow
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
@@ -256,9 +297,6 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeHighlightCursorline=0
-
-" toggle NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
 
 " open NERDTree when opening a directory or just starting vim
 autocmd StdinReadPre * let s:std_in=1

@@ -14,6 +14,10 @@
 	<string>B25EC176-981A-4405-816F-E53529D03D3B</string>
 	<key>DimInactiveSplitPanes</key>
 	<false/>
+	<key>DisableFullscreenTransparency</key>
+	<false/>
+	<key>HideScrollbar</key>
+	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
@@ -59,9 +63,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>635 174 613 185 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>364 245 918 495 0 0 1440 878 </string>
+	<string>364 429 770 381 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>23 82 1376 792 0 0 1440 878 </string>
+	<string>237 152 1011 552 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>393 284 585 402 0 0 1440 878 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -660,12 +666,20 @@
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>1993897E-83C5-4732-B79C-C148B533DFF8</string>
+	<key>NoSyncLastTipTime</key>
+	<real>503063008.15048498</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
+	<key>NoSyncPermissionToShowTip</key>
+	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>502835359.30052698</real>
+	<key>NoSyncTipsToNotShow</key>
+	<array>
+		<string>000</string>
+	</array>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -710,7 +724,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-12-08T20:50:18Z</date>
+	<date>2016-12-10T11:43:27Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
