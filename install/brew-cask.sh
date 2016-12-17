@@ -8,6 +8,7 @@ brew tap caskroom/versions
 # Install packages
 
 apps=(
+  alfred                                        # utils
   android-studio                                # android
   atom                                          # utils
   brave                                         # browser

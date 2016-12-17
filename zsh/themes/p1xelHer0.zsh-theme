@@ -4,14 +4,14 @@
 # changed STAGED, UNSTAGED, UNTRACKED symbols to ■
 # changed AHEAD symbol to ▲
 # changed BEHIND symbol to ▼
-# changed CLEAN symbol to ◈
+# changed CLEAN symbol to ◆
 # changed to a 1-liner
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                   #
 #                   terminal stuff                  #
 #                                                   #
-# $/# typing here        master ◈ ~/repo/clean-repo #
+# $/# typing here        master ◆ ~/repo/clean-repo #
 # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ### NVM ⬡ 6.4.0 (not used right now)
@@ -21,7 +21,7 @@ ZSH_THEME_NVM_PROMPT_SUFFIX="%{$reset_color%}"
 ### Git master ▾■
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg_bold[white]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}◈%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}◆%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▲%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▼%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}■%{$reset_color%}"
@@ -97,7 +97,7 @@ if [[ $EUID -eq 0 ]]; then
   _LIBERTY="%{$fg[red]%}#"
 else
   _USERNAME="%{$fg_bold[white]%}%n"
-  _LIBERTY="%{$fg[green]%}$"
+  _LIBERTY="%{$fg[green]%}λ"
 fi
 _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"

@@ -5,7 +5,7 @@ call plug#begin()
 
 "" syntax
 " Plug 'ElmCast/elm-vim'
-Plug 'gko/vim-coloresque'
+" Plug 'gko/vim-coloresque'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'leshill/vim-json'
 Plug 'mxw/vim-jsx'
@@ -13,6 +13,7 @@ Plug 'othree/html5.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 " Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'neovimhaskell/haskell-vim'
 " Plug 'tpope/vim-markdown'
 
 " autocompletion
@@ -34,12 +35,19 @@ Plug 'Townk/vim-autoclose'
 Plug 'Valloric/MatchTagAlways'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'godlygeek/tabular'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'} " haskell
+Plug 'eagletmt/neco-ghc' " haskell
+Plug 'eagletmt/ghcmod-vim' " haskell
 
 " ui
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-bufferline'
+" Plug 'bling/vim-bufferline'
 Plug 'chriskempson/base16-vim'
+Plug 'daviesjamie/vim-base16-lightline'
 Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
@@ -82,10 +90,11 @@ set visualbell          " disable error sound, enable the visual one instead
 " set history=10000     " remember more commands - default neovim
 
 set lazyredraw          " disable redraw while executing macros (perf)
-set synmaxcol=120       " only syntax highligh so much (perf)
+set synmaxcol=0         " (everything for now) only syntax highligh so much (perf)
 
 set showcmd             " show command on the last line (for learning)
 set shortmess+=I        " no splash screen
+set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
 
 
 """ ui
@@ -110,6 +119,11 @@ highlight NonText ctermfg=bg
 highlight htmlArg cterm=italic
 highlight jsThis cterm=italic
 highlight xmlAttrib cterm=italic
+
+" lightline matches base16
+let g:lightline = {
+\   'colorscheme': 'base16'
+\ }
 
 " autoresize windows on terminal resize
 autocmd VimResized * execute "normal! \<c-w>="
@@ -151,7 +165,9 @@ let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
 let mapleader="\<Space>"
 
-"" universal mappings
+noremap <Leader><Leader>r :so $MYVIMRC<CR>
+
+"l universal mappings
 
 " switch windows with ctrl hjkl
 noremap <C-h> <C-w>h
@@ -182,6 +198,11 @@ nnoremap <Leader>q :quit<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>x :xit<CR>
 
+" replace spaces with tabs or the other way around
+" :nohl because NERDTree bugs after replacing as of now
+nnoremap <Leader>r<Space>t :%s/  /\t/g<CR>:nohl<CR>
+nnoremap <Leader>rt<Space> :%s/\t/  /g<CR>
+
 " store relative line number jumps in the jumplist if they exceed a threshold
 nnoremap <expr>k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr>j (v:count > 5 ? "m'" . v:count : '') . 'j'
@@ -192,7 +213,7 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " toggle NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
+nmap <Leader>n :NERDTreeToggle<CR>
 
 " neomake
 nnoremap <Leader>o :lopen<CR>           " open location window
@@ -209,7 +230,19 @@ autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
 " deoplete tab-complete (except for UtilSnips, which is not used right now)
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+
+map <C-c> <CR><Esc>O
+
+
+"" visual mappings
+vmap <Leader>t: :Tabularize /:\zs<CR>
+vmap <Leader>t= :Tabularize /=<CR>
+vmap <Leader>t<Space>: :Tabularize /:<CR>
+vmap <Leader>t; :Tabularize /::<CR>
+vmap <Leader>t- :Tabularize /-><CR>
+vmap <Leader>t' :Tabularize /'><CR>
+vmap <Leader>t" :Tabularize /"><CR>
 
 
 """ plugins settings
@@ -227,7 +260,7 @@ let g:deoplete#omni#functions.javascript = [
   \ 'jspc#omni'
 \]
 
-set completeopt=longest,menuone,preview
+set completeopt-=preview
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs']
 let g:tern#command = ['tern']
@@ -236,27 +269,49 @@ let g:tern#arguments = ['--persistent']
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-"" tern
-" https://ternjs.net/
+
+"" ternjs (javascript)
+"  https://ternjs.net/
 if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 0
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
 
+
+"" neco-ghc (haskell)
+"  https://github.com/eagletmt/neco-ghc
+if exists('g:plugs["neco-ghc"]')
+  let g:haskellmode_completion_ghc = 1
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+endif
+
+
+"" haskell-vim (haskell)
+" https://github.com/neovimhaskell/haskell-vim
+if exists('g:plugs["haskell-vim"]')
+  let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+  let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+  let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+  let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+  let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+  let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+endif
+
+
 "" neomake (linting)
 autocmd! InsertLeave,BufWritePost * Neomake
 let g:neomake_open_list = 0
 
-"let g:neomake_warning_sign = {
-"\ 'text': '×',
-"\ 'texthl': 'WarningMsg',
-"\ }
+let g:neomake_warning_sign = {
+\ 'text': '×',
+\ 'texthl': 'WarningMsg',
+\ }
 
-"let g:neomake_error_sign = {
-"\ 'text': '×',
-"\ 'texthl': 'ErrorMsg',
-"\ }
+let g:neomake_error_sign = {
+\ 'text': '×',
+\ 'texthl': 'ErrorMsg',
+\ }
 
 " eslint > jshint
 let g:neomake_javascript_enabled_makers = ['eslint', 'jshint']
@@ -273,6 +328,8 @@ endif
 if executable(local_flow)
   let g:flow#flowpath = local_flow
 endif
+
+let g:neomake_css_enabled_makers = ['stylelint']
 
 "highlight NeomakeMessageSignDefault NONE
 "highlight NeomakeWarningSignDefault NONE
@@ -291,6 +348,13 @@ let g:javascript_plugin_flow = 1
 " libraries I tend to use
 let g:used_javascript_libs = 'ramda,react'
 
+"" delimitMate
+
+
+"" fzf
+let g:fzf_layout = { 'window': 'enew' }
+
+
 "" NERDTree
 let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
 let NERDTreeShowBookmarks=1
@@ -303,14 +367,14 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-" let g:NERDTreeIndicatorMapCustom = {
-    "\ "Modified"  : "M",
-    "\ "Staged"    : "+",
-    "\ "Untracked" : "A",
-    "\ "Renamed"   : "R",
-    "\ "Unmerged"  : "U",
-    "\ "Deleted"   : "D",
-    "\ "Dirty"     : "X",
-    "\ "Clean"     : "✓",
-    "\ "Unknown"   : "?"
-    "\ }
+let g:NERDTreeIndicatorMapCustom = {
+     \ "Modified"  : "M",
+     \ "Staged"    : "S",
+     \ "Untracked" : "!",
+     \ "Renamed"   : "R",
+     \ "Unmerged"  : "U",
+     \ "Deleted"   : "-",
+     \ "Dirty"     : "X",
+     \ "Clean"     : " ",
+     \ "Unknown"   : "?"
+     \ }

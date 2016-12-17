@@ -56,6 +56,12 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 source $HOME/dotfiles/shell/.colors
 
+# fzf
+export FZF_DEFAULT_OPTS='
+  --color fg:-1,bg:-1,hl:1,fg+:4,bg+:18,hl+:1,info:20
+  --color prompt:6,spinner:2,pointer:1,marker:3,header:2
+'
+
 # Load nvm
 export NVM_DIR="/Users/pontusnagy/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
