@@ -1,7 +1,7 @@
 # oh-my-zsh Bureau Theme
 # modified
 # removed [ ] from everything
-# changed STAGED, UNSTAGED, UNTRACKED symbols to ■
+# changed STAGED, UNSTAGED, UNTRACKED symbols to ▪︎
 # changed AHEAD symbol to ▲
 # changed BEHIND symbol to ▼
 # changed CLEAN symbol to ◆
@@ -11,7 +11,7 @@
 #                                                   #
 #                   terminal stuff                  #
 #                                                   #
-# $/# typing here        master ◆ ~/repo/clean-repo #
+# $/# typing here                 master ▪︎▪︎▲ ~/repo #
 # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 ### NVM ⬡ 6.4.0 (not used right now)
@@ -24,9 +24,9 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}◆%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▲%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▼%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}■%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[yellow]%}■%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}■%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}▪︎%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[yellow]%}▪︎%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}▪︎%{$reset_color%}"
 
 bureau_git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
@@ -97,7 +97,7 @@ if [[ $EUID -eq 0 ]]; then
   _LIBERTY="%{$fg[red]%}#"
 else
   _USERNAME="%{$fg_bold[white]%}%n"
-  _LIBERTY="%{$fg[green]%}λ"
+  _LIBERTY="%{$fg[green]%}►"
 fi
 _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
