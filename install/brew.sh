@@ -14,7 +14,6 @@ fi
 
 brew tap homebrew/versions
 brew tap homebrew/dupes
-brew tap Goles/battery
 
 # Make sure we’re using the latest Homebrew
 brew update
@@ -35,14 +34,16 @@ apps=(
   haskell-stack                                 # haskell
   jenv                                          # java
   maven                                         # android/java
+  neovim/neovim/neovim                          # editor
   pyenv                                         # python
   pyenv-virtualenv                              # python
   rbevn                                         # ruby
   reattach-to-user-namespace                    # tmux copy-paste fix
-  neovim/neovim/neovim                          # utils
+  ripgrep                                       # utils
   watchman                                      # js (react-native dependency)
   wget                                          # utils
   wifi-password                                 # utils
+  yarn                                          # js
 )
 
 brew install "${apps[@]}"
