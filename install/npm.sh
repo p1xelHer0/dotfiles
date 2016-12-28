@@ -27,7 +27,6 @@ packages=(
   standard
   tern
   webpack
-  yarnpkg
 )
 
 npm install -g "${packages[@]}"
