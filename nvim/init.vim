@@ -133,6 +133,7 @@ highlight CursorLineNr cterm=bold ctermfg=3
 
 " NonText same color as bg, only shown at the current line in INSERT mode
 highlight NonText ctermfg=bg
+highlight EndOfBuffer ctermfg=6
 
 " italic for this and html attributes in jsx
 highlight htmlArg cterm=italic
