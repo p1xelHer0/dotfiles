@@ -26,7 +26,7 @@ Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'parsonsmatt/intero-neovim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/vimproc.vim',        {'do' : 'make'}
 
 " general
 Plug 'hail2u/vim-css3-syntax'
@@ -67,6 +67,10 @@ Plug 'daviesjamie/vim-base16-lightline'
 
 "" dependencies
 Plug 'tmux-plugins/vim-tmux-focus-events'
+
+"" other
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
@@ -133,7 +137,7 @@ highlight CursorLineNr cterm=bold ctermfg=3
 
 " NonText same color as bg, only shown at the current line in INSERT mode
 highlight NonText ctermfg=bg
-highlight EndOfBuffer ctermfg=6
+highlight EndOfBuffer ctermfg=19 ctermbg=18
 
 " italic for this and html attributes in jsx
 highlight htmlArg cterm=italic
@@ -181,11 +185,32 @@ autocmd VimEnter * let w:created=1
 " disable paste mode on leaving INSERT mode.
 autocmd InsertLeave * set nopaste
 
+"" focus
 " make current window more obvious
 if exists('+colorcolumn')
   autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80,".join(range(120,999),",")
   autocmd FocusLost,WinLeave * let &l:colorcolumn="0".join(range(1,999),",")
 endif
+
+" goyo
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " set curosor to | in INSERT - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -253,7 +278,7 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " toggle NERDTree
-nmap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " neomake
 nnoremap <Leader>o :lopen<CR>           " open location window
