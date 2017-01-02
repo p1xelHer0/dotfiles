@@ -1,5 +1,5 @@
-# Open dotfiles in Atom
-alias dotfiles="cd $HOME/dotfiles && vim"
+# Open dotfiles in neovim
+alias dotfiles="cd $HOME/dotfiles && nvim"
 alias vimrc="vim $HOME/.config/nvim/init.vim"
 
 # List npm modules global/local
@@ -16,6 +16,7 @@ alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
 # vim -> nvim
 alias vim=nvim
+alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 
 # Reload shell
 alias rl="exec $SHELL"
