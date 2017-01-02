@@ -4,56 +4,74 @@
 call plug#begin()
 
 "" syntax
-" Plug 'ElmCast/elm-vim'
-" Plug 'gko/vim-coloresque'
+
+" javascript++
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim',       { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs',  { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim',           { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'benjie/neomake-local-eslint.vim'
+
+" elm
+Plug 'ElmCast/elm-vim'
+
+" purescript
+Plug 'raichoo/purescript-vim'
+Plug 'frigoeu/psc-ide-vim'
+
+" haskell
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'parsonsmatt/intero-neovim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" general
 Plug 'hail2u/vim-css3-syntax'
 Plug 'leshill/vim-json'
-Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'othree/xml.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'neovimhaskell/haskell-vim'
-" Plug 'tpope/vim-markdown'
+Plug 'othree/xml.vim'
+Plug 'tpope/vim-markdown'
 
-" autocompletion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'SirVer/ultisnips'
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+"" autocompletion
+Plug 'Shougo/deoplete.nvim',      { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
 
-" linting
-Plug 'benjie/neomake-local-eslint.vim'
+"" linting
 Plug 'neomake/neomake'
 
-" utils
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " point to homebrew fzf
-Plug 'Raimondi/delimitMate'
-Plug 'Townk/vim-autoclose'
-Plug 'Valloric/MatchTagAlways'
-Plug 'editorconfig/editorconfig-vim'
+"" git
 Plug 'tpope/vim-fugitive'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'godlygeek/tabular'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'} " haskell
-Plug 'eagletmt/neco-ghc' " haskell
-Plug 'eagletmt/ghcmod-vim' " haskell
-
-" ui
 Plug 'airblade/vim-gitgutter'
-" Plug 'bling/vim-bufferline'
-Plug 'chriskempson/base16-vim'
-Plug 'daviesjamie/vim-base16-lightline'
+Plug 'junegunn/gv.vim'
+
+"" edit utils
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Valloric/MatchTagAlways'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/vim-easy-align'
+
+"" file handling
 Plug 'scrooloose/nerdtree'
-Plug 'itchyny/lightline.vim'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " point to homebrew fzf
+
+"" styling
+Plug 'chriskempson/base16-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'daviesjamie/vim-base16-lightline'
+
+"" dependencies
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 call plug#end()
 
 
-""" Settings
+""" settings
 
 " filetype indent plugin on - default neovim
 
@@ -79,7 +97,7 @@ set showmatch           " automatically show matching brackets
 " set wildmenu          " enable the wildmenu - default neovim
 " set incsearch         " show search matches as you type - default neovim
 " set hlsearch          " highlight search terms - default neovim
-
+set mouse-=a            " disable mouse, LEARN!
 set number              " enable line numbers
 set relativenumber      " enable relative line number
 set ruler               " show the cursor position all the time
@@ -94,7 +112,8 @@ set synmaxcol=0         " (everything for now) only syntax highligh so much (per
 
 set showcmd             " show command on the last line (for learning)
 set shortmess+=I        " no splash screen
-set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
+
+set backupcopy=yes
 
 
 """ ui
@@ -120,16 +139,39 @@ highlight htmlArg cterm=italic
 highlight jsThis cterm=italic
 highlight xmlAttrib cterm=italic
 
+highlight link NeomakeError Error
+
 " lightline matches base16
 let g:lightline = {
 \   'colorscheme': 'base16'
 \ }
 
+" NERDTree
+let g:NERDTreeIndicatorMapCustom = {
+     \ "Modified"  : "~",
+     \ "Staged"    : "▲",
+     \ "Untracked" : "▼",
+     \ "Renamed"   : "→",
+     \ "Unmerged"  : "=",
+     \ "Deleted"   : "-",
+     \ "Dirty"     : "~",
+     \ "Clean"     : "◆",
+     \ "Unknown"   : "?"
+     \ }
+
+highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
+highlight NERDTreeGitStatusModified ctermfg=3
+highlight link NERDTreeGitStatusDirClean DiffAdd
+highlight link NERDTreeGitStatusStaged Special
+highlight link NERDTreeGitStatusRenamed DiffLine
+highlight link NERDTreeGitStatusUnmerged DiffLine
+highlight link NERDTreeGitStatusUntracked DiffFile
+
 " autoresize windows on terminal resize
 autocmd VimResized * execute "normal! \<c-w>="
 
 " keep it at 80
-" let &l:colorcolumn='+' . join(range(0, 80), ',+')
+let &l:colorcolumn="80,".join(range(120,999),",")
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 autocmd VimEnter * autocmd WinEnter * let w:created=1
@@ -139,15 +181,10 @@ autocmd VimEnter * let w:created=1
 autocmd InsertLeave * set nopaste
 
 " make current window more obvious
-" colorcolumn
-" if exists('+colorcolumn')
-  " autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 80), ',+')
-  " autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(0, 255), ',')
-" endif
-
-" show cursorline only in NORMAL
-" autocmd InsertLeave,VimEnter,WinEnter * setlocal cursorline
-" autocmd InsertEnter,WinLeave * setlocal nocursorline
+if exists('+colorcolumn')
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80,".join(range(120,999),",")
+  autocmd FocusLost,WinLeave * let &l:colorcolumn="0".join(range(1,999),",")
+endif
 
 " set curosor to | in INSERT - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -160,20 +197,22 @@ set timeout timeoutlen=500 ttimeoutlen=100
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
+let g:elm_format_autosave = 1
+
 
 """ keymappings + plugin settings
 
 let mapleader="\<Space>"
-
+" reload .vimrc
 noremap <Leader><Leader>r :so $MYVIMRC<CR>
 
-"l universal mappings
+" universal mappings
 
-" switch windows with ctrl hjkl
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" use ctrl-[hjkl] to move between splits
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 
 " yank to the end of the line with Y
 noremap Y y$
@@ -228,22 +267,18 @@ autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
 "" insert mappings
 
 " deoplete tab-complete (except for UtilSnips, which is not used right now)
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 " let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 map <C-c> <CR><Esc>O
 
 
 "" visual mappings
-vmap <Leader>t: :Tabularize /:\zs<CR>
-vmap <Leader>t= :Tabularize /=<CR>
-vmap <Leader>t<Space>: :Tabularize /:<CR>
-vmap <Leader>t; :Tabularize /::<CR>
-vmap <Leader>t- :Tabularize /-><CR>
-vmap <Leader>t' :Tabularize /'><CR>
-vmap <Leader>t" :Tabularize /"><CR>
 
+"" EasyAlign
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 """ plugins settings
 
@@ -253,6 +288,13 @@ if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" enter closes options if present and inserts linebreak
+" apparently this has to be that complicated
+inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
+function! s:close_and_linebreak()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+endfunction
 
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
@@ -279,10 +321,24 @@ if exists('g:plugs["tern_for_vim"]')
 endif
 
 
+"" elm-vim
+if exists('g:plugs["elm-vim"]')
+  let g:deoplete#omni#functions.elm = ['elm#Complete']
+  let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
+endif
+
+
+"" purescript
+if exists('g:plugs["purescript-vim"]')
+  let g:deoplete#omni#input_patterns.purescript = '[^ \t]+'
+endif
+
+
 "" neco-ghc (haskell)
 "  https://github.com/eagletmt/neco-ghc
 if exists('g:plugs["neco-ghc"]')
   let g:haskellmode_completion_ghc = 1
+  let g:necoghc_enable_detailed_browse = 1
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 endif
 
@@ -303,15 +359,16 @@ endif
 autocmd! InsertLeave,BufWritePost * Neomake
 let g:neomake_open_list = 0
 
-let g:neomake_warning_sign = {
-\ 'text': '×',
-\ 'texthl': 'WarningMsg',
-\ }
+" let g:neomake_warning_sign = {
+" \ 'text': '×',
+" \ 'texthl': 'WarningMsg',
+" \ }
 
-let g:neomake_error_sign = {
-\ 'text': '×',
-\ 'texthl': 'ErrorMsg',
-\ }
+" let g:neomake_error_sign = {
+" \ 'text': '×',
+" \ 'texthl': 'ErrorMsg',
+" \ }
+
 
 " eslint > jshint
 let g:neomake_javascript_enabled_makers = ['eslint', 'jshint']
@@ -329,7 +386,13 @@ if executable(local_flow)
   let g:flow#flowpath = local_flow
 endif
 
+" css
 let g:neomake_css_enabled_makers = ['stylelint']
+
+
+" purescript
+let g:psc_ide_syntastic_mode = 2
+
 
 "highlight NeomakeMessageSignDefault NONE
 "highlight NeomakeWarningSignDefault NONE
@@ -348,12 +411,19 @@ let g:javascript_plugin_flow = 1
 " libraries I tend to use
 let g:used_javascript_libs = 'ramda,react'
 
-"" delimitMate
-
-
 "" fzf
 let g:fzf_layout = { 'window': 'enew' }
-
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 "" NERDTree
 let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
@@ -367,14 +437,4 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-let g:NERDTreeIndicatorMapCustom = {
-     \ "Modified"  : "M",
-     \ "Staged"    : "S",
-     \ "Untracked" : "!",
-     \ "Renamed"   : "R",
-     \ "Unmerged"  : "U",
-     \ "Deleted"   : "-",
-     \ "Dirty"     : "X",
-     \ "Clean"     : " ",
-     \ "Unknown"   : "?"
-     \ }
+
