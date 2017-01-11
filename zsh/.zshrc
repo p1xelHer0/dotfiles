@@ -146,9 +146,9 @@ NODE_VERSION=$(node --version | grep -v -)
 export EDITOR=nvim
 
 # start tmux auto
-if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ tmux ]] && [ -z $TMUX ] && exec tmux
-fi
+# if command -v tmux>/dev/null; then
+  # [[ ! $TERM =~ tmux ]] && [ -z $TMUX ] && exec tmux
+# fi
 
 ### $PATH
 
@@ -157,6 +157,9 @@ fi
 export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
 # xcode simctl needed for react-native emulator
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
+
+## rust (rustup)
+export CARGO_HOME=$HOME/.cargo/bin
 
 ## haskell
 export STACK_PACKAGES=$HOME/.local/bin
@@ -179,6 +182,8 @@ export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
 # set the path
 
 export PATH=$REACT_NATIVE_HOME:$PATH
+
+export PATH=$CARGO_HOME:$PATH
 
 export PATH=$STACK_PACKAGES:$PATH
 
