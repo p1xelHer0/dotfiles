@@ -14,6 +14,7 @@ fi
 
 brew tap homebrew/versions
 brew tap homebrew/dupes
+brew tap homebrew/services
 
 # Make sure we’re using the latest Homebrew
 brew update
@@ -33,8 +34,11 @@ apps=(
   gradle                                        # android/java
   haskell-stack                                 # haskell
   jenv                                          # java
+  koekeishiya/formulae/khd                      # utils
+  koekeishiya/formulae/kwm                      # utils
   maven                                         # android/java
   neovim/neovim/neovim                          # editor
+  neofetch                                      # utils
   pyenv                                         # python
   pyenv-virtualenv                              # python
   rbevn                                         # ruby
@@ -50,3 +54,7 @@ brew install "${apps[@]}"
 
 # Remove outdated versions from the cellar
 brew cleanup
+
+# Start kwm by default
+brew services start kwm
+brew services start khd

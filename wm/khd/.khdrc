@@ -1,0 +1,34 @@
+# Shift focus
+lalt - up            : kwmc window -f north
+lalt - right         : kwmc window -f east
+lalt - down          : kwmc window -f south
+lalt - left          : kwmc window -f west
+
+# Swap position
+lalt + shift - up    : kwmc window -s north
+lalt + shift - right : kwmc window -s east
+lalt + shift - down  : kwmc window -s south
+lalt + shift - left  : kwmc window -s west
+
+# Move window
+lalt + lctrl - up    : kwmc window -m north
+lalt + lctrl - right : kwmc window -m east
+lalt + lctrl - down  : kwmc window -m south
+lalt + lctrl - left  : kwmc window -m west
+
+# vi-mode for non-terminal applications
+
+# remap left-control h/j/k/l -> arrow keys
+lctrl - h         ![HyperTerm,Terminal,iTerm2]: khd -p "- left"
+lctrl - j         ![HyperTerm,Terminal,iTerm2]: khd -p "- down"
+lctrl - k         ![HyperTerm,Terminal,iTerm2]: khd -p "- up"
+lctrl - l         ![HyperTerm,Terminal,iTerm2]: khd -p "- right"
+
+shift + lctrl - h ![HyperTerm,Terminal,iTerm2]: khd -p "shift - left"
+shift + lctrl - j ![HyperTerm,Terminal,iTerm2]: khd -p "shift - down"
+shift + lctrl - k ![HyperTerm,Terminal,iTerm2]: khd -p "shift - up"
+shift + lctrl - l ![HyperTerm,Terminal,iTerm2]: khd -p "shift - right"
+
+## Reload window layout if broken
+lalt + shift - r       : brew services restart kwm
+lalt + shift + cmd - r : brew services restart khd

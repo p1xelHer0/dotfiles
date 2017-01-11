@@ -17,10 +17,11 @@ apps=(
   firefox                                       # browser
   firefoxnightly                                # browser
   flux                                          # utils
-  hyper                                         # terminal
   gitkraken                                     # utils
+  gitter                                        # communication
   google-chrome                                 # browser
   google-chrome-canary                          # browser
+  hyper                                         # terminal
   intel-haxm                                    # android (emulator perf)
   iterm2-nightly                                # terminal
   java                                          # android
