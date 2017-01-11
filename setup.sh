@@ -73,6 +73,9 @@ tic $HOME/dotfiles/iterm/tmux-256color.terminfo
 # tmux
 ln -fs $HOME/dotfiles/tmux/.tmux.conf $HOME
 
+# kwm + khd
+ln -fs $HOME/dotfiles/wm/kwm/kwmrc $HOME/.kwm
+ln -fs $HOME/dotfiles/wm/khd/.khdrc $HOME
 # Atom
 
 # Copy over Atom configs
