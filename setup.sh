@@ -33,23 +33,23 @@ echo "done"
 # WARNING, THIS OVERRIDES YOUR FILES WITHOUT CONSENT, BE CAREFUL (-f means force)
 
 # zsh + oh-my-zsh
-ln -fs $HOME/dotfiles/zsh/themes/p1xelHer0.zsh-theme $HOME/.oh-my-zsh/themes
-ln -fs $HOME/dotfiles/zsh/.zshrc $HOME
+ln -fs $HOME/dotfiles/zsh/themes/p1xelHer0.zsh-theme $HOME/.oh-my-zsh/themes/
+ln -fs $HOME/dotfiles/zsh/.zshrc $HOME/
 
 # atom
-ln -fs $HOME/dotfiles/atom/config.cson $HOME/.atom
-ln -fs $HOME/dotfiles/atom/keymap.cson $HOME/.atom
-ln -fs $HOME/dotfiles/atom/snippets.cson $HOME/.atom
-# ln -fs $HOME/dotfiles/atom/styles.less $HOME/.atom
+ln -fs $HOME/dotfiles/atom/config.cson $HOME/.atom/
+ln -fs $HOME/dotfiles/atom/keymap.cson $HOME/.atom/
+ln -fs $HOME/dotfiles/atom/snippets.cson $HOME/.atom/
+# ln -fs $HOME/dotfiles/atom/styles.less $HOME/.atom/
 # points to my stylesheet repository instead
-ln -fs $HOME/dev/repo/private/p1xelher0-stylesheet/styles.less $HOME/.atom
+ln -fs $HOME/dev/repo/private/p1xelher0-stylesheet/styles.less $HOME/.atom/
 
 # nvim
-ln -fs $HOME/dotfiles/nvim/init.vim $HOME/.config/nvim
-ln -fs $HOME/dotfiles/nvim/autoload $HOME/.config/nvim
+ln -fs $HOME/dotfiles/nvim/init.vim $HOME/.config/nvim/
+ln -fs $HOME/dotfiles/nvim/autoload $HOME/.config/nvim/
 
 # xcode themes
-ln -fs $HOME/dotfiles/xcode/FontAndColorThemes $HOME/Library/Developer/Xcode/UserData
+ln -fs $HOME/dotfiles/xcode/FontAndColorThemes $HOME/Library/Developer/Xcode/UserData/
 
 
 # Terminal & iTerm 2 & Hyper
@@ -58,12 +58,11 @@ ln -fs $HOME/dotfiles/xcode/FontAndColorThemes $HOME/Library/Developer/Xcode/Use
 defaults write com.apple.terminal StringEncodings -array 4
 
 # hyper
-ln -fs $HOME/dotfiles/hyper/.hyper.js $HOME
+ln -fs $HOME/dotfiles/hyper/.hyper.js $HOME/
 # points to my theme repository
-ln -fs $HOME/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local
+ln -fs $HOME/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local/
 
 # iterm
-cd $HOME/dotfiles/iterm
 # enable italics by adding terminfo
 tic $HOME/dotfiles/iterm/tmux.terminfo
 tic $HOME/dotfiles/iterm/xterm-256color.terminfo
@@ -71,11 +70,15 @@ tic $HOME/dotfiles/iterm/tmux-256color.terminfo
 
 
 # tmux
-ln -fs $HOME/dotfiles/tmux/.tmux.conf $HOME
+ln -fs $HOME/dotfiles/tmux/.tmux.conf $HOME/
 
 # kwm + khd
-ln -fs $HOME/dotfiles/wm/kwm/kwmrc $HOME/.kwm
-ln -fs $HOME/dotfiles/wm/khd/.khdrc $HOME
+ln -fs $HOME/dotfiles/wm/kwm/kwmrc $HOME/.kwm/
+ln -fs $HOME/dotfiles/wm/khd/.khdrc $HOME/
+
+# ubersicht
+ln -fs $HOME/dotfiles/ubersicht/WidgetSettings.json $HOME/Library/Application\ Support/tracesOf.Uebersicht/
+
 # Atom
 
 # Copy over Atom configs
