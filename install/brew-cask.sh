@@ -32,6 +32,7 @@ apps=(
   slack                                         # communication
   spectacle                                     # utils
   spotify                                       # utils
+  ubersicht                                     # utils
   vlc                                           # utils
 )
 
