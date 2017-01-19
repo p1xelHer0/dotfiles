@@ -19,7 +19,7 @@ ZSH_THEME_NVM_PROMPT_PREFIX="%B%{$fg_bold[green]%}⬡ %b"
 ZSH_THEME_NVM_PROMPT_SUFFIX="%{$reset_color%}"
 
 ### Git master ▾■
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg_bold[white]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg_bold[fg]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}◆%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▲%{$reset_color%}"
@@ -96,7 +96,7 @@ if [[ $EUID -eq 0 ]]; then
   _USERNAME="%{$fg_bold[red]%}%n"
   _LIBERTY="%{$fg[red]%}#"
 else
-  _USERNAME="%{$fg_bold[white]%}%n"
+  _USERNAME="%{$fg_bold[fg]%}%n"
   _LIBERTY="%{$fg[green]%}►"
 fi
 _USERNAME="$_USERNAME%{$reset_color%}@%m"
