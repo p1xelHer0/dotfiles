@@ -91,5 +91,5 @@ if [[ -s "$BASE16_CONFIG" ]]; then
   color "$SCHEME"
 else
   # default
-  color ocean
+  color p1xelher0
 fi
