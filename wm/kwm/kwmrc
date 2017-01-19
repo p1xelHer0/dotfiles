@@ -37,10 +37,10 @@ e.g: window-rules in a separate file called 'rules'
 */
 
 # Set default values for screen padding
-kwmc config padding 40 20 20 20
+kwmc config padding 50 30 30 30
 
 # Set default values for container gaps
-kwmc config gap 15 15
+kwmc config gap 30 30
 
 # Default tiling mode for Kwm (bsp | monocle | float)
 kwmc config tiling bsp
@@ -131,11 +131,11 @@ if the screen exists.
 # Enable border for focused window
 kwmc config border focused on
 kwmc config border focused size 3
-kwmc config border focused color 0xFFFAC863
+kwmc config border focused color 0xFF588778
 kwmc config border focused radius 6
 
 # Enable border for marked window
 kwmc config border marked on
 kwmc config border marked size 3
-kwmc config border marked color 0xFF6699CC
+kwmc config border marked color 0xFF588778
 kwmc config border marked radius 6
