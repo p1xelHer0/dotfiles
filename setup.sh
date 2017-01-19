@@ -40,6 +40,9 @@ ln -fs $HOME/dotfiles/zsh/.zshrc $HOME/
 ln -fs $HOME/dotfiles/atom/config.cson $HOME/.atom/
 ln -fs $HOME/dotfiles/atom/keymap.cson $HOME/.atom/
 ln -fs $HOME/dotfiles/atom/snippets.cson $HOME/.atom/
+# link my own base16 scheme to the base16 package
+# need to add p1xelher0 to the lib/base16-settings.coffee list to be able to select it!
+ln -fs $HOME/dotfiles/atom/p1xelher0.less $HOME/.atom/packages/base16-syntax/styles/schemes
 # ln -fs $HOME/dotfiles/atom/styles.less $HOME/.atom/
 # points to my stylesheet repository instead
 ln -fs $HOME/dev/repo/private/p1xelher0-stylesheet/styles.less $HOME/.atom/
