@@ -164,15 +164,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>546 404 613 77 0 0 1440 900 </string>
+	<string>933 193 613 77 0 0 1680 1050 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>410 382 620 392 0 0 1440 900 </string>
+	<string>76 204 700 622 0 0 1680 1050 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>280 178 937 465 0 0 1440 900 </string>
+	<string>318 235 918 498 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>507 221 570 402 0 0 1440 900 </string>
+	<string>735 33 675 814 0 0 1440 900 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>393 284 585 402 0 0 1440 878 </string>
+	<string>30 31 381 469 0 0 1680 1050 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>855 531 794 469 0 0 1680 1050 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -340,7 +342,9 @@
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
-			<false/>
+			<true/>
+			<key>Blur Radius</key>
+			<real>7.0255709134615376</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -703,6 +707,8 @@
 			<true/>
 			<key>Normal Font</key>
 			<string>FiraCode-Retina 12</string>
+			<key>Only The Default BG Color Uses Transparency</key>
+			<false/>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -746,7 +752,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.0</real>
+			<real>0.08333949704142013</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -762,7 +768,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>12</integer>
 			<key>Working Directory</key>
 			<string>/Users/pontusnagy</string>
 		</dict>
@@ -772,7 +778,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>1993897E-83C5-4732-B79C-C148B533DFF8</string>
 	<key>NoSyncLastTipTime</key>
-	<real>505604345.55674601</real>
+	<real>506425839.29737598</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -808,6 +814,15 @@
 		<string>0021</string>
 		<string>0022</string>
 		<string>0023</string>
+		<string>0024</string>
+		<string>0025</string>
+		<string>0026</string>
+		<string>0027</string>
+		<string>0028</string>
+		<string>0029</string>
+		<string>0030</string>
+		<string>0031</string>
+		<string>0032</string>
 	</array>
 	<key>PointerActions</key>
 	<dict>
@@ -855,11 +870,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-08T21:39:04Z</date>
+	<date>2017-01-17T13:04:08Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<false/>
+	<key>TabStyle</key>
+	<integer>1</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
