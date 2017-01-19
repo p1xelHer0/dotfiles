@@ -8,11 +8,15 @@ call plug#begin()
 " javascript++
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'ternjs/tern_for_vim',       { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs',  { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim',           { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'benjie/neomake-local-eslint.vim'
+
+" coffescript
+Plug 'kchmck/vim-coffee-script'
 
 " elm
 Plug 'ElmCast/elm-vim'
@@ -30,6 +34,7 @@ Plug 'Shougo/vimproc.vim',        {'do' : 'make'}
 
 " general
 Plug 'hail2u/vim-css3-syntax'
+" Plug 'fleischie/vim-styled-components'
 Plug 'leshill/vim-json'
 Plug 'othree/html5.vim'
 Plug 'othree/xml.vim'
@@ -71,6 +76,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 "" other
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-slash'
 
 call plug#end()
 
@@ -131,13 +137,21 @@ if filereadable(expand("$HOME/.vimrc_background"))
 endif
 
 " split border
-set fillchars+=vert:│
-highlight VertSplit ctermbg=18
+" set fillchars+=vert:│
+set fillchars+=vert: 
+highlight VertSplit ctermfg=18 ctermbg=18
+highlight LineNr ctermbg=18
 highlight CursorLineNr cterm=bold ctermfg=3
+
+" make errors more readable (especially on CursorLine)
+highlight Error cterm=underline ctermfg=1 ctermbg=16
+
+" make searches more readable
+highlight Search ctermfg=bg
 
 " NonText same color as bg, only shown at the current line in INSERT mode
 highlight NonText ctermfg=bg
-highlight EndOfBuffer ctermfg=19 ctermbg=18
+highlight EndOfBuffer ctermfg=bg
 
 " italic for this and html attributes in jsx
 highlight htmlArg cterm=italic
@@ -148,21 +162,21 @@ highlight link NeomakeError Error
 
 " lightline matches base16
 let g:lightline = {
-\   'colorscheme': 'base16'
+\ 'colorscheme': 'base16'
 \ }
 
 " NERDTree
 let g:NERDTreeIndicatorMapCustom = {
-     \ "Modified"  : "~",
-     \ "Staged"    : "▲",
-     \ "Untracked" : "▼",
-     \ "Renamed"   : "→",
-     \ "Unmerged"  : "=",
-     \ "Deleted"   : "-",
-     \ "Dirty"     : "~",
-     \ "Clean"     : "◆",
-     \ "Unknown"   : "?"
-     \ }
+\ "Modified"  : "~",
+\ "Staged"    : "▲",
+\ "Untracked" : "▼",
+\ "Renamed"   : "→",
+\ "Unmerged"  : "=",
+\ "Deleted"   : "-",
+\ "Dirty"     : "~",
+\ "Clean"     : "◆",
+\ "Unknown"   : "?"
+\ }
 
 highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
 highlight NERDTreeGitStatusModified ctermfg=3
@@ -176,7 +190,7 @@ highlight link NERDTreeGitStatusUntracked DiffFile
 autocmd VimResized * execute "normal! \<c-w>="
 
 " keep it at 80
-let &l:colorcolumn="80,".join(range(120,999),",")
+let &l:colorcolumn="80"
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 autocmd VimEnter * autocmd WinEnter * let w:created=1
@@ -186,11 +200,15 @@ autocmd VimEnter * let w:created=1
 autocmd InsertLeave * set nopaste
 
 "" focus
-" make current window more obvious
+"only show colorcolumn on focused window
 if exists('+colorcolumn')
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80,".join(range(120,999),",")
-  autocmd FocusLost,WinLeave * let &l:colorcolumn="0".join(range(1,999),",")
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80"
+  autocmd FocusLost,WinLeave * let &l:colorcolumn=""
 endif
+
+" only show cursorline on focused window
+autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
+autocmd FocusLost,WinLeave * setlocal nocursorline
 
 " goyo
 function! s:goyo_enter()
@@ -382,7 +400,7 @@ endif
 
 
 "" neomake (linting)
-autocmd! InsertLeave,BufWritePost * Neomake
+autocmd! BufWritePost,InsertLeave * Neomake
 let g:neomake_open_list = 0
 
 " let g:neomake_warning_sign = {
@@ -397,7 +415,7 @@ let g:neomake_open_list = 0
 
 
 " eslint > jshint
-let g:neomake_javascript_enabled_makers = ['eslint', 'jshint']
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 " allow jsx in normal js files
 let g:jsx_ext_required = 0
