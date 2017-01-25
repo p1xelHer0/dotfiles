@@ -10,7 +10,7 @@ brew tap caskroom/versions
 apps=(
   alfred                                        # utils
   android-studio                                # android
-  atom                                          # utils
+  atom                                          # dev
   brave                                         # browser
   discord                                       # communication
   dropbox                                       # utils
@@ -25,12 +25,12 @@ apps=(
   intel-haxm                                    # android (emulator perf)
   iterm2-nightly                                # terminal
   java                                          # android
-  mamp                                          # utils
+  mamp                                          # dev
   opera                                         # browser
+  postman                                       # dev
   react-native-debugger                         # js
   skype                                         # communication
   slack                                         # communication
-  spectacle                                     # utils
   spotify                                       # utils
   ubersicht                                     # utils
   vlc                                           # utils
