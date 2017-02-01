@@ -13,7 +13,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'ternjs/tern_for_vim',       { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs',  { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim',           { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'benjie/neomake-local-eslint.vim'
+" Plug 'benjie/neomake-local-eslint.vim'
 
 " coffescript
 Plug 'kchmck/vim-coffee-script'
@@ -45,7 +45,8 @@ Plug 'Shougo/deoplete.nvim',      { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 
 "" linting
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
+" Plug 'neomake/neomake'
 
 "" git
 Plug 'tpope/vim-fugitive'
@@ -75,6 +76,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 
 "" other
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
 
@@ -143,8 +145,13 @@ highlight VertSplit ctermfg=18 ctermbg=18
 highlight LineNr ctermbg=18
 highlight CursorLineNr cterm=bold ctermfg=3
 
-" make errors more readable (especially on CursorLine)
-highlight Error cterm=underline ctermfg=1 ctermbg=16
+" wildmenu
+highlight WildMenu ctermfg=19
+highlight StatusLine ctermfg=fg
+
+" error
+highlight Error ctermbg=16
+highlight ErrorMsg ctermfg=16
 
 " make searches more readable
 highlight Search ctermfg=bg
@@ -158,7 +165,9 @@ highlight htmlArg cterm=italic
 highlight jsThis cterm=italic
 highlight xmlAttrib cterm=italic
 
-highlight link NeomakeError Error
+highlight ALEErrorSign cterm=none ctermfg=1 ctermbg=18
+highlight ALEWarningSign cterm=none ctermfg=1 ctermbg=18
+" highlight link NeomakeError Error
 
 " lightline matches base16
 let g:lightline = {
@@ -298,12 +307,16 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 " toggle NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
+" ale
+nmap <silent><Up> <Plug>(ale_previous_wrap)
+nmap <silent><Down> <Plug>(ale_next_wrap)
+
 " neomake
 nnoremap <Leader>o :lopen<CR>           " open location window
 nnoremap <Leader><Leader>o :lclose<CR>  " close location window
 nnoremap <silent><Right> :ll<CR>        " go to current error/warning
-nnoremap <silent><Down> :lnext<CR>      " next error/warning
-nnoremap <silent><Up> :lprev<CR>        " previous error/warning
+" nnoremap <silent><Down> :lnext<CR>      " next error/warning
+" knnoremap <silent><Up> :lprev<CR>        " previous error/warning
 
 " tern
 autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
@@ -399,9 +412,14 @@ if exists('g:plugs["haskell-vim"]')
 endif
 
 
+"" ale (linting)
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = emoji#for('collision')
+let g:ale_sign_warning = emoji#for('small_red_triangle')
+
 "" neomake (linting)
-autocmd! BufWritePost,InsertLeave * Neomake
-let g:neomake_open_list = 0
+" autocmd! BufWritePost,InsertLeave * Neomake
+" let g:neomake_open_list = 0
 
 " let g:neomake_warning_sign = {
 " \ 'text': '×',
@@ -415,7 +433,11 @@ let g:neomake_open_list = 0
 
 
 " eslint > jshint
-let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'haskell': ['ghci', 'hlint']
+" \}
+" let g:neomake_javascript_enabled_makers = ['eslint']
 
 " allow jsx in normal js files
 let g:jsx_ext_required = 0
@@ -431,7 +453,7 @@ if executable(local_flow)
 endif
 
 " css
-let g:neomake_css_enabled_makers = ['stylelint']
+" let g:neomake_css_enabled_makers = ['stylelint']
 
 
 " purescript
