@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 macOS () {
-  return $(uname) == "Darwin"
+  return $(uname) = "Darwin"
 }
 
 # Set name of the theme to load.
@@ -51,7 +51,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   plugins=(osx zsh-syntax-highlighting)
 else
   plugins=(zsh-syntax-high)
@@ -61,7 +61,7 @@ fi
 # User configuration
 
 # base16-shell
-if [ macOS ]; then
+if [[ macOS ]]; then
   BASE16_SHELL=$HOME/.config/base16-shell/
   [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
   source $HOME/dotfiles/shell/.colors
@@ -165,37 +165,37 @@ export EDITOR=nvim
 
 ## React native
 # react native (nvm)
-if [ macOS ]; then
+if [[ macOS ]]; then
   export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
 fi
 
 # xcode simctl needed for react-native emulator
-if [ macOS ]; then
+if [[ macOS ]]; then
   export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
 fi
 
 ## rust (rustup)
-if [ macOS ]; then
+if [[ macOS ]]; then
   export CARGO_HOME=$HOME/.cargo/bin
 fi
 
 ## haskell
-if [ macOS ]; then
+if [[ macOS ]]; then
   export STACK_PACKAGES=$HOME/.local/bin
 fi
 
 ## java (jenv)
-if [ macOS ]; then
+if [[ macOS ]]; then
   export JENV=$HOME/.jenv/bin
 fi
 
 ## python (pyenv)
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PYENV_ROOT=$HOME/.pyenv
 fi
 
 ## android
-if [ macOS ]; then
+if [[ macOS ]]; then
   export ANT_HOME=/usr/local/opt/ant
   export MAVEN_HOME=/usr/local/opt/maven
   export GRADLE_HOME=/usr/local/opt/gradle
@@ -207,27 +207,27 @@ fi
 
 # set the path
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PATH=$REACT_NATIVE_HOME:$PATH
 fi
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PATH=$CARGO_HOME:$PATH
 fi
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PATH=$STACK_PACKAGES:$PATH
 fi
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PATH=$JENV:$PATH
 fi
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PATH=$PYENV_ROOT/bin:$PATH
 fi
 
-if [ macOS ]; then
+if [[ macOS ]]; then
   export PATH=$ANT_HOME/bin:$PATH
   export PATH=$MAVEN_HOME/bin:$PATH
   export PATH=$GRADLE_HOME/bin:$PATH
@@ -266,7 +266,7 @@ source $ZSH/oh-my-zsh.sh
 
 # load aliases
 source $HOME/dotfiles/shell/.alias
-if [ macOS ]; then
+if [[ macOS ]]; then
   source $HOME/dotfiles/shell/.alias.osx
 fi
 

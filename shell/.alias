@@ -15,7 +15,7 @@ alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
 alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
 # vim -> nvim
-alias vim=nvim
+which nvim > /dev/null 2>&1 && alias vim=nvim
 alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 
 # Reload shell
