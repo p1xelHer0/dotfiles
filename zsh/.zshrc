@@ -137,7 +137,7 @@ bind-git-helper f b t r h
 unset -f bind-git-helper
 
 # Load nvm
-export NVM_DIR="/Users/pontusnagy/.nvm"
+export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 NODE_VERSION=$(node --version | grep -v -)

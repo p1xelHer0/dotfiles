@@ -8,8 +8,7 @@ call plug#begin()
 " javascript++
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'mxw/vim-jsx'
-Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mxw/vim-jsx'
 Plug 'ternjs/tern_for_vim',       { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs',  { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim',           { 'for': ['javascript', 'javascript.jsx'] }
@@ -32,10 +31,13 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'Shougo/vimproc.vim',        {'do' : 'make'}
 
+" reasonml
+Plug 'reasonml/vim-reason-loader'
+
 " general
 Plug 'hail2u/vim-css3-syntax'
 " Plug 'fleischie/vim-styled-components'
-Plug 'leshill/vim-json'
+Plug 'elzr/vim-json'
 Plug 'othree/html5.vim'
 Plug 'othree/xml.vim'
 Plug 'tpope/vim-markdown'
@@ -60,6 +62,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'MartinLafreniere/vim-PairTools'
 
 "" file handling
 Plug 'scrooloose/nerdtree'
@@ -75,10 +79,11 @@ Plug 'daviesjamie/vim-base16-lightline'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 "" other
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/vim-emoji'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/vim-emoji'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 
@@ -96,7 +101,7 @@ set tabstop=2
 " set autoindent        - default neovim
 " set backspace=indent,eol,start  - default neovim
 
-set cursorline          " highlight current cursorline
+" set cursorline          " highlight current cursorline
 set list                " display the listchars
 set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬
 set clipboard=unnamed   " normal OS clipboard interaction
@@ -141,9 +146,16 @@ endif
 " split border
 " set fillchars+=vert:│
 set fillchars+=vert: 
-highlight VertSplit ctermfg=18 ctermbg=18
-highlight LineNr ctermbg=18
-highlight CursorLineNr cterm=bold ctermfg=3
+highlight VertSplit ctermfg=bg ctermbg=bg
+highlight LineNr ctermbg=bg
+highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=bg
+
+" gutter settings
+highlight SignColumn ctermbg=bg
+highlight GitGutterAdd ctermbg=bg
+highlight GitGutterChange ctermbg=bg
+highlight GitGutterDelete ctermbg=bg
+highlight GitGutterChangeDelete ctermbg=bg
 
 " wildmenu
 highlight WildMenu ctermfg=19
@@ -165,9 +177,11 @@ highlight htmlArg cterm=italic
 highlight jsThis cterm=italic
 highlight xmlAttrib cterm=italic
 
-highlight ALEErrorSign cterm=none ctermfg=1 ctermbg=18
-highlight ALEWarningSign cterm=none ctermfg=1 ctermbg=18
+" highlight ALEErrorSign cterm=none ctermfg=1 ctermbg=18
+" highlight ALEWarningSign cterm=none ctermfg=1 ctermbg=18
 " highlight link NeomakeError Error
+highlight ALEWarning cterm=underline ctermfg=3
+highlight link ALEError Error
 
 " lightline matches base16
 let g:lightline = {
@@ -194,6 +208,7 @@ highlight link NERDTreeGitStatusStaged Special
 highlight link NERDTreeGitStatusRenamed DiffLine
 highlight link NERDTreeGitStatusUnmerged DiffLine
 highlight link NERDTreeGitStatusUntracked DiffFile
+highlight link NERDTreeGitStatusIgnored DiffFile
 
 " autoresize windows on terminal resize
 autocmd VimResized * execute "normal! \<c-w>="
@@ -216,28 +231,45 @@ if exists('+colorcolumn')
 endif
 
 " only show cursorline on focused window
-autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
-autocmd FocusLost,WinLeave * setlocal nocursorline
+" autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
+" autocmd FocusLost,WinLeave * setlocal nocursorline
+
+" prettier + eslint
+autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
+" autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
+" autocmd BufWritePre *.jsx exe "normal! gggqG\<C-o>\<C-o>"
 
 " goyo
-function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-endfunction
-
-function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set showmode
-  set showcmd
-  set scrolloff=5
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" function! s:goyo_enter()
+"   silent !tmux set status off
+"   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+"   set noshowmode
+"   set noshowcmd
+"   set scrolloff=999
+" endfunction
+"
+" function! s:goyo_leave()
+"   silent !tmux set status on
+"   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+"   set showmode
+"   set showcmd
+"   set scrolloff=5
+" endfunction
+"
+"   set showcmd
+"   set scrolloff=5
+" endfunction
+"
+"   set showcmd
+"   set scrolloff=5
+" endfunction
+"
+"   set showcmd
+"   set scrolloff=5
+" endfunction
+"
+" autocmd! User GoyoEnter nested call <SID>goyo_enter()
+" autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " set curosor to | in INSERT - neovim specific
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -250,10 +282,13 @@ set timeout timeoutlen=500 ttimeoutlen=100
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
-let g:elm_format_autosave = 1
-
 
 """ keymappings + plugin settings
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
 
 let mapleader="\<Space>"
 " reload .vimrc
@@ -313,8 +348,8 @@ nmap <silent><Down> <Plug>(ale_next_wrap)
 
 " neomake
 nnoremap <Leader>o :lopen<CR>           " open location window
-nnoremap <Leader><Leader>o :lclose<CR>  " close location window
-nnoremap <silent><Right> :ll<CR>        " go to current error/warning
+nnoremap <Leader><Leader>o :lclose<CR>   " close location window
+nnoremap <silent><Right> :ll<CR>         " go to current error/warning
 " nnoremap <silent><Down> :lnext<CR>      " next error/warning
 " knnoremap <silent><Up> :lprev<CR>        " previous error/warning
 
@@ -329,6 +364,8 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 map <C-c> <CR><Esc>O
+
+nnoremap <Leader><Leader>f gggqG\<C-o>\<C-o>
 
 
 "" visual mappings
@@ -347,8 +384,8 @@ endif
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " enter closes options if present and inserts linebreak
-" apparently this has to be that complicated
-inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
+"  apparently this has to be that complicated
+" inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
 function! s:close_and_linebreak()
   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
 endfunction
@@ -378,12 +415,13 @@ if exists('g:plugs["tern_for_vim"]')
 endif
 
 
-"" elm-vim
+"" elm
 if exists('g:plugs["elm-vim"]')
   let g:deoplete#omni#functions.elm = ['elm#Complete']
   let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
 endif
 
+let g:elm_format_autosave = 1
 
 "" purescript
 if exists('g:plugs["purescript-vim"]')
@@ -412,10 +450,29 @@ if exists('g:plugs["haskell-vim"]')
 endif
 
 
+"" reasonml
+autocmd FileType reason let g:pairtools_reason_pairclamp = 1
+autocmd FileType reason let g:pairtools_reason_tagwrench = 0
+autocmd FileType reason let g:pairtools_reason_jigsaw    = 1
+autocmd FileType reason let g:pairtools_reason_autoclose  = 1
+autocmd FileType reason let g:pairtools_reason_forcepairs = 0
+autocmd FileType reason let g:pairtools_reason_closepairs = "(:),[:],{:}" . ',":"'
+autocmd FileType reason let g:pairtools_reason_smartclose = 1
+autocmd FileType reason let g:pairtools_reason_smartcloserules = '\w,(,&,\*'
+autocmd FileType reason let g:pairtools_reason_antimagic  = 1
+autocmd FileType reason let g:pairtools_reason_antimagicfield  = "Comment,String,Special"
+autocmd FileType reason let g:pairtools_reason_pcexpander = 1
+autocmd FileType reason let g:pairtools_reason_pceraser   = 1
+autocmd FileType reason let g:pairtools_reason_tagwrenchhook = 'tagwrench#BuiltinNoHook'
+autocmd FileType reason let g:pairtools_reason_twexpander = 0
+autocmd FileType reason let g:pairtools_reason_tweraser   = 0
+autocmd FileType reason let g:pairtools_reason_apostrophe = 0
+
+
 "" ale (linting)
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = emoji#for('collision')
-let g:ale_sign_warning = emoji#for('small_red_triangle')
+" let g:ale_sign_error = emoji#for('collision')
+" let g:ale_sign_warning = emoji#for('sparkles')
 
 "" neomake (linting)
 " autocmd! BufWritePost,InsertLeave * Neomake
@@ -469,18 +526,6 @@ let g:psc_ide_syntastic_mode = 2
 "highlight NeomakeWarningSignDefault ctermfg=3 ctermbg=18
 "highlight link NeomakeWarningSign NeomakeWarningSignDefault
 "highlight NeomakeErrorSignDefault ctermfg=6 ctermbg=18
-"highlight link NeomakeErrorSign NeomakeErrorSignDefault
-
-" syntax highlighting for flow
-let g:javascript_plugin_flow = 1
-
-" libraries I tend to use
-let g:used_javascript_libs = 'ramda,react'
-
-"" fzf
-let g:fzf_layout = { 'window': 'enew' }
-" --column: Show column number
-" --line-number: Show line number
 " --no-heading: Do not show file headings in results
 " --fixed-strings: Search term as a literal string
 " --ignore-case: Case insensitive search
@@ -502,5 +547,4 @@ let NERDTreeHighlightCursorline=0
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
 

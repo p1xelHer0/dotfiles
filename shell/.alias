@@ -25,3 +25,5 @@ alias rl="exec $SHELL"
 alias l-jenv="if which jenv > /dev/null; then eval '$(jenv init -)'; fi"
 alias l-pyenv="if which pyenv > /dev/null; then eval '$(pyenv init -)'; fi"
 alias l-rbenv="if which rbenv > /dev/null; then eval '$(rbenv init -)'; fi"
+
+alias rvim="npm run env -- nvim"

@@ -24,10 +24,10 @@ lctrl - j         ![HyperTerm,Terminal,iTerm2]: khd -p "- down"
 lctrl - k         ![HyperTerm,Terminal,iTerm2]: khd -p "- up"
 lctrl - l         ![HyperTerm,Terminal,iTerm2]: khd -p "- right"
 
-shift + lctrl - h  [HyperTerm,Terminal,iTerm2]: khd -p "- left"
-shift + lctrl - j  [HyperTerm,Terminal,iTerm2]: khd -p "- down"
-shift + lctrl - k  [HyperTerm,Terminal,iTerm2]: khd -p "- up"
-shift + lctrl - l  [HyperTerm,Terminal,iTerm2]: khd -p "- right"
+lctrl + shift - h  [HyperTerm,Terminal,iTerm2]: khd -p "- left"
+lctrl + shift - j  [HyperTerm,Terminal,iTerm2]: khd -p "- down"
+lctrl + shift - k  [HyperTerm,Terminal,iTerm2]: khd -p "- up"
+lctrl + shift - l  [HyperTerm,Terminal,iTerm2]: khd -p "- right"
 
 ## Reload window layout if broken
 lalt + shift - r       : brew services restart kwm

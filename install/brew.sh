@@ -29,7 +29,9 @@ apps=(
   coreutils                                     # utils
   curl                                          # utils
   fasd                                          # utils (navigate directories fast, like autojump, z)
+  ffmpeg                                        # utils
   fzf                                           # utils (terminal fuzzy finder)
+  gifsicle                                      # utils
   git                                           # utils
   gradle                                        # android/java
   haskell-stack                                 # haskell

@@ -7,6 +7,7 @@ exec $SHELL
 pyenv virtualenv $(pyenv install --list | grep -v - | grep -v b | tail -1) neovim3
 pyenv activate neovim3
 pip install neovim
+# upgrade with 'pip install --upgrade neovim'
 # set path to let g:python_host_prog in 'nvim/init.vim'
 pyenv which python
 
@@ -14,6 +15,7 @@ pyenv which python
 pyenv virtualenv <python2v> neovim2
 pyenv activate neovim2
 pip install neovim
+# upgrade with 'pip install --upgrade neovim'
 # set path to let g:python3_host_prog in 'nvim/init.vim'
 pyenv which python  # Note the path
 

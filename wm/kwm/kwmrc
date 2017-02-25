@@ -37,10 +37,10 @@ e.g: window-rules in a separate file called 'rules'
 */
 
 # Set default values for screen padding
-kwmc config padding 50 30 30 30
+kwmc config padding 35 10 10 10
 
 # Set default values for container gaps
-kwmc config gap 30 30
+kwmc config gap 10 10
 
 # Default tiling mode for Kwm (bsp | monocle | float)
 kwmc config tiling bsp
@@ -87,15 +87,15 @@ kwmc config cycle-focus on
 /*
 Override default settings for space 1 on screen 0
    kwmc config space 0 1 mode monocle
-   kwmc config space 0 1 padding 100 100 100 100
-   kwmc config space 0 1 gap 40 40
+   kwmc config space 0 1 padding 40 40 40 40
+   kwmc config space 0 1 gap 20 20
 */
 
 /*
 Override default settings for screen 1
    kwmc config display 1 mode bsp
-   kwmc config display 1 padding 100 100 100 100
-   kwmc config display 1 gap 40 40
+   kwmc config display 1 padding 40 40 40 40
+   kwmc config display 1 gap 20 20
 */
 
 # Set default container split-ratio
@@ -127,6 +127,8 @@ if the screen exists.
 
    kwmc rule owner="iTunes" properties={display="1"}
 */
+
+kwmc rule owner="iTunes" properties={float="true"}
 
 # Enable border for focused window
 kwmc config border focused on

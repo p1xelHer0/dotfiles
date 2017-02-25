@@ -34,6 +34,7 @@ apps=(
   spotify                                       # utils
   ubersicht                                     # utils
   vlc                                           # utils
+  xquartz                                       # utils
 )
 
 brew cask install "${apps[@]}"
