@@ -21,9 +21,4 @@ alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 # Reload shell
 alias rl="exec $SHELL"
 
-# Load envs
-alias l-jenv="if which jenv > /dev/null; then eval '$(jenv init -)'; fi"
-alias l-pyenv="if which pyenv > /dev/null; then eval '$(pyenv init -)'; fi"
-alias l-rbenv="if which rbenv > /dev/null; then eval '$(rbenv init -)'; fi"
-
 alias rvim="npm run env -- nvim"
