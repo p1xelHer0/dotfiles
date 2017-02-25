@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+macOS () {
+  return $(uname) == "Darwin"
+}
+
 # Set name of the theme to load.
 # Look in $HOME/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -46,15 +50,22 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to $HOME/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(osx zsh-syntax-highlighting)
+
+if [ macOS ]; then
+  plugins=(osx zsh-syntax-highlighting)
+else
+  plugins=(zsh-syntax-high)
+fi
+
 
 # User configuration
 
 # base16-shell
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-source $HOME/dotfiles/shell/.colors
+if [ macOS ]; then
+  BASE16_SHELL=$HOME/.config/base16-shell/
+  [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+  source $HOME/dotfiles/shell/.colors
+fi
 
 ## fzf
 #  colors
@@ -154,49 +165,76 @@ export EDITOR=nvim
 
 ## React native
 # react native (nvm)
-export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
+if [ macOS ]; then
+  export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
+fi
+
 # xcode simctl needed for react-native emulator
-export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
+if [ macOS ]; then
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
+fi
 
 ## rust (rustup)
-export CARGO_HOME=$HOME/.cargo/bin
+if [ macOS ]; then
+  export CARGO_HOME=$HOME/.cargo/bin
+fi
 
 ## haskell
-export STACK_PACKAGES=$HOME/.local/bin
+if [ macOS ]; then
+  export STACK_PACKAGES=$HOME/.local/bin
+fi
 
 ## java (jenv)
-export JENV=$HOME/.jenv/bin
+if [ macOS ]; then
+  export JENV=$HOME/.jenv/bin
+fi
 
 ## python (pyenv)
-export PYENV_ROOT=$HOME/.pyenv
+if [ macOS ]; then
+  export PYENV_ROOT=$HOME/.pyenv
+fi
 
 ## android
-export ANT_HOME=/usr/local/opt/ant
-export MAVEN_HOME=/usr/local/opt/maven
-export GRADLE_HOME=/usr/local/opt/gradle
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+if [ macOS ]; then
+  export ANT_HOME=/usr/local/opt/ant
+  export MAVEN_HOME=/usr/local/opt/maven
+  export GRADLE_HOME=/usr/local/opt/gradle
+  export ANDROID_HOME=/usr/local/opt/android-sdk
+  export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+fi
 
 # export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
 
 # set the path
 
-export PATH=$REACT_NATIVE_HOME:$PATH
+if [ macOS ]; then
+  export PATH=$REACT_NATIVE_HOME:$PATH
+fi
 
-export PATH=$CARGO_HOME:$PATH
+if [ macOS ]; then
+  export PATH=$CARGO_HOME:$PATH
+fi
 
-export PATH=$STACK_PACKAGES:$PATH
+if [ macOS ]; then
+  export PATH=$STACK_PACKAGES:$PATH
+fi
 
-export PATH=$JENV:$PATH
+if [ macOS ]; then
+  export PATH=$JENV:$PATH
+fi
 
-export PATH=$PYENV_ROOT/bin:$PATH
+if [ macOS ]; then
+  export PATH=$PYENV_ROOT/bin:$PATH
+fi
 
-export PATH=$ANT_HOME/bin:$PATH
-export PATH=$MAVEN_HOME/bin:$PATH
-export PATH=$GRADLE_HOME/bin:$PATH
-export PATH=$ANDROID_HOME/tools:$PATH
-export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
+if [ macOS ]; then
+  export PATH=$ANT_HOME/bin:$PATH
+  export PATH=$MAVEN_HOME/bin:$PATH
+  export PATH=$GRADLE_HOME/bin:$PATH
+  export PATH=$ANDROID_HOME/tools:$PATH
+  export PATH=$ANDROID_HOME/platform-tools:$PATH
+  export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
+fi
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -228,7 +266,9 @@ source $ZSH/oh-my-zsh.sh
 
 # load aliases
 source $HOME/dotfiles/shell/.alias
-source $HOME/dotfiles/shell/.alias.osx
+if [ macOS ]; then
+  source $HOME/dotfiles/shell/.alias.osx
+fi
 
 # load fasd
 if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
