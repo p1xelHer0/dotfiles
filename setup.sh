@@ -50,6 +50,7 @@ ln -fs $HOME/dev/repo/private/p1xelher0-stylesheet/styles.less $HOME/.atom/
 # nvim
 ln -fs $HOME/dotfiles/nvim/init.vim $HOME/.config/nvim/
 ln -fs $HOME/dotfiles/nvim/autoload $HOME/.config/nvim/
+ln -fs $HOME/dotfiles/nvim/UltiSnips $HOME/.config/nvim/
 
 # xcode themes
 ln -fs $HOME/dotfiles/xcode/FontAndColorThemes $HOME/Library/Developer/Xcode/UserData/

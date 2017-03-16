@@ -1,4 +1,4 @@
-" hello 🤔
+"let g:ale_lint_on_save = 1 hello 🤔
 
 """ plugins
 call plug#begin()
@@ -6,44 +6,45 @@ call plug#begin()
 "" syntax
 
 " javascript++
-Plug 'pangloss/vim-javascript'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'mxw/vim-jsx'
-Plug 'ternjs/tern_for_vim',       { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs',  { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim',           { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx',                            { 'for':                'javascript.jsx'  }
+Plug 'ternjs/tern_for_vim',                    { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
+Plug 'carlitux/deoplete-ternjs',               { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim',                        { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'flowtype/vim-flow',                      { 'for': ['javascript', 'javascript.jsx'] }
 " Plug 'benjie/neomake-local-eslint.vim'
 
 " coffescript
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script',   { 'for': 'coffescript' }
 
 " elm
-Plug 'ElmCast/elm-vim'
+Plug 'ElmCast/elm-vim',            { 'for': 'elm' }
 
 " purescript
-Plug 'raichoo/purescript-vim'
-Plug 'frigoeu/psc-ide-vim'
+Plug 'raichoo/purescript-vim',     { 'for': 'purescript' }
+Plug 'frigoeu/psc-ide-vim',        { 'for': 'purescript' }
 
 " haskell
-Plug 'eagletmt/ghcmod-vim'
-Plug 'eagletmt/neco-ghc'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'parsonsmatt/intero-neovim'
-Plug 'Shougo/vimproc.vim',        {'do' : 'make'}
+Plug 'eagletmt/ghcmod-vim',        { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc',          { 'for': 'haskell' }
+Plug 'neovimhaskell/haskell-vim',  { 'for': 'haskell' }
+Plug 'parsonsmatt/intero-neovim',  { 'for': 'haskell' }
+Plug 'Shougo/vimproc.vim',         { 'for': 'haskell', 'do' : 'make' }
 
 " reasonml
 Plug 'reasonml/vim-reason-loader'
 
 " general
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax',     { 'for': 'css' }
 " Plug 'fleischie/vim-styled-components'
-Plug 'elzr/vim-json'
-Plug 'othree/html5.vim'
-Plug 'othree/xml.vim'
-Plug 'tpope/vim-markdown'
+Plug 'elzr/vim-json',              { 'for': 'json' }
+Plug 'othree/html5.vim',           { 'for': 'html' }
+Plug 'othree/xml.vim',             { 'for': 'xml' }
+Plug 'tpope/vim-markdown',         { 'for': 'markdown' }
 
 "" autocompletion
-Plug 'Shougo/deoplete.nvim',      { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim',       { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 
 "" linting
@@ -57,10 +58,11 @@ Plug 'junegunn/gv.vim'
 
 "" edit utils
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Townk/vim-autoclose'
-Plug 'jiangmiao/auto-pairs'
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Townk/vim-autoclose'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'tpope/vim-surround'
+Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'MartinLafreniere/vim-PairTools'
@@ -84,6 +86,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-repeat'
+Plug 'tweekmonster/startuptime.vim'
 
 call plug#end()
 
@@ -181,7 +184,7 @@ highlight xmlAttrib cterm=italic
 " highlight ALEWarningSign cterm=none ctermfg=1 ctermbg=18
 " highlight link NeomakeError Error
 highlight ALEWarning cterm=underline ctermfg=3
-highlight link ALEError Error
+highlight ALEError cterm=underline ctermfg=16
 
 " lightline matches base16
 let g:lightline = {
@@ -237,7 +240,8 @@ endif
 " prettier + eslint
 autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
 " autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
-" autocmd BufWritePre *.jsx exe "normal! gggqG\<C-o>\<C-o>"
+"
+
 
 " goyo
 " function! s:goyo_enter()
@@ -358,9 +362,9 @@ autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
 
 "" insert mappings
 
-" deoplete tab-complete (except for UtilSnips, which is not used right now)
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-" let g:UltiSnipsExpandTrigger="<C-j>"
+" deoplete tab-complete
+let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
+let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 map <C-c> <CR><Esc>O
@@ -384,7 +388,7 @@ endif
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " enter closes options if present and inserts linebreak
-"  apparently this has to be that complicated
+" apparently this has to be that complicated
 " inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
 function! s:close_and_linebreak()
   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
@@ -398,12 +402,17 @@ let g:deoplete#omni#functions.javascript = [
 
 set completeopt-=preview
 let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['file', 'ternjs']
+let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
+
+
+"" ultisnips
+let g:UltiSnipsSnippetsDir = $HOME . '/.config/nvim/'
+let g:UltiSnipsEditSplit = 'vertical'
 
 
 "" ternjs (javascript)
@@ -422,6 +431,7 @@ if exists('g:plugs["elm-vim"]')
 endif
 
 let g:elm_format_autosave = 1
+
 
 "" purescript
 if exists('g:plugs["purescript-vim"]')
@@ -447,29 +457,34 @@ if exists('g:plugs["haskell-vim"]')
   let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
   let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
   let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+  let g:haskell_indent_case = 2             " two spaces for indentation
 endif
 
 
 "" reasonml
-autocmd FileType reason let g:pairtools_reason_pairclamp = 1
-autocmd FileType reason let g:pairtools_reason_tagwrench = 0
-autocmd FileType reason let g:pairtools_reason_jigsaw    = 1
-autocmd FileType reason let g:pairtools_reason_autoclose  = 1
-autocmd FileType reason let g:pairtools_reason_forcepairs = 0
-autocmd FileType reason let g:pairtools_reason_closepairs = "(:),[:],{:}" . ',":"'
-autocmd FileType reason let g:pairtools_reason_smartclose = 1
+" use refmt instead of vims standard formatting
+autocmd FileType reason map <buffer> <Leader><Leader>f :ReasonPrettyPrint<Cr>
+
+autocmd FileType reason let g:pairtools_reason_pairclamp       = 1
+autocmd FileType reason let g:pairtools_reason_tagwrench       = 0
+autocmd FileType reason let g:pairtools_reason_jigsaw          = 1
+autocmd FileType reason let g:pairtools_reason_autoclose       = 1
+autocmd FileType reason let g:pairtools_reason_forcepairs      = 0
+autocmd FileType reason let g:pairtools_reason_closepairs      = "(:),[:],{:}" . ',":"'
+autocmd FileType reason let g:pairtools_reason_smartclose      = 1
 autocmd FileType reason let g:pairtools_reason_smartcloserules = '\w,(,&,\*'
-autocmd FileType reason let g:pairtools_reason_antimagic  = 1
+autocmd FileType reason let g:pairtools_reason_antimagic       = 1
 autocmd FileType reason let g:pairtools_reason_antimagicfield  = "Comment,String,Special"
-autocmd FileType reason let g:pairtools_reason_pcexpander = 1
-autocmd FileType reason let g:pairtools_reason_pceraser   = 1
-autocmd FileType reason let g:pairtools_reason_tagwrenchhook = 'tagwrench#BuiltinNoHook'
-autocmd FileType reason let g:pairtools_reason_twexpander = 0
-autocmd FileType reason let g:pairtools_reason_tweraser   = 0
-autocmd FileType reason let g:pairtools_reason_apostrophe = 0
+autocmd FileType reason let g:pairtools_reason_pcexpander      = 1
+autocmd FileType reason let g:pairtools_reason_pceraser        = 1
+autocmd FileType reason let g:pairtools_reason_tagwrenchhook   = 'tagwrench#BuiltinNoHook'
+autocmd FileType reason let g:pairtools_reason_twexpander      = 0
+autocmd FileType reason let g:pairtools_reason_tweraser        = 0
+autocmd FileType reason let g:pairtools_reason_apostrophe      = 0
 
 
 "" ale (linting)
+let g:ale_lint_on_save = 1
 let g:ale_sign_column_always = 1
 " let g:ale_sign_error = emoji#for('collision')
 " let g:ale_sign_warning = emoji#for('sparkles')
@@ -500,6 +515,9 @@ let g:ale_sign_column_always = 1
 let g:jsx_ext_required = 0
 
 "" flow
+" I use eslint for flow, disable the plugin typechecking
+let g:flow#enable = 0
+
 " use locally installed flow
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
@@ -508,6 +526,7 @@ endif
 if executable(local_flow)
   let g:flow#flowpath = local_flow
 endif
+
 
 " css
 " let g:neomake_css_enabled_makers = ['stylelint']
@@ -538,6 +557,7 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 
 "" NERDTree
 let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
+let NERDTreeMinimalUI=1
 let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1

@@ -8,7 +8,7 @@ then
   nvm install node
 
   # Switch to the installed version
-  nvm use node
+  nvm alias default node
 fi
 
 # All `npm install <pkg>`` commands will pin to the version that was available at the time you run the command

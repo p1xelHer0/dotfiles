@@ -31,5 +31,19 @@
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
 
-'atom-text-editor':
-  'f5': 'sorter-sort'
+'body':
+  'space n': 'tree-view:toggle'
+  'space w': 'core:save'
+  'space q': 'core:close'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'ctrl-h': 'window:focus-pane-on-left'
+  'ctrl-j': 'window:focus-pane-on-below'
+  'ctrl-k': 'window:focus-pane-on-above'
+  'ctrl-l': 'window:focus-pane-on-left'
+
+'atom-text-editor:not(.mini)':
+  'down': 'linter:next-error'
+
+'atom-text-editor[data-grammar~=js]':
+  'space d': 'atom-ternjs:definition'
