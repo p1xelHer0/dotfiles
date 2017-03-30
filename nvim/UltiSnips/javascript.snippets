@@ -79,3 +79,22 @@ const ${1:Component} = ${2:props} => (
 export default $1
 endsnippet
 
+# Jest
+
+snippet desc "Jest describe"
+describe('$1', () => {
+  it('should $2', () => {
+    $3
+    expect().toEqual()
+  })
+})
+
+endsnippet
+
+snippet it "Jest it"
+it('should $1', () => {
+  $2
+  expect().toEqual()
+})
+
+endsnippet
