@@ -1,4 +1,4 @@
-"let g:ale_lint_on_save = 1 hello 🤔
+""" hello 🤔
 
 """ plugins
 call plug#begin()
@@ -66,6 +66,7 @@ Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'MartinLafreniere/vim-PairTools'
+Plug 'AndrewRadev/switch.vim'
 
 "" file handling
 Plug 'scrooloose/nerdtree'
@@ -87,6 +88,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-repeat'
 Plug 'tweekmonster/startuptime.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -104,7 +106,7 @@ set tabstop=2
 " set autoindent        - default neovim
 " set backspace=indent,eol,start  - default neovim
 
-" set cursorline          " highlight current cursorline
+" set cursorline        " highlight current cursorline
 set list                " display the listchars
 set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬
 set clipboard=unnamed   " normal OS clipboard interaction
@@ -216,9 +218,6 @@ highlight link NERDTreeGitStatusIgnored DiffFile
 " autoresize windows on terminal resize
 autocmd VimResized * execute "normal! \<c-w>="
 
-" keep it at 80
-let &l:colorcolumn="80"
-
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 autocmd VimEnter * autocmd WinEnter * let w:created=1
 autocmd VimEnter * let w:created=1
@@ -227,15 +226,22 @@ autocmd VimEnter * let w:created=1
 autocmd InsertLeave * set nopaste
 
 "" focus
-"only show colorcolumn on focused window
-if exists('+colorcolumn')
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80"
-  autocmd FocusLost,WinLeave * let &l:colorcolumn=""
-endif
+" keep it at 80
+" let &l:colorcolumn="80"
+
+" only show colorcolumn on focused window
+" if exists('+colorcolumn')
+"   autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80"
+"   autocmd FocusLost,WinLeave * let &l:colorcolumn=""
+" endif
+
+" only show the colorcolumn if the width surpasses 80
+highlight OverLength ctermbg=3 ctermfg=0
+match OverLength /\%81v/
 
 " only show cursorline on focused window
-" autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
-" autocmd FocusLost,WinLeave * setlocal nocursorline
+autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
+autocmd FocusLost,WinLeave * setlocal nocursorline
 
 " prettier + eslint
 autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
@@ -301,10 +307,11 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 " universal mappings
 
 " use ctrl-[hjkl] to move between splits
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+" using vim-tmux-navigator instead
+" nmap <silent> <C-k> :wincmd k<CR>
+" nmap <silent> <C-j> :wincmd j<CR>
+" nmap <silent> <C-h> :wincmd h<CR>
+" nmap <silent> <C-l> :wincmd l<CR>
 
 " yank to the end of the line with Y
 noremap Y y$
