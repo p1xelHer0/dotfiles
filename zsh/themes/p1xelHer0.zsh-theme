@@ -103,5 +103,5 @@ _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
 
 setopt prompt_subst
-PROMPT="$_PATH $(bureau_git_prompt)
-$_LIBERTY "
+PROMPT='$_PATH $(bureau_git_prompt)
+$_LIBERTY '
