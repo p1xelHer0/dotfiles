@@ -5,10 +5,10 @@ brew install zsh
 curl -L http://install.ohmyz.sh | sh
 
 # Install zsh-syntax-highlighting to oh-my-zsh custom plugins
-cd $HOME/.oh-my-zsh/custom/plugins && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins
 
 # Install base16-shell
 git clone https://github.com/chriskempson/base16-shell.git $HOME/.config/base16-shell
 
-# Change default shell
+# Set default shell to zsh
 chsh -s $(which zsh)

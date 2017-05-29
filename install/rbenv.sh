@@ -4,11 +4,11 @@
 rbenv install 2.3.1
 rbenv global 2.3.1
 
-# New instance
-exec bash
-
+exec $SHELL
 gem update --system
 
 # We'll be using bundler for Cocoapods for react-native
 gem install bundler cocoapods
+
+# Ruby dependency for Neovim
 gem install neovim

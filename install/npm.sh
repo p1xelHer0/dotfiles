@@ -16,12 +16,7 @@ npm config set save-exact = true
 
 # Globally install with npm
 packages=(
-  babel-cli
   eslint
-  grunt
-  gulp
-  mocha
-  npm-check
   react-native-cli
   serve
   standard
