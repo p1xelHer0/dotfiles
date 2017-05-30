@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Change version here if needed
-rbenv install 2.3.1
-rbenv global 2.3.1
+rbenv install 2.4.1
+rbenv rehash
+rbenv global 2.4.1
 
 exec $SHELL
 gem update --system
