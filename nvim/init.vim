@@ -42,6 +42,7 @@ Plug 'elzr/vim-json',              { 'for': 'json' }
 Plug 'othree/html5.vim',           { 'for': 'html' }
 Plug 'othree/xml.vim',             { 'for': 'xml' }
 Plug 'tpope/vim-markdown',         { 'for': 'markdown' }
+Plug 'cakebaker/scss-syntax.vim',  { 'for': 'scss' }
 
 "" autocompletion
 Plug 'Shougo/deoplete.nvim',       { 'do': ':UpdateRemotePlugins' }
@@ -61,6 +62,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'Townk/vim-autoclose'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'Valloric/MatchTagAlways'
+Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
@@ -89,6 +91,16 @@ Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-repeat'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'matze/vim-move'
+
+" function! BuildComposer(info)
+"   if a:info.status != 'unchanged' || a:info.force
+"     !cargo build --release
+"   endif
+" endfunction
+
+" Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
 
 call plug#end()
 
@@ -151,16 +163,9 @@ endif
 " split border
 " set fillchars+=vert:│
 set fillchars+=vert: 
-highlight VertSplit ctermfg=bg ctermbg=bg
-highlight LineNr ctermbg=bg
-highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=bg
-
-" gutter settings
-highlight SignColumn ctermbg=bg
-highlight GitGutterAdd ctermbg=bg
-highlight GitGutterChange ctermbg=bg
-highlight GitGutterDelete ctermbg=bg
-highlight GitGutterChangeDelete ctermbg=bg
+highlight VertSplit ctermfg=18 ctermbg=18
+highlight LineNr ctermbg=18
+highlight CursorLineNr cterm=bold ctermfg=3
 
 " wildmenu
 highlight WildMenu ctermfg=19
@@ -226,28 +231,26 @@ autocmd VimEnter * let w:created=1
 autocmd InsertLeave * set nopaste
 
 "" focus
-" keep it at 80
-" let &l:colorcolumn="80"
+" let &l:colorcolumn=""
 
 " only show colorcolumn on focused window
 " if exists('+colorcolumn')
-"   autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn="80"
-"   autocmd FocusLost,WinLeave * let &l:colorcolumn=""
+"   autocmd FocusLost,WinLeave * let &l:colorcolumn="0".join(range(1,400),",")
+"   autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn=""
 " endif
 
 " only show the colorcolumn if the width surpasses 80
 highlight OverLength ctermbg=3 ctermfg=0
-match OverLength /\%81v/
+match OverLength /\%121v/
 
 " only show cursorline on focused window
 autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
 autocmd FocusLost,WinLeave * setlocal nocursorline
 
 " prettier + eslint
-autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
-" autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
-"
-
+autocmd FileType javascript setlocal formatprg=prettier-eslint\ --stdin
+" use formatprg when available
+let g:neoformat_try_formatprg = 1
 
 " goyo
 " function! s:goyo_enter()
@@ -307,7 +310,7 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 " universal mappings
 
 " use ctrl-[hjkl] to move between splits
-" using vim-tmux-navigator instead
+" using vim-tmux-navigator instead, see .tmux.conf
 " nmap <silent> <C-k> :wincmd k<CR>
 " nmap <silent> <C-j> :wincmd j<CR>
 " nmap <silent> <C-h> :wincmd h<CR>
@@ -359,10 +362,10 @@ nmap <silent><Down> <Plug>(ale_next_wrap)
 
 " neomake
 nnoremap <Leader>o :lopen<CR>           " open location window
-nnoremap <Leader><Leader>o :lclose<CR>   " close location window
-nnoremap <silent><Right> :ll<CR>         " go to current error/warning
+nnoremap <Leader><Leader>o :lclose<CR>  " close location window
+nnoremap <silent><Right> :ll<CR>        " go to current error/warning
 " nnoremap <silent><Down> :lnext<CR>      " next error/warning
-" knnoremap <silent><Up> :lprev<CR>        " previous error/warning
+" knnoremap <silent><Up> :lprev<CR>       " previous error/warning
 
 " tern
 autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
@@ -376,8 +379,8 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 map <C-c> <CR><Esc>O
 
-nnoremap <Leader><Leader>f gggqG\<C-o>\<C-o>
-
+" nnoremap <Leader><Leader>f gggqG\<C-o>\<C-o>
+nnoremap <Leader><Leader>f :Neoformat<CR>
 
 "" visual mappings
 

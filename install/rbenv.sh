@@ -13,3 +13,4 @@ gem install bundler cocoapods
 
 # Ruby dependency for Neovim
 gem install neovim
+gem install sass
