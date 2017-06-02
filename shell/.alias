@@ -21,4 +21,5 @@ alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 # Reload shell
 alias rl="exec $SHELL"
 
+# Run neovim with reasonml env
 alias rvim="npm run env -- nvim"
