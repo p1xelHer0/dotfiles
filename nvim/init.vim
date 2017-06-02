@@ -92,6 +92,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'matze/vim-move'
+Plug 'Valloric/MatchTagAlways'
 
 " function! BuildComposer(info)
 "   if a:info.status != 'unchanged' || a:info.force
@@ -285,7 +286,8 @@ let g:neoformat_try_formatprg = 1
 " autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " set curosor to | in INSERT - neovim specific
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 enabled by default in 0.2
+" use ':set guicursor=' instead
 
 " fix slight delay after pressing ESC then O (???)
 " http://ksjoberg.com/vim-esckeys.html/
