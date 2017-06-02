@@ -32,3 +32,6 @@ lctrl + shift - l  [HyperTerm,Terminal,iTerm2]: khd -p "- right"
 ## Reload window layout if broken
 lalt + shift - r       : brew services restart kwm
 lalt + shift + cmd - r : brew services restart khd
+
+## Work related
+lctrl + shift - z : echo 199003106078 | pbcopy
