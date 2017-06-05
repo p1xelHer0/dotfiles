@@ -59,9 +59,9 @@ Plug 'junegunn/gv.vim'
 
 "" edit utils
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'Townk/vim-autoclose'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'Valloric/MatchTagAlways'
+Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Valloric/MatchTagAlways'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
@@ -92,7 +92,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'matze/vim-move'
-Plug 'Valloric/MatchTagAlways'
 
 " function! BuildComposer(info)
 "   if a:info.status != 'unchanged' || a:info.force
@@ -248,10 +247,20 @@ match OverLength /\%121v/
 autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
 autocmd FocusLost,WinLeave * setlocal nocursorline
 
-" prettier + eslint
-autocmd FileType javascript setlocal formatprg=prettier-eslint\ --stdin
-" use formatprg when available
-let g:neoformat_try_formatprg = 1
+
+"" NERDTree
+let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
+let NERDTreeMinimalUI=1
+let NERDTreeShowBookmarks=1
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+let NERDTreeHighlightCursorline=0
+
+" open NERDTree when opening a directory or just starting vim
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
 
 " goyo
 " function! s:goyo_enter()
@@ -313,13 +322,13 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 
 " use ctrl-[hjkl] to move between splits
 " using vim-tmux-navigator instead, see .tmux.conf
-" nmap <silent> <C-k> :wincmd k<CR>
-" nmap <silent> <C-j> :wincmd j<CR>
 " nmap <silent> <C-h> :wincmd h<CR>
+" nmap <silent> <C-j> :wincmd j<CR>
+" nmap <silent> <C-k> :wincmd k<CR>
 " nmap <silent> <C-l> :wincmd l<CR>
 
-" yank to the end of the line with Y
-noremap Y y$
+" yank the whole line with Y
+noremap Y 0y$
 
 
 "" normal mappings
@@ -358,16 +367,16 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 " toggle NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
-" ale
-nmap <silent><Up> <Plug>(ale_previous_wrap)
-nmap <silent><Down> <Plug>(ale_next_wrap)
 
-" neomake
+" errors
 nnoremap <Leader>o :lopen<CR>           " open location window
 nnoremap <Leader><Leader>o :lclose<CR>  " close location window
 nnoremap <silent><Right> :ll<CR>        " go to current error/warning
 " nnoremap <silent><Down> :lnext<CR>      " next error/warning
 " knnoremap <silent><Up> :lprev<CR>       " previous error/warning
+" ale
+nmap <silent><Up> <Plug>(ale_previous_wrap)
+nmap <silent><Down> <Plug>(ale_next_wrap)
 
 " tern
 autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
@@ -427,6 +436,41 @@ let g:UltiSnipsSnippetsDir = $HOME . '/.config/nvim/'
 let g:UltiSnipsEditSplit = 'vertical'
 
 
+""" language settings, formatters, linting and style
+
+"" ale (linting)
+let g:ale_lint_on_save = 1
+let g:ale_sign_column_always = 1
+" let g:ale_sign_error = emoji#for('collision')
+" let g:ale_sign_warning = emoji#for('sparkles')
+
+
+"" neoformat (formatting)
+let g:neoformat_try_formatprg = 1
+
+
+"" js/jsx
+let g:neoformat_enabled_javascript = ['prettier-eslint']
+autocmd FileType javascript setlocal formatprg=prettier-eslint\ --stdin
+" enable both eslint and stylelint in jsx
+let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+let g:ale_linter_aliases = {'jsx': 'css'}
+" allow jsx in normal js files
+let g:jsx_ext_required = 0
+
+"" flow
+" I use eslint for flow, disable the plugin typechecking
+let g:flow#enable = 0
+
+" use locally installed flow
+let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
+if matchstr(local_flow, "^\/\\w") == ''
+    let local_flow= getcwd() . "/" . local_flow
+endif
+if executable(local_flow)
+  let g:flow#flowpath = local_flow
+endif
+
 "" ternjs (javascript)
 "  https://ternjs.net/
 if exists('g:plugs["tern_for_vim"]')
@@ -434,6 +478,18 @@ if exists('g:plugs["tern_for_vim"]')
   let g:tern_show_signature_in_pum = 0
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
+
+
+" css
+let g:neoformat_enabled_css = ['stylefmt']
+
+
+" sass
+let g:neoformat_enabled_scss = ['stylefmt']
+
+
+" json
+let g:neoformat_enabled_json = ['jsbeautify']
 
 
 "" elm
@@ -495,68 +551,13 @@ autocmd FileType reason let g:pairtools_reason_tweraser        = 0
 autocmd FileType reason let g:pairtools_reason_apostrophe      = 0
 
 
-"" ale (linting)
-let g:ale_lint_on_save = 1
-let g:ale_sign_column_always = 1
-" let g:ale_sign_error = emoji#for('collision')
-" let g:ale_sign_warning = emoji#for('sparkles')
-
-"" neomake (linting)
-" autocmd! BufWritePost,InsertLeave * Neomake
-" let g:neomake_open_list = 0
-
-" let g:neomake_warning_sign = {
-" \ 'text': '×',
-" \ 'texthl': 'WarningMsg',
-" \ }
-
-" let g:neomake_error_sign = {
-" \ 'text': '×',
-" \ 'texthl': 'ErrorMsg',
-" \ }
-
-
-" eslint > jshint
-" let g:ale_linters = {
-" \   'javascript': ['eslint'],
-" \   'haskell': ['ghci', 'hlint']
-" \}
-" let g:neomake_javascript_enabled_makers = ['eslint']
-
-" allow jsx in normal js files
-let g:jsx_ext_required = 0
-
-"" flow
-" I use eslint for flow, disable the plugin typechecking
-let g:flow#enable = 0
-
-" use locally installed flow
-let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
-if matchstr(local_flow, "^\/\\w") == ''
-    let local_flow= getcwd() . "/" . local_flow
-endif
-if executable(local_flow)
-  let g:flow#flowpath = local_flow
-endif
-
-
-" css
-" let g:neomake_css_enabled_makers = ['stylelint']
-
-
 " purescript
 let g:psc_ide_syntastic_mode = 2
 
 
-"highlight NeomakeMessageSignDefault NONE
-"highlight NeomakeWarningSignDefault NONE
-"highlight NeomakeErrorSignDefault NONE
+""" other
 
-"highlight NeomakeMessageSignDefault ctermfg=2 ctermbg=18
-"highlight link NeomakeMessageSign NeomakeMessageSignDefault
-"highlight NeomakeWarningSignDefault ctermfg=3 ctermbg=18
-"highlight link NeomakeWarningSign NeomakeWarningSignDefault
-"highlight NeomakeErrorSignDefault ctermfg=6 ctermbg=18
+"" Find command which utilizes fzf and ripgrep to search file contents
 " --no-heading: Do not show file headings in results
 " --fixed-strings: Search term as a literal string
 " --ignore-case: Case insensitive search
@@ -565,18 +566,4 @@ let g:psc_ide_syntastic_mode = 2
 " --follow: Follow symlinks
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-
-"" NERDTree
-let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
-let NERDTreeMinimalUI=1
-let NERDTreeShowBookmarks=1
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-let NERDTreeHighlightCursorline=0
-
-" open NERDTree when opening a directory or just starting vim
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
