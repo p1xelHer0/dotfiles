@@ -1,0 +1,39 @@
+# Open dotfiles in editor
+alias dotfiles="cd $HOME/dotfiles && $EDITOR"
+
+# Open Neovim config
+alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
+
+# List npm modules global/local
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
+
+# Show IP and local IP
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
+# Recursively remove Apple meta files
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
+alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
+
+# vim -> Neovim
+which nvim > /dev/null 2>&1 && alias vim=nvim
+alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
+
+# Reload shell
+alias rl="exec zsh"
+
+# Run Neovim with reasonml env
+alias rvim="npm run env -- nvim"
+
+# Exclude OSX specific files in ZIP archives
+alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
+
+# Start screen saver
+alias afk="/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"
+
+# Log off
+alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Free WiFi
+alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//' `"
