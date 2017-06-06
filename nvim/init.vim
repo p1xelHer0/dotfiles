@@ -13,7 +13,6 @@ Plug 'ternjs/tern_for_vim',                    { 'for': ['javascript', 'javascri
 Plug 'carlitux/deoplete-ternjs',               { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim',                        { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'flowtype/vim-flow',                      { 'for': ['javascript', 'javascript.jsx'] }
-" Plug 'benjie/neomake-local-eslint.vim'
 
 " coffescript
 Plug 'kchmck/vim-coffee-script',   { 'for': 'coffescript' }
@@ -50,7 +49,6 @@ Plug 'ervandew/supertab'
 
 "" linting
 Plug 'w0rp/ale'
-" Plug 'neomake/neomake'
 
 "" git
 Plug 'tpope/vim-fugitive'
@@ -59,9 +57,9 @@ Plug 'junegunn/gv.vim'
 
 "" edit utils
 Plug 'editorconfig/editorconfig-vim'
-Plug 'Townk/vim-autoclose'
-Plug 'jiangmiao/auto-pairs'
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Townk/vim-autoclose'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'Valloric/MatchTagAlways'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
@@ -89,9 +87,9 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-repeat'
-Plug 'tweekmonster/startuptime.vim'
+" Plug 'tweekmonster/startuptime.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'matze/vim-move'
+" Plug 'matze/vim-move'
 
 " function! BuildComposer(info)
 "   if a:info.status != 'unchanged' || a:info.force
@@ -446,15 +444,16 @@ let g:ale_sign_column_always = 1
 
 
 "" neoformat (formatting)
-let g:neoformat_try_formatprg = 1
+" let g:neoformat_try_formatprg = 1
 
 
 "" js/jsx
 let g:neoformat_enabled_javascript = ['prettier-eslint']
-autocmd FileType javascript setlocal formatprg=prettier-eslint\ --stdin
-" enable both eslint and stylelint in jsx
-let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
-let g:ale_linter_aliases = {'jsx': 'css'}
+
+" enable both eslint and stylelint in jsx (styled-components)
+" let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
+" let g:ale_linter_aliases = {'jsx': 'css'}
+"
 " allow jsx in normal js files
 let g:jsx_ext_required = 0
 
@@ -507,7 +506,8 @@ if exists('g:plugs["purescript-vim"]')
 endif
 
 
-"" neco-ghc (haskell)
+"" haskell
+"" neco-ghc
 "  https://github.com/eagletmt/neco-ghc
 if exists('g:plugs["neco-ghc"]')
   let g:haskellmode_completion_ghc = 1
@@ -515,8 +515,7 @@ if exists('g:plugs["neco-ghc"]')
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 endif
 
-
-"" haskell-vim (haskell)
+"" haskell-vim
 " https://github.com/neovimhaskell/haskell-vim
 if exists('g:plugs["haskell-vim"]')
   let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
