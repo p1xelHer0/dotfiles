@@ -1,4 +1,5 @@
 # this installs the latest version of python, not sure if this is good but, w/e
+# no pyenv on wsl, just use default pip for now
 pyenv install $(pyenv install --list | grep -v - | grep -v b | tail -1)
 pyenv global $(pyenv install --list | grep -v - | grep -v b | tail -1)
 
