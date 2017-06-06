@@ -68,9 +68,9 @@ ln -fs $HOME/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local/
 
 # iterm
 # enable italics by adding terminfo
-tic $HOME/dotfiles/iterm/tmux.terminfo
-tic $HOME/dotfiles/iterm/xterm-256color.terminfo
-tic $HOME/dotfiles/iterm/tmux-256color.terminfo
+tic $HOME/dotfiles/terminfo/tmux.terminfo
+tic $HOME/dotfiles/terminfo/xterm-256color.terminfo
+tic $HOME/dotfiles/terminfo/tmux-256color.terminfo
 
 
 # tmux
