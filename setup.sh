@@ -66,7 +66,7 @@ ln -fs $HOME/dotfiles/hyper/.hyper.js $HOME/
 # points to my theme repository
 ln -fs $HOME/dev/repo/private/hyper-p1xelHer0 $HOME/.hyper_plugins/local/
 
-# iterm
+# terminfo
 # enable italics by adding terminfo
 tic $HOME/dotfiles/terminfo/tmux.terminfo
 tic $HOME/dotfiles/terminfo/xterm-256color.terminfo
