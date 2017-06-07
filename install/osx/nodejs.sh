@@ -23,10 +23,13 @@ fi
 packages=(
   create-react-app
   eslint
+  flow-bin
+  js-beautify
   preact-cli
+  prettier
   react-native-cli
   serve
-  standard
+  stylefmt
   stylelint
   tern
   webpack
