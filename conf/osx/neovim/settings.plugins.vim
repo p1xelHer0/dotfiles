@@ -1,13 +1,13 @@
 " ## Language settings {{
 
 " # JavaScript {
-" allow jsx in normal js files
+" allow jsx in normal JavaScript files
 let g:jsx_ext_required = 0
 
-" I use eslint for flow, disable the plugin typechecking
+" I use ESlint for Flow, disable the plugin typechecking
 let g:flow#enable = 0
 
-" Use locally installed flow
+" Use locally installed Flow
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
     let local_flow= getcwd() . "/" . local_flow
@@ -23,10 +23,7 @@ let g:psc_ide_syntastic_mode = 2
 " } PureScript #
 
 
-" # Reasonml {
-" use refmt instead of Neovims standard formatting
-autocmd FileType reason map <buffer> <Leader><Leader>f :ReasonPrettyPrint<Cr>
-
+" # Reason {
 autocmd FileType reason let g:pairtools_reason_pairclamp       = 1
 autocmd FileType reason let g:pairtools_reason_tagwrench       = 0
 autocmd FileType reason let g:pairtools_reason_jigsaw          = 1
@@ -43,7 +40,7 @@ autocmd FileType reason let g:pairtools_reason_tagwrenchhook   = 'tagwrench#Buil
 autocmd FileType reason let g:pairtools_reason_twexpander      = 0
 autocmd FileType reason let g:pairtools_reason_tweraser        = 0
 autocmd FileType reason let g:pairtools_reason_apostrophe      = 0
-" } Reasonml #
+" } Reason #
 
 
 " # Haskell {
@@ -80,12 +77,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 set completeopt-=preview
 let g:deoplete#sources = {}
 
-" Enter closes options if present and inserts linebreak
-" Apparently this has to be that complicated
-inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
-function! s:close_and_linebreak()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-endfunction
 
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -140,7 +131,7 @@ endif
 let g:ale_lint_on_save = 1
 let g:ale_sign_column_always = 1
 
-" enable both eslint and stylelint in jsx (styled-components)
+" Enable both ESlint and stylelint in jsx (styled-components)
 " let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
 " let g:ale_linter_aliases = {'jsx': 'css'}
 
@@ -170,12 +161,3 @@ let g:neoformat_enabled_json = ['jsbeautify']
 " } JSON #
 
 " }} Formatting with Neoformat ##
-
-
-
-
-
-
-
-
-
