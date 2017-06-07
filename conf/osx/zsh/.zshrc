@@ -73,6 +73,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 source $HOME/dotfiles/conf/osx/base16/.colors
 # } base16-shell
 
+
 ## nvm {{
 
 export NVM_DIR=$HOME/.nvm
@@ -139,8 +140,7 @@ fi
 # } Android
 
 
-# Set $PATH
-
+# Set $PATH {
 if [[ $platform == "macOS" ]]; then
   export PATH=$REACT_NATIVE_HOME:$PATH
 fi
@@ -169,6 +169,7 @@ if [[ $platform == "macOS" ]]; then
   export PATH=$ANDROID_HOME/platform-tools:$PATH
   export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
 fi
+# } Set $PATH
 
 ## }} $PATH
 

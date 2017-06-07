@@ -47,10 +47,10 @@ Plug 'raichoo/purescript-vim',                 { 'for': 'purescript' }
 Plug 'frigoeu/psc-ide-vim',                    { 'for': 'purescript' }
 " } PureScript #
 
-" # Reasonml {
+" # Reason {
 Plug 'reasonml/vim-reason-loader',             { 'for': 'reason' }
 Plug 'MartinLafreniere/vim-PairTools',         { 'for': 'reason' }
-" } Reasonml #
+" } Reason #
 
 " # Haskell {
 Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
@@ -59,10 +59,6 @@ Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
 " } Haskell #
-
-" } Reasonml #
-Plug 'reasonml/vim-reason-loader',             { 'for': 'reason' }
-" } Reasonml #
 
 " }} Syntax ##
 
