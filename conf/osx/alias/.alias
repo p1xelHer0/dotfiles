@@ -27,7 +27,7 @@ alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 # Reload shell
 alias rl="exec zsh"
 
-# Run Neovim with reasonml env
+# Run Neovim with Reason env
 alias rvim="npm run env -- nvim"
 
 # Exclude OSX specific files in ZIP archives
