@@ -1,6 +1,4 @@
-" ## Default keymappings {{
-
-" # Universal mappings {
+" ## Universal mappings {{
 
 " Don't use arrows!
 noremap <Up> <nop>
@@ -10,6 +8,8 @@ noremap <Right> <nop>
 
 " Leader
 let mapleader="\<Space>"
+
+map <C-c> <CR><Esc>O
 
 " Reload init.vim
 noremap <Leader><Leader>r :so $MYVIMRC<CR>
@@ -23,9 +23,11 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 
 " Yank the whole line with Y
 noremap Y 0y$
-" } Univeral mappings #
 
-" # Normal mappings {
+" }} Univeral mappings ##
+
+
+" ## Normal mappings {{
 
 " <Leader><Leader> -- open last buffer
 nnoremap <Leader><Leader> <C-^>
@@ -63,40 +65,19 @@ nnoremap <Leader>o :lopen<CR>           " open location window
 nnoremap <Leader><Leader>o :lclose<CR>  " close location window
 nnoremap <silent><Right> :ll<CR>        " go to current error/warning
 
-" ALE
-nmap <silent><Up> <Plug>(ale_previous_wrap)
-nmap <silent><Down> <Plug>(ale_next_wrap)
-
-" Toggle NERDTree
-nnoremap <Leader>n :NERDTreeToggle<CR>
-
-" tern
-autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
-
-" } Normal mappings #
+" }} Normal mappings ##
 
 
-" Insert mappings {
+" ## Insert mappings {{
 
-" Deoplete tab-complete
-let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = "<C-j>"
-
-map <C-c> <CR><Esc>O
-
-" Neoformat
-nnoremap <Leader><Leader>f :Neoformat<CR>
-
-" } Insert mappings #
+" }} Insert mappings ##
 
 
-" # Visual mappings {
+" ## Visual select mappings {{
 
-" EasyAlign
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+" }} Visual select mappings ##
 
-" } Visual mappings #
+
+" ## Visual mappings {{
+
+" }} Visual mappings ##
