@@ -3,7 +3,7 @@ function s:CheckColorScheme()
     let g:base16colorspace=256
   endif
 
-  let s:config_file = expand('$HOME/dotfiles/shell/.base16')
+  let s:config_file = expand('$HOME/dotfiles/conf/osx/base16/.base16')
 
   if filereadable(s:config_file)
     let s:config = readfile(s:config_file, '', 2)
