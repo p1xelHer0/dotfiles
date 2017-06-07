@@ -1,6 +1,7 @@
 " ## Base16 {
 
 " Theme must be set before Neovim can use the fg and bg colors!
+" See: :h cterm-colors: E419, E420
 " https://github.com/chriskempson/base16-shell
 " Load theme from base16-shell
 if filereadable(expand("$HOME/.vimrc_background"))
