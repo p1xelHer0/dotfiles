@@ -2,7 +2,9 @@
 alias dotfiles="cd $HOME/dotfiles && $EDITOR"
 
 # Open Neovim config
-alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
+alias vimrc="$EDITOR $HOME/dotfiles/conf/osx/neovim"
+
+alias zshrc="$EDITOR $HOME/dotfiles/conf/osx/zsh/.zshrc"
 
 # List npm modules global/local
 alias ng="npm list -g --depth=0 2>/dev/null"
@@ -18,6 +20,8 @@ alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
 # vim -> Neovim
 which nvim > /dev/null 2>&1 && alias vim=nvim
+
+# Open tmux split with swap files
 alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 
 # Reload shell
