@@ -52,6 +52,7 @@ haskell=(
 fun=(
   ffmpeg                                        # utils (make videos)
   gifsicle                                      # utils (make gifs)
+  neofetch                                      # utils (print system information)
 )
 
 brew tap homebrew/versions
