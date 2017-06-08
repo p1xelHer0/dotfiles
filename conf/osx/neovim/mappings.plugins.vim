@@ -1,50 +1,47 @@
-" ## Universal mappings {{
+"""
 
-" # UltiSnips {
+" -- keymapping that uses functionality of plugins
+
+
+" Universal mappings {{{
+
 let g:UltiSnipsExpandTrigger = "<C-j>"
-" } UltiSnips #
 
-"}} Universal mappings ##
+" }}}
 
 
-" ## Normal mappings {{
+" Normal mappings {{{
 
-" # ALE {
+" ALE
 nmap <silent><Up> <Plug>(ale_previous_wrap)
 nmap <silent><Down> <Plug>(ale_next_wrap)
-" } ALE #
 
 
-" # Neoformat {
-nnoremap <Leader><Leader>f :Neoformat<CR>
-" } Neoformat #
-
-
-" # EasyAlign {
+" EasyAlign
 nmap ga <Plug>(EasyAlign)
-" } EasyAlign #
 
 
-" # NERDTree {
+" NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
-" } NERDTree #
 
 
-" # tern {
-autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
-" } tern #
+" Neoformat
+nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
-" # ReasonPrettyPrint {
+" ReasonPrettyPrint
 autocmd FileType reason nnoremap <buffer> <Leader><Leader>f :ReasonPrettyPrint<Cr>
-" } ReasonPrettyPrint #
-
-" }} Normal mappings ##
 
 
-" ## Insert mappings {{
+" Tern
+autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
 
-" # SuperTab {
+" }}}
+
+
+" Insert mappings {{{
+
+" SuperTab
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -54,18 +51,18 @@ inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
 function! s:close_and_linebreak()
   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
 endfunction
-" } SuperTab #
+
+" }}}
 
 
-" ## Visual select mappings {{
+" Visual select mappings {{{
 
-" }} Visual select mappings ##
+" }}}
 
 
-" ## Visual mappings {{
+" Visual mappings {{{
 
-" # EasyAlign {
+" EasyAlign
 xmap ga <Plug>(EasyAlign)
-" } EasyAlign #
 
-" }} Visual mappings ##
+" }}} Visual mappings

@@ -1,7 +1,14 @@
+"""
+
+" -- themes, colors and everything that affects the look of the statusline
+
+
 set laststatus=2
 
-" # Lightline {
+" Lightline {{{
+
 let g:lightline = {
 \ 'colorscheme': 'base16'
 \ }
-" } Lightline #
+
+" }}}

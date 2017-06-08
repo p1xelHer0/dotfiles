@@ -1,16 +1,16 @@
-# Shift focus
+# shift focus
 lalt - up            : kwmc window -f north
 lalt - right         : kwmc window -f east
 lalt - down          : kwmc window -f south
 lalt - left          : kwmc window -f west
 
-# Swap position
+# swap position
 lalt + shift - up    : kwmc window -s north
 lalt + shift - right : kwmc window -s east
 lalt + shift - down  : kwmc window -s south
 lalt + shift - left  : kwmc window -s west
 
-# Move window
+# move window
 lalt + lctrl - up    : kwmc window -m north
 lalt + lctrl - right : kwmc window -m east
 lalt + lctrl - down  : kwmc window -m south
@@ -29,9 +29,6 @@ lctrl + shift - j  [HyperTerm,Terminal,iTerm2]: khd -p "- down"
 lctrl + shift - k  [HyperTerm,Terminal,iTerm2]: khd -p "- up"
 lctrl + shift - l  [HyperTerm,Terminal,iTerm2]: khd -p "- right"
 
-## Reload window layout if broken
+## reload window layout if broken
 lalt + shift - r       : brew services restart kwm
 lalt + shift + cmd - r : brew services restart khd
-
-## Work related
-lctrl + shift - z : echo 199003106078 | pbcopy

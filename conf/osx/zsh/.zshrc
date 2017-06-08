@@ -1,11 +1,14 @@
-# Helper to check if OSX or WSL
-platform="uknown"
-unamestr=$(uname)
-if [[ $unamestr == "Linux" ]]; then
-  platform="Linux"
-elif [[ $unamestr == "Darwin" ]]; then
-  platform='macOS'
-fi
+#
+#                    ██
+#                   ░██
+#     ██████  ██████░██      ██████  █████
+#    ░░░░██  ██░░░░ ░██████ ░░██░░█ ██░░░██
+#       ██  ░░█████ ░██░░░██ ░██ ░ ░██  ░░
+#      ██    ░░░░░██░██  ░██ ░██   ░██   ██
+#  ██ ██████ ██████ ░██  ░██░███   ░░█████
+# ░░ ░░░░░░ ░░░░░░  ░░   ░░ ░░░     ░░░░░
+
+# -- here be turtles
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
