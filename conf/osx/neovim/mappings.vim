@@ -6,8 +6,7 @@
 " Universal mappings {{{
 
 " leader - space masterrace
-let mapleader='\<Space>'
-
+let mapleader = "\<Space>"
 
 " don't use arrows!
 noremap <Up> <nop>
