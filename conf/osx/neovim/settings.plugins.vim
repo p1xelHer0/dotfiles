@@ -152,7 +152,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 let g:psc_ide_syntastic_mode = 2
 
-}}}
+" }}}
 
 
 " Reason {{{
