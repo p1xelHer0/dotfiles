@@ -67,6 +67,10 @@ fi
 export EDITOR=nvim
 
 
+# NA > EU confirmed?
+export LANG=en_US.UTF-8
+
+
 # base16-shell {
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -217,10 +221,6 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 # fzf, fzf settings and git helpers {
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
-# fzf settings and git helpers
-source $HOME/dotfiles/conf/osx/zsh/.fzf
-# } fzf, fzf settings and git helpers
-
 
 # load jenv
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
@@ -241,5 +241,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # npm tab completion
 . <(npm completion)
+
+
+# load all configs
+for config ($HOME/dotfiles/conf/osx/zsh/*.zsh) source $config
 
 ## }} Source and init all helpers
