@@ -7,7 +7,7 @@ if [ "${TERM%%-*}" = 'linux' ]; then
     return 2>/dev/null || exit 0
 fi
 
-color00="28/28/28" # base 00 - default Background
+color00="fc/fc/fc" # base 00 - default Background
 color18="3e/3d/38" # base 01 - lighter background (Used for status bars)
 color19="53/51/47" # base 02 - selection background
 color08="69/66/57" # base 03 - comments, invisibles, line highlighting

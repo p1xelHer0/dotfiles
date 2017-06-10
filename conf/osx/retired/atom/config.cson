@@ -1,0 +1,195 @@
+"*":
+  "atom-beautify":
+    coffeescript:
+      indent_size: 2
+    css:
+      convert_quotes: "double"
+      indent_size: 2
+      no_lead_zero: true
+    ejs:
+      indent_size: 2
+    general:
+      _analyticsUserId: "fbe6ddd2-ff12-42a9-b6d2-de15a9c86cf9"
+      analytics: false
+      beautifyEntireFileOnSave: false
+    html:
+      end_with_newline: true
+      indent_size: 2
+    js:
+      end_with_newline: true
+      indent_size: 2
+      keep_array_indentation: true
+      keep_function_indentation: true
+      space_after_anon_function: true
+    json:
+      indent_size: 2
+    jsx:
+      indent_size: 2
+    xml:
+      indent_size: 2
+  "atom-material-ui":
+    colors:
+      abaseColor: "#fac86e"
+      accentColor: "#6699cc"
+      predefinedColor: "Orange"
+    fonts:
+      fontSize: 14
+    tabs: {}
+    treeView:
+      blendTabs: true
+      compactList: true
+    ui:
+      animations: false
+      panelContrast: true
+  "autocomplete-haskell": {}
+  "base16-syntax": {}
+  "block-cursor":
+    global:
+      blinkOn:
+        backgroundColor: "#c9bbec"
+  "copy-as-rtf":
+    fontface: "Fira Code"
+    style: "vs"
+  core:
+    audioBeep: false
+    autoHideMenuBar: true
+    automaticallyUpdate: false
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".flowconfig"
+        ".hgrc"
+      ]
+      "source.json": [
+        ".arcconfig"
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
+    disabledPackages: [
+      "language-c"
+      "language-clojure"
+      "language-go"
+      "language-java"
+      "language-make"
+      "language-mustache"
+      "language-objective-c"
+      "language-perl"
+      "language-ruby-on-rails"
+      "language-toml"
+      "welcome"
+      "linter-htmlhint"
+      "linter-coffeelint"
+      "background-tips"
+      "language-csharp"
+      "language-sql"
+      "metrics"
+      "spell-check"
+      "language-javascript-jsx"
+      "linter-hlint"
+      "atom-typescript"
+      "Hydrogen"
+      "whitespace"
+      "linter-flow"
+      "angularjs"
+      "linter-xmllint"
+      "linter-csslint"
+    ]
+    excludeVcsIgnoredPaths: false
+    packagesWithKeymapsDisabled: []
+    projectHome: "~/Dev/Repo"
+    themes: [
+      "atom-material-ui"
+      "base16-syntax"
+    ]
+    useCustomTitleBar: true
+  editor:
+    backUpBeforeSaving: true
+    fontFamily: "Fira Code"
+    fontSize: 12
+    invisibles: {}
+    lineHeight: 2
+    scrollPastEnd: true
+    showInvisibles: true
+    softWrap: true
+  "exception-reporting":
+    userId: "7b042e24-cd50-2511-cbca-d6fe0d341f7e"
+  "fuzzy-finder":
+    ignoredNames: [
+      "node_modules"
+      "bower"
+      ".DS_Store"
+      "Thumbs.db"
+    ]
+  "haskell-ghc-mod":
+    additionalPathDirectories: [
+      "/Users/pontusnagy/.local/bin"
+    ]
+    cabalSandbox: false
+    ghcModPath: "/Users/pontusnagy/.local/bin/ghc-mod"
+    onChangeCheck: true
+  "highlight-line":
+    hideHighlightOnSelect: true
+    underline: "dotted"
+  "highlight-selected":
+    hideHighlightOnSelectedWord: true
+    highlightBackground: true
+  "ide-haskell":
+    stylishHaskellPath: "/Users/pontusnagy/.local/bin/stylish-haskell"
+  "ide-haskell-repl":
+    defaultRepl: "stack"
+    ghciPath: "/Users/pontusnagy/.local/bin/ghc-modi"
+    stackPath: "/usr/local/bin/stack"
+  "js-hyperclick":
+    extensions: [
+      ".js"
+      ".json"
+      ".node"
+      ".jsx"
+    ]
+  "language-babel":
+    autoIndentJSX: true
+  "language-elm":
+    elmOraclePath: "/Users/pontusnagy/.nvm/versions/node/v6.4.0/bin/elm-oracle"
+  linter:
+    errorPanelHeight: 86
+    ignoreMatchedFiles: "/**/*.min.{js,css}, /**/*.hs"
+    lintOnFlyInterval: 5000
+    showErrorTabLine: true
+  "linter-hlint":
+    hlintExecutablePath: "/Users/pontusnagy/.local/bin/hlint"
+  nuclide:
+    "nuclide-file-tree":
+      hideIgnoredNames: false
+    "nuclide-flow":
+      warnOnNotInstalled: false
+    "nuclide-home":
+      showHome: false
+  pigments:
+    mergeColorDuplicates: true
+  react: {}
+  "seti-icons":
+    iconsPlus: true
+  "split-diff":
+    ignoreWhitespace: true
+  "sync-settings":
+    _analyticsUserId: "c88c8c81-d43d-4966-bbfd-16fa73398c88"
+    _lastBackupHash: "4830e157bde6d17eecd183da5ba34f6fa50808fe"
+    analytics: false
+    gistId: "bd0fa1faf79d9266c8fd73369f0e7b6b"
+    personalAccessToken: "0601263ca2de406b5e35b62a27bf97f71c843e6d"
+  "terminal-plus":
+    core: {}
+    toggles:
+      cursorBlink: false
+  "tool-bar":
+    position: "Bottom"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  "vim-mode-plus":
+    highlightSearch: true
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+  welcome:
+    showOnStartup: false

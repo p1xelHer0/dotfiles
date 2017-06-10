@@ -1,25 +1,25 @@
 #!/bin/sh
 
-## Install nvm, latest version of node and npm packages
+# install nvm, latest version of node and npm packages
 
-# Install nvm
+# install nvm
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
-# Restart for changes to take effect
+# restart for changes to take effect
 exec zsh
 
 if test ! $(which nvm)
 then
   echo "Installing a stable version of nodejs..."
 
-  # Install the latest version of nodejs
+  # install the latest version of nodejs
   nvm install node
 
-  # Switch to the installed version
+  # switch to the installed version
   nvm alias default node
 fi
 
-# Globally install with npm
+# globally install with npm
 packages=(
   create-react-app
   eslint

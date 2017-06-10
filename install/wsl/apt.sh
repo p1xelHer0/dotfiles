@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Install apt dependencies needed/desired for software development
+# install apt dependencies needed/desired for software development
 
-# Ask for the administrator password upfront
+# ask for the administrator password upfront
 sudo -v
 
-# Upgrade any already-installed packages
+# upgrade any already-installed packages
 apt upgrade
 
-# Install packages
+# install packages
 apps=(
   coreutils                                     # utils
   curl                                          # utils

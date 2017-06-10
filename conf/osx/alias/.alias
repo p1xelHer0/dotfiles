@@ -1,25 +1,14 @@
+# vim -> Neovim if installed
+which nvim > /dev/null 2>&1 && alias vim=nvim
+
 # open dotfiles in editor
 alias dotfiles="cd $HOME/dotfiles && $EDITOR"
 
 # open Neovim config
 alias vimrc="$EDITOR $HOME/dotfiles/conf/osx/neovim"
 
+# open zsh config
 alias zshrc="$EDITOR $HOME/dotfiles/conf/osx/zsh/.zshrc"
-
-# list npm modules global/local
-alias ng="npm list -g --depth=0 2>/dev/null"
-alias nl="npm list --depth=0 2>/dev/null"
-
-# show ip and local ip
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-
-# recursively remove Apple meta files
-alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
-alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
-
-# vim -> Neovim if installed
-which nvim > /dev/null 2>&1 && alias vim=nvim
 
 # open tmux split with swap files
 alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
@@ -27,11 +16,23 @@ alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 # reload shell
 alias rl="exec zsh"
 
+# list npm modules global/local
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
+
 # run Neovim with Reason env
 alias rvim="npm run env -- nvim"
 
+# show ip and local ip
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
 # exclude OSX specific files in ZIP archives
 alias zip="zip -x *.DS_Store -x *__MACOSX* -x *.AppleDouble*"
+
+# recursively remove Apple meta files
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
+alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 
 # start screen saver
 alias afk="/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"

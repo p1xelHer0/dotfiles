@@ -1,6 +1,6 @@
 #!/bin/sh
 
-## Symlink khd
+# symlink khd
 
-# Symlink
+# symlink
 ln -fs $HOME/dotfiles/conf/osx/khd/.khdrc $HOME/

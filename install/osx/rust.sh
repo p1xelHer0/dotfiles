@@ -1,7 +1,7 @@
 #!/bin/bash
 
-## Install Rust with Rustup
-## https://www.rustup.rs/
+# jnstall Rust with Rustup
+# https://www.rustup.rs/
 
-# Install rustup
+# install rustup
 curl https://sh.rustup.rs -sSf | sh

@@ -1,6 +1,6 @@
 ## fzf {{
 
-#  colors
+# colors
 export FZF_DEFAULT_OPTS='
   --color fg:-1,bg:-1,hl:1,fg+:4,bg+:18,hl+:1,info:20
   --color prompt:6,spinner:2,pointer:1,marker:3,header:2
@@ -16,7 +16,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 ## }} fzf
 
 
-## Git + fzf {{
+# Git + fzf {{{
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
@@ -86,4 +86,4 @@ bind-git-helper() {
 bind-git-helper f b t r h
 unset -f bind-git-helper
 
-## }} Git + fzf
+# }}}

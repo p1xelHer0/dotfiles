@@ -1,11 +1,11 @@
 #!/bin/bash
 
-## Install tpm to handle tmux plugins
-## Symlink .tmux.conf
+# install tpm to handle tmux plugins
+# symlink .tmux.conf
 
-# Install tpm
+# install tpm
 mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-# Symlink
+# symlink
 ln -fs $HOME/dotfiles/conf/osx/tmux/.tmux.conf $HOME/

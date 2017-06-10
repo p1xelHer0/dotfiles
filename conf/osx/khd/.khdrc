@@ -16,7 +16,8 @@ lalt + lctrl - right : kwmc window -m east
 lalt + lctrl - down  : kwmc window -m south
 lalt + lctrl - left  : kwmc window -m west
 
-## vi-mode for non-terminal applications
+
+# vi-mode for non-terminal applications {{{
 
 # remap left-control h/j/k/l -> arrow keys
 lctrl - h         ![HyperTerm,Terminal,iTerm2]: khd -p "- left"
@@ -24,10 +25,13 @@ lctrl - j         ![HyperTerm,Terminal,iTerm2]: khd -p "- down"
 lctrl - k         ![HyperTerm,Terminal,iTerm2]: khd -p "- up"
 lctrl - l         ![HyperTerm,Terminal,iTerm2]: khd -p "- right"
 
+# use shift + ctrl in terminal applications
 lctrl + shift - h  [HyperTerm,Terminal,iTerm2]: khd -p "- left"
 lctrl + shift - j  [HyperTerm,Terminal,iTerm2]: khd -p "- down"
 lctrl + shift - k  [HyperTerm,Terminal,iTerm2]: khd -p "- up"
 lctrl + shift - l  [HyperTerm,Terminal,iTerm2]: khd -p "- right"
+
+# }}}
 
 ## reload window layout if broken
 lalt + shift - r       : brew services restart kwm

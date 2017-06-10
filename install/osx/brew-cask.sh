@@ -1,13 +1,13 @@
 #!/bin/bash
 
-## Installs brew cask which is used to install applications
+# installs brew cask which is used to install applications
 
-# Install cask
+# install cask
 brew tap caskroom/cask
 brew install brew-cask
 brew tap caskroom/versions
 
-# Packages to install
+# packages to install
 apps=(
   alfred                                        # utils
   brave                                         # browser
@@ -37,8 +37,9 @@ reactnative=(
   react-native-debugger                         # js
 )
 
-# Install packages
+# install packages
 brew cask install "${apps[@]}"
 
-# Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
+# quick look plugins
+# see: https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package
