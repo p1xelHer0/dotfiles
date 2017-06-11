@@ -17,7 +17,7 @@ set softtabstop=2       " set to 2 according to tabstop
 " }}}
 
 
-" List {{{
+" list {{{
 
 set list                " display the listchars
 set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬
@@ -29,7 +29,7 @@ set scrolloff=5         " keep 5 lines above the cursor while scrolling
 " }}}
 
 
-" Search {{{
+" search {{{
 
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is all lowercase
@@ -40,7 +40,7 @@ set showmatch           " automatically show matching brackets
 " }}}
 
 
-" Other {{{
+" other {{{
 
 set clipboard=unnamed   " normal OS clipboard interaction
 set copyindent          " copy the previous indentation on autoindenting
@@ -55,6 +55,8 @@ set lazyredraw          " disable redraw while executing macros (perf)
 set showcmd             " show command on the last line (for learning)
 set shortmess+=I        " no splash screen
 set backupcopy=yes      " make a copy of the file and overwrite the original one
+set breakindent
+set showbreak=↳
 
 " set curosor to | in INSERT - neovim specific
 " let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 enabled by Default in 0.2
