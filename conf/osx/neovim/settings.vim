@@ -56,8 +56,7 @@ set showcmd             " show command on the last line (for learning)
 set shortmess+=I        " no splash screen
 set backupcopy=yes      " make a copy of the file and overwrite the original one
 set breakindent
-set showbreak=↳
-
+set showbreak=\ ↳ 
 " set curosor to | in INSERT - neovim specific
 " let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 enabled by Default in 0.2
 " use ':set guicursor=' instead
