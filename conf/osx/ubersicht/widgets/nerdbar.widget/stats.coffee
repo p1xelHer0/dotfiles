@@ -63,7 +63,7 @@ update: (output, domEl) ->
   free = values[4].replace(/[^0-9]/g,'')
 
   # create an HTML string to be displayed by the widget
-  htmlString =  "<span class='color08'> ░▓█</span> " + @getNetTraffic(down, up) + "<span> </span>" +
+  htmlString =  "<span class='color08'>█▓░</span> " + @getNetTraffic(down, up) + "<span> </span>" +
                 @getMem(mem) + "<span> </span>" +
                 @getCPU(cpu) + "<span> </span>" +
                 @getFreeSpace(free)
