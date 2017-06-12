@@ -1,39 +1,75 @@
 .color00 {
-  color: #282828;
+  color: #282828; /* base 00 - default background */
 }
 
-.color05 {
-  color: #fdf3c0;
+.color18 {
+  color: #3e3d38; /* base 01 - lighter background (Used for status bars) */
+}
+
+.color19 {
+  color: #535147; /* base 02 - selection background */
 }
 
 .color08 {
-  color: #ce983f;
+  color: #696657; /* base 03 - comments, invisibles, line highlighting */
 }
 
-.color09 {
-  color: #ce6e3f;
+.color20 {
+  color: #7e7a66; /* base 04 - dark foreground (used for status bars) */
 }
 
-.color0A {
-  color: #83a598;
+.color07 {
+  color: #fdf3c0; /* base 05 - default foreground, caret, delimiters, operators */
 }
 
-.color0B {
-  color: #a6b657;
+
+.color21 {
+  color: #fef7d1; /* base 06 - light foreground (not often used) */
 }
 
-.color0C {
-  color: #588778;
+.color15 {
+  color: #fefae0; /* base 07 - light background (not often used) */
 }
 
-.color0D {
-  color: #7a925d;
+
+.color01 {
+  color: #ce983f; /* base 08 - variables, XML tags, markup link text, markup lists, diff deleted */
 }
 
-.color0E {
-  color: #ce983f ;
+.color16 {
+  color: #ce6e3f; /* base 09 - integers, boolean, constants, XML attributes, markup link url */
 }
 
-.color0F {
-  color: #ce6e3f;
+.color03 {
+  color: #83a598; /* base 0A - classes, markup bold, search text background */
+}
+
+.color02 {
+  color: #a6b657; /* base 0B - strings, inherited class, markup code, diff inserted */
+}
+
+.color06 {
+  color: #588778; /* base 0C - support, regular expressions, escape characters, markup quotes */
+}
+
+.color04 {
+  color: #7a925d; /* base 0D - functions, methods, attribute IDs, headings */
+}
+
+.color05 {
+  color: #ce983f; /* base 0E - keywords, storage, selector, markup italic, diff changed */
+}
+
+.color17 {
+  color: #ce6e3f; /* base 0F - deprecated, opening/closing embedded language tags e.g. <?php ?> */
+}
+
+.color06bg {
+  background-color: #588778; /* base 0C - support, regular expressions, escape characters, markup quotes */
+  color: #282828;
+}
+
+.color07bg {
+  background-color: #588778; /* base 0C - support, regular expressions, escape characters, markup quotes */
+  color: #fdf3c0;
 }

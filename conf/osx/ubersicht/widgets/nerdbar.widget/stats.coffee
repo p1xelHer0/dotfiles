@@ -9,12 +9,11 @@ render: (output) ->
   """
 
 style: """
-  -webkit-font-smoothing: antialiased
-  font: 12px Fira Code
+  font: 14px GohuFont
   text-transform: lowercase
-  right: 155px
-  top: 4px
-  height: 16px
+  left: 5px
+  top: 5px
+  height: 14px
 """
 
 
@@ -25,7 +24,7 @@ getCPU: (cpu) ->
   cpuString = String(cpuNum)
   if cpuNum < 10
     cpuString = '0' + cpuString
-  return "<span class='color0B'>❖ </span><span class='color05'>#{cpuString}%</span>"
+  return "<span class='color08'>#{cpuString}%<span class='color03'>cpu</span></span>"
 
 getMem: (mem) ->
   memNum = parseFloat(mem)
@@ -34,7 +33,7 @@ getMem: (mem) ->
   if memNum < 10
     memString = '0' + memString
 
-  return "<span class='color0C'>✱ </span><span class='color05'>#{memString}%</span>"
+  return "<span class='color08'>#{memString}%</span><span class='color03'>ram</span>"
 
 convertBytes: (bytes) ->
   kb = bytes / 1024
@@ -47,10 +46,10 @@ usageFormat: (kb) ->
 getNetTraffic: (down, up) ->
   downString = @convertBytes(parseInt(down))
   upString = @convertBytes(parseInt(up))
-  return "<span><span class='color0B'>▼ </span><span class='color05'>#{downString} </span></span><span class='color08'>▲ </span><span class='color05'>#{upString}</span>"
+  return "<span class='color08'>#{downString}</span><span class='color05'>down</span> <span class='color08'>#{upString}</span><span class='color02'>up</span>"
 
 getFreeSpace: (space) ->
-  return "<span class='color0E'></span><span class='color05'>#{space}gb</span>"
+  return "<span class='color08'></span><span class='color08'>#{space}gb</span>"
 
 update: (output, domEl) ->
 
@@ -64,7 +63,7 @@ update: (output, domEl) ->
   free = values[4].replace(/[^0-9]/g,'')
 
   # create an HTML string to be displayed by the widget
-  htmlString =  @getNetTraffic(down, up) + "<span> </span>" +
+  htmlString =  "<span class='color08'> ░▓█</span> " + @getNetTraffic(down, up) + "<span> </span>" +
                 @getMem(mem) + "<span> </span>" +
                 @getCPU(cpu) + "<span> </span>" +
                 @getFreeSpace(free)

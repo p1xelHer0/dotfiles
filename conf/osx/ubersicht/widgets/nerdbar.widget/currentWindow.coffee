@@ -9,11 +9,10 @@ render: (output) ->
   """
 
 style: """
-  -webkit-font-smoothing: antialiased
   text-transform: lowercase
   text-align: center
-  font: 12px Fira Code
-  top: 4px
+  font: 14px GohuFont
+  top: 5px
   width: 100%
 """
 
@@ -45,4 +44,4 @@ update: (output, domEl) ->
      file = file + '…'
 
 
-  $(domEl).find('.kwmmode').html("<span class='color0A'>#{win}</span><span class='color05'>#{file}</span>")
+  $(domEl).find('.kwmmode').html("<span class='color06'>░▓</span><span class='color07bg'> #{win}</span><span class='color06bg'> #{file}</span><span class='color06'>▓░</span>")

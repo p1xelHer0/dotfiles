@@ -19,6 +19,6 @@ done <<< "$(echo "$services")"
 if [ -n "$currentservice" ] ; then
     echo $currentservice
 else
-    >&2 echo "Could not find current service"
+    >&2 echo "wifi off"
     exit 1
 fi
