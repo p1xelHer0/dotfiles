@@ -1,6 +1,9 @@
 #!/bin/sh
 
-# install Stack packages
+# install Stack and packages
+
+# install Stack
+wget -qO- https://get.haskellstack.org | sh
 
 # packages to install
 apps=(

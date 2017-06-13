@@ -4,4 +4,4 @@
 # https://www.rustup.rs/
 
 # install rustup
-curl https://sh.rustup.rs -sSf | sh
+wget -qO- https://sh.rustup.rs | sh

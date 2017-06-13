@@ -28,6 +28,7 @@ packages=(
   preact-cli
   prettier
   react-native-cli
+  reason-cli
   serve
   stylefmt
   stylelint
