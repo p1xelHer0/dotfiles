@@ -7,13 +7,14 @@ if [ "${TERM%%-*}" = 'linux' ]; then
     return 2>/dev/null || exit 0
 fi
 
-color00="28/28/28" # base 00 - default Background
+color00="28/28/28" # base 00 - default background
 color18="3e/3d/38" # base 01 - lighter background (Used for status bars)
 color19="53/51/47" # base 02 - selection background
 color08="69/66/57" # base 03 - comments, invisibles, line highlighting
 color20="7e/7a/66" # base 04 - dark foreground (used for status bars)
 color07="fd/f3/c0" # base 05 - default foreground, caret, delimiters, operators
-color21="fe/f7/d1" # base 06 - light loreground (not often used)
+
+color21="fe/f7/d1" # base 06 - light foreground (not often used)
 color15="fe/fa/e0" # base 07 - light background (not often used)
 
 color01="ce/98/3f" # base 08 - variables, XML tags, markup link text, markup lists, diff deleted
@@ -23,7 +24,7 @@ color02="a6/b6/57" # base 0B - strings, inherited class, markup code, diff inser
 color06="58/87/78" # base 0C - support, regular expressions, escape characters, markup quotes
 color04="7a/92/5d" # base 0D - functions, methods, attribute IDs, headings
 color05="ce/98/3f" # base 0E - keywords, storage, selector, markup italic, diff changed
-color17="ce/6e/3f" # base 0F - deprecated, opening/closing mmbedded language tags e.g. <?php ?>
+color17="ce/6e/3f" # base 0F - deprecated, opening/closing embedded language tags e.g. <?php ?>
 
 color09=$color01 # base 08
 color10=$color02 # base 0B
