@@ -27,6 +27,7 @@ packages=(
   js-beautify
   preact-cli
   prettier
+  prettier-eslint-cli
   react-native-cli
   reason-cli
   serve
