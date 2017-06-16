@@ -152,25 +152,41 @@ source $HOME/dotfiles/conf/osx/alias/.alias
 if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
 
-# fzf, fzf settings and git helpers
+# load fzf
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 
+# setup function to only load stuff when we need them
+# see: https://kev.inburke.com/kevin/profiling-zsh-startup-time
+
 # load jenv
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+# jenv() {
+#   eval "$(command jenv init -)"
+#   jenv "$@"
+# }
 
 
 # load pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which pyenv virtualenv > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+pyenv() {
+  eval "$(command pyenv init -)"
+  eval "$(command pyenv virtualenv-init -)"
+  pyenv "$@"
+}
 
 
 # load stack
-# if which stack > /dev/null; then eval "$(stack --bash-completion-script stack)"; fi
+if which stack > /dev/null; then
+  autoload -U +X compinit && compinit
+  autoload -U +X bashcompinit && bashcompinit
+  eval "$(command stack --bash-completion-script stack)"
+fi
 
 
 # load rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+rbemv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
 
 # npm tab completion
