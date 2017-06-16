@@ -3,7 +3,7 @@
 " -- themes, colors and everything that affects the look of Neovim
 
 
-" Base16 {{{
+" base16 {{{
 
 " theme must be set before Neovim can use the fg and bg colors!
 " see: :h cterm-colors: E419, E420
@@ -17,7 +17,7 @@ endif
 " }}}
 
 
-" Default settings {{{
+" default settings {{{
 
 " syntax enable - default neovim
 
@@ -43,9 +43,9 @@ highlight NonText ctermfg=bg
 highlight EndOfBuffer ctermfg=bg
 
 " italic for this and XML (HTML) attributes
-highlight htmlArg cterm=italic
-highlight jsThis cterm=italic
-highlight xmlAttrib cterm=italic
+" highlight htmlArg cterm=italic
+" highlight jsThis cterm=italic
+" highlight xmlAttrib cterm=italic
 
 " autoresize windows on terminal resize
 autocmd VimResized * execute "normal! \<C-w>="
