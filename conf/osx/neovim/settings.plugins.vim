@@ -145,7 +145,6 @@ let g:jsx_ext_required = 0
 " I use ESlint for Flow, disable the plugin typechecking
 let g:flow#enable = 0
 
-" Use locally installed Flow
 " use locally installed Flow
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
@@ -175,6 +174,9 @@ let g:neoformat_enabled_scss = ['stylefmt']
 
 " JSON
 let g:neoformat_enabled_json = ['jsbeautify']
+
+" Haskell
+let g:neoformat_enabled_haskell = ['stylish-haskell']
 
 " }}}
 
