@@ -21,6 +21,10 @@ nmap <silent><Down> <Plug>(ale_next_wrap)
 nmap ga <Plug>(EasyAlign)
 
 
+" goyo.vim
+nnoremap <Leader>gv :Goyo<CR>
+
+
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 

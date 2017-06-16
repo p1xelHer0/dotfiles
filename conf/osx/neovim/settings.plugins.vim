@@ -68,7 +68,50 @@ if exists('g:plugs["purescript-vim"]')
   let g:deoplete#omni#input_patterns.purescript = '[^ \t]+'
 endif
 
-" }}} Autocompletion
+" }}}
+
+
+" goyo.vim {{{
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux set pane-border-status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux set pane-border-status bottom
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+
+  " some highlights are breaking upon leaving goyo
+  highlight VertSplit ctermfg=18 ctermbg=18
+
+  highlight NonText ctermfg=bg
+  highlight EndOfBuffer ctermfg=bg
+
+  highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
+  highlight NERDTreeGitStatusModified ctermfg=3
+  highlight link NERDTreeGitStatusDirClean DiffAdd
+  highlight link NERDTreeGitStatusStaged Special
+  highlight link NERDTreeGitStatusRenamed DiffLine
+  highlight link NERDTreeGitStatusUnmerged DiffLine
+  highlight link NERDTreeGitStatusUntracked DiffFile
+  highlight link NERDTreeGitStatusIgnored DiffFile
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" }}}
 
 
 " Haskell {{{

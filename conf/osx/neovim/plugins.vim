@@ -80,25 +80,26 @@ Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'AndrewRadev/switch.vim'
 
-" File handling and searching
+" file handling and searching
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " use brew fzf
 Plug 'tpope/vim-repeat'
 
-" Styling
+" styling
 Plug 'chriskempson/base16-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'daviesjamie/vim-base16-lightline'
 
-" Tmux integration
+" tmux integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 
-" Other
+" other
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 
-" }}} Utilis
+" }}}
 
 call plug#end()
