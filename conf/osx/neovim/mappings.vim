@@ -22,10 +22,10 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 " use <C-h/j/k/l> to move between splits
 " using vim-tmux-navigator instead, see .tmux.conf
 " this way we can move between tmux splits and Neovim splits
-" nmap <silent> <C-h> :wincmd h<CR>
-" nmap <silent> <C-j> :wincmd j<CR>
-" nmap <silent> <C-k> :wincmd k<CR>
-" nmap <silent> <C-l> :wincmd l<CR>
+" nmap <silent><C-h> :wincmd h<CR>
+" nmap <silent><C-j> :wincmd j<CR>
+" nmap <silent><C-k> :wincmd k<CR>
+" nmap <silent><C-l> :wincmd l<CR>
 
 " }}}
 
