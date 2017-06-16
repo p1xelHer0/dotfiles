@@ -52,6 +52,7 @@ haskell=(
 fun=(
   ffmpeg                                        # utils (make videos)
   gifsicle                                      # utils (make gifs)
+  htop                                          # utils (monitor processes)
   neofetch                                      # utils (print system information)
 )
 
