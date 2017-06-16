@@ -146,6 +146,7 @@ let g:jsx_ext_required = 0
 let g:flow#enable = 0
 
 " Use locally installed Flow
+" use locally installed Flow
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
     let local_flow= getcwd() . "/" . local_flow

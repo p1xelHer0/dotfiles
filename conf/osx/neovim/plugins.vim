@@ -5,7 +5,7 @@
 
 call plug#begin()
 
-" Syntax {{{
+" syntax {{{
 
 " JavaScript
 Plug 'pangloss/vim-javascript',                { 'for': 'javascript.jsx' }
@@ -44,8 +44,8 @@ Plug 'raichoo/purescript-vim',                 { 'for': 'purescript' }
 Plug 'frigoeu/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Reason
-Plug 'reasonml/vim-reason-loader',             { 'for': 'reason' }
-Plug 'MartinLafreniere/vim-PairTools',         { 'for': 'reason' }
+Plug 'reasonml/vim-reason-loader'
+Plug 'MartinLafreniere/vim-PairTools'
 
 " Haskell
 Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
@@ -54,16 +54,16 @@ Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 " Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
 
-" }}} Syntax
+" }}}
 
 
-" Utilis {{{
+" utilis {{{
 
-" Autocompletion
+" autocompletion
 Plug 'Shougo/deoplete.nvim',                   { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 
-" Linting
+" linting
 Plug 'w0rp/ale'
 
 " Git
@@ -71,7 +71,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 
-" Editing
+" editing
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'

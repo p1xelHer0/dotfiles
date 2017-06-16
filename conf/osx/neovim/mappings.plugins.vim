@@ -4,6 +4,7 @@
 
 
 " Universal mappings {{{
+" universal mappings {{{
 
 let g:UltiSnipsExpandTrigger = "<C-j>"
 
@@ -11,6 +12,7 @@ let g:UltiSnipsExpandTrigger = "<C-j>"
 
 
 " Normal mappings {{{
+" normal mappings {{{
 
 " ALE
 nmap <silent><Up> <Plug>(ale_previous_wrap)
@@ -44,6 +46,7 @@ autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
 
 
 " Insert mappings {{{
+" insert mappings {{{
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
@@ -60,13 +63,16 @@ endfunction
 
 
 " Visual select mappings {{{
+" visual select mappings {{{
 
 " }}}
 
 
 " Visual mappings {{{
+" visual mappings {{{
 
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 
 " }}} Visual mappings
+" }}}
