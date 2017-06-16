@@ -3,7 +3,6 @@
 " -- keymapping that uses functionality of plugins
 
 
-" Universal mappings {{{
 " universal mappings {{{
 
 let g:UltiSnipsExpandTrigger = "<C-j>"
@@ -11,7 +10,6 @@ let g:UltiSnipsExpandTrigger = "<C-j>"
 " }}}
 
 
-" Normal mappings {{{
 " normal mappings {{{
 
 " ALE
@@ -25,6 +23,13 @@ nmap ga <Plug>(EasyAlign)
 
 " goyo.vim
 nnoremap <Leader>gv :Goyo<CR>
+
+
+" Haskell
+autocmd FileType haskell nnoremap <buffer> <silent>tt :GhcModType<CR>
+autocmd FileType haskell nnoremap <buffer> <silent>tc :GhcModTypeClear<CR>
+autocmd FileType haskell nnoremap <buffer> <silent>ti :GhcModTypeInsert<CR>
+autocmd FileType haskell nnoremap <buffer> <silent>ts :GhcModSplitFunCase<CR>
 
 
 " NERDTree
@@ -45,34 +50,26 @@ autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
 " }}}
 
 
-" Insert mappings {{{
 " insert mappings {{{
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" Enter closes options if present and inserts linebreak
-" Apparently this has to be that complicated
-inoremap <silent> <CR> <C-r>=<SID>close_and_linebreak()<CR>
-function! s:close_and_linebreak()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-endfunction
+" select the completion with enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " }}}
 
 
-" Visual select mappings {{{
 " visual select mappings {{{
 
 " }}}
 
 
-" Visual mappings {{{
 " visual mappings {{{
 
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 
-" }}} Visual mappings
 " }}}
