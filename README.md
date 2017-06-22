@@ -5,8 +5,8 @@
  # dotfiles to setup my dev env on macOS
  # I use symlinks from ~/dotfiles to the applications I use for configuration
 
- # ~/dotfiles/conf contains all the settings
- # ~/dotfiles/install contains all scripts to symlink the settings
+ # ~/dotfiles/conf contains all the configuration
+ # ~/dotfiles/install contains all scripts to symlink the configuration
 
  
  # terminal, where I do most of my work
