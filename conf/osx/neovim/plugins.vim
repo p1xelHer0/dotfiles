@@ -85,6 +85,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " use brew fzf
 Plug 'tpope/vim-repeat'
+Plug 'universal-ctags/ctags'
 
 " styling
 Plug 'chriskempson/base16-vim'
