@@ -1,4 +1,4 @@
-## fzf {{
+# fzf {{{
 
 # colors
 export FZF_DEFAULT_OPTS='
@@ -13,7 +13,7 @@ export FZF_DEFAULT_OPTS='
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-## }} fzf
+# }}}
 
 
 # Git + fzf {{{
