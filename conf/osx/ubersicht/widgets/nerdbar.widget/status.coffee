@@ -44,9 +44,9 @@ getWifiStatus: (status) ->
   if status == "Wi-Fi"
     return "<span class='color03'>wifi<span>"
   if status == 'USB 10/100/1000 LAN' or status == 'Apple USB Ethernet Adapter'
-    return "<span class='color07'>◼︎</span>"
+    return "<span class='color03'>ethernet</span>"
   else
-    return "<span class='color07'>✖︎</span>"
+    return "<span class='color07'>#{status}</span>"
 
 update: (output, domEl) ->
 
