@@ -30,10 +30,11 @@ apps=(
   rbevn                                         # ruby   (used in neovim, and osx cocoapods)
   reattach-to-user-namespace                    # tmux   (copy-paste fix)
   ripgrep                                       # utils  (search fast)
-  zsh                                           # shell
+  universal-ctags --HEAD
   wget                                          # utils
   wifi-password                                 # utils  (show the wifi-password in terminal)
-  yarn                                          # js     (package manager)
+  yarn --ignore-dependencies                    # js     (package manager)
+  zsh                                           # shell
 )
 
 reactnative=(
@@ -59,6 +60,8 @@ fun=(
 brew tap homebrew/versions
 brew tap homebrew/dupes
 brew tap homebrew/services
+
+brew tap universal-ctags/universal-ctags
 
 # make sure we’re using the latest Homebrew
 brew update
