@@ -183,7 +183,6 @@ fi
 
 
 # load rbenv
-rbemv() {
 rbenv() {
   eval "$(command rbenv init -)"
   rbenv "$@"
