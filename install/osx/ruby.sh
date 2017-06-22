@@ -8,7 +8,7 @@ then
   echo "Installing a stable version of Ruby..."
 
   # get latest Ruby version
-  rubyv=$(egrep "^\s+2\.3\.\d+$" <(rbenv install -l) | tail -1)
+  rubyv=$(rbenv install -l | grep -v - | tail -1)
 
   # install Ruby
   rbenv install $rubyv
