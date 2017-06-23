@@ -1,0 +1,32 @@
+!!!
+
+! -- here be terminal
+
+
+! ui {{{
+
+URxvt*scrollBar: false
+
+URxvt*internalBorder: 15
+URxvt*borderColor: 0
+
+! }}}
+
+
+! fonts {{{
+
+URxvt*font: xft:monospace:size=11
+
+! }}}
+
+
+
+! clipboard {{{
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Shift-Control-c perl:clipboard:copy
+URxvt.keysym.Shift-Control-v perl:clipboard:paste
+
+! }}}
