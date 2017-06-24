@@ -4,10 +4,10 @@
 
 
 " path where configs are stored
-let NEOVIM_CONFIG = '$HOME/dotfiles/conf/osx/neovim/'
+let s:NEOVIM_CONFIG = '$HOME/dotfiles/conf/osx/neovim/'
 
 " configs split up according to functionality
-let configs = [
+let s:configs = [
 \ 'plugins',
 \ 'settings',
 \ 'settings.plugins',
@@ -20,7 +20,7 @@ let configs = [
 \ ]
 
 " load all configs
-for config in configs
-  let configPath = NEOVIM_CONFIG . config . '.vim'
-  execute 'source ' . fnameescape(configPath)
+for s:config in s:configs
+  let s:configPath = s:NEOVIM_CONFIG . s:config . '.vim'
+  execute 'source ' . fnameescape(s:configPath)
 endfor

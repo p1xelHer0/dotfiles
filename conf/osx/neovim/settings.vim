@@ -71,8 +71,13 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" paths to python2/3 envs - Neovim specific
+" python provider configuration
+" virtualenvs with pyenv
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+
+" ruby provider configuration
+" rbenv
+let g:ruby_host_prog = $HOME . '/.rbenv/versions/2.4.1/bin/neovim-ruby-host'
 
 " }}}

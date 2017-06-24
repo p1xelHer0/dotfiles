@@ -6,7 +6,6 @@
 " ALE {{{
 
 let g:ale_lint_on_save = 1
-let g:ale_sign_column_always = 1
 
 " Enable both ESlint and stylelint in jsx (styled-components)
 " let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
@@ -39,8 +38,8 @@ let g:UltiSnipsEditSplit = 'vertical'
 " JavaScript
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
+\ 'tern#Complete',
+\ 'jspc#omni'
 \]
 
 let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
@@ -148,7 +147,7 @@ let g:flow#enable = 0
 " use locally installed Flow
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
-    let local_flow= getcwd() . "/" . local_flow
+  let local_flow= getcwd() . "/" . local_flow
 endif
 if executable(local_flow)
   let g:flow#flowpath = local_flow
@@ -161,6 +160,7 @@ endif
 
 " use formatprg if possible
 let g:neoformat_try_formatprg = 1
+" let g:neoformat_verbose = 1
 
 " JavaScript
 let g:neoformat_enabled_javascript = ['prettier-eslint']
@@ -177,6 +177,9 @@ let g:neoformat_enabled_json = ['jsbeautify']
 
 " Haskell
 let g:neoformat_enabled_haskell = ['stylish-haskell']
+
+" Lua
+let g:neoformat_enabled_lua = ['luaformatter']
 
 " }}}
 
@@ -219,5 +222,12 @@ autocmd FileType reason let g:pairtools_reason_tagwrenchhook   = 'tagwrench#Buil
 autocmd FileType reason let g:pairtools_reason_twexpander      = 0
 autocmd FileType reason let g:pairtools_reason_tweraser        = 0
 autocmd FileType reason let g:pairtools_reason_apostrophe      = 0
+
+" }}}
+
+
+" SuperTab {{{
+
+let g:SuperTabCrMapping=1
 
 " }}}
