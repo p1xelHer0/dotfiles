@@ -1,37 +1,46 @@
 # oh-my-zsh Bureau Theme
 # modified
 # removed [ ] from everything
-# changed STAGED, UNSTAGED, UNTRACKED symbols to ▪︎ (I use colors)
+# changed STAGED, UNSTAGED, UNTRACKED symbols to colored ■
 # changed AHEAD symbol to ▲
 # changed BEHIND symbol to ▼
 # changed CLEAN symbol to ◆
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # #
-#                                                   #
-#                   terminal stuff                  #
-#                                                   #
-# ~/repo master ▪︎▪︎▲                                 #
-# ► typing, lala git push yolo                      #
-# # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-### NVM ⬡ 6.4.0 (not used right now)
-ZSH_THEME_NVM_PROMPT_PREFIX="%B%{$fg_bold[green]%}⬡ %b"
+# nvm
+ZSH_THEME_NVM_PROMPT_PREFIX=" %{$fg[green]%}"
 ZSH_THEME_NVM_PROMPT_SUFFIX="%{$reset_color%}"
 
-### Git master ▾■
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg_bold[fg]%}"
+# Git master ▼■
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}◆%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}◆%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[cyan]%}▲%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg[magenta]%}▼%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}▪︎%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}▪︎%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}▪︎%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[green]%}■%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg[red]%}■%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}■%{$reset_color%}"
 
 bureau_git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
   echo "${ref#refs/heads/}"
+}
+
+bureau_node_status() {
+
+  _STATUS=""
+
+  # check status of files
+  _INDEX=$(command git status --porcelain 2> /dev/null)
+  if [[ -n "$_INDEX" ]]; then
+    if $(echo "$_INDEX" | command grep -q '^[AMRD]. '); then
+      _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_STAGED"
+    fi
+    else
+    _STATUS="$_STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
+
+  echo $_STATUS
 }
 
 bureau_git_status() {
@@ -90,18 +99,18 @@ bureau_git_prompt () {
 }
 
 
-_PATH="%{$fg_bold[cyan]%}%~%{$reset_color%}"
+_PATH="%{$fg[black]$bg[cyan]%} %~ %{$fg[cyan]$bg[black]%}▓░%{$reset_color%}"
 
 if [[ $EUID -eq 0 ]]; then
   _USERNAME="%{$fg_bold[red]%}%n"
   _LIBERTY="%{$fg[red]%}#"
 else
   _USERNAME="%{$fg_bold[fg]%}%n"
-  _LIBERTY="%{$fg[green]%}►"
+  _LIBERTY="%{$fg[green]%}$"
 fi
 _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
 
 setopt prompt_subst
-PROMPT='$_PATH $(bureau_git_prompt)
+PROMPT='$_PATH$(bureau_git_prompt)$(nvm_prompt_info)
 $_LIBERTY '
