@@ -20,3 +20,5 @@ packages=(
   ruby-msgpack
   ruby-neovim
 )
+
+# cd into, makepkg -si
