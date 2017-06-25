@@ -16,8 +16,8 @@ alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 # reload shell
 alias rl="exec zsh"
 
-# reload urxvt
-alias ru="xrdb -merge $HOME/.Xresources"
+# reload .Xresources
+alias ru="[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources"
 
 # list npm modules global/local
 alias ng="npm list -g --depth=0 2>/dev/null"

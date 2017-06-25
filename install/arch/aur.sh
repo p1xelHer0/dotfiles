@@ -10,6 +10,9 @@ git=(
   https://aur.archlinux.org/nvm.git
   https://aur.archlinux.org/ruby-msgpack.git
   https://aur.archlinux.org/ruby-neovim.git
+  https://aur.archlinux.org/ttf-ms-fonts.git
+  https://aur.archlinux.org/ttf-twemoji-color.git
+  https://aur.archlinux.org/wal-git.git
 )
 
 packages=(
@@ -19,6 +22,7 @@ packages=(
   nvm
   ruby-msgpack
   ruby-neovim
+  ttf-mf-fonts
+  ttf-twemoji-color
+  wal-git
 )
-
-# cd into, makepkg -si
