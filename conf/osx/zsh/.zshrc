@@ -75,6 +75,10 @@ NODE_VERSION=$(node --version | grep -v -)
 
 # $PATH {{{
 
+# chunkc + chunkwm
+export CHUNKWM=$HOME/chunkwm/bin
+export CHUNKC=$HOME/chunkwm/src/chunkc/bin
+
 # React Native
 export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
 
@@ -107,6 +111,8 @@ export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
 
 
 # set $PATH
+export PATH=$CHUNKWM:$PATH
+export PATH=$CHUNKC:$PATH
 export PATH=$REACT_NATIVE_HOME:$PATH
 export PATH=$CARGO_HOME:$PATH
 export PATH=$STACK_PACKAGES:$PATH

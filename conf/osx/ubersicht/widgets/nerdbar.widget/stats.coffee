@@ -1,4 +1,4 @@
-command: "$HOME/.kwm/scripts/stats.sh"
+command: "$HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/stats.sh"
 
 refreshFrequency: 3000 # ms
 

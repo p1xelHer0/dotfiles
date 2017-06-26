@@ -43,5 +43,9 @@ alias logoff="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resou
 # free WiFi
 alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//' `"
 
+# chunkwm
+alias chunkwmoff="launchctl unload -w $HOME/Library/LaunchAgents/com.koekeishiya.chunkwm.plist"
+alias chunkwmon="launchctl load -w $HOME/Library/LaunchAgents/com.koekeishiya.chunkwm.plist"
+
 # Savelend dev
 alias sldev="sh $HOME/dotfiles/conf/osx/tmux/launchers/savelend.sh"

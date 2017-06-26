@@ -23,7 +23,6 @@ apps=(
   fzf                                           # utils  (terminal fuzzy finder)
   git                                           # utils
   koekeishiya/formulae/khd                      # utils  (hotkey daemon)
-  koekeishiya/formulae/kwm                      # utils  (window manager)
   neovim/neovim/neovim                          # editor
   pyenv                                         # python (used in neovim)
   pyenv-virtualenv                              # python (used in neovim)

@@ -1,1 +1,1 @@
-echo "$(sh ~/.kwm/scripts/cpu_script)@$(sh ~/.kwm/scripts/mem_script)@$(sh ~/.kwm/scripts/networktraffic)@$(sh ~/.kwm/scripts/hd_script)"
+echo "$(sh $HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/cpu_script)@$(sh $HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/mem_script)@$(sh $HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/networktraffic)@$(sh $HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/hd_script)"

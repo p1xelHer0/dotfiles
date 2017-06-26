@@ -3,24 +3,19 @@
 # -- see: http://i3wm.org/docs/userguide.html
 
 
-
 # bindings {{{
 
 # use left alt as modifier
 set $mod Mod1
 
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
-set $up l
-set $down k
-set $left j
-set $right semicolon
+# vim style
+set $left h
+set $down j
+set $up k
+set $right l
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
-
-# start a terminal
-bindsym $mod+Return exec urxvtc
 
 # start program launcher
 bindsym $mod+space exec rof
@@ -28,17 +23,14 @@ bindsym $mod+space exec rof
 # kill focused window
 bindsym $mod+q kill
 
+# start a terminal
+bindsym $mod+Return exec urxvtc
+
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+$left move left
@@ -46,11 +38,37 @@ bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# toggle tiling / floating
+bindsym $mod+Shift+d floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+d focus mode_toggle
+
+# toggle fullscreen
+bindsym $mod+f fullscreen toggle
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+
+# chunkwm - send window to last active, prev or next desktop
+# shift + alt - x : `id=$(chunkc query _last_active_desktop); chunkc window -d $id; khd -p "cmd + alt - $id" &> /dev/null`
+# shift + alt - z : chunkc window -d prev; khd -p "cmd + alt - z"
+# shift + alt - c : chunkc window -d next; khd -p "cmd + alt - c"
+
+
+
+
+
+
+
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -58,19 +76,10 @@ bindsym $mod+h split h
 # split in vertical orientation
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+d floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+d focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -97,17 +106,6 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

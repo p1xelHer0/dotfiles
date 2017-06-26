@@ -64,12 +64,12 @@
   color: #ce6e3f; /* base 0F - deprecated, opening/closing embedded language tags e.g. <?php ?> */
 }
 
-.color06bg {
-  background-color: #588778;
+.color04bg {
+  background-color: #7a925d;
   color: #282828;
 }
 
 .color07bg {
-  background-color: #588778;
+  background-color: #7a925d;
   color: #fdf3c0;
 }

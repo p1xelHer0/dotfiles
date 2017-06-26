@@ -1,4 +1,4 @@
-command: "$HOME/.kwm/scripts/compstatus"
+command: "$HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/compstatus"
 
 refreshFrequency: 3000 # ms
 
