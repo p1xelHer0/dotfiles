@@ -15,7 +15,6 @@ apps=(
   dropbox                                       # utils
   firefox                                       # browser
   firefoxnightly                                # browser
-  flux                                          # utils
   gitkraken                                     # utils
   google-chrome                                 # browser
   google-chrome-canary                          # browser
