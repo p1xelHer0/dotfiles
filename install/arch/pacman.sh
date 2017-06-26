@@ -32,6 +32,9 @@ packages=(
   xorg-utils     # x
   xorg-xclock    # x
   xorg-xinit     # x
+  xorg-xfontsel  # x - see X fonts
+
+  feh            # wallpaper
 
   avahi
   cronie
@@ -41,7 +44,3 @@ packages=(
 
 sudo pacman -S "${packages[@]}"
 
-systemctl enable acpid
-systemctl enable avahi
-systemctl enable dbus
-systemctl enable openntpd

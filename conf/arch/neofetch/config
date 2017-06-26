@@ -25,13 +25,11 @@ print_info() {
   info "  terminal" term
   info "      font" term_font
   info "       cpu" cpu
-  info "       gpu" gpu
 
   info line_break
 
   info "mem" memory
   info "cpu" cpu_usage
-  info "bat" battery
   info " " disk
 
   info line_break

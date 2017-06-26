@@ -9,10 +9,13 @@
 " see: :h cterm-colors: E419, E420
 " https://github.com/chriskempson/base16-shell
 " load theme from base16-shell
-if filereadable(expand("$HOME/.vimrc_background"))
-  let base16colorspace=256
-  source $HOME/.vimrc_background
+" we really just need to load on base16-theme here
+" the colors will match since we are using base16-shell
+let base16colorspace=256
+if !exists('g:colors_name') || g:colors_name != 'base16-apathy'
+  colorscheme base16-apathy
 endif
+
 
 " }}}
 
@@ -23,9 +26,12 @@ endif
 
 " split border
 set fillchars+=vert: 
-highlight VertSplit ctermfg=18 ctermbg=18
-highlight LineNr ctermbg=18
-highlight CursorLineNr cterm=bold ctermfg=3
+highlight VertSplit ctermbg=bg
+highlight LineNr ctermbg=bg
+highlight CursorLineNr ctermbg=bg ctermfg=3
+
+" selection
+highlight Visual cterm=reverse
 
 " wildmenu
 highlight WildMenu ctermfg=19
