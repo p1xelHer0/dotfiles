@@ -2,7 +2,7 @@
 
  # -- p1xelHer0-dotfiles
 
- # dotfiles to setup my dev env on macOS
+ # dotfiles to setup my dev env on macOS - and Arch Linux, soon!
  # I use symlinks from ~/dotfiles to the applications I use for configuration
 
  # ~/dotfiles/conf contains all the configuration
@@ -24,7 +24,7 @@
 
  brew           > package manager of macOS
  brew cask      > extends brew for applications and larger binaries alike
- kwm            > tiling window manager
+ chunkwm        > tiling window manager, alpha version, work in progress
  ubersicht      > create HTML5-widgets to display system information, r/unixporn for macOS
  nvm            > nodejs version manager
  pyenv          > python version manager
@@ -38,5 +38,6 @@
 
  atom           > retired editor
  hyper          > retired terminal emulator
+ kwm            > tiling window manager, deprecated by creator
 
 ```
