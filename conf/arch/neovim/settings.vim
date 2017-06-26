@@ -21,6 +21,8 @@ set softtabstop=2       " set to 2 according to tabstop
 
 set list                " display the listchars
 set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬
+set showbreak=\ → 
+set breakindent
 set number              " enable line numbers
 set relativenumber      " enable relative line number
 set ruler               " show the cursor position all the time
@@ -42,21 +44,19 @@ set showmatch           " automatically show matching brackets
 
 " other {{{
 
-set clipboard=unnamed   " normal OS clipboard interaction
-set copyindent          " copy the previous indentation on autoindenting
-" set autoread          " auto reload files changed -- default Neovim
-" set laststatus=2      " display the status line always -- default Neovim
-" set wildmenu          " enable the wildmenu -- default Neovim
-set mouse-=a            " disable mouse, LEARN!
-set visualbell          " disable error sound, enable the visual one instead
-" set encoding=utf-8    " use utf-8 -- default Neovim
-" set history=10000     " remember more commands -- default Neovim
-set lazyredraw          " disable redraw while executing macros (perf)
-set showcmd             " show command on the last line (for learning)
-set shortmess+=I        " no splash screen
-set backupcopy=yes      " make a copy of the file and overwrite the original one
-set breakindent
-set showbreak=\ ↳ 
+set clipboard+=unnamedplus " normal OS clipboard interaction
+set copyindent             " copy the previous indentation on autoindenting
+" set autoread             " auto reload files changed -- default Neovim
+" set laststatus=2         " display the status line always -- default Neovim
+" set wildmenu             " enable the wildmenu -- default Neovim
+set mouse-=a               " disable mouse, LEARN!
+set visualbell             " disable error sound, enable the visual one instead
+                           " set encoding=utf-8    " use utf-8 -- default Neovim
+                           " set history=10000     " remember more commands -- default Neovim
+set lazyredraw             " disable redraw while executing macros (perf)
+set showcmd                " show command on the last line (for learning)
+set shortmess+=I           " no splash screen
+set backupcopy=yes         " make a copy of the file and overwrite the original one
 " set curosor to | in INSERT - neovim specific
 " let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1 enabled by Default in 0.2
 " use ':set guicursor=' instead

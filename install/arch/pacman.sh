@@ -11,9 +11,9 @@ packages=(
   python-neovim  # neovim
   python2-neovim # neovim
 
+  alsa-utils     # sound
   pulseadio      # sound
   pulseadio-alsa # sound
-  alsa-utils     # sound
 
   rxvt-unicode   # terminal
   xterm          # terminal
@@ -25,6 +25,7 @@ packages=(
   fzf            # utils
   ripgrep        # utils
   wget           # utils
+  xsel           # utils - clipboard
 
   xorg           # x
   xorg-server    # x
@@ -43,4 +44,3 @@ packages=(
 )
 
 sudo pacman -S "${packages[@]}"
-
