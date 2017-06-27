@@ -18,22 +18,18 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeHighlightCursorline=0
-"
-" arrows
-let g:NERDTreeDirArrowExpandable='►'
-let g:NERDTreeDirArrowCollapsible='▼'
 
 " Git status icons
 let g:NERDTreeIndicatorMapCustom = {
-\ "Modified"  : "~",
-\ "Staged"    : "▲",
-\ "Untracked" : "▼",
-\ "Renamed"   : "→",
-\ "Unmerged"  : "=",
-\ "Deleted"   : "-",
-\ "Dirty"     : "~",
-\ "Clean"     : "◆",
-\ "Unknown"   : "?"
+\ 'Modified'  : '~',
+\ 'Staged'    : '▲',
+\ 'Untracked' : '▼',
+\ 'Renamed'   : '→',
+\ 'Unmerged'  : '=',
+\ 'Deleted'   : '-',
+\ 'Dirty'     : '~',
+\ 'Clean'     : '◆',
+\ 'Unknown'   : '?'
 \ }
 
 " colors
