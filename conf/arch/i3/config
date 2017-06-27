@@ -71,10 +71,10 @@ bindsym $mod+Shift+9 move container to workspace 9
 
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+- split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+_ split v
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -168,16 +168,15 @@ for_window[class="^*"] border pixel 0
 
 #set colors from .Xresources
 set_from_resource $fg i3wm.color0
-set_from_resource $bg i3wm.color4
-# set $bg  #83a6b6
-# set $err #ce6e3f
+set_from_resource $bg1 i3wm.color2
+set_from_resource $bg2 i3wm.color1
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $bg     $bg     $fg     $bg       $bg
-client.focused_inactive $bg     $bg     $fg     $bg       $bg
-client.unfocused        $bg     $bg     $fg     $bg       $bg
+client.focused          $bg2    $bg2    $fg     $bg2      $bg2
+client.focused_inactive $bg1    $bg1    $fg     $bg1      $bg1
+client.unfocused        $bg1    $bg1    $fg     $bg1      $bg1
 client.urgent           $err    $err    $fg     $err      $err
-client.placeholder      $bg     $bg     $fg     $bg       $bg
+client.placeholder      $bg1    $bg1    $fg     $bg1      $bg1
 
-client.background       $bg
+client.background       $bg1
 # }}}

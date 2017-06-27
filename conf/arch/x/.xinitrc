@@ -1,8 +1,5 @@
 ! load .Xresources
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-
-! set wal colors
-! wal -i "$(< "${HOME}/.cache/wal/wal")" &
+[[ -f $HOME/.Xresources ]] && xrdb -merge -I$HOME $HOME/.Xresources
 
 ! start urxvt daemon
 urxvtd -q -o -f &
