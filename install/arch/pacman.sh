@@ -11,6 +11,8 @@ packages=(
   python-neovim  # neovim
   python2-neovim # neovim
 
+  shellcheck     # shell linter
+
   alsa-utils     # sound
   pulseadio      # sound
   pulseadio-alsa # sound
