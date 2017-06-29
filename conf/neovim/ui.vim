@@ -9,9 +9,15 @@
 " see: :h cterm-colors: E419, E420
 " https://github.com/chriskempson/base16-shell
 " load theme from base16-shell
-if filereadable(expand("$HOME/.vimrc_background"))
-  let base16colorspace=256
-  source $HOME/.vimrc_background
+let g:base16colorspace=256
+if IsMacOS()
+  if filereadable(expand('$HOME/.vimrc_background'))
+    source $HOME/.vimrc_background
+  endif
+else
+  if !exists('g:colors_name') || g:colors_name !=? 'base16-apathy'
+    colorscheme base16-apathy
+  endif
 endif
 
 " }}}
@@ -27,6 +33,12 @@ highlight VertSplit ctermfg=18 ctermbg=18
 highlight LineNr ctermbg=18
 highlight CursorLineNr cterm=bold ctermfg=3
 
+" selection
+highlight Visual cterm=reverse
+
+" fold
+" highlight Folded
+highlight FoldColumn ctermbg=bg
 " wildmenu
 highlight WildMenu ctermfg=19
 highlight StatusLine ctermfg=fg
@@ -51,8 +63,10 @@ highlight EndOfBuffer ctermfg=bg
 autocmd VimResized * execute "normal! \<C-w>="
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
-autocmd VimEnter * autocmd WinEnter * let w:created=1
-autocmd VimEnter * let w:created=1
+augroup vim_enter
+  autocmd!
+  autocmd VimEnter * autocmd vim_enter WinEnter * let w:created=1
+augroup END
 
 " disable paste mode on leaving INSERT mode.
 autocmd InsertLeave * set nopaste

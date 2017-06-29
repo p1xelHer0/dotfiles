@@ -5,19 +5,43 @@
 
 " ALE {{{
 
-highlight ALEWarning cterm=underline ctermfg=3
-highlight ALEError cterm=underline ctermfg=16
+highlight ALEWarning term=reverse cterm=reverse ctermfg=3
+highlight ALEError term=reverse cterm=reverse ctermfg=16
+
+" let g:ale_sign_column_always = 1
+
+" }}}
+
+
+" GitGutter {{{
+
+" Gutter colors
+"let g:gitgutter_override_sign_column_highlight = 0
+"highlight SignColumn ctermbg=bg
+
+" Git status icons
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '_'
 
 " }}}
 
 
 " NERDTree {{{
 
-let NERDTreeMinimalUI=1
-let NERDTreeShowBookmarks=1
-let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-let NERDTreeHighlightCursorline=0
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowFiles=1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeHighlightCursorline=0
+
+" arrows
+if !IsMacOS()
+  let g:NERDTreeDirArrowExpandable='►'
+  let g:NERDTreeDirArrowCollapsible='▼'
+endif
 
 " Git status icons
 let g:NERDTreeIndicatorMapCustom = {

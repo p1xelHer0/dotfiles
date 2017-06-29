@@ -4,7 +4,20 @@
 
 
 " path where configs are stored
-let s:NEOVIM_CONFIG = '$HOME/dotfiles/conf/osx/neovim/'
+let s:NEOVIM_CONFIG = '$HOME/dotfiles/conf/neovim/'
+
+" check if the system is macOS
+function! g:IsMacOS()
+  if has('unix')
+    let s:uname = system('uname')
+    if s:uname ==? "Darwin\n"
+      return 1
+    else
+      return 0
+    endif
+  endif
+endfunction
+
 
 " configs split up according to functionality
 let s:configs = [

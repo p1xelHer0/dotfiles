@@ -83,9 +83,13 @@ Plug 'AndrewRadev/switch.vim'
 " file handling and searching
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " use brew fzf
 Plug 'tpope/vim-repeat'
 Plug 'universal-ctags/ctags'
+if IsMacOS()
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " use brew fzf
+else
+  Plug '/usr/where/is/fzf' | Plug 'junegunn/fzf.vim' " use pacman fzf
+endif
 
 " styling
 Plug 'chriskempson/base16-vim'
