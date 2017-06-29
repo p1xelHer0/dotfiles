@@ -3,4 +3,4 @@
 # symlink neofetch config
 
 # symlink
-ln -fs $HOME/dotfiles/conf/osx/neofetch/config $HOME/.config/neofetch/config
+ln -fs "$HOME/dotfiles/conf/neofetch/config" "$HOME/.config/neofetch/config"
