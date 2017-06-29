@@ -1,17 +1,14 @@
-# vim -> Neovim if installed
-which nvim > /dev/null 2>&1 && alias vim=nvim
-
 # open dotfiles in editor
 alias dotfiles="cd $HOME/dotfiles && $EDITOR"
 
 # open Neovim config
-alias vimrc="$EDITOR $HOME/dotfiles/conf/osx/neovim"
+alias vimrc="$EDITOR $HOME/dotfiles/conf/neovim"
 
 # open zsh config
 alias zshrc="$EDITOR $HOME/dotfiles/conf/osx/zsh/.zshrc"
 
 # open tmux split with swap files
-alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
+alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && vim'"
 
 # reload shell
 alias rl="exec zsh"
