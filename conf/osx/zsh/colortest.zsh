@@ -1,3 +1,4 @@
+# https://superuser.com/questions/270214/how-can-i-change-the-colors-of-my-xterm-using-ansi-escape-sequences
 colortest() {
   text='gYw'
   printf "base   ";
