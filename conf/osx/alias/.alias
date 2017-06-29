@@ -8,7 +8,7 @@ alias vimrc="$EDITOR $HOME/dotfiles/conf/neovim"
 alias zshrc="$EDITOR $HOME/dotfiles/conf/osx/zsh/.zshrc"
 
 # open tmux split with swap files
-alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && vim'"
+alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 
 # reload shell
 alias rl="exec zsh"
