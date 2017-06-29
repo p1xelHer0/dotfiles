@@ -3,4 +3,4 @@
 # symlink khd
 
 # symlink
-ln -fs $HOME/dotfiles/conf/osx/khd/.khdrc $HOME/
+ln -fs "$HOME/dotfiles/conf/osx/khd/.khdrc" "$HOME/"

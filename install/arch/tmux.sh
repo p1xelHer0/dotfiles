@@ -4,8 +4,8 @@
 # symlink .tmux.conf
 
 # install tpm
-mkdir -p $HOME/.tmux/plugins
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+mkdir -p "$HOME/.tmux/plugins"
+git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
 # symlink
-ln -fs $HOME/dotfiles/conf/osx/tmux/.tmux.conf $HOME/
+ln -fs "$HOME/dotfiles/conf/osx/tmux/.tmux.conf" "$HOME/"
