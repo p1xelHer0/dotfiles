@@ -11,3 +11,6 @@
 	untracked = magenta bold
 [color "branch"]
 	remote = yellow
+[credential]
+	helper = store --file ~/.git-credentials
+  helper = cache --timeout 86400
