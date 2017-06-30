@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install vim-plug and symlinks Neovim files
 
 # instll vim-plug

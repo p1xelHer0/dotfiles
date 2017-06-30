@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # install nvm, latest version of node and npm packages
 
@@ -8,7 +8,7 @@ wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | b
 # restart for changes to take effect
 exec zsh
 
-if test ! $(which nvm)
+if test ! "$(which nvm)"
 then
   echo "Installing a stable version of nodejs..."
 

@@ -6,7 +6,7 @@
 sudo -v
 
 # check for Homebrew and install it if missing
-if test ! $(which brew)
+if test ! "$(which brew)"
 then
   echo "Installing Homebrew..."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -19,31 +19,32 @@ brew upgrade --all
 apps=(
   coreutils                                     # utils
   curl                                          # utils
-  fasd                                          # utils  (navigate directories fast, like autojump, z)
-  fzf                                           # utils  (terminal fuzzy finder)
+  fasd                                          # utils - navigate directories fast, like autojump, z
+  fzf                                           # utils - terminal fuzzy finder
   git                                           # utils
-  koekeishiya/formulae/khd                      # utils  (hotkey daemon)
+  koekeishiya/formulae/khd                      # utils - hotkey daemon
+  ranger                                        # utils - file manager
   neovim/neovim/neovim                          # editor
-  pyenv                                         # python (used in neovim)
-  pyenv-virtualenv                              # python (used in neovim)
-  rbevn                                         # ruby   (used in neovim, and osx cocoapods)
-  reattach-to-user-namespace                    # tmux   (copy-paste fix)
-  ripgrep                                       # utils  (search fast)
+  pyenv                                         # python - used in neovim
+  pyenv-virtualenv                              # python - used in neovim
+  rbevn                                         # ruby - used in neovim, and osx cocoapods
+  reattach-to-user-namespace                    # tmux - copy-paste fix
+  ripgrep                                       # utils - search fast
   shellcheck                                    # shell linter
   universal-ctags --HEAD
   wget                                          # utils
-  wifi-password                                 # utils  (show the wifi-password in terminal)
-  yarn --ignore-dependencies                    # js     (package manager)
+  wifi-password                                 # utils - show the wifi-password in terminal
+  yarn --ignore-dependencies                    # js - package manager
   zsh                                           # shell
 )
 
 reactnative=(
   android-sdk                                   # android/java
-  ant                                           # java (build tool)
-  gradle                                        # java (build tool)
-  jenv                                          # java (verion manager)
-  maven                                         # java (package manager)
-  watchman                                      # js   (react-native dependency)
+  ant                                           # java - build tool
+  gradle                                        # java - build tool
+  jenv                                          # java - verion manager
+  maven                                         # java - package manager
+  watchman                                      # js - react-native dependency
 )
 
 haskell=(
@@ -51,10 +52,10 @@ haskell=(
 )
 
 fun=(
-  ffmpeg                                        # utils (make videos)
-  gifsicle                                      # utils (make gifs)
-  htop                                          # utils (monitor processes)
-  neofetch                                      # utils (print system information)
+  ffmpeg                                        # utils - make videos
+  gifsicle                                      # utils - make gifs
+  htop                                          # utils - monitor processes
+  neofetch                                      # utils - print system information
 )
 
 brew tap homebrew/versions

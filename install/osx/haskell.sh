@@ -13,7 +13,7 @@ apps=(
 )
 
 # install the packages
-if test $(which stack)
+if test "$(which stack)"
 then
   echo "Installing Haskell packages..."
   stack install "${apps[@]}"

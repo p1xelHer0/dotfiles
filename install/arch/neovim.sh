@@ -1,4 +1,6 @@
-# install vim-plug and symlinks Neovim files
+#!/bin/bash
+
+# install vim-plug and symlink Neovim files
 
 # instll vim-plug
 mkdir -p "$HOME/.config/nvim/autoload/"
