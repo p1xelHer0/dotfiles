@@ -13,4 +13,4 @@
 	remote = yellow
 [credential]
 	helper = store --file ~/.git-credentials
-  helper = cache --timeout 86400
+	helper = cache --timeout 86400
