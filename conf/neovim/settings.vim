@@ -44,7 +44,11 @@ set showmatch           " automatically show matching brackets
 
 " other {{{
 
-set clipboard=unnamed   " normal OS clipboard interaction
+if IsMacOS()
+  set clipboard=unnamed " normal OS clipboard interaction
+else                    " use xsel on Linux
+  set clipboard+=unnamedplus
+endif
 set copyindent          " copy the previous indentation on autoindenting
 " set autoread          " auto reload files changed -- default Neovim
 " set laststatus=2      " display the status line always -- default Neovim
@@ -85,6 +89,5 @@ else
   let g:python_host_prog = '/usr/bin/python2'
   let g:python3_host_prog = '/usr/bin/python3'
 endif
-
 
 " }}}

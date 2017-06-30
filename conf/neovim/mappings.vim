@@ -36,7 +36,7 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 nnoremap <Leader><Leader> <C-^>
 
 " yank the whole line with Y
-noremap Y 0y$
+nnoremap Y 0y$
 
 " avoid unintentional switches to ex mode
 nmap Q q
@@ -68,9 +68,9 @@ nnoremap <F10> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> 
 \ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>
 
 " errors
-nnoremap <Leader>o :lopen<CR>           " open location window
-nnoremap <Leader><Leader>o :lclose<CR>  " close location window
-nnoremap <silent> <Right> :ll<CR>        " go to current error/warning
+nnoremap <Leader>o :lopen<CR>
+nnoremap <Leader><Leader>o :lclose<CR>
+nnoremap <silent> <Right> :ll<CR>
 
 " }}}
 

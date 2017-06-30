@@ -52,7 +52,10 @@ augroup END
 
 
 " Tern
-autocmd FileType javascript nnoremap <Leader>d :TernDef<CR>
+augroup filetype_javascript
+  autocmd!
+  autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
+augroup END
 
 " }}}
 

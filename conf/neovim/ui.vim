@@ -59,17 +59,23 @@ highlight EndOfBuffer ctermfg=bg
 " highlight jsThis cterm=italic
 " highlight xmlAttrib cterm=italic
 
-" autoresize windows on terminal resize
-autocmd VimResized * execute "normal! \<C-w>="
-
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 augroup vim_enter
   autocmd!
   autocmd VimEnter * autocmd vim_enter WinEnter * let w:created=1
 augroup END
 
-" disable paste mode on leaving INSERT mode.
-autocmd InsertLeave * set nopaste
+" autoresize windows on terminal resize
+augroup vim_resize
+  autocmd!
+  autocmd VimResized * execute "normal! \<C-w>="
+augroup END
+
+" disable paste mode on leaving INSERT mode
+augroup insert_leave
+  autocmd!
+  autocmd InsertLeave * set nopaste
+augroup END
 
 " only show the colorcolumn if the width surpasses 120 on that specific line
 highlight OverLength ctermbg=3 ctermfg=0
