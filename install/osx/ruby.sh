@@ -3,7 +3,7 @@
 # install latest version of Ruby and gems with rbenv
 # install Neovim dependency
 
-if test $(which rbenv)
+if test "$(which rbenv)"
 then
   echo "Installing a stable version of Ruby..."
 

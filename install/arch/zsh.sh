@@ -15,7 +15,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my
 
 
 # set default shell to zsh
-chsh -s $(which zsh)
+chsh -s "$(which zsh)"
 
 # symlink
 ln -fs "$HOME/dotfiles/conf/arch/zsh/themes/p1xelHer0.zsh-theme" "$HOME/.oh-my-zsh/themes/"
