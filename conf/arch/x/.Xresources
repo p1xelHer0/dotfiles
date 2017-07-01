@@ -14,12 +14,12 @@ URxvt*internalBorder: 15
 ! fonts {{{
 
 ! typeface
-URxvt*font:        -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-URxvt*boldFont:    -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-URxvt*italicFont:  -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-! URxvt*font:        -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
-! URxvt*boldFont:    -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
-! URxvt*italicFont:  -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
+! URxvt*font:        -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
+! URxvt*boldFont:    -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
+! URxvt*italicFont:  -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
+URxvt*font:        -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
+URxvt*boldFont:    -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
+URxvt*italicFont:  -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
 
 URxvt.letterSpace: 0
 
@@ -91,5 +91,20 @@ URxvt.iso14755:                    false
 URxvt.iso14755_52:                 false
 URxvt.keysym.Shift-Control-C perl: clipboard:copy
 URxvt.keysym.Shift-Control-V perl: clipboard:paste
+
+! }}}
+
+
+! rofi {{{
+
+!  settings
+rofi.color-enabled: true
+
+! colors           background  foreground  background alt  highlight bg  highlight fg
+rofi.color-window: #050505,    #FFFFFF,    #050505,        #c9c9c9,      #050505
+rofi.color-normal: #050505,    #FFFFFF,    #050505,        #c9c9c9,      #050505
+rofi.color-active: #050505,    #FFFFFF,    #050505,        #c9c9c9,      #050505
+rofi.color-urgent: #050505,    #DDDDDD,    #050505,        #c9c9c9,      #050505
+
 
 ! }}}

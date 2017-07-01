@@ -39,7 +39,7 @@ let g:NERDTreeHighlightCursorline=0
 
 " arrows
 if !IsMacOS()
-  let g:NERDTreeDirArrowExpandable='►'
+  let g:NERDTreeDirArrowExpandable='▶'
   let g:NERDTreeDirArrowCollapsible='▼'
 endif
 

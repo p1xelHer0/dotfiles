@@ -18,13 +18,16 @@ set $right l
 floating_modifier Mod1
 
 # start program launcher
-bindsym $mod+space exec rof
+bindsym $mod+space exec rofi -show run
 
 # kill focused window
 bindsym $mod+q kill
 
 # start a terminal
 bindsym $mod+Return exec urxvtc
+
+# start a terminal by drawing a square
+bindsym --release $mod+Shift+v exec --no-startup-id "bash $HOME/dotfiles/conf/arch/bin/t.sh"
 
 # change focus
 bindsym $mod+$left focus left
@@ -120,22 +123,22 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -b 'y' 'i3-msg exi
 mode "resize" {
   # these bindings trigger as soon as you enter the resize mode
 
-  # pressing left will shrink the window’s width.
-  # pressing right will grow the window’s width.
-  # pressing up will shrink the window’s height.
-  # pressing down will grow the window’s height.
-  bindsym $left       resize shrink width 10 px or 10 ppt
-  bindsym $down       resize grow height 10 px or 10 ppt
-  bindsym $up         resize shrink height 10 px or 10 ppt
-  bindsym $right      resize grow width 10 px or 10 ppt
+  # pressing left will shrink the window’s width
+  # pressing right will grow the window’s width
+  # pressing up will shrink the window’s height
+  # pressing down will grow the window’s height
+  bindsym $left         resize shrink width 10 px or 10 ppt
+  bindsym $down         resize grow height 10 px or 10 ppt
+  bindsym $up           resize shrink height 10 px or 10 ppt
+  bindsym $right        resize grow width 10 px or 10 ppt
 
-  # same bindings, but for the arrow keys
-  bindsym Left        resize shrink width 10 px or 10 ppt
-  bindsym Down        resize grow height 10 px or 10 ppt
-  bindsym Up          resize shrink height 10 px or 10 ppt
-  bindsym Right       resize grow width 10 px or 10 ppt
+  # resize faster with shift
+  bindsym Shift+$left   resize shrink width 30 px or 30 ppt
+  bindsym Shift+$down   resize grow height 30 px or 30 ppt
+  bindsym Shift+$up     resize shrink height 30 px or 30 ppt
+  bindsym Shift+$right  resize grow width 30 px or 30 ppt
 
-  # back to normal: Enter or Escape
+  # back to normal: enter or escape
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
@@ -145,38 +148,75 @@ bindsym $mod+r mode "resize"
 # }}}
 
 
+# window rules{{{
+
+# enable floating urxvt with t.sh
+for_window [class="URxvt" instance="floating"] floating enable
+
+# }}}
+
+
+
 # ui {{{
 
 # font + titlebar
-# font -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso8859-1
+# this font sets the height
 font pango:lemon 16
-for_window[class=".*"] title_format "<span font='Gohu GohuFont 8'>  %title</span>"
+#this is the actual font
+for_window [class=".*"] title_format "<span font='Gohu GohuFont 8'>  %title</span>"
 
-# workspace bar
-bar {
-  height 25
-}
+
 
 # gaps
 gaps inner 25
-for_window[class="^*"] border pixel 0
+
+# remove border
+for_window [class="^.*"] border normal 0
 
 # }}}
+
+
+
 
 
 # colors {{{
 
 #set colors from .Xresources
-set_from_resource $fg i3wm.color0
-set_from_resource $bg1 i3wm.color2
-set_from_resource $bg2 i3wm.color1
+set_from_resource $0 i3wm.color0
+set_from_resource $1 i3wm.color1
+set_from_resource $2 i3wm.color2
+set_from_resource $7 i3wm.color7
+set_from_resource $6 i3wm.color6
 
-# class                 border  backgr. text    indicator child_border
-client.focused          $bg2    $bg2    $fg     $bg2      $bg2
-client.focused_inactive $bg1    $bg1    $fg     $bg1      $bg1
-client.unfocused        $bg1    $bg1    $fg     $bg1      $bg1
-client.urgent           $err    $err    $fg     $err      $err
-client.placeholder      $bg1    $bg1    $fg     $bg1      $bg1
+# class                 border  backgr.  text  indicator child_border
+client.focused          $1    $1    $0   $1    $1
+client.focused_inactive $2    $2    $2   $2    $2
+client.unfocused        $2    $2    $2   $2    $2
+client.urgent           $6    $6    $0   $6    $6
+client.placeholder      $2    $2    $0   $2    $2
 
-client.background       $bg1
+client.background       $2
+
+# }}}
+
+
+# workspace bar {{{
+
+bar {
+  height 25
+  position          top
+
+  font -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
+
+  colors {
+    background $0
+    statusline $7
+
+    focused_workspace  #ffffff #285577
+    active_workspace   #ffffff #333333
+    inactive_workspace #888888 #222222
+    urgent_workspace   #ffffff #900000
+  }
+}
+
 # }}}
