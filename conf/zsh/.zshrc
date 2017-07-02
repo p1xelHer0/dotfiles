@@ -223,6 +223,6 @@ fi
 
 
 # load all configs
-for config ($HOME/dotfiles/conf/osx/zsh/*.zsh) source $config
+for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
 
 # }}}
