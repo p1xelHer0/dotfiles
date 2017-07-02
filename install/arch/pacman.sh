@@ -27,6 +27,7 @@ packages=(
   wget           # utils
   xsel           # utils - clipboard
   bc             # utils - used by base16 color
+  maim           # utils - screenshots
 
   xorg           # x
   xorg-server    # x
