@@ -29,16 +29,18 @@ endif
 
 " split border
 set fillchars+=vert: 
-highlight VertSplit ctermfg=18 ctermbg=18
-highlight LineNr ctermbg=18
-highlight CursorLineNr cterm=bold ctermfg=3
+highlight VertSplit ctermfg=bg ctermbg=bg
+highlight LineNr ctermbg=bg
+highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=bg
 
 " selection
 highlight Visual cterm=reverse
 
 " fold
 " highlight Folded
-highlight FoldColumn ctermbg=bg
+highlight Folded ctermfg=8
+highlight FoldColumn ctermfg=8
+
 " wildmenu
 highlight WildMenu ctermfg=19
 highlight StatusLine ctermfg=fg
@@ -53,6 +55,11 @@ highlight Search ctermfg=bg
 " NonText same color as bg, aka only shown at the current line
 highlight NonText ctermfg=bg
 highlight EndOfBuffer ctermfg=bg
+
+"highlight DiffAdd cterm=reverse
+" highlight DiffChange cterm=reverse
+"highlight DiffDelete cterm=reverse
+"highlight DiffText cterm=reverse
 
 " italic for this and XML (HTML) attributes
 " highlight htmlArg cterm=italic

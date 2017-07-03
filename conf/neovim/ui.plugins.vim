@@ -6,24 +6,28 @@
 " ALE {{{
 
 highlight ALEWarning term=reverse cterm=reverse ctermfg=3
-highlight ALEError term=reverse cterm=reverse ctermfg=16
+highlight link ALEWarningSign ALEWarning
 
-" let g:ale_sign_column_always = 1
+highlight ALEError term=reverse cterm=reverse ctermfg=16
+highlight link ALEErrorSign ALEError
 
 " }}}
 
 
 " GitGutter {{{
 
-" Gutter colors
-"let g:gitgutter_override_sign_column_highlight = 0
-"highlight SignColumn ctermbg=bg
-
 " Git status icons
+highlight GitGutterAdd ctermbg=bg
 let g:gitgutter_sign_added = '+'
+
+highlight GitGutterChange ctermbg=bg
 let g:gitgutter_sign_modified = '~'
+
+highlight GitGutterDelete ctermbg=bg
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
+
+highlight GitGutterChangeDelete ctermbg=bg
 let g:gitgutter_sign_modified_removed = '_'
 
 " }}}
