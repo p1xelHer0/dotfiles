@@ -27,6 +27,7 @@ apps=(
   neovim/neovim/neovim                          # editor
   pyenv                                         # python - used in neovim
   pyenv-virtualenv                              # python - used in neovim
+  ranger                                        # terminal - file manager
   rbevn                                         # ruby - used in neovim, and osx cocoapods
   reattach-to-user-namespace                    # tmux - copy-paste fix
   ripgrep                                       # utils - search fast
