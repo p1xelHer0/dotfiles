@@ -18,8 +18,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my
 chsh -s "$(which zsh)"
 
 # symlink
-ln -fs "$HOME/dotfiles/conf/arch/zsh/themes/p1xelHer0.zsh-theme" "$HOME/.oh-my-zsh/themes/"
-ln -fs "$HOME/dotfiles/conf/arch/zsh/.zshrc" "$HOME/"
+ln -fs "$HOME/dotfiles/conf/zsh/themes/p1xelHer0.zsh-theme" "$HOME/.oh-my-zsh/themes/"
+ln -fs "$HOME/dotfiles/conf/zsh/.zshrc" "$HOME/"
 
 # restart for changes to take effect
 exec zsh

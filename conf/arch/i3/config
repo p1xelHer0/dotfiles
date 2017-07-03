@@ -27,7 +27,7 @@ bindsym $mod+q kill
 bindsym $mod+Return exec urxvtc
 
 # start a terminal by drawing a square
-bindsym --release $mod+Shift+v exec --no-startup-id "bash $HOME/dotfiles/conf/arch/bin/t.sh"
+bindsym --release $mod+Shift+v exec --no-startup-id "bash $HOME/dotfiles/scripts/arch/t.sh"
 
 # change focus
 bindsym $mod+$left focus left
