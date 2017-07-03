@@ -1,6 +1,6 @@
 # https://superuser.com/questions/270214/how-can-i-change-the-colors-of-my-xterm-using-ansi-escape-sequences
 colortest() {
-  text='gYw'
+  text='•‿•'
   printf "base   ";
   for base in 00 01 02 03 04 05 06 07 08 09 '0A' '0B' '0C' '0D' '0E' '0F'; do
     printf "   ${base}  ";
