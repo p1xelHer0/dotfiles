@@ -48,6 +48,9 @@ packages=(
 
   stack          # haskell
 
+  python         # python3
+  python-pip     # python3
+
   avahi
   cronie
   dbus

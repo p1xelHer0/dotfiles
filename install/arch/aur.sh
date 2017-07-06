@@ -12,7 +12,6 @@ git=(
   https://aur.archlinux.org/ruby-neovim.git
   https://aur.archlinux.org/ttf-ms-fonts.git
   https://aur.archlinux.org/ttf-twemoji-color.git
-  https://aur.archlinux.org/wal-git.git
 )
 
 packages=(
@@ -24,5 +23,4 @@ packages=(
   ruby-neovim
   ttf-mf-fonts
   ttf-twemoji-color
-  wal-git
 )
