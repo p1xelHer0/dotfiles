@@ -46,6 +46,8 @@ packages=(
 
   openntpd       # time
 
+  stack          # haskell
+
   avahi
   cronie
   dbus

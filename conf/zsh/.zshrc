@@ -59,6 +59,18 @@ NODE_VERSION=$(node --version | grep -v -)
 # }}}
 
 
+# $PATH {{{
+
+# Haskell
+export STACK_PACKAGES=$HOME/.local/bin
+
+
+# set $PATH
+export PATH=$STACK_PACKAGES:$PATH
+
+# }}}
+
+
 # macOS $PATH {{{
 
 if [[ -n "$IS_MACOS" ]]; then
@@ -69,10 +81,6 @@ if [[ -n "$IS_MACOS" ]]; then
 
   # Python
   export PYENV_ROOT=$HOME/.pyenv
-
-
-  # Haskell
-  export STACK_PACKAGES=$HOME/.local/bin
 
 
   # Rust
