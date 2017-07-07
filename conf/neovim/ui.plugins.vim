@@ -20,17 +20,17 @@ highlight link ALEErrorSign ALEError
 " GitGutter {{{
 
 " Git status icons
-highlight GitGutterAdd ctermbg=bg
+highlight GitGutterAdd ctermbg=0
 let g:gitgutter_sign_added = '+'
 
-highlight GitGutterChange ctermbg=bg
+highlight GitGutterChange ctermbg=0
 let g:gitgutter_sign_modified = '~'
 
-highlight GitGutterDelete ctermbg=bg
+highlight GitGutterDelete ctermbg=0
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 
-highlight GitGutterChangeDelete ctermbg=bg
+highlight GitGutterChangeDelete ctermbg=0
 let g:gitgutter_sign_modified_removed = '_'
 
 " }}}
@@ -64,6 +64,7 @@ let g:NERDTreeIndicatorMapCustom = {
 \ }
 
 " colors
+highlight NERDTreeBookmarksLeader ctermfg=4 ctermbg=0
 highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
 highlight NERDTreeGitStatusModified ctermfg=3
 highlight link NERDTreeGitStatusDirClean DiffAdd

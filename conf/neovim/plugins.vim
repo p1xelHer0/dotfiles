@@ -92,8 +92,9 @@ else
 endif
 
 " styling
-Plug 'chriskempson/base16-vim'
-Plug 'itchyny/lightline.vim'
+" Plug 'chriskempson/base16-vim'
+Plug 'dylanaraps/wal'
+" Plug 'itchyny/lightline.vim'
 
 " tmux integration
 Plug 'tmux-plugins/vim-tmux-focus-events'

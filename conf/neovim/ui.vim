@@ -3,22 +3,29 @@
 " -- themes, colors and everything that affects the look of Neovim
 
 
+" wal {{{
+
+colorscheme wal
+
+" }}}
+
+
 " base16 {{{
 
 " theme must be set before Neovim can use the fg and bg colors!
 " see: :h cterm-colors: E419, E420
 " https://github.com/chriskempson/base16-shell
 " load theme from base16-shell
-let g:base16colorspace=256
-if IsMacOS()
-  if filereadable(expand('$HOME/.vimrc_background'))
-    source $HOME/.vimrc_background
-  endif
-else
-  if !exists('g:colors_name') || g:colors_name !=? 'base16-apathy'
-    colorscheme base16-apathy
-  endif
-endif
+" let g:base16colorspace=256
+" if IsMacOS()
+  " if filereadable(expand('$HOME/.vimrc_background'))
+    " source $HOME/.vimrc_background
+  " endif
+" else
+  " if !exists('g:colors_name') || g:colors_name !=? 'base16-apathy'
+    " colorscheme base16-apathy
+  " endif
+" endif
 
 " }}}
 
@@ -27,11 +34,13 @@ endif
 
 " syntax enable - default neovim
 
+set t_md=
+
 " split border
 set fillchars+=vert: 
-highlight VertSplit ctermfg=bg ctermbg=bg
-highlight LineNr ctermbg=bg
-highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=bg
+highlight VertSplit ctermfg=0 ctermbg=0
+highlight LineNr ctermbg=0
+highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=0
 
 " selection
 highlight Visual cterm=reverse
@@ -50,16 +59,16 @@ highlight Error ctermbg=16
 highlight ErrorMsg ctermfg=16
 
 " search
-highlight Search ctermfg=bg
+highlight Search ctermfg=0
 
 " NonText same color as bg, aka only shown at the current line
-highlight NonText ctermfg=bg
-highlight EndOfBuffer ctermfg=bg
+highlight NonText ctermfg=0
+highlight EndOfBuffer ctermfg=0
 
-"highlight DiffAdd cterm=reverse
+" highlight DiffAdd cterm=reverse
 " highlight DiffChange cterm=reverse
-"highlight DiffDelete cterm=reverse
-"highlight DiffText cterm=reverse
+" highlight DiffDelete cterm=reverse
+" highlight DiffText cterm=reverse
 
 " italic for this and XML (HTML) attributes
 " highlight htmlArg cterm=italic

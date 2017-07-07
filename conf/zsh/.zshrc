@@ -11,6 +11,16 @@ fi
 # theme
 ZSH_THEME=p1xelHer0
 
+# import colorscheme from 'wal'
+if [[ -n "$IS_MACOS" ]]; then
+else
+  (wal -r &)
+fi
+
+
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
 
 # settings {{{
 
@@ -37,9 +47,9 @@ fi
 
 # base16-shell {{{
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-source $HOME/dotfiles/conf/base16/.colors
+# BASE16_SHELL=$HOME/.config/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# source $HOME/dotfiles/conf/base16/.colors
 
 # }}}
 
@@ -205,12 +215,8 @@ fi
 
 
 # load stack
-if [[ -n "$IS_MACOS" ]]; then
-  if which stack > /dev/null; then
-    autoload -U +X compinit && compinit
-    autoload -U +X bashcompinit && bashcompinit
-    eval "$(command stack --bash-completion-script stack)"
-  fi
+if which stack > /dev/null; then
+  eval "$(command stack --bash-completion-script stack)"
 fi
 
 

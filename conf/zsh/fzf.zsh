@@ -2,7 +2,7 @@
 
 # colors
 export FZF_DEFAULT_OPTS='
-  --color fg:-1,bg:-1,hl:1,fg+:4,bg+:18,hl+:1,info:20
+  --color fg:7,bg:0,hl:1,fg+:0,bg+:4,hl+:1,info:5
   --color prompt:6,spinner:2,pointer:1,marker:3,header:2
 '
 # make fzf use ripgrep

@@ -10,4 +10,7 @@ urxvtd -q -o -f &
 ! set wallpaper
 $HOME/.fehbg &
 
+! set wal conf
+wal -i "$(< "${HOME}/.cache/wal/wal")" &
+
 exec i3
