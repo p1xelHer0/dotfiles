@@ -18,7 +18,8 @@ set $right l
 floating_modifier Mod1
 
 # start program launcher
-bindsym $mod+space exec rofi -show run
+# bindsym $mod+space exec rofi -show run
+bindsym $mod+space exec urxvtc -name URxvtfzf -geometry 40x8+297+1 -e sh -c 'compgen -c | sort -u | fzf --reverse | sh'
 
 # kill focused window
 bindsym $mod+q kill
@@ -151,7 +152,10 @@ bindsym $mod+r mode "resize"
 # window rules{{{
 
 # enable floating urxvt with t.sh
-for_window [class="URxvt" instance="floating"] floating enable
+for_window [class="URxvt" instance="URxvtdragndrop"] floating enable
+
+# enable floating urxvt with fzf and set title
+for_window [class="URxvt" instance="URxvtfzf"] floating enable
 
 # }}}
 

@@ -24,7 +24,7 @@ if [ "$W" -gt "1" ]; then
   let W=$(( W / 9))
   let H=$(( H / 21))
 
-  urxvt -g $W"x"$H"+"$X"+"$Y -name "floatingterm"&
+  urxvtc -g $W"x"$H"+"$X"+"$Y -name "URxvtdragndrop" &
 
   for i in {0..49}; do # timeout
     if ps -p $! >/dev/null; then
