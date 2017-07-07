@@ -34,8 +34,6 @@ colorscheme wal
 
 " syntax enable - default neovim
 
-set t_md=
-
 " split border
 set fillchars+=vert: 
 highlight VertSplit ctermfg=0 ctermbg=0
@@ -43,7 +41,8 @@ highlight LineNr ctermbg=0
 highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=0
 
 " selection
-highlight Visual cterm=reverse
+highlight CursorLine cterm=NONE
+highlight Visual ctermbg=0 cterm=reverse
 
 " fold
 " highlight Folded
@@ -51,7 +50,7 @@ highlight Folded ctermfg=8
 highlight FoldColumn ctermfg=8
 
 " wildmenu
-highlight WildMenu ctermfg=19
+highlight WildMenu ctermfg=0
 highlight StatusLine ctermfg=fg
 
 " error
