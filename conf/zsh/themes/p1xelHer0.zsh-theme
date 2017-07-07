@@ -99,7 +99,7 @@ bureau_git_prompt () {
 }
 
 
-_PATH="%{$fg[black]$bg[cyan]%} %~ %{$fg[cyan]$bg[black]%}▓░%{$reset_color%}"
+_PATH="%{$fg[cyan]%}%~%{$reset_color%}"
 
 if [[ $EUID -eq 0 ]]; then
   _USERNAME="%{$fg_bold[red]%}%n"
