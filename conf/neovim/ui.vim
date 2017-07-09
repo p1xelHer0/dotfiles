@@ -51,11 +51,10 @@ highlight FoldColumn ctermfg=8
 
 " wildmenu
 highlight WildMenu ctermfg=0
-highlight StatusLine ctermfg=fg
 
 " error
-highlight Error ctermbg=16
-highlight ErrorMsg ctermfg=16
+" highlight Error ctermbg=16
+" highlight ErrorMsg ctermfg=16
 
 " search
 highlight Search ctermfg=0
