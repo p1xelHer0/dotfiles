@@ -50,10 +50,11 @@ highlight Visual ctermbg=0 cterm=reverse
 " fold
 " highlight Folded
 highlight Folded ctermfg=8
-highlight FoldColumn ctermfg=8
+highlight link FoldColumn CursorLineNr
 
 " wildmenu
-highlight WildMenu ctermfg=0
+highlight WildMenu ctermfg=0 ctermbg=1
+highlight StatusLine ctermfg=0 ctermbg=6
 
 " error
 " highlight Error ctermbg=16
