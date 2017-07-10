@@ -2,6 +2,9 @@
 
 " -- here be dragons
 
+scriptencoding utf-8
+set encoding=utf-8
+
 
 " path where configs are stored
 let s:NEOVIM_CONFIG = '$HOME/dotfiles/conf/neovim/'

@@ -2,6 +2,9 @@
 
 " -- themes, colors and everything that affects the look of plugins
 
+scriptencoding utf-8
+set encoding=utf-8
+
 
 " ALE {{{
 

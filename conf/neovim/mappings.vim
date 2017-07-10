@@ -2,6 +2,9 @@
 
 " -- keymapping that uses functionality of default Neovim
 
+scriptencoding utf-8
+set encoding=utf-8
+
 
 " universal mappings {{{
 

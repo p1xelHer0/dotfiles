@@ -2,6 +2,9 @@
 
 " -- custom commands to enhance or speed up the way Neovim works
 
+scriptencoding utf-8
+set encoding=utf-8
+
 
 " F command {{{
 
