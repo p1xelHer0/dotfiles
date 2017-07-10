@@ -24,7 +24,7 @@ getCPU: (cpu) ->
   cpuString = String(cpuNum)
   if cpuNum < 10
     cpuString = '0' + cpuString
-  return "<span class='color08'>#{cpuString}%<span class='color03'>cpu</span></span>"
+  return "<span class='color8'>#{cpuString}%<span class='color3'>cpu</span></span>"
 
 getMem: (mem) ->
   memNum = parseFloat(mem)
@@ -33,7 +33,7 @@ getMem: (mem) ->
   if memNum < 10
     memString = '0' + memString
 
-  return "<span class='color08'>#{memString}%</span><span class='color03'>ram</span>"
+  return "<span class='color8'>#{memString}%</span><span class='color3'>ram</span>"
 
 convertBytes: (bytes) ->
   kb = bytes / 1024
@@ -46,10 +46,10 @@ usageFormat: (kb) ->
 getNetTraffic: (down, up) ->
   downString = @convertBytes(parseInt(down))
   upString = @convertBytes(parseInt(up))
-  return "<span class='color08'>#{downString}</span><span class='color05'>down</span> <span class='color08'>#{upString}</span><span class='color02'>up</span>"
+  return "<span class='color6'>#{downString}</span><span class='color1'>down</span> <span class='color6'>#{upString}</span><span class='color4'>up</span>"
 
 getFreeSpace: (space) ->
-  return "<span class='color08'></span><span class='color08'>#{space}gb</span>"
+  return "<span class='color5'>#{space}gb</span>"
 
 update: (output, domEl) ->
 
@@ -63,7 +63,7 @@ update: (output, domEl) ->
   free = values[4].replace(/[^0-9]/g,'')
 
   # create an HTML string to be displayed by the widget
-  htmlString =  "<span class='color08'>█▓░</span> " + @getNetTraffic(down, up) + "<span> </span>" +
+  htmlString =  @getNetTraffic(down, up) + "<span> </span>" +
                 @getMem(mem) + "<span> </span>" +
                 @getCPU(cpu) + "<span> </span>" +
                 @getFreeSpace(free)

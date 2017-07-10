@@ -17,36 +17,36 @@ style: """
 
 timeAndDate: (date, time) ->
   # returns a formatted html string with the date and time
-  return "<span class='color08'>#{date} #{time} ░</span>"
+  return "<span class='color8'>#{date} #{time} </span>"
 
 batteryStatus: (battery, state) ->
   #returns a formatted html string current battery percentage, a representative icon and adds a lighting bolt if the
   # battery is plugged in and charging
   batnum = parseInt(battery)
   if state == 'AC' and batnum >= 90
-    return "<span class='color08'>#{batnum}%+</span>"
+    return "<span class='color8'>#{batnum}%+</span>"
   else if state == 'AC' and batnum >= 50 and batnum < 90
-    return "<span class='color08'>#{batnum}%+</span>"
+    return "<span class='color8'>#{batnum}%+</span>"
   else if state == 'AC' and batnum < 50 and batnum >= 15
-    return "<span class='color08'>#{batnum}%+</span>"
+    return "<span class='color8'>#{batnum}%+</span>"
   else if state == 'AC' and batnum < 15
-    return "<span class='color02'>#{batnum}%+</span>"
+    return "<span class='color2'>#{batnum}%+</span>"
   else if batnum >= 90
-    return "<span class='color07'>#{batnum}%-</span>"
+    return "<span class='color7'>#{batnum}%-</span>"
   else if batnum >= 50 and batnum < 90
-    return "<span class='color07'>#{batnum}%-</span>"
+    return "<span class='color7'>#{batnum}%-</span>"
   else if batnum < 50 and batnum >= 15
-    return "<span class='color07'>#{batnum}%-</span>"
+    return "<span class='color7'>#{batnum}%-</span>"
   else if batnum < 15
-    return "<span class='color01'>#{batnum}%!</span>"
+    return "<span class='color1'>#{batnum}%!</span>"
 
 getWifiStatus: (status) ->
   if status == "Wi-Fi"
-    return "<span class='color03'>wifi<span>"
+    return "<span class='color3'>wifi<span>"
   if status == 'USB 10/100/1000 LAN' or status == 'Apple USB Ethernet Adapter'
-    return "<span class='color03'>ethernet</span>"
+    return "<span class='color3'>ethernet</span>"
   else
-    return "<span class='color07'>#{status}</span>"
+    return "<span class='color7'>#{status}</span>"
 
 update: (output, domEl) ->
 
@@ -62,7 +62,7 @@ update: (output, domEl) ->
   # create an HTML string to be displayed by the widget
   htmlString = @getWifiStatus(netStatus) + "<span> </span>" +
                @timeAndDate(date,time) + "<span> </span>" +
-               @batteryStatus(battery, isCharging) + "<span class='color08'> ░▓█</span>"
+               @batteryStatus(battery, isCharging)
 
   $(domEl).find('.compstatus').html(htmlString)
 

@@ -1,4 +1,4 @@
-command: "/usr/local/bin/kwmc query window focused name"
+command: ""
 
 refreshFrequency: 2000 # ms
 
@@ -44,4 +44,4 @@ update: (output, domEl) ->
      file = file + '…'
 
 
-  $(domEl).find('.kwmmode').html("<span class='color06'>░▓</span><span class='color06bg'> #{win}</span><span class='color07bg'> #{file}</span><span class='color06'>▓░</span>")
+  $(domEl).find('.kwmmode').html("<span class='color4'>#{win} #{file}</span>")

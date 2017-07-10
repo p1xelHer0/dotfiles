@@ -1,75 +1,36 @@
-.color00 {
-  color: #282828; /* base 00 - default background */
+.color0 {
+  color: #090F0E
 }
 
-.color18 {
-  color: #3e3d38; /* base 01 - lighter background (Used for status bars) */
+.color1 {
+  color: #955535
 }
 
-.color19 {
-  color: #535147; /* base 02 - selection background */
+.color2 {
+  color: #87786A
 }
 
-.color08 {
-  color: #696657; /* base 03 - comments, invisibles, line highlighting */
+.color3 {
+  color: #948778
 }
 
-.color20 {
-  color: #7e7a66; /* base 04 - dark foreground (used for status bars) */
+.color4 {
+  color: #CC996D
 }
 
-.color07 {
-  color: #fdf3c0; /* base 05 - default foreground, caret, delimiters, operators */
+.color5 {
+  color: #7A8182
 }
 
-
-.color21 {
-  color: #fef7d1; /* base 06 - light foreground (not often used) */
+.color6 {
+  color: #A69D8D
 }
 
-.color15 {
-  color: #fefae0; /* base 07 - light background (not often used) */
+.color7 {
+  color: #CFC9B6
 }
 
-
-.color01 {
-  color: #ce983f; /* base 08 - variables, XML tags, markup link text, markup lists, diff deleted */
+.color8 {
+  color: #666666
 }
 
-.color16 {
-  color: #ce6e3f; /* base 09 - integers, boolean, constants, XML attributes, markup link url */
-}
-
-.color03 {
-  color: #83a598; /* base 0A - classes, markup bold, search text background */
-}
-
-.color02 {
-  color: #a6b657; /* base 0B - strings, inherited class, markup code, diff inserted */
-}
-
-.color06 {
-  color: #588778; /* base 0C - support, regular expressions, escape characters, markup quotes */
-}
-
-.color04 {
-  color: #7a925d; /* base 0D - functions, methods, attribute IDs, headings */
-}
-
-.color05 {
-  color: #ce983f; /* base 0E - keywords, storage, selector, markup italic, diff changed */
-}
-
-.color17 {
-  color: #ce6e3f; /* base 0F - deprecated, opening/closing embedded language tags e.g. <?php ?> */
-}
-
-.color04bg {
-  background-color: #7a925d;
-  color: #282828;
-}
-
-.color07bg {
-  background-color: #7a925d;
-  color: #fdf3c0;
-}
