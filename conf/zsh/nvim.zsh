@@ -3,7 +3,7 @@
 # https://superuser.com/questions/270214/how-can-i-change-the-colors-of-my-xterm-using-ansi-escape-sequences
 vim() {
   if [ -z ${RBENV_INIT+x} ]; then
-    printf "\e[38;5;16mrbenv init... "
+    printf "\e[38;5;1mrbenv init... "
     eval "$(command rbenv init -)"
     export RBENV_INIT=1
     printf "\e[38;5;00m\e[48;5;16m done\e[38;5;16m\e[48;5;00m█▓░\e[0m\n";

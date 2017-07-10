@@ -109,7 +109,7 @@ endif
 " styling
 " Plug 'chriskempson/base16-vim'
 Plug 'dylanaraps/wal'
-" Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
 
 " tmux integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
