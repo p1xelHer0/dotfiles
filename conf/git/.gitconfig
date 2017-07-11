@@ -6,11 +6,11 @@
 [color]
 	ui = auto
 [color "status"]
-	added = green
-	changed = red bold
-	untracked = magenta bold
+	added = 2
+	changed = 1 bold
+	untracked = 8
 [color "branch"]
-	remote = yellow
+	remote = 3
 [credential]
 	helper = store --file ~/.git-credentials
 	helper = cache --timeout 86400

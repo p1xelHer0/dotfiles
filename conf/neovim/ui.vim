@@ -6,6 +6,12 @@ scriptencoding utf-8
 set encoding=utf-8
 
 
+" set Git colors according to .gitconig
+let g:GitAddColor = system('git config --list | grep added | grep -o -E "[0-8]"')
+let g:GitChangeColor = system('git config --list | grep changed | grep -o -E "[0-8]"')
+let g:GitUntrackedColor = system('git config --list | grep untracked | grep -o -E "[0-8]"')
+
+
 " wal {{{
 
 colorscheme wal
@@ -63,19 +69,15 @@ highlight StatusLine ctermfg=0 ctermbg=6
 " search
 highlight Search ctermfg=0
 
-" NonText same color as bg, aka only shown at the current line
+" NonText same color as bg, aka only show only when marked
 highlight NonText ctermfg=0
 highlight EndOfBuffer ctermfg=0
 
-" highlight DiffAdd cterm=reverse
-" highlight DiffChange cterm=reverse
-" highlight DiffDelete cterm=reverse
-" highlight DiffText cterm=reverse
+execute 'highlight DiffAdd cterm=reverse ctermfg=' . g:GitAddColor
+execute 'highlight DiffChange cterm=reverse ctermfg=' . g:GitChangeColor
+execute 'highlight DiffDelete cterm=reverse ctermfg=' . g:GitUntrackedColor
+highlight DiffText ctermfg=4 cterm=reverse
 
-" italic for this and XML (HTML) attributes
-" highlight htmlArg cterm=italic
-" highlight jsThis cterm=italic
-" highlight xmlAttrib cterm=italic
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 augroup vim_enter

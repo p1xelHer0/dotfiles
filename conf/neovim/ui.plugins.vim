@@ -23,18 +23,10 @@ highlight link ALEErrorSign ALEError
 " GitGutter {{{
 
 " Git status icons
-highlight GitGutterAdd ctermbg=0
-let g:gitgutter_sign_added = '+'
-
-highlight GitGutterChange ctermbg=0
-let g:gitgutter_sign_modified = '~'
-
-highlight GitGutterDelete ctermbg=0
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-
-highlight GitGutterChangeDelete ctermbg=0
-let g:gitgutter_sign_modified_removed = '_'
+execute 'highlight GitGutterAdd ctermbg=0 ctermfg=' . g:GitAddColor
+execute 'highlight GitGutterChange ctermbg=0 ctermfg=' . g:GitChangeColor
+execute 'highlight GitGutterDelete ctermbg=0 ctermfg=' . g:GitUntrackedColor
+execute 'highlight GitGutterChangeDelete ctermbg=0 ctermfg=' . g:GitUntrackedColor
 
 " }}}
 
@@ -47,12 +39,6 @@ let g:NERDTreeShowFiles=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeHighlightCursorline=0
 
-" arrows
-if !IsMacOS()
-  let g:NERDTreeDirArrowExpandable='▶'
-  let g:NERDTreeDirArrowCollapsible='▼'
-endif
-
 " Git status icons
 let g:NERDTreeIndicatorMapCustom = {
 \ 'Modified'  : '~',
@@ -60,21 +46,19 @@ let g:NERDTreeIndicatorMapCustom = {
 \ 'Untracked' : '▼',
 \ 'Renamed'   : '→',
 \ 'Unmerged'  : '=',
-\ 'Deleted'   : '-',
+\ 'Deleted'   : '_',
 \ 'Dirty'     : '~',
 \ 'Clean'     : '◆',
 \ 'Unknown'   : '?'
 \ }
 
 " colors
-highlight NERDTreeBookmarksLeader ctermfg=4 ctermbg=0
-highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
-highlight NERDTreeGitStatusModified ctermfg=3
-highlight link NERDTreeGitStatusDirClean DiffAdd
-highlight link NERDTreeGitStatusStaged Special
-highlight link NERDTreeGitStatusRenamed DiffLine
-highlight link NERDTreeGitStatusUnmerged DiffLine
-highlight link NERDTreeGitStatusUntracked DiffFile
-highlight link NERDTreeGitStatusIgnored DiffFile
+highlight link NERDTreeBookmarksLeader NERDTreeDirSlash
+execute 'highlight NERDTreeGitStatusStaged ctermfg=' . g:GitChangeColor
+execute 'highlight NERDTreeGitStatusModified ctermfg=' . g:GitChangeColor
+execute 'highlight NERDTreeGitStatusUntracked ctermfg=' . g:GitUntrackedColor
+execute 'highlight NERDTreeGitStatusRenamed ctermfg=' . g:GitUntrackedColor
+execute 'highlight NERDTreeGitStatusUnmerged ctermfg=' . g:GitUntrackedColor
+execute 'highlight NERDTreeGitStatusIgnored ctermfg=' . g:GitUntrackedColor
 
 " }}}
