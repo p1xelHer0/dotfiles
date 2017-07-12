@@ -22,12 +22,15 @@ packages=(
   tmux           # terminal
   ranger         # terminal - file manager
 
+  thunar         # file manager
+
   fzf            # utils
   ripgrep        # utils
   wget           # utils
   xsel           # utils - clipboard
   bc             # utils - used by base16 color
   maim           # utils - screenshots
+  wmctrl         # utils - used by lemonbar, "interact with X"
 
   xorg           # x
   xorg-server    # x
@@ -37,6 +40,7 @@ packages=(
   xorg-xinit     # x
   xorg-xfontsel  # x - find X fonts
   xorg-xrdb      # x
+
   rofi           # program launcher
   feh            # wallpaper
 
@@ -63,3 +67,4 @@ vmboxpackages=(
 )
 
 sudo pacman -S "${packages[@]}"
+

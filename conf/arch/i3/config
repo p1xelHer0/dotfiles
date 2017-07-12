@@ -18,8 +18,7 @@ set $right l
 floating_modifier Mod1
 
 # start program launcher
-# bindsym $mod+space exec rofi -show run
-bindsym $mod+space exec urxvtc -name URxvtfzf -geometry 40x8+297+1 -e sh -c 'compgen -c | sort -u | fzf --reverse | sh'
+bindsym $mod+space exec rofi -show run
 
 # kill focused window
 bindsym $mod+q kill
@@ -172,7 +171,7 @@ for_window [class=".*"] title_format "<span font='Gohu GohuFont 8'>  %title</spa
 
 
 # gaps
-gaps inner 25
+gaps inner 50
 
 # remove border
 for_window [class="^.*"] border normal 0
@@ -189,38 +188,16 @@ for_window [class="^.*"] border normal 0
 set_from_resource $0 i3wm.color0
 set_from_resource $1 i3wm.color1
 set_from_resource $2 i3wm.color2
-set_from_resource $7 i3wm.color7
-set_from_resource $6 i3wm.color6
+set_from_resource $3 i3wm.color3
+set_from_resource $8 i3wm.color8
 
-# class                 border  backgr.  text  indicator child_border
-client.focused          $1    $1    $0   $1    $1
-client.focused_inactive $2    $2    $2   $2    $2
-client.unfocused        $2    $2    $2   $2    $2
-client.urgent           $6    $6    $0   $6    $6
-client.placeholder      $2    $2    $0   $2    $2
+# class                 border  backgr.  text  indicator  child_border
+client.focused          $2      $2       $0    $2         $2
+client.focused_inactive $3      $3       $8    $3         $3
+client.unfocused        $3      $3       $8    $3         $3
+client.urgent           $1      $1       $0    $1         $1
+client.placeholder      $2      $2       $8    $2         $2
 
 client.background       $2
-
-# }}}
-
-
-# workspace bar {{{
-
-bar {
-  height 25
-  position          top
-
-  font -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-
-  colors {
-    background $0
-    statusline $7
-
-    focused_workspace  #ffffff #285577
-    active_workspace   #ffffff #333333
-    inactive_workspace #888888 #222222
-    urgent_workspace   #ffffff #900000
-  }
-}
 
 # }}}

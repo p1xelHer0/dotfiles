@@ -6,6 +6,7 @@
 git=(
   https://aur.archlinux.org/fasd-git.git
   https://aur.archlinux.org/google-chrome.git
+  https://aur.archlinux.org/lemonbar-git.git
   https://aur.archlinux.org/neofetch.git
   https://aur.archlinux.org/nvm.git
   https://aur.archlinux.org/ruby-msgpack.git
@@ -16,6 +17,7 @@ git=(
 
 packages=(
   fasd-git
+  lemonbar
   google-chrome
   neofetch
   nvm

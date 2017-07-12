@@ -13,4 +13,7 @@ $HOME/.fehbg &
 ! set wal conf
 wal -i "$(< "${HOME}/.cache/wal/wal")" &
 
+! start lemonbar
+sh $HOME/dotfiles/conf/lemonbar/bar.sh &
+
 exec i3
