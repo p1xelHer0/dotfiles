@@ -23,6 +23,7 @@ apps=(
   fzf                                           # utils - terminal fuzzy finder
   git                                           # utils
   koekeishiya/formulae/khd                      # utils - hotkey daemon
+  chunkwm                                       # utils - window manager
   ranger                                        # utils - file manager
   neovim/neovim/neovim                          # editor
   pyenv                                         # python - used in neovim
@@ -64,6 +65,7 @@ brew tap homebrew/dupes
 brew tap homebrew/services
 
 brew tap universal-ctags/universal-ctags
+brew tap crisidev/homebrew-chunkwm
 
 # make sure we’re using the latest Homebrew
 brew update
@@ -74,6 +76,6 @@ brew install "${apps[@]}"
 # remove outdated versions from the cellar
 brew cleanup
 
-# start kwm and khd by default
-brew services start kwm
+# start chunkwm and khd by default
 brew services start khd
+brew services start chunkwm
