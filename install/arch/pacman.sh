@@ -24,6 +24,8 @@ packages=(
 
   thunar         # file manager
 
+  dunst          # notifications
+
   fzf            # utils
   ripgrep        # utils
   wget           # utils
@@ -31,6 +33,7 @@ packages=(
   bc             # utils - used by base16 color
   maim           # utils - screenshots
   wmctrl         # utils - used by lemonbar, "interact with X"
+  p7zip          # utils - 7zip
 
   xorg           # x
   xorg-server    # x

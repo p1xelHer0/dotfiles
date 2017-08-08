@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+###
+
+# -- lemonbar with wal
+# based on Dylan Araps bin/bar
+# https://github.com/dylanaraps/bin/blob/master/bar
+
+
+# get the monitor width
+get_mon_width() {
+  type -p xrandr --nograb --current >/dev/null 2>&1 && \
+    resolution="$(xrandr --nograb --current | \
+                 awk -F 'x|\t' '/\*/ {print $1; exit}')"
+
+  printf "%s\\n" "${resolution:-2560}"
+}
+
+# format workspace "blocks"
+ws() {
+  # if focused
+  if [ "$2" ]; then
+    ws_bg="${color2}"
+    ws_fg="${color0}"
+  fi
+
+  printf "%s%s%s\\n" "%{B${ws_bg:-${color3}}}" \
+                     "%{F${ws_fg:-${color8}}}" \
+                     "   ${1}   %{F-}%{B-}"
+}
+
+# get the current workspace
+get_workspaces() {
+  current_workspace="$(wmctrl -d | awk '/\*/ {print $NF}')"
+
+  case "$current_workspace" in
+    1) workspaces="$(ws 1 1)$(ws 2)$(ws 3)$(ws 4)$(ws 5)$(ws 6)" ;;
+    2) workspaces="$(ws 1)$(ws 2 1)$(ws 3)$(ws 4)$(ws 5)$(ws 6)" ;;
+    3) workspaces="$(ws 1)$(ws 2)$(ws 3 1)$(ws 4)$(ws 5)$(ws 6)" ;;
+    4) workspaces="$(ws 1)$(ws 2)$(ws 3)$(ws 4 1)$(ws 5)$(ws 6)" ;;
+    5) workspaces="$(ws 1)$(ws 2)$(ws 3)$(ws 4)$(ws 5 1)$(ws 6)" ;;
+    6) workspaces="$(ws 1)$(ws 2)$(ws 3)$(ws 4)$(ws 5)$(ws 6 1)" ;;
+  esac
+
+  printf "%s\\n" "$workspaces"
+}
+
+# get the date using printf's '%(T)' format
+get_date() {
+  printf "%s\\n" "$(date +"%A %d %b - %H:%M")" | awk '{print tolower($0)}'
+}
+
+
+# do everything
+main() {
+  # import colors from 'wal'
+  source "${HOME}/.cache/wal/colors.sh"
+
+  font="-gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1"
+  height="30"
+  width="$(get_mon_width)"
+
+  # loop and print the info
+  while :; do
+    workspaces="$(get_workspaces)"
+    date="$(get_date)"
+
+    printf "%s%s%b\\n" \
+           "%{l}${workspaces}" \
+           "%{c}${date}"
+
+    sleep .1s
+  done |\
+
+  # launch lemonbar
+  lemonbar -g "${width}x${height}" \
+           -B "${color0}" -F "${color8}"\
+           -n "bar" -b -d  -f "$font"
+}
+
+
+main "$@"
