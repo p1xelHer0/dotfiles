@@ -14,10 +14,10 @@ URxvt*internalBorder: 50
 ! fonts {{{
 
 ! typeface
-URxvt*font:        -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-URxvt*boldFont:    -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-! URxvt*font:        -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
-! URxvt*boldFont:    -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
+! URxvt*font:        -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
+! URxvt*boldFont:    -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
+URxvt*font:        -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
+URxvt*boldFont:    -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
 
 URxvt.letterSpace: 0
 
@@ -98,7 +98,7 @@ URxvt.keysym.Shift-Control-V perl: clipboard:paste
 ! rofi {{{
 
 ! font
-rofi.font: Gohu GohuFont 8
+rofi.font: Gohu GohuFont 11
 
 ! hide ugly stuff
 rofi.separator-style: none

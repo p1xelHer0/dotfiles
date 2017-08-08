@@ -26,9 +26,6 @@ bindsym $mod+q kill
 # start a terminal
 bindsym $mod+Return exec urxvtc
 
-# start a terminal by drawing a square
-bindsym --release $mod+Shift+v exec --no-startup-id "bash $HOME/dotfiles/scripts/arch/t.sh"
-
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -165,13 +162,13 @@ for_window [class="URxvt" instance="URxvtfzf"] floating enable
 # font + titlebar
 # this font sets the height
 font pango:lemon 16
-#this is the actual font
-for_window [class=".*"] title_format "<span font='Gohu GohuFont 8'>  %title</span>"
+# this is the actual font
+for_window [class=".*"] title_format "<span font='Gohu GohuFont 11'>  %title</span>"
 
 
 
 # gaps
-gaps inner 50
+gaps inner 0
 
 # remove border
 for_window [class="^.*"] border normal 0
@@ -184,7 +181,7 @@ for_window [class="^.*"] border normal 0
 
 # colors {{{
 
-#set colors from .Xresources
+# set colors from .Xresources
 set_from_resource $0 i3wm.color0
 set_from_resource $1 i3wm.color1
 set_from_resource $2 i3wm.color2

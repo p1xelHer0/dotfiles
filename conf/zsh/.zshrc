@@ -115,6 +115,9 @@ if [[ -n "$IS_MACOS" ]]; then
   export GRADLE_HOME=/usr/local/opt/gradle
   export ANDROID_HOME=/usr/local/opt/android-sdk
   export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+else
+  # rice scripts
+  export RICE_SCRIPTS=$HOME/dotfiles/bin/arch
 fi
 
 
@@ -140,7 +143,8 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH=$ANT_HOME/bin:$PATH
   export PATH=$MAVEN_HOME/bin:$PATH
   export PATH=$GRADLE_HOME/bin:$PATH
-
+else
+  export PATH=$RICE_SCRIPTS:$PATH
 fi
 
 # }}}

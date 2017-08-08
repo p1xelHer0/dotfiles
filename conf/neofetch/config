@@ -31,7 +31,7 @@ print_info() {
 
   info "mem" memory
   info "cpu" cpu_usage
-  info "bat" battery
+  # info "bat" battery
   info " " disk
 
   info line_break
