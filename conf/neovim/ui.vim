@@ -59,12 +59,12 @@ highlight Folded ctermfg=8
 highlight link FoldColumn CursorLineNr
 
 " wildmenu
-highlight WildMenu ctermfg=0 ctermbg=1
+highlight WildMenu ctermfg=0 ctermbg=2
 highlight StatusLine ctermfg=0 ctermbg=6
 
 " error
-" highlight Error ctermbg=16
-" highlight ErrorMsg ctermfg=16
+highlight Error ctermfg=0 ctermbg=1
+highlight ErrorMsg ctermfg=0 ctermfg=1
 
 " search
 highlight Search ctermfg=0
@@ -77,6 +77,9 @@ execute 'highlight DiffAdd cterm=reverse ctermfg=' . g:GitAddColor
 execute 'highlight DiffChange cterm=reverse ctermfg=' . g:GitChangeColor
 execute 'highlight DiffDelete cterm=reverse ctermfg=' . g:GitUntrackedColor
 highlight DiffText ctermfg=4 cterm=reverse
+
+
+highlight XmlEndTag ctermfg=2
 
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter

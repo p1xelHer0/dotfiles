@@ -13,7 +13,7 @@ let g:ale_sign_column_always = 1
 highlight ALEWarning term=reverse cterm=reverse ctermfg=3
 highlight link ALEWarningSign ALEWarning
 
-highlight ALEError term=reverse cterm=reverse ctermfg=16
+highlight ALEError term=reverse cterm=reverse ctermfg=1
 highlight link ALEErrorSign ALEError
 
 
