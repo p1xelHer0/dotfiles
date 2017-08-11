@@ -1,0 +1,100 @@
+###
+
+# -- vim outside vim
+
+
+# bindings {{{
+
+# i3 - use left alt as modifier
+# set $mod Mod1
+
+# i3 - vim style
+# set $left h
+# set $down j
+# set $up k
+# set $right l
+
+# i3 - use Mouse+Mod1 to drag floating windows to their wanted position
+# floating_modifier Mod1
+
+# i3 - start program launcher
+# bindsym $mod+space exec rof
+
+# i3 - kill focused window
+# bindsym $mod+q kill
+
+# close focused window
+alt - w : chunkc tiling::window --close
+
+# start a terminal
+alt - return : open -na /Applications/iTerm.app
+
+# change focus
+alt - h : chunkc tiling::window --focus west
+alt - j : chunkc tiling::window --focus south
+alt - k : chunkc tiling::window --focus north
+alt - l : chunkc tiling::window --focus east
+
+# move focused window
+shift + alt - h : tiling::chunkc window --swap west
+shift + alt - j : tiling::chunkc window --swap south
+shift + alt - k : tiling::chunkc window --swap north
+shift + alt - l : tiling::chunkc window --swap east
+
+# toggle tiling / floating
+shift + alt - d : chunkc tiling::window --toggle float
+
+# i3 - change focus between tiling / floating windows
+# bindsym $mod+d focus mode_toggle
+
+# toggle fullscreen
+alt - f : chunkc tiling::window --toggle fullscreen
+
+# toggle native fullscreen
+shift + alt - f : chunkc tiling::window --toggle native-fullscreen
+
+# focus monitor
+alt - 1  : chunkc tiling::monitor -f 1
+alt - 2  : chunkc tiling::monitor -f 2
+alt - 3  : chunkc tiling::monitor -f 3
+alt - 4  : chunkc tiling::monitor -f 4
+alt - 5  : chunkc tiling::monitor -f 5
+alt - 6  : chunkc tiling::monitor -f 6
+alt - z  : chunkc tiling::monitor -f prev
+alt - c  : chunkc tiling::monitor -f next
+
+# move focused window to workspace
+shift + alt - 1 : chunkc tiling::window --send-to-desktop 1
+shift + alt - 2 : chunkc tiling::window --send-to-desktop 2
+shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
+shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
+shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
+shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
+shift + alt - x : chunkc tiling::window --send-to-desktop $(chunkc get _last_active_desktop)
+shift + alt - z : chunkc tiling::window --send-to-desktop prev
+shift + alt - c : chunkc tiling::window --send-to-desktop next
+
+# send window to monitor and follow focus
+ctrl + alt - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
+ctrl + alt - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
+ctrl + alt - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
+ctrl + alt - 4  : chunkc tiling::window --send-to-monitor 4; chunkc tiling::monitor -f 4
+ctrl + alt - 5  : chunkc tiling::window --send-to-monitor 5; chunkc tiling::monitor -f 5
+ctrl + alt - 6  : chunkc tiling::window --send-to-monitor 6; chunkc tiling::monitor -f 6
+ctrl + alt - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
+ctrl + alt - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::monitor -f next
+
+# move window
+shift + cmd - h : tiling::chunkc window --warp west
+shift + cmd - j : tiling::chunkc window --warp south
+shift + cmd - k : tiling::chunkc window --warp north
+shift + cmd - l : tiling::chunkc window --warp east
+
+# change layout of desktop
+ctrl + alt - a : chunkc tiling::desktop --layout bsp
+ctrl + alt - s : chunkc tiling::desktop --layout monocle
+ctrl + alt - d : chunkc tiling::desktop --layout float
+
+ctrl + alt - w : chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
+
+# }}}
