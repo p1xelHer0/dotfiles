@@ -71,11 +71,15 @@ NODE_VERSION=$(node --version | grep -v -)
 
 # $PATH {{{
 
+# dotfile scripts
+export DOT_SCRIPTS=$HOME/dotfiles/bin
+
 # Haskell
 export STACK_PACKAGES=$HOME/.local/bin
 
-
 # set $PATH
+export PATH=$DOT_SCRIPTS:$PATH
+
 export PATH=$STACK_PACKAGES:$PATH
 
 # }}}
@@ -84,6 +88,9 @@ export PATH=$STACK_PACKAGES:$PATH
 # macOS $PATH {{{
 
 if [[ -n "$IS_MACOS" ]]; then
+  # macOS dotfile scripts
+  export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/osx
+
   # chunkc + chunkwm
   export CHUNKWM=$HOME/chunkwm/bin
   export CHUNKC=$HOME/chunkwm/src/chunkc/bin
@@ -116,13 +123,15 @@ if [[ -n "$IS_MACOS" ]]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
   export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
 else
-  # rice scripts
-  export RICE_SCRIPTS=$HOME/dotfiles/bin/arch
+  # Arch Linux dotfile scripts
+  export ARCH_DOT_SCRIPTS=$HOME/dotfiles/bin/arch
 fi
 
 
 # set macOS $PATH
 if [[ -n "$IS_MACOS" ]]; then
+  export PATH=$MACOS_DOT_SCRIPTS:$PATH
+
   export PATH=$CHUNKWM:$PATH
   export PATH=$CHUNKC:$PATH
 
@@ -144,7 +153,7 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH=$MAVEN_HOME/bin:$PATH
   export PATH=$GRADLE_HOME/bin:$PATH
 else
-  export PATH=$RICE_SCRIPTS:$PATH
+  export PATH=$ARCH_DOT_SCRIPTS:$PATH
 fi
 
 # }}}

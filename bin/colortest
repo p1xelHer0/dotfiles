@@ -1,3 +1,9 @@
+
+#!/usr/bin/env bash
+
+###
+
+# -- print terminal colors
 # https://superuser.com/questions/270214/how-can-i-change-the-colors-of-my-xterm-using-ansi-escape-sequences
 colortest() {
   text='dank'
@@ -28,3 +34,5 @@ colortest_small() {
 
   printf "\e[0m\n";
 }
+
+colortest
