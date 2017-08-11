@@ -23,6 +23,9 @@ bindsym $mod+space exec rofi -show run
 # kill focused window
 bindsym $mod+q kill
 
+# chunkwm - close focused window
+# alt - w : chunkc tiling::window --close
+
 # start a terminal
 bindsym $mod+Return exec urxvtc
 
@@ -47,52 +50,8 @@ bindsym $mod+d focus mode_toggle
 # toggle fullscreen
 bindsym $mod+f fullscreen toggle
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-
-# chunkwm - send window to last active, prev or next desktop
-# shift + alt - x : `id=$(chunkc query _last_active_desktop); chunkc window -d $id; khd -p "cmd + alt - $id" &> /dev/null`
-# shift + alt - z : chunkc window -d prev; khd -p "cmd + alt - z"
-# shift + alt - c : chunkc window -d next; khd -p "cmd + alt - c"
-
-
-
-
-
-
-
-
-# split in horizontal orientation
-bindsym $mod+- split h
-
-# split in vertical orientation
-bindsym $mod+_ split v
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-# bindsym $mod+d focus child
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# chunkwm -toggle native fullscreen
+# shift + alt - f : chunkc tiling::window --toggle native-fullscreen
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -101,11 +60,43 @@ bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+# chunkwm - alt - z  : chunkc tiling::monitor -f prev
+# chunkwm - alt - c  : chunkc tiling::monitor -f next
 
+# move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+# chunkwm - shift + alt - x : chunkc tiling::window --send-to-desktop $(chunkc get _last_active_desktop)
+# chunkwm - shift + alt - z : chunkc tiling::window --send-to-desktop prev
+# chunkwm - shift + alt - c : chunkc tiling::window --send-to-desktop next
+
+# split in horizontal orientation
+# bindsym $mod+- split h
+
+# split in vertical orientation
+# bindsym $mod+_ split v
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+# bindsym $mod+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym $mod+w move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+Shift+w scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -119,11 +110,6 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'exit i3?' -b 'y' 'i3-msg exi
 # resize window (you can also use the mouse for that)
 mode "resize" {
   # these bindings trigger as soon as you enter the resize mode
-
-  # pressing left will shrink the window’s width
-  # pressing right will grow the window’s width
-  # pressing up will shrink the window’s height
-  # pressing down will grow the window’s height
   bindsym $left         resize shrink width 10 px or 10 ppt
   bindsym $down         resize grow height 10 px or 10 ppt
   bindsym $up           resize shrink height 10 px or 10 ppt
@@ -165,8 +151,6 @@ font pango:lemon 16
 # this is the actual font
 for_window [class=".*"] title_format "<span font='Gohu GohuFont 11'>  %title</span>"
 
-
-
 # gaps
 gaps inner 0
 
@@ -174,9 +158,6 @@ gaps inner 0
 for_window [class="^.*"] border normal 0
 
 # }}}
-
-
-
 
 
 # colors {{{

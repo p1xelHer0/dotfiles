@@ -11,8 +11,8 @@ render: (output) ->
 style: """
   font: 14px GohuFont
   text-transform: lowercase
-  right: 5px
-  top: 5px
+  right: 12px
+  top: 8px
   """
 
 timeAndDate: (date, time) ->

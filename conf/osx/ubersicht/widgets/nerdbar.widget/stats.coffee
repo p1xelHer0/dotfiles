@@ -11,8 +11,8 @@ render: (output) ->
 style: """
   font: 14px GohuFont
   text-transform: lowercase
-  left: 5px
-  top: 5px
+  left: 12px
+  top: 8px
   height: 14px
 """
 
