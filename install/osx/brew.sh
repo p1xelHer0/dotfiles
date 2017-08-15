@@ -22,7 +22,7 @@ apps=(
   fasd                                          # utils - navigate directories fast, like autojump, z
   fzf                                           # utils - terminal fuzzy finder
   git                                           # utils
-  koekeishiya/formulae/khd                      # utils - hotkey daemon
+  koekeishiya/formulae/skhd                     # utils - hotkey daemon
   chunkwm                                       # utils - window manager
   ranger                                        # utils - file manager
   neovim/neovim/neovim                          # editor
@@ -77,5 +77,5 @@ brew install "${apps[@]}"
 brew cleanup
 
 # start chunkwm and khd by default
-brew services start khd
+brew services start koekeishiya/formulae/skhd
 brew services start chunkwm

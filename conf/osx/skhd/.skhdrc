@@ -27,7 +27,7 @@
 alt - w : chunkc tiling::window --close
 
 # start a terminal
-alt - return : open -na /Applications/iTerm.app
+alt - return : open -na /Applications/Alacritty.app
 
 # change focus
 alt - h : chunkc tiling::window --focus west
