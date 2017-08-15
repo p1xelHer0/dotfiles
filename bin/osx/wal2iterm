@@ -17,7 +17,7 @@ mkdir -p "$iterm_color_dir"
 # filename for output
 wal_filename="$(< "${cache_dir}/wal")"
 wal_filename="${wal_filename/*\/}"
-out_filename="${iterm_color_dir}/${wal_filename}.itermcolors"
+out_filename="$HOME/dotfiles/conf/osx/iterm/colors/${wal_filename}.itermcolors"
 
 # import colors
 c=($(< "${cache_dir}/colors"))
@@ -73,7 +73,7 @@ export_iterm_colors() {
   # special colors
   set_color "Background Color" "${c[0]}"
   set_color "Badge Color" "${c[0]}"
-  set_color "Bold Color" "${c[0]}"
+  set_color "Bold Color" "${c[15]}"
   set_color "Cursor Color" "${c[15]}"
   set_color "Cursor Guide Color" "${c[15]}"
   set_color "Cursor Text Color" "${c[0]}"
