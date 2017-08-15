@@ -2,3 +2,5 @@
 conf/base16/.base16
 conf/osx/retired/atom/config.cson
 conf/osx/ubersicht/widgets/nerdbar.widget/scripts/network.out
+
+*.bak
