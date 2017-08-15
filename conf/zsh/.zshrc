@@ -217,11 +217,11 @@ if [[ -n "$IS_MACOS" ]]; then
   pyenv() {
     printf "\e[38;5;2mpyenv init... "
     eval "$(command pyenv init -)"
-    printf "\e[38;5;00m\e[48;5;2m done\e[38;5;2m\e[48;5;00m█▓░";
+    printf "done";
     printf "\e[38;5;4m pyenv virtualenv init... "
     eval "$(command pyenv virtualenv-init -)"
     export PYENV_INIT=1
-    printf "\e[38;5;00m\e[48;5;4m done\e[38;5;4m\e[48;5;00m█▓░\e[0m\n";
+    printf "done\e[0m\n";
     pyenv "$@"
   }
 fi
@@ -236,10 +236,10 @@ fi
 # load rbenv
 if [[ -n "$IS_MACOS" ]]; then
   rbenv() {
-    printf "\e[38;5;16mrbenv init... "
+    printf "\e[38;5;1mrbenv init... "
     eval "$(command rbenv init -)"
     export RBENV_INIT=1
-    printf "\e[38;5;00m\e[48;5;16m done\e[38;5;16m\e[48;5;00m█▓░\e[0m\n";
+    printf "done\e[0m\n";
     rbenv "$@"
   }
 fi
