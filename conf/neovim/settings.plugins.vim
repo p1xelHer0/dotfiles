@@ -82,23 +82,24 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   set scrolloff=999
+  set nocursorline
   Limelight
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
-  silent !tmux set pane-border-status bottom
   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
   set showmode
   set showcmd
   set scrolloff=5
+  set nocursorline
   Limelight!
 
   " some highlights are breaking upon leaving goyo
-  highlight VertSplit ctermfg=18 ctermbg=18
+  highlight VertSplit ctermfg=0 ctermbg=0
 
-  highlight NonText ctermfg=bg
-  highlight EndOfBuffer ctermfg=bg
+  highlight NonText ctermfg=0
+  highlight EndOfBuffer ctermfg=0
 
   highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
   highlight NERDTreeGitStatusModified ctermfg=3
