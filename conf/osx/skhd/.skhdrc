@@ -36,10 +36,10 @@ alt - k : chunkc tiling::window --focus north
 alt - l : chunkc tiling::window --focus east
 
 # move focused window
-shift + alt - h : tiling::chunkc window --swap west
-shift + alt - j : tiling::chunkc window --swap south
-shift + alt - k : tiling::chunkc window --swap north
-shift + alt - l : tiling::chunkc window --swap east
+shift + alt - h : chunkc tiling::window --swap west
+shift + alt - j : chunkc tiling::window --swap south
+shift + alt - k : chunkc tiling::window --swap north
+shift + alt - l : chunkc tiling::window --swap east
 
 # toggle tiling / floating
 shift + alt - d : chunkc tiling::window --toggle float
