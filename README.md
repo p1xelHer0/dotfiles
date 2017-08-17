@@ -84,7 +84,6 @@
  bar            > actual lemonbar implementation
  wal-set        > sets wal colors for dunst and lemonbar
 
-
  }}}
 
 ```
