@@ -1,0 +1,3 @@
+RESULT="$(/usr/local/bin/spotify status)"
+
+echo "$(echo "$RESULT" | grep "Artist" | awk -F": " '{print $2}') -  $(echo "$RESULT" | grep "Track: " | awk -F":" '{print $2}')"

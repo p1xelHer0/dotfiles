@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+
 function getBytes {
     netstat -w1 > $HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/scripts/network.out & sleep 1.5; kill $!;
 }

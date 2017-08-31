@@ -12,11 +12,10 @@ set encoding=utf-8
 let g:mapleader = "\<Space>"
 
 " don't use arrows!
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " reload .vimrc
 noremap <Leader><Leader>r :so $MYVIMRC<CR>

@@ -46,7 +46,8 @@ Plug 'elzr/vim-json',                          { 'for': 'json' }
 Plug 'othree/xml.vim',                         { 'for': 'xml' }
 
 " Markdown
-Plug 'tpope/vim-markdown',                     { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
+Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'npm i -g instant-markdown-d' }
 
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
@@ -59,15 +60,15 @@ Plug 'raichoo/purescript-vim',                 { 'for': 'purescript' }
 Plug 'frigoeu/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Reason
-Plug 'reasonml/vim-reason-loader'
+Plug 'reasonml-editor/vim-reason'
 Plug 'MartinLafreniere/vim-PairTools'
 
 " Haskell
+Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
 Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
-" Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
-Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
+Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
 " }}}
 
@@ -90,6 +91,7 @@ Plug 'junegunn/gv.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
 Plug 'terryma/vim-multiple-cursors'
