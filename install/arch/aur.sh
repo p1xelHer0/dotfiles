@@ -9,11 +9,13 @@ packages=(
   https://aur.archlinux.org/fasd-git.git
   https://aur.archlinux.org/google-chrome.git
   https://aur.archlinux.org/lemonbar-git.git
+  https://aur.archlinux.org/ncurses5-compat-libs.git
   https://aur.archlinux.org/neofetch.git
   https://aur.archlinux.org/nvm.git
   https://aur.archlinux.org/ruby-msgpack.git
   https://aur.archlinux.org/ruby-neovim.git
   https://aur.archlinux.org/spotify.git
+  https://aur.archlinux.org/stack-static.git
   https://aur.archlinux.org/ttf-twemoji-color.git
   https://aur.archlinux.org/xbanish.git
 )

@@ -5,6 +5,7 @@
 # packages to install
 apps=(
   hlint
+  hindent
   ghc-mod
   stylish-haskell
 )
@@ -13,5 +14,5 @@ apps=(
 if test "$(which stack)"
 then
   echo "Installing Haskell packages..."
-  stack install "${apps[@]}"
+  stack --system-ghc install "${apps[@]}"
 fi

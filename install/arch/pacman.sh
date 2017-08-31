@@ -11,7 +11,7 @@ packages=(
   python-neovim  # neovim
   python2-neovim # neovim
 
-  shellcheck     # shell linter
+  # shellcheck     # shell linter
 
   alsa-utils     # sound
   pulseadio      # sound
@@ -53,7 +53,7 @@ packages=(
 
   openntpd       # time
 
-  stack          # haskell
+  ghc-static     # haskell
 
   python         # python3
   python-pip     # python3
@@ -71,3 +71,4 @@ vmboxpackages=(
 
 sudo pacman -S "${packages[@]}"
 
+# remove orphaned packages: pacman -Rns $(pacman -Qtdq)
