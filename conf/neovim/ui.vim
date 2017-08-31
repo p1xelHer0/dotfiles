@@ -6,7 +6,8 @@ scriptencoding utf-8
 set encoding=utf-8
 
 
-" set Git colors according to .gitconig
+" save colors from Git
+" used for DiffColors and such
 let g:GitAddColor = system('git config --list | grep added | grep -o -E "[0-8]"')
 let g:GitChangeColor = system('git config --list | grep changed | grep -o -E "[0-8]"')
 let g:GitUntrackedColor = system('git config --list | grep untracked | grep -o -E "[0-8]"')
@@ -54,7 +55,6 @@ highlight CursorLine cterm=NONE
 highlight Visual ctermbg=0 cterm=reverse
 
 " fold
-" highlight Folded
 highlight Folded ctermfg=8
 highlight link FoldColumn CursorLineNr
 
@@ -73,12 +73,13 @@ highlight Search ctermfg=0
 highlight NonText ctermfg=0
 highlight EndOfBuffer ctermfg=0
 
+" set DiffColors according to Git colors
 execute 'highlight DiffAdd cterm=reverse ctermfg=' . g:GitAddColor
 execute 'highlight DiffChange cterm=reverse ctermfg=' . g:GitChangeColor
 execute 'highlight DiffDelete cterm=reverse ctermfg=' . g:GitUntrackedColor
 highlight DiffText ctermfg=4 cterm=reverse
 
-
+" xml (jsx)
 highlight XmlEndTag ctermfg=2
 
 
@@ -101,8 +102,16 @@ augroup insert_leave
 augroup END
 
 " only show the colorcolumn if the width surpasses 120 on that specific line
-highlight OverLength ctermbg=3 ctermfg=0
+highlight OverLength ctermfg=0 ctermbg=3
 match OverLength /\%121v/
+
+" show trailing spaces at all time, but don't show line breaks etc
+highlight TrailingSpaces ctermfg=1
+match TrailingSpaces /\s\+$/
+
+" show when tabs and spaces are mixed
+highlight TabSpaceMix ctermfg=0 ctermbg=1
+match TabSpaceMix / \+\ze\t/
 
 " only show cursorline on focused window
 autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
