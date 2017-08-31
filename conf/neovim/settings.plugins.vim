@@ -171,16 +171,16 @@ let g:neoformat_enabled_javascript = ['prettier-eslint']
 autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
 
 " CSS
-let g:neoformat_enabled_css = ['stylefmt']
+let g:neoformat_enabled_css = ['prettier']
 
 " SASS
-let g:neoformat_enabled_scss = ['stylefmt']
+let g:neoformat_enabled_scss = ['prettier']
 
 " JSON
-let g:neoformat_enabled_json = ['jsbeautify']
+let g:neoformat_enabled_json = ['prettier']
 
 " Haskell
-let g:neoformat_enabled_haskell = ['stylish-haskell']
+let g:neoformat_enabled_haskell = ['hindent', 'stylish-haskell']
 
 " Lua
 let g:neoformat_enabled_lua = ['luaformatter']
