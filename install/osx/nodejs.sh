@@ -21,20 +21,14 @@ fi
 
 # globally install with npm
 packages=(
+  bs-platform
   create-react-app
   eslint
-  flow-bin
-  js-beautify
-  preact-cli
   prettier
   prettier-eslint-cli
-  react-native-cli
   reason-cli
-  serve
-  stylefmt
   stylelint
   tern
-  webpack
 )
 
 npm install -g "${packages[@]}"
