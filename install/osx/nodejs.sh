@@ -26,9 +26,8 @@ packages=(
   eslint
   prettier
   prettier-eslint-cli
-  reason-cli
-  stylelint
   tern
+  instant-markdown-d
 )
 
 npm install -g "${packages[@]}"

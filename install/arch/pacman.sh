@@ -4,27 +4,28 @@
 
 # packages to install
 packages=(
-  acpid          # monitor - battery
   htop           # monitor - processes
 
   neovim         # neovim
   python-neovim  # neovim
   python2-neovim # neovim
 
-  shellcheck     # shell linter
+  # shellcheck     # shell linter
 
   alsa-utils     # sound
   pulseadio      # sound
   pulseadio-alsa # sound
 
+  zsh            # shell
   rxvt-unicode   # terminal
-  xterm          # terminal
   tmux           # terminal
   ranger         # terminal - file manager
 
   thunar         # file manager
 
   dunst          # notifications
+
+  imagemagick    # wal
 
   fzf            # utils
   ripgrep        # utils
@@ -36,19 +37,13 @@ packages=(
   p7zip          # utils - 7zip
 
   xorg           # x
-  xorg-server    # x
-  xorg-twm       # x
-  xorg-utils     # x
-  xorg-xclock    # x
   xorg-xinit     # x
   xorg-xfontsel  # x - find X fonts
-  xorg-xrdb      # x
 
   rofi           # program launcher
   feh            # wallpaper
 
   ttf-dejavu     # fonts
-  freetype2      # fonts
   xorg-fonts     # x - fonts
 
   openntpd       # time
@@ -58,10 +53,9 @@ packages=(
   python         # python3
   python-pip     # python3
 
+  linux-headers
   avahi
-  cronie
   dbus
-  linux-header
 )
 
 vmboxpackages=(

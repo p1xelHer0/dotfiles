@@ -7,6 +7,7 @@ wget -qO- https://get.haskellstack.org | sh
 
 # packages to install
 apps=(
+  --resolver nightly-2016-10-17 hindent
   hlint
   ghc-mod
   stylish-haskell

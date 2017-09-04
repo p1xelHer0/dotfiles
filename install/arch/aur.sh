@@ -7,7 +7,9 @@ packages=(
   https://aur.archlinux.org/cava.git
   https://aur.archlinux.org/discord.git
   https://aur.archlinux.org/fasd-git.git
+  https://aur.archlinux.org/gohufont.git
   https://aur.archlinux.org/google-chrome.git
+  https://aur.archlinux.org/i3-gaps-git.git
   https://aur.archlinux.org/lemonbar-git.git
   https://aur.archlinux.org/neofetch.git
   https://aur.archlinux.org/nvm.git

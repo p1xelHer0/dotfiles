@@ -4,6 +4,7 @@
 
 # packages to install
 apps=(
+  --resolver nightly-2016-10-17 hindent
   hlint
   ghc-mod
   stylish-haskell
@@ -13,5 +14,5 @@ apps=(
 if test "$(which stack)"
 then
   echo "Installing Haskell packages..."
-  stack install "${apps[@]}"
+  stack install --system-ghc "${apps[@]}"
 fi
