@@ -8,6 +8,8 @@
 ! start urxvt daemon
 urxvtd -q -o -f &
 
+compton --config /dev/null &
+
 ! start VirtualBox helpers
 /usr/bin/VBoxClient-all &
 

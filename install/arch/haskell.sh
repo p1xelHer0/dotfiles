@@ -6,6 +6,7 @@
 apps=(
   --resolver nightly-2016-10-17 hindent
   hlint
+  hindent
   ghc-mod
   stylish-haskell
 )

@@ -48,7 +48,7 @@ packages=(
 
   openntpd       # time
 
-  stack          # haskell
+  ghc-static     # haskell
 
   python         # python3
   python-pip     # python3
@@ -65,3 +65,4 @@ vmboxpackages=(
 
 sudo pacman -S "${packages[@]}"
 
+# remove orphaned packages: pacman -Rns $(pacman -Qtdq)
