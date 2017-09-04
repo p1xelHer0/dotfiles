@@ -38,13 +38,16 @@ packages=(
 
   xorg           # x
   xorg-xinit     # x
-  xorg-xfontsel  # x - find X fonts
+  xorg-xmodmap   # x - keymappings
+
+  xcape          # keymappings
 
   rofi           # program launcher
   feh            # wallpaper
 
   ttf-dejavu     # fonts
   xorg-fonts     # x - fonts
+  xorg-xfontsel  # x - find X fonts
 
   openntpd       # time
 

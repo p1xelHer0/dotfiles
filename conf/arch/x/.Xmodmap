@@ -1,0 +1,16 @@
+!!!
+
+! -- map caps lock to esc and ctrl in combination with other keys
+
+
+! make caps_lock an additional control
+clear Lock
+keycode 66 = Control_L
+add Control = Control_L
+
+! make escape be caps_lock
+keysym Escape = Caps_Lock
+add Lock = Caps_Lock
+
+! make a fake escape key (so we can map it with xcape)
+keycode 999 = Escape
