@@ -8,6 +8,9 @@ set encoding=utf-8
 
 " ALE {{{
 
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_change = 'never'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_save = 1
 
 " Enable both ESlint and stylelint in jsx (styled-components)
