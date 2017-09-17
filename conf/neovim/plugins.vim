@@ -55,13 +55,13 @@ Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
 " Elm
 Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
-" PureScript
-Plug 'raichoo/purescript-vim',                 { 'for': 'purescript' }
-Plug 'frigoeu/psc-ide-vim',                    { 'for': 'purescript' }
-
 " Reason
 Plug 'reasonml-editor/vim-reason'
 Plug 'MartinLafreniere/vim-PairTools'
+
+" PureScript
+Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
+Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
@@ -88,25 +88,22 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 
 " editing
-Plug 'editorconfig/editorconfig-vim'
-Plug 'sbdchd/neoformat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'SirVer/ultisnips'
-Plug 'junegunn/vim-easy-align'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'AndrewRadev/switch.vim'
+Plug 'SirVer/ultisnips'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/vim-easy-align'
+Plug 'sbdchd/neoformat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " file handling and searching
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-repeat'
-Plug 'universal-ctags/ctags'
-if IsMacOS()
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " use brew fzf
-else
-  Plug '/usr/where/is/fzf' | Plug 'junegunn/fzf.vim' " use pacman fzf
-endif
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " styling
 " Plug 'chriskempson/base16-vim'

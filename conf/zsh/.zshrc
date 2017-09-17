@@ -145,13 +145,14 @@ if [[ -n "$IS_MACOS" ]]; then
 
   export PATH=$JENV:$PATH
 
-  export PATH=$ANDROID_HOME/tools:$PATH
-  export PATH=$ANDROID_HOME/platform-tools:$PATH
-  export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
-
   export PATH=$ANT_HOME/bin:$PATH
   export PATH=$MAVEN_HOME/bin:$PATH
   export PATH=$GRADLE_HOME/bin:$PATH
+
+  export PATH=$ANDROID_HOME/tools:$PATH
+  export PATH=$ANDROID_HOME/tools/bin:$PATH
+  export PATH=$ANDROID_HOME/platform-tools:$PATH
+  export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
 else
   export PATH=$ARCH_DOT_SCRIPTS:$PATH
 fi
@@ -194,12 +195,7 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
 
 # load fzf
-if [[ -n "$IS_MACOS" ]]; then
-  [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-else
-  [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-  [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-fi
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 
 # setup function to only load stuff when we need them
