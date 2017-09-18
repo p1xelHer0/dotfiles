@@ -63,15 +63,18 @@ highlight WildMenu ctermfg=0 ctermbg=2
 highlight StatusLine ctermfg=0 ctermbg=6
 
 " error
-highlight Error ctermfg=0 ctermbg=1
-highlight ErrorMsg ctermfg=0 ctermfg=1
+highlight Error ctermfg=7
+highlight ErrorMsg ctermfg=1
 
 " search
 highlight Search ctermfg=0
 
-" NonText same color as bg, aka only show only when marked
-highlight NonText ctermfg=0
+" NonText
+highlight NonText ctermfg=7
 highlight EndOfBuffer ctermfg=0
+
+" show the MatchParen more obvious
+highlight MatchParen ctermfg=4 ctermbg=2
 
 " set DiffColors according to Git colors
 execute 'highlight DiffAdd cterm=reverse ctermfg=' . g:GitAddColor

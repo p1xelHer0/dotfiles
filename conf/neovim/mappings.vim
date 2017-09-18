@@ -46,6 +46,10 @@ nmap Q q
 " I will probably missclick this as well
 nnoremap K <nop>
 
+" show and hide listchars
+nnoremap <Leader>lch :set listchars=<CR>
+nnoremap <Leader>lcs :set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬<CR>
+
 " repeat last macro if in a Normal buffer
 nnoremap <expr> <CR> empty(&buftype) ? '@@' : '<CR>'
 
