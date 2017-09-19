@@ -78,4 +78,4 @@ brew cleanup
 
 # start chunkwm and khd by default
 brew services start koekeishiya/formulae/skhd
-brew services start chunkwm
+brew services restart crisidev/chunkwm/chunkwm
