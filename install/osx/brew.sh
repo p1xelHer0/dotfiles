@@ -20,7 +20,7 @@ apps=(
   coreutils                                     # utils
   curl                                          # utils
   fasd                                          # utils - navigate directories fast, like autojump, z
-  fzf                                           # utils - terminal fuzzy finder
+  # fzf                                         # utils - terminal fuzzy finder, install with vim atm
   git                                           # utils
   koekeishiya/formulae/skhd                     # utils - hotkey daemon
   chunkwm                                       # utils - window manager
