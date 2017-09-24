@@ -1,7 +1,7 @@
 # nvm {{{
 
 # call 'nvm use' when entering a directory with a .nvmrc file
-autoload -U add-zsh-hook
+# autoload -U add-zsh-hook
 
 load-nvmrc() {
   local node_version="$(nvm version)"
@@ -21,7 +21,7 @@ load-nvmrc() {
   fi
 }
 
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # }}}
