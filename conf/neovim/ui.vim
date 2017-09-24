@@ -117,7 +117,7 @@ highlight TabSpaceMix ctermfg=0 ctermbg=1
 match TabSpaceMix / \+\ze\t/
 
 " only show cursorline on focused window
-autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
-autocmd FocusLost,WinLeave * setlocal nocursorline
+" autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
+" autocmd FocusLost,WinLeave * setlocal nocursorline
 
 " }}}
