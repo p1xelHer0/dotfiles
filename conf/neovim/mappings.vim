@@ -47,7 +47,7 @@ nmap Q q
 nnoremap K <nop>
 
 " show and hide listchars
-nnoremap <Leader>lch :set listchars=<CR>
+nnoremap <Leader>lch :set listchars=<CR>:set listchars+=tab:»\ ,trail:·,nbsp:×<CR>
 nnoremap <Leader>lcs :set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬<CR>
 
 " repeat last macro if in a Normal buffer

@@ -70,7 +70,7 @@ highlight ErrorMsg ctermfg=1
 highlight Search ctermfg=0
 
 " NonText
-highlight NonText ctermfg=7
+highlight NonText ctermfg=8
 highlight EndOfBuffer ctermfg=0
 
 " show the MatchParen more obvious

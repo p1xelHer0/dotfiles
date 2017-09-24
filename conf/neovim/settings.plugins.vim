@@ -170,8 +170,7 @@ let g:neoformat_try_formatprg = 1
 " let g:neoformat_verbose = 1
 
 " JavaScript
-let g:neoformat_enabled_javascript = ['prettier-eslint']
-autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
+let g:neoformat_enabled_javascript = ['prettier']
 
 " CSS
 let g:neoformat_enabled_css = ['prettier']

@@ -26,7 +26,7 @@ call plug#begin()
 Plug 'pangloss/vim-javascript',                { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
-Plug 'fleischie/vim-styled-components',        { 'for': 'javascript.jsx' }
+Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'ternjs/tern_for_vim',                    { 'for': 'javascript.jsx', 'do': 'npm install' }
 Plug 'carlitux/deoplete-ternjs',               { 'for': 'javascript.jsx' }
 Plug 'othree/jspc.vim',                        { 'for': 'javascript.jsx' }
