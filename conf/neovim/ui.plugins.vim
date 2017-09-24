@@ -10,10 +10,10 @@ set encoding=utf-8
 
 let g:ale_sign_column_always = 1
 
-highlight ALEWarning term=reverse cterm=reverse ctermfg=3
+highlight ALEWarning cterm=underline
 highlight link ALEWarningSign ALEWarning
 
-highlight ALEError term=reverse cterm=reverse ctermfg=1
+highlight ALEError cterm=underline
 highlight link ALEErrorSign ALEError
 
 
