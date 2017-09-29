@@ -52,7 +52,7 @@ highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=0
 
 " selection
 highlight CursorLine cterm=NONE
-highlight Visual ctermbg=0 cterm=reverse
+highlight Visual cterm=reverse ctermbg=0
 
 " fold
 highlight Folded ctermfg=8
