@@ -29,7 +29,6 @@ nnoremap <Leader>gv :Goyo<CR>
 
 
 " Haskell
-
 augroup filetype_haskell
   autocmd!
   autocmd FileType haskell nnoremap <buffer><silent> tt :GhcModType<CR>
@@ -47,17 +46,19 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
-" ReasonPrettyPrint
-augroup filetype_reason
-  autocmd!
-  autocmd FileType reason nnoremap <buffer> <Leader><Leader>f :ReasonPrettyPrint<Cr>
-augroup END
-
-
 " Tern
 augroup filetype_javascript
   autocmd!
   autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
+augroup END
+
+
+" Reason
+augroup filetype_reason
+  autocmd!
+  autocmd FileType reason nnoremap <buffer> <Leader>d :MerlinLocate<CR>
+
+  autocmd FileType reason nnoremap <buffer><silent> tt :MerlinTypeOf<CR>
 augroup END
 
 " }}}

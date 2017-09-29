@@ -57,7 +57,6 @@ Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
 " Reason
 Plug 'reasonml-editor/vim-reason'
-Plug 'MartinLafreniere/vim-PairTools'
 
 " PureScript
 Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
