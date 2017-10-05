@@ -20,6 +20,13 @@ highlight link ALEErrorSign ALEError
 " }}}
 
 
+" fzf {{{
+
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
+
+" }}}
+
+
 " GitGutter {{{
 
 " Git status icons
