@@ -24,7 +24,7 @@
  # 🍏 macOS + 🐧 Arch Linux {{{
 
    # 🛠 ~/dotfiles/conf
-  
+
    zsh            > shell for intaractive use and powerful scripting
    oh-my-zsh      > community-driven framework for managing your zsh configuration
    tmux           > terminal multiplexer
@@ -41,7 +41,7 @@
 
 
    # 🔮 ~/dotfiles/bin
-  
+
    colortest      > test terminal colors 0-8 fg and bg
 
  # }}}
@@ -52,7 +52,7 @@
  # 🍏 macOS-specific {{{
 
    # 🛠 ~/dotfiles/conf/osx
-  
+
    iterm2-nightly > terminal emulator
    alacritty      > faster terminal emulator, testing it
    brew           > package manager of macOS
@@ -63,7 +63,7 @@
 
 
    # 🔮 ~/dotfiles/bin/osx
-  
+
    wal-set        > sets wal colors for alacritty, chunkwm and ubersicht
    wal2iterm      > exports wal colors to .itermcolors for iTerm2
  
@@ -75,7 +75,7 @@
  # 🐧 Arch Linux-specific wip {{{
 
    # 🛠 ~/dotfiles/conf/arch
-  
+
    urvxt          > terminal emulator
    i3-gaps        > i3 with more features
    dunst          > lightweight notification-daemon
@@ -86,14 +86,14 @@
    cava           > console-based audio visualizer
    maim           > screenshots, overcome shortcomings of scrot
    xbanish        > banish the mouse cursor when typing
-  
-  
+
+
    # 🔮 ~/dotfiles/bin/arch
-  
+
    bar            > actual lemonbar implementation
    wal-set        > sets wal colors for dunst and lemonbar
 
- }}}
+ # }}}
 ```
 ```
 ```
