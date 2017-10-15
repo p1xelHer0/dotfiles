@@ -122,10 +122,17 @@ if [[ -n "$IS_MACOS" ]]; then
   export GRADLE_HOME=/usr/local/opt/gradle
   export ANDROID_HOME=/usr/local/opt/android-sdk
   export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+
+# }}}
+
+
+# Arch Linux $PATH {{
 else
   # Arch Linux dotfile scripts
   export ARCH_DOT_SCRIPTS=$HOME/dotfiles/bin/arch
 fi
+
+# }}}
 
 
 # set macOS $PATH
@@ -153,6 +160,11 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH=$ANDROID_HOME/tools/bin:$PATH
   export PATH=$ANDROID_HOME/platform-tools:$PATH
   export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
+
+# }}}
+
+
+# set Arch Linux $PATH {{{
 else
   export PATH=$ARCH_DOT_SCRIPTS:$PATH
 fi

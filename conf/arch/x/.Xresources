@@ -16,8 +16,11 @@ URxvt*internalBorder: 50
 ! typeface
 ! URxvt*font:        -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
 ! URxvt*boldFont:    -gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1
-URxvt*font:        -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
-URxvt*boldFont:    -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
+! URxvt*font:        -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
+! URxvt*boldFont:    -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
+
+URxvt.font: xft:Source Code Pro:size=14
+URxvt.boldFont: xft:Source Code Pro:bold:size=14
 
 URxvt.letterSpace: 0
 
