@@ -35,6 +35,8 @@ packages=(
   maim           # utils - screenshots
   wmctrl         # utils - used by lemonbar, "interact with X"
   p7zip          # utils - 7zip
+  zip            # utils - zipping
+  unzip          # utils - uinzipping
 
   xorg           # x
   xorg-xinit     # x
