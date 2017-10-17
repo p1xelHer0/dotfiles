@@ -10,7 +10,7 @@ exec zsh
 
 if test ! "$(which nvm)"
 then
-  echo "Installing a stable version of nodejs..."
+  echo "installing latest Node.js"
 
   # install the latest version of nodejs
   nvm install node
@@ -19,15 +19,24 @@ then
   nvm alias default node
 fi
 
-# globally install with npm
+# globally install with yarn
 packages=(
-  bs-platform
+  bower
   create-react-app
   eslint
+  instant-markdown-d
   prettier
   prettier-eslint-cli
+  pulp
+  react-native-cli
   tern
-  instant-markdown-d
 )
 
-npm install -g "${packages[@]}"
+# install reason with npm for now
+reasonPackages=(
+  https://github.com/reasonml/reason-cli/archive/beta-v-1.13.7-bin-darwin.tar.gz
+  bs-platform
+)
+
+yarn global add "${packages[@]}"
+npm i -g "${reasonPackages[@]}"
