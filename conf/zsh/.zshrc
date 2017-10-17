@@ -139,6 +139,8 @@ fi
 if [[ -n "$IS_MACOS" ]]; then
   export PATH=$MACOS_DOT_SCRIPTS:$PATH
 
+  export PATH="/usr/local/sbin:$PATH"
+
   export PATH=$CHUNKWM:$PATH
   export PATH=$CHUNKC:$PATH
 
@@ -173,7 +175,7 @@ fi
 
 
 # NA > EU confirmed?
-export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 
 # preferred editor for local and remote sessions
@@ -182,6 +184,10 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+
+# only load custom ranger config
+export RANGER_LOAD_DEFAULT_RC=false
 
 
 # ssh
@@ -261,3 +267,5 @@ fi
 for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
 
 # }}}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
