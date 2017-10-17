@@ -53,12 +53,11 @@ augroup filetype_javascript
 augroup END
 
 
-" Reason
-augroup filetype_reason
+" OCaml
+augroup filetype_ocaml
   autocmd!
-  autocmd FileType reason nnoremap <buffer> <Leader>d :MerlinLocate<CR>
-
-  autocmd FileType reason nnoremap <buffer><silent> tt :MerlinTypeOf<CR>
+  autocmd FileType ocaml,reason nnoremap <buffer> <Leader>d :MerlinLocate<CR>
+  autocmd FileType ocaml,reason nnoremap <buffer><silent> tt :MerlinTypeOf<CR>
 augroup END
 
 " }}}
