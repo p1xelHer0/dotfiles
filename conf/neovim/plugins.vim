@@ -47,7 +47,7 @@ Plug 'othree/xml.vim',                         { 'for': 'xml' }
 
 " Markdown
 Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
-Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'npm i -g instant-markdown-d' }
+Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
@@ -83,7 +83,7 @@ Plug 'w0rp/ale'
 
 " Git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 
 " editing
