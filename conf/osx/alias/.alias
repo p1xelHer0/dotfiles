@@ -1,17 +1,23 @@
+# note: the "vim" command I am using refers to my custom vim function
+# which calls pyenv, pyenv-virtualenv and rbenv before opening vim
+# this way the correct versions of python and ruby is loaded before starting vim
+# this is because I dont want to load these as soon as I open a new terminal
+# it takes time, and I seldom use python and ruby directly in the terminal
+
 # open dotfiles in editor
-alias dotfiles="cd $HOME/dotfiles && $EDITOR"
+alias dotfiles="cd $HOME/dotfiles && vim"
 
 # open Neovim config
-alias vimrc="$EDITOR $HOME/dotfiles/conf/neovim"
+alias vimrc="vim $HOME/dotfiles/conf/neovim"
 
 # open zsh config
-alias zshrc="$EDITOR $HOME/dotfiles/conf/osx/zsh/.zshrc"
+alias zshrc="vim $HOME/dotfiles/conf/osx/zsh/.zshrc"
 
 # open alacritty.yml
-alias arc="$EDITOR $HOME/dotfiles/conf/osx/alacritty/alacritty.yml"
+alias arc="vim $HOME/dotfiles/conf/osx/alacritty/alacritty.yml"
 
 # open tmux split with swap files
-alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
+alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && vim'"
 
 # reload shell
 alias rl="exec zsh"
@@ -52,3 +58,4 @@ alias rwal="$HOME/.pyenv/shims/wal -i $HOME/dropbox/walls/rot/fav -o $HOME/dotfi
 
 # Savelend dev
 alias sldev="sh $HOME/dotfiles/conf/tmux/launchers/savelend.sh"
+alias onb="sh $HOME/dotfiles/conf/tmux/launchers/onboarding.sh"
