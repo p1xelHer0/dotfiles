@@ -69,6 +69,11 @@ set backupcopy=yes      " make a copy of the file and overwrite the original one
 " http://ksjoberg.com/vim-esckeys.html/
 set timeout timeoutlen=500 ttimeoutlen=100
 
+augroup set_cwd_to_file
+  autocmd!
+  autocmd BufEnter * silent! lcd %:p:h
+augroup END
+
 " http://learnvimscriptthehardway.stevelosh.com/chapters/18.html
 augroup filetype_vim
   autocmd!
