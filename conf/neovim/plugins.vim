@@ -8,7 +8,7 @@ set encoding=utf-8
 
 " auto install plug if not found
 if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo "$HOME/.config//nvim/autoload/plug.vim" --create-dirs
+  silent !curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs
   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   augroup PLUG
@@ -69,6 +69,9 @@ Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
+" other
+Plug 'ap/vim-css-color'
+
 " }}}
 
 
@@ -89,14 +92,16 @@ Plug 'junegunn/gv.vim'
 " editing
 Plug 'AndrewRadev/switch.vim'
 Plug 'SirVer/ultisnips'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'sgur/vim-editorconfig'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 
 " file handling and searching
 Plug 'scrooloose/nerdtree'
