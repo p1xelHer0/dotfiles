@@ -46,9 +46,12 @@ colorscheme wal
 
 " split border
 set fillchars+=vert: 
-highlight VertSplit ctermfg=0 ctermbg=0
+highlight VertSplit ctermfg=8 ctermbg=8
 highlight LineNr ctermbg=0
 highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=0
+
+" comments
+highlight Comment cterm=italic
 
 " selection
 highlight CursorLine cterm=NONE
@@ -104,17 +107,9 @@ augroup insert_leave
   autocmd InsertLeave * set nopaste
 augroup END
 
-" only show the colorcolumn if the width surpasses 120 on that specific line
+" only show the colorcolumn if the width surpasses 80 on that specific line
 highlight OverLength ctermfg=0 ctermbg=3
-match OverLength /\%121v/
-
-" show trailing spaces at all time, but don't show line breaks etc
-highlight TrailingSpaces ctermfg=1
-match TrailingSpaces /\s\+$/
-
-" show when tabs and spaces are mixed
-highlight TabSpaceMix ctermfg=0 ctermbg=1
-match TabSpaceMix / \+\ze\t/
+match OverLength /\%81v/
 
 " only show cursorline on focused window
 " autocmd BufEnter,FocusGained,VimEnter,WinEnter * setlocal cursorline
