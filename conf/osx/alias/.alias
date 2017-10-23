@@ -17,7 +17,7 @@ alias zshrc="vim $HOME/dotfiles/conf/osx/zsh/.zshrc"
 alias arc="vim $HOME/dotfiles/conf/osx/alacritty/alacritty.yml"
 
 # open tmux split with swap files
-alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && vim'"
+alias swap="tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'"
 
 # reload shell
 alias rl="exec zsh"
