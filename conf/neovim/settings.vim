@@ -8,11 +8,14 @@ set encoding=utf-8
 
 " Indentation {{{
 
-" filetype indent plugin on -- default Neovim
 set expandtab           " insert space characters whenever the tab key is pressed
 set tabstop=2           " 2 space characters
 set shiftwidth=2        " set to 2 according to tabstop
 set softtabstop=2       " set to 2 according to tabstop
+
+
+" commands that are default for Neovim, kept here for documentation
+" filetype indent plugin on -- default Neovim
 " set smarttab          " -- default Neovim
 " set autoindent        " -- default Neovim
 " set backspace=indent,eol,start  -- default Neovim
@@ -39,6 +42,9 @@ set scrolloff=5         " keep 5 lines above the cursor while scrolling
 set ignorecase          " ignore case when searching
 set smartcase           " ignore case if search pattern is all lowercase
 set showmatch           " automatically show matching brackets
+
+
+" commands that are default for Neovim, kept here for documentation
 " set incsearch         " show search matches as you type -- default Neovim
 " set hlsearch          " highlight search terms -- default Neovim
 
@@ -53,18 +59,22 @@ else                    " use xsel on Linux
   set clipboard+=unnamedplus
 endif
 set copyindent          " copy the previous indentation on autoindenting
+set mouse-=a            " disable mouse
+set visualbell          " disable error sound, enable the visual one instead
+set lazyredraw          " disable redraw while executing macros -- perf
+set showcmd             " show command on the last line
+set shortmess+=I        " no splash screen
+set backupcopy=yes      " make a copy of the file and overwrite the original one
+set foldmethod=syntax   " fold where you would expect folds, e.g. like in Atom
+set foldlevelstart=999  " make everything unfolded upon open
+set inccommand=nosplit  " preview substitute, e.g. using `%s/foo/bar`
+
+
+" commands that are default for Neovim, kept here for documentation
+" set encoding=utf-8    " use utf-8 -- default Neovim
 " set autoread          " auto reload files changed -- default Neovim
 " set laststatus=2      " display the status line always -- default Neovim
 " set wildmenu          " enable the wildmenu -- default Neovim
-set mouse-=a            " disable mouse, LEARN!
-set visualbell          " disable error sound, enable the visual one instead
-" set encoding=utf-8    " use utf-8 -- default Neovim
-" set history=10000     " remember more commands -- default Neovim
-set lazyredraw          " disable redraw while executing macros (perf)
-set showcmd             " show command on the last line (for learning)
-set shortmess+=I        " no splash screen
-set backupcopy=yes      " make a copy of the file and overwrite the original one
-set inccommand=nosplit  " preview substitute when using `%s/foo/bar`
 
 " fix slight delay after pressing ESC then O (???)
 " http://ksjoberg.com/vim-esckeys.html/
