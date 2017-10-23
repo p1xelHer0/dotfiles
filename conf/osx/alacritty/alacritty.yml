@@ -23,8 +23,8 @@ dimensions:
 # Units are physical pixels; this is not DPI aware.
 # (change requires restart)
 padding:
-  x: 50
-  y: 50
+  x: 30
+  y: 30
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -42,30 +42,30 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: GohuFont
+    family: Iosevka
     # Style can be specified to pick a specific face.
-    # style: Regular
+    style: Light
 
   # The bold font face
   bold:
-    family: GohuFont
+    family: Iosevka
     # Style can be specified to pick a specific face.
-    # style: Bold
+    style: Regular
 
   # The italic font face
   italic:
-    family: GohuFont
+    family: Iosevka
     # Style can be specified to pick a specific face.
-    # style: Italic
+    style: Light Italic
 
   # Point size of the font
-  size: 14.0
+  size: 16.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 1.0
-    y: 1.0
+    x: 0.0
+    y: 0.0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
@@ -112,17 +112,6 @@ colors:
   # Bright colors
   bright:
     black:   '0x777278'
-    red:     '0x9C6760'
-    green:   '0xB49174'
-    yellow:  '0xE39461'
-    blue:    '0x6A748C'
-    magenta: '0x847D8D'
-    cyan:    '0x99918D'
-    white:   '0xE8CEA8'
-
-  # Dim colors (Optional)
-  dim:
-    black:   '0x1D151E'
     red:     '0x9C6760'
     green:   '0xB49174'
     yellow:  '0xE39461'
