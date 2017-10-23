@@ -64,6 +64,7 @@ set lazyredraw          " disable redraw while executing macros (perf)
 set showcmd             " show command on the last line (for learning)
 set shortmess+=I        " no splash screen
 set backupcopy=yes      " make a copy of the file and overwrite the original one
+set inccommand=nosplit  " preview substitute when using `%s/foo/bar`
 
 " fix slight delay after pressing ESC then O (???)
 " http://ksjoberg.com/vim-esckeys.html/
