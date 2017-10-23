@@ -86,7 +86,7 @@ Plug 'w0rp/ale'
 
 " Git
 Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 
 " editing
