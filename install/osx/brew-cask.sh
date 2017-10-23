@@ -5,7 +5,9 @@
 # install cask
 brew tap caskroom/cask
 brew install brew-cask
+
 brew tap caskroom/versions
+brew tap caskroom/fonts
 
 # packages to install
 apps=(
@@ -15,6 +17,7 @@ apps=(
   dropbox                                       # utils
   firefox                                       # browser
   firefoxnightly                                # browser
+  font-iosevka                                  # font
   gitkraken                                     # utils
   google-chrome                                 # browser
   google-chrome-canary                          # browser
