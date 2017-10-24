@@ -46,9 +46,9 @@ colorscheme wal
 
 " split border
 set fillchars+=vert: 
-highlight VertSplit ctermfg=8 ctermbg=8
-highlight LineNr ctermbg=0
-highlight CursorLineNr cterm=bold ctermfg=3 ctermbg=0
+highlight VertSplit ctermfg=8 ctermbg=8 cterm=NONE
+highlight LineNr ctermbg=0 cterm=NONE
+highlight CursorLineNr ctermfg=3 ctermbg=0 cterm=bold
 
 " comments
 highlight Comment cterm=italic
@@ -58,26 +58,22 @@ highlight CursorLine cterm=NONE
 highlight Visual cterm=reverse ctermbg=0
 
 " fold
-highlight Folded ctermfg=8
+highlight Folded ctermfg=8 cterm=NONE
 highlight link FoldColumn CursorLineNr
 
-" wildmenu
-highlight WildMenu ctermfg=0 ctermbg=2
-highlight StatusLine ctermfg=0 ctermbg=6
-
 " error
-highlight Error ctermfg=7
-highlight ErrorMsg ctermfg=1
+highlight Error ctermfg=7 cterm=NONE
+highlight ErrorMsg ctermfg=1 cterm=NONE
 
 " search
-highlight Search ctermfg=0
+highlight Search ctermfg=0 cterm=NONE
 
 " NonText
-highlight NonText ctermfg=8
-highlight EndOfBuffer ctermfg=0
+highlight NonText ctermfg=8 cterm=NONE
+highlight EndOfBuffer ctermfg=0 cterm=NONE
 
 " show the MatchParen more obvious
-highlight MatchParen ctermfg=4 ctermbg=2
+highlight MatchParen ctermfg=4 ctermbg=2 cterm=NONE
 
 " set DiffColors according to Git colors
 execute 'highlight DiffAdd cterm=reverse ctermfg=' . g:GitAddColor
@@ -86,7 +82,7 @@ execute 'highlight DiffDelete cterm=reverse ctermfg=' . g:GitUntrackedColor
 highlight DiffText ctermfg=4 cterm=reverse
 
 " xml (jsx)
-highlight XmlEndTag ctermfg=2
+highlight XmlEndTag ctermfg=2 cterm=NONE
 
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
