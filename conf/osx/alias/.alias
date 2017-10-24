@@ -56,6 +56,5 @@ alias chunkwmon="launchctl load -w $HOME/Library/LaunchAgents/com.koekeishiya.ch
 # random wal settings
 alias rwal="$HOME/.pyenv/shims/wal -i $HOME/dropbox/walls/rot/fav -o $HOME/dotfiles/bin/osx/wal-set"
 
-# Savelend dev
-alias sldev="sh $HOME/dotfiles/conf/tmux/launchers/savelend.sh"
+# tmux scripts
 alias onb="sh $HOME/dotfiles/conf/tmux/launchers/onboarding.sh"
