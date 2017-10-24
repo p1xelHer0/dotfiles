@@ -5,7 +5,7 @@
 # fullscreen
 export FZF_DEFAULT_OPTS='
   --color fg:7,bg:0,hl:3,fg+:4,bg+:0,hl+:3,info:2
-  --color prompt:2,spinner:4,pointer:3,marker:3,header:2
+  --color prompt:6,spinner:4,pointer:3,marker:3,header:2
   --no-height --no-reverse
 '
 
