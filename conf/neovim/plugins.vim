@@ -64,6 +64,7 @@ Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
+Plug 'majutsushi/tagbar',                      { 'for': 'haskell' }
 Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
@@ -111,8 +112,8 @@ Plug 'junegunn/fzf.vim'
 
 " styling
 " Plug 'chriskempson/base16-vim'
-Plug 'dylanaraps/wal'
-Plug 'itchyny/lightline.vim'
+" Plug 'dylanaraps/wal'
+" Plug 'itchyny/lightline.vim'
 
 " tmux integration
 Plug 'tmux-plugins/vim-tmux-focus-events'

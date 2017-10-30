@@ -46,6 +46,13 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
+" tagbar {{{
+
+  nnoremap <buffer><silent> ct :TagbarToggle<CR>
+
+" }}}
+
+
 " Tern
 augroup filetype_javascript
   autocmd!

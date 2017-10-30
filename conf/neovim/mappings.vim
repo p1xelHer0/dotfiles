@@ -38,13 +38,13 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 nnoremap <Leader><Leader> <C-^>
 
 " yank the whole line with Y
-nnoremap Y 0y$
+" nnoremap Y 0y$
 
 " avoid unintentional switches to ex mode
-nmap Q q
+" nmap Q q
 
 " I will probably missclick this as well
-nnoremap K <nop>
+" nnoremap K <nop>
 
 " show and hide listchars
 nnoremap <Leader>lch :set listchars=<CR>:set listchars+=tab:»\ ,trail:·,nbsp:×<CR>

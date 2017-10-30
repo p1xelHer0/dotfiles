@@ -97,21 +97,6 @@ function! s:goyo_leave()
   set scrolloff=5
   set nocursorline
   Limelight!
-
-  " some highlights are breaking upon leaving goyo
-  highlight VertSplit ctermfg=0 ctermbg=0
-
-  highlight NonText ctermfg=0
-  highlight EndOfBuffer ctermfg=0
-
-  highlight NERDTreeGitStatusDirDirtytracked ctermfg=3
-  highlight NERDTreeGitStatusModified ctermfg=3
-  highlight link NERDTreeGitStatusDirClean DiffAdd
-  highlight link NERDTreeGitStatusStaged Special
-  highlight link NERDTreeGitStatusRenamed DiffLine
-  highlight link NERDTreeGitStatusUnmerged DiffLine
-  highlight link NERDTreeGitStatusUntracked DiffFile
-  highlight link NERDTreeGitStatusIgnored DiffFile
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -128,6 +113,7 @@ if exists('g:plugs["neco-ghc"]')
   let g:necoghc_enable_detailed_browse = 1
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 endif
+
 
 " haskell-vim
 if exists('g:plugs["haskell-vim"]')

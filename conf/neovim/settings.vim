@@ -12,6 +12,9 @@ set expandtab           " insert space characters whenever the tab key is presse
 set tabstop=2           " 2 space characters
 set shiftwidth=2        " set to 2 according to tabstop
 set softtabstop=2       " set to 2 according to tabstop
+set linebreak
+set breakindent
+set showbreak=\ → 
 
 
 " commands that are default for Neovim, kept here for documentation
@@ -23,12 +26,8 @@ set softtabstop=2       " set to 2 according to tabstop
 " }}}
 
 
-" list {{{
+" lines {{{
 
-set list                " display the listchars
-set listchars+=tab:»\ ,trail:·,nbsp:×
-set showbreak=\ → 
-set breakindent
 " set number              " enable line numbers
 " set relativenumber      " enable relative line number
 set ruler               " show the cursor position all the time
@@ -53,21 +52,28 @@ set showmatch           " automatically show matching brackets
 
 " other {{{
 
+set list                " display the listchars
+set listchars+=tab:»\ ,trail:·,nbsp:×
+
 if IsMacOS()
   set clipboard=unnamed " normal OS clipboard interaction
 else                    " use xsel on Linux
   set clipboard+=unnamedplus
 endif
+
 set copyindent          " copy the previous indentation on autoindenting
-set mouse-=a            " disable mouse
+set mouse=a             " it's okay to be lazy sometimes
 set visualbell          " disable error sound, enable the visual one instead
-set lazyredraw          " disable redraw while executing macros -- perf
+" set lazyredraw          " disable redraw while executing macros -- perf
 set showcmd             " show command on the last line
 set shortmess+=I        " no splash screen
 set backupcopy=yes      " make a copy of the file and overwrite the original one
 set foldmethod=syntax   " fold where you would expect folds, e.g. like in Atom
 set foldlevelstart=999  " make everything unfolded upon open
 set inccommand=nosplit  " preview substitute, e.g. using `%s/foo/bar`
+
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
 
 
 " commands that are default for Neovim, kept here for documentation
@@ -80,15 +86,15 @@ set inccommand=nosplit  " preview substitute, e.g. using `%s/foo/bar`
 " http://ksjoberg.com/vim-esckeys.html/
 set timeout timeoutlen=500 ttimeoutlen=100
 
-augroup set_cwd_to_file
-  autocmd!
-  autocmd BufEnter * silent! lcd %:p:h
-augroup END
+" augroup set_cwd_to_file
+"   autocmd!
+"   autocmd BufEnter * silent! lcd %:p:h
+" augroup END
 
 " http://learnvimscriptthehardway.stevelosh.com/chapters/18.html
-augroup filetype_vim
+augroup dotfiles_foldmarker
   autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType conf,vim setlocal foldmethod=marker
 augroup END
 
 
