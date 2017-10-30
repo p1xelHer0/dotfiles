@@ -35,7 +35,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 export ZSH=$HOME/.oh-my-zsh
 
-plugins=(zsh-syntax-highlighting)
+plugins=(vi-mode zsh-syntax-highlighting)
 
 # add osx plugin on macOS
 if [[ -n "$IS_MACOS" ]]; then
@@ -185,6 +185,9 @@ else
   export EDITOR='nvim'
 fi
 
+# use vi mode
+# bindkey -v
+# export KEYTIMEOUT=1
 
 # only load custom ranger config
 export RANGER_LOAD_DEFAULT_RC=false
@@ -267,5 +270,3 @@ fi
 for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
 
 # }}}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,29 +1,31 @@
 # oh-my-zsh Bureau Theme
 # modified
-# removed [ ] from everything
-# changed STAGED, UNSTAGED, UNTRACKED symbols to colored ■
-# changed AHEAD symbol to ▲
-# changed BEHIND symbol to ▼
-# changed CLEAN symbol to ◆
+# removed [] from everything
+# changed STAGED    symbol to  
+# changed UNSTAGED  symbol to ~
+# changed UNTRACKED symbol to +
+# changed AHEAD     symbol to ▲
+# changed BEHIND    symbol to ▼
+# changed CLEAN     symbol to ◆
+
 
 # nvm
 ZSH_THEME_NVM_PROMPT_PREFIX=" %F{2}"
 ZSH_THEME_NVM_PROMPT_SUFFIX="%{$reset_color%}"
 
-# set Git colors addording to .g
+# set Git colors addording to .gitconfig
 _GIT_ADDED_COLOR=$(git config --list | grep added | grep -o -E "[0-8]")
 _GIT_CHANGED_COLOR=$(git config --list | grep changed | grep -o -E "[0-8]")
 _GIT_UNTRACKED_COLOR=$(git config --list | grep untracked | grep -o -E "[0-8]")
 
-# Git master ▼■
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%F{${_GIT_ADDED_COLOR}}◆%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%F{4}▲%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%F{5}▼%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%F{${_GIT_ADDED_COLOR}}■%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%F{${_GIT_CHANGED_COLOR}}■%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{${_GIT_UNTRACKED_COLOR}}■%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%F{${_GIT_ADDED_COLOR}}×%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%F{${_GIT_CHANGED_COLOR}}~%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{${_GIT_UNTRACKED_COLOR}}+%{$reset_color%}"
 
 bureau_git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
@@ -109,6 +111,10 @@ _PATH="%F{6}%~%{$reset_color%}"
 if [[ $EUID -eq 0 ]]; then
   _USERNAME="%F{1}%n"
   _LIBERTY="%F{1}#"
+# I want vi-mode here
+elif [[ $EUID -ne 0 ]]; then
+  _USERNAME="%F{6}%n"
+  _LIBERTY="%F{2}$"
 else
   _USERNAME="%F{6}%n"
   _LIBERTY="%F{2}$"
