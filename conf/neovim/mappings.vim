@@ -53,8 +53,9 @@ nnoremap <Leader>lcs :set listchars+=tab:»\ ,trail:·,nbsp:×,eol:¬<CR>
 " repeat last macro if in a Normal buffer
 nnoremap <expr> <CR> empty(&buftype) ? '@@' : '<CR>'
 
-" quit, write and xit quicker
+" quit, quit!, write and xit quicker
 nnoremap <Leader>q :quit<CR>
+nnoremap <Leader>Q :quit!<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>x :xit<CR>
 
