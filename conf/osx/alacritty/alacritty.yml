@@ -36,7 +36,7 @@ dpi:
 tabspaces: 2
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Font configuration (changes require restart)
 font:
@@ -93,11 +93,6 @@ colors:
     background: '0x1D151E'
     foreground: '0xE8CEA8'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text:   '0x1D151E'
-    cursor: '0xE8CEA8'
-
   # Normal colors
   normal:
     black:   '0x1D151E'
@@ -119,8 +114,6 @@ colors:
     magenta: '0x847D8D'
     cyan:    '0x99918D'
     white:   '0xE8CEA8'
-
-
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once

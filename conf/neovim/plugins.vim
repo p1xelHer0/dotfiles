@@ -121,7 +121,8 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " other
 Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/vim-slash'
+Plug 'haya14busa/is.vim'
+" Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 

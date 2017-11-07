@@ -63,7 +63,7 @@ execute 'highlight DiffDelete ctermfg=0 cterm=NONE ctermbg=' . g:GitUntrackedCol
 highlight DiffText ctermfg=0 ctermbg=4 cterm=NONE
 
 highlight Search ctermfg=0 ctermbg=3 cterm=NONE
-  highlight link SearchInc Search
+  highlight! link SearchInc Search
   highlight! link WildMenu Search
   highlight! link TabLineSel Search
   highlight! link PmenuSel Search

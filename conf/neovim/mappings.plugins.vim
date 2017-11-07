@@ -57,6 +57,7 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 augroup filetype_javascript
   autocmd!
   autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
+  autocmd FileType javascript nnoremap <buffer> <Leader>w :Neoformat<CR>:write<CR>
 augroup END
 
 
