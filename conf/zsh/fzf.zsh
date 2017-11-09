@@ -9,20 +9,21 @@ export FZF_DEFAULT_OPTS='
   --no-height --no-reverse
 '
 
-
-# preview contents of file
-# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
-# see https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
-
 # make fzf use ripgrep
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# --glob: Don't search git/node_modules
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+
+# use the same command with <C-t>
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# preview contents of file
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+# see https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 # }}}
 
