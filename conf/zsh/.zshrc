@@ -216,7 +216,7 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
 
 # load fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
 # setup function to only load stuff when we need them
