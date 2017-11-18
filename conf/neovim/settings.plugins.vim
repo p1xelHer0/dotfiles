@@ -6,19 +6,6 @@ scriptencoding utf-8
 set encoding=utf-8
 
 
-" ALE {{{
-
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_change = 'never'
-let g:ale_lint_on_save = 1
-
-" Enable both ESlint and stylelint in jsx (styled-components)
-" let g:ale_linters = {'jsx': ['stylelint', 'eslint']}
-" let g:ale_linter_aliases = {'jsx': 'css'}
-
-" }}}
-
-
 " Deoplete {{{
 
 let g:deoplete#enable_at_startup = 1
@@ -133,18 +120,6 @@ endif
 
 " allow jsx in normal JavaScript files
 let g:jsx_ext_required = 0
-
-" I use ESlint for Flow, disable the plugin typechecking
-let g:flow#enable = 0
-
-" use locally installed Flow
-let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
-if matchstr(local_flow, "^\/\\w") == ''
-  let local_flow= getcwd() . "/" . local_flow
-endif
-if executable(local_flow)
-  let g:flow#flowpath = local_flow
-endif
 
 " }}}
 

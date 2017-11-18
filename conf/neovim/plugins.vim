@@ -30,7 +30,6 @@ Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'ternjs/tern_for_vim',                    { 'for': 'javascript.jsx', 'do': 'npm install' }
 Plug 'carlitux/deoplete-ternjs',               { 'for': 'javascript.jsx' }
 Plug 'othree/jspc.vim',                        { 'for': 'javascript.jsx' }
-Plug 'flowtype/vim-flow',                      { 'for': 'javascript.jsx' }
 
 " HTML
 Plug 'othree/html5.vim',                       { 'for': 'html' }
