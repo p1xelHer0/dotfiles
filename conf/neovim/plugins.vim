@@ -125,6 +125,7 @@ Plug 'haya14busa/is.vim'
 " Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'auwsmit/vim-active-numbers'
 
 " }}}
 

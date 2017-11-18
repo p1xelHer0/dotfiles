@@ -28,8 +28,8 @@ set showbreak=\ → 
 
 " lines {{{
 
-" set number              " enable line numbers
-" set relativenumber      " enable relative line number
+set number              " enable line numbers
+set relativenumber      " enable relative line number
 set ruler               " show the cursor position all the time
 set scrolloff=5         " keep 5 lines above the cursor while scrolling
 
@@ -65,15 +65,15 @@ set copyindent          " copy the previous indentation on autoindenting
 set mouse=a             " it's okay to be lazy sometimes
 set visualbell          " disable error sound, enable the visual one instead
 " set lazyredraw          " disable redraw while executing macros -- perf
-set showcmd             " show command on the last line
+" set showcmd             " show command on the last line == default Vim
 set shortmess+=I        " no splash screen
 set backupcopy=yes      " make a copy of the file and overwrite the original one
 set foldmethod=syntax   " fold where you would expect folds, e.g. like in Atom
 set foldlevelstart=999  " make everything unfolded upon open
 set inccommand=nosplit  " preview substitute, e.g. using `%s/foo/bar`
 
-let g:matchparen_timeout = 20
-let g:matchparen_insert_timeout = 20
+let g:matchparen_timeout = 5
+let g:matchparen_insert_timeout = 5
 
 
 " commands that are default for Neovim, kept here for documentation

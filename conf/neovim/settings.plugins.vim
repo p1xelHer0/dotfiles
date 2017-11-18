@@ -10,7 +10,6 @@ set encoding=utf-8
 
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_change = 'never'
-let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_save = 1
 
 " Enable both ESlint and stylelint in jsx (styled-components)
@@ -63,9 +62,10 @@ endif
 if exists('g:plugs["elm-vim"]')
   let g:deoplete#omni#functions.elm = ['elm#Complete']
   let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
+
+  let g:elm_format_autosave = 1
 endif
 
-let g:elm_format_autosave = 1
 
 
 " PureScript
@@ -169,9 +169,6 @@ let g:neoformat_enabled_json = ['prettier']
 
 " Haskell
 let g:neoformat_enabled_haskell = ['hindent', 'stylish-haskell']
-
-" Lua
-let g:neoformat_enabled_lua = ['luaformatter']
 
 " }}}
 

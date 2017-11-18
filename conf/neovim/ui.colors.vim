@@ -12,8 +12,9 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name = 'pxl9'
 
+let g:colors_name = 'pxl9'
+set background=dark
 
 " save colors from Git
 let g:GitAddColor = system('git config --list | grep added | grep -o -E "[0-8]"')
@@ -23,7 +24,7 @@ let g:GitUntrackedColor = system('git config --list | grep untracked | grep -o -
 
 highlight Normal ctermfg=7 ctermbg=NONE cterm=NONE
 highlight NonText ctermfg=8 ctermbg=NONE cterm=NONE
-highlight EndOfBuffer ctermfg=0 cterm=NONE
+highlight EndOfBuffer ctermfg=0 ctermbg=NONE cterm=NONE
 highlight Comment ctermfg=8 ctermbg=NONE
 highlight Constant ctermfg=3 ctermbg=NONE cterm=NONE
 highlight Error ctermfg=0 ctermbg=1 cterm=NONE
@@ -39,7 +40,7 @@ highlight Todo ctermfg=0 ctermbg=2 cterm=NONE
 highlight Type ctermfg=3 ctermbg=NONE cterm=NONE
 highlight Underlined ctermfg=1 ctermbg=NONE cterm=underline
 
-highlight MatchParen ctermfg=0 ctermbg=4 cterm=NONE
+highlight MatchParen ctermfg=0 ctermbg=4 cterm=reverse
 
 highlight LineNr ctermfg=8 ctermbg=0 cterm=NONE
 highlight CursorLineNr ctermfg=3 ctermbg=0 cterm=bold
@@ -68,13 +69,13 @@ highlight Search ctermfg=0 ctermbg=3 cterm=NONE
   highlight! link TabLineSel Search
   highlight! link PmenuSel Search
 
-highlight StatusLine ctermfg=0 ctermbg=8 cterm=NONE
-highlight StatusLineNC ctermfg=0 ctermbg=8 cterm=NONE
+highlight StatusLine ctermfg=8 ctermbg=0 cterm=NONE
+highlight StatusLineNC ctermfg=8 ctermbg=0 cterm=NONE
 
 highlight TabLine ctermfg=0 ctermbg=8 cterm=NONE
 highlight! link TabLineFill StatusLine
 
-highlight VertSplit ctermfg=8 ctermbg=8 cterm=NONE
+highlight VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE
 
 highlight Pmenu ctermfg=7 ctermbg=8 cterm=NONE
 highlight PmenuSbar ctermfg=NONE ctermbg=0 cterm=NONE
@@ -83,14 +84,13 @@ highlight PmenuThumb ctermfg=NONE ctermbg=4 cterm=NONE
 highlight Directory ctermfg=4 ctermbg=NONE cterm=NONE
 highlight ColorColumn ctermfg=0 ctermbg=4 cterm=NONE
 highlight signColumn ctermfg=4 ctermbg=NONE cterm=NONE
-highlight ModeMsg ctermfg=2 ctermbg=NONE cterm=NONE
+highlight ModeMsg ctermfg=4 ctermbg=NONE cterm=NONE
 highlight MoreMsg ctermfg=2 ctermbg=NONE cterm=NONE
 highlight Question ctermfg=4 ctermbg=NONE cterm=NONE
 highlight WarningMsg ctermfg=0 ctermbg=1 cterm=NONE
 highlight Cursor ctermfg=8 ctermbg=NONE cterm=NONE
 highlight Structure ctermfg=5 ctermbg=NONE cterm=NONE
 highlight CursorColumn ctermfg=7 ctermbg=8 cterm=NONE
-highlight ModeMsg ctermfg=7 ctermbg=NONE cterm=NONE
 highlight SpellBad ctermfg=0 ctermbg=1 cterm=NONE
 highlight SpellCap ctermfg=4 ctermbg=NONE cterm=underline
 highlight SpellLocal ctermfg=5 ctermbg=NONE cterm=underline

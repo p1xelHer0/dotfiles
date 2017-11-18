@@ -77,7 +77,6 @@ nnoremap <F10> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> 
 " errors
 nnoremap <Leader>o :lopen<CR>
 nnoremap <Leader><Leader>o :lclose<CR>
-nnoremap <silent> <Right> :ll<CR>
 
 " }}}
 

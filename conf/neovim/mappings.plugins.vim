@@ -16,12 +16,18 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 " normal mappings {{{
 
 " ALE
-nmap <silent> <Up> <Plug>(ale_previous_wrap)
-nmap <silent> <Down> <Plug>(ale_next_wrap)
+nnoremap <silent> [W <Plug>(ale_first)
+nnoremap <silent> [w <Plug>(ale_previous)
+nnoremap <silent> ]w <Plug>(ale_next)
+nnoremap <silent> ]W <Plug>(ale_last)
 
+
+" fzf
+nnoremap <C-p> :FZF<CR>
+nnoremap <Leader>b :Buffers<CR>
 
 " EasyAlign
-nmap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
 
 " goyo.vim
@@ -48,7 +54,7 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 
 " tagbar {{{
 
-  nnoremap <buffer><silent> ct :TagbarToggle<CR>
+nnoremap <buffer><silent> ct :TagbarToggle<CR>
 
 " }}}
 
