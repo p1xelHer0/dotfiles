@@ -34,16 +34,6 @@ nnoremap ga <Plug>(EasyAlign)
 nnoremap <Leader>gv :Goyo<CR>
 
 
-" Haskell
-augroup filetype_haskell
-  autocmd!
-  autocmd FileType haskell nnoremap <buffer><silent> tt :GhcModType<CR>
-  autocmd FileType haskell nnoremap <buffer><silent> tc :GhcModTypeClear<CR>
-  autocmd FileType haskell nnoremap <buffer><silent> ti :GhcModTypeInsert<CR>
-  autocmd FileType haskell nnoremap <buffer><silent> ts :GhcModSplitFunCase<CR>
-augroup END
-
-
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
@@ -52,27 +42,8 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
-" tagbar {{{
-
-nnoremap <buffer><silent> ct :TagbarToggle<CR>
-
-" }}}
-
-
-" Tern
-augroup filetype_javascript
-  autocmd!
-  autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
-  autocmd FileType javascript nnoremap <buffer> <Leader>w :Neoformat<CR>:write<CR>
-augroup END
-
-
-" OCaml
-augroup filetype_ocaml
-  autocmd!
-  autocmd FileType ocaml,reason nnoremap <buffer> <Leader>d :MerlinLocate<CR>
-  autocmd FileType ocaml,reason nnoremap <buffer><silent> tt :MerlinTypeOf<CR>
-augroup END
+" Tagbar
+nmap <buffer><silent> ct :TagbarToggle<CR>
 
 " }}}
 
@@ -82,11 +53,6 @@ augroup END
 " SuperTab
 let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" }}}
-
-
-" visual select mappings {{{
 
 " }}}
 

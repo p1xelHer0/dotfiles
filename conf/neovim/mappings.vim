@@ -34,7 +34,7 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 
 " normal mappings {{{
 
-" <Leader><Leader> -- open last buffer
+" open last buffer
 nnoremap <Leader><Leader> <C-^>
 
 " yank the whole line with Y
@@ -77,20 +77,5 @@ nnoremap <F10> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> 
 " errors
 nnoremap <Leader>o :lopen<CR>
 nnoremap <Leader><Leader>o :lclose<CR>
-
-" }}}
-
-
-" insert mappings {{{
-
-" }}}
-
-
-" visual select mappings {{{
-
-" }}}
-
-
-" visual mappings {{{
 
 " }}}

@@ -72,8 +72,8 @@ set foldmethod=syntax   " fold where you would expect folds, e.g. like in Atom
 set foldlevelstart=999  " make everything unfolded upon open
 set inccommand=nosplit  " preview substitute, e.g. using `%s/foo/bar`
 
-let g:matchparen_timeout = 5
-let g:matchparen_insert_timeout = 5
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
 
 
 " commands that are default for Neovim, kept here for documentation

@@ -7,15 +7,15 @@ set encoding=utf-8
 
 
 " auto install plug if not found
-if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs
-  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
+"   silent !curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs
+"   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  augroup PLUG
-    autocmd!
-    autocmd VimEnter * PlugInstall
-  augroup END
-endif
+"   augroup PLUG
+"     autocmd!
+"     autocmd VimEnter * PlugInstall
+"   augroup END
+" endif
 
 
 call plug#begin()
@@ -55,7 +55,7 @@ Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
 Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
 " Reason
-Plug 'reasonml-editor/vim-reason'
+Plug 'reasonml-editor/vim-reason',             { 'for': 'reasonml' }
 
 " PureScript
 Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
@@ -63,7 +63,6 @@ Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
-Plug 'majutsushi/tagbar',                      { 'for': 'haskell' }
 Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
@@ -71,6 +70,7 @@ Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
 " other
 Plug 'ap/vim-css-color'
+Plug 'majutsushi/tagbar'
 
 " }}}
 
@@ -92,15 +92,11 @@ Plug 'junegunn/gv.vim'
 " editing
 Plug 'AndrewRadev/switch.vim'
 Plug 'SirVer/ultisnips'
-" Plug 'editorconfig/editorconfig-vim'
 Plug 'sgur/vim-editorconfig'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
 
 " file handling and searching
@@ -109,11 +105,6 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" styling
-" Plug 'chriskempson/base16-vim'
-" Plug 'dylanaraps/wal'
-" Plug 'itchyny/lightline.vim'
-
 " tmux integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
@@ -121,7 +112,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " other
 Plug 'junegunn/vim-peekaboo'
 Plug 'haya14busa/is.vim'
-" Plug 'junegunn/vim-slash'
+Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'
