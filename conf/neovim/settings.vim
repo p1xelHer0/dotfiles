@@ -8,44 +8,44 @@ set encoding=utf-8
 
 " Indentation {{{
 
-set expandtab           " insert space characters whenever the tab key is pressed
-set tabstop=2           " 2 space characters
-set shiftwidth=2        " set to 2 according to tabstop
-set softtabstop=2       " set to 2 according to tabstop
+set expandtab       " insert space characters whenever the tab key is pressed
+set tabstop=2       " 2 space characters
+set shiftwidth=2    " set to 2 according to tabstop
+set softtabstop=2   " set to 2 according to tabstop
 set linebreak
 set breakindent
 set showbreak=\ → 
 
 
 " commands that are default for Neovim, kept here for documentation
-" filetype indent plugin on -- default Neovim
-" set smarttab          " -- default Neovim
-" set autoindent        " -- default Neovim
-" set backspace=indent,eol,start  -- default Neovim
+" filetype indent plugin on       " -- default Neovim
+" set smarttab                    " -- default Neovim
+" set autoindent                  " -- default Neovim
+" set backspace=indent,eol,start  " -- default Neovim
 
 " }}}
 
 
 " lines {{{
 
-set number              " enable line numbers
-set relativenumber      " enable relative line number
-set ruler               " show the cursor position all the time
-set scrolloff=5         " keep 5 lines above the cursor while scrolling
+set number          " enable line numbers
+set relativenumber  " enable relative line number
+set ruler           " show the cursor position all the time
+set scrolloff=5     " keep 5 lines above the cursor while scrolling
 
 " }}}
 
 
 " search {{{
 
-set ignorecase          " ignore case when searching
-set smartcase           " ignore case if search pattern is all lowercase
-set showmatch           " automatically show matching brackets
+set ignorecase      " ignore case when searching
+set smartcase       " ignore case if search pattern is all lowercase
+set showmatch       " automatically show matching brackets
 
 
 " commands that are default for Neovim, kept here for documentation
-" set incsearch         " show search matches as you type -- default Neovim
-" set hlsearch          " highlight search terms -- default Neovim
+" set incsearch   " show search matches as you type -- default Neovim
+" set hlsearch    " highlight search terms -- default Neovim
 
 " }}}
 

@@ -25,6 +25,7 @@ nnoremap <silent> ]W <Plug>(ale_last)
 " fzf
 nnoremap <C-p> :FZF<CR>
 nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>t :Tags<CR>
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)
