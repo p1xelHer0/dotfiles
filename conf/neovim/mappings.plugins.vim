@@ -16,10 +16,10 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 " normal mappings {{{
 
 " ALE
-nnoremap <silent> [W <Plug>(ale_first)
-nnoremap <silent> [w <Plug>(ale_previous)
-nnoremap <silent> ]w <Plug>(ale_next)
-nnoremap <silent> ]W <Plug>(ale_last)
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> ]W <Plug>(ale_last)
 
 
 " fzf
