@@ -26,6 +26,7 @@ nmap <silent> ]W <Plug>(ale_last)
 nnoremap <C-p> :FZF<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>t :Tags<CR>
+nnoremap <Leader>f :F<CR>
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)
@@ -44,7 +45,7 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
 " Tagbar
-nmap <buffer><silent> ct :TagbarToggle<CR>
+nnoremap <buffer><silent> ct :TagbarToggle<CR>
 
 " }}}
 
