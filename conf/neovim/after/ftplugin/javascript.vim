@@ -16,7 +16,8 @@ let g:tern#arguments = ['--persistent']
 
 augroup filetype_javascript
   autocmd!
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
   autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
   autocmd FileType javascript nnoremap <buffer> <Leader>w :Neoformat<CR>:write<CR>
+
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
 augroup END

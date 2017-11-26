@@ -16,17 +16,17 @@ let g:UltiSnipsExpandTrigger = '<C-j>'
 " normal mappings {{{
 
 " ALE
-nmap <silent> [W <Plug>(ale_first)
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> ]w <Plug>(ale_next)
-nmap <silent> ]W <Plug>(ale_last)
+nmap [W <Plug>(ale_first)
+nmap [w <Plug>(ale_previous)
+nmap ]w <Plug>(ale_next)
+nmap ]W <Plug>(ale_last)
 
 
 " fzf
-nnoremap <C-p> :FZF<CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>t :Tags<CR>
-nnoremap <Leader>f :F<CR>
+nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>t :Tags<CR>
+nnoremap <silent> <Leader>f :F<CR>
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)
@@ -37,7 +37,7 @@ nnoremap <Leader>gv :Goyo<CR>
 
 
 " NERDTree
-nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
 
 
 " Neoformat
@@ -45,7 +45,8 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
 " Tagbar
-nnoremap <buffer><silent> ct :TagbarToggle<CR>
+nnoremap <buffer> <Leader>ct :TagbarToggle<CR>
+nnoremap <Leader>cT :TagbarToggle<CR>
 
 " }}}
 

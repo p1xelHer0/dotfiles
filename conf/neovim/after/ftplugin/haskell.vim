@@ -7,10 +7,10 @@ let g:necoghc_enable_detailed_browse = 1
 augroup filetype_haskell
   autocmd!
   " ghc-vim
-  autocmd FileType haskell nnoremap <buffer><silent> tt :GhcModType<CR>
-  autocmd FileType haskell nnoremap <buffer><silent> tc :GhcModTypeClear<CR>
-  autocmd FileType haskell nnoremap <buffer><silent> ti :GhcModTypeInsert<CR>
-  autocmd FileType haskell nnoremap <buffer><silent> ts :GhcModSplitFunCase<CR>
+  autocmd FileType haskell nnoremap <buffer> tt :GhcModType<CR>
+  autocmd FileType haskell nnoremap <buffer> tc :GhcModTypeClear<CR>
+  autocmd FileType haskell nnoremap <buffer> ti :GhcModTypeInsert<CR>
+  autocmd FileType haskell nnoremap <buffer> ts :GhcModSplitFunCase<CR>
 
   " neco-ghc
   autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
