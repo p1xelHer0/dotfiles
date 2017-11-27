@@ -7,15 +7,15 @@ set encoding=utf-8
 
 
 " auto install plug if not found
-" if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
-"   silent !curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs
-"   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-"   augroup PLUG
-"     autocmd!
-"     autocmd VimEnter * PlugInstall
-"   augroup END
-" endif
+  augroup PLUG
+    autocmd!
+    autocmd VimEnter * PlugInstall
+  augroup END
+endif
 
 
 call plug#begin()
@@ -116,6 +116,7 @@ Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'
+Plug 'xtal8/traces.vim'
 
 " }}}
 

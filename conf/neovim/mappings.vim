@@ -34,11 +34,12 @@ noremap <Leader><Leader>r :so $MYVIMRC<CR>
 
 " normal mappings {{{
 
-" open last buffer
+" open last buffer by double tapping <Leader>
+" matches nicely with tmux which has the same effect by double tapping <Prefix>
 nnoremap <Leader><Leader> <C-^>
 
 " yank the whole line with Y
-" nnoremap Y 0y$
+nnoremap Y 0y$
 
 " show and hide listchars
 nnoremap <Leader>lch :set listchars=<CR>:set listchars+=tab:»\ ,trail:·,nbsp:×<CR>
