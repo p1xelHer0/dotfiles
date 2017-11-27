@@ -16,6 +16,7 @@ packages=(
   bs-platform
   create-react-app
   eslint
+  neovim
   prettier
   prettier-eslint-cli
   tern
