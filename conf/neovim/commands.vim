@@ -2,9 +2,6 @@
 
 " -- custom commands to enhance or speed up the way Neovim works
 
-scriptencoding utf-8
-set encoding=utf-8
-
 
 " fuzzy finder of file contents with fzf and ripgrep {{{
 

@@ -2,9 +2,6 @@
 
 " -- themes, colors and everything that affects the look of Neovim
 
-scriptencoding utf-8
-set encoding=utf-8
-
 
 highlight clear
 

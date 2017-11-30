@@ -14,10 +14,10 @@ let g:tern_show_signature_in_pum = 0
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
-augroup filetype_javascript
-  autocmd!
-  autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
-  autocmd FileType javascript nnoremap <buffer> <Leader>w :Neoformat<CR>:write<CR>
+" definitions
+autocmd FileType javascript nnoremap <buffer> <Leader>d :TernDef<CR>
 
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
-augroup END
+" format on save
+autocmd FileType javascript nnoremap <buffer> <Leader>w :Neoformat<CR>:write<CR>
+
+autocmd FileType javascript setlocal omnifunc=tern#Complete

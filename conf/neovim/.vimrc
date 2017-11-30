@@ -2,8 +2,8 @@
 
 " -- here be dragons
 
-scriptencoding utf-8
 set encoding=utf-8
+scriptencoding utf-8
 
 
 " path where configs are stored

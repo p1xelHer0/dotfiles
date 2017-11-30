@@ -2,9 +2,6 @@
 
 " -- plugins I use for my daily web development life
 
-scriptencoding utf-8
-set encoding=utf-8
-
 
 " auto install plug if not found
 if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
@@ -30,6 +27,10 @@ Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'ternjs/tern_for_vim',                    { 'for': 'javascript.jsx', 'do': 'npm install' }
 Plug 'carlitux/deoplete-ternjs',               { 'for': 'javascript.jsx' }
 Plug 'othree/jspc.vim',                        { 'for': 'javascript.jsx' }
+
+" TypeScript
+Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
+Plug 'mhartington/nvim-typescript',            { 'for': 'typescript' }
 
 " HTML
 Plug 'othree/html5.vim',                       { 'for': 'html' }

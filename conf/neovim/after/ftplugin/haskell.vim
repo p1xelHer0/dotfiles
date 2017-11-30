@@ -4,17 +4,14 @@ let g:neoformat_enabled_haskell = ['hindent', 'stylish-haskell']
 let g:haskellmode_completion_ghc = 1
 let g:necoghc_enable_detailed_browse = 1
 
-augroup filetype_haskell
-  autocmd!
-  " ghc-vim
-  autocmd FileType haskell nnoremap <buffer> tt :GhcModType<CR>
-  autocmd FileType haskell nnoremap <buffer> tc :GhcModTypeClear<CR>
-  autocmd FileType haskell nnoremap <buffer> ti :GhcModTypeInsert<CR>
-  autocmd FileType haskell nnoremap <buffer> ts :GhcModSplitFunCase<CR>
+" ghc-vim
+autocmd FileType haskell nnomap <buffer> tt :GhcModType<CR>
+autocmd FileType haskell nnomap <buffer> tc :GhcModTypeClear<CR>
+autocmd FileType haskell nnomap <buffer> ti :GhcModTypeInsert<CR>
+autocmd FileType haskell nnomap <buffer> ts :GhcModSplitFunCase<CR>
 
-  " neco-ghc
-  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-augroup END
+" neco-ghc
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`

@@ -2,9 +2,6 @@
 
 " -- keymapping that uses functionality of default Neovim
 
-scriptencoding utf-8
-set encoding=utf-8
-
 
 " universal mappings {{{
 
@@ -18,7 +15,7 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " reload .vimrc
-noremap <Leader><Leader>r :so $MYVIMRC<CR>
+nnoremap <Leader><Leader>r :so $MYVIMRC<CR>
 
 
 " use <C-h/j/k/l> to move between splits
