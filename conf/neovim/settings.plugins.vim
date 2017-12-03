@@ -1,5 +1,4 @@
 """
-
 " -- plugin settings, everything that affects how a plugin works
 
 
@@ -69,7 +68,7 @@ let g:neoformat_try_formatprg = 1
 " NERDTree {{{
 
 " path to bookmarks
-let NERDTreeBookmarksFile=expand("$HOME/.config/nvim/NERDTreeBookmarks")
+let NERDTreeBookmarksFile = expand("$HOME/.config/nvim/NERDTreeBookmarks")
 
 " Open NERDTree when opening a directory or just starting Neovim
 augroup NERDTree_open
@@ -85,5 +84,12 @@ augroup END
 " SuperTab {{{
 
 let g:SuperTabCrMapping=1
+
+" }}}
+
+
+" vim-active-numbers {{{
+
+let g:actnum_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'undotree', 'gundo', 'vimshell', 'w3m']
 
 " }}}
