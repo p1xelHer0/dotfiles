@@ -6,10 +6,10 @@ let g:haskellmode_completion_ghc = 1
 let g:necoghc_enable_detailed_browse = 1
 
 " ghc-vim
-nnoremap <buffer> <Leader>tt :GhcModType<CR>
-nnoremap <buffer> <Leader>tc :GhcModTypeClear<CR>
-nnoremap <buffer> <Leader>ti :GhcModTypeInsert<CR>
-nnoremap <buffer> <Leader>ts :GhcModSplitFunCase<CR>
+" nnoremap <buffer> <Leader>tt :GhcModType<CR>
+" nnoremap <buffer> <Leader>tc :GhcModTypeClear<CR>
+" nnoremap <buffer> <Leader>ti :GhcModTypeInsert<CR>
+" nnoremap <buffer> <Leader>ts :GhcModSplitFunCase<CR>
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -25,3 +25,29 @@ augroup autosave
   autocmd!
   autocmd BufWritePost *.hs InteroReload
 augroup END
+
+" Background process and window management
+nnoremap <silent> <leader>is :InteroStart<CR>
+nnoremap <silent> <leader>ik :InteroKill<CR>
+
+" Open intero/GHCi split horizontally
+nnoremap <silent> <leader>io :InteroOpen<CR>
+nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
+nnoremap <silent> <leader>ih :InteroHide<CR>
+
+" Load individual modules
+nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
+nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+
+" Type-related information
+" Heads up! These next two differ from the rest.
+map <silent> <leader>tg <Plug>InteroGenericType
+map <silent> <leader>tt <Plug>InteroType
+nnoremap <silent> <leader>ti :InteroTypeInsert<CR>
+
+" Navigation
+nnoremap <silent> <leader>dd :InteroGoToDef<CR>
+
+" Managing targets
+" Prompts you to enter targets (no silent):
+nnoremap <leader>ist :InteroSetTargets<SPACE>

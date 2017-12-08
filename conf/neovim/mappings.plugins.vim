@@ -35,6 +35,7 @@ nnoremap <Leader>gv :Goyo<CR>
 
 " NERDTree
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>N :NERDTreeFind<CR>
 
 
 " Neoformat
