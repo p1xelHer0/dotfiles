@@ -69,6 +69,13 @@ Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
+" Lua
+" Plug 'xolox/vim-lua-ftplugin',                 { 'for': 'lua' }
+Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
+
+" Godot
+Plug 'quabug/vim-gdscript'
+
 " other
 Plug 'ap/vim-css-color'
 Plug 'majutsushi/tagbar'

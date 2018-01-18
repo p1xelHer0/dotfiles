@@ -43,7 +43,7 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 
 
 " Tagbar
-nmap <buffer> <Leader>ct :TagbarToggle<CR>
+nnoremap <buffer> <Leader>ct :TagbarToggle<CR>
 
 " }}}
 
