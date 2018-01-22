@@ -60,6 +60,7 @@ packages=(
 
   lua            # lua 5.3
   luarocks       # package management
+  love           # love2d
 
   linux-headers
   avahi
