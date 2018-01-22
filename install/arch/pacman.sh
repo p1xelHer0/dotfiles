@@ -58,6 +58,9 @@ packages=(
   python         # python3
   python-pip     # python3
 
+  lua            # lua 5.3
+  luarocks       # package management
+
   linux-headers
   avahi
   dbus
