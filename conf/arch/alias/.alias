@@ -40,3 +40,9 @@ alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:
 alias rwal="wal -i $HOME/walls/fav -o wal-set"
 
 alias synctime="sudo ntpd -s -d"
+
+# rust repl
+alias rrepl="rustup run nightly-2016-08-01 $CARGO_HOME/bin/rusti"
+
+# tmux scripts
+alias onb="sh $HOME/dotfiles/conf/tmux/launchers/onboarding.sh"

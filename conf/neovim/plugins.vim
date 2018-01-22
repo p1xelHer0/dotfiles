@@ -69,6 +69,8 @@ Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
+Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
+
 " Lua
 Plug 'xolox/vim-lua-ftplugin',                 { 'for': 'lua' }
 Plug 'xolox/vim-misc',                         { 'for': 'lua' }
@@ -85,6 +87,8 @@ Plug 'majutsushi/tagbar'
 
 
 " utilis {{{
+"
+Plug 'autozimu/LanguageClient-neovim',         { 'branch': 'next', 'do': 'bash install.sh' }
 
 " autocompletion
 Plug 'Shougo/deoplete.nvim',                   { 'do': ':UpdateRemotePlugins' }
@@ -111,7 +115,7 @@ Plug 'machakann/vim-sandwich'
 " file handling and searching
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " tmux integration
