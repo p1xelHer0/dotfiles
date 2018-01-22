@@ -74,13 +74,21 @@ NODE_VERSION=$(node --version | grep -v -)
 # dotfile scripts
 export DOT_SCRIPTS=$HOME/dotfiles/bin
 
+
 # Haskell
 export STACK_PACKAGES=$HOME/.local/bin
+
+
+# Rust
+export CARGO_HOME=$HOME/.cargo/bin
+
 
 # set $PATH
 export PATH=$DOT_SCRIPTS:$PATH
 
 export PATH=$STACK_PACKAGES:$PATH
+
+export PATH=$CARGO_HOME:$PATH
 
 # }}}
 
@@ -100,8 +108,6 @@ if [[ -n "$IS_MACOS" ]]; then
   export PYENV_ROOT=$HOME/.pyenv
 
 
-  # Rust
-  export CARGO_HOME=$HOME/.cargo/bin
 
 
   # React Native
@@ -147,8 +153,6 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH=$PYENV_ROOT/bin:$PATH
 
   export PATH=$STACK_PACKAGES:$PATH
-
-  export PATH=$CARGO_HOME:$PATH
 
   export PATH=$REACT_NATIVE_HOME:$PATH
 
@@ -270,3 +274,5 @@ fi
 for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
 
 # }}}
+
+export PATH="$HOME/.yarn/bin:$PATH"
