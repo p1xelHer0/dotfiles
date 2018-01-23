@@ -57,7 +57,12 @@ alias chunkwmon="launchctl load -w $HOME/Library/LaunchAgents/com.koekeishiya.ch
 alias rwal="$HOME/.pyenv/shims/wal -i $HOME/dropbox/walls/rot/fav -o $HOME/dotfiles/bin/osx/wal-set"
 
 # rust repl
-alias rrepl="rustup run nightly-2016-08-01 ~/.cargo/bin/rusti"
+alias rrepl="rustup run nightly-2016-08-01 $CARGO_HOME/bin/rusti"
 
 # tmux scripts
 alias onb="sh $HOME/dotfiles/conf/tmux/launchers/onboarding.sh"
+
+# shoutout to ollegz
+alias plz="brew upgrade; brew cleanup; upgrade_oh_my_zsh; cd $HOME/alacritty; git pull; rustup update stable; cargo build --release; make app; cp -r target/release/osx/Alacritty.app /Applications/Alacritty.app; cd $HOME"
+
+alias love="/Applications/love.app/Contents/MacOS/love"
