@@ -90,7 +90,9 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
+    # hard contrast: background = '0x1d2021'
     background: '0x1D151E'
+    # soft contrast: background = '0x32302f'
     foreground: '0xE8CEA8'
 
   # Normal colors
@@ -114,6 +116,8 @@ colors:
     magenta: '0x847D8D'
     cyan:    '0x99918D'
     white:   '0xE8CEA8'
+
+
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
