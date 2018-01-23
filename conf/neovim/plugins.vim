@@ -72,8 +72,7 @@ Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 
 " Lua
-Plug 'xolox/vim-lua-ftplugin',                 { 'for': 'lua' }
-Plug 'xolox/vim-misc',                         { 'for': 'lua' }
+Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
 Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
 
 " Godot
