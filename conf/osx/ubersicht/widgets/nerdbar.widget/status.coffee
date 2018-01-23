@@ -9,10 +9,10 @@ render: (output) ->
   """
 
 style: """
-  font: 14px GohuFont
+  font: 14px Iosevka
   text-transform: lowercase
   right: 12px
-  top: 8px
+  top: 7px
   """
 
 timeAndDate: (date, time) ->

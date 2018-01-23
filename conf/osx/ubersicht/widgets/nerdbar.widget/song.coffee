@@ -9,9 +9,9 @@ render: (output) ->
   """
 
 style: """
-  font: 14px GohuFont
+  font: 14px Iosevka
   width: 100%
-  top: 8px
+  top: 7px
   text-align: center
   text-transform: lowercase
   """
