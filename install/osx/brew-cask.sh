@@ -39,6 +39,10 @@ reactnative=(
   react-native-debugger                         # js
 )
 
+gamedev=(
+  mono-mdk                                      # mono (unity, c#)
+)
+
 # install packages
 brew cask install "${apps[@]}"
 

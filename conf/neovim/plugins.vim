@@ -69,7 +69,11 @@ Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
+" Rust
 Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
+
+" C#
+Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
 Plug 'tbastos/vim-lua',                        { 'for': 'lua' }

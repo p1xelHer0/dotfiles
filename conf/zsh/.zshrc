@@ -108,14 +108,15 @@ if [[ -n "$IS_MACOS" ]]; then
   export PYENV_ROOT=$HOME/.pyenv
 
 
-
-
   # React Native
   export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
 
 
   # xcode simctl is needed for react-native emulator
   export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
+
+  # Mono
+  export MONO_ROOT=/Library/Frameworks/Mono.framework/Versions/Current/bin
 
 
   # Java
@@ -155,6 +156,8 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH=$STACK_PACKAGES:$PATH
 
   export PATH=$REACT_NATIVE_HOME:$PATH
+
+  export PATH=$MONO_ROOT:$PATH
 
   export PATH=$JENV:$PATH
 
