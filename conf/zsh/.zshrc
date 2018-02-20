@@ -14,7 +14,7 @@ ZSH_THEME=p1xelHer0
 # import colorscheme from 'wal'
 if [[ -n "$IS_MACOS" ]]; then
 else
-  (wal -r &)
+  cat /home/pxl/.cache/wal/sequences
 fi
 
 

@@ -56,7 +56,7 @@ main() {
   # import colors from 'wal'
   source "${HOME}/.cache/wal/colors.sh"
 
-  font="-gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1"
+  font="-gohu-gohufont-medium-r-normal--9-100-100-100-c-80-iso10646-1"
   height="30"
   width="$(get_mon_width)"
 

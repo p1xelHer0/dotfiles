@@ -2,7 +2,7 @@
 ```
 
 ```
- ### 
+ ###
 
  # -- 🐉 p1xelHer0's dotfiles
 
@@ -53,8 +53,7 @@
 
    # 🛠 ~/dotfiles/conf/osx
 
-   iterm2-nightly > terminal emulator
-   alacritty      > faster terminal emulator, testing it
+   alacritty      > GPU-accelerated terminal emulator
    brew           > package manager of macOS
    brew cask      > extends brew for applications and larger binaries alike
    chunkwm        > tiling window manager, alpha version, wip

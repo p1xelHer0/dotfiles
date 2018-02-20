@@ -18,7 +18,7 @@ reload_dunst() {
     -bf "${color0}" \
     -cf "${color0}" \
     -nf "${color0}" \
-    -fn "Gohu GohuFont 11" \
+    -fn "Gohu GohuFont 9" \
     -geometry "300x30-50+50" &
 }
 
