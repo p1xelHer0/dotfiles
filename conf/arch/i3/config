@@ -149,7 +149,7 @@ for_window [class="URxvt" instance="URxvtfzf"] floating enable
 # this font sets the height
 font pango:lemon 16
 # this is the actual font
-for_window [class=".*"] title_format "<span font='Gohu GohuFont 11'>  %title</span>"
+for_window [class=".*"] title_format "<span font='Gohu GohuFont 9'>  %title</span>"
 
 # gaps
 gaps inner 0

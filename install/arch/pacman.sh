@@ -62,6 +62,8 @@ packages=(
   luarocks       # package management
   love           # love2d
 
+  tiled          # tilemap editor
+
   linux-headers
   avahi
   dbus
