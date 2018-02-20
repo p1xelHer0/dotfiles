@@ -23,7 +23,7 @@ nmap ]W <Plug>(ale_last)
 nnoremap <silent> <C-p> :FZF<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
-nnoremap <silent> <Leader>f :F<CR>
+nnoremap <silent> <Leader>f :Find<CR>
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)

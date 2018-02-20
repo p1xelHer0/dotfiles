@@ -11,7 +11,7 @@ set shiftwidth=2    " set to 2 according to tabstop
 set softtabstop=2   " set to 2 according to tabstop
 set linebreak
 set breakindent
-set showbreak=\ → 
+set showbreak=\ ↣ 
 
 
 " commands that are default for Neovim, kept here for documentation
@@ -50,7 +50,7 @@ set showmatch       " automatically show matching brackets
 " other {{{
 
 set list                " display the listchars
-set listchars+=tab:»\ ,trail:·,nbsp:×
+set listchars+=tab:→\ ,trail:·,nbsp:×
 
 if IsMacOS()
   set clipboard=unnamed " normal OS clipboard interaction
