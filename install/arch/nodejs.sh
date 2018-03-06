@@ -17,6 +17,7 @@ packages=(
   create-react-app
   eslint
   neovim
+  ocaml-language-server
   prettier
   prettier-eslint-cli
   tern

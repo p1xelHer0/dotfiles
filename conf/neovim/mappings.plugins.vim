@@ -32,6 +32,8 @@ nnoremap ga <Plug>(EasyAlign)
 " goyo.vim
 nnoremap <Leader>gv :Goyo<CR>
 
+" LanugageClient
+nnoremap <silent> <Leader>d :call LanguageClient_textDocument_definition()<CR>
 
 " NERDTree
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>

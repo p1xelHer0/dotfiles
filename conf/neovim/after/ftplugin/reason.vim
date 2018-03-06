@@ -7,3 +7,7 @@ let g:neoformat_reason_refmt80 = {
 \ }
 
 let g:neoformat_enabled_reason = ['refmt80']
+let g:LanguageClient_serverCommands = {
+\ 'reason': ['ocaml-language-server', '--stdio'],
+\ 'ocaml': ['ocaml-language-server', '--stdio'],
+\ }

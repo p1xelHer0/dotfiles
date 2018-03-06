@@ -56,7 +56,7 @@ Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
 Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
 " Reason
-Plug 'reasonml-editor/vim-reason',             { 'for': 'reasonml' }
+Plug 'reasonml-editor/vim-reason-plus'
 
 " PureScript
 Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
