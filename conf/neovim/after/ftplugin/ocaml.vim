@@ -1,6 +1,6 @@
-nnoremap <buffer> <Leader>dd :MerlinLocate<CR>
-nnoremap <buffer> <Leader>tt :MerlinTypeOf<CR>
+nnoremap <buffer> <Leader>d :MerlinLocate<CR>
+nnoremap <buffer> <Leader>dt :MerlinTypeOf<CR>
+
 let g:LanguageClient_serverCommands = {
-\ 'reason': ['ocaml-language-server', '--stdio'],
 \ 'ocaml': ['ocaml-language-server', '--stdio'],
 \ }

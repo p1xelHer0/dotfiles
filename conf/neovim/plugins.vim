@@ -24,13 +24,10 @@ Plug 'pangloss/vim-javascript',                { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
-Plug 'ternjs/tern_for_vim',                    { 'for': 'javascript.jsx', 'do': 'npm install' }
-Plug 'carlitux/deoplete-ternjs',               { 'for': 'javascript.jsx' }
-Plug 'othree/jspc.vim',                        { 'for': 'javascript.jsx' }
+Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript'] }
 
 " TypeScript
 Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
-Plug 'mhartington/nvim-typescript',            { 'for': 'typescript' }
 
 " HTML
 Plug 'othree/html5.vim',                       { 'for': 'html' }
@@ -127,7 +124,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " other
 Plug 'junegunn/vim-peekaboo'
-Plug 'haya14busa/is.vim'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
