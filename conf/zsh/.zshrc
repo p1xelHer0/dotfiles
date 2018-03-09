@@ -80,7 +80,7 @@ export STACK_PACKAGES=$HOME/.local/bin
 
 
 # Rust
-export CARGO_HOME=$HOME/.cargo/bin
+export CARGO_HOME=$HOME/.cargo
 
 
 # set $PATH
