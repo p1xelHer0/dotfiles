@@ -32,10 +32,11 @@ packages=(
   tern
 )
 
-# install reason with npm for now
+# install reason with npm
 reasonPackages=(
-  https://github.com/reasonml/reason-cli/archive/beta-v-1.13.7-bin-darwin.tar.gz
+  reason-cli@3.1.0-darwin
   bs-platform
+  ocaml-language-server
 )
 
 yarn global add "${packages[@]}"
