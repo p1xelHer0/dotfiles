@@ -6,7 +6,8 @@
 # install rustup
 curl https://sh.rustup.rs -sSs | sh
 
-rustup default stable
+rustup install nightly
+rustup default nightly
 
 # install RLS
 packages=(

@@ -99,6 +99,7 @@ Plug 'w0rp/ale'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'sodapopcan/vim-twiggy'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 

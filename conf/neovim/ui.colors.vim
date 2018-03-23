@@ -9,7 +9,6 @@ if exists('syntax_on')
   syntax reset
 endif
 
-
 let g:colors_name = 'pxl9'
 set background=dark
 
@@ -18,9 +17,8 @@ let g:GitAddColor = system('git config --list | grep added | grep -o -E "[0-8]"'
 let g:GitChangeColor = system('git config --list | grep changed | grep -o -E "[0-8]"')
 let g:GitUntrackedColor = system('git config --list | grep untracked | grep -o -E "[0-8]"')
 
-
 highlight Normal ctermfg=7 ctermbg=NONE cterm=NONE
-highlight NonText ctermfg=8 ctermbg=NONE cterm=NONE
+highlight NonText ctermfg=237 ctermbg=NONE cterm=NONE
 highlight EndOfBuffer ctermfg=0 ctermbg=NONE cterm=NONE
 highlight Comment ctermfg=8 ctermbg=NONE
 highlight Constant ctermfg=3 ctermbg=NONE cterm=NONE
