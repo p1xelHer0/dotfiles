@@ -24,6 +24,7 @@ apps=(
   iterm2-nightly                                # terminal
   opera                                         # browser
   postman                                       # dev
+  signal                                        # communication
   skype                                         # communication
   slack                                         # communication
   spotify                                       # utils
