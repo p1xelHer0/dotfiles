@@ -47,10 +47,10 @@ Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " CoffeeScript
-Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
+" Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
 
 " Elm
-Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
+" Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
 " Reason
 Plug 'reasonml-editor/vim-reason-plus'
@@ -61,7 +61,7 @@ Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
-Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
+" Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
@@ -70,14 +70,14 @@ Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 
 " C#
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
-Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
-Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
+" Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
+" Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
 
 " Godot
-Plug 'quabug/vim-gdscript'
+" Plug 'quabug/vim-gdscript'
 
 " other
 Plug 'ap/vim-css-color'
@@ -105,7 +105,7 @@ Plug 'junegunn/gv.vim'
 
 " editing
 Plug 'AndrewRadev/switch.vim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'sgur/vim-editorconfig'
 Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
@@ -124,12 +124,12 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 
 " other
-Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/vim-slash'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-slash'
+" Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'
-Plug 'xtal8/traces.vim'
+" Plug 'xtal8/traces.vim'
 
 " }}}
 
