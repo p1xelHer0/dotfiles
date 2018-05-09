@@ -7,7 +7,7 @@
  # -- 🐉 p1xelHer0's dotfiles
 
 
- # dotfiles to setup my dev env on macOS (and Arch Linux wip)
+ # dotfiles to setup my dev env on macOS and Arch Linux
 
  # 🍏 💻 macOS on my work MacBook Pro 15"
  # 🐧 📦 Arch Linux on my home desktop running on VirtualBox on Windows 10
@@ -21,7 +21,7 @@
 ```
 ```
 ```
- # 🍏 macOS + 🐧 Arch Linux {{{
+ # 🍏 macOS + 🐧 Arch Linux
 
    # 🛠 ~/dotfiles/conf
 
@@ -44,12 +44,12 @@
 
    colortest      > test terminal colors 0-8 fg and bg
 
- # }}}
+ #
 ```
 ```
 ```
 ```
- # 🍏 macOS-specific {{{
+ # 🍏 macOS-specific
 
    # 🛠 ~/dotfiles/conf/osx
 
@@ -66,12 +66,12 @@
    wal-set        > sets wal colors for alacritty, chunkwm and ubersicht
    wal2iterm      > exports wal colors to .itermcolors for iTerm2
  
- # }}}
+ # 
 ```
 ```
 ```
 ```
- # 🐧 Arch Linux-specific wip {{{
+ # 🐧 Arch Linux-specific 
 
    # 🛠 ~/dotfiles/conf/arch
 
@@ -92,7 +92,7 @@
    bar            > actual lemonbar implementation
    wal-set        > sets wal colors for dunst and lemonbar
 
- # }}}
+ # 
 ```
 ```
 ```
