@@ -24,12 +24,14 @@ packages=(
   bower
   create-react-app
   eslint
+  gatsby
   instant-markdown-d
+  javascript-typescript-langserver
+  neovim
   prettier
   prettier-eslint-cli
   pulp
   react-native-cli
-  tern
 )
 
 # install reason with npm

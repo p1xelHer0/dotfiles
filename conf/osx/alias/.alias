@@ -63,6 +63,6 @@ alias rrepl="rustup run nightly-2016-08-01 $CARGO_HOME/bin/rusti"
 alias onb="sh $HOME/dotfiles/conf/tmux/launchers/onboarding.sh"
 
 # shoutout to ollegz
-alias plz="brew upgrade; brew cleanup; upgrade_oh_my_zsh; cd $HOME/alacritty; git pull; rustup update stable; cargo build --release; make app; cp -r target/release/osx/Alacritty.app /Applications/Alacritty.app; cd $HOME"
+alias plz="brew upgrade; brew cleanup; upgrade_oh_my_zsh; yarn global upgrade --latest; cd $HOME/alacritty; git pull; rustup update stable; cargo build --release; make app; cp -r target/release/osx/Alacritty.app /Applications/Alacritty.app; cd $HOME"
 
 alias love="/Applications/love.app/Contents/MacOS/love"
