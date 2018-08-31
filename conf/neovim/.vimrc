@@ -29,7 +29,6 @@ let s:configs = [
 \ 'settings.plugins',
 \ 'mappings',
 \ 'mappings.plugins',
-\ 'ui.colors',
 \ 'ui',
 \ 'ui.statusline',
 \ 'ui.plugins',

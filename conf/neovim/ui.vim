@@ -3,6 +3,8 @@
 " -- everything that affects the non-color look of Neovim
 
 
+colorscheme pxl19
+
 " split border
 set fillchars+=vert: 
 
