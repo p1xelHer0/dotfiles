@@ -19,6 +19,7 @@ brew upgrade --all
 apps=(
   coreutils                                     # utils
   curl                                          # utils
+  diff-so-fancy                                 # better git-diffs
   dfu-util                                      # used to install whitefox configs
   fasd                                          # utils - navigate directories fast, like autojump, z
   # fzf                                         # utils - terminal fuzzy finder, install with vim atm

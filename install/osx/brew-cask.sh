@@ -28,6 +28,7 @@ apps=(
   skype                                         # communication
   slack                                         # communication
   spotify                                       # utils
+  telegram                                      # communication
   ubersicht                                     # utils
   vlc                                           # utils
   xquartz                                       # utils (kwm)
