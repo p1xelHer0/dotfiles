@@ -22,6 +22,7 @@ apps=(
   google-chrome                                 # browser
   google-chrome-canary                          # browser
   iterm2-nightly                                # terminal
+  keybase                                       # utils
   opera                                         # browser
   postman                                       # dev
   signal                                        # communication
