@@ -30,6 +30,7 @@ apps=(
   slack                                         # communication
   spotify                                       # utils
   telegram                                      # communication
+  twitch                                        # utils
   ubersicht                                     # utils
   vlc                                           # utils
   xquartz                                       # utils (kwm)
