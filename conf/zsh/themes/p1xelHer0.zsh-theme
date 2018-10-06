@@ -114,10 +114,10 @@ if [[ $EUID -eq 0 ]]; then
 # I want vi-mode here
 elif [[ $EUID -ne 0 ]]; then
   _USERNAME="%F{6}%n"
-  _LIBERTY="%F{2}$"
+  _LIBERTY="%F{2}λ"
 else
   _USERNAME="%F{6}%n"
-  _LIBERTY="%F{2}$"
+  _LIBERTY="%F{2}λ"
 fi
 _USERNAME="$_USERNAME%{$reset_color%}@%m"
 _LIBERTY="$_LIBERTY%{$reset_color%}"
