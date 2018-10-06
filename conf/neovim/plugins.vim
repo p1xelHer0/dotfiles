@@ -61,7 +61,7 @@ Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
 Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
-" Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
+Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
@@ -130,6 +130,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'
 " Plug 'xtal8/traces.vim'
+Plug 'nightsense/shoji'
 
 " }}}
 
