@@ -74,14 +74,14 @@ chunkc set preselect_border_radius       0
 
 chunkc set window_float_topmost          0
 chunkc set window_fade_inactive          0
-chunkc set window_fade_alpha             0.85
-chunkc set window_fade_duration          0.5
+chunkc set window_fade_alpha             1
+chunkc set window_fade_duration          0
 
 #
 # NOTE: the following are config variables for the chunkwm-border plugin.
 #
 
-chunkc set focused_border_color          #B49174ff
+chunkc set focused_border_color          0x39445fff
 chunkc set focused_border_width          4
 chunkc set focused_border_radius         0
 chunkc set focused_border_skip_floating  0
@@ -101,5 +101,5 @@ chunkc core::load border.so
 #
 
 chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile
-chunkc tiling::rule --owner Finder --name Copy --state float
+chunkc tiling::rule --owner Finder --name Copy --state tile
 chunkc tiling::rule --owner \"App Store\" --state float
