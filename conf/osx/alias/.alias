@@ -4,14 +4,19 @@
 # this is because I dont want to load these as soon as I open a new terminal
 # it takes time, and I seldom use python and ruby directly in the terminal
 
+alias v=vim
+
 # open dotfiles in editor
 alias dotfiles="cd $HOME/dotfiles && vim"
 
 # open Neovim config
 alias vimrc="vim $HOME/dotfiles/conf/neovim"
 
+# fzf -> open in vim
+alias vf="vim \$(fzf)"
+
 # open zsh config
-alias zshrc="vim $HOME/dotfiles/conf/osx/zsh/.zshrc"
+alias zshrc="vim $HOME/dotfiles/conf/zsh/.zshrc"
 
 # open alacritty.yml
 alias arc="vim $HOME/dotfiles/conf/osx/alacritty/alacritty.yml"
@@ -25,9 +30,6 @@ alias rl="exec zsh"
 # list npm modules global/local
 alias ng="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
-
-# run Neovim with Reason env
-alias rvim="npm run env -- nvim"
 
 # show ip and local ip
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -53,6 +55,6 @@ alias rrepl="rustup run nightly-2016-08-01 $CARGO_HOME/bin/rusti"
 alias onb="sh $HOME/dotfiles/conf/tmux/launchers/onboarding.sh"
 
 # shoutout to ollegz
-alias pls="brew upgrade; brew cleanup; upgrade_oh_my_zsh; yarn global upgrade --latest; cd $HOME/alacritty; git pull; rustup update stable; cargo build --release; make app; cp -rf target/release/osx/Alacritty.app /Applications/Alacritty.app; cd $HOME"
+alias pls="brew upgrade; brew cleanup; upgrade_oh_my_zsh; yarn global upgrade --latest; cd $HOME/alacritty; git pull; rustup update stable; cargo build --release; make app; rm /Applications/Alacritty.app; cp -rf target/release/osx/Alacritty.app /Applications/Alacritty.app; cd $HOME"
 
 alias love="/Applications/love.app/Contents/MacOS/love"
