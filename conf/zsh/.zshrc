@@ -35,7 +35,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 export ZSH=$HOME/.oh-my-zsh
 
-plugins=(vi-mode zsh-syntax-highlighting)
+plugins=(vi-mode zsh-syntax-highlighting zsh-autosuggestions)
 
 # add osx plugin on macOS
 if [[ -n "$IS_MACOS" ]]; then

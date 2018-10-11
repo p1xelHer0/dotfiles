@@ -13,6 +13,9 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 mkdir -p "$HOME/.oh-my-zsh/custom/plugins/"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
+# install zsh-autosuggestions to oh-my-zsh custom plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+
 
 # set default shell to zsh
 chsh -s "$(which zsh)"
