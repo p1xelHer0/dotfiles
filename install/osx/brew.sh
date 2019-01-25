@@ -21,14 +21,17 @@ apps=(
   curl                                          # utils
   diff-so-fancy                                 # better git-diffs
   dfu-util                                      # used to install whitefox configs
+  evince                                        # utils - document viewer, pdf
   fasd                                          # utils - navigate directories fast, like autojump, z
   # fzf                                         # utils - terminal fuzzy finder, install with vim atm
   git                                           # utils
   git-flow                                      # utils - git branching model
+  gpatch                                        # utils - needed for opam
   koekeishiya/formulae/skhd                     # utils - hotkey daemon
   chunkwm                                       # utils - window manager
   ranger                                        # utils - file manager
   neovim/neovim/neovim                          # editor
+  opam                                          # ocaml - package manager
   pyenv                                         # python - used in neovim
   pyenv-virtualenv                              # python - used in neovim
   tree                                          # utils
