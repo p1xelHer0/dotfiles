@@ -1,34 +1,41 @@
 #!/bin/bash
 
-# install latest version of Python 2 and 3
+# install version of Python 2 and 3
 # set up virtualenvs for Neovim
 
-python2="todo"
-python3=$(pyenv install --list | grep -v - | grep -v b | tail -1)
+python3v=$(pyenv install -l | grep -v - | grep -v b | tail -1)
 
 # install latest Python version
-pyenv install $python3
+pyenv install 3.7.1
 
 # restart for changes to take effect
 exec zsh
 
 # set global Python
-pyenv global $
+pyenv global 3.7.1
 
 # setup pyenvs for neovim
-pyenv virtualenv $python3 neovim3
+pyenv virtualenv 3.7.1 neovim3
 pyenv activate neovim3
 pip install neovim
+pip install --upgrade pip
 # upgrade with 'pip install --upgrade neovim'
 # set path to let g:python_host_prog in 'neovim/.vimrc'
-pyenv which python # Note the path
+# pyenv which python # Note the path
 
-pyenv virtualenv $python2 neovim2
+pyenv virtualenv 2.7.15 neovim2
 pyenv activate neovim2
 pip install neovim
+pip install --upgrade pip
 # upgrade with 'pip install --upgrade neovim'
-# set path to let g:python3_host_prog in 'neovim/.vimrc'
+# set path to let g:python3v in 'neovim/.vimrc'
 pyenv which python  # Note the path
+
+pyenv deactivate
+pip install vim-vint
 
 # update pip
 pip install --upgrade pip
+
+# install pywal
+pip install pywal
