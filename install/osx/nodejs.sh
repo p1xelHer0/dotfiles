@@ -36,8 +36,8 @@ packages=(
 
 # install reason with npm
 reasonPackages=(
-  reason-cli@3.1.0-darwin
-  bs-platform
+  # reason-cli@3.1.0-darwin
+  # bs-platform
   ocaml-language-server
 )
 
