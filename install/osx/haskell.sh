@@ -7,9 +7,11 @@ wget -qO- https://get.haskellstack.org | sh
 
 # packages to install
 apps=(
-  --resolver nightly-2016-10-17 hindent
-  hlint
+  brittany
+  cabal-install
   ghc-mod
+  hindent
+  hlint
   stylish-haskell
 )
 
@@ -19,3 +21,7 @@ then
   echo "Installing Haskell packages..."
   stack install "${apps[@]}"
 fi
+
+exec zsh
+
+cabal update
