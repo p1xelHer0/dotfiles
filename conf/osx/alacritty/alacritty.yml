@@ -35,7 +35,7 @@ window:
   #   bar buttons
   # - `buttonless`: Window with title bar with transparent background and no
   #   title bar buttons
-  decorations: none
+  decorations: buttonless
 
 scrolling:
   # How many lines of scrollback to keep,
