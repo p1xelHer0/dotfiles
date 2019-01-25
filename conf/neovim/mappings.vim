@@ -51,25 +51,37 @@ nnoremap <Leader>Q :quit!<CR>
 nnoremap <Leader>w :write<CR>
 nnoremap <Leader>x :xit<CR>
 
+" clear search
+nnoremap <Leader>/ :nohl<CR>
+
 " replace spaces with tabs or the other way around
 " :nohl because NERDTree bugs after replacing as of now
 nnoremap <Leader>r<Space>t :%s/  /\t/g<CR>:nohl<CR>
-nnoremap <Leader>rt<Space> :%s/\t/  /g<CR>
+nnoremap <Leader>rt<Space> :%s/\t/  /g<CR>:nohl<CR>
+
+nnoremap <Leader>9 :%s/\t/  /g<CR>:write<CR>
 
 " store relative line number jumps in the jumplist if they exceed a threshold
 " make j and k use strict linewise movements
-nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
-nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+" nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+" nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " f10 prints the current highlight rules for cursor selection
 nnoremap <F10> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<'
 \ . synIDattr(synID(line('.'),col('.'),0),'name') . '> lo<'
 \ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>
 
-" errors
+" location-list
 nnoremap <Leader>o :lopen<CR>
-nnoremap <Leader><Leader>o :lclose<CR>
 
+" quickfix
+nnoremap <Leader><Leader>o :copen<CR>
+
+" }}}
+
+
+" visual mappings {{{
+vnoremap <C-t> :s/\%V'/ä/g<CR>:s/\%V[/å/g<CR>:s/\%V;/ö/g<CR>
 " }}}
 
 

@@ -23,7 +23,7 @@ nmap ]W <Plug>(ale_last)
 nnoremap <silent> <C-p> :FZF<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
-nnoremap <silent> <Leader>f :Find<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)
@@ -36,7 +36,7 @@ nnoremap <Leader>gv :Goyo<CR>
 nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <Leader>lr :call LanguageClient_textDocument_rename()<CR>
 nnoremap <silent> <Leader>lt :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> <Leader>lf :call LanguageClient_textDocument_codeAction()<CR>
+nnoremap <silent> <Leader>la :call LanguageClient_textDocument_codeAction()<CR>
 nnoremap <silent> <Leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
 
 " NERDTree

@@ -24,6 +24,7 @@ Plug 'pangloss/vim-javascript',                { 'for': 'javascript.jsx' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
+Plug 'jxnblk/vim-mdx-js',                      { 'for': 'mdx' }
 Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript'] }
 
 " TypeScript
@@ -38,13 +39,21 @@ Plug 'cakebaker/scss-syntax.vim',              { 'for': 'scss' }
 
 " JSON
 Plug 'elzr/vim-json',                          { 'for': 'json' }
+Plug 'neoclide/jsonc.vim',                     { 'for': 'json' }
+
+" GraphQL
+Plug 'jparise/vim-graphql'
 
 " XML
 Plug 'othree/xml.vim',                         { 'for': 'xml' }
 
 " Markdown
 Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
-Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
+" Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
+
+" LaTeX
+" Plug 'lervag/vimtex',                          { 'for': 'tex' }
+" Plug 'xuhdev/vim-latex-live-preview',          { 'for': 'tex' }
 
 " CoffeeScript
 " Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
@@ -56,15 +65,18 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn 
 Plug 'reasonml-editor/vim-reason-plus'
 
 " PureScript
-Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
-Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
+" Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
+" Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
-Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
-Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
-Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
+" Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
+" Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
+" Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
-Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
+" Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
+
+" OCaml
+Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
 
 " Rust
 Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
@@ -81,7 +93,9 @@ Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 
 " other
 Plug 'ap/vim-css-color'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
+Plug 'luochen1990/rainbow'
 
 " }}}
 
@@ -91,7 +105,8 @@ Plug 'majutsushi/tagbar'
 Plug 'autozimu/LanguageClient-neovim',         { 'branch': 'next', 'do': 'bash install.sh' }
 
 " autocompletion
-Plug 'Shougo/deoplete.nvim',                   { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim',                   { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim',                      {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'ervandew/supertab'
 
 " linting
@@ -111,7 +126,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'machakann/vim-sandwich'
+" Plug 'machakann/vim-sandwich'
 
 " file handling and searching
 Plug 'scrooloose/nerdtree'
@@ -122,6 +137,7 @@ Plug 'junegunn/fzf.vim'
 " tmux integration
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'benmills/vimux'
 
 " other
 " Plug 'junegunn/vim-peekaboo'
@@ -130,7 +146,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'
 " Plug 'xtal8/traces.vim'
-Plug 'nightsense/shoji'
+" Plug 'nightsense/shoji'
 
 " }}}
 
