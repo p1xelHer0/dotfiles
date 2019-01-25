@@ -35,7 +35,8 @@ HIST_STAMPS="dd.mm.yyyy"
 
 export ZSH=$HOME/.oh-my-zsh
 
-plugins=(vi-mode zsh-syntax-highlighting zsh-autosuggestions)
+# zsh-autosuggestions
+plugins=(vi-mode zsh-syntax-highlighting)
 
 # add osx plugin on macOS
 if [[ -n "$IS_MACOS" ]]; then
@@ -77,6 +78,7 @@ export DOT_SCRIPTS=$HOME/dotfiles/bin
 
 # Haskell
 export STACK_PACKAGES=$HOME/.local/bin
+export HASKELL_IDE_ENGINE=$HOME/hie-bin/*
 
 
 # Rust
@@ -87,6 +89,8 @@ export CARGO_HOME=$HOME/.cargo
 export PATH=$DOT_SCRIPTS:$PATH
 
 export PATH=$STACK_PACKAGES:$PATH
+
+export PATH=$HASKELL_IDE_ENGINE:$PATH
 
 export PATH=$CARGO_HOME:$PATH
 
@@ -234,6 +238,9 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 #   eval "$(command jenv init -)"
 #   jenv "$@"
 # }
+
+# load opam
+eval $(opam env)
 
 
 # load pyenv
