@@ -63,6 +63,7 @@ Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 
 " Reason
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'jordwalke/vim-reasonml'
 
 " PureScript
 " Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
@@ -93,9 +94,7 @@ Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 
 " other
 Plug 'ap/vim-css-color'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
-Plug 'luochen1990/rainbow'
 
 " }}}
 
