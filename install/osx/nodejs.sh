@@ -21,7 +21,6 @@ fi
 
 # globally install with yarn
 packages=(
-  bower
   create-react-app
   eslint
   gatsby
@@ -30,15 +29,13 @@ packages=(
   neovim
   prettier
   prettier-eslint-cli
-  pulp
-  react-native-cli
 )
 
 # install reason with npm
 reasonPackages=(
-  # reason-cli@3.1.0-darwin
   # bs-platform
   ocaml-language-server
+  reason-cli
 )
 
 yarn global add "${packages[@]}"

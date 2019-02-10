@@ -11,10 +11,10 @@ then
   rubyv=$(rbenv install -l | grep -v - | tail -1)
 
   # install Ruby
-  rbenv install $rubyv
+  rbenv install "$rubyv"
 
   # switch to the installed version
-  rbenv global $rubyv
+  rbenv global "$rubyv"
 
   # ruby dependency for Neovim
   gem install neovim
