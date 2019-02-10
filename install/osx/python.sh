@@ -3,7 +3,7 @@
 # install version of Python 2 and 3
 # set up virtualenvs for Neovim
 
-python3v=$(pyenv install -l | grep -v - | grep -v b | tail -1)
+# python3v=$(pyenv install -l | grep -v - | grep -v b | tail -1)
 
 # install latest Python version
 pyenv install 3.7.1
