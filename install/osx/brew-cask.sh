@@ -11,12 +11,14 @@ brew tap caskroom/fonts
 
 # packages to install
 apps=(
+  alacritty                                     # terminal
   alfred                                        # utils
   brave                                         # browser
   discord                                       # communication
   dropbox                                       # utils
   firefox                                       # browser
   firefoxnightly                                # browser
+  firefox-developer-edition
   font-iosevka                                  # font
   gitkraken                                     # utils
   google-chrome                                 # browser
@@ -24,6 +26,7 @@ apps=(
   iterm2-nightly                                # terminal
   keybase                                       # utils
   mactex                                        # utils
+  mullvadvpn                                    # privacy
   opera                                         # browser
   postman                                       # dev
   signal                                        # communication
