@@ -63,8 +63,8 @@ nnoremap <Leader>9 :%s/\t/  /g<CR>:write<CR>
 
 " store relative line number jumps in the jumplist if they exceed a threshold
 " make j and k use strict linewise movements
-" nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
-" nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " f10 prints the current highlight rules for cursor selection
 nnoremap <F10> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<'
@@ -81,7 +81,9 @@ nnoremap <Leader><Leader>o :copen<CR>
 
 
 " visual mappings {{{
+
 vnoremap <C-t> :s/\%V'/ä/g<CR>:s/\%V[/å/g<CR>:s/\%V;/ö/g<CR>
+
 " }}}
 
 

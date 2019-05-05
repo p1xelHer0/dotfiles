@@ -25,7 +25,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'jxnblk/vim-mdx-js',                      { 'for': 'mdx' }
-Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript'] }
+" Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript', 'typescript.tsx'] }
 
 " TypeScript
 Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
@@ -49,7 +49,7 @@ Plug 'othree/xml.vim',                         { 'for': 'xml' }
 
 " Markdown
 Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
-" Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
+Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " LaTeX
 " Plug 'lervag/vimtex',                          { 'for': 'tex' }
@@ -141,8 +141,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " other
 " Plug 'junegunn/vim-peekaboo'
 " Plug 'junegunn/vim-slash'
-" Plug 'junegunn/limelight.vim'
-" Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'
 " Plug 'xtal8/traces.vim'
 " Plug 'nightsense/shoji'

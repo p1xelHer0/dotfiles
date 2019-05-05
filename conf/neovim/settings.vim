@@ -110,3 +110,10 @@ else
 endif
 
 " }}}
+
+" jsx/tsx
+augroup jsx_and_tsx
+  autocmd!
+  autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+  autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
