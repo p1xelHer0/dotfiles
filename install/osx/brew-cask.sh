@@ -6,6 +6,7 @@
 brew tap caskroom/cask
 brew install brew-cask
 
+brew tap homebrew/cask-drivers
 brew tap caskroom/versions
 brew tap caskroom/fonts
 
@@ -18,7 +19,7 @@ apps=(
   dropbox                                       # utils
   firefox                                       # browser
   firefoxnightly                                # browser
-  firefox-developer-edition
+  firefox-developer-edition                     # browser
   font-iosevka                                  # font
   gitkraken                                     # utils
   google-chrome                                 # browser
@@ -29,6 +30,7 @@ apps=(
   mullvadvpn                                    # privacy
   opera                                         # browser
   postman                                       # dev
+  qmk-toolbox                                   # keyboard
   signal                                        # communication
   skype                                         # communication
   slack                                         # communication
