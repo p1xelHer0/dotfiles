@@ -12,8 +12,8 @@ yabai -m config status_bar_space_icon        
 yabai -m config status_bar_clock_icon        
 
 # global settings
-yabai -m config mouse_follows_focus          off
-yabai -m config focus_follows_mouse          off
+yabai -m config mouse_follows_focus          on
+yabai -m config focus_follows_mouse          on
 yabai -m config window_topmost               off
 yabai -m config window_opacity               off
 yabai -m config window_shadow                on
@@ -32,10 +32,10 @@ yabai -m config mouse_action2                resize
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  20
-yabai -m config bottom_padding               20
-yabai -m config left_padding                 20
-yabai -m config right_padding                20
+yabai -m config top_padding                  40
+yabai -m config bottom_padding               10
+yabai -m config left_padding                 10
+yabai -m config right_padding                10
 yabai -m config window_gap                   10
 
 echo "yabai configuration loaded.."
