@@ -27,8 +27,7 @@ apps=(
   git                                           # utils
   git-flow                                      # utils - git branching model
   gpatch                                        # utils - needed for opam
-  koekeishiya/formulae/skhd                     # utils - hotkey daemon
-  chunkwm                                       # utils - window manager
+  koekeishiya/formulae                          # utils - skhd and yabai
   ranger                                        # utils - file manager
   neovim/neovim/neovim                          # editor
   opam                                          # ocaml - package manager
@@ -43,6 +42,7 @@ apps=(
   universal-ctags --HEAD
   wget                                          # utils
   wifi-password                                 # utils - show the wifi-password in terminal
+  yabai
   yarn --ignore-dependencies                    # js - package manager
   zsh                                           # shell
 )
