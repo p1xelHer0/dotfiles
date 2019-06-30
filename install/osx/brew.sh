@@ -23,6 +23,7 @@ apps=(
   dfu-util                                      # used to install whitefox configs
   evince                                        # utils - document viewer, pdf
   fasd                                          # utils - navigate directories fast, like autojump, z
+  fswatch                                       # utils - file watcher used for watching files in dune projects
   # fzf                                         # utils - terminal fuzzy finder, install with vim atm
   git                                           # utils
   git-flow                                      # utils - git branching model
@@ -67,12 +68,10 @@ fun=(
   neofetch                                      # utils - print system information
 )
 
-brew tap homebrew/versions
-brew tap homebrew/dupes
 brew tap homebrew/services
 
 brew tap universal-ctags/universal-ctags
-brew tap crisidev/homebrew-chunkwm
+brew tap koekeishiya/formulae
 
 # make sure we’re using the latest Homebrew
 brew update
@@ -85,4 +84,3 @@ brew cleanup
 
 # start chunkwm and khd by default
 brew services start koekeishiya/formulae/skhd
-brew services restart crisidev/chunkwm/chunkwm
