@@ -239,9 +239,6 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 #   jenv "$@"
 # }
 
-# load opam
-eval $(opam env)
-
 
 # load pyenv
 if [[ -n "$IS_MACOS" ]]; then
