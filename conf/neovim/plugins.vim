@@ -25,7 +25,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'jxnblk/vim-mdx-js',                      { 'for': 'mdx' }
-" Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript', 'typescript.tsx'] }
+Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript', 'typescript.tsx'] }
 
 " TypeScript
 Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
