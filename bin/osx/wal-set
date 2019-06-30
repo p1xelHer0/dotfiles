@@ -6,6 +6,7 @@
 # https://github.com/dylanaraps/pywal
 # my unix skill is far from good, but it works for now :D
 
+
 ubersicht_css="$HOME/dotfiles/conf/osx/ubersicht/widgets/nerdbar.widget/colors.css"
 wal_css="$HOME/.cache/wal/colors.css"
 chunkwmrc=$HOME/dotfiles/conf/osx/chunkwm/.chunkwmrc

@@ -5,6 +5,7 @@
 # -- wal2iterm - generates itermcolors from wal colors
 # Based on 'coal', https://github.com/dylanaraps/coal
 
+
 # speed up script by not using unicode
 export LC_ALL=C
 export LANG=C
