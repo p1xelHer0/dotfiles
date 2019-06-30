@@ -109,10 +109,6 @@ font:
     x: 0
     y: 0
 
-  # Scale the font size based on the monitor's DPI. This will lead to bigger text on HiDPI
-  # screens and make reading text a little easier.
-  scale_with_dpi: true
-
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
@@ -120,10 +116,6 @@ font:
 
 # Should display the render timer
 render_timer: false
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
 
 # Colors (wal)
 colors:
@@ -229,7 +221,7 @@ selection:
 
 dynamic_title: true
 
-hide_cursor_when_typing: false
+mouse.hide_when_type: true
 
 # Style of the cursor
 #
@@ -237,10 +229,10 @@ hide_cursor_when_typing: false
 # - Block
 # - Underline
 # - Beam
-cursor_style: Block
+cursor.style: Block
 
 # Whether the cursor should be a hollow block on window focus loss
-unfocused_hollow_cursor: true
+cursor.unfocused_hollow: true
 
 # Live config reload (changes require restart)
 live_config_reload: true
