@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+###
+
+# -- script to set update all external dependencies for neovim
+
+
+brew update
+brew upgrade neovim
+
+
+# Ruby dependencies {{{
+
+eval "$(command rbenv init -)"
+gem update neovim
+
+# }}}
+
+
+# Python dependencies {{{
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Python 3
+pyenv activate neovim3
+pip install neovim
+pip install --upgrade pip
+
+# Python 2
+pyenv activate neovim2
+pip install neovim
+pip install --upgrade pip
+
+pyenv deactivate
+
+# System Python
+pip install --upgrade pip
+
+# }}}
+
+
+# Nodejs dependencies {{{
+
+yarn global add neovim@latest
+
+### }}}
