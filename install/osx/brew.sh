@@ -31,7 +31,7 @@ apps=(
   koekeishiya/formulae                          # utils - skhd and yabai
   ranger                                        # utils - file manager
   neovim/neovim/neovim                          # editor
-  opam                                          # ocaml - package manager
+  # opam                                        # ocaml - package manager - we are using `esy` instead of this right now
   pyenv                                         # python - used in neovim
   pyenv-virtualenv                              # python - used in neovim
   tree                                          # utils
