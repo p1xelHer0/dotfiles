@@ -35,7 +35,7 @@ highlight Todo ctermfg=0 ctermbg=2 cterm=NONE
 highlight Type ctermfg=3 ctermbg=NONE cterm=NONE
 highlight Underlined ctermfg=1 ctermbg=NONE cterm=underline
 
-highlight MatchParen ctermfg=0 ctermbg=4 cterm=reverse
+highlight MatchParen ctermfg=5 ctermbg=4 cterm=underline
 
 highlight LineNr ctermfg=8 ctermbg=0 cterm=NONE
 highlight CursorLineNr ctermfg=3 ctermbg=0 cterm=bold
