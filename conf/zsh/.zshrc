@@ -21,6 +21,9 @@ fi
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
+# use the maximum amount of file descriptors
+ulimit -n 24576
+
 
 # settings {{{
 
