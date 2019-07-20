@@ -43,4 +43,11 @@ pip install --upgrade pip
 
 yarn global add neovim@latest
 
-### }}}
+# }}}
+
+
+# neovim itself {{{
+
+nvim +PlugInstall +UpdateRemotePlugins +qa
+
+# }}}
