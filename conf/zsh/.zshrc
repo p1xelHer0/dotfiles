@@ -3,6 +3,9 @@
 # -- here be turtles
 
 
+export TERM=xterm-256color
+
+
 if [[ $(uname) == "Darwin" ]]; then
   IS_MACOS=true
 fi
@@ -106,10 +109,8 @@ if [[ -n "$IS_MACOS" ]]; then
   # macOS dotfile scripts
   export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/osx
 
-  # chunkc + chunkwm
-  export CHUNKWM=$HOME/chunkwm/bin
-  export CHUNKC=$HOME/chunkwm/src/chunkc/bin
-
+  # clang
+  export CLANG=/usr/local/opt/llvm/bin
 
   # Python
   export PYENV_ROOT=$HOME/.pyenv
@@ -155,8 +156,7 @@ if [[ -n "$IS_MACOS" ]]; then
 
   export PATH="/usr/local/sbin:$PATH"
 
-  export PATH=$CHUNKWM:$PATH
-  export PATH=$CHUNKC:$PATH
+  export PATH=$CLANG:$PATH
 
   export PATH=$PYENV_ROOT/bin:$PATH
 
