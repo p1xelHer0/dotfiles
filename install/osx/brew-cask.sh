@@ -26,6 +26,7 @@ apps=(
   google-chrome-canary                          # browser
   iterm2-nightly                                # terminal
   keybase                                       # utils
+  kitty                                         # terminal
   mactex                                        # utils
   mullvadvpn                                    # privacy
   opera                                         # browser

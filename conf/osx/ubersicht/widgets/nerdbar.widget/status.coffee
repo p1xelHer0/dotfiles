@@ -9,7 +9,7 @@ render: (output) ->
   """
 
 style: """
-  font: 14px Iosevka
+  font: 14px Iosevka Term
   text-transform: lowercase
   right: 12px
   top: 7px

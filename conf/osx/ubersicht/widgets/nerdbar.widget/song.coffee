@@ -9,7 +9,7 @@ render: (output) ->
   """
 
 style: """
-  font: 14px Iosevka
+  font: 14px Iosevka Term
   width: 100%
   top: 7px
   text-align: center
