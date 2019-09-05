@@ -15,10 +15,10 @@ fi
 ZSH_THEME=p1xelHer0
 
 # import colorscheme from 'wal'
-if [[ -n "$IS_MACOS" ]]; then
-else
-  cat /home/pxl/.cache/wal/sequences
-fi
+# if [[ -n "$IS_MACOS" ]]; then
+# else
+#   cat /home/pxl/.cache/wal/sequences
+# fi
 
 
 autoload -U +X compinit && compinit
@@ -65,11 +65,7 @@ fi
 
 export NVM_DIR=$HOME/.nvm
 
-if [[ -n "$IS_MACOS" ]]; then
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-else
-  [ -s "/usr/share/nvm/nvm.sh" ] && . "/usr/share/nvm/nvm.sh"
-fi
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 NODE_VERSION=$(node --version | grep -v -)
 
@@ -86,6 +82,8 @@ export DOT_SCRIPTS=$HOME/dotfiles/bin
 export STACK_PACKAGES=$HOME/.local/bin
 export HASKELL_IDE_ENGINE=$HOME/hie-bin/*
 
+# Python
+export PYENV_ROOT=$HOME/.pyenv
 
 # Rust
 export CARGO_HOME=$HOME/.cargo
@@ -95,6 +93,8 @@ export CARGO_HOME=$HOME/.cargo
 export PATH=$DOT_SCRIPTS:$PATH
 
 export PATH=$STACK_PACKAGES:$PATH
+
+export PATH=$PYENV_ROOT/bin:$PATH
 
 export PATH=$HASKELL_IDE_ENGINE:$PATH
 
@@ -112,8 +112,6 @@ if [[ -n "$IS_MACOS" ]]; then
   # clang
   export CLANG=/usr/local/opt/llvm/bin
 
-  # Python
-  export PYENV_ROOT=$HOME/.pyenv
 
 
   # React Native
@@ -141,10 +139,10 @@ if [[ -n "$IS_MACOS" ]]; then
 # }}}
 
 
-# Arch Linux $PATH {{
+# Linux $PATH {{
 else
-  # Arch Linux dotfile scripts
-  export ARCH_DOT_SCRIPTS=$HOME/dotfiles/bin/arch
+  # Linux dotfile scripts
+  export LINUX_DOT_SCRIPTS=$HOME/dotfiles/bin/linux
 fi
 
 # }}}
@@ -158,7 +156,6 @@ if [[ -n "$IS_MACOS" ]]; then
 
   export PATH=$CLANG:$PATH
 
-  export PATH=$PYENV_ROOT/bin:$PATH
 
   export PATH=$STACK_PACKAGES:$PATH
 
@@ -180,9 +177,9 @@ if [[ -n "$IS_MACOS" ]]; then
 # }}}
 
 
-# set Arch Linux $PATH {{{
+# set Linux $PATH {{{
 else
-  export PATH=$ARCH_DOT_SCRIPTS:$PATH
+  export PATH=$LINUX_DOT_SCRIPTS:$PATH
 fi
 
 # }}}
@@ -221,7 +218,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n "$IS_MACOS" ]]; then
   source $HOME/dotfiles/conf/osx/alias/.alias
 else
-  source $HOME/dotfiles/conf/arch/alias/.alias
+  source $HOME/dotfiles/conf/linux/alias/.alias
 fi
 
 
@@ -244,18 +241,16 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
 
 # load pyenv
-if [[ -n "$IS_MACOS" ]]; then
-  pyenv() {
-    printf "\e[38;5;2mpyenv init... "
-    eval "$(command pyenv init -)"
-    printf "done";
-    printf "\e[38;5;4m pyenv virtualenv init... "
-    eval "$(command pyenv virtualenv-init -)"
-    export PYENV_INIT=1
-    printf "done\e[0m\n";
-    pyenv "$@"
-  }
-fi
+pyenv() {
+  printf "\e[38;5;2mpyenv init... "
+  eval "$(command pyenv init -)"
+  printf "done";
+  printf "\e[38;5;4m pyenv virtualenv init... "
+  eval "$(command pyenv virtualenv-init -)"
+  export PYENV_INIT=1
+  printf "done\e[0m\n";
+  pyenv "$@"
+}
 
 
 # load stack
@@ -265,15 +260,13 @@ fi
 
 
 # load rbenv
-if [[ -n "$IS_MACOS" ]]; then
-  rbenv() {
-    printf "\e[38;5;1mrbenv init... "
-    eval "$(command rbenv init -)"
-    export RBENV_INIT=1
-    printf "done\e[0m\n";
-    rbenv "$@"
-  }
-fi
+rbenv() {
+  printf "\e[38;5;1mrbenv init... "
+  eval "$(command rbenv init -)"
+  export RBENV_INIT=1
+  printf "done\e[0m\n";
+  rbenv "$@"
+}
 
 
 # npm tab completion

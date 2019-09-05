@@ -95,18 +95,15 @@ augroup dotfiles_foldmarker
 augroup END
 
 
-if IsMacOS()
 " python provider configuration
 " virtualenvs with pyenv
-  let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-  let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
+if IsMacOS()
 " ruby provider configuration
 " rbenv
   let g:ruby_host_prog = $HOME . '/.rbenv/versions/2.4.1/bin/neovim-ruby-host'
-else
-  let g:python_host_prog = '/usr/bin/python2'
-  let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 " }}}

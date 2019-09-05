@@ -62,8 +62,8 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn 
 " Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
 " Reason
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'jordwalke/vim-reasonml'
+" Plug 'reasonml-editor/vim-reason-plus'
+" Plug 'jordwalke/vim-reasonml'
 
 " PureScript
 " Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
@@ -73,24 +73,24 @@ Plug 'jordwalke/vim-reasonml'
 " Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
 " Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
 " Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
-Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
+" Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 " Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
 " OCaml
-Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
+" Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
 
 " Rust
-Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
+" Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 
 " C#
-" Plug 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
-" Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
-" Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
+Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
+Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
 
 " Godot
-" Plug 'quabug/vim-gdscript'
+Plug 'quabug/vim-gdscript'
 
 " other
 Plug 'ap/vim-css-color'
