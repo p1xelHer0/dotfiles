@@ -20,7 +20,7 @@ let g:GitUntrackedColor = system('git config --list | grep untracked | grep -o -
 highlight Normal ctermfg=7 ctermbg=NONE cterm=NONE
 highlight NonText ctermfg=237 ctermbg=NONE cterm=NONE
 highlight EndOfBuffer ctermfg=0 ctermbg=NONE cterm=NONE
-highlight Comment ctermfg=8 ctermbg=NONE
+highlight Comment ctermfg=8 ctermbg=NONE cterm=italic
 highlight Constant ctermfg=3 ctermbg=NONE cterm=NONE
 highlight Error ctermfg=0 ctermbg=1 cterm=NONE
 highlight ErrorMsg ctermfg=1 ctermbg=NONE cterm=NONE

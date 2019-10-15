@@ -7,7 +7,7 @@
 alias v=vim
 
 # open dotfiles in editor
-alias dotfiles="cd $HOME/dotfiles && vim"
+alias dots="cd $HOME/dotfiles && vim"
 
 # open Neovim config
 alias vimrc="vim $HOME/dotfiles/conf/neovim"

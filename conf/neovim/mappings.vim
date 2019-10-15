@@ -3,10 +3,17 @@
 " -- keymapping that uses functionality of default Neovim
 
 
+set encoding=utf-8
+scriptencoding utf-8
+
+
 " universal mappings {{{
 
-" leader - space masterrace
+" leader
 let g:mapleader = "\<Space>"
+
+" dont go into ex mode
+noremap Q <NOP>
 
 " don't use arrows!
 noremap <Up> <NOP>
@@ -52,14 +59,12 @@ nnoremap <Leader>w :write<CR>
 nnoremap <Leader>x :xit<CR>
 
 " clear search
-nnoremap <Leader>/ :nohl<CR>
+" nnoremap <Leader>/ :nohl<CR>
 
 " replace spaces with tabs or the other way around
 " :nohl because NERDTree bugs after replacing as of now
-nnoremap <Leader>r<Space>t :%s/  /\t/g<CR>:nohl<CR>
-nnoremap <Leader>rt<Space> :%s/\t/  /g<CR>:nohl<CR>
-
-nnoremap <Leader>9 :%s/\t/  /g<CR>:write<CR>
+" nnoremap <Leader>r<Space>t :%s/  /\t/g<CR>:nohl<CR>
+" nnoremap <Leader>rt<Space> :%s/\t/  /g<CR>:nohl<CR>
 
 " store relative line number jumps in the jumplist if they exceed a threshold
 " make j and k use strict linewise movements
@@ -81,8 +86,6 @@ nnoremap <Leader><Leader>o :copen<CR>
 
 
 " visual mappings {{{
-
-vnoremap <C-t> :s/\%V'/ä/g<CR>:s/\%V[/å/g<CR>:s/\%V;/ö/g<CR>
 
 " }}}
 

@@ -7,7 +7,7 @@ scriptencoding utf-8
 
 
 " path where configs are stored
-let s:NEOVIM_CONFIG = '$HOME/dotfiles/conf/neovim/'
+let s:NEOVIM_CONFIG = expand('$HOME/dotfiles/conf/neovim/')
 
 " check if the system is macOS
 function! g:IsMacOS()

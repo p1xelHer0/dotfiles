@@ -23,7 +23,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 
 
 " UltiSnips
-let g:UltiSnipsSnippetsDir = $HOME . '/.config/nvim/'
+let g:UltiSnipsSnippetsDir = expand('$HOME/.config/nvim/')
 let g:UltiSnipsEditSplit = 'vertical'
 
 
@@ -50,8 +50,10 @@ function! s:goyo_leave()
   Limelight!
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup goyo
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup END
 
 " }}}
 
@@ -60,7 +62,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " use formatprg if possible
 let g:neoformat_try_formatprg = 1
-" let g:neoformat_verbose = 1
+" let g:neoformat_verbose = 0
 
 " }}}
 
@@ -68,12 +70,12 @@ let g:neoformat_try_formatprg = 1
 " NERDTree {{{
 
 " path to bookmarks
-let NERDTreeBookmarksFile = expand("$HOME/.config/nvim/NERDTreeBookmarks")
+let NERDTreeBookmarksFile = expand('$HOME/.config/nvim/NERDTreeBookmarks')
 
 " Open NERDTree when opening a directory or just starting Neovim
 augroup NERDTree_open
   autocmd!
-  autocmd StdinReadPre * let s:std_in=1
+  autocmd StdinReadPre * let s:std_in = 1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
   autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 augroup END
@@ -83,12 +85,15 @@ augroup END
 
 " LanguageClient {{{
 
+" let g:LanguageClient_settingsPath = expand('$HOME/dotfiles/conf/neovim/lsp-settings.json')
+" let g:LanguageClient_loggingFile = expand('$HOME/lsp-log.log')
+
 " }}}
 
 
 " SuperTab {{{
 
-let g:SuperTabCrMapping=1
+let g:SuperTabCrMapping = 1
 
 " }}}
 

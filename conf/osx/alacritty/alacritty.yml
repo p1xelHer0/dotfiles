@@ -77,19 +77,19 @@ draw_bold_text_with_bright_colors: false
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Iosevka
+    family: Iosevka Term
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: Iosevka
+    family: Iosevka Term Bold
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: Iosevka
+    family: Iosevka Term Italic
     # Style can be specified to pick a specific face.
     # style: Italic
 

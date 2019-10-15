@@ -1,5 +1,15 @@
 {
   "reason_language_server": {
     "show_debug_errors": true
-  }
+  },
+  "languageServerHaskell": {
+    "hlintOn": Boolean,
+    "maxNumberOfProblems": Number
+    "diagnosticsDebounceDuration" : Number
+    "liquidOn"                    : Bool (default False)
+    "completionSnippetsOn"        : Bool (default True)
+    "formatOnImportOn"            : Bool (default True)
+    "formattingProvider"          : String (default "brittany",
+                                            alternate "floskell")
+  };
 }

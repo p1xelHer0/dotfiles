@@ -23,6 +23,7 @@ chsh -s "$(which zsh)"
 # symlink
 ln -fs "$HOME/dotfiles/conf/zsh/themes/p1xelHer0.zsh-theme" "$HOME/.oh-my-zsh/themes/"
 ln -fs "$HOME/dotfiles/conf/zsh/.zshrc" "$HOME/"
+ln -fs "$HOME/dotfiles/conf/zsh/.zprofile" "$HOME/"
 
 # restart for changes to take effect
 exec zsh

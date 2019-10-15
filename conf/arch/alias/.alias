@@ -1,5 +1,5 @@
 # open dotfiles in editor
-alias dotfiles="cd $HOME/dotfiles && $EDITOR"
+alias dots="cd $HOME/dotfiles && $EDITOR"
 
 # open Neovim config
 alias vimrc="$EDITOR $HOME/dotfiles/conf/arch/neovim"

@@ -110,12 +110,13 @@ if [[ -n "$IS_MACOS" ]]; then
   export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/osx
 
   # clang
-  export CLANG=/usr/local/opt/llvm/bin
+  # export CLANG=/usr/local/opt/llvm/bin
 
 
 
   # React Native
   export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
+  export REACT_DEBUGGER="unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||" yarn start
 
 
   # xcode simctl is needed for react-native emulator

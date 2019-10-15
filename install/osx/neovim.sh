@@ -9,3 +9,4 @@ ln -fs "$HOME/dotfiles/conf/neovim/after" "$HOME/.config/nvim/"
 ln -fs "$HOME/dotfiles/conf/neovim/colors" "$HOME/.config/nvim/"
 
 ln -fs "$HOME/dotfiles/conf/neovim/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+ln -fs "$HOME/dotfiles/conf/neovim/lsp-settings.json" "$HOME/.config/nvim/lsp-settings.json"

@@ -1,0 +1,25 @@
+{
+  // Needs to match current running Node.js version used with nvm
+  "tsserver.npm": "/Users/pontusnagy/.nvm/versions/node/v10.16.3/bin/npm",
+  "tsserver.log": "verbose",
+  "tsserver.trace.server": "verbose",
+  "languageserver": {
+    "haskell": {
+      "command": "hie-wrapper",
+      "rootPatterns": [
+        ".stack.yaml",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+        }
+      },
+    }
+  }
+}

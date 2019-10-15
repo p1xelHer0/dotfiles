@@ -10,7 +10,7 @@ if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
 
   augroup PLUG
     autocmd!
-    autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
   augroup END
 endif
 
@@ -25,7 +25,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'jxnblk/vim-mdx-js',                      { 'for': 'mdx' }
-Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript', 'typescript.tsx'] }
+" Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript', 'typescript.tsx'] }
 
 " TypeScript
 Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
@@ -61,36 +61,37 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn 
 " Elm
 " Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
 
-" Reason
-" Plug 'reasonml-editor/vim-reason-plus'
-" Plug 'jordwalke/vim-reasonml'
+" OCaml/Reason
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'ocaml/merlin',                             { 'on': [] }
+Plug 'jordwalke/vim-reasonml',                   { 'on': [] }
 
 " PureScript
 " Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
 " Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
-" Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
-" Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
-" Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
-" Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
-" Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
+Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
+Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
+Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
+Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
 " OCaml
 " Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
 
 " Rust
-" Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
+Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 
 " C#
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
 Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
 Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
 
 " Godot
-Plug 'quabug/vim-gdscript'
+" Plug 'quabug/vim-gdscript'
 
 " other
 Plug 'ap/vim-css-color'
@@ -101,11 +102,11 @@ Plug 'majutsushi/tagbar'
 
 " utilis {{{
 "
-Plug 'autozimu/LanguageClient-neovim',         { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'autozimu/LanguageClient-neovim',         { 'branch': 'next', 'do': 'bash install.sh' }
 
 " autocompletion
 " Plug 'Shougo/deoplete.nvim',                   { 'do': ':UpdateRemotePlugins' }
-Plug 'neoclide/coc.nvim',                      {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim',                      { 'branch': 'release', 'do': { -> coc#util#install()} }
 Plug 'ervandew/supertab'
 
 " linting

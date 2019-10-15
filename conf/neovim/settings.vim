@@ -3,12 +3,16 @@
 " -- default settings, everything that affects how default Neovim works
 
 
+set encoding=utf-8
+scriptencoding utf-8
+
+
 " Indentation {{{
 
 set expandtab       " insert space characters whenever the tab key is pressed
-set tabstop=2       " 2 space characters
-set shiftwidth=2    " set to 2 according to tabstop
-set softtabstop=2   " set to 2 according to tabstop
+
+set shiftwidth=4    " set to 4 according to tabstop
+set softtabstop=4   " set to 4 according to tabstop
 set linebreak
 set breakindent
 set showbreak=\ ↣ 
@@ -49,8 +53,12 @@ set showmatch       " automatically show matching brackets
 
 " other {{{
 
-set list                " display the listchars
-set listchars+=tab:→\ ,trail:·,nbsp:×
+" Disable paste mode on leaving INSERT mode
+augroup insert_leave
+  autocmd!
+  autocmd InsertLeave * set nopaste
+augroup END
+
 
 if IsMacOS()
   set clipboard=unnamed " normal OS clipboard interaction
@@ -97,20 +105,21 @@ augroup END
 
 " python provider configuration
 " virtualenvs with pyenv
-let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = expand('$HOME/.pyenv/versions/neovim2/bin/python')
+let g:python3_host_prog = expand('$HOME/.pyenv/versions/neovim3/bin/python')
 
 if IsMacOS()
 " ruby provider configuration
 " rbenv
-  let g:ruby_host_prog = $HOME . '/.rbenv/versions/2.4.1/bin/neovim-ruby-host'
+  let g:ruby_host_prog = expand('$HOME/.rbenv/versions/2.4.1/bin/neovim-ruby-host')
 endif
 
 " }}}
 
+
 " jsx/tsx
 augroup jsx_and_tsx
-  autocmd!
+  autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 augroup END
