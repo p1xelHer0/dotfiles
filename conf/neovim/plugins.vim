@@ -63,19 +63,20 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn 
 
 " OCaml/Reason
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'ocaml/merlin',                             { 'on': [] }
-Plug 'jordwalke/vim-reasonml',                   { 'on': [] }
+" Plug 'ocaml/merlin',
+Plug 'jordwalke/vim-reasonml',
 
 " PureScript
 " Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
 " Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
 
 " Haskell
-Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
-Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
-Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
+" Plug 'Shougo/vimproc.vim',                     { 'for': 'haskell', 'do' : 'make' }
+" Plug 'eagletmt/ghcmod-vim',                    { 'for': 'haskell' }
+" Plug 'eagletmt/neco-ghc',                      { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
-Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
+" Plug 'enomsg/vim-haskellConcealPlus',          { 'for': 'haskell' }
+" Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
 " OCaml
 " Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
@@ -140,8 +141,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'benmills/vimux'
 
 " other
-" Plug 'junegunn/vim-peekaboo'
-" Plug 'junegunn/vim-slash'
+Plug 'chriskempson/base16-vim'
+Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'auwsmit/vim-active-numbers'

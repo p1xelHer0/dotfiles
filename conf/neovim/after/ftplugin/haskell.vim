@@ -1,17 +1,19 @@
 let g:neoformat_enabled_haskell = ['brittany', 'hindent', 'stylish-haskell']
 
-" let b:ale_linters = ['stack_build']
-
-let g:LanguageClient_serverCommands = {
-\ 'haskell': ['hie-wrapper'],
-\ }
-
-let g:LanguageClient_rootMarkers = ['*.cabal', 'stack.yaml']
+" call lsp#add_filetype_config({
+" \ 'filetype': ['hs', 'lhs', 'haskell'],
+" \ 'rootPatterns': ['.stack.yaml', 'cabal.config', 'package.yaml'],
+" \ 'name': 'haskell-ide-engine',
+" \ 'cmd': 'hie-wrapper',
+" \ 'init-options' : {
+" \    'languageServerHaskell': {}
+" \ }
+" \ })
 
 " neco-ghc
-setlocal omnifunc=necoghc#omnifunc
-let g:haskellmode_completion_ghc = 1
-let g:necoghc_enable_detailed_browse = 1
+" setlocal omnifunc=necoghc#omnifunc
+" let g:haskellmode_completion_ghc = 1
+" let g:necoghc_enable_detailed_browse = 1
 
 " " ghc-vim
 " nnoremap <buffer> <Leader>tt :GhcModType<CR>
@@ -29,14 +31,14 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 " let g:haskell_indent_case = 2             " two spaces for indentation
 
 " intero-neovim
-augroup autosave
-  autocmd!
-  autocmd BufWritePost *.hs InteroReload
-augroup END
+" augroup autosave
+"   autocmd!
+"   autocmd BufWritePost *.hs InteroReload
+" augroup END
 
 " Background process and window management
-nnoremap <silent> <leader>is :InteroStart<CR>
-nnoremap <silent> <leader>ik :InteroKill<CR>
+" nnoremap <silent> <leader>is :InteroStart<CR>
+" nnoremap <silent> <leader>ik :InteroKill<CR>
 
 " " Open intero/GHCi split horizontally
 " nnoremap <silent> <leader>io :InteroOpen<CR>

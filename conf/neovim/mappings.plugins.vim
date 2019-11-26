@@ -61,6 +61,15 @@ nmap <silent> [w <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
 nmap <silent> ]e <Plug>(coc-diagnostic-prev-error)
 
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 " nnoremap <silent> <leader>lx <Plug>(coc-)
 " nnoremap <silent> <leader>la <Plug>(coc-)
 " nnoremap <silent> <leader>lc <Plug>(coc-)

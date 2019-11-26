@@ -1,25 +1,27 @@
 {
-  // Needs to match current running Node.js version used with nvm
-  "tsserver.npm": "/Users/pontusnagy/.nvm/versions/node/v10.16.3/bin/npm",
-  "tsserver.log": "verbose",
-  "tsserver.trace.server": "verbose",
+  "tsserver.npm": "/Users/pontusnagy/.fnm/aliases/default/bin",
   "languageserver": {
     "haskell": {
       "command": "hie-wrapper",
+      /* "command": "ghcide", */
+      /* "args": ["--lsp"], */
       "rootPatterns": [
         ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
         "cabal.config",
         "package.yaml"
       ],
-      "filetypes": [
-        "hs",
-        "lhs",
-        "haskell"
-      ],
-      "initializationOptions": {
-        "languageServerHaskell": {
-        }
-      },
+      "filetypes": ["hs", "lhs", "haskell"]
+    },
+    "ocaml": {
+      "command": "/Users/pontusnagy/rls/reason-language-server",
+      "filetypes": ["reason", "ocaml"]
+    },
+    "rust": {
+      "command": "ra_lsp_server",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
     }
   }
 }
