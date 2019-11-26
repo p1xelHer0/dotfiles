@@ -17,29 +17,33 @@ brew upgrade --all
 
 # packages to install
 apps=(
+  # fzf                                         # utils - terminal fuzzy finder, install with vim atm
+  # opam                                        # ocaml - package manager - we are using `esy` instead of this right now
+  Schniz/tap/fnm                                # node version manager, fast
   coreutils                                     # utils
   curl                                          # utils
-  diff-so-fancy                                 # better git-diffs
   dfu-util                                      # used to install whitefox configs
+  diff-so-fancy                                 # better git-diffs
   evince                                        # utils - document viewer, pdf
+  exa                                           # utils - ls "replacement"
   fasd                                          # utils - navigate directories fast, like autojump, z
   fswatch                                       # utils - file watcher used for watching files in dune projects
-  # fzf                                         # utils - terminal fuzzy finder, install with vim atm
   git                                           # utils
   git-flow                                      # utils - git branching model
   gpatch                                        # utils - needed for opam
   koekeishiya/formulae                          # utils - skhd and yabai
-  ranger                                        # utils - file manager
+  luarocks                                      # lua package manager
   neovim/neovim/neovim                          # editor
-  # opam                                        # ocaml - package manager - we are using `esy` instead of this right now
+  pidof                                         # utils - needed for pywal
   pyenv                                         # python - used in neovim
   pyenv-virtualenv                              # python - used in neovim
-  tree                                          # utils
   ranger                                        # terminal - file manager
+  ranger                                        # utils - file manager
   rbevn                                         # ruby - used in neovim, and osx cocoapods
   reattach-to-user-namespace                    # tmux - copy-paste fix
   ripgrep                                       # utils - search fast
   shellcheck                                    # shell linter
+  tree                                          # utils
   universal-ctags --HEAD
   wget                                          # utils
   wifi-password                                 # utils - show the wifi-password in terminal
