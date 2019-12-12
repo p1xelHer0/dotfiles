@@ -18,9 +18,9 @@ let g:GitChangeColor = system('git config --list | grep changed | grep -o -E "[0
 let g:GitUntrackedColor = system('git config --list | grep untracked | grep -o -E "[0-8]"')
 
 highlight Normal ctermfg=7 ctermbg=NONE cterm=NONE
-highlight NonText ctermfg=237 ctermbg=NONE cterm=NONE
+highlight NonText ctermfg=16 ctermbg=NONE cterm=NONE
 highlight EndOfBuffer ctermfg=0 ctermbg=NONE cterm=NONE
-highlight Comment ctermfg=8 ctermbg=NONE cterm=italic
+highlight Comment ctermfg=20 ctermbg=NONE cterm=italic
 highlight Constant ctermfg=3 ctermbg=NONE cterm=NONE
 highlight Error ctermfg=0 ctermbg=1 cterm=NONE
 highlight ErrorMsg ctermfg=1 ctermbg=NONE cterm=NONE
@@ -37,9 +37,9 @@ highlight Underlined ctermfg=1 ctermbg=NONE cterm=underline
 
 highlight MatchParen ctermfg=5 ctermbg=4 cterm=underline
 
-highlight LineNr ctermfg=8 ctermbg=0 cterm=NONE
-highlight CursorLineNr ctermfg=3 ctermbg=0 cterm=bold
-highlight CursorLine ctermfg=0 ctermbg=8 cterm=NONE
+highlight LineNr ctermfg=18 ctermbg=0 cterm=NONE
+highlight CursorLineNr ctermfg=20 ctermbg=0 cterm=bold
+highlight CursorLine ctermfg=NONE ctermbg=16 cterm=NONE
   highlight link FoldColumn CursorLineNr
 
 highlight Folded ctermfg=8 ctermbg=NONE cterm=NONE
@@ -72,7 +72,7 @@ highlight! link TabLineFill StatusLine
 
 highlight VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE
 
-highlight Pmenu ctermfg=7 ctermbg=8 cterm=NONE
+highlight Pmenu ctermfg=7 ctermbg=16 cterm=NONE
 highlight PmenuSbar ctermfg=NONE ctermbg=0 cterm=NONE
 highlight PmenuThumb ctermfg=NONE ctermbg=4 cterm=NONE
 
@@ -212,6 +212,13 @@ highlight link ALEWarningSign Search
 " }}}
 
 
+" coc.nvim {{{
+
+highlight CocHighlightText ctermbg=17
+
+" }}}
+
+
 " GitGutter {{{
 
 execute 'highlight GitGutterAdd ctermbg=NONE cterm=NONE ctermfg=' . g:GitAddColor
@@ -241,7 +248,7 @@ highlight link NERDTreeGitStatusIgnored GitGutterChangeDelete
 
 " fzf {{{
 
-highlight default fzf1 ctermfg=0 ctermbg=6 guifg=NONE guibg=NONE
+highlight default fzf1 ctermfg=0 ctermbg=3 guifg=NONE guibg=NONE
 highlight default fzf2 ctermfg=0 ctermbg=8 guifg=NONE guibg=NONE
 highlight default fzf3 ctermfg=0 ctermbg=8 guifg=NONE guibg=NONE
 
