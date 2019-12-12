@@ -21,7 +21,6 @@ apps=(
   firefoxnightly                                # browser
   firefox-developer-edition                     # browser
   font-iosevka                                  # font
-  gitkraken                                     # utils
   google-chrome                                 # browser
   google-chrome-canary                          # browser
   iterm2-nightly                                # terminal

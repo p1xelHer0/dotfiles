@@ -12,7 +12,7 @@ yabai -m config status_bar_space_icon        
 yabai -m config status_bar_clock_icon        
 
 # global settings
-yabai -m config mouse_follows_focus          on
+yabai -m config mouse_follows_focus          off
 yabai -m config focus_follows_mouse          on
 yabai -m config window_topmost               off
 yabai -m config window_opacity               off

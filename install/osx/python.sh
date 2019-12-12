@@ -39,3 +39,4 @@ pip install --upgrade pip
 
 # install pywal
 pip install pywal
+pip intall proselint
