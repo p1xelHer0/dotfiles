@@ -52,31 +52,13 @@ fi
 # }}}
 
 
-# base16-shell {{{
-
-# BASE16_SHELL=$HOME/.config/base16-shell/
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-# source $HOME/dotfiles/conf/base16/.colors
-
-# }}}
-
-
-# nvm {{{
-
-export NVM_DIR=$HOME/.nvm
-
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-
-NODE_VERSION=$(node --version | grep -v -)
-
-# }}}
-
-
 # $PATH {{{
 
 # dotfile scripts
 export DOT_SCRIPTS=$HOME/dotfiles/bin
 
+# Yarn
+export YARN_BIN=$HOME/.yarn/bin
 
 # Haskell
 export STACK_PACKAGES=$HOME/.local/bin
@@ -91,6 +73,8 @@ export CARGO_HOME=$HOME/.cargo
 
 # set $PATH
 export PATH=$DOT_SCRIPTS:$PATH
+
+export PATH=$YARN_BIN:$PATH
 
 export PATH=$STACK_PACKAGES:$PATH
 
@@ -112,12 +96,9 @@ if [[ -n "$IS_MACOS" ]]; then
   # clang
   # export CLANG=/usr/local/opt/llvm/bin
 
-
-
   # React Native
   export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
   export REACT_DEBUGGER="unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||" yarn start
-
 
   # xcode simctl is needed for react-native emulator
   export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
@@ -125,10 +106,8 @@ if [[ -n "$IS_MACOS" ]]; then
   # Mono
   export MONO_ROOT=/Library/Frameworks/Mono.framework/Versions/Current/bin
 
-
   # Java
   export JENV=$HOME/.jenv/bin
-
 
   # Android
   export ANT_HOME=/usr/local/opt/ant
@@ -156,7 +135,6 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH="/usr/local/sbin:$PATH"
 
   export PATH=$CLANG:$PATH
-
 
   export PATH=$STACK_PACKAGES:$PATH
 
@@ -231,6 +209,13 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+# load fnm
+eval "$(fnm env --multi)"
+
+
+# load rustup
+source $CARGO_HOME/env
+
 # setup function to only load stuff when we need them
 # see: https://kev.inburke.com/kevin/profiling-zsh-startup-time
 
@@ -279,4 +264,3 @@ for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
 
 # }}}
 
-export PATH="$HOME/.yarn/bin:$PATH"
