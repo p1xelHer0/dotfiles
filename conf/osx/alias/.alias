@@ -6,6 +6,11 @@
 
 alias v=vim
 
+alias ev="esy nvim"
+
+# exa, prettier ls
+alias l="exa -aLFT -L 1"
+
 # open dotfiles in editor
 alias dots="cd $HOME/dotfiles && vim"
 

@@ -12,9 +12,17 @@
         "cabal.config",
         "package.yaml"
       ],
-      "filetypes": ["hs", "lhs", "haskell"]
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {},
+      "settings": {
+        "languageServerHaskell": {
+          "hlintOn": true,
+          "maxNumberOfProblems": 10,
+          "completionSnippetsOn": true
+        }
+      }
     },
-    "ocaml": {
+    "reason": {
       "command": "/Users/pontusnagy/rls/reason-language-server",
       "filetypes": ["reason", "ocaml"]
     },

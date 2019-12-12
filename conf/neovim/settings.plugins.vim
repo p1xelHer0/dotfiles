@@ -17,14 +17,18 @@ set completeopt-=preview
 
 " }}}
 
+" coc.nvim {{{
+
+augroup cocCursorHold
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+
+" }}}
+
 
 " close the preview window when you're not using it
 let g:SuperTabClosePreviewOnPopupClose = 1
-
-
-" UltiSnips
-let g:UltiSnipsSnippetsDir = expand('$HOME/.config/nvim/')
-let g:UltiSnipsEditSplit = 'vertical'
 
 
 " goyo.vim {{{
@@ -83,14 +87,6 @@ augroup END
 " }}}
 
 
-" LanguageClient {{{
-
-" let g:LanguageClient_settingsPath = expand('$HOME/dotfiles/conf/neovim/lsp-settings.json')
-" let g:LanguageClient_loggingFile = expand('$HOME/lsp-log.log')
-
-" }}}
-
-
 " SuperTab {{{
 
 let g:SuperTabCrMapping = 1
@@ -103,5 +99,4 @@ let g:SuperTabCrMapping = 1
 let g:actnum_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'undotree', 'gundo', 'vimshell', 'w3m']
 
 " }}}
-
 

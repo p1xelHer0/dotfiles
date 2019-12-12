@@ -3,20 +3,13 @@
 " -- keymapping that uses functionality of plugins
 
 
-" universal mappings {{{
-
-let g:UltiSnipsExpandTrigger = '<C-j>'
-
-" }}}
-
-
 " normal mappings {{{
 
-" ALE (mappings replaced with coc.nvim
-" nmap [W <Plug>(ale_first)
-" nmap [w <Plug>(ale_previous)
-" nmap ]w <Plug>(ale_next)
-" nmap ]W <Plug>(ale_last)
+" ALE
+nmap [W <Plug>(ale_first)
+nmap [w <Plug>(ale_previous)
+nmap ]w <Plug>(ale_next)
+nmap ]W <Plug>(ale_last)
 
 
 " fzf
@@ -25,6 +18,7 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
 
+
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)
 
@@ -32,50 +26,39 @@ nnoremap ga <Plug>(EasyAlign)
 " goyo.vim
 nnoremap <Leader>gv :Goyo<CR>
 
-" LanugageClient (l for lang)
-" nnoremap <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
-" nnoremap <silent> <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-" nnoremap <silent> <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-" nnoremap <silent> <leader>lx :call LanguageClient#textDocument_references()<CR>
-" nnoremap <silent> <leader>la :call LanguageClient#workspace_applyEdit()<CR>
-" nnoremap <silent> <leader>lc :call LanguageClient#textDocument_completion()<CR>
-" nnoremap <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> <leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-" nnoremap <silent> <leader>lm :call LanguageClient_contextMenu()<CR>
 
-" coc.nvim (replaces LanguageClient)
-nmap <silent> <leader>ld <Plug>(coc-definition)
-nmap <silent> <leader>lD <Plug>(coc-declaration)
+" coc.nvim {{{
 
-nmap <silent> <leader>lr <Plug>(coc-rename)
-nmap <silent> <leader>lR <Plug>(coc-refactor)
+  " gotos
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gD <Plug>(coc-declaration)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> gt <Plug>(coc-type-definition)
 
-nmap <silent> <leader>lf <Plug>(coc-format-selected)
-vmap <silent> <leader>lf <Plug>(coc-format-selected)
+  " change text
+  nmap <silent> <leader>lr <Plug>(coc-rename)
+  nmap <silent> <leader>lR <Plug>(coc-refactor)
+  nmap <silent> <leader>lq <Plug>(coc-fix-current)
+  nmap <silent> <leader>la <Plug>(coc-codeaction)
+  nmap <silent> <leader>lf <Plug>(coc-format-selected)
+  vmap <silent> <leader>lf <Plug>(coc-format-selected)
 
-nmap <silent> <leader>lt <Plug>(coc-type-definition)
+  " diagnostics
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
 
-nmap <silent> ]w <Plug>(coc-diagnostic-next)
-nmap <silent> [w <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next-error)
-nmap <silent> ]e <Plug>(coc-diagnostic-prev-error)
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-" nnoremap <silent> <leader>lx <Plug>(coc-)
-" nnoremap <silent> <leader>la <Plug>(coc-)
-" nnoremap <silent> <leader>lc <Plug>(coc-)
-" nnoremap <silent> <leader>lh <Plug>(coc-)
-" nnoremap <silent> <leader>ls <Plug>(coc-)
-" nnoremap <silent> <leader>lm <Plug>(coc-)
+" }}}
 
 " NERDTree
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
@@ -84,10 +67,6 @@ nnoremap <silent> <Leader>N :NERDTreeFind<CR>
 
 " Neoformat
 nnoremap <Leader><Leader>f :Neoformat<CR>
-
-
-" Tagbar
-nnoremap <buffer> <Leader>ct :TagbarToggle<CR>
 
 " }}}
 

@@ -25,7 +25,6 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
 Plug 'jxnblk/vim-mdx-js',                      { 'for': 'mdx' }
-" Plug 'sourcegraph/javascript-typescript-langserver', { 'for': ['javascript.jsx', 'typescript', 'typescript.tsx'] }
 
 " TypeScript
 Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
@@ -52,8 +51,8 @@ Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " LaTeX
-" Plug 'lervag/vimtex',                          { 'for': 'tex' }
-" Plug 'xuhdev/vim-latex-live-preview',          { 'for': 'tex' }
+Plug 'lervag/vimtex',                          { 'for': 'tex' }
+Plug 'xuhdev/vim-latex-live-preview',          { 'for': 'tex' }
 
 " CoffeeScript
 " Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
@@ -63,7 +62,7 @@ Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn 
 
 " OCaml/Reason
 Plug 'reasonml-editor/vim-reason-plus'
-" Plug 'ocaml/merlin',
+Plug 'ocaml/merlin',
 Plug 'jordwalke/vim-reasonml',
 
 " PureScript
@@ -88,15 +87,15 @@ Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
 " Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
-Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
-Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
+" Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
+" Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
 
 " Godot
 " Plug 'quabug/vim-gdscript'
 
 " other
-Plug 'ap/vim-css-color'
-Plug 'majutsushi/tagbar'
+Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'majutsushi/tagbar'
 
 " }}}
 

@@ -91,6 +91,13 @@ let g:matchparen_insert_timeout = 20
 " http://ksjoberg.com/vim-esckeys.html/
 set timeout timeoutlen=500 ttimeoutlen=100
 
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
+
 " augroup set_cwd_to_file
 "   autocmd!
 "   autocmd BufEnter * silent! lcd %:p:h
