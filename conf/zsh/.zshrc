@@ -1,55 +1,56 @@
-###
-
-# -- here be turtles
-
+# vim: set foldmethod=marker foldlevel=0
 
 if [[ $(uname) == "Darwin" ]]; then
-  IS_MACOS=true
+  DARWIN=true
 fi
 
+# =============================================================================
+# settings {{{
+# =============================================================================
 
 # theme
 ZSH_THEME=p1xelHer0
 
-# import colorscheme from 'wal'
-# if [[ -n "$IS_MACOS" ]]; then
-# else
-#   cat /home/pxl/.cache/wal/sequences
-# fi
-
-
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-
 # use the maximum amount of file descriptors
 ulimit -n 24576
 
-
-# settings {{{
+export LC_ALL=en_US.UTF-8
 
 COMPLETION_WAITING_DOTS="true"
 
 HIST_STAMPS="dd.mm.yyyy"
 
+# only load custom ranger config
+export RANGER_LOAD_DEFAULT_RC=false
+
+# preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+
 # }}}
-
-
+# =============================================================================
 # oh-my-zsh {{{
+# =============================================================================
 
 export ZSH=$HOME/.oh-my-zsh
 
-# zsh-autosuggestions
+# plugins
 plugins=(vi-mode zsh-syntax-highlighting)
 
-# add osx plugin on macOS
-if [[ -n "$IS_MACOS" ]]; then
+# add macOS plugin on macOS
+if [[ -n "$DARWIN" ]]; then
   plugins+=(osx)
 fi
 
+
 # }}}
-
-
+# =============================================================================
 # $PATH {{{
+# =============================================================================
 
 # dotfile scripts
 export DOT_SCRIPTS=$HOME/dotfiles/bin
@@ -76,14 +77,13 @@ export PATH=$HASKELL_IDE_ENGINE:$PATH
 
 export PATH=$CARGO_HOME:$PATH
 
-# }}}
+# -----------------------------------------------------------------------------
+# macOS $PATH
+# -----------------------------------------------------------------------------
 
-
-# macOS $PATH {{{
-
-if [[ -n "$IS_MACOS" ]]; then
+if [[ -n "$DARWIN" ]]; then
   # macOS dotfile scripts
-  export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/osx
+  export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/darwin
 
   # clang
   # export CLANG=/usr/local/opt/llvm/bin
@@ -104,20 +104,7 @@ if [[ -n "$IS_MACOS" ]]; then
   export ANDROID_HOME=/usr/local/opt/android-sdk
   export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
 
-# }}}
-
-
-# Linux $PATH {{
-else
-  # Linux dotfile scripts
-  export LINUX_DOT_SCRIPTS=$HOME/dotfiles/bin/linux
-fi
-
-# }}}
-
-
-# set macOS $PATH
-if [[ -n "$IS_MACOS" ]]; then
+  # set $PATH
   export PATH=$MACOS_DOT_SCRIPTS:$PATH
 
   export PATH="/usr/local/sbin:$PATH"
@@ -141,82 +128,153 @@ if [[ -n "$IS_MACOS" ]]; then
   export PATH=$ANDROID_HOME/platform-tools:$PATH
   export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
 
-# }}}
-
-
-# set Linux $PATH {{{
+# -----------------------------------------------------------------------------
+# Linux $PATH
+# -----------------------------------------------------------------------------
 else
+  # Linux dotfile scripts
+  export LINUX_DOT_SCRIPTS=$HOME/dotfiles/bin/linux
+
+  # set $PATH
   export PATH=$LINUX_DOT_SCRIPTS:$PATH
 fi
 
+
 # }}}
 
+# =============================================================================
+# fzf {{{
+# =============================================================================
 
-# NA > EU confirmed?
-export LC_ALL=en_US.UTF-8
+# default options
+# colors
+# fullscreen
+export FZF_DEFAULT_OPTS='
+  --color fg:7,bg:0,hl:3,fg+:4,bg+:0,hl+:3,info:2
+  --color prompt:6,spinner:4,pointer:3,marker:3,header:2
+  --no-height --no-reverse
+'
+
+# make fzf use ripgrep
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Don't search git/node_modules
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+
+# use the same command with <C-t>
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# preview contents of file
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+# see https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+
+# use the same command with <A-c>
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Git + fzf
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+fzf-git-wrapper() {
+  fzf --no-height --no-reverse "$@"
+}
+
+gf() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf-git-wrapper -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //'
+}
+
+gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-git-wrapper --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+gt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-git-wrapper --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
+gh() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-git-wrapper --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-git-wrapper --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+  cut -d$'\t' -f1
+}
+
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+bind-git-helper() {
+  local char
+  for c in $@; do
+    eval "fzf-g$c-widget() { local result=\$(g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+    eval "zle -N fzf-g$c-widget"
+    eval "bindkey '^g^$c' fzf-g$c-widget"
+  done
+}
+
+bind-git-helper f b t r h
+unset -f bind-git-helper
 
 
-# preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# }}}
+# =============================================================================
+# source and eval {{{
+# =============================================================================
 
-# use vi mode
-# bindkey -v
-# export KEYTIMEOUT=1
+# aliases
+source $HOME/dotfiles/conf/alias/.alias
 
-# only load custom ranger config
-export RANGER_LOAD_DEFAULT_RC=false
-
-
-# ssh
-# export SSH_KEY_PATH="$HOME/.ssh/dsa_id"
-
-
-# Source and init all helpers {{{
-
-# load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
-
-# load aliases
-if [[ -n "$IS_MACOS" ]]; then
-  source $HOME/dotfiles/conf/osx/alias/.alias
-else
-  source $HOME/dotfiles/conf/linux/alias/.alias
-fi
-
-
-# load fasd
+# fasd
 if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
-
-# load fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-# load fnm
+# fnm
 eval "$(fnm env --multi)"
 
-
-# load rustup
-source $CARGO_HOME/env
-
-
-# load stack
-if which stack > /dev/null; then
-  eval "$(command stack --bash-completion-script stack)"
-fi
-
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # npm tab completion
 . <(npm completion)
 
+# oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
-# load all other configs
-for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
+# rustup
+source $CARGO_HOME/env
+
+# stack
+if which stack > /dev/null; then
+  eval "$(command stack --bash-completion-script stack)"
+fi
+
 
 # }}}
 

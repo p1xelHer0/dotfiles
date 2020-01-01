@@ -1,3 +1,0 @@
-#!/usr/bin/bash
-
-pmset -g batt | grep -oE '([0-9]+\%).*' --colour=auto | cut -f1 -d'%'

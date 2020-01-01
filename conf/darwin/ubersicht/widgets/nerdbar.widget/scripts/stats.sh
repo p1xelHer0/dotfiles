@@ -1,0 +1,1 @@
+echo "$(sh $HOME/dotfiles/conf/darwin/ubersicht/widgets/nerdbar.widget/scripts/cpu-script)@$(sh $HOME/dotfiles/conf/darwin/ubersicht/widgets/nerdbar.widget/scripts/mem-script)@$(sh $HOME/dotfiles/conf/darwin/ubersicht/widgets/nerdbar.widget/scripts/networktraffic)@$(sh $HOME/dotfiles/conf/darwin/ubersicht/widgets/nerdbar.widget/scripts/hd-script)"

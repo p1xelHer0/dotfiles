@@ -1,0 +1,37 @@
+{
+  "tsserver.npm": "/Users/pontusnagy/.fnm/aliases/default/bin",
+  "languageserver": {
+    "haskell": {
+      "command": "hie-wrapper",
+      "rootPatterns": [
+        ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {},
+      "settings": {
+        "languageServerHaskell": {
+          "hlintOn": true,
+          "maxNumberOfProblems": 10,
+          "completionSnippetsOn": true
+        }
+      }
+    },
+    "reason": {
+      "command": "/Users/pontusnagy/rls/reason-language-server",
+      "filetypes": ["reason", "ocaml"]
+    },
+    "ocaml": {
+      "command": "/Users/pontusnagy/rls/reason-language-server",
+      "filetypes": ["reason", "ocaml"]
+    },
+    "rust": {
+      "command": "rls",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    }
+  }
+}

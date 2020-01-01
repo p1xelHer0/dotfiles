@@ -1,0 +1,90 @@
+#!/bin/bash
+
+###
+
+# -- wal2iterm - generates itermcolors from wal colors
+# Based on 'coal', https://github.com/dylanaraps/coal
+
+
+# speed up script by not using unicode
+export LC_ALL=C
+export LANG=C
+
+# wal's cache directory
+cache_dir="${HOME}/.cache/wal"
+iterm_color_dir="${cache_dir}/itermcolors"
+mkdir -p "$iterm_color_dir"
+
+# filename for output
+wal_filename="$(< "${cache_dir}/wal")"
+wal_filename="${wal_filename/*\/}"
+out_filename="$HOME/dotfiles/conf/darwin/iterm/colors/${wal_filename}.itermcolors"
+
+# import colors
+c=($(< "${cache_dir}/colors"))
+c=("${c[@]//\#}")
+
+div() {
+  # function to do floating point division in bash
+  counter="${2}"
+  result="$((${1} / 255))"
+  printf "%s" "$result"
+  multiply="$((result * 255))"
+
+  ((counter == 0 && multiply != ${1})) && printf "%s" "."
+  ((${1} == multiply || counter == 17)) && return
+  ((counter++))
+
+  div "$(((${1} - multiply) * 10))" "$counter"
+}
+
+set_color() {
+  # split the hex color into RGB and convert it to decimal
+  blue="$(div "$((16#${2:4:2}))" 0)"
+  green="$(div "$((16#${2:2:2}))" 0)"
+  red="$(div "$((16#${2:0:2}))" 0)"
+
+  printf "%s\n" "  <key>${1}</key>"
+  printf "%s\n" "  <dict>"
+  printf "%s\n" "    <key>Alpha Component</key>"
+  printf "%s\n" "    <real>1</real>"
+  printf "%s\n" "    <key>Blue Component</key>"
+  printf "%s\n" "    <real>${blue}</real>"
+  printf "%s\n" "    <key>Color Space</key>"
+  printf "%s\n" "    <string>sRGB</string>"
+  printf "%s\n" "    <key>Green Component</key>"
+  printf "%s\n" "    <real>${green}</real>"
+  printf "%s\n" "    <key>Red Component</key>"
+  printf "%s\n" "    <real>${red}</real>"
+  printf "%s\n" "  </dict>"
+}
+
+export_iterm_colors() {
+  printf "%s\n" "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+  printf "%s\n" "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"
+  printf "%s\n" "<plist version=\"1.0\">"
+  printf "%s\n" "<dict>"
+
+  # colors 0-15
+  for col in "${c[@]}"; do
+      set_color "Ansi ${num:-0} Color" "$col"
+      ((num++))
+  done
+
+  # special colors
+  set_color "Background Color" "${c[0]}"
+  set_color "Badge Color" "${c[0]}"
+  set_color "Bold Color" "${c[15]}"
+  set_color "Cursor Color" "${c[15]}"
+  set_color "Cursor Guide Color" "${c[15]}"
+  set_color "Cursor Text Color" "${c[0]}"
+  set_color "Foreground Color" "${c[15]}"
+  set_color "Link Color" "${c[4]}"
+  set_color "Selected Text Color" "${c[0]}"
+  set_color "Selection Color" "${c[15]}"
+
+  printf "%s\n" "</dict>"
+  printf "%s\n" "</plist>"
+}
+
+export_iterm_colors > "$out_filename"

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+###
+
+# -- script to set update all external dependencies for neovim
+
+brew update
+brew upgrade neovim
+brew upgrade yarn
+
+pip3 install --upgrade pip
+pip3 install neovim
+
+pip install --upgrade pip
+pip install neovim
+
+yarn global add neovim@latest
+
+nvim +PlugInstall +UpdateRemotePlugins +qa
+

@@ -1,18 +1,3 @@
-# oh-my-zsh Bureau Theme
-# modified
-# removed [] from everything
-# changed STAGED    symbol to +
-# changed UNSTAGED  symbol to ~
-# changed UNTRACKED symbol to !
-# changed AHEAD     symbol to ▲
-# changed BEHIND    symbol to ▼
-# changed CLEAN     symbol to ◆
-
-
-# nvm
-ZSH_THEME_NVM_PROMPT_PREFIX=" %F{2}"
-ZSH_THEME_NVM_PROMPT_SUFFIX="%{$reset_color%}"
-
 # set Git colors addording to .gitconfig
 _GIT_ADDED_COLOR=$(git config --list | grep added | grep -o -E "[0-8]")
 _GIT_CHANGED_COLOR=$(git config --list | grep changed | grep -o -E "[0-8]")
@@ -23,9 +8,9 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%F{${_GIT_ADDED_COLOR}}◆%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%F{4}▲%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%F{5}▼%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%F{${_GIT_ADDED_COLOR}}+%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%F{${_GIT_CHANGED_COLOR}}~%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{${_GIT_UNTRACKED_COLOR}}!%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%F{${_GIT_ADDED_COLOR}}△%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%F{${_GIT_CHANGED_COLOR}}◇%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{${_GIT_UNTRACKED_COLOR}}▽%{$reset_color%}"
 
 bureau_git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
