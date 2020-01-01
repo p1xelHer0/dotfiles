@@ -33,9 +33,6 @@
    fzf            > fuzzy finder 
    nvm            > nodejs version manager
    stack          > haskell tool stack
-   pyenv          > python version manager
-   rbevn          > ruby version manager
-   jenv           > java version manager
    rustup         > rust tool chain
    pywal          > generate and change colorschemes on the fly
 
@@ -56,7 +53,7 @@
    alacritty      > GPU-accelerated terminal emulator
    brew           > package manager of macOS
    brew cask      > extends brew for applications and larger binaries alike
-   chunkwm        > tiling window manager, alpha version, wip
+   yabai          > tiling window manager, alpha version, wip
    skhd           > hotkey daemon
    ubersicht      > create HTML5-widgets to display system information
 
