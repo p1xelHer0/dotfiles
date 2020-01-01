@@ -64,6 +64,7 @@ Plug 'xuhdev/vim-latex-live-preview',          { 'for': 'tex' }
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'ocaml/merlin',
 Plug 'jordwalke/vim-reasonml',
+Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
 
 " PureScript
 " Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
@@ -77,11 +78,9 @@ Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
 " Plug 'enomsg/vim-haskellConcealPlus',          { 'for': 'haskell' }
 " Plug 'parsonsmatt/intero-neovim',              { 'for': 'haskell' }
 
-" OCaml
-" Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
-
 " Rust
 Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
+Plug 'ron-rs/ron.vim',                         { 'for': 'rust' }
 
 " C#
 " Plug 'OmniSharp/omnisharp-vim'
@@ -101,22 +100,19 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 
 " utilis {{{
-"
-" Plug 'autozimu/LanguageClient-neovim',         { 'branch': 'next', 'do': 'bash install.sh' }
 
 " autocompletion
-" Plug 'Shougo/deoplete.nvim',                   { 'do': ':UpdateRemotePlugins' }
 Plug 'neoclide/coc.nvim',                      { 'branch': 'release', 'do': { -> coc#util#install()} }
 Plug 'ervandew/supertab'
 
 " linting
 Plug 'w0rp/ale'
 
-" Git
-Plug 'tpope/vim-fugitive'
-Plug 'sodapopcan/vim-twiggy'
-Plug 'airblade/vim-gitgutter'
+" VCS
 Plug 'junegunn/gv.vim'
+Plug 'mhinz/vim-signify'
+Plug 'sodapopcan/vim-twiggy'
+Plug 'tpope/vim-fugitive'
 
 " editing
 Plug 'AndrewRadev/switch.vim'
@@ -129,8 +125,8 @@ Plug 'tpope/vim-repeat'
 " Plug 'machakann/vim-sandwich'
 
 " file handling and searching
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree'
+" Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -140,8 +136,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'benmills/vimux'
 
 " other
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'chriskempson/base16-vim'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'

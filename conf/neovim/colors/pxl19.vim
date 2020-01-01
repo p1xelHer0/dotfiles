@@ -35,7 +35,7 @@ highlight Todo ctermfg=0 ctermbg=2 cterm=NONE
 highlight Type ctermfg=3 ctermbg=NONE cterm=NONE
 highlight Underlined ctermfg=1 ctermbg=NONE cterm=underline
 
-highlight MatchParen ctermfg=5 ctermbg=4 cterm=underline
+highlight MatchParen ctermfg=123 ctermbg=NONE cterm=underline,bold,italic
 
 highlight LineNr ctermfg=18 ctermbg=0 cterm=NONE
 highlight CursorLineNr ctermfg=20 ctermbg=0 cterm=bold
@@ -221,10 +221,9 @@ highlight CocHighlightText ctermbg=17
 
 " GitGutter {{{
 
-execute 'highlight GitGutterAdd ctermbg=NONE cterm=NONE ctermfg=' . g:GitAddColor
-execute 'highlight GitGutterChange ctermbg=NONE cterm=NONE ctermfg=' . g:GitChangeColor
-execute 'highlight GitGutterDelete ctermbg=NONE cterm=NONE ctermfg=' . g:GitUntrackedColor
-execute 'highlight GitGutterChangeDelete ctermbg=NONE cterm=NONE ctermfg=' . g:GitUntrackedColor
+execute 'highlight SignifySignAdd ctermbg=NONE cterm=NONE ctermfg=' . g:GitAddColor
+execute 'highlight SignifySignChange ctermbg=NONE cterm=NONE ctermfg=' . g:GitChangeColor
+execute 'highlight SignifySignDelete ctermbg=NONE cterm=NONE ctermfg=' . g:GitUntrackedColor
 
 " }}}
 
