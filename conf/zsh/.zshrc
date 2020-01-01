@@ -3,9 +3,6 @@
 # -- here be turtles
 
 
-export TERM=xterm-256color
-
-
 if [[ $(uname) == "Darwin" ]]; then
   IS_MACOS=true
 fi
@@ -64,9 +61,6 @@ export YARN_BIN=$HOME/.yarn/bin
 export STACK_PACKAGES=$HOME/.local/bin
 export HASKELL_IDE_ENGINE=$HOME/hie-bin/*
 
-# Python
-export PYENV_ROOT=$HOME/.pyenv
-
 # Rust
 export CARGO_HOME=$HOME/.cargo
 
@@ -77,8 +71,6 @@ export PATH=$DOT_SCRIPTS:$PATH
 export PATH=$YARN_BIN:$PATH
 
 export PATH=$STACK_PACKAGES:$PATH
-
-export PATH=$PYENV_ROOT/bin:$PATH
 
 export PATH=$HASKELL_IDE_ENGINE:$PATH
 
@@ -97,7 +89,6 @@ if [[ -n "$IS_MACOS" ]]; then
   # export CLANG=/usr/local/opt/llvm/bin
 
   # React Native
-  export REACT_NATIVE=$HOME/.nvm/versions/node/$NODE_VERSION/bin/react-native
   export REACT_DEBUGGER="unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||" yarn start
 
   # xcode simctl is needed for react-native emulator
@@ -105,9 +96,6 @@ if [[ -n "$IS_MACOS" ]]; then
 
   # Mono
   export MONO_ROOT=/Library/Frameworks/Mono.framework/Versions/Current/bin
-
-  # Java
-  export JENV=$HOME/.jenv/bin
 
   # Android
   export ANT_HOME=/usr/local/opt/ant
@@ -134,7 +122,7 @@ if [[ -n "$IS_MACOS" ]]; then
 
   export PATH="/usr/local/sbin:$PATH"
 
-  export PATH=$CLANG:$PATH
+  # export PATH=$CLANG:$PATH
 
   export PATH=$STACK_PACKAGES:$PATH
 
@@ -216,28 +204,6 @@ eval "$(fnm env --multi)"
 # load rustup
 source $CARGO_HOME/env
 
-# setup function to only load stuff when we need them
-# see: https://kev.inburke.com/kevin/profiling-zsh-startup-time
-
-# load jenv
-# jenv() {
-#   eval "$(command jenv init -)"
-#   jenv "$@"
-# }
-
-
-# load pyenv
-pyenv() {
-  printf "\e[38;5;2mpyenv init... "
-  eval "$(command pyenv init -)"
-  printf "done";
-  printf "\e[38;5;4m pyenv virtualenv init... "
-  eval "$(command pyenv virtualenv-init -)"
-  export PYENV_INIT=1
-  printf "done\e[0m\n";
-  pyenv "$@"
-}
-
 
 # load stack
 if which stack > /dev/null; then
@@ -245,21 +211,11 @@ if which stack > /dev/null; then
 fi
 
 
-# load rbenv
-rbenv() {
-  printf "\e[38;5;1mrbenv init... "
-  eval "$(command rbenv init -)"
-  export RBENV_INIT=1
-  printf "done\e[0m\n";
-  rbenv "$@"
-}
-
-
 # npm tab completion
 . <(npm completion)
 
 
-# load all configs
+# load all other configs
 for config ($HOME/dotfiles/conf/zsh/*.zsh) source $config
 
 # }}}

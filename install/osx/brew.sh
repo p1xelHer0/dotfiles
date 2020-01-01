@@ -27,28 +27,27 @@ apps=(
   evince                                        # utils - document viewer, pdf
   exa                                           # utils - ls "replacement"
   fasd                                          # utils - navigate directories fast, like autojump, z
+  ffmpeg                                        # utils - make videos
   fswatch                                       # utils - file watcher used for watching files in dune projects
+  gifsicle                                      # utils - make gifs
   git                                           # utils
   git-flow                                      # utils - git branching model
   gpatch                                        # utils - needed for opam
-  koekeishiya/formulae                          # utils - skhd and yabai
+  haskell-stack                                 # haskell
+  htop                                          # utils - monitor processes
   luarocks                                      # lua package manager
+  neofetch                                      # utils - print system information
   neovim/neovim/neovim                          # editor
   pidof                                         # utils - needed for pywal
-  pyenv                                         # python - used in neovim
-  pyenv-virtualenv                              # python - used in neovim
-  ranger                                        # terminal - file manager
   ranger                                        # utils - file manager
-  rbevn                                         # ruby - used in neovim, and osx cocoapods
   reattach-to-user-namespace                    # tmux - copy-paste fix
   ripgrep                                       # utils - search fast
   shellcheck                                    # shell linter
   tree                                          # utils
-  universal-ctags --HEAD
   wget                                          # utils
   wifi-password                                 # utils - show the wifi-password in terminal
-  yabai
-  yarn --ignore-dependencies                    # js - package manager
+  yabai                                         # window manager
+  yarn                                          # js - package manager
   zsh                                           # shell
 )
 
@@ -61,20 +60,7 @@ reactnative=(
   watchman                                      # js - react-native dependency
 )
 
-haskell=(
-  haskell-stack                                 # haskell
-)
-
-fun=(
-  ffmpeg                                        # utils - make videos
-  gifsicle                                      # utils - make gifs
-  htop                                          # utils - monitor processes
-  neofetch                                      # utils - print system information
-)
-
 brew tap homebrew/services
-
-brew tap universal-ctags/universal-ctags
 brew tap koekeishiya/formulae
 
 # make sure we’re using the latest Homebrew
