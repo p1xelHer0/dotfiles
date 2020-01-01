@@ -10,18 +10,23 @@ brew tap homebrew/cask-drivers
 brew tap caskroom/versions
 brew tap caskroom/fonts
 
-# packages to install
-apps=(
+base=(
   alacritty                                     # terminal
   alfred                                        # utils
+  firefox                                       # browser
+  font-iosevka                                  # font
+  google-chrome                                 # browser
+  slack                                         # communication
+  spotify                                       # utils
+)
+
+# packages to install
+apps=(
   brave                                         # browser
   discord                                       # communication
   dropbox                                       # utils
-  firefox                                       # browser
-  firefoxnightly                                # browser
   firefox-developer-edition                     # browser
-  font-iosevka                                  # font
-  google-chrome                                 # browser
+  firefoxnightly                                # browser
   google-chrome-canary                          # browser
   iterm2-nightly                                # terminal
   keybase                                       # utils
@@ -33,8 +38,6 @@ apps=(
   qmk-toolbox                                   # keyboard
   signal                                        # communication
   skype                                         # communication
-  slack                                         # communication
-  spotify                                       # utils
   telegram                                      # communication
   twitch                                        # utils
   ubersicht                                     # utils
@@ -54,7 +57,7 @@ gamedev=(
 )
 
 # install packages
-brew cask install "${apps[@]}"
+brew cask install "${base[@]}"
 
 # quick look plugins
 # see: https://github.com/sindresorhus/quick-look-plugins
