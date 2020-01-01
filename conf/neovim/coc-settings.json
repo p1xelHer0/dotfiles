@@ -26,8 +26,18 @@
       "command": "/Users/pontusnagy/rls/reason-language-server",
       "filetypes": ["reason", "ocaml"]
     },
+    "ocaml": {
+      "command": "/Users/pontusnagy/rls/reason-language-server",
+      "filetypes": ["reason", "ocaml"]
+    },
+    /* "ocaml": { */
+    /*   "command": "ocaml-language-server", */
+    /*   "args": ["--stdio"], */
+    /*   "filetypes": ["ocaml"] */
+    /* }, */
+
     "rust": {
-      "command": "ra_lsp_server",
+      "command": "rls",
       "filetypes": ["rust"],
       "rootPatterns": ["Cargo.toml"]
     }

@@ -1,15 +1,10 @@
-# note: the "vim" command I am using refers to my custom vim function
-# which calls pyenv, pyenv-virtualenv and rbenv before opening vim
-# this way the correct versions of python and ruby is loaded before starting vim
-# this is because I dont want to load these as soon as I open a new terminal
-# it takes time, and I seldom use python and ruby directly in the terminal
-
-alias v=vim
+alias v=nvim
+alias vim=nvim
 
 alias ev="esy nvim"
 
 # exa, prettier ls
-alias l="exa -aLFT -L 1"
+alias l="exa -al"
 
 # open dotfiles in editor
 alias dots="cd $HOME/dotfiles && vim"
