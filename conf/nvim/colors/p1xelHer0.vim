@@ -12,7 +12,7 @@ endif
 " basic colors {{{
 " =============================================================================
 
-let g:colors_name = 'pxl9'
+let g:colors_name = 'p1xelHer0'
 
 set background=dark
 
@@ -234,11 +234,11 @@ highlight NERDTreeExecFile ctermfg=7 ctermbg=NONE cterm=NONE
 
 highlight NERDTreeGitStatusStaged ctermfg=4 cterm=NONE
 
-highlight link NERDTreeGitStatusModified GitGutterChange
-highlight link NERDTreeGitStatusUntracked GitGutterChangeDelete
-highlight link NERDTreeGitStatusRenamed GitGutterChangeDelete
-highlight link NERDTreeGitStatusUnmerged GitGutterChangeDelete
-highlight link NERDTreeGitStatusIgnored GitGutterChangeDelete
+highlight link NERDTreeGitStatusModified SignifySignChange
+highlight link NERDTreeGitStatusUntracked SignifySignDelete
+highlight link NERDTreeGitStatusRenamed SignifySignDelete
+highlight link NERDTreeGitStatusUnmerged SignifySignDelete
+highlight link NERDTreeGitStatusIgnored SignifySignDelete
 
 " vim-signify
 execute 'highlight SignifySignAdd ctermbg=NONE cterm=NONE ctermfg=' . g:GitAddColor

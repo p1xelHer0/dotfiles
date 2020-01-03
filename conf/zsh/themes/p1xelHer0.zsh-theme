@@ -5,12 +5,12 @@ _GIT_UNTRACKED_COLOR=$(git config --list | grep untracked | grep -o -E "[0-8]")
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%F{${_GIT_ADDED_COLOR}}🌼%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%F{4}🌹%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_BEHIND="%F{5}🥀%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%F{${_GIT_ADDED_COLOR}}△%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNSTAGED="%F{${_GIT_CHANGED_COLOR}}🦠%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{${_GIT_UNTRACKED_COLOR}}%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%F{${_GIT_ADDED_COLOR}}%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%F{4}>%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%F{5}<%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%F{${_GIT_ADDED_COLOR}}^%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNSTAGED="%F{${_GIT_CHANGED_COLOR}}±%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{${_GIT_UNTRACKED_COLOR}}+%{$reset_color%}"
 
 bureau_git_branch () {
   ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
