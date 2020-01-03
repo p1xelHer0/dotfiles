@@ -13,7 +13,6 @@ brew tap caskroom/fonts
 base=(
   alacritty                                     # terminal
   firefox                                       # browser
-  font-iosevka                                  # font
   google-chrome                                 # browser
   slack                                         # communication
   spotify                                       # utils

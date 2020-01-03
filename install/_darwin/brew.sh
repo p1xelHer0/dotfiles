@@ -17,7 +17,6 @@ brew upgrade --all
 
 # packages to install
 apps=(
-  # fzf                                         # utils - terminal fuzzy finder, install with vim atm
   # opam                                        # ocaml - package manager - we are using `esy` instead of this right now
   Schniz/tap/fnm                                # node version manager, fast
   coreutils                                     # utils
@@ -29,6 +28,7 @@ apps=(
   fasd                                          # utils - navigate directories fast, like autojump, z
   ffmpeg                                        # utils - make videos
   fswatch                                       # utils - file watcher used for watching files in dune projects
+  fzf                                           # utils - terminal fuzzy finder
   gifsicle                                      # utils - make gifs
   git                                           # utils
   git-flow                                      # utils - git branching model

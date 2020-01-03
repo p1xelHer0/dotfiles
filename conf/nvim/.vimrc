@@ -121,8 +121,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 
 " file handling and searching
-Plug 'junegunn/fzf',                           { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
@@ -137,9 +137,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
-Plug 'majutsushi/tagbar'
 Plug 'norcalli/nvim-colorizer.lua'
-
 
 call plug#end()
 
@@ -279,6 +277,9 @@ augroup goyo
   autocmd! User GoyoEnter nested call <SID>goyo_enter()
   autocmd! User GoyoLeave nested call <SID>goyo_leave()
 augroup END
+
+" fzf
+set rtp+=/usr/local/opt/fzf
 
 " limelight
 let g:limelight_conceal_guifg = '#333333'

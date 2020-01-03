@@ -1,95 +1,20 @@
-```
-```
+# `~/dotfiles`
 
-```
- ###
+⚡️ I mostly use the [`alacritty`](https://github.com/jwilm/alacritty/) terminal cause it's fast, together with [`zsh`](http://zsh.sourceforge.net/), [`tmux`](https://github.com/tmux/tmux/), [`neovim`](https://neovim.io/) and [`fzf`](https://github.com/junegunn/fzf/) as my glued together wannabe IDE.
 
- # -- 🐉 p1xelHer0's dotfiles
+🍺 I use [`brew`](https://brew.sh/) together with [`brew cask`](https://github.com/Homebrew/homebrew-cask/) to install packages and applications when I can. I try to keep as many tools as possible UNIX-compatible because you never know when I move to `GNU/Linux`.
 
 
- # dotfiles to setup my dev env on macOS and Arch Linux
-
- # 🍏 💻 macOS on my work MacBook Pro 15"
- # 🐧 📦 Arch Linux on my home desktop running on VirtualBox on Windows 10
-
- # I use symlinks from ~/dotfiles to the applications I use for configuration
-
- # 🔮 bin        > contains scripts added to my $PATH
- # 🛠 conf       > contains all the configuration
- # 💾 install    > contains all scripts to symlink the configuration
-```
-```
-```
-```
- # 🍏 macOS + 🐧 Arch Linux
-
-   # 🛠 ~/dotfiles/conf
-
-   zsh            > shell for intaractive use and powerful scripting
-   oh-my-zsh      > community-driven framework for managing your zsh configuration
-   tmux           > terminal multiplexer
-   neovim         > literally the future of vim
-   ranger         > file manager with vi bindings
-   fzf            > fuzzy finder 
-   nvm            > nodejs version manager
-   stack          > haskell tool stack
-   rustup         > rust tool chain
-   pywal          > generate and change colorschemes on the fly
+👨‍💻 My day job consists of frontend work in JavaScript/TypeScript and React. I use [`coc-nvim`](https://github.com/neoclide/coc.nvim/) which works as a intellisense engine, [`LSP`](https://langserver.org/) host and [`supports VSCode extensions`](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions/).
 
 
-   # 🔮 ~/dotfiles/bin
-
-   colortest      > test terminal colors 0-8 fg and bg
-
- #
-```
-```
-```
-```
- # 🍏 macOS-specific
-
-   # 🛠 ~/dotfiles/conf/osx
-
-   alacritty      > GPU-accelerated terminal emulator
-   brew           > package manager of macOS
-   brew cask      > extends brew for applications and larger binaries alike
-   yabai          > tiling window manager, alpha version, wip
-   skhd           > hotkey daemon
-   ubersicht      > create HTML5-widgets to display system information
+🚴‍♂️ When I'm not working I'm busy bikeshedding these `~/dotfiles`, and stumbling around doing functional programming in OCaml, Haskell and more. 
 
 
-   # 🔮 ~/dotfiles/bin/osx
-
-   wal-set        > sets wal colors for alacritty, chunkwm and ubersicht
-   wal2iterm      > exports wal colors to .itermcolors for iTerm2
- 
- # 
-```
-```
-```
-```
- # 🐧 Arch Linux-specific 
-
-   # 🛠 ~/dotfiles/conf/arch
-
-   urvxt          > terminal emulator
-   i3-gaps        > i3 with more features
-   dunst          > lightweight notification-daemon
-   lemonbar       > featherweight, lemon-scented, bar based on xcb
-   thunar         > file manager
-   feh            > fast and light image viewer
-   rofi           > window switcher, run dialog and dmenu replacement
-   cava           > console-based audio visualizer
-   maim           > screenshots, overcome shortcomings of scrot
-   xbanish        > banish the mouse cursor when typing
+🐫 For OCaml I use [`bucklescript`](https://bucklescript.github.io/) and [`esy`](https://esy.sh/).
 
 
-   # 🔮 ~/dotfiles/bin/arch
+🌯 For Haskell I use [`stack`](https://docs.haskellstack.org/).
 
-   bar            > actual lemonbar implementation
-   wal-set        > sets wal colors for dunst and lemonbar
 
- # 
-```
-```
-```
+More should be written here, okay? thx!

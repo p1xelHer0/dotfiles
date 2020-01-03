@@ -43,7 +43,7 @@ plugins=(vi-mode zsh-syntax-highlighting)
 
 # add macOS plugin on macOS
 if [[ -n "$DARWIN" ]]; then
-  plugins+=(osx)
+  # plugins+=(osx)
 fi
 
 
@@ -83,7 +83,7 @@ export PATH=$CARGO_HOME:$PATH
 
 if [[ -n "$DARWIN" ]]; then
   # macOS dotfile scripts
-  export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/darwin
+  export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/_darwin
 
   # clang
   # export CLANG=/usr/local/opt/llvm/bin
@@ -161,7 +161,7 @@ export FZF_DEFAULT_OPTS='
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
 # --glob: Don't search git/node_modules
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow 2> /dev/null'
 
 # use the same command with <C-t>
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -252,6 +252,12 @@ unset -f bind-git-helper
 # aliases
 source $HOME/dotfiles/conf/alias/.alias
 
+if [[ -n "$DARWIN" ]]; then
+  source $HOME/dotfiles/conf/_darwin/alias/.alias
+else
+  source $HOME/dotfiles/conf/_arch/alias/.alias
+fi
+
 # fasd
 if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 
@@ -269,11 +275,6 @@ source $ZSH/oh-my-zsh.sh
 
 # rustup
 source $CARGO_HOME/env
-
-# stack
-if which stack > /dev/null; then
-  eval "$(command stack --bash-completion-script stack)"
-fi
 
 
 # }}}

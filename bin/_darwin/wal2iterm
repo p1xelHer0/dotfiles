@@ -18,7 +18,7 @@ mkdir -p "$iterm_color_dir"
 # filename for output
 wal_filename="$(< "${cache_dir}/wal")"
 wal_filename="${wal_filename/*\/}"
-out_filename="$HOME/dotfiles/conf/darwin/iterm/colors/${wal_filename}.itermcolors"
+out_filename="$HOME/dotfiles/conf/_darwin/iterm/colors/${wal_filename}.itermcolors"
 
 # import colors
 c=($(< "${cache_dir}/colors"))
