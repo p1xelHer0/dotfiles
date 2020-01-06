@@ -1,4 +1,4 @@
-# vim: set foldmethod=marker foldlevel=0
+# vim: set foldmethod=marker foldlevel=0 nomodeline:
 
 if [[ $(uname) == "Darwin" ]]; then
   DARWIN=true
@@ -141,8 +141,6 @@ fi
 
 
 # }}}
-
-
 # =============================================================================
 # source and eval {{{
 # =============================================================================
@@ -192,7 +190,6 @@ export FZF_DEFAULT_OPTS='
 # --no-ignore: Do not respect .gitignore, etc...
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
-# --glob: Don't search git/node_modules
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow 2> /dev/null'
 
 # use the same command with <C-t>

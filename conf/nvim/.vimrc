@@ -1,4 +1,4 @@
-" vim: set foldmethod=marker foldlevel=0
+" vim: set foldmethod=marker foldlevel=0 nomodeline:
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -149,6 +149,7 @@ call plug#end()
 " =============================================================================
 
 set expandtab
+set modelines=2
 
 " indentation
 set shiftwidth=2
