@@ -33,12 +33,14 @@ apps=(
   git                                           # utils
   git-flow                                      # utils - git branching model
   gpatch                                        # utils - needed for opam
+  gpg                                           # security
   haskell-stack                                 # haskell
   htop                                          # utils - monitor processes
   luarocks                                      # lua package manager
   neofetch                                      # utils - print system information
   neovim/neovim/neovim                          # editor
   pidof                                         # utils - needed for pywal
+  pinentry-mac                                  # securiy
   ranger                                        # utils - file manager
   reattach-to-user-namespace                    # tmux - copy-paste fix
   ripgrep                                       # utils - search fast
