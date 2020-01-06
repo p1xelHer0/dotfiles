@@ -121,6 +121,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 
 " file handling and searching
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'

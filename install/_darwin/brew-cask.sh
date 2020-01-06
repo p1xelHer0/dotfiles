@@ -37,6 +37,7 @@ apps=(
   qmk-toolbox                                   # keyboard
   signal                                        # communication
   skype                                         # communication
+  thunderbird                                   # communication
   telegram                                      # communication
   twitch                                        # utils
   ubersicht                                     # utils

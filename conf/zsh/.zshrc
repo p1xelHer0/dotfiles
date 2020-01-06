@@ -142,6 +142,38 @@ fi
 
 # }}}
 
+
+# =============================================================================
+# source and eval {{{
+# =============================================================================
+
+# aliases
+source $HOME/dotfiles/conf/alias/.alias
+
+if [[ -n "$DARWIN" ]]; then
+  source $HOME/dotfiles/conf/_darwin/alias/.alias
+else
+  source $HOME/dotfiles/conf/_arch/alias/.alias
+fi
+
+# fasd
+if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
+
+# fnm
+eval "$(fnm env --multi)"
+
+
+# npm tab completion
+. <(npm completion)
+
+# oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# rustup
+source $CARGO_HOME/env
+
+
+# }}}
 # =============================================================================
 # fzf {{{
 # =============================================================================
@@ -243,38 +275,7 @@ bind-git-helper() {
 bind-git-helper f b t r h
 unset -f bind-git-helper
 
-
-# }}}
-# =============================================================================
-# source and eval {{{
-# =============================================================================
-
-# aliases
-source $HOME/dotfiles/conf/alias/.alias
-
-if [[ -n "$DARWIN" ]]; then
-  source $HOME/dotfiles/conf/_darwin/alias/.alias
-else
-  source $HOME/dotfiles/conf/_arch/alias/.alias
-fi
-
-# fasd
-if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
-
-# fnm
-eval "$(fnm env --multi)"
-
-# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# npm tab completion
-. <(npm completion)
-
-# oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
-# rustup
-source $CARGO_HOME/env
 
 
 # }}}
