@@ -19,7 +19,7 @@ alias vf="vim \$(fzf)"
 alias zshrc="vim $HOME/dotfiles/conf/zsh/.zshrc"
 
 # open alacritty.yml
-alias arc="vim $HOME/dotfiles/conf/darwin/alacritty/alacritty.yml"
+alias arc="vim $HOME/dotfiles/conf/alacritty/alacritty.yml"
 
 # open tmux config
 alias tmuxrc="vim $HOME/dotfiles/conf/tmux/.tmux.conf"
@@ -48,6 +48,5 @@ alias cleanupad="find . -type d -name '.AppleD*' -ls -exec /bin/rm -r {} \;"
 # free WiFi
 alias freewifi="sudo ifconfig en0 ether `openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//' `"
 
-# random wal settings - does not work on mojave, disable for now
-# alias rwal="$HOME/.pyenv/shims/wal -i $HOME/dropbox/walls/rot/fav -o $HOME/dotfiles/bin/darwin/wal-set"
+alias rwal="wal -i $HOME/dropbox/walls/rot/fav -o $HOME/dotfiles/bin/_darwin/wal-set"
 

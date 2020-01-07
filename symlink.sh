@@ -2,7 +2,9 @@
 
 # alacritty
 mkdir -p "$HOME/.config/alacritty"
-ln -fs "$HOME/dotfiles/conf/_darwin/alacritty/alacritty.yml" "$HOME/.config/alacritty/"
+# my alacritty config is a wal template
+ln -fs "$HOME/dotfiles/conf/alacritty/alacritty.yml" "$HOME/.config/wal/templates/"
+ln -fs "$HOME/.cache/wal/alacritty.yml" "$HOME/.config/alacritty/"
 
 # base16
 touch "$HOME/dotfiles/conf/base16/.base16"
