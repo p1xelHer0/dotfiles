@@ -11,8 +11,8 @@ brew upgrade yarn
 pip3 install --upgrade pip
 pip3 install neovim
 
-pip install --upgrade pip
-pip install neovim
+pip2 install --upgrade pip
+pip2 install neovim
 
 yarn global add neovim@latest
 

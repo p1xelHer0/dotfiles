@@ -276,4 +276,3 @@ unset -f bind-git-helper
 
 
 # }}}
-

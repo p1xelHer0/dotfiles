@@ -21,12 +21,18 @@
       }
     },
     "reason": {
-      "command": "/Users/pontusnagy/rls/reason-language-server",
-      "filetypes": ["reason", "ocaml"]
+      "command": "ocamllsp",
+      "filetypes": ["reason"]
     },
+    /* "ocaml": { */
+    /*   "command": "ocaml-language-server", */
+    /*   "args": ["--stdio"], */
+    /*   "filetypes": ["ocaml"] */
+    /* }, */
+    /* locally installed LSP with esy */
     "ocaml": {
-      "command": "/Users/pontusnagy/rls/reason-language-server",
-      "filetypes": ["reason", "ocaml"]
+      "command": "ocamllsp",
+      "filetypes": ["ocaml"]
     },
     "rust": {
       "command": "rls",

@@ -1,4 +1,3 @@
-" vim: set foldmethod=marker foldlevel=0 nomodeline:
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -27,82 +26,100 @@ call plug#begin()
 " Syntax and suppot for languages
 " -----------------------------------------------------------------------------
 " JavaScript
-Plug 'jxnblk/vim-mdx-js',                      { 'for': 'mdx' }
-Plug 'mxw/vim-jsx',                            { 'for': 'javascript.jsx' }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript.jsx' }
-Plug 'pangloss/vim-javascript',                { 'for': 'javascript.jsx' }
-Plug 'styled-components/vim-styled-components',{ 'for': 'javascript.jsx' }
+Plug 'jxnblk/vim-mdx-js',                       { 'for': 'mdx' }
+Plug 'mxw/vim-jsx',                             { 'for': 'javascript.jsx' }
+Plug 'othree/javascript-libraries-syntax.vim',  { 'for': 'javascript.jsx' }
+Plug 'pangloss/vim-javascript',                 { 'for': 'javascript.jsx' }
+Plug 'styled-components/vim-styled-components', { 'for': 'javascript.jsx' }
+Plug 'iamcco/coc-tailwindcss',                  { 'do': 'yarn install --frozen-lockfile'}
 
 " TypeScript
-Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
+Plug 'neoclide/coc-tsserver',                   { 'do': 'yarn install --frozen-lockfile'}
 
 " HTML
-Plug 'othree/html5.vim',                       { 'for': 'html' }
+Plug 'othree/html5.vim',                        { 'for': 'html' }
 
 " CSS
-Plug 'cakebaker/scss-syntax.vim',              { 'for': 'scss' }
-Plug 'hail2u/vim-css3-syntax',                 { 'for': 'css' }
+Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
+Plug 'hail2u/vim-css3-syntax',                  { 'for': 'css' }
+Plug 'stephenway/postcss.vim',                  { 'for': 'css' }
+Plug 'neoclide/coc-css',                        { 'do': 'yarn install --frozen-lockfile'}
 
 " JSON
-Plug 'elzr/vim-json',                          { 'for': 'json' }
-Plug 'neoclide/jsonc.vim',                     { 'for': 'json' }
+Plug 'elzr/vim-json',                           { 'for': 'json' }
+Plug 'neoclide/jsonc.vim',                      { 'for': 'json' }
+Plug 'neoclide/coc-json',                       { 'do': 'yarn install --frozen-lockfile'}
 
 " GraphQL
 Plug 'jparise/vim-graphql'
 
 " XML
-Plug 'othree/xml.vim',                         { 'for': 'xml' }
+Plug 'othree/xml.vim',                          { 'for': 'xml' }
 
 " Markdown
-Plug 'plasticboy/vim-markdown',                { 'for': 'markdown' }
-Plug 'suan/vim-instant-markdown',              { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
+Plug 'plasticboy/vim-markdown',                 { 'for': 'markdown' }
+Plug 'suan/vim-instant-markdown',               { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " LaTeX
-Plug 'lervag/vimtex',                          { 'for': 'tex' }
-Plug 'xuhdev/vim-latex-live-preview',          { 'for': 'tex' }
+" Plug 'lervag/vimtex',                           { 'for': 'tex' }
+" Plug 'xuhdev/vim-latex-live-preview',           { 'for': 'tex' }
 
 " CoffeeScript
-Plug 'kchmck/vim-coffee-script',               { 'for': 'coffescript' }
+" Plug 'kchmck/vim-coffee-script',                { 'for': 'coffescript' }
 
 " Elm
-Plug 'ElmCast/elm-vim',                        { 'for': 'elm' }
+" Plug 'ElmCast/elm-vim',                         { 'for': 'elm' }
 
 " OCaml/Reason
 Plug 'jordwalke/vim-reasonml',
 Plug 'ocaml/merlin',
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'rgrinberg/vim-ocaml',                    { 'for': 'ocaml' }
+Plug 'rgrinberg/vim-ocaml',                     { 'for': 'ocaml' }
 
 " PureScript
-Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
-Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
+" Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
+" Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
 
 " Haskell
-Plug 'neovimhaskell/haskell-vim',              { 'for': 'haskell' }
+Plug 'neovimhaskell/haskell-vim',               { 'for': 'haskell' }
 
 " Rust
-Plug 'rust-lang/rust.vim',                     { 'for': 'rust' }
-Plug 'ron-rs/ron.vim',                         { 'for': 'rust' }
+Plug 'rust-lang/rust.vim',                      { 'for': 'rust' }
+Plug 'ron-rs/ron.vim',                          { 'for': 'rust' }
+Plug 'neoclide/coc-rls',                        { 'do': 'yarn install --frozen-lockfile'}
+
+" Erlang
+
+Plug 'hyhugh/coc-erlang_ls',                    { 'do': 'yarn install --frozen-lockfile'}
+Plug 'vim-erlang/vim-erlang-compiler',          { 'for': 'erlang' }
+Plug 'vim-erlang/vim-erlang-omnicomplete',      { 'for': 'erlang' }
+Plug 'vim-erlang/vim-erlang-runtime',           { 'for': 'erlang' }
+Plug 'vim-erlang/vim-erlang-tags',              { 'for': 'erlang' }
+
+" Elixir
+Plug 'elixir-editors/vim-elixir',               { 'for': 'elixir' }
+Plug 'slashmili/alchemist.vim',                 { 'for': 'elixir' }
 
 " C#
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
-Plug 'tbastos/vim-lua',                        { 'for': 'lua' }
-Plug 'davisdude/vim-love-docs',                { 'for': 'lua' }
+Plug 'tbastos/vim-lua',                         { 'for': 'lua' }
+" Plug 'davisdude/vim-love-docs',                 { 'for': 'lua' }
 
 " Godot
-Plug 'quabug/vim-gdscript'
+" Plug 'quabug/vim-gdscript'
 
 
 " -----------------------------------------------------------------------------
 "  Utilities
 " -----------------------------------------------------------------------------
 " LSP support and autocomplete
-Plug 'neoclide/coc.nvim',                      { 'branch': 'release', 'do': { -> coc#util#install()} }
+Plug 'neoclide/coc.nvim',                       { 'branch': 'release', 'do': { -> coc#util#install() } }
 
 " linting
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " VCS
 Plug 'junegunn/gv.vim'
@@ -113,17 +130,23 @@ Plug 'tpope/vim-fugitive'
 " editing
 Plug 'AndrewRadev/switch.vim'
 Plug 'SirVer/ultisnips'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
 Plug 'sgur/vim-editorconfig'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'liuchengxu/vim-which-key'
+
+" writing
+Plug 'dbmrq/vim-ditto'
+Plug 'reedes/vim-lexical'
+Plug 'reedes/vim-litecorrect'
 
 " file handling and searching
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 
@@ -138,7 +161,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/vim-slash'
-Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
 
@@ -281,7 +304,7 @@ augroup goyo
 augroup END
 
 " fzf
-set rtp+=/usr/local/opt/fzf
+set runtimepath+=/usr/local/opt/fzf
 
 " limelight
 let g:limelight_conceal_guifg = '#333333'
@@ -291,6 +314,7 @@ let g:limelight_conceal_guifg = '#333333'
 " -----------------------------------------------------------------------------
 " use formatprg if possible
 let g:neoformat_try_formatprg = 1
+let g:neoformat_verbose = 0
 
 " -----------------------------------------------------------------------------
 " NERDTree
@@ -298,7 +322,7 @@ let g:neoformat_try_formatprg = 1
 " bookmarks
 let NERDTreeBookmarksFile = expand('$HOME/.config/nvim/NERDTreeBookmarks')
 
-" Open NERDTree when opening a directory or just starting Neovim
+" open NERDTree when opening a directory or just starting Neovim
 augroup NERDTree_open
   autocmd!
   autocmd StdinReadPre * let s:std_in = 1
@@ -306,11 +330,12 @@ augroup NERDTree_open
   autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 augroup END
 
+let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeShowFiles = 1
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeHighlightCursorline = 0
 
 " Git status icons
 let g:NERDTreeIndicatorMapCustom = {
@@ -338,6 +363,27 @@ let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
 let g:actnum_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'undotree', 'gundo', 'vimshell', 'w3m']
 
 " -----------------------------------------------------------------------------
+" vim-litecorrect
+" -----------------------------------------------------------------------------
+augroup litecorrect
+  autocmd!
+  autocmd FileType markdown,mkd call litecorrect#init()
+  autocmd FileType textile call litecorrect#init()
+augroup END
+
+" -----------------------------------------------------------------------------
+" vim-lexical
+" -----------------------------------------------------------------------------
+let g:lexical#thesaurus = ['$HOME/dotfiles/thesaurus/moby.txt',]
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+" -----------------------------------------------------------------------------
 " vim-signify
 " -----------------------------------------------------------------------------
 let g:signify_sign_add               = '+'
@@ -353,6 +399,9 @@ let g:signify_sign_change            = '~'
 " leader
 let g:mapleader = "\<Space>"
 
+" which-key
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
 " dont go into ex mode
 noremap Q <NOP>
 
@@ -361,11 +410,16 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
 " reload .vimrc
 nnoremap <Leader><Leader>r :so $MYVIMRC<CR>
 
 " open last buffer by double tapping <Leader>
-nnoremap <Leader><Leader> <C-^>
+" nnoremap <Leader><Leader> <C-^>
 
 " yank the whole line with Y
 nnoremap Y 0y$
@@ -374,10 +428,10 @@ nnoremap Y 0y$
 nnoremap <expr> <CR> empty(&buftype) ? '@@' : '<CR>'
 
 " quit, quit!, write and xit quicker
-nnoremap <Leader>q :quit<CR>
-nnoremap <Leader>Q :quit!<CR>
-nnoremap <Leader>w :write<CR>
-nnoremap <Leader>x :xit<CR>
+" nnoremap <Leader>q :quit<CR>
+" nnoremap <Leader>Q :quit!<CR>
+" nnoremap <Leader>w :write<CR>
+" nnoremap <Leader>x :xit<CR>
 
 " clear search
 nnoremap <Leader>/ :nohl<CR>
@@ -454,9 +508,10 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>N :NERDTreeFind<CR>
 
 " SuperTab
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 " }}}
