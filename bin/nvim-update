@@ -9,10 +9,12 @@ brew upgrade neovim
 brew upgrade yarn
 
 pip3 install --upgrade pip
-pip3 install neovim
+pip3 install --upgrade pynvim
+pip3 install --upgrade neovim
 
 pip2 install --upgrade pip
-pip2 install neovim
+pip2 install --upgrade pynvim
+pip2 install --upgrade neovim
 
 yarn global add neovim@latest
 
