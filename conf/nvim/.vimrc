@@ -26,28 +26,28 @@ call plug#begin()
 " Syntax and suppot for languages
 " -----------------------------------------------------------------------------
 " JavaScript
-Plug 'jxnblk/vim-mdx-js',                       { 'for': 'mdx' }
-Plug 'mxw/vim-jsx',                             { 'for': 'javascript.jsx' }
-Plug 'othree/javascript-libraries-syntax.vim',  { 'for': 'javascript.jsx' }
-Plug 'pangloss/vim-javascript',                 { 'for': 'javascript.jsx' }
+" Plug 'jxnblk/vim-mdx-js',                       { 'for': 'mdx' }
+" Plug 'mxw/vim-jsx',                             { 'for': 'javascript.jsx' }
+" Plug 'othree/javascript-libraries-syntax.vim',  { 'for': 'javascript.jsx' }
+" Plug 'pangloss/vim-javascript',                 { 'for': 'javascript.jsx' }
 Plug 'styled-components/vim-styled-components', { 'for': 'javascript.jsx' }
 Plug 'iamcco/coc-tailwindcss',                  { 'do': 'yarn install --frozen-lockfile'}
 
 " TypeScript
-Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
-Plug 'neoclide/coc-tsserver',                   { 'do': 'yarn install --frozen-lockfile'}
+" Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
+" Plug 'neoclide/coc-tsserver',                   { 'do': 'yarn install --frozen-lockfile'}
 
 " HTML
-Plug 'othree/html5.vim',                        { 'for': 'html' }
+" Plug 'othree/html5.vim',                        { 'for': 'html' }
 
 " CSS
 Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
 Plug 'hail2u/vim-css3-syntax',                  { 'for': 'css' }
 Plug 'stephenway/postcss.vim',                  { 'for': 'css' }
-Plug 'neoclide/coc-css',                        { 'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-css',                        { 'do': 'yarn install --frozen-lockfile'}
 
 " JSON
-Plug 'elzr/vim-json',                           { 'for': 'json' }
+" Plug 'elzr/vim-json',                           { 'for': 'json' }
 Plug 'neoclide/jsonc.vim',                      { 'for': 'json' }
 Plug 'neoclide/coc-json',                       { 'do': 'yarn install --frozen-lockfile'}
 
@@ -58,7 +58,7 @@ Plug 'jparise/vim-graphql'
 Plug 'othree/xml.vim',                          { 'for': 'xml' }
 
 " Markdown
-Plug 'plasticboy/vim-markdown',                 { 'for': 'markdown' }
+" Plug 'plasticboy/vim-markdown',                 { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown',               { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " LaTeX
@@ -82,30 +82,30 @@ Plug 'rgrinberg/vim-ocaml',                     { 'for': 'ocaml' }
 " Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
 
 " Haskell
-Plug 'neovimhaskell/haskell-vim',               { 'for': 'haskell' }
+" Plug 'neovimhaskell/haskell-vim',               { 'for': 'haskell' }
 
 " Rust
-Plug 'rust-lang/rust.vim',                      { 'for': 'rust' }
+" Plug 'rust-lang/rust.vim',                      { 'for': 'rust' }
 Plug 'ron-rs/ron.vim',                          { 'for': 'rust' }
-Plug 'neoclide/coc-rls',                        { 'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-rls',                        { 'do': 'yarn install --frozen-lockfile'}
 
 " Erlang
 
-Plug 'hyhugh/coc-erlang_ls',                    { 'do': 'yarn install --frozen-lockfile'}
-Plug 'vim-erlang/vim-erlang-compiler',          { 'for': 'erlang' }
-Plug 'vim-erlang/vim-erlang-omnicomplete',      { 'for': 'erlang' }
-Plug 'vim-erlang/vim-erlang-runtime',           { 'for': 'erlang' }
-Plug 'vim-erlang/vim-erlang-tags',              { 'for': 'erlang' }
+" Plug 'hyhugh/coc-erlang_ls',                    { 'do': 'yarn install --frozen-lockfile'}
+" Plug 'vim-erlang/vim-erlang-compiler',          { 'for': 'erlang' }
+" Plug 'vim-erlang/vim-erlang-omnicomplete',      { 'for': 'erlang' }
+" Plug 'vim-erlang/vim-erlang-runtime',           { 'for': 'erlang' }
+" Plug 'vim-erlang/vim-erlang-tags',              { 'for': 'erlang' }
 
 " Elixir
-Plug 'elixir-editors/vim-elixir',               { 'for': 'elixir' }
-Plug 'slashmili/alchemist.vim',                 { 'for': 'elixir' }
+" Plug 'elixir-editors/vim-elixir',               { 'for': 'elixir' }
+" Plug 'slashmili/alchemist.vim',                 { 'for': 'elixir' }
 
 " C#
 " Plug 'OmniSharp/omnisharp-vim'
 
 " Lua
-Plug 'tbastos/vim-lua',                         { 'for': 'lua' }
+" Plug 'tbastos/vim-lua',                         { 'for': 'lua' }
 " Plug 'davisdude/vim-love-docs',                 { 'for': 'lua' }
 
 " Godot
@@ -116,27 +116,27 @@ Plug 'tbastos/vim-lua',                         { 'for': 'lua' }
 "  Utilities
 " -----------------------------------------------------------------------------
 " LSP support and autocomplete
-Plug 'neoclide/coc.nvim',                       { 'branch': 'release', 'do': { -> coc#util#install() } }
+" Plug 'neoclide/coc.nvim',                       { 'branch': 'release', 'do': { -> coc#util#install() } }
 
 " linting
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " VCS
-Plug 'junegunn/gv.vim'
-Plug 'mhinz/vim-signify'
-Plug 'sodapopcan/vim-twiggy'
-Plug 'tpope/vim-fugitive'
+" Plug 'junegunn/gv.vim'
+" Plug 'mhinz/vim-signify'
+" Plug 'sodapopcan/vim-twiggy'
+" Plug 'tpope/vim-fugitive'
 
 " editing
 Plug 'AndrewRadev/switch.vim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 " Plug 'ervandew/supertab'
-Plug 'junegunn/vim-easy-align'
-Plug 'sbdchd/neoformat'
-Plug 'sgur/vim-editorconfig'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'liuchengxu/vim-which-key'
+" Plug 'junegunn/vim-easy-align'
+" Plug 'sbdchd/neoformat'
+" Plug 'sgur/vim-editorconfig'
+" Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-repeat'
+" Plug 'liuchengxu/vim-which-key'
 
 " writing
 Plug 'dbmrq/vim-ditto'
@@ -144,23 +144,23 @@ Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-litecorrect'
 
 " file handling and searching
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf'
+" Plug 'junegunn/fzf.vim'
 " Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree'
+" Plug 'xuyuanp/nerdtree-git-plugin'
 
 " tmux
-Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux-focus-events'
+" Plug 'benmills/vimux'
+" Plug 'christoomey/vim-tmux-navigator'
+" Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " improvements
 Plug 'auwsmit/vim-active-numbers'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-peekaboo'
-Plug 'junegunn/vim-slash'
+" Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/limelight.vim'
+" Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-slash'
 " Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
@@ -240,8 +240,8 @@ colorscheme p1xelHer0
 set fillchars+=vert: 
 
 " display the listchars
-set list
 set listchars+=tab:→\ ,trail:·,nbsp:×
+set list
 
 " http://vim.wikia.com/wiki/Detect_window_creation_with_WinEnter
 augroup vim_enter
@@ -400,7 +400,7 @@ let g:signify_sign_change            = '~'
 let g:mapleader = "\<Space>"
 
 " which-key
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " dont go into ex mode
 noremap Q <NOP>
@@ -489,6 +489,9 @@ endfunction
 
 " use K for LSP hover and normal K
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)

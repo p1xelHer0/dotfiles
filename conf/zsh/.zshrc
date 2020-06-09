@@ -9,26 +9,17 @@ fi
 # =============================================================================
 
 # theme
-ZSH_THEME=p1xelHer0
+ZSH_THEME=puck
 
 # use the maximum amount of file descriptors
 ulimit -n 24576
 
 export LC_ALL=en_US.UTF-8
+export EDITOR='nvim'
 
 COMPLETION_WAITING_DOTS="true"
 
 HIST_STAMPS="dd.mm.yyyy"
-
-# only load custom ranger config
-export RANGER_LOAD_DEFAULT_RC=false
-
-# preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
 
 
 # }}}
@@ -40,11 +31,6 @@ export ZSH=$HOME/.oh-my-zsh
 
 # plugins
 plugins=(vi-mode zsh-syntax-highlighting)
-
-# add macOS plugin on macOS
-if [[ -n "$DARWIN" ]]; then
-  # plugins+=(osx)
-fi
 
 
 # }}}
@@ -58,24 +44,12 @@ export DOT_SCRIPTS=$HOME/dotfiles/bin
 # Yarn
 export YARN_BIN=$HOME/.yarn/bin
 
-# Haskell
-export STACK_PACKAGES=$HOME/.local/bin
-export HASKELL_IDE_ENGINE=$HOME/hie-bin/*
-
-# Rust
-export CARGO_HOME=$HOME/.cargo
-
 
 # set $PATH
 export PATH=$DOT_SCRIPTS:$PATH
 
 export PATH=$YARN_BIN:$PATH
 
-export PATH=$STACK_PACKAGES:$PATH
-
-export PATH=$HASKELL_IDE_ENGINE:$PATH
-
-export PATH=$CARGO_HOME:$PATH
 
 # -----------------------------------------------------------------------------
 # macOS $PATH
@@ -85,48 +59,10 @@ if [[ -n "$DARWIN" ]]; then
   # macOS dotfile scripts
   export MACOS_DOT_SCRIPTS=$HOME/dotfiles/bin/_darwin
 
-  # clang
-  # export CLANG=/usr/local/opt/llvm/bin
-
-  # React Native
-  export REACT_DEBUGGER="unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=19001' ||" yarn start
-
-  # xcode simctl is needed for react-native emulator
-  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer/
-
-  # Mono
-  export MONO_ROOT=/Library/Frameworks/Mono.framework/Versions/Current/bin
-
-  # Android
-  export ANT_HOME=/usr/local/opt/ant
-  export MAVEN_HOME=/usr/local/opt/maven
-  export GRADLE_HOME=/usr/local/opt/gradle
-  export ANDROID_HOME=/usr/local/opt/android-sdk
-  export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
-
   # set $PATH
   export PATH=$MACOS_DOT_SCRIPTS:$PATH
 
   export PATH="/usr/local/sbin:$PATH"
-
-  # export PATH=$CLANG:$PATH
-
-  export PATH=$STACK_PACKAGES:$PATH
-
-  export PATH=$REACT_NATIVE_HOME:$PATH
-
-  export PATH=$MONO_ROOT:$PATH
-
-  export PATH=$JENV:$PATH
-
-  export PATH=$ANT_HOME/bin:$PATH
-  export PATH=$MAVEN_HOME/bin:$PATH
-  export PATH=$GRADLE_HOME/bin:$PATH
-
-  export PATH=$ANDROID_HOME/tools:$PATH
-  export PATH=$ANDROID_HOME/tools/bin:$PATH
-  export PATH=$ANDROID_HOME/platform-tools:$PATH
-  export PATH=$ANDROID_HOME/build-tools/23.0.1:$PATH
 
 # -----------------------------------------------------------------------------
 # Linux $PATH
@@ -160,15 +96,14 @@ if which fasd > /dev/null; then eval "$(fasd --init auto)"; fi
 # fnm
 eval "$(fnm env --multi)"
 
-
 # npm tab completion
 . <(npm completion)
 
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# rustup
-source $CARGO_HOME/env
+# lorri direnv niv
+eval "$(direnv hook zsh)"
 
 
 # }}}
@@ -272,7 +207,19 @@ bind-git-helper() {
 bind-git-helper f b t r h
 unset -f bind-git-helper
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.nix-profile/share/fzf/key-bindings.zsh ] && source $HOME/.nix-profile/share/fzf/key-bindings.zsh
+
+
+# }}}
+
+# =============================================================================
+# nix {{{
+# =============================================================================
+
+# added by Nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+  . $HOME/.nix-profile/etc/profile.d/nix.sh;
+fi
 
 
 # }}}

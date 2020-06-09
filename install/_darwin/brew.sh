@@ -17,49 +17,50 @@ brew upgrade --all
 
 # packages to install
 apps=(
-  # opam                                        # ocaml - package manager - we are using `esy` instead of this right now
   Schniz/tap/fnm                                # node version manager, fast
-  coreutils                                     # utils
-  curl                                          # utils
-  dfu-util                                      # used to install whitefox configs
-  diff-so-fancy                                 # better git-diffs
-  evince                                        # utils - document viewer, pdf
-  exa                                           # utils - ls "replacement"
-  fasd                                          # utils - navigate directories fast, like autojump, z
-  ffmpeg                                        # utils - make videos
-  fswatch                                       # utils - file watcher used for watching files in dune projects
-  fzf                                           # utils - terminal fuzzy finder
-  gifsicle                                      # utils - make gifs
-  git                                           # utils
-  git-flow                                      # utils - git branching model
+  # coreutils                                     # utils
+  # curl                                          # utils
+  # dfu-util                                      # used to install whitefox configs
+  # diff-so-fancy                                 # better git-diffs
+  # entr                                          # utils - file watcher
+  # evince                                        # utils - document viewer, pdf
+  # exa                                           # utils - ls "replacement"
+  # fasd                                          # utils - navigate directories fast, like autojump, z
+  # ffmpeg                                        # utils - make videos
+  # fswatch                                       # utils - file watcher used for watching files in dune projects
+  # fzf                                           # utils - terminal fuzzy finder
+  # gifsicle                                      # utils - make gifs
+  # git                                           # utils
+  # git-flow                                      # utils - git branching model
   gpatch                                        # utils - needed for opam
-  gpg                                           # security
+  # gpg                                           # security
   haskell-stack                                 # haskell
-  htop                                          # utils - monitor processes
+  # htop                                          # utils - monitor processes
   luarocks                                      # lua package manager
-  neofetch                                      # utils - print system information
-  neovim/neovim/neovim                          # editor
+  # neofetch                                      # utils - print system information
+  # neovim/neovim/neovim                          # editor
+  # opam                                          # ocaml
   pidof                                         # utils - needed for pywal
-  pinentry-mac                                  # securiy
-  ranger                                        # utils - file manager
-  reattach-to-user-namespace                    # tmux - copy-paste fix
-  ripgrep                                       # utils - search fast
-  shellcheck                                    # shell linter
-  tree                                          # utils
-  wget                                          # utils
-  wifi-password                                 # utils - show the wifi-password in terminal
+  # pinentry-mac                                  # securiy
+  # ranger                                        # utils - file manager
+  # reattach-to-user-namespace                    # tmux - copy-paste fix
+  # ripgrep                                       # utils - search fast
+  # shellcheck                                    # shell linter
+  # tree                                          # utils
+  # wget                                          # utils
+  # wifi-password                                 # utils - show the wifi-password in terminal
   yabai                                         # window manager
   yarn                                          # js - package manager
-  zsh                                           # shell
+  # zsh                                           # shell
 )
 
 reactnative=(
   android-sdk                                   # android/java
-  ant                                           # java - build tool
-  gradle                                        # java - build tool
-  jenv                                          # java - verion manager
-  maven                                         # java - package manager
-  watchman                                      # js - react-native dependency
+  # ant                                           # java - build tool
+  # gradle                                        # java - build tool
+  # jenv                                          # java - verion manager
+  # maven                                         # java - package manager
+  # watchman                                      # js - react-native dependency
 )
 
 brew tap homebrew/services
