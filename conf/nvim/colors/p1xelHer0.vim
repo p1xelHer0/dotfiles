@@ -1,4 +1,3 @@
-" vim: set foldmethod=marker foldlevel=0 nomodeline:
 set encoding=utf-8
 scriptencoding utf-8
 

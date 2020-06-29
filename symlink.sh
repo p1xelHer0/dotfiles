@@ -6,13 +6,6 @@ mkdir -p "$HOME/.config/alacritty"
 ln -fs "$HOME/dotfiles/conf/alacritty/alacritty.yml" "$HOME/.config/wal/templates/"
 ln -fs "$HOME/.cache/wal/alacritty.yml" "$HOME/.config/alacritty/"
 
-# base16
-touch "$HOME/dotfiles/conf/base16/.base16"
-ln -fs "$HOME/dotfiles/conf/base16/base16-p1xelHer0.sh" "$HOME/.config/base16-shell/scripts"
-
-# git
-ln -fs "$HOME/dotfiles/conf/git/.gitconfig" "$HOME/"
-
 # karabiner elements
 ln -fs "$HOME/dotfiles/conf/_darwin/karabiner-elements/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
 
@@ -29,9 +22,6 @@ ln -fs "$HOME/dotfiles/conf/nvim/coc-settings.json" "$HOME/.config/nvim/coc-sett
 # ranger
 ranger --copy-config=all
 ln -fs "$HOME/dotfiles/conf/ranger/rc.conf" "$HOME/.config/ranger/rc.conf"
-
-# skhd
-ln -fs "$HOME/dotfiles/conf/_darwin/skhd/.skhdrc" "$HOME/"
 
 # tmux
 mkdir -p "$HOME/.tmux/plugins"

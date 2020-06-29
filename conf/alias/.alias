@@ -3,9 +3,6 @@ alias vim=nvim
 
 alias ev="esy nvim"
 
-# exa, prettier ls
-alias l="exa -al"
-
 # open dotfiles in editor
 alias dots="cd $HOME/dotfiles && vim"
 
@@ -17,9 +14,6 @@ alias vf="vim \$(fzf)"
 
 # open zsh config
 alias zshrc="vim $HOME/dotfiles/conf/zsh/.zshrc"
-
-# open alacritty.yml
-alias arc="vim $HOME/dotfiles/conf/alacritty/alacritty.yml"
 
 # open tmux config
 alias tmuxrc="vim $HOME/dotfiles/conf/tmux/.tmux.conf"
