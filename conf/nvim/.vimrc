@@ -1,3 +1,4 @@
+" vim: set foldmethod=marker foldlevel=0 nomodeline:
 set encoding=utf-8
 scriptencoding utf-8
 
@@ -6,21 +7,13 @@ let s:darwin = has('mac')
 
 " =============================================================================
 " plugins {{{
+"
+" NOTE:
+" A lot of plugins are commented out!
+" This is because I use nix and home-manager to install plenty of plugins.
 " =============================================================================
 
-" auto install `plug` if not installed
-if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs
-  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-  augroup PLUG
-    autocmd!
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  augroup END
-endif
-
-
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 
 " -----------------------------------------------------------------------------
 " Syntax and suppot for languages
@@ -30,7 +23,7 @@ call plug#begin()
 " Plug 'mxw/vim-jsx',                             { 'for': 'javascript.jsx' }
 " Plug 'othree/javascript-libraries-syntax.vim',  { 'for': 'javascript.jsx' }
 " Plug 'pangloss/vim-javascript',                 { 'for': 'javascript.jsx' }
-Plug 'styled-components/vim-styled-components', { 'for': 'javascript.jsx' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main', 'for': 'javascript.jsx' }
 Plug 'iamcco/coc-tailwindcss',                  { 'do': 'yarn install --frozen-lockfile'}
 
 " TypeScript
@@ -49,7 +42,7 @@ Plug 'stephenway/postcss.vim',                  { 'for': 'css' }
 " JSON
 " Plug 'elzr/vim-json',                           { 'for': 'json' }
 Plug 'neoclide/jsonc.vim',                      { 'for': 'json' }
-Plug 'neoclide/coc-json',                       { 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json',                       { 'do': 'yarn install --frozen-lockfile' }
 
 " GraphQL
 Plug 'jparise/vim-graphql'
@@ -72,10 +65,10 @@ Plug 'suan/vim-instant-markdown',               { 'for': 'markdown', 'do': 'yarn
 " Plug 'ElmCast/elm-vim',                         { 'for': 'elm' }
 
 " OCaml/Reason
-Plug 'jordwalke/vim-reasonml',
+" Plug 'jordwalke/vim-reasonml',
 Plug 'ocaml/merlin',
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'rgrinberg/vim-ocaml',                     { 'for': 'ocaml' }
+Plug 'ocaml/vim-ocaml',                     { 'for': 'ocaml' }
 
 " PureScript
 " Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
@@ -163,6 +156,8 @@ Plug 'auwsmit/vim-active-numbers'
 " Plug 'junegunn/vim-slash'
 " Plug 'norcalli/nvim-colorizer.lua'
 
+" Plug 'p1xelHer0/ttwnty.vim',                         { 'branch': 'dev' }
+
 call plug#end()
 
 
@@ -234,7 +229,8 @@ augroup END
 " =============================================================================
 " ui {{{
 " =============================================================================
-colorscheme p1xelHer0
+
+colorscheme ttwnty
 
 " split border
 set fillchars+=vert: 
@@ -320,15 +316,15 @@ let g:neoformat_verbose = 0
 " NERDTree
 " -----------------------------------------------------------------------------
 " bookmarks
-let NERDTreeBookmarksFile = expand('$HOME/.config/nvim/NERDTreeBookmarks')
+" let NERDTreeBookmarksFile = expand('$HOME/.config/nvim/NERDTreeBookmarks')
 
 " open NERDTree when opening a directory or just starting Neovim
-augroup NERDTree_open
-  autocmd!
-  autocmd StdinReadPre * let s:std_in = 1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-augroup END
+" augroup NERDTree_open
+"   autocmd!
+"   autocmd StdinReadPre * let s:std_in = 1
+"   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"   autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" augroup END
 
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMinimalUI = 1
@@ -338,17 +334,17 @@ let g:NERDTreeShowFiles = 1
 let g:NERDTreeShowHidden = 1
 
 " Git status icons
-let g:NERDTreeIndicatorMapCustom = {
-\ 'Modified'  : '~',
-\ 'Staged'    : '▲',
-\ 'Untracked' : '+',
-\ 'Renamed'   : '→',
-\ 'Unmerged'  : '=',
-\ 'Deleted'   : '_',
-\ 'Dirty'     : '~',
-\ 'Clean'     : '◆',
-\ 'Unknown'   : '?'
-\ }
+" let g:NERDTreeIndicatorMapCustom = {
+" \ 'Modified'  : '~',
+" \ 'Staged'    : '▲',
+" \ 'Untracked' : '+',
+" \ 'Renamed'   : '→',
+" \ 'Unmerged'  : '=',
+" \ 'Deleted'   : '_',
+" \ 'Dirty'     : '~',
+" \ 'Clean'     : '◆',
+" \ 'Unknown'   : '?'
+" \ }
 
 " -----------------------------------------------------------------------------
 " SuperTab

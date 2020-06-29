@@ -16,6 +16,7 @@ base=(
   google-chrome                                 # browser
   slack                                         # communication
   spotify                                       # utils
+  tidal
 )
 
 # packages to install
@@ -27,33 +28,15 @@ apps=(
   firefox-developer-edition                     # browser
   firefoxnightly                                # browser
   google-chrome-canary                          # browser
-  iterm2-nightly                                # terminal
   keybase                                       # utils
-  kitty                                         # terminal
   mactex                                        # utils
   mullvadvpn                                    # privacy
-  opera                                         # browser
   postman                                       # dev
   qmk-toolbox                                   # keyboard
   signal                                        # communication
-  skype                                         # communication
-  thunderbird                                   # communication
   telegram                                      # communication
-  twitch                                        # utils
-  ubersicht                                     # utils
   vlc                                           # utils
-  xquartz                                       # utils (kwm)
-)
-
-reactnative=(
-  android-studio                                # android
-  java                                          # android
-  intel-haxm                                    # android (emulator perf)
-  react-native-debugger                         # js
-)
-
-gamedev=(
-  mono-mdk                                      # mono (unity, c#)
+  zulip                                         # communication
 )
 
 # install packages
