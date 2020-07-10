@@ -1,13 +1,8 @@
-#!/bin/bash
-
-###
-
+#!/bin/zsh
+#
 # -- print terminal colors
 
-
-# https://superuser.com/questions/270214/how-can-i-change-the-colors-of-my-xterm-using-ansi-escape-sequences
-
-colors=( 0 1 2 3 4 5 6 7 8 16 17 18 )
+colors=( 0 1 2 3 4 5 6 7 8 16 17 18 19 20 )
 
 colortest() {
   for FG in "${colors[@]}"; do

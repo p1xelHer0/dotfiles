@@ -254,7 +254,7 @@ augroup END
 
 " only show the colorcolumn if the width surpasses 80 on that specific line
 highlight OverLength ctermfg=0 ctermbg=3
-match OverLength /\%81v/
+match OverLength /\%82v/
 
 
 " }}}
@@ -333,18 +333,18 @@ let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeShowFiles = 1
 let g:NERDTreeShowHidden = 1
 
-" Git status icons
-" let g:NERDTreeIndicatorMapCustom = {
-" \ 'Modified'  : '~',
-" \ 'Staged'    : '▲',
-" \ 'Untracked' : '+',
-" \ 'Renamed'   : '→',
-" \ 'Unmerged'  : '=',
-" \ 'Deleted'   : '_',
-" \ 'Dirty'     : '~',
-" \ 'Clean'     : '◆',
-" \ 'Unknown'   : '?'
-" \ }
+" git status icons
+let g:NERDTreeIndicatorMapCustom = {
+\ 'Modified'  : '~',
+\ 'Staged'    : '^',
+\ 'Untracked' : '+',
+\ 'Renamed'   : '>',
+\ 'Unmerged'  : '=',
+\ 'Deleted'   : '_',
+\ 'Dirty'     : '~',
+\ 'Clean'     : '*',
+\ 'Unknown'   : '?'
+\ }
 
 " -----------------------------------------------------------------------------
 " SuperTab
@@ -412,7 +412,8 @@ inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
 " reload .vimrc
-nnoremap <Leader><Leader>r :so $MYVIMRC<CR>
+" nnoremap <Leader><Leader>r :so $MYVIMRC<CR>
+nnoremap <Leader><Leader>r :so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>
 
 " open last buffer by double tapping <Leader>
 " nnoremap <Leader><Leader> <C-^>

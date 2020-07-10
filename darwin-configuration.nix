@@ -1,30 +1,50 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-let inherit (pkgs) lorri;
+let homeDir = builtins.getEnv ("HOME");
 
-in {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = [ lorri ];
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
-  environment.darwinConfig = "$HOME/dotfiles/darwin-configuration.nix";
-
-  # Auto upgrade nix package and the daemon service.
-  # services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
-
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  # programs.bash.enable = true;
-  programs.zsh.enable = true;
-  # programs.fish.enable = true;
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
+in with pkgs.stdenv;
+with lib; {
   system.stateVersion = 4;
+  environment.systemPackages = [ pkgs.zsh pkgs.lorri ];
 
-  services.skhd.enable = false;
+  # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
+  environment.darwinConfig = "${homeDir}/dotfiles/darwin-configuration.nix";
+
+  programs.bash.enable = false;
+  programs.zsh.enable = true;
+
+  environment.shells = [ pkgs.zsh ];
+
+  system.defaults = {
+    dock = {
+      autohide = true;
+      mru-spaces = false;
+      minimize-to-application = true;
+    };
+
+    screencapture.location = "${homeDir}/screenshots";
+
+    finder = {
+      AppleShowAllExtensions = true;
+      _FXShowPosixPathInTitle = true;
+      FXEnableExtensionChangeWarning = false;
+    };
+
+    trackpad = {
+      Clicking = true;
+      TrackpadThreeFingerDrag = true;
+    };
+
+    NSGlobalDomain._HIHideMenuBar = true;
+  };
+
+  services.skhd = {
+    enable = true;
+    skhdConfig = builtins.readFile ./conf/_darwin/skhd/.skhdrc;
+  };
+
+  users.users.pontusnagy.shell = pkgs.zsh;
+  users.users.pontusnagy.home = homeDir;
 
   services.yabai = {
     enable = true;
@@ -32,7 +52,7 @@ in {
     enableScriptingAddition = false;
     config = {
       focus_follows_mouse = "autoraise";
-      mouse_follows_focus = "off";
+      mouse_follows_focus = "on";
       window_placement = "second_child";
       window_opacity = "off";
       window_opacity_duration = "0.0";
@@ -62,8 +82,8 @@ in {
     };
 
     extraConfig = ''
-      # rules
       yabai -m rule --add app='System Preferences' manage=off
+      yabai -m rule --add app='licecap' manage=off
     '';
   };
 
@@ -80,8 +100,73 @@ in {
       };
       script = ''
         source ${config.system.build.setEnvironment}
-        exec ${lorri}/bin/lorri daemon
+        exec ${pkgs.lorri}/bin/lorri daemon
       '';
+    };
+  };
+
+  # For use with nighthook:
+  # If there's no 'live.yml' alacritty config initially, copy it
+  # from the default config
+  environment.extraInit = ''
+    test -f ${homeDir}/.config/alacritty/live.yml || \
+      cp ${homeDir}/.config/alacritty/alacritty.yml \
+      ${homeDir}/.config/alacritty/live.yml
+  '';
+
+  launchd.user.agents.nighthook = {
+    serviceConfig = {
+      Label = "ae.cmacr.nighthook";
+      WatchPaths =
+        [ "${homeDir}/Library/Preferences/.GlobalPreferences.plist" ];
+      EnvironmentVariables = {
+        PATH = (replaceStrings [ "$HOME" ] [ homeDir ]
+          config.environment.systemPath);
+      };
+      ProgramArguments = [
+        "${pkgs.writeShellScript "nighthook-action" ''
+          if defaults read -g AppleInterfaceStyle &>/dev/null ; then
+            MODE="dark"
+          else
+            MODE="light"
+          fi
+
+          emacsSwitchTheme () {
+            if pgrep -q Emacs; then
+              if [[  $MODE == "dark"  ]]; then
+                  emacsclient --eval "(cm/switch-theme 'doom-one)"
+              elif [[  $MODE == "light"  ]]; then
+                  emacsclient --eval "(cm/switch-theme 'doom-solarized-light)"
+              fi
+            fi
+          }
+
+          alacrittySwitchTheme() {
+            DIR=/Users/pontusnagy/.config/alacritty
+            if [[  $MODE == "dark"  ]]; then
+              cp -f $DIR/alacritty.yml $DIR/live.yml
+            elif [[  $MODE == "light"  ]]; then
+              cp -f $DIR/light.yml $DIR/live.yml
+            fi
+          }
+
+          yabaiSwitchTheme() {
+            if [[  $MODE == "dark"  ]]; then
+              yabai -m config active_window_border_color "0xff5c7e81"
+              yabai -m config normal_window_border_color "0xff505050"
+              yabai -m config insert_window_border_color "0xffd75f5f"
+            elif [[  $MODE == "light"  ]]; then
+              yabai -m config active_window_border_color "0xff2aa198"
+              yabai -m config normal_window_border_color "0xff839496 "
+              yabai -m config insert_window_border_color "0xffdc322f"
+            fi
+          }
+
+          emacsSwitchTheme $@
+          alacrittySwitchTheme $@
+          yabaiSwitchTheme $@
+        ''}"
+      ];
     };
   };
 }

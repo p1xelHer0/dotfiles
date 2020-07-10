@@ -1,9 +1,10 @@
 {
-  "tsserver.npm": "/Users/pontusnagy/.fnm/aliases/default/bin",
+  "tsserver.npm": "/usr/local/bin/npm",
+  "tsserver.log": "normal",
   "languageserver": {
     //"reason": {
-      //"command": "ocamllsp",
-      //"filetypes": ["reason"]
+    //"command": "ocamllsp",
+    //"filetypes": ["reason"]
     //},
 
     "reason": {

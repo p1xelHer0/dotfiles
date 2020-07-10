@@ -6,7 +6,7 @@
 # bindings {{{
 
 # start a terminal
-cmd - return : open -na /Applications/Alacritty.app
+cmd - return : open -na $HOME/.nix-profile/Applications/Alacritty.app
 
 # focus window
 cmd - h : yabai -m window --focus west

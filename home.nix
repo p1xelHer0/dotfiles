@@ -6,6 +6,7 @@
   home.stateVersion = "20.03";
 
   home.packages = with pkgs; [
+    bash
     curl
     direnv
     fasd
@@ -13,12 +14,16 @@
     gitAndTools.diff-so-fancy
     gnupg
     htop
+    jq
     niv
     reattach-to-user-namespace
     ripgrep
     shellcheck
-    tmux
+    starship
     wget
+
+    # fonts
+    jetbrains-mono
 
     # keyboards
     # dfu-util
@@ -41,7 +46,12 @@
 
     # rust
     # rustup
+
+    # java...?
+    # openjdk
   ];
+
+  fonts.fontconfig = { enable = true; };
 
   programs.zsh = {
     enable = true;
@@ -55,20 +65,18 @@
 
       DOTS_BIN = "$HOME/dotfiles/bin";
       DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
-      YARN_BIN = "$HOME/dotfiles/bin";
     };
 
     envExtra = ''
-      export PATH=$DOTS_BIN:$PATH
-      export PATH=$DOTS_DARWIN_BIN:$PATH
-      export PATH=$YARN_BIN:$PATH
-
       # profile zsh
       # zmodload zsh/zprof
     '';
 
     initExtra = ''
-      source $HOME/dev/repo/private/puck/puck.zsh
+      export PATH=$DOTS_BIN:$PATH
+      export PATH=$DOTS_DARWIN_BIN:$PATH
+
+      source "$DOTS_BIN/fzf_git"
 
       eval "$(fasd --init auto)"
 
@@ -76,75 +84,11 @@
 
       eval "$(direnv hook zsh)"
 
-      eval $(opam env)
+      eval "$(opam env)"
 
-      is_in_git_repo() {
-        git rev-parse HEAD > /dev/null 2>&1
-      }
+      source "$HOME/dev/repo/private/puck/puck.zsh"
 
-      fzf-git-wrapper() {
-        fzf --no-height --no-reverse "$@"
-      }
-
-      gf() {
-        is_in_git_repo || return
-        git -c color.status=always status --short |
-        fzf-git-wrapper -m --ansi --nth 2..,.. \
-          --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
-        cut -c4- | sed 's/.* -> //'
-      }
-
-      gb() {
-        is_in_git_repo || return
-        git branch -a --color=always | grep -v '/HEAD\s' | sort |
-        fzf-git-wrapper --ansi --multi --tac --preview-window right:70% \
-          --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
-        sed 's/^..//' | cut -d' ' -f1 |
-        sed 's#^remotes/##'
-      }
-
-      gt() {
-        is_in_git_repo || return
-        git tag --sort -version:refname |
-        fzf-git-wrapper --multi --preview-window right:70% \
-          --preview 'git show --color=always {} | head -'$LINES
-      }
-
-      gh() {
-        is_in_git_repo || return
-        git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
-        fzf-git-wrapper --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
-          --header 'Press CTRL-S to toggle sort' \
-          --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
-        grep -o "[a-f0-9]\{7,\}"
-      }
-
-      gr() {
-        is_in_git_repo || return
-        git remote -v | awk '{print $1 "\t" $2}' | uniq |
-        fzf-git-wrapper --tac \
-          --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
-        cut -d$'\t' -f1
-      }
-
-      join-lines() {
-        local item
-        while read item; do
-          echo -n "''${(q) item} "
-        done
-      }
-
-      bind-git-helper() {
-        local char
-        for c in $@; do
-          eval "fzf-g$c-widget() { local result=\$(g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
-          eval "zle -N fzf-g$c-widget"
-          eval "bindkey '^g^$c' fzf-g$c-widget"
-        done
-      }
-
-      bind-git-helper f b t r h
-      unset -f bind-git-helper
+      # eval "$(starship init zsh)"
 
       # profile zsh
       # zprof
@@ -153,12 +97,21 @@
     shellAliases = {
       ":q" = "tmux kill-pane";
 
+      ip = "dig +short myip.opendns.com @resolver1.opendns.com";
+      ipl =
+        "ifconfig | grep -Eo 'inet (addr:)?([0-9]*.){3}[0-9]*' | grep -Eo '([0-9]*.){3}[0-9]*' | grep -v '127.0.0.1'";
+
       perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
 
       hme = "home-manager edit";
       hms = "home-manager switch";
 
+      dre = "darwin-rebuild edit";
+      drs =
+        "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
+
       v = "nvim";
+      vim = "nvim";
       vf = "nvim $(fzf)";
       ev = "esy nvim";
 
@@ -171,19 +124,11 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
+
+      love = "$HOME/love2d/love.app/Contents/MacOS/love";
     };
 
     plugins = [
-      # {
-      #   name = "puck";
-      #   file = "puck.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "p1xelHer0";
-      #     repo = "puck";
-      #     rev = "";
-      #     sha256 = "";
-      #   };
-      # }
       {
         name = "zsh-vim-mode";
         file = "zsh-vim-mode.plugin.zsh";
@@ -194,153 +139,55 @@
           sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
         };
       }
-      # {
-      #   name = "fast-syntax-highlighting";
-      #   file = "fast-syntax-highlighting.plugin.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "zdharma";
-      #     repo = "fast-syntax-highlighting";
-      #     rev = "v1.28";
-      #     sha256 = "106s7k9n7ssmgybh0kvdb8359f3rz60gfvxjxnxb4fg5gf1fs088";
-      #   };
-      # }
+      {
+        name = "fast-syntax-highlighting";
+        file = "fast-syntax-highlighting.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma";
+          repo = "fast-syntax-highlighting";
+          rev = "v1.28";
+          sha256 = "106s7k9n7ssmgybh0kvdb8359f3rz60gfvxjxnxb4fg5gf1fs088";
+        };
+      }
     ];
   };
 
-  programs.alacritty = {
-    enable = true;
-
-    settings = {
-      window = {
-        padding.x = 30;
-        padding.y = 30;
-
-        decorations = "buttonless";
-        startup_mode = "Windowed";
-      };
-
-      scrolling.history = 0;
-      live_config_reload = true;
-      selection.save_to_clipboard = true;
-      mouse.hide_when_typing = true;
-      visual_bell.duration = 0;
-      draw_bold_text_with_bright_colors = true;
-
-      cursor = {
-        style = "Block";
-        unfocused_hollow = true;
-      };
-
-      font = {
-        size = 18;
-
-        normal = {
-          family = "Iosevka Term";
-          style = "Regular";
-        };
-
-        bold = {
-          family = "Iosevka Term";
-          style = "Bold";
-        };
-
-        italic = {
-          family = "Iosevka Term";
-          style = "Italic";
-        };
-
-        offset.x = 0;
-        offset.y = 0;
-
-        glyph_offset.x = 0;
-        glyph_offset.y = 0;
-
-        use_thin_strokes = true;
-      };
-
-      colors = {
-        primary.background = "0x090803";
-        primary.foreground = "0xdfd1be";
-
-        cursor.cursor = "0xdfd1be";
-
-        normal = {
-          black = "0x090803";
-          red = "0x936D16";
-          green = "0x89765F";
-          yellow = "0xCAA235";
-          blue = "0xA48E6A";
-          magenta = "0x768286";
-          cyan = "0xA6A39B";
-          white = "0xdfd1be";
-        };
-
-        bright = {
-          black = "0x9c9285";
-          red = "0x936D16";
-          green = "0x89765F";
-          yellow = "0xCAA235";
-          blue = "0xA48E6A";
-          magenta = "0x768286";
-          cyan = "0xA6A39B";
-          white = "0xdfd1be";
-        };
-
-        indexed_colors = [
-          {
-            index = 16;
-            color = "0x1E2027";
-          }
-          {
-            index = 17;
-            color = "0x2A2C32";
-          }
-          {
-            index = 18;
-            color = "0x37373C";
-          }
-          {
-            index = 19;
-            color = "0x434347";
-          }
-          {
-            index = 20;
-            color = "0x4F4E51";
-          }
-        ];
-      };
-
-      key_bindings = [
-        {
-          key = "Paste";
-          action = "Paste";
-        }
-        {
-          key = "Copy";
-          action = "Copy";
-        }
-      ];
-    };
-  };
+  programs.tmux = { enable = true; };
 
   programs.fzf = {
     enable = true;
 
     enableZshIntegration = true;
 
-    defaultCommand = "rg --files --hidden --follow 2> /dev/null";
-    defaultOptions = [''
-      --color fg:7,bg:0,hl:3,fg+:4,bg+:0,hl+:3,info:2
-      --color prompt:6,spinner:4,pointer:3,marker:3,header:2
-      --no-height --no-reverse
-    ''];
+    defaultCommand = "rg --files --hidden --follow";
+    defaultOptions = [
+      "--color=fg:-1"
+      # "--color=bg:0"
+      # "--color=preview-fg:0"
+      # "--color=preview-bg:0"
+      # "--color=hl:2"
+      "--color=fg+:0"
+      "--color=bg+:3"
+      "--color=gutter:-1"
+      "--color=hl+:8"
+      # "--color=info:0"
+      # "--color=border:0"
+      # "--color=prompt:0"
+      # "--color=pointer:-1"
+      # "--color=marker:-1"
+      # "--color=spinner:-1"
+      # "--color=header:-1"
 
-    fileWidgetCommand = "rg --files --hidden --follow 2> /dev/null";
+      # "--color=prompt:2,pointer:0,marker:3,spinner:1"
+      "--reverse --no-bold --no-unicode --preview-window=hidden"
+    ];
+
+    fileWidgetCommand = "rg --files --hidden --follow";
     fileWidgetOptions = [
       "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
     ];
 
-    changeDirWidgetCommand = "rg --files --hidden --follow 2> /dev/null";
+    changeDirWidgetCommand = "rg --files --hidden --follow";
     changeDirWidgetOptions = [ ];
 
     historyWidgetCommand = "";
@@ -351,10 +198,6 @@
     enable = true;
 
     extraConfig = builtins.readFile ~/dotfiles/conf/nvim/.vimrc;
-
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
 
     withNodeJs = true;
 
@@ -411,5 +254,165 @@
     userName = "Pontus Nagy";
     userEmail = "pontusnagy@gmail.com";
     includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
+  };
+
+  # xdg.configFile."alacritty/light.yml".text = let
+  #   lightColors = {
+  #     colors = {
+  #       primary.foreground = "#080807";
+  #       primary.background = "#faeed7";
+
+  #       normal = {
+  #         black = "#faeed7";
+  #         red = "#423730";
+  #         green = "#585c4c";
+  #         yellow = "#30261b";
+  #         blue = "#080807";
+  #         magenta = "#080807";
+  #         cyan = "#080807";
+  #         white = "#080807";
+  #       };
+
+  #       bright = {
+  #         black = "#c9bfad";
+  #         red = "#bf9d88";
+  #         green = "#9da488";
+  #         yellow = "#d1a47f";
+  #         blue = "#080807";
+  #         magenta = "#080807";
+  #         cyan = "#080807";
+  #         white = "#080807";
+  #       };
+
+  #       indexed_colors = [
+  #         {
+  #           index = 16;
+  #           color = "#f2e6d0";
+  #         }
+  #         {
+  #           index = 17;
+  #           color = "#ebdfca";
+  #         }
+  #         {
+  #           index = 18;
+  #           color = "#e3d7c3";
+  #         }
+  #         {
+  #           index = 19;
+  #           color = "#dbd0bd";
+  #         }
+  #         {
+  #           index = 20;
+  #           color = "#d4c9b6";
+  #         }
+  #       ];
+  #     };
+  #   };
+  # in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+  # (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+
+  programs.alacritty = {
+    enable = true;
+
+    settings = {
+      window = {
+        padding.x = 30;
+        padding.y = 30;
+
+        decorations = "buttonless";
+        startup_mode = "Windowed";
+      };
+
+      draw_bold_text_with_bright_colors = true;
+
+      live_config_reload = true;
+
+      mouse.hide_when_typing = true;
+
+      scrolling.history = 0;
+
+      selection.save_to_clipboard = false;
+
+      visual_bell.duration = 0;
+
+      cursor = {
+        style = "Block";
+        unfocused_hollow = true;
+      };
+
+      font = {
+        size = 16;
+
+        normal = { family = "JetBrains Mono"; };
+
+        use_thin_strokes = false;
+      };
+
+      colors = {
+        primary.background = "0x080807";
+        primary.foreground = "0xb5a488";
+
+        cursor = {
+          cursor = "0xb5a488";
+          text = "0x080807";
+        };
+
+        normal = {
+          black = "0x080807";
+          red = "0xbf9d88";
+          green = "0x9da488";
+          yellow = "0xd1a47f";
+          blue = "0xb5a488";
+          magenta = "0xb5a488";
+          cyan = "0xb5a488";
+          white = "0xb5a488";
+        };
+
+        bright = {
+          black = "0x30302c";
+          red = "0xb5a488";
+          green = "0xb5a488";
+          yellow = "0xb5a488";
+          blue = "0xb5a488";
+          magenta = "0xb5a488";
+          cyan = "0xb5a488";
+          white = "0xb5a488";
+        };
+
+        indexed_colors = [
+          {
+            index = 16;
+            color = "0x0d0d0b";
+          }
+          {
+            index = 17;
+            color = "0x121210";
+          }
+          {
+            index = 18;
+            color = "0x1a1917";
+          }
+          {
+            index = 19;
+            color = "0x242320";
+          }
+          {
+            index = 20;
+            color = "0x2b2b27";
+          }
+        ];
+      };
+
+      key_bindings = [
+        {
+          key = "Paste";
+          action = "Paste";
+        }
+        {
+          key = "Copy";
+          action = "Copy";
+        }
+      ];
+    };
   };
 }

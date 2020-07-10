@@ -37,6 +37,7 @@ apps=(
   haskell-stack                                 # haskell
   # htop                                          # utils - monitor processes
   luarocks                                      # lua package manager
+  mongodb-community@4.2
   # neofetch                                      # utils - print system information
   # neovim/neovim/neovim                          # editor
   # opam                                          # ocaml
@@ -46,6 +47,7 @@ apps=(
   # reattach-to-user-namespace                    # tmux - copy-paste fix
   # ripgrep                                       # utils - search fast
   # shellcheck                                    # shell linter
+  starship                                        # shell prompt
   # tree                                          # utils
   # wget                                          # utils
   # wifi-password                                 # utils - show the wifi-password in terminal
@@ -65,6 +67,8 @@ reactnative=(
 
 brew tap homebrew/services
 brew tap koekeishiya/formulae
+
+brew tap mongodb/brew
 
 # make sure we’re using the latest Homebrew
 brew update

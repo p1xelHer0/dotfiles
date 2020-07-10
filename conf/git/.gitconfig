@@ -4,7 +4,7 @@
 	ui = auto
 [color "status"]
 	added = 2
-	changed = 1 bold
+	changed = 3
 	untracked = 8
 [color "branch"]
 	remote = 3
