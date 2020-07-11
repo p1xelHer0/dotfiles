@@ -152,7 +152,11 @@
     ];
   };
 
-  programs.tmux = { enable = true; };
+  programs.tmux = {
+    enable = true;
+    extraConfig = builtins.readFile ~/dotfiles/conf/tmux/.tmux.conf;
+
+  };
 
   programs.fzf = {
     enable = true;
@@ -193,6 +197,8 @@
     historyWidgetCommand = "";
     historyWidgetOptions = [ ];
   };
+
+  programs.lf = { enable = true; };
 
   programs.neovim = {
     enable = true;
@@ -256,60 +262,60 @@
     includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
   };
 
-  # xdg.configFile."alacritty/light.yml".text = let
-  #   lightColors = {
-  #     colors = {
-  #       primary.foreground = "#080807";
-  #       primary.background = "#faeed7";
+  xdg.configFile."alacritty/light.yml".text = let
+    lightColors = {
+      colors = {
+        primary.foreground = "#080807";
+        primary.background = "#faeed7";
 
-  #       normal = {
-  #         black = "#faeed7";
-  #         red = "#423730";
-  #         green = "#585c4c";
-  #         yellow = "#30261b";
-  #         blue = "#080807";
-  #         magenta = "#080807";
-  #         cyan = "#080807";
-  #         white = "#080807";
-  #       };
+        normal = {
+          black = "#faeed7";
+          red = "#423730";
+          green = "#585c4c";
+          yellow = "#30261b";
+          blue = "#080807";
+          magenta = "#080807";
+          cyan = "#080807";
+          white = "#080807";
+        };
 
-  #       bright = {
-  #         black = "#c9bfad";
-  #         red = "#bf9d88";
-  #         green = "#9da488";
-  #         yellow = "#d1a47f";
-  #         blue = "#080807";
-  #         magenta = "#080807";
-  #         cyan = "#080807";
-  #         white = "#080807";
-  #       };
+        bright = {
+          black = "#c9bfad";
+          red = "#bf9d88";
+          green = "#9da488";
+          yellow = "#d1a47f";
+          blue = "#080807";
+          magenta = "#080807";
+          cyan = "#080807";
+          white = "#080807";
+        };
 
-  #       indexed_colors = [
-  #         {
-  #           index = 16;
-  #           color = "#f2e6d0";
-  #         }
-  #         {
-  #           index = 17;
-  #           color = "#ebdfca";
-  #         }
-  #         {
-  #           index = 18;
-  #           color = "#e3d7c3";
-  #         }
-  #         {
-  #           index = 19;
-  #           color = "#dbd0bd";
-  #         }
-  #         {
-  #           index = 20;
-  #           color = "#d4c9b6";
-  #         }
-  #       ];
-  #     };
-  #   };
-  # in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-  # (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+        indexed_colors = [
+          {
+            index = 16;
+            color = "#f2e6d0";
+          }
+          {
+            index = 17;
+            color = "#ebdfca";
+          }
+          {
+            index = 18;
+            color = "#e3d7c3";
+          }
+          {
+            index = 19;
+            color = "#dbd0bd";
+          }
+          {
+            index = 20;
+            color = "#d4c9b6";
+          }
+        ];
+      };
+    };
+  in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+  (builtins.toJSON (config.programs.alacritty.settings // lightColors));
 
   programs.alacritty = {
     enable = true;
