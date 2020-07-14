@@ -1,2 +1,0 @@
-# reload .Xresources
-alias ru="[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources"

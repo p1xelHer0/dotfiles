@@ -1,9 +1,12 @@
 { config, lib, pkgs, ... }:
 
-let homeDir = builtins.getEnv ("HOME");
+let
+  homeDir = builtins.getEnv ("HOME");
+  user = builtins.getEnv ("USER");
 
 in with pkgs.stdenv;
 with lib; {
+  imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
   environment.systemPackages = [ pkgs.zsh pkgs.lorri ];
 
@@ -15,8 +18,10 @@ with lib; {
 
   environment.shells = [ pkgs.zsh ];
 
-  users.users.pontusnagy.shell = pkgs.zsh;
-  users.users.pontusnagy.home = homeDir;
+  users.users."${user}" = {
+    shell = pkgs.zsh;
+    home = homeDir;
+  };
 
   system.defaults = {
     dock = {
@@ -83,7 +88,7 @@ with lib; {
   services.skhd = {
     enable = true;
     skhdConfig = ''
-      cmd - return : alacritty --config-file=$HOME/.config/alacritty/live.yml
+      cmd - return : open -n ~/.nix-profile/Applications/Alacritty.app --args --live-config-reload --config-file $HOME/.config/alacritty/live.yml
 
       # focus window
       cmd - h : yabai -m window --focus west
@@ -293,8 +298,6 @@ with lib; {
   '';
 
   launchd.user.agents = {
-    # copied verbatim from
-    # https://github.com/iknow/nix-channel/blob/7bf3584e0bef531836050b60a9bbd29024a1af81/darwin-modules/lorri.nix
     "lorri" = {
       serviceConfig = {
         WorkingDirectory = (builtins.getEnv "HOME");
@@ -330,17 +333,17 @@ with lib; {
             spacebarSwitchTheme() {
               if pgrep -q spacebar; then
                 if [[  $MODE == "dark"  ]]; then
-                  spacebar -m config background_color 0xff202020
-                  spacebar -m config foreground_color 0xffa8a8a8
+                  spacebar -m config background_color 0xff080807
+                  spacebar -m config foreground_color 0xffb5a488
                 elif [[  $MODE == "light"  ]]; then
-                  spacebar -m config background_color 0xffeee8d5
-                  spacebar -m config foreground_color 0xff073642
+                  spacebar -m config background_color 0xfffaeed7
+                  spacebar -m config foreground_color 0xff080807
                 fi
               fi
             }
 
             alacrittySwitchTheme() {
-              DIR=/Users/pontusnagy/.config/alacritty
+              DIR=${homeDir}/.config/alacritty
               if [[  $MODE == "dark"  ]]; then
                 cp -f $DIR/alacritty.yml $DIR/live.yml
               elif [[  $MODE == "light"  ]]; then
@@ -364,6 +367,405 @@ with lib; {
             alacrittySwitchTheme $@
             yabaiSwitchTheme $@
           ''}"
+        ];
+      };
+    };
+  };
+
+  home-manager.users.pontusnagy = { config, pkgs, ... }: {
+    home.stateVersion = "20.03";
+
+    home.packages = with pkgs; [
+      curl
+      direnv
+      fasd
+      fswatch
+      gitAndTools.diff-so-fancy
+      gnupg
+      htop
+      jq
+      neofetch
+      niv
+      reattach-to-user-namespace
+      ripgrep
+      shellcheck
+      wget
+
+      # fonts
+      jetbrains-mono
+
+      # nix
+      nixfmt
+      rnix-lsp
+
+      # haskell
+      # cabal-install
+      # stack
+
+      # ocaml
+      bs-platform
+      opam
+
+      # rust
+      # rustup
+    ];
+
+    fonts.fontconfig = { enable = true; };
+
+    programs.zsh = {
+      enable = true;
+
+      enableAutosuggestions = false;
+      enableCompletion = true;
+
+      sessionVariables = {
+        EDITOR = "nvim";
+        LC_ALL = "en_US.UTF-8";
+
+        DOTS_BIN = "$HOME/dotfiles/bin";
+        DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
+      };
+
+      envExtra = ''
+        # profile zsh
+        # zmodload zsh/zprof
+      '';
+
+      initExtra = ''
+        export PATH=$DOTS_BIN:$PATH
+        export PATH=$DOTS_DARWIN_BIN:$PATH
+
+        # use the maximum amount of file descriptors
+        ulimit -n 24576
+
+        source "$DOTS_BIN/fzf_git"
+
+        eval "$(fasd --init auto)"
+
+        eval "$(fnm env --multi)"
+
+        eval "$(direnv hook zsh)"
+
+        eval "$(opam env)"
+
+        source "$HOME/dev/repo/private/puck/puck.zsh"
+
+        # eval "$(starship init zsh)"
+
+        # profile zsh
+        # zprof
+      '';
+
+      shellAliases = {
+        ":q" = "tmux kill-pane";
+
+        ip = "dig +short myip.opendns.com @resolver1.opendns.com";
+        ipl =
+          "ifconfig | grep -Eo 'inet (addr:)?([0-9]*.){3}[0-9]*' | grep -Eo '([0-9]*.){3}[0-9]*' | grep -v '127.0.0.1'";
+
+        perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
+
+        dre = "darwin-rebuild edit";
+        drs =
+          "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
+
+        v = "nvim";
+        vim = "nvim";
+        vf = "nvim $(fzf)";
+        ev = "esy nvim";
+
+        dots = "cd $HOME/dotfiles && nvim";
+        swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
+
+        rl = "exec zsh";
+
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
+        "....." = "cd ../../../..";
+      };
+
+      plugins = [{
+        name = "zsh-vim-mode";
+        file = "zsh-vim-mode.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "softmoth";
+          repo = "zsh-vim-mode";
+          rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
+          sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
+        };
+      }];
+    };
+
+    programs.tmux = {
+      enable = true;
+      extraConfig = builtins.readFile ./conf/tmux/.tmux.conf;
+
+    };
+
+    programs.fzf = {
+      enable = true;
+
+      enableZshIntegration = true;
+
+      defaultCommand = "rg --files --hidden --follow";
+      defaultOptions = [
+        "--color=fg:-1"
+        # "--color=bg:0"
+        # "--color=preview-fg:0"
+        # "--color=preview-bg:0"
+        # "--color=hl:2"
+        "--color=fg+:0"
+        "--color=bg+:3"
+        "--color=gutter:-1"
+        "--color=hl+:8"
+        # "--color=info:0"
+        # "--color=border:0"
+        # "--color=prompt:0"
+        # "--color=pointer:-1"
+        # "--color=marker:-1"
+        # "--color=spinner:-1"
+        # "--color=header:-1"
+
+        # "--color=prompt:2,pointer:0,marker:3,spinner:1"
+        "--reverse --no-bold --no-unicode --preview-window=hidden"
+      ];
+
+      fileWidgetCommand = "rg --files --hidden --follow";
+      fileWidgetOptions = [
+        "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+      ];
+
+      changeDirWidgetCommand = "rg --files --hidden --follow";
+      changeDirWidgetOptions = [ ];
+
+      historyWidgetCommand = "";
+      historyWidgetOptions = [ ];
+    };
+
+    programs.lf = { enable = true; };
+
+    programs.neovim = {
+      enable = true;
+
+      extraConfig = ''
+        colo ttwnty
+        ${builtins.readFile ./conf/nvim/.vimrc}
+      '';
+
+      withNodeJs = true;
+
+      plugins = with pkgs.vimPlugins; [
+        ale
+        editorconfig-vim
+        fzf-vim
+        neoformat
+        nerdtree
+        nerdtree-git-plugin
+        supertab
+        vim-commentary
+        vim-easy-align
+        vim-fugitive
+        vim-plug
+        vim-repeat
+        vim-signify
+        vim-slash
+        vim-tmux-focus-events
+        vim-tmux-navigator
+
+        coc-nvim
+        coc-fzf
+
+        coc-tsserver
+        coc-jest
+        typescript-vim
+        vim-javascript
+
+        coc-css
+
+        coc-json
+        vim-json
+
+        coc-html
+
+        rust-vim
+        coc-rls
+        coc-rust-analyzer
+
+        haskell-vim
+
+        vim-markdown
+
+        vim-graphql
+
+        vim-nix
+      ];
+    };
+
+    programs.git = {
+      enable = true;
+      package = pkgs.gitAndTools.gitFull;
+      userName = "Pontus Nagy";
+      userEmail = "pontusnagy@gmail.com";
+      includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
+    };
+
+    xdg.configFile."alacritty/light.yml".text = let
+      lightColors = {
+        colors = {
+          primary.foreground = "#080807";
+          primary.background = "#faeed7";
+
+          normal = {
+            black = "#faeed7";
+            red = "#423730";
+            green = "#585c4c";
+            yellow = "#30261b";
+            blue = "#080807";
+            magenta = "#080807";
+            cyan = "#080807";
+            white = "#080807";
+          };
+
+          bright = {
+            black = "#c9bfad";
+            red = "#bf9d88";
+            green = "#9da488";
+            yellow = "#d1a47f";
+            blue = "#080807";
+            magenta = "#080807";
+            cyan = "#080807";
+            white = "#080807";
+          };
+
+          indexed_colors = [
+            {
+              index = 16;
+              color = "#f2e6d0";
+            }
+            {
+              index = 17;
+              color = "#ebdfca";
+            }
+            {
+              index = 18;
+              color = "#e3d7c3";
+            }
+            {
+              index = 19;
+              color = "#dbd0bd";
+            }
+            {
+              index = 20;
+              color = "#d4c9b6";
+            }
+          ];
+        };
+      };
+    in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+    (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+
+    programs.alacritty = {
+      enable = true;
+
+      settings = {
+        window = {
+          padding.x = 30;
+          padding.y = 30;
+
+          decorations = "buttonless";
+          startup_mode = "Windowed";
+        };
+
+        draw_bold_text_with_bright_colors = true;
+
+        live_config_reload = true;
+
+        mouse.hide_when_typing = true;
+
+        scrolling.history = 0;
+
+        selection.save_to_clipboard = false;
+
+        visual_bell.duration = 0;
+
+        cursor = {
+          style = "Block";
+          unfocused_hollow = true;
+        };
+
+        font = {
+          size = 16;
+
+          normal = { family = "JetBrains Mono"; };
+
+          use_thin_strokes = false;
+        };
+
+        colors = {
+          primary.background = "0x080807";
+          primary.foreground = "0xb5a488";
+
+          cursor = {
+            cursor = "0xb5a488";
+            text = "0x080807";
+          };
+
+          normal = {
+            black = "0x080807";
+            red = "0xbf9d88";
+            green = "0x9da488";
+            yellow = "0xd1a47f";
+            blue = "0xb5a488";
+            magenta = "0xb5a488";
+            cyan = "0xb5a488";
+            white = "0xb5a488";
+          };
+
+          bright = {
+            black = "0x30302c";
+            red = "0xb5a488";
+            green = "0xb5a488";
+            yellow = "0xb5a488";
+            blue = "0xb5a488";
+            magenta = "0xb5a488";
+            cyan = "0xb5a488";
+            white = "0xb5a488";
+          };
+
+          indexed_colors = [
+            {
+              index = 16;
+              color = "0x0d0d0b";
+            }
+            {
+              index = 17;
+              color = "0x121210";
+            }
+            {
+              index = 18;
+              color = "0x1a1917";
+            }
+            {
+              index = 19;
+              color = "0x242320";
+            }
+            {
+              index = 20;
+              color = "0x2b2b27";
+            }
+          ];
+        };
+
+        key_bindings = [
+          {
+            key = "Paste";
+            action = "Paste";
+          }
+          {
+            key = "Copy";
+            action = "Copy";
+          }
         ];
       };
     };

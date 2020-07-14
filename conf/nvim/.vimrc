@@ -230,8 +230,6 @@ augroup END
 " ui {{{
 " =============================================================================
 
-colorscheme ttwnty
-
 " split border
 set fillchars+=vert: 
 
