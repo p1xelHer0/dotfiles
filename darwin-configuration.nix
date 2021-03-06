@@ -8,12 +8,11 @@ in with pkgs.stdenv;
 with lib; {
   imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
-  environment.systemPackages = [ pkgs.zsh pkgs.lorri ];
+  environment.systemPackages = [ pkgs.lorri pkgs.zsh ];
 
   # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
   environment.darwinConfig = "${homeDir}/dotfiles/darwin-configuration.nix";
 
-  programs.bash.enable = false;
   programs.zsh.enable = true;
 
   environment.shells = [ pkgs.zsh ];
@@ -70,7 +69,7 @@ with lib; {
       NSScrollAnimationEnabled = false;
       NSTableViewDefaultSizeMode = 1;
       NSWindowResizeTime = "0.0";
-      _HIHideMenuBar = true;
+      _HIHideMenuBar = false;
     };
     NSGlobalDomain."com.apple.keyboard.fnState" = true;
     NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
@@ -85,10 +84,15 @@ with lib; {
   system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
     "/System/Library/Sounds/Frog.aiff";
 
+  fonts = {
+    enableFontDir = true;
+    fonts = [ pkgs.jetbrains-mono ];
+  };
+
   services.skhd = {
     enable = true;
     skhdConfig = ''
-      cmd - return : open -n ~/.nix-profile/Applications/Alacritty.app --args --live-config-reload --config-file $HOME/.config/alacritty/live.yml
+      cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
 
       # focus window
       cmd - h : yabai -m window --focus west
@@ -251,7 +255,7 @@ with lib; {
   };
 
   services.spacebar = {
-    enable = true;
+    enable = false;
     package = pkgs.spacebar;
   };
 
@@ -275,7 +279,7 @@ with lib; {
       mouse_action1 = "move";
       mouse_action2 = "resize";
       layout = "bsp";
-      top_padding = 35;
+      top_padding = 15;
       bottom_padding = 15;
       left_padding = 15;
       right_padding = 15;
@@ -283,8 +287,9 @@ with lib; {
     };
 
     extraConfig = ''
-      yabai -m rule --add app='System Preferences' manage=off
       yabai -m rule --add app='licecap' manage=off
+      yabai -m rule --add app='Mullvad VPN' manage=off
+      yabai -m rule --add app='System Preferences' manage=off
     '';
   };
 
@@ -373,7 +378,7 @@ with lib; {
   };
 
   home-manager.users.pontusnagy = { config, pkgs, ... }: {
-    home.stateVersion = "20.03";
+    home.stateVersion = "20.09";
 
     home.packages = with pkgs; [
       curl
@@ -391,9 +396,6 @@ with lib; {
       shellcheck
       wget
 
-      # fonts
-      jetbrains-mono
-
       # nix
       nixfmt
       rnix-lsp
@@ -403,14 +405,12 @@ with lib; {
       # stack
 
       # ocaml
-      bs-platform
+      # bs-platform
       opam
 
       # rust
-      # rustup
+      rustup
     ];
-
-    fonts.fontconfig = { enable = true; };
 
     programs.zsh = {
       enable = true;
@@ -434,6 +434,7 @@ with lib; {
       initExtra = ''
         export PATH=$DOTS_BIN:$PATH
         export PATH=$DOTS_DARWIN_BIN:$PATH
+        export RPROMPT=""
 
         # use the maximum amount of file descriptors
         ulimit -n 24576
@@ -442,15 +443,13 @@ with lib; {
 
         eval "$(fasd --init auto)"
 
-        eval "$(fnm env --multi)"
+        eval "$(fnm env)"
 
         eval "$(direnv hook zsh)"
 
         eval "$(opam env)"
 
-        source "$HOME/dev/repo/private/puck/puck.zsh"
-
-        # eval "$(starship init zsh)"
+        # source "$HOME/dev/repo/private/puck/puck.zsh"
 
         # profile zsh
         # zprof
@@ -485,16 +484,70 @@ with lib; {
         "....." = "cd ../../../..";
       };
 
-      plugins = [{
-        name = "zsh-vim-mode";
-        file = "zsh-vim-mode.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "softmoth";
-          repo = "zsh-vim-mode";
-          rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
-          sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
+      # plugins = [{
+      #   name = "zsh-vim-mode";
+      #   file = "zsh-vim-mode.plugin.zsh";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "softmoth";
+      #     repo = "zsh-vim-mode";
+      #     rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
+      #     sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
+      #   };
+      # }];
+    };
+
+    programs.starship = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        add_newline = false;
+        scan_timeout = 10;
+
+        character = {
+          success_symbol = "[λ](bold green)";
+          error_symbol = "[λ](bold red)";
+          vim_symbol = "[v](bold green)";
         };
-      }];
+
+        format = ''
+          $username$hostname$shlvl$kubernetes$directory$git_branch$git_commit$git_state$git_status$hg_branch$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+                   $character'';
+
+        directory = { read_only = "RO"; };
+
+        git_branch.format = "$branch ";
+
+        git_commit = {
+          style = "bold cyan";
+          tag_disabled = false;
+          tag_symbold = "t ";
+        };
+
+        git_status = {
+          format = "$all_status$ahead_behind ";
+
+          conflicted = "";
+
+          ahead = "[>](blue)";
+          behind = "[<](red)";
+          diverged = "[?](bold magenta)";
+
+          staged = "[^](green)";
+          modified = "[~](yellow)";
+
+          untracked = "[+](blue)";
+          renamed = ''["](magenta)'';
+          deleted = "[-](red)";
+
+          stashed = "[# ]()";
+        };
+
+        ocaml = { format = "[$symbol($version )]($style)"; };
+
+        nix = { format = "[$symbol$state( ($name))]($style)"; };
+
+        node = { format = "[$symbol($version )]($style)"; };
+      };
     };
 
     programs.tmux = {
@@ -539,7 +592,6 @@ with lib; {
       changeDirWidgetCommand = "rg --files --hidden --follow";
       changeDirWidgetOptions = [ ];
 
-      historyWidgetCommand = "";
       historyWidgetOptions = [ ];
     };
 
@@ -566,6 +618,9 @@ with lib; {
         vim-commentary
         vim-easy-align
         vim-fugitive
+        vim-javascript
+        vim-graphql
+        vim-ocaml
         vim-plug
         vim-repeat
         vim-signify
@@ -687,7 +742,7 @@ with lib; {
 
         selection.save_to_clipboard = false;
 
-        visual_bell.duration = 0;
+        bell.duration = 0;
 
         cursor = {
           style = "Block";
@@ -699,7 +754,7 @@ with lib; {
 
           normal = { family = "JetBrains Mono"; };
 
-          use_thin_strokes = false;
+          use_thin_strokes = true;
         };
 
         colors = {
@@ -707,7 +762,7 @@ with lib; {
           primary.foreground = "0xb5a488";
 
           cursor = {
-            cursor = "0xb5a488";
+            cursor = "0xffffff";
             text = "0x080807";
           };
 

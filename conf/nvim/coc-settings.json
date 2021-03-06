@@ -1,15 +1,12 @@
 {
   "tsserver.npm": "/usr/local/bin/npm",
-  "tsserver.log": "normal",
-  "languageserver": {
-    //"reason": {
-    //"command": "ocamllsp",
-    //"filetypes": ["reason"]
-    //},
+  "tsserver.log": "verbose",
+  "tsserver.trace.server": "verbose",
 
-    "reason": {
-      "command": "/Users/pontusnagy/rls/rls-macos/reason-language-server.exe",
-      "filetypes": ["reason"]
+  "languageserver": {
+    "nix": {
+      "command": "rnix-lsp",
+      "filetypes": ["nix"]
     },
 
     "ocaml": {
@@ -17,9 +14,12 @@
       "filetypes": ["ocaml"]
     },
 
-    "nix": {
-      "command": "rnix-lsp",
-      "filetypes": ["nix"]
+    "rescript": {
+      "enable": true,
+      "module": "~/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript"],
+      "rootPatterns": ["bsconfig.json"]
     }
   }
 }

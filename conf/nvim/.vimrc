@@ -64,11 +64,16 @@ Plug 'suan/vim-instant-markdown',               { 'for': 'markdown', 'do': 'yarn
 " Elm
 " Plug 'ElmCast/elm-vim',                         { 'for': 'elm' }
 
-" OCaml/Reason
-" Plug 'jordwalke/vim-reasonml',
-Plug 'ocaml/merlin',
-Plug 'reasonml-editor/vim-reason-plus'
+" OCaml
+Plug 'ocaml/merlin',                        { 'for': 'ocaml' }
 Plug 'ocaml/vim-ocaml',                     { 'for': 'ocaml' }
+
+" Reason
+Plug 'jordwalke/vim-reasonml',              { 'for': 'reason' }
+Plug 'reasonml-editor/vim-reason-plus',     { 'for': 'reason' }
+
+" ReScript
+Plug 'rescript-lang/vim-rescript',          { 'for': 'rescript' }
 
 " PureScript
 " Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
@@ -204,6 +209,11 @@ set shortmess+=I        " no splash screen
 set backupcopy=yes      " make a copy of the file and overwrite the original one
 set inccommand=nosplit  " preview substitute, e.g. using `%s/foo/bar`
 
+set foldenable
+set foldlevelstart=10   " open most but not all folds
+set foldnestmax=10      " never fold deeper than 10 levels
+set foldmethod=manual
+
 let g:matchparen_timeout = 20
 let g:matchparen_insert_timeout = 20
 
@@ -310,6 +320,11 @@ let g:limelight_conceal_guifg = '#333333'
 let g:neoformat_try_formatprg = 1
 let g:neoformat_verbose = 0
 
+" augroup neoformat
+"   autocmd!
+"   autocmd BufWritePre * undojoin | Neoformat
+" augroup END
+
 " -----------------------------------------------------------------------------
 " NERDTree
 " -----------------------------------------------------------------------------
@@ -332,13 +347,13 @@ let g:NERDTreeShowFiles = 1
 let g:NERDTreeShowHidden = 1
 
 " git status icons
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ 'Modified'  : '~',
 \ 'Staged'    : '^',
 \ 'Untracked' : '+',
-\ 'Renamed'   : '>',
-\ 'Unmerged'  : '=',
-\ 'Deleted'   : '_',
+\ 'Renamed'   : '=',
+\ 'Unmerged'  : '"',
+\ 'Deleted'   : '-',
 \ 'Dirty'     : '~',
 \ 'Clean'     : '*',
 \ 'Unknown'   : '?'
@@ -381,7 +396,7 @@ augroup END
 " vim-signify
 " -----------------------------------------------------------------------------
 let g:signify_sign_add               = '+'
-let g:signify_sign_delete            = '_'
+let g:signify_sign_delete            = '-'
 let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '~'
 
@@ -487,6 +502,12 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR  :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)

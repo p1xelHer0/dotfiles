@@ -5,9 +5,9 @@
 [color "status"]
 	added = 2
 	changed = 3
-	untracked = 8
+	untracked = 4
 [color "branch"]
-	remote = 3
+	remote = 6
 [credential]
 	helper = store --file ~/.git-credentials
 	helper = cache --timeout 86400
