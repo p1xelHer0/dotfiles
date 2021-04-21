@@ -86,13 +86,54 @@ with lib; {
 
   fonts = {
     enableFontDir = true;
-    fonts = [ pkgs.jetbrains-mono ];
+    fonts = [ pkgs.iosevka pkgs.jetbrains-mono ];
+  };
+
+  services.yabai = {
+    enable = true;
+    package = pkgs.yabai;
+    enableScriptingAddition = false;
+    config = {
+      focus_follows_mouse = "autoraise";
+      mouse_follows_focus = "off";
+      window_placement = "second_child";
+      window_opacity = "off";
+      window_opacity_duration = "0.0";
+      window_border = "off";
+      active_window_border_topmost = "off";
+      window_topmost = "on";
+      window_shadow = "float";
+      split_ratio = "0.50";
+      auto_balance = "on";
+      mouse_modifier = "fn";
+      mouse_action1 = "move";
+      mouse_action2 = "resize";
+      layout = "bsp";
+      top_padding = 0;
+      bottom_padding = 0;
+      left_padding = 0;
+      right_padding = 0;
+      window_gap = 0;
+    };
+
+    extraConfig = ''
+      yabai -m rule --add app='licecap' manage=off
+      yabai -m rule --add app='Mullvad VPN' manage=off
+      yabai -m rule --add app='System Preferences' manage=off
+    '';
   };
 
   services.skhd = {
     enable = true;
     skhdConfig = ''
+      # open alacritty
       cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
+
+      # swap dark/light appearance
+      alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
+
+      # disable mouse acceleration
+      cmd + alt - m : $HOME/dev/Repo/Private/oss/killmouseaccel/kma mouse
 
       # focus window
       cmd - h : yabai -m window --focus west
@@ -259,40 +300,6 @@ with lib; {
     package = pkgs.spacebar;
   };
 
-  services.yabai = {
-    enable = true;
-    package = pkgs.yabai;
-    enableScriptingAddition = false;
-    config = {
-      focus_follows_mouse = "autoraise";
-      mouse_follows_focus = "on";
-      window_placement = "second_child";
-      window_opacity = "off";
-      window_opacity_duration = "0.0";
-      window_border = "off";
-      active_window_border_topmost = "off";
-      window_topmost = "on";
-      window_shadow = "float";
-      split_ratio = "0.50";
-      auto_balance = "on";
-      mouse_modifier = "fn";
-      mouse_action1 = "move";
-      mouse_action2 = "resize";
-      layout = "bsp";
-      top_padding = 15;
-      bottom_padding = 15;
-      left_padding = 15;
-      right_padding = 15;
-      window_gap = 15;
-    };
-
-    extraConfig = ''
-      yabai -m rule --add app='licecap' manage=off
-      yabai -m rule --add app='Mullvad VPN' manage=off
-      yabai -m rule --add app='System Preferences' manage=off
-    '';
-  };
-
   # nighthook
   # if there's no 'live.yml' alacritty config initially,
   # copy it from the default config
@@ -380,10 +387,18 @@ with lib; {
   home-manager.users.pontusnagy = { config, pkgs, ... }: {
     home.stateVersion = "20.09";
 
+    nixpkgs.overlays = [
+      (import (builtins.fetchTarball {
+        url =
+          "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+      }))
+    ];
+
     home.packages = with pkgs; [
       curl
       direnv
       fasd
+      ffmpeg
       fswatch
       gitAndTools.diff-so-fancy
       gnupg
@@ -394,6 +409,7 @@ with lib; {
       reattach-to-user-namespace
       ripgrep
       shellcheck
+      tree-sitter
       wget
 
       # nix
@@ -476,6 +492,8 @@ with lib; {
         dots = "cd $HOME/dotfiles && nvim";
         swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
 
+        fixusb = "sudo killall -STOP -c usbd";
+
         rl = "exec zsh";
 
         ".." = "cd ..";
@@ -511,7 +529,7 @@ with lib; {
 
         format = ''
           $username$hostname$shlvl$kubernetes$directory$git_branch$git_commit$git_state$git_status$hg_branch$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
-                   $character'';
+          $character'';
 
         directory = { read_only = "RO"; };
 
@@ -539,14 +557,17 @@ with lib; {
           renamed = ''["](magenta)'';
           deleted = "[-](red)";
 
-          stashed = "[# ]()";
+          stashed = "[#]";
         };
 
         ocaml = { format = "[$symbol($version )]($style)"; };
 
-        nix = { format = "[$symbol$state( ($name))]($style)"; };
+        nix_shell = {
+          format = "[$symbol$state( ($name))]($style) ";
+          symbol = "❄️";
+        };
 
-        node = { format = "[$symbol($version )]($style)"; };
+        nodejs = { format = "[$symbol($version )]($style)"; };
       };
     };
 
@@ -598,6 +619,7 @@ with lib; {
     programs.lf = { enable = true; };
 
     programs.neovim = {
+      package = pkgs.neovim-nightly;
       enable = true;
 
       extraConfig = ''
@@ -618,9 +640,6 @@ with lib; {
         vim-commentary
         vim-easy-align
         vim-fugitive
-        vim-javascript
-        vim-graphql
-        vim-ocaml
         vim-plug
         vim-repeat
         vim-signify
@@ -631,27 +650,33 @@ with lib; {
         coc-nvim
         coc-fzf
 
+        nvim-treesitter
+
+        # vim-ocaml
+
         coc-tsserver
         coc-jest
-        typescript-vim
-        vim-javascript
+        # typescript-vim
+        # vim-javascript
 
         coc-css
 
         coc-json
-        vim-json
+        # vim-json
 
         coc-html
 
         rust-vim
-        coc-rls
+        # coc-rls
         coc-rust-analyzer
 
         haskell-vim
 
+        coc-clangd
+
         vim-markdown
 
-        vim-graphql
+        # vim-graphql
 
         vim-nix
       ];

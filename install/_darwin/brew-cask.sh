@@ -20,10 +20,9 @@ base=(
 apps=(
   alfred                                        # utils
   discord                                       # communication
-  dropbox                                       # utils
   firefox-developer-edition                     # browser
   google-chrome-canary                          # browser
-  mactex                                        # utils
+  michaeleisel/zld/zld                          # rust, faster linker
   mullvadvpn                                    # privacy
   postman                                       # dev
   qmk-toolbox                                   # keyboard

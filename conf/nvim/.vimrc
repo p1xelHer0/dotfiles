@@ -34,18 +34,18 @@ Plug 'iamcco/coc-tailwindcss',                  { 'do': 'yarn install --frozen-l
 " Plug 'othree/html5.vim',                        { 'for': 'html' }
 
 " CSS
-Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
-Plug 'hail2u/vim-css3-syntax',                  { 'for': 'css' }
+" Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
+" Plug 'hail2u/vim-css3-syntax',                  { 'for': 'css' }
 Plug 'stephenway/postcss.vim',                  { 'for': 'css' }
 " Plug 'neoclide/coc-css',                        { 'do': 'yarn install --frozen-lockfile'}
 
 " JSON
 " Plug 'elzr/vim-json',                           { 'for': 'json' }
-Plug 'neoclide/jsonc.vim',                      { 'for': 'json' }
+" Plug 'neoclide/jsonc.vim',                      { 'for': 'json' }
 Plug 'neoclide/coc-json',                       { 'do': 'yarn install --frozen-lockfile' }
 
 " GraphQL
-Plug 'jparise/vim-graphql'
+" Plug 'jparise/vim-graphql'
 
 " XML
 Plug 'othree/xml.vim',                          { 'for': 'xml' }
@@ -66,11 +66,11 @@ Plug 'suan/vim-instant-markdown',               { 'for': 'markdown', 'do': 'yarn
 
 " OCaml
 Plug 'ocaml/merlin',                        { 'for': 'ocaml' }
-Plug 'ocaml/vim-ocaml',                     { 'for': 'ocaml' }
+" Plug 'ocaml/vim-ocaml',                     { 'for': 'ocaml' }
 
 " Reason
-Plug 'jordwalke/vim-reasonml',              { 'for': 'reason' }
-Plug 'reasonml-editor/vim-reason-plus',     { 'for': 'reason' }
+" Plug 'jordwalke/vim-reasonml',              { 'for': 'reason' }
+" Plug 'reasonml-editor/vim-reason-plus',     { 'for': 'reason' }
 
 " ReScript
 Plug 'rescript-lang/vim-rescript',          { 'for': 'rescript' }
@@ -113,6 +113,7 @@ Plug 'ron-rs/ron.vim',                          { 'for': 'rust' }
 " -----------------------------------------------------------------------------
 "  Utilities
 " -----------------------------------------------------------------------------
+" Syntax
 " LSP support and autocomplete
 " Plug 'neoclide/coc.nvim',                       { 'branch': 'release', 'do': { -> coc#util#install() } }
 
@@ -170,6 +171,8 @@ call plug#end()
 " =============================================================================
 " basic settings {{{
 " =============================================================================
+
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 set expandtab
 set modelines=2
