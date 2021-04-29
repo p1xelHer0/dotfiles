@@ -2,14 +2,12 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-" check if the system is macOS
-let s:darwin = has('mac')
+color ttwnty
 
 " =============================================================================
 " plugins {{{
 "
 " NOTE:
-" A lot of plugins are commented out!
 " This is because I use nix and home-manager to install plenty of plugins.
 " =============================================================================
 
@@ -17,152 +15,42 @@ call plug#begin('~/.config/nvim/plugged')
 
 " -----------------------------------------------------------------------------
 " Syntax and suppot for languages
-" -----------------------------------------------------------------------------
-" JavaScript
-" Plug 'jxnblk/vim-mdx-js',                       { 'for': 'mdx' }
-" Plug 'mxw/vim-jsx',                             { 'for': 'javascript.jsx' }
-" Plug 'othree/javascript-libraries-syntax.vim',  { 'for': 'javascript.jsx' }
-" Plug 'pangloss/vim-javascript',                 { 'for': 'javascript.jsx' }
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main', 'for': 'javascript.jsx' }
-Plug 'iamcco/coc-tailwindcss',                  { 'do': 'yarn install --frozen-lockfile'}
-
-" TypeScript
-" Plug 'leafgarland/typescript-vim',              { 'for': 'typescript' }
-" Plug 'neoclide/coc-tsserver',                   { 'do': 'yarn install --frozen-lockfile'}
-
-" HTML
-" Plug 'othree/html5.vim',                        { 'for': 'html' }
-
-" CSS
-" Plug 'cakebaker/scss-syntax.vim',               { 'for': 'scss' }
-" Plug 'hail2u/vim-css3-syntax',                  { 'for': 'css' }
-Plug 'stephenway/postcss.vim',                  { 'for': 'css' }
-" Plug 'neoclide/coc-css',                        { 'do': 'yarn install --frozen-lockfile'}
-
-" JSON
-" Plug 'elzr/vim-json',                           { 'for': 'json' }
-" Plug 'neoclide/jsonc.vim',                      { 'for': 'json' }
-Plug 'neoclide/coc-json',                       { 'do': 'yarn install --frozen-lockfile' }
-
-" GraphQL
-" Plug 'jparise/vim-graphql'
-
+" --------------------------------------------------------------------------
 " XML
-Plug 'othree/xml.vim',                          { 'for': 'xml' }
+Plug 'othree/xml.vim',                  { 'for': 'xml' }
 
 " Markdown
-" Plug 'plasticboy/vim-markdown',                 { 'for': 'markdown' }
-Plug 'suan/vim-instant-markdown',               { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
-
-" LaTeX
-" Plug 'lervag/vimtex',                           { 'for': 'tex' }
-" Plug 'xuhdev/vim-latex-live-preview',           { 'for': 'tex' }
-
-" CoffeeScript
-" Plug 'kchmck/vim-coffee-script',                { 'for': 'coffescript' }
-
-" Elm
-" Plug 'ElmCast/elm-vim',                         { 'for': 'elm' }
+Plug 'plasticboy/vim-markdown',         { 'for': 'markdown' }
+Plug 'suan/vim-instant-markdown',       { 'for': 'markdown', 'do': 'yarn global add instant-markdown-d' }
 
 " OCaml
-Plug 'ocaml/merlin',                        { 'for': 'ocaml' }
-" Plug 'ocaml/vim-ocaml',                     { 'for': 'ocaml' }
+Plug 'ocaml/merlin',                    { 'for': 'ocaml' }
 
 " Reason
-" Plug 'jordwalke/vim-reasonml',              { 'for': 'reason' }
-" Plug 'reasonml-editor/vim-reason-plus',     { 'for': 'reason' }
+Plug 'jordwalke/vim-reasonml',          { 'for': 'reason' }
+Plug 'reasonml-editor/vim-reason-plus', { 'for': 'reason' }
 
 " ReScript
-Plug 'rescript-lang/vim-rescript',          { 'for': 'rescript' }
-
-" PureScript
-" Plug 'FrigoEU/psc-ide-vim',                    { 'for': 'purescript' }
-" Plug 'purescript-contrib/purescript-vim',      { 'for': 'purescript' }
-
-" Haskell
-" Plug 'neovimhaskell/haskell-vim',               { 'for': 'haskell' }
-
-" Rust
-" Plug 'rust-lang/rust.vim',                      { 'for': 'rust' }
-Plug 'ron-rs/ron.vim',                          { 'for': 'rust' }
-" Plug 'neoclide/coc-rls',                        { 'do': 'yarn install --frozen-lockfile'}
-
-" Erlang
-
-" Plug 'hyhugh/coc-erlang_ls',                    { 'do': 'yarn install --frozen-lockfile'}
-" Plug 'vim-erlang/vim-erlang-compiler',          { 'for': 'erlang' }
-" Plug 'vim-erlang/vim-erlang-omnicomplete',      { 'for': 'erlang' }
-" Plug 'vim-erlang/vim-erlang-runtime',           { 'for': 'erlang' }
-" Plug 'vim-erlang/vim-erlang-tags',              { 'for': 'erlang' }
-
-" Elixir
-" Plug 'elixir-editors/vim-elixir',               { 'for': 'elixir' }
-" Plug 'slashmili/alchemist.vim',                 { 'for': 'elixir' }
-
-" C#
-" Plug 'OmniSharp/omnisharp-vim'
+Plug 'rescript-lang/vim-rescript',      { 'for': 'rescript' }
 
 " Lua
-" Plug 'tbastos/vim-lua',                         { 'for': 'lua' }
-" Plug 'davisdude/vim-love-docs',                 { 'for': 'lua' }
-
-" Godot
-" Plug 'quabug/vim-gdscript'
+Plug 'tbastos/vim-lua',                 { 'for': 'lua' }
 
 
 " -----------------------------------------------------------------------------
 "  Utilities
 " -----------------------------------------------------------------------------
-" Syntax
-" LSP support and autocomplete
-" Plug 'neoclide/coc.nvim',                       { 'branch': 'release', 'do': { -> coc#util#install() } }
-
-" linting
-" Plug 'dense-analysis/ale'
-
-" VCS
-" Plug 'junegunn/gv.vim'
-" Plug 'mhinz/vim-signify'
-" Plug 'sodapopcan/vim-twiggy'
-" Plug 'tpope/vim-fugitive'
 
 " editing
 Plug 'AndrewRadev/switch.vim'
-" Plug 'SirVer/ultisnips'
-" Plug 'ervandew/supertab'
-" Plug 'junegunn/vim-easy-align'
-" Plug 'sbdchd/neoformat'
-" Plug 'sgur/vim-editorconfig'
-" Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-repeat'
-" Plug 'liuchengxu/vim-which-key'
 
 " writing
 Plug 'dbmrq/vim-ditto'
 Plug 'reedes/vim-lexical'
 Plug 'reedes/vim-litecorrect'
 
-" file handling and searching
-" Plug '/usr/local/opt/fzf'
-" Plug 'junegunn/fzf.vim'
-" Plug 'majutsushi/tagbar'
-" Plug 'scrooloose/nerdtree'
-" Plug 'xuyuanp/nerdtree-git-plugin'
-
-" tmux
-" Plug 'benmills/vimux'
-" Plug 'christoomey/vim-tmux-navigator'
-" Plug 'tmux-plugins/vim-tmux-focus-events'
-
 " improvements
 Plug 'auwsmit/vim-active-numbers'
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
-" Plug 'junegunn/vim-peekaboo'
-" Plug 'junegunn/vim-slash'
-" Plug 'norcalli/nvim-colorizer.lua'
-
-" Plug 'p1xelHer0/ttwnty.vim',                         { 'branch': 'dev' }
 
 call plug#end()
 
@@ -176,13 +64,14 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 set expandtab
 set modelines=2
+set completeopt=menuone,noinsert,noselect
 
 " indentation
 set shiftwidth=2
 set softtabstop=2
 set linebreak
 set breakindent
-set showbreak=\ ↣ 
+" set showbreak=\ └
 
 " line numbers
 set number          " enable line numbers
@@ -200,11 +89,7 @@ augroup insert_leave
   autocmd InsertLeave * set nopaste
 augroup END
 
-if s:darwin
-  set clipboard=unnamed " normal OS clipboard interaction
-else
-  set clipboard+=unnamedplus " use xsel on Linux
-endif
+set clipboard=unnamed " normal OS clipboard interaction
 
 set copyindent          " copy the previous indentation on autoindenting
 set visualbell          " disable error sound, enable the visual one instead
@@ -236,6 +121,15 @@ augroup jsx_and_tsx
   autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
   autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 augroup END
+
+
+" }}}
+" =============================================================================
+" lsp settings {{{
+" =============================================================================
+
+" see the ./lua folder
+lua require('lsp')
 
 
 " }}}
@@ -273,7 +167,7 @@ match OverLength /\%82v/
 " statusline {{{
 " =============================================================================
 
-set laststatus=2
+lua require('plugins.statusline')
 
 
 " }}}
@@ -323,24 +217,9 @@ let g:limelight_conceal_guifg = '#333333'
 let g:neoformat_try_formatprg = 1
 let g:neoformat_verbose = 0
 
-" augroup neoformat
-"   autocmd!
-"   autocmd BufWritePre * undojoin | Neoformat
-" augroup END
-
 " -----------------------------------------------------------------------------
 " NERDTree
 " -----------------------------------------------------------------------------
-" bookmarks
-" let NERDTreeBookmarksFile = expand('$HOME/.config/nvim/NERDTreeBookmarks')
-
-" open NERDTree when opening a directory or just starting Neovim
-" augroup NERDTree_open
-"   autocmd!
-"   autocmd StdinReadPre * let s:std_in = 1
-"   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"   autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" augroup END
 
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMinimalUI = 1
@@ -361,13 +240,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ 'Clean'     : '*',
 \ 'Unknown'   : '?'
 \ }
-
-" -----------------------------------------------------------------------------
-" SuperTab
-" -----------------------------------------------------------------------------
-let g:SuperTabCrMapping = 1
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
 
 " -----------------------------------------------------------------------------
 " vim-active-numbers
@@ -411,9 +283,6 @@ let g:signify_sign_change            = '~'
 " leader
 let g:mapleader = "\<Space>"
 
-" which-key
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
 " dont go into ex mode
 noremap Q <NOP>
 
@@ -427,12 +296,8 @@ inoremap <Down> <NOP>
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
-" reload .vimrc
-" nnoremap <Leader><Leader>r :so $MYVIMRC<CR>
-nnoremap <Leader><Leader>r :so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>
-
-" open last buffer by double tapping <Leader>
-" nnoremap <Leader><Leader> <C-^>
+" reload settings
+nnoremap <Leader><Leader>r :so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/.vimrc<CR>
 
 " yank the whole line with Y
 nnoremap Y 0y$
@@ -440,77 +305,19 @@ nnoremap Y 0y$
 " repeat last macro if in a Normal buffer
 nnoremap <expr> <CR> empty(&buftype) ? '@@' : '<CR>'
 
-" quit, quit!, write and xit quicker
-" nnoremap <Leader>q :quit<CR>
-" nnoremap <Leader>Q :quit!<CR>
-" nnoremap <Leader>w :write<CR>
-" nnoremap <Leader>x :xit<CR>
-
 " clear search
 nnoremap <Leader>/ :nohl<CR>
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " store relative line number jumps in the jumplist if they exceed a threshold
 " make j and k use strict linewise movements
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
-" f10 prints the current highlight rules for cursor selection
-nnoremap <F10> :echo 'hi<' . synIDattr(synID(line('.'),col('.'),1),'name') . '> trans<'
-\ . synIDattr(synID(line('.'),col('.'),0),'name') . '> lo<'
-\ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name') . '>'<CR>
-
-if has('nvim')
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <C-v><Esc> <Esc>
-endif
-
-" ALE
-nmap [W <Plug>(ale_first)
-nmap [w <Plug>(ale_previous)
-nmap ]w <Plug>(ale_next)
-nmap ]W <Plug>(ale_last)
-
-" -----------------------------------------------------------------------------
-" coc.nvim
-" -----------------------------------------------------------------------------
-" gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gD <Plug>(coc-declaration)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" nmap <silent> gt <Plug>(coc-type-definition)
-
-" change text
-nmap <silent> <leader>lr <Plug>(coc-rename)
-nmap <silent> <leader>lR <Plug>(coc-refactor)
-nmap <silent> <leader>lq <Plug>(coc-fix-current)
-nmap <silent> <leader>la <Plug>(coc-codeaction)
-nmap <silent> <leader>lf <Plug>(coc-format-selected)
-vmap <silent> <leader>lf <Plug>(coc-format-selected)
-
-" diagnostics
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" use K for LSP hover and normal K
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR  :call CocAction('runCommand', 'editor.action.organizeImport')
+imap <Tab> <Plug>(completion_smart_tab)
+imap <S-Tab> <Plug>(completion_smart_s_tab)
 
 " EasyAlign
 nnoremap ga <Plug>(EasyAlign)
@@ -531,9 +338,6 @@ nnoremap <Leader><Leader>f :Neoformat<CR>
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>N :NERDTreeFind<CR>
-
-" SuperTab
-" inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 
 " }}}

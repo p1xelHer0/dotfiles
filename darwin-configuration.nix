@@ -4,850 +4,877 @@ let
   homeDir = builtins.getEnv ("HOME");
   user = builtins.getEnv ("USER");
 
-in with pkgs.stdenv;
-with lib; {
-  imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
-  system.stateVersion = 4;
-  environment.systemPackages = [ pkgs.lorri pkgs.zsh ];
+in
+  with pkgs.stdenv;
+  with lib; {
+    imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
+    system.stateVersion = 4;
+    environment.systemPackages = [ pkgs.lorri pkgs.zsh ];
 
-  # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
-  environment.darwinConfig = "${homeDir}/dotfiles/darwin-configuration.nix";
+    # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
+    environment.darwinConfig = "${homeDir}/dotfiles/darwin-configuration.nix";
 
-  programs.zsh.enable = true;
+    programs.zsh.enable = true;
 
-  environment.shells = [ pkgs.zsh ];
+    environment.shells = [ pkgs.zsh ];
 
-  users.users."${user}" = {
-    shell = pkgs.zsh;
-    home = homeDir;
-  };
-
-  system.defaults = {
-    dock = {
-      autohide = true;
-      autohide-delay = "0.0";
-      autohide-time-modifier = "0.0";
-      minimize-to-application = true;
-      mru-spaces = false;
-      orientation = "bottom";
-      show-recents = false;
-      tilesize = 64;
+    users.users."${user}" = {
+      shell = pkgs.zsh;
+      home = homeDir;
     };
 
-    screencapture.location = "${homeDir}/screenshots";
-
-    finder = {
-      AppleShowAllExtensions = true;
-      CreateDesktop = true;
-      FXEnableExtensionChangeWarning = false;
-      QuitMenuItem = true;
-      _FXShowPosixPathInTitle = true;
-    };
-
-    trackpad = {
-      ActuationStrength = 0;
-      Clicking = true;
-      FirstClickThreshold = 2;
-      SecondClickThreshold = 2;
-      TrackpadRightClick = true;
-      TrackpadThreeFingerDrag = false;
-    };
-
-    NSGlobalDomain = {
-      AppleFontSmoothing = 0;
-      AppleKeyboardUIMode = 3;
-      ApplePressAndHoldEnabled = false;
-      AppleShowAllExtensions = true;
-      AppleShowScrollBars = "WhenScrolling";
-      InitialKeyRepeat = 10;
-      KeyRepeat = 1;
-      NSAutomaticCapitalizationEnabled = false;
-      NSAutomaticDashSubstitutionEnabled = false;
-      NSAutomaticPeriodSubstitutionEnabled = false;
-      NSAutomaticQuoteSubstitutionEnabled = false;
-      NSAutomaticSpellingCorrectionEnabled = false;
-      NSScrollAnimationEnabled = false;
-      NSTableViewDefaultSizeMode = 1;
-      NSWindowResizeTime = "0.0";
-      _HIHideMenuBar = false;
-    };
-    NSGlobalDomain."com.apple.keyboard.fnState" = true;
-    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
-    NSGlobalDomain."com.apple.springing.delay" = "0.0";
-    NSGlobalDomain."com.apple.swipescrolldirection" = false;
-    NSGlobalDomain."com.apple.trackpad.scaling" = "0.55";
-    NSGlobalDomain."com.apple.springing.enabled" = false;
-    NSGlobalDomain."com.apple.sound.beep.volume" = "0.4723665";
-    NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
-  };
-
-  system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
-    "/System/Library/Sounds/Frog.aiff";
-
-  fonts = {
-    enableFontDir = true;
-    fonts = [ pkgs.iosevka pkgs.jetbrains-mono ];
-  };
-
-  services.yabai = {
-    enable = true;
-    package = pkgs.yabai;
-    enableScriptingAddition = false;
-    config = {
-      focus_follows_mouse = "autoraise";
-      mouse_follows_focus = "off";
-      window_placement = "second_child";
-      window_opacity = "off";
-      window_opacity_duration = "0.0";
-      window_border = "off";
-      active_window_border_topmost = "off";
-      window_topmost = "on";
-      window_shadow = "float";
-      split_ratio = "0.50";
-      auto_balance = "on";
-      mouse_modifier = "fn";
-      mouse_action1 = "move";
-      mouse_action2 = "resize";
-      layout = "bsp";
-      top_padding = 0;
-      bottom_padding = 0;
-      left_padding = 0;
-      right_padding = 0;
-      window_gap = 0;
-    };
-
-    extraConfig = ''
-      yabai -m rule --add app='licecap' manage=off
-      yabai -m rule --add app='Mullvad VPN' manage=off
-      yabai -m rule --add app='System Preferences' manage=off
-    '';
-  };
-
-  services.skhd = {
-    enable = true;
-    skhdConfig = ''
-      # open alacritty
-      cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
-
-      # swap dark/light appearance
-      alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
-
-      # disable mouse acceleration
-      cmd + alt - m : $HOME/dev/Repo/Private/oss/killmouseaccel/kma mouse
-
-      # focus window
-      cmd - h : yabai -m window --focus west
-      cmd - j : yabai -m window --focus south
-      cmd - k : yabai -m window --focus north
-      cmd - l : yabai -m window --focus east
-
-      # swap window
-      shift + alt - h : yabai -m window --swap west
-      shift + alt - j : yabai -m window --swap south
-      shift + alt - k : yabai -m window --swap north
-      shift + alt - l : yabai -m window --swap east
-
-      # move window
-      shift + cmd - h : yabai -m window --warp west
-      shift + cmd - j : yabai -m window --warp south
-      shift + cmd - k : yabai -m window --warp north
-      shift + cmd - l : yabai -m window --warp east
-
-      # balance size of windows
-      shift + alt - 0 : yabai -m space --balance
-
-      # make floating window fill screen
-      shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
-
-      # make floating window fill left-half of screen
-      shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
-
-      # make floating window fill right-half of screen
-      shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
-
-      # create desktop, move window and follow focus
-      shift + cmd - n : yabai -m space --create;\
-                        id=$(yabai -m query --displays --display | grep "spaces");\
-                        yabai -m window --space $(echo ''${id:10:''${#id}-10});\
-                        yabai -m space --focus $(echo ''${id:10:''${#id}-10})
-
-      # create desktop and follow focus
-      cmd + alt - n : yabai -m space --create;\
-                      id=$(yabai -m query --displays --display | grep "spaces");\
-                      yabai -m space --focus $(echo ''${id:10:''${#id}-10})
-
-      # destroy desktop
-      cmd + alt - w : yabai -m space --destroy
-
-      # fast focus desktop
-      cmd + alt - x : yabai -m space --focus last
-      cmd + alt - z : yabai -m space --focus prev
-      cmd + alt - c : yabai -m space --focus next
-      cmd + alt - 1 : yabai -m space --focus 1
-      cmd + alt - 2 : yabai -m space --focus 2
-      cmd + alt - 3 : yabai -m space --focus 3
-      cmd + alt - 4 : yabai -m space --focus 4
-      cmd + alt - 5 : yabai -m space --focus 5
-      cmd + alt - 6 : yabai -m space --focus 6
-      cmd + alt - 7 : yabai -m space --focus 7
-      cmd + alt - 8 : yabai -m space --focus 8
-      cmd + alt - 9 : yabai -m space --focus 9
-      cmd + alt - 0 : yabai -m space --focus 10
-
-      # send window to desktop and follow focus
-      shift + cmd - x : yabai -m window --space last; yabai -m space --focus last
-      shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
-      shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
-      shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
-      shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
-      shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
-      shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
-      shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
-      shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
-      shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
-      shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
-      shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
-      shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
-
-      # focus monitor
-      ctrl + alt - x  : yabai -m display --focus last
-      ctrl + alt - z  : yabai -m display --focus prev
-      ctrl + alt - c  : yabai -m display --focus next
-      ctrl + alt - 1  : yabai -m display --focus 1
-      ctrl + alt - 2  : yabai -m display --focus 2
-      ctrl + alt - 3  : yabai -m display --focus 3
-
-      # send window to monitor and follow focus
-      ctrl + cmd - x  : yabai -m window --display last; yabai -m display --focus last
-      ctrl + cmd - z  : yabai -m window --display prev; yabai -m display --focus prev
-      ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
-      ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
-      ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
-      ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
-
-      # move window
-      shift + ctrl - a : yabai -m window --move rel:-20:0
-      shift + ctrl - s : yabai -m window --move rel:0:20
-      shift + ctrl - w : yabai -m window --move rel:0:-20
-      shift + ctrl - d : yabai -m window --move rel:20:0
-
-      # increase window size
-      shift + alt - a : yabai -m window --resize left:-20:0
-      shift + alt - s : yabai -m window --resize bottom:0:20
-      shift + alt - w : yabai -m window --resize top:0:-20
-      shift + alt - d : yabai -m window --resize right:20:0
-
-      # decrease window size
-      shift + cmd - a : yabai -m window --resize left:20:0
-      shift + cmd - s : yabai -m window --resize bottom:0:-20
-      shift + cmd - w : yabai -m window --resize top:0:20
-      shift + cmd - d : yabai -m window --resize right:-20:0
-
-      # set insertion point in focused container
-      ctrl + alt - h : yabai -m window --insert west
-      ctrl + alt - j : yabai -m window --insert south
-      ctrl + alt - k : yabai -m window --insert north
-      ctrl + alt - l : yabai -m window --insert east
-
-      # rotate tree
-      alt - r : yabai -m space --rotate 90
-
-      # mirror tree y-axis
-      alt - y : yabai -m space --mirror y-axis
-
-      # mirror tree x-axis
-      alt - x : yabai -m space --mirror x-axis
-
-      # toggle desktop offset
-      alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
-
-      # toggle window parent zoom
-      alt - d : yabai -m window --toggle zoom-parent
-
-      # toggle window fullscreen zoom
-      alt - f : yabai -m window --toggle zoom-fullscreen
-
-      # toggle window native fullscreen
-      shift + cmd - f : yabai -m window --toggle native-fullscreen
-
-      # toggle window border
-      shift + cmd - b : yabai -m window --toggle border
-
-      # toggle window split type
-      alt - e : yabai -m window --toggle split
-
-      # float / unfloat window and center on screen
-      alt - t : yabai -m window --toggle float;\
-                yabai -m window --grid 4:4:1:1:2:2
-
-      # toggle sticky
-      alt - s : yabai -m window --toggle sticky
-
-      # toggle sticky, float and resize to picture-in-picture size
-      # alt - p : yabai -m window --toggle sticky;\
-      #           yabai -m window --grid 5:5:4:0:1:1
-
-      # change layout of desktop
-      ctrl + alt - a : yabai -m space --layout bsp
-      ctrl + alt - d : yabai -m space --layout float
-
-      # }}}
-    '';
-  };
-
-  services.spacebar = {
-    enable = false;
-    package = pkgs.spacebar;
-  };
-
-  # nighthook
-  # if there's no 'live.yml' alacritty config initially,
-  # copy it from the default config
-  environment.extraInit = ''
-    test -f ${homeDir}/.config/alacritty/live.yml || \
-      cp ${homeDir}/.config/alacritty/alacritty.yml \
-      ${homeDir}/.config/alacritty/live.yml
-  '';
-
-  launchd.user.agents = {
-    "lorri" = {
-      serviceConfig = {
-        WorkingDirectory = (builtins.getEnv "HOME");
-        EnvironmentVariables = { };
-        KeepAlive = true;
-        RunAtLoad = true;
-        StandardOutPath = "/var/tmp/lorri.log";
-        StandardErrorPath = "/var/tmp/lorri.log";
-      };
-      script = ''
-        source ${config.system.build.setEnvironment}
-        exec ${pkgs.lorri}/bin/lorri daemon
-      '';
-    };
-
-    "nighthook" = {
-      serviceConfig = {
-        Label = "ae.cmacr.nighthook";
-        WatchPaths =
-          [ "${homeDir}/Library/Preferences/.GlobalPreferences.plist" ];
-        EnvironmentVariables = {
-          PATH = (replaceStrings [ "$HOME" ] [ homeDir ]
-            config.environment.systemPath);
-        };
-        ProgramArguments = [
-          "${pkgs.writeShellScript "nighthook-action" ''
-            if defaults read -g AppleInterfaceStyle &>/dev/null ; then
-              MODE="dark"
-            else
-              MODE="light"
-            fi
-
-            spacebarSwitchTheme() {
-              if pgrep -q spacebar; then
-                if [[  $MODE == "dark"  ]]; then
-                  spacebar -m config background_color 0xff080807
-                  spacebar -m config foreground_color 0xffb5a488
-                elif [[  $MODE == "light"  ]]; then
-                  spacebar -m config background_color 0xfffaeed7
-                  spacebar -m config foreground_color 0xff080807
-                fi
-              fi
-            }
-
-            alacrittySwitchTheme() {
-              DIR=${homeDir}/.config/alacritty
-              if [[  $MODE == "dark"  ]]; then
-                cp -f $DIR/alacritty.yml $DIR/live.yml
-              elif [[  $MODE == "light"  ]]; then
-                cp -f $DIR/light.yml $DIR/live.yml
-              fi
-            }
-
-            yabaiSwitchTheme() {
-              if [[  $MODE == "dark"  ]]; then
-                yabai -m config active_window_border_color "0xff5c7e81"
-                yabai -m config normal_window_border_color "0xff505050"
-                yabai -m config insert_window_border_color "0xffd75f5f"
-              elif [[  $MODE == "light"  ]]; then
-                yabai -m config active_window_border_color "0xff2aa198"
-                yabai -m config normal_window_border_color "0xff839496 "
-                yabai -m config insert_window_border_color "0xffdc322f"
-              fi
-            }
-
-            spacebarSwitchTheme $@
-            alacrittySwitchTheme $@
-            yabaiSwitchTheme $@
-          ''}"
-        ];
-      };
-    };
-  };
-
-  home-manager.users.pontusnagy = { config, pkgs, ... }: {
-    home.stateVersion = "20.09";
-
-    nixpkgs.overlays = [
-      (import (builtins.fetchTarball {
-        url =
-          "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-      }))
-    ];
-
-    home.packages = with pkgs; [
-      curl
-      direnv
-      fasd
-      ffmpeg
-      fswatch
-      gitAndTools.diff-so-fancy
-      gnupg
-      htop
-      jq
-      neofetch
-      niv
-      reattach-to-user-namespace
-      ripgrep
-      shellcheck
-      tree-sitter
-      wget
-
-      # nix
-      nixfmt
-      rnix-lsp
-
-      # haskell
-      # cabal-install
-      # stack
-
-      # ocaml
-      # bs-platform
-      opam
-
-      # rust
-      rustup
-    ];
-
-    programs.zsh = {
-      enable = true;
-
-      enableAutosuggestions = false;
-      enableCompletion = true;
-
-      sessionVariables = {
-        EDITOR = "nvim";
-        LC_ALL = "en_US.UTF-8";
-
-        DOTS_BIN = "$HOME/dotfiles/bin";
-        DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
+    system.defaults = {
+      dock = {
+        autohide = true;
+        autohide-delay = "0.0";
+        autohide-time-modifier = "0.0";
+        minimize-to-application = true;
+        mru-spaces = false;
+        orientation = "bottom";
+        show-recents = false;
+        tilesize = 64;
       };
 
-      envExtra = ''
-        # profile zsh
-        # zmodload zsh/zprof
-      '';
+      screencapture.location = "${homeDir}/screenshots";
 
-      initExtra = ''
-        export PATH=$DOTS_BIN:$PATH
-        export PATH=$DOTS_DARWIN_BIN:$PATH
-        export RPROMPT=""
-
-        # use the maximum amount of file descriptors
-        ulimit -n 24576
-
-        source "$DOTS_BIN/fzf_git"
-
-        eval "$(fasd --init auto)"
-
-        eval "$(fnm env)"
-
-        eval "$(direnv hook zsh)"
-
-        eval "$(opam env)"
-
-        # source "$HOME/dev/repo/private/puck/puck.zsh"
-
-        # profile zsh
-        # zprof
-      '';
-
-      shellAliases = {
-        ":q" = "tmux kill-pane";
-
-        ip = "dig +short myip.opendns.com @resolver1.opendns.com";
-        ipl =
-          "ifconfig | grep -Eo 'inet (addr:)?([0-9]*.){3}[0-9]*' | grep -Eo '([0-9]*.){3}[0-9]*' | grep -v '127.0.0.1'";
-
-        perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
-
-        dre = "darwin-rebuild edit";
-        drs =
-          "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
-
-        v = "nvim";
-        vim = "nvim";
-        vf = "nvim $(fzf)";
-        ev = "esy nvim";
-
-        dots = "cd $HOME/dotfiles && nvim";
-        swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
-
-        fixusb = "sudo killall -STOP -c usbd";
-
-        rl = "exec zsh";
-
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
-        "....." = "cd ../../../..";
+      finder = {
+        AppleShowAllExtensions = true;
+        CreateDesktop = true;
+        FXEnableExtensionChangeWarning = false;
+        QuitMenuItem = true;
+        _FXShowPosixPathInTitle = true;
       };
 
-      # plugins = [{
-      #   name = "zsh-vim-mode";
-      #   file = "zsh-vim-mode.plugin.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "softmoth";
-      #     repo = "zsh-vim-mode";
-      #     rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
-      #     sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
-      #   };
-      # }];
-    };
-
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        add_newline = false;
-        scan_timeout = 10;
-
-        character = {
-          success_symbol = "[λ](bold green)";
-          error_symbol = "[λ](bold red)";
-          vim_symbol = "[v](bold green)";
-        };
-
-        format = ''
-          $username$hostname$shlvl$kubernetes$directory$git_branch$git_commit$git_state$git_status$hg_branch$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
-          $character'';
-
-        directory = { read_only = "RO"; };
-
-        git_branch.format = "$branch ";
-
-        git_commit = {
-          style = "bold cyan";
-          tag_disabled = false;
-          tag_symbold = "t ";
-        };
-
-        git_status = {
-          format = "$all_status$ahead_behind ";
-
-          conflicted = "";
-
-          ahead = "[>](blue)";
-          behind = "[<](red)";
-          diverged = "[?](bold magenta)";
-
-          staged = "[^](green)";
-          modified = "[~](yellow)";
-
-          untracked = "[+](blue)";
-          renamed = ''["](magenta)'';
-          deleted = "[-](red)";
-
-          stashed = "[#]";
-        };
-
-        ocaml = { format = "[$symbol($version )]($style)"; };
-
-        nix_shell = {
-          format = "[$symbol$state( ($name))]($style) ";
-          symbol = "❄️";
-        };
-
-        nodejs = { format = "[$symbol($version )]($style)"; };
+      trackpad = {
+        ActuationStrength = 0;
+        Clicking = true;
+        FirstClickThreshold = 2;
+        SecondClickThreshold = 2;
+        TrackpadRightClick = true;
+        TrackpadThreeFingerDrag = false;
       };
+
+      NSGlobalDomain = {
+        AppleFontSmoothing = 0;
+        AppleKeyboardUIMode = 3;
+        ApplePressAndHoldEnabled = false;
+        AppleShowAllExtensions = true;
+        AppleShowScrollBars = "WhenScrolling";
+        InitialKeyRepeat = 10;
+        KeyRepeat = 1;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
+        NSScrollAnimationEnabled = false;
+        NSTableViewDefaultSizeMode = 1;
+        NSWindowResizeTime = "0.0";
+        _HIHideMenuBar = false;
+      };
+      NSGlobalDomain."com.apple.keyboard.fnState" = true;
+      NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
+      NSGlobalDomain."com.apple.springing.delay" = "0.0";
+      NSGlobalDomain."com.apple.swipescrolldirection" = false;
+      NSGlobalDomain."com.apple.trackpad.scaling" = "0.55";
+      NSGlobalDomain."com.apple.springing.enabled" = false;
+      NSGlobalDomain."com.apple.sound.beep.volume" = "0.4723665";
+      NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
     };
 
-    programs.tmux = {
-      enable = true;
-      extraConfig = builtins.readFile ./conf/tmux/.tmux.conf;
+    system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
+      "/System/Library/Sounds/Frog.aiff";
 
+    fonts = {
+      enableFontDir = true;
+      fonts = [ pkgs.iosevka pkgs.jetbrains-mono ];
     };
 
-    programs.fzf = {
+    services.yabai = {
       enable = true;
-
-      enableZshIntegration = true;
-
-      defaultCommand = "rg --files --hidden --follow";
-      defaultOptions = [
-        "--color=fg:-1"
-        # "--color=bg:0"
-        # "--color=preview-fg:0"
-        # "--color=preview-bg:0"
-        # "--color=hl:2"
-        "--color=fg+:0"
-        "--color=bg+:3"
-        "--color=gutter:-1"
-        "--color=hl+:8"
-        # "--color=info:0"
-        # "--color=border:0"
-        # "--color=prompt:0"
-        # "--color=pointer:-1"
-        # "--color=marker:-1"
-        # "--color=spinner:-1"
-        # "--color=header:-1"
-
-        # "--color=prompt:2,pointer:0,marker:3,spinner:1"
-        "--reverse --no-bold --no-unicode --preview-window=hidden"
-      ];
-
-      fileWidgetCommand = "rg --files --hidden --follow";
-      fileWidgetOptions = [
-        "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-      ];
-
-      changeDirWidgetCommand = "rg --files --hidden --follow";
-      changeDirWidgetOptions = [ ];
-
-      historyWidgetOptions = [ ];
-    };
-
-    programs.lf = { enable = true; };
-
-    programs.neovim = {
-      package = pkgs.neovim-nightly;
-      enable = true;
+      package = pkgs.yabai;
+      enableScriptingAddition = false;
+      config = {
+        focus_follows_mouse = "autoraise";
+        mouse_follows_focus = "off";
+        window_placement = "second_child";
+        window_opacity = "off";
+        window_opacity_duration = "0.0";
+        window_border = "off";
+        window_border_width = "2";
+        window_topmost = "on";
+        window_shadow = "float";
+        split_ratio = "0.50";
+        auto_balance = "on";
+        mouse_modifier = "fn";
+        mouse_action1 = "move";
+        mouse_action2 = "resize";
+        layout = "bsp";
+        top_padding = 9;
+        bottom_padding = 8;
+        left_padding = 8;
+        right_padding = 8;
+        window_gap = 8;
+      };
 
       extraConfig = ''
-        colo ttwnty
-        ${builtins.readFile ./conf/nvim/.vimrc}
+        yabai -m rule --add app='Mullvad VPN' manage=off
+        yabai -m rule --add app='System Preferences' manage=off
+        yabai -m rule --add app='my_bevy_game' manage=off
+        yabai -m rule --add app='Snake!' manage=off
       '';
-
-      withNodeJs = true;
-
-      plugins = with pkgs.vimPlugins; [
-        ale
-        editorconfig-vim
-        fzf-vim
-        neoformat
-        nerdtree
-        nerdtree-git-plugin
-        supertab
-        vim-commentary
-        vim-easy-align
-        vim-fugitive
-        vim-plug
-        vim-repeat
-        vim-signify
-        vim-slash
-        vim-tmux-focus-events
-        vim-tmux-navigator
-
-        coc-nvim
-        coc-fzf
-
-        nvim-treesitter
-
-        # vim-ocaml
-
-        coc-tsserver
-        coc-jest
-        # typescript-vim
-        # vim-javascript
-
-        coc-css
-
-        coc-json
-        # vim-json
-
-        coc-html
-
-        rust-vim
-        # coc-rls
-        coc-rust-analyzer
-
-        haskell-vim
-
-        coc-clangd
-
-        vim-markdown
-
-        # vim-graphql
-
-        vim-nix
-      ];
     };
 
-    programs.git = {
+    services.skhd = {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
-      userName = "Pontus Nagy";
-      userEmail = "pontusnagy@gmail.com";
-      includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
+      skhdConfig = ''
+        # open alacritty
+        cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
+
+        # swap dark/light appearance
+        alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
+
+        # disable mouse acceleration
+        cmd + alt - m : $HOME/dev/Repo/Private/oss/killmouseaccel/kma mouse
+
+        # focus window
+        cmd - h : yabai -m window --focus west
+        cmd - j : yabai -m window --focus south
+        cmd - k : yabai -m window --focus north
+        cmd - l : yabai -m window --focus east
+
+        # swap window
+        shift + alt - h : yabai -m window --swap west
+        shift + alt - j : yabai -m window --swap south
+        shift + alt - k : yabai -m window --swap north
+        shift + alt - l : yabai -m window --swap east
+
+        # move window
+        shift + cmd - h : yabai -m window --warp west
+        shift + cmd - j : yabai -m window --warp south
+        shift + cmd - k : yabai -m window --warp north
+        shift + cmd - l : yabai -m window --warp east
+
+        # balance size of windows
+        shift + alt - 0 : yabai -m space --balance
+
+        # make floating window fill screen
+        shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+        # make floating window fill left-half of screen
+        shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+        # make floating window fill right-half of screen
+        shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
+        # create desktop, move window and follow focus
+        shift + cmd - n : yabai -m space --create;\
+                          id=$(yabai -m query --displays --display | grep "spaces");\
+                          yabai -m window --space $(echo ''${id:10:''${#id}-10});\
+                          yabai -m space --focus $(echo ''${id:10:''${#id}-10})
+
+        # create desktop and follow focus
+        cmd + alt - n : yabai -m space --create;\
+                        id=$(yabai -m query --displays --display | grep "spaces");\
+                        yabai -m space --focus $(echo ''${id:10:''${#id}-10})
+
+        # destroy desktop
+        cmd + alt - w : yabai -m space --destroy
+
+        # fast focus desktop
+        cmd + alt - x : yabai -m space --focus last
+        cmd + alt - z : yabai -m space --focus prev
+        cmd + alt - c : yabai -m space --focus next
+        cmd + alt - 1 : yabai -m space --focus 1
+        cmd + alt - 2 : yabai -m space --focus 2
+        cmd + alt - 3 : yabai -m space --focus 3
+        cmd + alt - 4 : yabai -m space --focus 4
+        cmd + alt - 5 : yabai -m space --focus 5
+        cmd + alt - 6 : yabai -m space --focus 6
+        cmd + alt - 7 : yabai -m space --focus 7
+        cmd + alt - 8 : yabai -m space --focus 8
+        cmd + alt - 9 : yabai -m space --focus 9
+        cmd + alt - 0 : yabai -m space --focus 10
+
+        # send window to desktop and follow focus
+        shift + cmd - x : yabai -m window --space last; yabai -m space --focus last
+        shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
+        shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
+        shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
+        shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+        shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
+        shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
+        shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
+        shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
+        shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
+        shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
+        shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
+        shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
+
+        # focus monitor
+        ctrl + alt - x  : yabai -m display --focus last
+        ctrl + alt - z  : yabai -m display --focus prev
+        ctrl + alt - c  : yabai -m display --focus next
+        ctrl + alt - 1  : yabai -m display --focus 1
+        ctrl + alt - 2  : yabai -m display --focus 2
+        ctrl + alt - 3  : yabai -m display --focus 3
+
+        # send window to monitor and follow focus
+        ctrl + cmd - x  : yabai -m window --display last; yabai -m display --focus last
+        ctrl + cmd - z  : yabai -m window --display prev; yabai -m display --focus prev
+        ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+        ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+        ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
+        ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
+
+        # move window
+        shift + ctrl - a : yabai -m window --move rel:-20:0
+        shift + ctrl - s : yabai -m window --move rel:0:20
+        shift + ctrl - w : yabai -m window --move rel:0:-20
+        shift + ctrl - d : yabai -m window --move rel:20:0
+
+        # increase window size
+        shift + alt - a : yabai -m window --resize left:-20:0
+        shift + alt - s : yabai -m window --resize bottom:0:20
+        shift + alt - w : yabai -m window --resize top:0:-20
+        shift + alt - d : yabai -m window --resize right:20:0
+
+        # decrease window size
+        shift + cmd - a : yabai -m window --resize left:20:0
+        shift + cmd - s : yabai -m window --resize bottom:0:-20
+        shift + cmd - w : yabai -m window --resize top:0:20
+        shift + cmd - d : yabai -m window --resize right:-20:0
+
+        # set insertion point in focused container
+        ctrl + alt - h : yabai -m window --insert west
+        ctrl + alt - j : yabai -m window --insert south
+        ctrl + alt - k : yabai -m window --insert north
+        ctrl + alt - l : yabai -m window --insert east
+
+        # rotate tree
+        alt - r : yabai -m space --rotate 90
+
+        # mirror tree y-axis
+        alt - y : yabai -m space --mirror y-axis
+
+        # mirror tree x-axis
+        alt - x : yabai -m space --mirror x-axis
+
+        # toggle desktop offset
+        alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+        # toggle window parent zoom
+        alt - d : yabai -m window --toggle zoom-parent
+
+        # toggle window fullscreen zoom
+        alt - f : yabai -m window --toggle zoom-fullscreen
+
+        # toggle window native fullscreen
+        shift + cmd - f : yabai -m window --toggle native-fullscreen
+
+        # toggle window border
+        shift + cmd - b : yabai -m window --toggle border
+
+        # toggle window split type
+        alt - e : yabai -m window --toggle split
+
+        # float / unfloat window and center on screen
+        alt - t : yabai -m window --toggle float;\
+                  yabai -m window --grid 4:4:1:1:2:2
+
+        # toggle sticky
+        alt - s : yabai -m window --toggle sticky
+
+        # toggle sticky, float and resize to picture-in-picture size
+        # alt - p : yabai -m window --toggle sticky;\
+        #           yabai -m window --grid 5:5:4:0:1:1
+
+        # change layout of desktop
+        ctrl + alt - a : yabai -m space --layout bsp
+        ctrl + alt - d : yabai -m space --layout float
+
+        # }}}
+      '';
     };
 
-    xdg.configFile."alacritty/light.yml".text = let
-      lightColors = {
-        colors = {
-          primary.foreground = "#080807";
-          primary.background = "#faeed7";
+    services.spacebar = {
+      enable = false;
+      package = pkgs.spacebar;
+    };
 
-          normal = {
-            black = "#faeed7";
-            red = "#423730";
-            green = "#585c4c";
-            yellow = "#30261b";
-            blue = "#080807";
-            magenta = "#080807";
-            cyan = "#080807";
-            white = "#080807";
+    # nighthook
+    # if there's no 'live.yml' alacritty config initially,
+    # copy it from the default config
+    environment.extraInit = ''
+      test -f ${homeDir}/.config/alacritty/live.yml || \
+        cp ${homeDir}/.config/alacritty/alacritty.yml \
+        ${homeDir}/.config/alacritty/live.yml
+    '';
+
+    launchd.user.agents = {
+      "lorri" = {
+        serviceConfig = {
+          WorkingDirectory = (builtins.getEnv "HOME");
+          EnvironmentVariables = {};
+          KeepAlive = true;
+          RunAtLoad = true;
+          StandardOutPath = "/var/tmp/lorri.log";
+          StandardErrorPath = "/var/tmp/lorri.log";
+        };
+        script = ''
+          source ${config.system.build.setEnvironment}
+          exec ${pkgs.lorri}/bin/lorri daemon
+        '';
+      };
+
+      "nighthook" = {
+        serviceConfig = {
+          Label = "ae.cmacr.nighthook";
+          WatchPaths =
+            [ "${homeDir}/Library/Preferences/.GlobalPreferences.plist" ];
+          EnvironmentVariables = {
+            PATH = (
+              replaceStrings [ "$HOME" ] [ homeDir ]
+                config.environment.systemPath
+            );
           };
+          ProgramArguments = [
+            "${pkgs.writeShellScript "nighthook-action" ''
+              if defaults read -g AppleInterfaceStyle &>/dev/null ; then
+                MODE="dark"
+              else
+                MODE="light"
+              fi
 
-          bright = {
-            black = "#c9bfad";
-            red = "#bf9d88";
-            green = "#9da488";
-            yellow = "#d1a47f";
-            blue = "#080807";
-            magenta = "#080807";
-            cyan = "#080807";
-            white = "#080807";
-          };
+              spacebarSwitchTheme() {
+                if pgrep -q spacebar; then
+                  if [[  $MODE == "dark"  ]]; then
+                    spacebar -m config background_color 0xff080807
+                    spacebar -m config foreground_color 0xffb5a488
+                  elif [[  $MODE == "light"  ]]; then
+                    spacebar -m config background_color 0xfffaeed7
+                    spacebar -m config foreground_color 0xff080807
+                  fi
+                fi
+              }
 
-          indexed_colors = [
-            {
-              index = 16;
-              color = "#f2e6d0";
-            }
-            {
-              index = 17;
-              color = "#ebdfca";
-            }
-            {
-              index = 18;
-              color = "#e3d7c3";
-            }
-            {
-              index = 19;
-              color = "#dbd0bd";
-            }
-            {
-              index = 20;
-              color = "#d4c9b6";
-            }
+              alacrittySwitchTheme() {
+                DIR=${homeDir}/.config/alacritty
+                if [[  $MODE == "dark"  ]]; then
+                  cp -f $DIR/alacritty.yml $DIR/live.yml
+                elif [[  $MODE == "light"  ]]; then
+                  cp -f $DIR/light.yml $DIR/live.yml
+                fi
+              }
+
+              yabaiSwitchTheme() {
+                if [[  $MODE == "dark"  ]]; then
+                  yabai -m config active_window_border_color "0xff5c7e81"
+                  yabai -m config normal_window_border_color "0xff505050"
+                  yabai -m config insert_window_border_color "0xffd75f5f"
+                elif [[  $MODE == "light"  ]]; then
+                  yabai -m config active_window_border_color "0xff2aa198"
+                  yabai -m config normal_window_border_color "0xff839496 "
+                  yabai -m config insert_window_border_color "0xffdc322f"
+                fi
+              }
+
+              spacebarSwitchTheme $@
+              alacrittySwitchTheme $@
+              yabaiSwitchTheme $@
+            ''}"
           ];
         };
       };
-    in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-    (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+    };
 
-    programs.alacritty = {
-      enable = true;
+    home-manager.users.pontusnagy = { config, pkgs, ... }: {
+      home.stateVersion = "20.09";
 
-      settings = {
-        window = {
-          padding.x = 30;
-          padding.y = 30;
+      nixpkgs.overlays = [
+        (
+          import (
+            builtins.fetchTarball {
+              url =
+                "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+            }
+          )
+        )
+      ];
 
-          decorations = "buttonless";
-          startup_mode = "Windowed";
+      home.packages = with pkgs; [
+        curl
+        direnv
+        fasd
+        ffmpeg
+        fswatch
+        gitAndTools.diff-so-fancy
+        gnupg
+        htop
+        jq
+        protonmail-bridge
+        ninja
+        niv # used to build lua lsp locally
+        reattach-to-user-namespace
+        ripgrep
+        shellcheck
+        tree-sitter
+        wget
+
+        # json
+        nodePackages.vscode-json-languageserver
+
+        # typescript LSP depends on TS
+        nodePackages.typescript
+        nodePackages.typescript-language-server
+
+        # ocaml
+        # bs-platform
+        opam
+        ocamlPackages.ocaml-lsp
+
+        # rust
+        rustup
+        rust-analyzer
+
+        # nix
+        nixfmt
+        rnix-lsp
+      ];
+
+      programs.zsh = {
+        enable = true;
+
+        enableAutosuggestions = false;
+        enableCompletion = true;
+
+        sessionVariables = {
+          EDITOR = "nvim";
+          LC_ALL = "en_US.UTF-8";
+
+          DOTS_BIN = "$HOME/dotfiles/bin";
+          DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
         };
 
-        draw_bold_text_with_bright_colors = true;
+        envExtra = ''
+          # profile zsh
+          # zmodload zsh/zprof
+        '';
 
-        live_config_reload = true;
+        initExtra = ''
+          export PATH=$DOTS_BIN:$PATH
+          export PATH=$DOTS_DARWIN_BIN:$PATH
+          export RPROMPT=""
 
-        mouse.hide_when_typing = true;
+          # use the maximum amount of file descriptors
+          ulimit -n 24576
 
-        scrolling.history = 0;
+          source "$DOTS_BIN/fzf_git"
 
-        selection.save_to_clipboard = false;
+          eval "$(fasd --init auto)"
 
-        bell.duration = 0;
+          eval "$(fnm env)"
 
-        cursor = {
-          style = "Block";
-          unfocused_hollow = true;
+          eval "$(direnv hook zsh)"
+
+          eval "$(opam env)"
+
+          # profile zsh
+          # zprof
+        '';
+
+        shellAliases = {
+          ":q" = "tmux kill-pane";
+
+          ip = "dig +short myip.opendns.com @resolver1.opendns.com";
+          ipl =
+            "ifconfig | grep -Eo 'inet (addr:)?([0-9]*.){3}[0-9]*' | grep -Eo '([0-9]*.){3}[0-9]*' | grep -v '127.0.0.1'";
+
+          perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
+
+          dre = "darwin-rebuild edit";
+          drs =
+            "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
+
+          v = "nvim";
+          vim = "nvim";
+          vf = "nvim $(fzf)";
+          ev = "esy nvim";
+
+          dots = "cd $HOME/dotfiles && nvim";
+          swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
+
+          fixusb = "sudo killall -STOP -c usbd";
+
+          rl = "exec zsh";
+
+          ".." = "cd ..";
+          "..." = "cd ../..";
+          "...." = "cd ../../..";
+          "....." = "cd ../../../..";
         };
 
-        font = {
-          size = 16;
+        # plugins = [{
+        #   name = "zsh-vim-mode";
+        #   file = "zsh-vim-mode.plugin.zsh";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "softmoth";
+        #     repo = "zsh-vim-mode";
+        #     rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
+        #     sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
+        #   };
+        # }];
+      };
 
-          normal = { family = "JetBrains Mono"; };
+      programs.starship = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          add_newline = false;
+          scan_timeout = 10;
 
-          use_thin_strokes = true;
-        };
-
-        colors = {
-          primary.background = "0x080807";
-          primary.foreground = "0xb5a488";
-
-          cursor = {
-            cursor = "0xffffff";
-            text = "0x080807";
+          character = {
+            success_symbol = "[λ](bold green)";
+            error_symbol = "[λ](bold red)";
+            vim_symbol = "[v](bold green)";
           };
 
-          normal = {
-            black = "0x080807";
-            red = "0xbf9d88";
-            green = "0x9da488";
-            yellow = "0xd1a47f";
-            blue = "0xb5a488";
-            magenta = "0xb5a488";
-            cyan = "0xb5a488";
-            white = "0xb5a488";
+          format = ''
+            $username$hostname$shlvl$kubernetes$directory$git_branch$git_commit$git_state$git_status$hg_branch$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+            $character'';
+
+          directory = { read_only = "RO"; };
+
+          git_branch.format = "$branch ";
+
+          git_commit = {
+            style = "bold cyan";
+            tag_disabled = false;
+            tag_symbold = "t ";
           };
 
-          bright = {
-            black = "0x30302c";
-            red = "0xb5a488";
-            green = "0xb5a488";
-            yellow = "0xb5a488";
-            blue = "0xb5a488";
-            magenta = "0xb5a488";
-            cyan = "0xb5a488";
-            white = "0xb5a488";
+          git_status = {
+            format = "$all_status$ahead_behind ";
+
+            conflicted = "";
+
+            ahead = "[>](blue)";
+            behind = "[<](red)";
+            diverged = "[?](bold magenta)";
+
+            staged = "[^](green)";
+            modified = "[~](yellow)";
+
+            untracked = "[+](blue)";
+            renamed = ''["](magenta)'';
+            deleted = "[-](red)";
+
+            stashed = "[#]";
           };
 
-          indexed_colors = [
-            {
-              index = 16;
-              color = "0x0d0d0b";
-            }
-            {
-              index = 17;
-              color = "0x121210";
-            }
-            {
-              index = 18;
-              color = "0x1a1917";
-            }
-            {
-              index = 19;
-              color = "0x242320";
-            }
-            {
-              index = 20;
-              color = "0x2b2b27";
-            }
-          ];
+          cmd_duration = {
+            format = "[$duration]($style) ";
+            style = "yellow";
+          };
+
+          nodejs = {
+            format = "[$symbol($version )]($style)";
+            symbol = "[node](green)";
+          };
+
+          ocaml = {
+            format = "[$symbol($version )]($style)";
+            symbol = "[ocaml](yellow)";
+          };
+
+          rust = {
+            format = "[$symbol($version )]($style)";
+            symbol = "[rust](red)";
+          };
+
+          nix_shell = {
+            format = "[$symbol$state( ($name))]($style) ";
+            symbol = "[nix](blue)";
+          };
         };
+      };
 
-        key_bindings = [
-          {
-            key = "Paste";
-            action = "Paste";
-          }
-          {
-            key = "Copy";
-            action = "Copy";
-          }
+      programs.tmux = {
+        enable = true;
+        extraConfig = builtins.readFile ./conf/tmux/.tmux.conf;
+
+      };
+
+      programs.fzf = {
+        enable = true;
+
+        enableZshIntegration = true;
+
+        defaultCommand = "rg --files --hidden --follow";
+        defaultOptions = [
+          "--color=fg:-1"
+          # "--color=bg:0"
+          # "--color=preview-fg:0"
+          # "--color=preview-bg:0"
+          # "--color=hl:2"
+          "--color=fg+:0"
+          "--color=bg+:3"
+          "--color=gutter:-1"
+          "--color=hl+:8"
+          # "--color=info:0"
+          # "--color=border:0"
+          # "--color=prompt:0"
+          # "--color=pointer:-1"
+          # "--color=marker:-1"
+          # "--color=spinner:-1"
+          # "--color=header:-1"
+
+          # "--color=prompt:2,pointer:0,marker:3,spinner:1"
+          "--reverse --no-bold --no-unicode --preview-window=hidden"
+        ];
+
+        fileWidgetCommand = "rg --files --hidden --follow";
+        fileWidgetOptions = [
+          "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+        ];
+
+        changeDirWidgetCommand = "rg --files --hidden --follow";
+        changeDirWidgetOptions = [];
+
+        historyWidgetOptions = [];
+      };
+
+      programs.lf = { enable = true; };
+
+      programs.neovim = {
+        package = pkgs.neovim-nightly;
+        enable = true;
+
+        extraConfig = builtins.readFile ./conf/nvim/.vimrc;
+
+        withNodeJs = true;
+
+        plugins = with pkgs.vimPlugins; [
+          editorconfig-vim
+          fzf-vim
+          neoformat
+          nerdtree
+          nerdtree-git-plugin
+          vim-commentary
+          vim-easy-align
+          vim-fugitive
+          vim-plug
+          vim-repeat
+          vim-signify
+          vim-slash
+          vim-tmux-focus-events
+          vim-tmux-navigator
+
+          # lsp
+          lsp_extensions-nvim
+          nvim-lspconfig
+
+          nvim-treesitter
+          completion-nvim
+          galaxyline-nvim
+          # popup-nvim
+          plenary-nvim
+          # telescope-nvim
+          # nlua-nvim
+          nvim-web-devicons
+
+          typescript-vim
+          vim-javascript
+          vim-json
+          vim-markdown
+          vim-ocaml
+          rust-vim
+          # rust-tools-nvim
+          haskell-vim
+          vim-graphql
+          vim-nix
         ];
       };
+
+      programs.git = {
+        enable = true;
+        package = pkgs.gitAndTools.gitFull;
+        userName = "Pontus Nagy";
+        userEmail = "pontusnagy@gmail.com";
+        includes = [ { path = "~/dotfiles/conf/git/.gitconfig"; } ];
+      };
+
+      xdg.configFile."alacritty/light.yml".text = let
+        lightColors = {
+          colors = {
+            primary.foreground = "#080807";
+            primary.background = "#faeed7";
+
+            normal = {
+              black = "#faeed7";
+              red = "0xbf9d88";
+              green = "0x9da488";
+              yellow = "0xd1a47f";
+              blue = "#080807";
+              magenta = "#080807";
+              cyan = "#080807";
+              white = "#080807";
+            };
+
+            bright = {
+              black = "#c9bfad";
+              red = "#bf9d88";
+              green = "#9da488";
+              yellow = "#d1a47f";
+              blue = "#080807";
+              magenta = "#080807";
+              cyan = "#080807";
+              white = "#080807";
+            };
+
+            indexed_colors = [
+              {
+                index = 16;
+                color = "#f2e6d0";
+              }
+              {
+                index = 17;
+                color = "#ebdfca";
+              }
+              {
+                index = 18;
+                color = "#e3d7c3";
+              }
+              {
+                index = 19;
+                color = "#dbd0bd";
+              }
+              {
+                index = 20;
+                color = "#d4c9b6";
+              }
+            ];
+          };
+        };
+      in
+        builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+          (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+
+      programs.alacritty = {
+        enable = true;
+
+        settings = {
+          window = {
+            padding.x = 30;
+            padding.y = 30;
+
+            decorations = "buttonless";
+            startup_mode = "Windowed";
+          };
+
+          draw_bold_text_with_bright_colors = true;
+
+          live_config_reload = true;
+
+          mouse.hide_when_typing = true;
+
+          scrolling.history = 0;
+
+          selection.save_to_clipboard = false;
+
+          bell.duration = 0;
+
+          cursor = {
+            style = "Block";
+            unfocused_hollow = true;
+          };
+
+          font = {
+            size = 16;
+
+            normal = { family = "JetBrains Mono"; };
+
+            use_thin_strokes = true;
+          };
+
+          colors = {
+            primary.background = "0x080807";
+            primary.foreground = "0xb5a488";
+
+            cursor = {
+              cursor = "0xffffff";
+              text = "0x080807";
+            };
+
+            normal = {
+              black = "0x080807";
+              red = "0xbf9d88";
+              green = "0x9da488";
+              yellow = "0xd1a47f";
+              blue = "0xb5a488";
+              magenta = "0xb5a488";
+              cyan = "0xb5a488";
+              white = "0xb5a488";
+            };
+
+            bright = {
+              black = "0x30302c";
+              red = "0xb5a488";
+              green = "0xb5a488";
+              yellow = "0xb5a488";
+              blue = "0xb5a488";
+              magenta = "0xb5a488";
+              cyan = "0xb5a488";
+              white = "0xb5a488";
+            };
+
+            indexed_colors = [
+              {
+                index = 16;
+                color = "0x0d0d0b";
+              }
+              {
+                index = 17;
+                color = "0x121210";
+              }
+              {
+                index = 18;
+                color = "0x1a1917";
+              }
+              {
+                index = 19;
+                color = "0x242320";
+              }
+              {
+                index = 20;
+                color = "0x2b2b27";
+              }
+            ];
+          };
+
+          key_bindings = [
+            {
+              key = "Paste";
+              action = "Paste";
+            }
+            {
+              key = "Copy";
+              action = "Copy";
+            }
+          ];
+        };
+      };
+
+      programs.neomutt = {
+        enable = true;
+      };
+
+      programs.msmtp = {
+        enable = true;
+      };
+
+      programs.offlineimap = {
+        enable = true;
+      };
     };
-  };
-}
+  }
