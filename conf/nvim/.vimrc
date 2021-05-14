@@ -52,6 +52,8 @@ Plug 'reedes/vim-litecorrect'
 " improvements
 Plug 'auwsmit/vim-active-numbers'
 
+Plug '/Users/pontusnagy/dev/repo/private/oss/nvim-lspconfig'
+
 call plug#end()
 
 
@@ -242,9 +244,15 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ }
 
 " -----------------------------------------------------------------------------
+" tslime.vim
+" -----------------------------------------------------------------------------
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+
+" -----------------------------------------------------------------------------
 " vim-active-numbers
 " -----------------------------------------------------------------------------
-let g:actnum_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'undotree', 'gundo', 'vimshell', 'w3m']
+let g:actnum_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'undotree', 'gundo', 'vimshell', 'w3m', '']
 
 " -----------------------------------------------------------------------------
 " vim-litecorrect

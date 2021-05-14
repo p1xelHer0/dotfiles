@@ -23,7 +23,7 @@ gs.left[2] = {
             end
             return false
         end,
-        icon = 'b:',
+        icon = "b:",
         highlight = "StatusLine"
     }
 }
@@ -34,6 +34,13 @@ gs.mid[1] = {
         highlight = "StatusLine"
     }
 }
+
+-- gs.mid[2] = {
+--     DiagnosticError = {
+--         provider = "DiagnosticError",
+--         highlight = "ErrorText"
+--     }
+-- }
 
 gs.right[2] = {
     ScrollBar = {
