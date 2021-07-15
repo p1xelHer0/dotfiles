@@ -181,36 +181,38 @@ lua require('plugins.statusline')
 " goyo.vim
 " -----------------------------------------------------------------------------
 function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux set pane-border-status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
   set noshowmode
   set noshowcmd
+  set nonumber
   set scrolloff=999
-  set nocursorline
   Limelight
 endfunction
 
 function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
   set showmode
   set showcmd
+  set number
   set scrolloff=5
-  set nocursorline
   Limelight!
 endfunction
 
-augroup goyo
-  autocmd! User GoyoEnter nested call <SID>goyo_enter()
-  autocmd! User GoyoLeave nested call <SID>goyo_leave()
-augroup END
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " fzf
 set runtimepath+=/usr/local/opt/fzf
 
 " limelight
-let g:limelight_conceal_guifg = '#333333'
+let g:limelight_conceal_ctermfg = 0
+let g:limelight_priority = 1
 
 " -----------------------------------------------------------------------------
 " Neoformat

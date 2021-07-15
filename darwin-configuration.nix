@@ -70,7 +70,7 @@ in
         NSScrollAnimationEnabled = false;
         NSTableViewDefaultSizeMode = 1;
         NSWindowResizeTime = "0.0";
-        _HIHideMenuBar = false;
+        _HIHideMenuBar = true;
       };
       NSGlobalDomain."com.apple.keyboard.fnState" = true;
       NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
@@ -93,28 +93,47 @@ in
     services.yabai = {
       enable = true;
       package = pkgs.yabai;
+
+      # had no luck with this, run:
+      # sudo yabai --install-sa after installation
       enableScriptingAddition = false;
       config = {
         focus_follows_mouse = "autoraise";
-        mouse_follows_focus = "off";
+        mouse_follows_focus = "on";
+
         window_placement = "second_child";
-        window_opacity = "off";
+
+        window_topmost = "off";
+        window_shadow = "off";
+
+        window_opacity = "on";
         window_opacity_duration = "0.0";
-        window_border = "off";
-        window_border_width = "2";
-        window_topmost = "on";
-        window_shadow = "float";
+        active_window_opacity = "1";
+        normal_window_opacity = "0.9";
+
+        window_border = "on";
+        window_border_width = "6";
+
+        # colors also set in nighthook
+        active_window_border_color = "0xff9da488";
+        normal_window_border_color = "0xff30302c";
+
         split_ratio = "0.50";
-        auto_balance = "on";
+        auto_balance = "off";
+
         mouse_modifier = "fn";
         mouse_action1 = "move";
         mouse_action2 = "resize";
+        mouse_drop_action = "swap";
+
         layout = "bsp";
-        top_padding = 9;
+        top_padding = 8;
         bottom_padding = 8;
         left_padding = 8;
         right_padding = 8;
         window_gap = 8;
+
+        external_bar = "all:26:0";
       };
 
       extraConfig = ''
@@ -143,95 +162,20 @@ in
         cmd - k : yabai -m window --focus north
         cmd - l : yabai -m window --focus east
 
-        # swap window
-        shift + alt - h : yabai -m window --swap west
-        shift + alt - j : yabai -m window --swap south
-        shift + alt - k : yabai -m window --swap north
-        shift + alt - l : yabai -m window --swap east
-
         # move window
         shift + cmd - h : yabai -m window --warp west
         shift + cmd - j : yabai -m window --warp south
         shift + cmd - k : yabai -m window --warp north
         shift + cmd - l : yabai -m window --warp east
 
+        # swap window
+        ctrl + cmd - h : yabai -m window --swap west
+        ctrl + cmd - j  : yabai -m window --swap south
+        ctrl + cmd - k : yabai -m window --swap north
+        ctrl + cmd - l : yabai -m window --swap east
+
         # balance size of windows
-        shift + alt - 0 : yabai -m space --balance
-
-        # make floating window fill screen
-        shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
-
-        # make floating window fill left-half of screen
-        shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
-
-        # make floating window fill right-half of screen
-        shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
-
-        # create desktop, move window and follow focus
-        shift + cmd - n : yabai -m space --create;\
-                          id=$(yabai -m query --displays --display | grep "spaces");\
-                          yabai -m window --space $(echo ''${id:10:''${#id}-10});\
-                          yabai -m space --focus $(echo ''${id:10:''${#id}-10})
-
-        # create desktop and follow focus
-        cmd + alt - n : yabai -m space --create;\
-                        id=$(yabai -m query --displays --display | grep "spaces");\
-                        yabai -m space --focus $(echo ''${id:10:''${#id}-10})
-
-        # destroy desktop
-        cmd + alt - w : yabai -m space --destroy
-
-        # fast focus desktop
-        cmd + alt - x : yabai -m space --focus last
-        cmd + alt - z : yabai -m space --focus prev
-        cmd + alt - c : yabai -m space --focus next
-        cmd + alt - 1 : yabai -m space --focus 1
-        cmd + alt - 2 : yabai -m space --focus 2
-        cmd + alt - 3 : yabai -m space --focus 3
-        cmd + alt - 4 : yabai -m space --focus 4
-        cmd + alt - 5 : yabai -m space --focus 5
-        cmd + alt - 6 : yabai -m space --focus 6
-        cmd + alt - 7 : yabai -m space --focus 7
-        cmd + alt - 8 : yabai -m space --focus 8
-        cmd + alt - 9 : yabai -m space --focus 9
-        cmd + alt - 0 : yabai -m space --focus 10
-
-        # send window to desktop and follow focus
-        shift + cmd - x : yabai -m window --space last; yabai -m space --focus last
-        shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
-        shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
-        shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
-        shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
-        shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
-        shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
-        shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
-        shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
-        shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
-        shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
-        shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
-        shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
-
-        # focus monitor
-        ctrl + alt - x  : yabai -m display --focus last
-        ctrl + alt - z  : yabai -m display --focus prev
-        ctrl + alt - c  : yabai -m display --focus next
-        ctrl + alt - 1  : yabai -m display --focus 1
-        ctrl + alt - 2  : yabai -m display --focus 2
-        ctrl + alt - 3  : yabai -m display --focus 3
-
-        # send window to monitor and follow focus
-        ctrl + cmd - x  : yabai -m window --display last; yabai -m display --focus last
-        ctrl + cmd - z  : yabai -m window --display prev; yabai -m display --focus prev
-        ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
-        ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
-        ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
-        ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
-
-        # move window
-        shift + ctrl - a : yabai -m window --move rel:-20:0
-        shift + ctrl - s : yabai -m window --move rel:0:20
-        shift + ctrl - w : yabai -m window --move rel:0:-20
-        shift + ctrl - d : yabai -m window --move rel:20:0
+        shift + cmd - 0 : yabai -m space --balance
 
         # increase window size
         shift + alt - a : yabai -m window --resize left:-20:0
@@ -245,11 +189,49 @@ in
         shift + cmd - w : yabai -m window --resize top:0:20
         shift + cmd - d : yabai -m window --resize right:-20:0
 
-        # set insertion point in focused container
-        ctrl + alt - h : yabai -m window --insert west
-        ctrl + alt - j : yabai -m window --insert south
-        ctrl + alt - k : yabai -m window --insert north
-        ctrl + alt - l : yabai -m window --insert east
+        # create desktop
+        shift + cmd - n : yabai -m space --create;\
+
+        # destroy desktop
+        ctrl + cmd - w : yabai -m space --destroy
+
+        # fast focus desktop
+        ctrl + cmd - space : yabai -m space --focus last
+        ctrl - right : yabai -m space --focus next
+        ctrl - left : yabai -m space --focus prev
+        ctrl - f1 : yabai -m space --focus 1
+        ctrl - f2 : yabai -m space --focus 2
+        ctrl - f3 : yabai -m space --focus 3
+        ctrl - f4 : yabai -m space --focus 4
+        ctrl - f5 : yabai -m space --focus 5
+        ctrl - f6 : yabai -m space --focus 6
+        ctrl - f7 : yabai -m space --focus 7
+        ctrl - f8 : yabai -m space --focus 8
+        ctrl - f9 : yabai -m space --focus 9
+        ctrl - f10 : yabai -m space --focus 10
+        ctrl - f11 : yabai -m space --focus 11
+        ctrl - f12 : yabai -m space --focus 12
+
+        # send window to desktop and follow focus
+        shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
+        shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+        shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
+        shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
+        shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
+        shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
+        shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
+        shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
+        shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
+        shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
+
+        # focus monitor
+        # ctrl + cmd - e  : yabai -m display --focus 1
+        # ctrl + cmd - r  : yabai -m display --focus 2
+
+        # send window to monitor and follow focus
+        # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+        # ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
+        # ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
 
         # rotate tree
         alt - r : yabai -m space --rotate 90
@@ -269,11 +251,8 @@ in
         # toggle window fullscreen zoom
         alt - f : yabai -m window --toggle zoom-fullscreen
 
-        # toggle window native fullscreen
-        shift + cmd - f : yabai -m window --toggle native-fullscreen
-
         # toggle window border
-        shift + cmd - b : yabai -m window --toggle border
+        alt - b : yabai -m window --toggle border
 
         # toggle window split type
         alt - e : yabai -m window --toggle split
@@ -281,25 +260,36 @@ in
         # float / unfloat window and center on screen
         alt - t : yabai -m window --toggle float;\
                   yabai -m window --grid 4:4:1:1:2:2
-
-        # toggle sticky
-        alt - s : yabai -m window --toggle sticky
-
-        # toggle sticky, float and resize to picture-in-picture size
-        # alt - p : yabai -m window --toggle sticky;\
-        #           yabai -m window --grid 5:5:4:0:1:1
-
-        # change layout of desktop
-        ctrl + alt - a : yabai -m space --layout bsp
-        ctrl + alt - d : yabai -m space --layout float
-
-        # }}}
       '';
+
     };
 
     services.spacebar = {
-      enable = false;
+      enable = true;
       package = pkgs.spacebar;
+      config = {
+        title = "on";
+        spaces = "on";
+        clock = "on";
+        power = "on";
+
+        height = 26;
+        padding_left = 8;
+        padding_right = 8;
+        spacing_left = 12;
+        spacing_right = 12;
+
+        text_font = ''"JetBrains Mono:Regular:12.0"'';
+        icon_font = ''"JetBrains Mono:Regular:12.0"'';
+
+        right_shell = "on";
+        right_shell_command = "kb";
+
+        # colors also set in nighthook
+        background_color = "0xff080807";
+        foreground_color = "0xffb5a488";
+        space_icon_color = "0xff9da488";
+      };
     };
 
     # nighthook
@@ -351,9 +341,11 @@ in
                   if [[  $MODE == "dark"  ]]; then
                     spacebar -m config background_color 0xff080807
                     spacebar -m config foreground_color 0xffb5a488
+                    spacebar -m config space_icon_color 0xff9da488
                   elif [[  $MODE == "light"  ]]; then
                     spacebar -m config background_color 0xfffaeed7
                     spacebar -m config foreground_color 0xff080807
+                    spacebar -m config space_icon_color 0xff9da488
                   fi
                 fi
               }
@@ -369,13 +361,11 @@ in
 
               yabaiSwitchTheme() {
                 if [[  $MODE == "dark"  ]]; then
-                  yabai -m config active_window_border_color "0xff5c7e81"
-                  yabai -m config normal_window_border_color "0xff505050"
-                  yabai -m config insert_window_border_color "0xffd75f5f"
+                  yabai -m config active_window_border_color "0xff9da488"
+                  yabai -m config normal_window_border_color "0xff30302c"
                 elif [[  $MODE == "light"  ]]; then
-                  yabai -m config active_window_border_color "0xff2aa198"
-                  yabai -m config normal_window_border_color "0xff839496 "
-                  yabai -m config insert_window_border_color "0xffdc322f"
+                  yabai -m config active_window_border_color "0xff9da488"
+                  yabai -m config normal_window_border_color "0xffc9bfad"
                 fi
               }
 
@@ -403,6 +393,7 @@ in
       ];
 
       home.packages = with pkgs; [
+        p7zip
         curl
         direnv
         fasd
@@ -411,6 +402,7 @@ in
         gitAndTools.diff-so-fancy
         gnupg
         htop
+        irssi
         jq
         protonmail-bridge
         ninja
@@ -419,6 +411,7 @@ in
         ripgrep
         shellcheck
         tree-sitter
+        weechat
         wget
 
         # json
@@ -454,6 +447,7 @@ in
 
           DOTS_BIN = "$HOME/dotfiles/bin";
           DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
+          RESCRIPT_LSP = "/Users/pontusnagy/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
         };
 
         envExtra = ''
@@ -464,7 +458,11 @@ in
         initExtra = ''
           export PATH=$DOTS_BIN:$PATH
           export PATH=$DOTS_DARWIN_BIN:$PATH
+          export PATH=$RESCRIPT_LSP:$PATH
           export RPROMPT=""
+
+          # ZVM_LAZY_KEYBINDINGS=false
+          # ZVM_VI_HIGHLIGHT_BACKGROUND=3
 
           # use the maximum amount of file descriptors
           ulimit -n 24576
@@ -478,6 +476,8 @@ in
           eval "$(direnv hook zsh)"
 
           eval "$(opam env)"
+
+          # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
           # profile zsh
           # zprof
@@ -514,16 +514,18 @@ in
           "....." = "cd ../../../..";
         };
 
-        # plugins = [{
-        #   name = "zsh-vim-mode";
-        #   file = "zsh-vim-mode.plugin.zsh";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "softmoth";
-        #     repo = "zsh-vim-mode";
-        #     rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
-        #     sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
-        #   };
-        # }];
+        plugins = [
+          # {
+          #   name = "zsh-vi-mode";
+          #   file = "zsh-vi-mode.plugin.zsh";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "jeffreytse";
+          #     repo = "zsh-vi-mode";
+          #     rev = "v0.8.3";
+          #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
+          #   };
+          # }
+        ];
       };
 
       programs.starship = {
@@ -536,7 +538,6 @@ in
           character = {
             success_symbol = "[λ](bold green)";
             error_symbol = "[λ](bold red)";
-            vim_symbol = "[v](bold green)";
           };
 
           format = ''
@@ -550,7 +551,7 @@ in
           git_commit = {
             style = "bold cyan";
             tag_disabled = false;
-            tag_symbold = "t ";
+            tag_symbol = "t ";
           };
 
           git_status = {
@@ -601,8 +602,29 @@ in
 
       programs.tmux = {
         enable = true;
+
         extraConfig = builtins.readFile ./conf/tmux/.tmux.conf;
 
+        plugins =
+          with pkgs; [
+            {
+              plugin = tmuxPlugins.battery;
+              extraConfig = ''
+                set -g @batt_charged_icon " *"
+                set -g @batt_charging_icon " +"
+                set -g @batt_discharging_icon " -"
+                set -g @batt_attached_icon " !"
+              '';
+            }
+            tmuxPlugins.resurrect
+            {
+              plugin = tmuxPlugins.continuum;
+              extraConfig = ''
+                set -g @continuum-restore 'on'
+                set -g @continuum-save-interval '15'
+              '';
+            }
+          ];
       };
 
       programs.fzf = {
@@ -657,6 +679,8 @@ in
         plugins = with pkgs.vimPlugins; [
           editorconfig-vim
           fzf-vim
+          goyo-vim
+          limelight-vim
           neoformat
           nerdtree
           nerdtree-git-plugin
@@ -672,7 +696,7 @@ in
 
           # lsp
           lsp_extensions-nvim
-          nvim-lspconfig
+          # nvim-lspconfig
 
           nvim-treesitter
           completion-nvim

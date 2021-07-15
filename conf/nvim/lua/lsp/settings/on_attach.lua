@@ -30,11 +30,11 @@ local function on_attach(client, bufnr)
     buf_set_keymap("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 
     if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<Leader><Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        -- buf_set_keymap("n", "<Leader><Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     end
 
     if client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("v", "<Leader><Leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+        -- buf_set_keymap("v", "<Leader><Leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
     if client.resolved_capabilities.document_highlight then
