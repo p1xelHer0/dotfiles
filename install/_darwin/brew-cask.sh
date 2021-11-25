@@ -2,7 +2,6 @@
 
 # installs brew cask which is used to install applications
 
-# install cask
 brew tap caskroom/cask
 brew install brew-cask
 
@@ -47,8 +46,6 @@ quicklookplugins=(
   suspicious-package
 )
 
-# install packages
 brew cask install "${base[@]}"
 
-# install quick look plugins
 brew cask install "${quicklookplugins[@]}"

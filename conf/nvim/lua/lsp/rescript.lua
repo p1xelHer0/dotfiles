@@ -1,18 +1,20 @@
+local nvim_lsp = require "lspconfig"
+
 local configs = require "lspconfig/configs"
 local util = require "lspconfig/util"
 
 local server_name = "rescript"
 
 configs[server_name] = {
-    default_config = {
-        filetypes = {"rescript"},
-        root_dir = function(fname)
-            return util.root_pattern("bsconfig.json")(fname)
-        end
-    },
-    docs = {
-        package_json = "https://raw.githubusercontent.com/rescript-lang/vim-rescript/master/rescript-vscode/extension/server/package.json",
-        description = [[
+  default_config = {
+    filetypes = { "rescript" },
+    root_dir = function(fname)
+      return util.root_pattern "bsconfig.json"(fname)
+    end,
+  },
+  docs = {
+    package_json = "https://raw.githubusercontent.com/rescript-lang/vim-rescript/master/rescript-vscode/extension/server/package.json",
+    description = [[
 https://github.com/rescript-lang/rescript-vscode
 
 ReScript language server.
@@ -56,18 +58,20 @@ require'lspconfig'.rescript.setup {
   },
 }
 ```
-]]
-    }
+]],
+  },
 }
 
-local on_attach = require("lsp.settings.on_attach")
+local capabilities = require "lsp.settings.capabilities"
+local on_attach = require "lsp.settings.on_attach"
 
 local rescript_server_binary =
-    "/Users/pontusnagy/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/rescript-editor-support.exe"
+  "/Users/pontusnagy/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/rescript-editor-support.exe"
 
-require "lspconfig".rescript.setup {
-    cmd = {
-        rescript_server_binary
-    },
-    on_attach = on_attach
+nvim_lsp.rescript.setup {
+  cmd = {
+    rescript_server_binary,
+  },
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
