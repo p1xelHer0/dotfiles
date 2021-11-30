@@ -8,9 +8,6 @@
 	untracked = 4
 [color "branch"]
 	remote = 6
-[credential]
-	helper = store --file ~/.git-credentials
-	helper = cache --timeout 86400
 [pager]
 	diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX

@@ -3,8 +3,8 @@ local treesitter = require "nvim-treesitter.configs"
 treesitter.setup {
   context_commentstring = { enable = true },
   highlight = {
-    enable = false,
-    use_languagetree = false,
+    enable = true,
+    use_languagetree = true,
   },
   indent = { enable = false },
   query_linter = {

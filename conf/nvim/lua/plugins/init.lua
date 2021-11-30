@@ -1,5 +1,3 @@
-require "plugins.statusline"
-
 return require("packer").startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
@@ -91,22 +89,29 @@ return require("packer").startup(function(use)
 
   use { "mfussenegger/nvim-dap" }
 
-  use { "glepnir/galaxyline.nvim" }
+  use {
+    "glepnir/galaxyline.nvim",
+    config = [[require('plugins.statusline')]],
+  }
   use {
     "kyazdani42/nvim-tree.lua",
     config = [[require('plugins.nvim-tree')]],
   }
   use { "auwsmit/vim-active-numbers" }
-  use { "junegunn/goyo.vim" }
-  use { "junegunn/limelight.vim" }
-
-  use { "mhinz/vim-signify" }
   use {
-    "pwntester/octo.nvim",
+    "folke/zen-mode.nvim",
     config = function()
-      require("octo").setup {}
+      require("zen-mode").setup {}
     end,
   }
+  use {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {}
+    end,
+  }
+
+  use { "mhinz/vim-signify" }
 
   use {
     "plasticboy/vim-markdown",
@@ -134,11 +139,6 @@ return require("packer").startup(function(use)
   use { "ocaml/merlin", ft = "ocaml" }
 
   use { "rescript-lang/vim-rescript", ft = "rescript" }
-
-  use { "rust-lang/rust.vim", ft = "rust" }
-  use { "simrat39/rust-tools.nvim", ft = "rust" }
-
-  use { "neovimhaskell/haskell-vim", ft = "haskell" }
 
   use { "jparise/vim-graphql" }
 

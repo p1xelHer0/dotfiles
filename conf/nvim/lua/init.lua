@@ -102,7 +102,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<Leader><Leader>r",
-  ":so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/.vimrc<CR>",
+  ":so $HOME/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/.vimrc<CR>",
   { noremap = true }
 )
 
