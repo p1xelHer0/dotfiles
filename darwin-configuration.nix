@@ -397,7 +397,6 @@ with lib; {
     # ];
 
     home.packages = with pkgs; [
-      kitty
       cachix
       curl
       direnv
@@ -482,7 +481,6 @@ with lib; {
         export PATH=$DOTS_DARWIN_BIN:$PATH
         export PATH=$RESCRIPT_LSP:$PATH
         export RPROMPT=""
-        export test="ooo"
 
         # ZVM_LAZY_KEYBINDINGS=false
         # ZVM_VI_HIGHLIGHT_BACKGROUND=3
