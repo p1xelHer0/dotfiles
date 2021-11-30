@@ -7,7 +7,7 @@ telescope.setup {
     borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
     mappings = {
       n = {
-        ["<C-c>"] = actions.close
+        ["<C-c>"] = actions.close,
       },
       i = {
         ["<C-u>"] = false,

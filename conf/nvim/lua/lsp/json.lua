@@ -4,7 +4,7 @@ local capabilities = require "lsp.settings.capabilities"
 local on_attach = require "lsp.settings.on_attach"
 
 nvim_lsp.jsonls.setup {
-  cmd = { "vscode-json-languageserver", "--stdio" },
+  cmd = { "json-languageserver", "--stdio" },
   filetypes = { "json", "jsonc" },
   settings = {
     json = {
