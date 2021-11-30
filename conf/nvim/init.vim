@@ -66,6 +66,15 @@ let g:signify_sign_change            = '~'
 " repeat last macro if in a Normal buffer
 nnoremap <expr> <CR> empty(&buftype) ? '@@' : '<CR>'
 
+" Show syntax highlighting groups for word under cursor
+nmap <F2> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 " }}}
 
 function! s:goyo_enter()

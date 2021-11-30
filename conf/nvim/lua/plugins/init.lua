@@ -48,6 +48,15 @@ return require("packer").startup(function(use)
   }
 
   use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("null-ls").config {}
+      require("lspconfig")["null-ls"].setup {}
+    end,
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  }
+
+  use {
     "folke/trouble.nvim",
     requiress = "folke/lsp-colors.nvim",
     config = [[require('plugins.trouble')]],
@@ -97,10 +106,22 @@ return require("packer").startup(function(use)
     config = [[require('plugins.nvim-tree')]],
   }
   use { "auwsmit/vim-active-numbers" }
-  use { "junegunn/goyo.vim" }
-  use { "junegunn/limelight.vim" }
+  use {
+    "folke/zen-mode.nvim",
+    config = [[require('plugins.zen-mode')]],
+  }
+  use {
+    "folke/twilight.nvim",
+    config = [[require('plugins.twilight')]],
+  }
+  use {
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = [[require('plugins.gitsigns')]],
+  }
 
-  use { "mhinz/vim-signify" }
   use {
     "pwntester/octo.nvim",
     config = function()
@@ -116,7 +137,7 @@ return require("packer").startup(function(use)
   use {
     "iamcco/markdown-preview.nvim",
     run = "cd app && yarn install",
-    ft = "markdown",
+    cmd = "MarkdownPreview",
   }
   use { "dpelle/vim-LanguageTool", ft = "markdown" }
   use { "Ron89/thesaurus_query.vim", ft = "markdown" }

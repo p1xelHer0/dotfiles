@@ -87,6 +87,11 @@ with lib; {
   system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
     "/System/Library/Sounds/Frog.aiff";
 
+  system.keyboard = {
+    # enableKeyMapping = true;
+    # remapCapsLockToControl = true;
+  };
+
   fonts = {
     enableFontDir = true;
   };
@@ -380,18 +385,19 @@ with lib; {
   home-manager.users.pontusnagy = { config, pkgs, ... }: {
     home.stateVersion = "20.09";
 
-    nixpkgs.overlays = [
-      (
-        import (
-          builtins.fetchTarball {
-            url =
-              "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-          }
-        )
-      )
-    ];
+    # nixpkgs.overlays = [
+    #   (
+    #     import (
+    #       builtins.fetchTarball {
+    #         url =
+    #           "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    #       }
+    #     )
+    #   )
+    # ];
 
     home.packages = with pkgs; [
+      kitty
       cachix
       curl
       direnv
@@ -434,7 +440,7 @@ with lib; {
       nodePackages.pnpm
       nodePackages.vercel
       nodePackages.prettier
-      nodePackages.vscode-json-languageserver
+      nodePackages.vscode-json-languageserver-bin
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-css-languageserver-bin
       nodePackages.typescript
@@ -449,7 +455,6 @@ with lib; {
 
       # Lua
       stylua
-
     ];
 
     programs.zsh = {
@@ -477,6 +482,7 @@ with lib; {
         export PATH=$DOTS_DARWIN_BIN:$PATH
         export PATH=$RESCRIPT_LSP:$PATH
         export RPROMPT=""
+        export test="ooo"
 
         # ZVM_LAZY_KEYBINDINGS=false
         # ZVM_VI_HIGHLIGHT_BACKGROUND=3
@@ -501,6 +507,7 @@ with lib; {
       '';
 
       shellAliases = {
+        "l" = "clear";
         ":q" = "tmux kill-pane";
 
         ip = "dig +short myip.opendns.com @resolver1.opendns.com";
@@ -620,7 +627,7 @@ with lib; {
     programs.tmux = {
       enable = true;
 
-      extraConfig = builtins.readFile ./conf/tmux/.tmux.conf;
+      extraConfig = builtins.readFile ./conf/tmux/tmux.conf;
 
       plugins =
         with pkgs; [
@@ -686,10 +693,10 @@ with lib; {
     programs.lf = { enable = true; };
 
     programs.neovim = {
-      package = pkgs.neovim-nightly;
+      # package = pkgs.neovim-nightly;
       enable = true;
 
-      extraConfig = builtins.readFile ./conf/nvim/.vimrc;
+      extraConfig = builtins.readFile ./conf/nvim/init.vim;
 
       withNodeJs = true;
 

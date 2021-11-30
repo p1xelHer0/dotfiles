@@ -432,5 +432,81 @@
         "mouse_key_xy_scale": 100
       }
     }
+  ],
+  "title": "Language Toggler",
+  "rules": [
+    {
+      "description": "",
+      "manipulators": [
+        {
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "^com\\.apple\\.keylayout\\.Swedish-Pro$",
+                  "language": "sv"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "left_cmd",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": ["left_cmd"],
+              "modifiers": "left_shift"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "select_input_source": {
+                "input_source_id": "^com\\.apple\\.keylayout\\.UnicodeHexInput$",
+                "language": ""
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "input_source_id": "^com\\.apple\\.keylayout\\.UnicodeHexInput$",
+                  "language": ""
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "left_cmd",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_cmd",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "select_input_source": {
+                "input_source_id": "^com\\.apple\\.keylayout\\.Swedish-Pro$",
+                "language": "sv"
+              }
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
   ]
 }
