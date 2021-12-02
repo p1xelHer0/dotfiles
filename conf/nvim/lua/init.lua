@@ -123,7 +123,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<Leader><Leader>r",
-  ":so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/.vimrc<CR>",
+  ":so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/init.vim<CR>",
   { noremap = true }
 )
 
@@ -134,10 +134,25 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
+-- Telescope
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader><Leader>t",
+  ":Telescope<CR>",
+  { noremap = true, silent = true }
+)
+
 vim.api.nvim_set_keymap(
   "n",
   "<C-p>",
   [[<Cmd>lua require('telescope.builtin').find_files()<CR>]],
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>f",
+  [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]],
   { noremap = true, silent = true }
 )
 
@@ -150,22 +165,51 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
   "n",
-  "<Leader>f",
-  [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]],
+  "<Leader>b",
+  [[<Cmd>lua require('telescope.builtin').buffers()<CR>]],
   { noremap = true, silent = true }
 )
 
--- vim.api.nvim_set_keymap(
---     "n",
---     "<Leader>fg",
---     [[<Cmd>lua require('telescope.builtin').git_files()<CR>]],
---     {noremap = true, silent = true}
--- )
+-- Telescope LSP
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>lr",
+  [[<Cmd>lua require('telescope.builtin').lsp_references()<CR>]],
+  { noremap = true, silent = true }
+)
 
 vim.api.nvim_set_keymap(
   "n",
-  "<Leader>b",
-  [[<Cmd>lua require('telescope.builtin').buffers()<CR>]],
+  "<Leader>ls",
+  [[<Cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>ld",
+  [[<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>]],
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>lt",
+  [[<Cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>]],
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>lc",
+  [[<Cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]],
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "x",
+  "<Leader>lc",
+  [[<Cmd>lua require('telescope.builtin').lsp_range_code_actions()<CR>]],
   { noremap = true, silent = true }
 )
 
@@ -187,11 +231,26 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>mp",
+  ":MarkdownPreview<CR>",
+  { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>zm",
+  ":ZenMode<CR>",
+  { noremap = true, silent = true }
+)
+
 vim.opt.runtimepath:append "/usr/local/opt/fzf"
 vim.opt.runtimepath:append "<SHARE_DIR>/merlin/vim"
 
-vim.g.limelight_conceal_ctermfg = 17
-vim.g.limelight_priority = -1
+vim.g.mkdp_auto_start = 1
+
+vim.g.ditto_dir = "$HOME/dotfiles/conf/ditto"
 
 vim.g.nvim_tree_icons = {
   git = {

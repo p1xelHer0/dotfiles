@@ -4,8 +4,7 @@ let
   homeDir = builtins.getEnv ("HOME");
   user = builtins.getEnv ("USER");
 
-in
-with pkgs.stdenv;
+in with pkgs.stdenv;
 with lib; {
   imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
@@ -92,9 +91,7 @@ with lib; {
     # remapCapsLockToControl = true;
   };
 
-  fonts = {
-    enableFontDir = true;
-  };
+  fonts = { enableFontDir = true; };
 
   services.yabai = {
     enable = true;
@@ -283,8 +280,8 @@ with lib; {
       spacing_left = 12;
       spacing_right = 12;
 
-      text_font = ''"JetBrainsMono Nerd Font Mono:Regular:12.0"'';
-      icon_font = ''"JetBrainsMono Nerd Font Mono:Regular:12.0"'';
+      text_font = ''"JetBrainsMono Nerd Font Mono:Medium:12.0"'';
+      icon_font = ''"JetBrainsMono Nerd Font Mono:Medium:12.0"'';
 
       right_shell = "on";
       right_shell_command = "kb";
@@ -327,56 +324,54 @@ with lib; {
         WatchPaths =
           [ "${homeDir}/Library/Preferences/.GlobalPreferences.plist" ];
         EnvironmentVariables = {
-          PATH = (
-            replaceStrings [ "$HOME" ] [ homeDir ]
-              config.environment.systemPath
-          );
+          PATH = (replaceStrings [ "$HOME" ] [ homeDir ]
+            config.environment.systemPath);
         };
         ProgramArguments = [
           "${pkgs.writeShellScript "nighthook-action" ''
-              if defaults read -g AppleInterfaceStyle &>/dev/null ; then
-                MODE="dark"
-              else
-                MODE="light"
+            if defaults read -g AppleInterfaceStyle &>/dev/null ; then
+              MODE="dark"
+            else
+              MODE="light"
+            fi
+
+            spacebarSwitchTheme() {
+              if pgrep -q spacebar; then
+                if [[  $MODE == "dark"  ]]; then
+                  spacebar -m config background_color 0xff080807
+                  spacebar -m config foreground_color 0xffb5a488
+                  spacebar -m config space_icon_color 0xff9da488
+                elif [[  $MODE == "light"  ]]; then
+                  spacebar -m config background_color 0xfffaeed7
+                  spacebar -m config foreground_color 0xff080807
+                  spacebar -m config space_icon_color 0xff9da488
+                fi
               fi
+            }
 
-              spacebarSwitchTheme() {
-                if pgrep -q spacebar; then
-                  if [[  $MODE == "dark"  ]]; then
-                    spacebar -m config background_color 0xff080807
-                    spacebar -m config foreground_color 0xffb5a488
-                    spacebar -m config space_icon_color 0xff9da488
-                  elif [[  $MODE == "light"  ]]; then
-                    spacebar -m config background_color 0xfffaeed7
-                    spacebar -m config foreground_color 0xff080807
-                    spacebar -m config space_icon_color 0xff9da488
-                  fi
-                fi
-              }
+            alacrittySwitchTheme() {
+              DIR=${homeDir}/.config/alacritty
+              if [[  $MODE == "dark"  ]]; then
+                cp -f $DIR/alacritty.yml $DIR/live.yml
+              elif [[  $MODE == "light"  ]]; then
+                cp -f $DIR/light.yml $DIR/live.yml
+              fi
+            }
 
-              alacrittySwitchTheme() {
-                DIR=${homeDir}/.config/alacritty
-                if [[  $MODE == "dark"  ]]; then
-                  cp -f $DIR/alacritty.yml $DIR/live.yml
-                elif [[  $MODE == "light"  ]]; then
-                  cp -f $DIR/light.yml $DIR/live.yml
-                fi
-              }
+            yabaiSwitchTheme() {
+              if [[  $MODE == "dark"  ]]; then
+                yabai -m config active_window_border_color "0xff9da488"
+                yabai -m config normal_window_border_color "0xff30302c"
+              elif [[  $MODE == "light"  ]]; then
+                yabai -m config active_window_border_color "0xff9da488"
+                yabai -m config normal_window_border_color "0xffc9bfad"
+              fi
+            }
 
-              yabaiSwitchTheme() {
-                if [[  $MODE == "dark"  ]]; then
-                  yabai -m config active_window_border_color "0xff9da488"
-                  yabai -m config normal_window_border_color "0xff30302c"
-                elif [[  $MODE == "light"  ]]; then
-                  yabai -m config active_window_border_color "0xff9da488"
-                  yabai -m config normal_window_border_color "0xffc9bfad"
-                fi
-              }
-
-              spacebarSwitchTheme $@
-              alacrittySwitchTheme $@
-              yabaiSwitchTheme $@
-            ''}"
+            spacebarSwitchTheme $@
+            alacrittySwitchTheme $@
+            yabaiSwitchTheme $@
+          ''}"
         ];
       };
     };
@@ -426,8 +421,7 @@ with lib; {
       ninja
       niv
 
-      (nerdfonts.override
-        { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 
       # Nix
       nixfmt
@@ -468,7 +462,8 @@ with lib; {
 
         DOTS_BIN = "$HOME/dotfiles/bin";
         DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
-        RESCRIPT_LSP = "/Users/pontusnagy/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
+        RESCRIPT_LSP =
+          "/Users/pontusnagy/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
       };
 
       envExtra = ''
@@ -627,26 +622,25 @@ with lib; {
 
       extraConfig = builtins.readFile ./conf/tmux/tmux.conf;
 
-      plugins =
-        with pkgs; [
-          {
-            plugin = tmuxPlugins.battery;
-            extraConfig = ''
-              set -g @batt_charged_icon " *"
-              set -g @batt_charging_icon " +"
-              set -g @batt_discharging_icon " -"
-              set -g @batt_attached_icon " !"
-            '';
-          }
-          tmuxPlugins.resurrect
-          {
-            plugin = tmuxPlugins.continuum;
-            extraConfig = ''
-              set -g @continuum-restore 'on'
-              set -g @continuum-save-interval '15'
-            '';
-          }
-        ];
+      plugins = with pkgs; [
+        {
+          plugin = tmuxPlugins.battery;
+          extraConfig = ''
+            set -g @batt_charged_icon " *"
+            set -g @batt_charging_icon " +"
+            set -g @batt_discharging_icon " -"
+            set -g @batt_attached_icon " !"
+          '';
+        }
+        tmuxPlugins.resurrect
+        {
+          plugin = tmuxPlugins.continuum;
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+            set -g @continuum-save-interval '15'
+          '';
+        }
+      ];
     };
 
     programs.fzf = {
@@ -698,9 +692,7 @@ with lib; {
 
       withNodeJs = true;
 
-      plugins = with pkgs.vimPlugins; [
-        packer-nvim
-      ];
+      plugins = with pkgs.vimPlugins; [ packer-nvim ];
     };
 
     programs.git = {
@@ -711,62 +703,60 @@ with lib; {
       includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
     };
 
-    xdg.configFile."alacritty/light.yml".text =
-      let
-        lightColors = {
-          colors = {
-            primary.foreground = "#080807";
-            primary.background = "#faeed7";
+    xdg.configFile."alacritty/light.yml".text = let
+      lightColors = {
+        colors = {
+          primary.foreground = "#080807";
+          primary.background = "#faeed7";
 
-            normal = {
-              black = "#faeed7";
-              red = "0xbf9d88";
-              green = "0x9da488";
-              yellow = "0xd1a47f";
-              blue = "#080807";
-              magenta = "#080807";
-              cyan = "#080807";
-              white = "#080807";
-            };
-
-            bright = {
-              black = "#c9bfad";
-              red = "#bf9d88";
-              green = "#9da488";
-              yellow = "#d1a47f";
-              blue = "#080807";
-              magenta = "#080807";
-              cyan = "#080807";
-              white = "#080807";
-            };
-
-            indexed_colors = [
-              {
-                index = 16;
-                color = "#f2e6d0";
-              }
-              {
-                index = 17;
-                color = "#ebdfca";
-              }
-              {
-                index = 18;
-                color = "#e3d7c3";
-              }
-              {
-                index = 19;
-                color = "#dbd0bd";
-              }
-              {
-                index = 20;
-                color = "#d4c9b6";
-              }
-            ];
+          normal = {
+            black = "#faeed7";
+            red = "0xbf9d88";
+            green = "0x9da488";
+            yellow = "0xd1a47f";
+            blue = "#080807";
+            magenta = "#080807";
+            cyan = "#080807";
+            white = "#080807";
           };
+
+          bright = {
+            black = "#c9bfad";
+            red = "#bf9d88";
+            green = "#9da488";
+            yellow = "#d1a47f";
+            blue = "#080807";
+            magenta = "#080807";
+            cyan = "#080807";
+            white = "#080807";
+          };
+
+          indexed_colors = [
+            {
+              index = 16;
+              color = "#f2e6d0";
+            }
+            {
+              index = 17;
+              color = "#ebdfca";
+            }
+            {
+              index = 18;
+              color = "#e3d7c3";
+            }
+            {
+              index = 19;
+              color = "#dbd0bd";
+            }
+            {
+              index = 20;
+              color = "#d4c9b6";
+            }
+          ];
         };
-      in
-      builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-        (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+      };
+    in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+    (builtins.toJSON (config.programs.alacritty.settings // lightColors));
 
     programs.alacritty = {
       enable = true;
@@ -901,16 +891,10 @@ with lib; {
       };
     };
 
-    programs.neomutt = {
-      enable = true;
-    };
+    programs.neomutt = { enable = true; };
 
-    programs.msmtp = {
-      enable = true;
-    };
+    programs.msmtp = { enable = true; };
 
-    programs.offlineimap = {
-      enable = true;
-    };
+    programs.offlineimap = { enable = true; };
   };
 }

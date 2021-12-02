@@ -1,5 +1,5 @@
 #!/bin/zsh
 #
-# -- kb - get current keyboard layout
+# -- kb - get current keyboard layout between Swedish Pro and Unicode Hex Input
 
 defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | command rg -e '"KeyboardLayout Name" = "([^"]*)"' --replace '$1' --only-matching --color never | sed 's/Unicode Hex Input/US/;s/Swedish\ -\ Pro/SE/'

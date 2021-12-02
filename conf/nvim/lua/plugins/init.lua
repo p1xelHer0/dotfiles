@@ -9,13 +9,13 @@ return require("packer").startup(function(use)
     },
     run = ":TSUpdate",
   }
-  use {
-    "nvim-treesitter/playground",
-    requires = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    run = ":TSInstall query",
-  }
+  -- use {
+  --   "nvim-treesitter/playground",
+  --   requires = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   run = ":TSInstall query",
+  -- }
 
   use {
     {
@@ -132,19 +132,17 @@ return require("packer").startup(function(use)
   use {
     "plasticboy/vim-markdown",
     requires = { "godlygeek/tabular", before = "plasticboy/vim-markdown" },
-    ft = "markdown",
   }
   use {
     "iamcco/markdown-preview.nvim",
     run = "cd app && yarn install",
-    cmd = "MarkdownPreview",
   }
-  use { "dpelle/vim-LanguageTool", ft = "markdown" }
-  use { "Ron89/thesaurus_query.vim", ft = "markdown" }
-  use { "preservim/vim-wordy", ft = "markdown" }
-  use { "dbmrq/vim-ditto", ft = "markdown" }
-  use { "reedes/vim-lexical", ft = "markdown" }
-  use { "reedes/vim-litecorrect", ft = "markdown" }
+  use { "dpelle/vim-LanguageTool" }
+  use { "Ron89/thesaurus_query.vim" }
+  use { "preservim/vim-wordy" }
+  use { "dbmrq/vim-ditto" }
+  use { "reedes/vim-lexical" }
+  use { "reedes/vim-litecorrect" }
 
   use { "elzr/vim-json", ft = "json" }
 
