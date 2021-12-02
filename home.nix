@@ -30,7 +30,7 @@
     fnm
     nodePackages.yarn
     nodePackages.prettier
-    nodePackages.vscode-json-languageserver
+    nodePackages.vscode-json-languageserver-bin
     nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-css-languageserver-bin
     nodePackages.typescript
@@ -64,6 +64,7 @@
     '';
 
     shellAliases = {
+      "l" = "clear";
       ":q" = "tmux kill-pane";
 
       v = "nvim";
@@ -128,7 +129,7 @@
         renamed = ''["](magenta)'';
         deleted = "[-](red)";
 
-        stashed = "[#]";
+        stashed = "[\#]";
       };
 
       cmd_duration = {
@@ -151,7 +152,7 @@
   programs.tmux = {
     enable = true;
 
-    extraConfig = builtins.readFile ~/dotfiles/conf/tmux/.tmux.conf;
+    extraConfig = builtins.readFile ~/dotfiles/conf/tmux/tmux.conf;
   };
 
   programs.fzf = {
@@ -196,7 +197,7 @@
   programs.neovim = {
     enable = true;
 
-    extraConfig = builtins.readFile ~/dotfiles/conf/nvim/.vimrc;
+    extraConfig = builtins.readFile ~/dotfiles/conf/nvim/init.vim;
 
     withNodeJs = true;
 
