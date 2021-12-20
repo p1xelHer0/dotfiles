@@ -47,23 +47,15 @@ return require("packer").startup(function(use)
     },
   }
 
-  -- use {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   config = function()
-  --     require("null-ls").setup {
-  --       sources = {
-  --         require("null-ls").builtins.formatting.stylua,
-  --         require("null-ls").builtins.diagnostics.eslint,
-  --         require("null-ls").builtins.completion.spell,
-  --       },
-  --     }
-  --   end,
-  --   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  -- }
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = [[require('plugins.null-ls')]],
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  }
 
   use {
     "folke/trouble.nvim",
-    requiress = "folke/lsp-colors.nvim",
+    requires = "folke/lsp-colors.nvim",
     config = [[require('plugins.trouble')]],
   }
 
@@ -82,7 +74,6 @@ return require("packer").startup(function(use)
     event = "InsertEnter *",
   }
 
-  use { "sbdchd/neoformat" }
   use {
     "numToStr/Comment.nvim",
     requires = "JoosepAlviste/nvim-ts-context-commentstring",

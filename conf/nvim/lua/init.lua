@@ -1,82 +1,45 @@
-require "plugins"
-require "treesitter"
-require "lsp"
-
 local parsers = require "nvim-treesitter.parsers"
-
-local add_option = function(option_type, options)
-  if type(options) ~= "table" then
-    error 'options should be a type of "table"'
-    return
-  end
-  local vim_option = vim[option_type]
-  for key, value in pairs(options) do
-    vim_option[key] = value
-  end
-end
-
-local option = {}
-
-option.g = function(options)
-  add_option("o", options)
-end
-
-option.w = function(options)
-  add_option("wo", options)
-end
-
-option.b = function(options)
-  add_option("bo", options)
-end
 
 vim.g.mapleader = " "
 
-option.g {
-  clipboard = "unnamedplus",
-  scrolloff = 5,
-  ignorecase = true,
-  smartcase = true,
-  showmatch = true,
-  timeoutlen = 500,
-  ttimeoutlen = 100,
-  updatetime = 250,
-  redrawtime = 250,
-  list = true,
-  listchars = "tab:→ ,trail:·,nbsp:×",
-  linebreak = true,
-  fillchars = vim.o.fillchars .. "vert: ",
-  undofile = true,
-  completeopt = "menu,menuone,noinsert,noselect",
-  formatoptions = "jtcroql",
-  inccommand = "nosplit",
-  shortmess = "atIcF",
-  visualbell = true,
-  ruler = true,
-}
-
-option.w {
-  cursorline = true,
-  number = true,
-  relativenumber = true,
-  signcolumn = "yes",
-  foldlevel = 99,
-  foldmethod = "syntax",
-  foldexpr = "nvim_treesitter#foldexpr()",
-  foldtext = "v:lua.foldText()",
-  linebreak = true,
-  breakindent = true,
-}
-
-option.b {
-  tabstop = 2,
-  softtabstop = 2,
-  expandtab = true,
-  shiftwidth = 2,
-  copyindent = true,
-  swapfile = false,
-  backupcopy = "yes",
-  indentexpr = "nvim_treesitter#indent()",
-}
+vim.opt.clipboard = "unnamedplus"
+vim.opt.scrolloff = 5
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.showmatch = true
+vim.opt.timeoutlen = 500
+vim.opt.ttimeoutlen = 100
+vim.opt.updatetime = 250
+vim.opt.redrawtime = 250
+vim.opt.list = true
+vim.opt.listchars = "tab:→ ,trail:·,nbsp:×"
+vim.opt.linebreak = true
+vim.opt.fillchars = vim.o.fillchars .. "vert: "
+vim.opt.undofile = true
+vim.opt.completeopt = "menu,menuone,noinsert,noselect"
+vim.opt.formatoptions = "jtcroql"
+vim.opt.inccommand = "nosplit"
+vim.opt.shortmess = "atIcF"
+vim.opt.visualbell = true
+vim.opt.ruler = true
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = "syntax"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldtext = "v:lua.foldText()"
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.copyindent = true
+vim.opt.swapfile = false
+vim.opt.backupcopy = "yes"
+vim.opt.indentexpr = "nvim_treesitter#indent()"
 
 vim.g.matchparen_timeout = 20
 vim.g.matchparen_insert_timeout = 20
@@ -128,12 +91,12 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<Leader><Leader>f",
-  ":Neoformat<CR>",
-  { noremap = true }
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<Leader><Leader>f",
+--   ":Neoformat<CR>",
+--   { noremap = true }
+-- )
 
 -- Telescope
 vim.api.nvim_set_keymap(
@@ -286,5 +249,9 @@ vim.cmd(
     .. ft_str
     .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()"
 )
+
+require "plugins"
+require "treesitter"
+require "lsp"
 
 return option
