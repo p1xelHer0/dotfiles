@@ -293,6 +293,11 @@ with lib; {
     };
   };
 
+  # services.spotifyd = {
+  #   enable = true;
+  #   package = (pkgs.spotifyd.override { withKeyring = true; });
+  # };
+
   # nighthook
   # if there's no 'live.yml' alacritty config initially,
   # copy it from the default config
@@ -396,8 +401,13 @@ with lib; {
       curl
       direnv
       fasd
+      flyctl
       fswatch
+      gh
+      gitAndTools.diff-so-fancy
+      gnupg
       jq
+      niv
       p7zip
       reattach-to-user-namespace
       ripgrep
@@ -407,19 +417,11 @@ with lib; {
       watchman
       wget
 
-      gh
-      gitAndTools.diff-so-fancy
-      gnupg
-
-      flyctl
-
       htop
-      irssi
-      weechat
-      protonmail-bridge
-
-      ninja
-      niv
+      # irssi
+      # protonmail-bridge
+      # spotify-tui
+      # weechat
 
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 
@@ -448,6 +450,9 @@ with lib; {
 
       # Lua
       stylua
+
+      #BQN
+      cbqn
     ];
 
     programs.zsh = {
@@ -517,6 +522,7 @@ with lib; {
         vim = "nvim";
         vf = "nvim $(fzf)";
         ev = "npx esy nvim";
+        evf = "npx esy nvim $(fzf)";
 
         dots = "cd $HOME/dotfiles && nvim";
         swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
@@ -558,17 +564,16 @@ with lib; {
         };
 
         format = ''
-          $username$hostname$shlvl$kubernetes$directory$git_branch$git_commit$git_state$git_status$hg_branch$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+          $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
           $character'';
 
-        directory = { read_only = "RO"; };
+        directory = { read_only = "X"; };
 
         git_branch.format = "$branch ";
 
         git_commit = {
           style = "bold cyan";
-          tag_disabled = false;
-          tag_symbol = "t ";
+          tag_disabled = true;
         };
 
         git_status = {
@@ -587,7 +592,7 @@ with lib; {
           renamed = ''["](green)'';
           deleted = "[-](red)";
 
-          stashed = "[#]";
+          stashed = "[# ](bold blue)";
         };
 
         cmd_duration = {
@@ -596,23 +601,25 @@ with lib; {
         };
 
         nodejs = {
-          format = "[$symbol($version )]($style)";
+          format = "[$symbol($version)]($style) ";
           symbol = "[node](green)";
         };
 
         ocaml = {
-          format = "[$symbol($version )]($style)";
+          format = "[$symbol($version)]($style) ";
           symbol = "[ocaml](yellow)";
         };
 
         rust = {
-          format = "[$symbol($version )]($style)";
+          format = "[$symbol($version)]($style) ";
           symbol = "[rust](red)";
         };
 
         nix_shell = {
           format = "[$symbol$state( ($name))]($style) ";
           symbol = "[nix](blue)";
+          impure_msg = "i";
+          pure_msg = "p";
         };
       };
     };
@@ -681,8 +688,6 @@ with lib; {
 
       historyWidgetOptions = [ ];
     };
-
-    programs.lf = { enable = true; };
 
     programs.neovim = {
       # package = pkgs.neovim-nightly;
@@ -788,36 +793,44 @@ with lib; {
         };
 
         font = {
-          size = 16;
+          size = 14;
 
           normal = {
             family = "JetBrainsMono Nerd Font Mono";
+            # family = "Menlo";
+            # family = "BQN386 Unicode";
             style = "Regular";
           };
 
           bold = {
             family = "JetBrainsMono Nerd Font Mono";
+            # family = "Menlo";
+            # family = "BQN386 Unicode";
             style = "Bold";
           };
 
           italic = {
             family = "JetBrainsMono Nerd Font Mono";
+            # family = "Menlo";
+            # family = "BQN386 Unicode";
             style = "Italic";
           };
 
           bold_italic = {
             family = "JetBrainsMono Nerd Font Mono";
+            # family = "Menlo";
+            # family = "BQN386 Unicode";
             style = "Bold Italic";
           };
 
           offset = {
             x = 0;
-            y = 4;
+            y = 8;
           };
 
           glyph_offset = {
             x = 0;
-            y = 2;
+            y = 4;
           };
 
           use_thin_strokes = true;
@@ -891,10 +904,10 @@ with lib; {
       };
     };
 
-    programs.neomutt = { enable = true; };
+    programs.neomutt = { enable = false; };
 
-    programs.msmtp = { enable = true; };
+    programs.msmtp = { enable = false; };
 
-    programs.offlineimap = { enable = true; };
+    programs.offlineimap = { enable = false; };
   };
 }

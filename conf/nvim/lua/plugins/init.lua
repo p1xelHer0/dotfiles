@@ -47,14 +47,19 @@ return require("packer").startup(function(use)
     },
   }
 
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("null-ls").config {}
-      require("lspconfig")["null-ls"].setup {}
-    end,
-    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  }
+  -- use {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   config = function()
+  --     require("null-ls").setup {
+  --       sources = {
+  --         require("null-ls").builtins.formatting.stylua,
+  --         require("null-ls").builtins.diagnostics.eslint,
+  --         require("null-ls").builtins.completion.spell,
+  --       },
+  --     }
+  --   end,
+  --   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  -- }
 
   use {
     "folke/trouble.nvim",
@@ -79,15 +84,9 @@ return require("packer").startup(function(use)
 
   use { "sbdchd/neoformat" }
   use {
-    "terrortylor/nvim-comment",
+    "numToStr/Comment.nvim",
     requires = "JoosepAlviste/nvim-ts-context-commentstring",
-    config = function()
-      require("nvim_comment").setup {
-        hook = function()
-          require("ts_context_commentstring.internal").update_commentstring()
-        end,
-      }
-    end,
+    config = [[require('plugins.comment-nvim')]],
   }
   use { "tpope/vim-repeat" }
   use { "AndrewRadev/switch.vim" }
@@ -162,4 +161,10 @@ return require("packer").startup(function(use)
   use { "jparise/vim-graphql" }
 
   use { "LnL7/vim-nix", ft = "nix" }
+
+  use { "mlochbaum/BQN", rtp = "editors/vim", ft = "bqn" }
+  use {
+    "https://git.sr.ht/~detegr/nvim-bqn",
+    ft = "bqn",
+  }
 end)

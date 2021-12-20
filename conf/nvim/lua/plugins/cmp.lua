@@ -21,11 +21,13 @@ cmp.setup {
   }, {
     { name = "buffer" },
   }),
+
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
+
   formatting = {
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s", vim_item.kind)
@@ -40,6 +42,7 @@ cmp.setup {
       return vim_item
     end,
   },
+
   mapping = {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -62,6 +65,11 @@ cmp.setup {
       end
     end, { "i", "s" }),
   },
+
+  -- experimental = {
+  --   native_menu = false,
+  --   ghost_text = true,
+  -- },
 }
 
 cmp.setup.cmdline("/", {
