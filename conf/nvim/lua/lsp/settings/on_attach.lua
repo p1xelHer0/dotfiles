@@ -63,21 +63,21 @@ local function on_attach(client, bufnr)
   )
 
 --   if client.resolved_capabilities.document_formatting then
---     buf_set_keymap(
---       "n",
---       "<Leader><Leader>f",
---       "<Cmd>lua vim.lsp.buf.formatting()<CR>",
---       opts
---     )
+    buf_set_keymap(
+      "n",
+      "<Leader><Leader>f",
+      "<Cmd>lua vim.lsp.buf.formatting()<CR>",
+      opts
+    )
 --   end
 -- 
 --   if client.resolved_capabilities.document_range_formatting then
---     buf_set_keymap(
---       "v",
---       "<Leader><Leader>f",
---       "<Cmd>lua vim.lsp.buf.range_formatting()<CR>:w<CR>",
---       opts
---     )
+    buf_set_keymap(
+      "v",
+      "<Leader><Leader>f",
+      "<Cmd>lua vim.lsp.buf.range_formatting()<CR>:w<CR>",
+      opts
+    )
 --   end
 
   if client.resolved_capabilities.document_highlight then
