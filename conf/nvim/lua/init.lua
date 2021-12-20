@@ -55,6 +55,7 @@ option.g {
 }
 
 option.w {
+  cursorline = true,
   number = true,
   relativenumber = true,
   signcolumn = "yes",
@@ -248,16 +249,14 @@ vim.api.nvim_set_keymap(
 vim.opt.runtimepath:append "/usr/local/opt/fzf"
 vim.opt.runtimepath:append "<SHARE_DIR>/merlin/vim"
 
-vim.g.mkdp_auto_start = 1
-
 vim.g.ditto_dir = "$HOME/dotfiles/conf/ditto"
 
 vim.g.nvim_tree_icons = {
   git = {
     deleted = "-",
-    renamed = "=",
+    renamed = '"',
     staged = "^",
-    unmerged = '"',
+    unmerged = "=",
     unstaged = "~",
     untracked = "+",
     ignored = "",

@@ -14,10 +14,6 @@ augroup vim_resize
   autocmd VimResized * execute "normal! \<C-w>="
 augroup END
 
-" only show the colorcolumn if the width surpasses 80 on that specific line
-highlight OverLength ctermfg=0 ctermbg=3
-match OverLength /\%82v/
-
 augroup litecorrect
   autocmd!
   autocmd FileType markdown,mkd call litecorrect#init()

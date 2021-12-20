@@ -1,13 +1,6 @@
-
-mapkey("<Ctrl-y>", "Show me the money", function () {
-  Front.showPopup(
-    "a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close)."
-  );
-});
-
 settings.theme = `
   .sk_theme {
-    font-family: "JetBrains Mono Medium", "JetBrainsMonoMedium Nerd Font";
+    font-family: "JetBrains Mono", "JetBrainsMono Nerd Font";
     background: #24272e;
     color: #abb2bf;
   }
@@ -52,4 +45,3 @@ settings.theme = `
     font-size: 24px;
   }
 `;
-
