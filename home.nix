@@ -17,7 +17,6 @@
     ripgrep
     tree-sitter
     wget
-    gcc
 
     # Lua
     stylua
@@ -103,14 +102,13 @@
         $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
-      directory = { read_only = "RO"; };
+      directory = { read_only = "X"; };
 
       git_branch.format = "$branch ";
 
       git_commit = {
         style = "bold cyan";
-        tag_disabled = false;
-        tag_symbol = "t ";
+        tag_disabled = true;
       };
 
       git_status = {
@@ -118,18 +116,18 @@
 
         conflicted = "";
 
-        ahead = "[>](blue)";
-        behind = "[<](red)";
-        diverged = "[?](bold magenta)";
+        ahead = "[>](yellow)";
+        behind = "[<](yellow)";
+        diverged = "[?](bold red)";
 
         staged = "[^](green)";
         modified = "[~](yellow)";
 
-        untracked = "[+](blue)";
-        renamed = ''["](magenta)'';
+        untracked = "[+](green)";
+        renamed = ''["](green)'';
         deleted = "[-](red)";
 
-        stashed = "[\#]";
+        stashed = "[# ](bold blue)";
       };
 
       cmd_duration = {
