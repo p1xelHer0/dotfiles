@@ -142,9 +142,6 @@ return require("packer").startup(function(use)
   use { "pangloss/vim-javascript", ft = "javascript" }
   use { "leafgarland/typescript-vim", ft = "typescript" }
 
-  use { "ocaml/vim-ocaml", ft = "ocaml" }
-  use { "ocaml/merlin", ft = "ocaml" }
-
   use { "rescript-lang/vim-rescript", ft = "rescript" }
 
   use { "jparise/vim-graphql" }
