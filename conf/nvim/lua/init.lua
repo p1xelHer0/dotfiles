@@ -1,5 +1,3 @@
-local parsers = require "nvim-treesitter.parsers"
-
 vim.g.mapleader = " "
 
 vim.opt.clipboard = "unnamedplus"
@@ -236,22 +234,24 @@ vim.g.nvim_tree_icons = {
   },
 }
 
-local configs = parsers.get_parser_configs()
-local ft_str = table.concat(
-  vim.tbl_map(function(ft)
-    return configs[ft].filetype or ft
-  end, parsers.available_parsers()),
-  ","
-)
+local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
 
-vim.cmd(
-  "autocmd Filetype "
-    .. ft_str
-    .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()"
-)
+if parsers_ok then
+  local configs = parsers.get_parser_configs()
+  local ft_str = table.concat(
+    vim.tbl_map(function(ft)
+      return configs[ft].filetype or ft
+    end, parsers.available_parsers()),
+    ","
+  )
+
+  vim.cmd(
+    "autocmd Filetype "
+      .. ft_str
+      .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()"
+  )
+end
 
 require "plugins"
 require "treesitter"
 require "lsp"
-
-return option

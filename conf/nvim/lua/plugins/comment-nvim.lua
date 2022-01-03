@@ -1,4 +1,7 @@
-local comment_nvim = require "Comment"
+local status_ok, comment_nvim = pcall(require, "Comment")
+if not status_ok then
+  return
+end
 
 comment_nvim.setup {
   pre_hook = function(ctx)

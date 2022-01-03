@@ -1,4 +1,8 @@
-local g = require "galaxyline"
+local status_ok, g = pcall(require, "galaxyline")
+if not status_ok then
+  return
+end
+
 local gs = g.section
 
 gs.left[1] = {

@@ -1,4 +1,12 @@
-local cmp = require "cmp"
+local cmp_ok, cmp = pcall(require, "cmp")
+if not cmp_ok then
+  return
+end
+
+local luasnip_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_ok then
+  return
+end
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -8,8 +16,6 @@ local has_words_before = function()
         :match "%s"
       == nil
 end
-
-local luasnip = require "luasnip"
 
 cmp.setup {
   sources = cmp.config.sources({
