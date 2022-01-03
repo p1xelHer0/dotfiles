@@ -62,36 +62,36 @@ local function on_attach(client, bufnr)
     opts
   )
 
---   if client.resolved_capabilities.document_formatting then
+  if client.resolved_capabilities.document_formatting then
     buf_set_keymap(
       "n",
       "<Leader><Leader>f",
       "<Cmd>lua vim.lsp.buf.formatting()<CR>",
       opts
     )
---   end
--- 
---   if client.resolved_capabilities.document_range_formatting then
+  end
+
+  if client.resolved_capabilities.document_range_formatting then
     buf_set_keymap(
       "v",
       "<Leader><Leader>f",
       "<Cmd>lua vim.lsp.buf.range_formatting()<CR>:w<CR>",
       opts
     )
---   end
+  end
 
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
-              hi LspReferenceRead  cterm=bold ctermbg=16 guibg=NONE
-              hi LspReferenceText  cterm=bold ctermbg=16 guibg=NONE
-              hi LspReferenceWrite cterm=bold ctermbg=16 guibg=NONE
-              augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-              augroup END
-            ]],
+        hi LspReferenceRead  cterm=bold ctermbg=16 guibg=NONE
+        hi LspReferenceText  cterm=bold ctermbg=16 guibg=NONE
+        hi LspReferenceWrite cterm=bold ctermbg=16 guibg=NONE
+        augroup lsp_document_highlight
+          autocmd! * <buffer>
+          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+      ]],
       false
     )
   end
