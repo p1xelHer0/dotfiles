@@ -27,13 +27,13 @@ return packer.startup(function(use)
     },
     run = ":TSUpdate",
   }
-  use {
-    "nvim-treesitter/playground",
-    requires = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    run = ":TSInstall query",
-  }
+  -- use {
+  --   "nvim-treesitter/playground",
+  --   requires = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   run = ":TSInstall query",
+  -- }
 
   use {
     {
@@ -107,7 +107,7 @@ return packer.startup(function(use)
   use { "nvim-lua/lsp_extensions.nvim" }
   use { "neovim/nvim-lspconfig" }
 
-  use { "mfussenegger/nvim-dap" }
+  -- use { "mfussenegger/nvim-dap" }
 
   use {
     "glepnir/galaxyline.nvim",
@@ -140,12 +140,12 @@ return packer.startup(function(use)
     },
   }
 
-  use {
-    "pwntester/octo.nvim",
-    config = function()
-      require("octo").setup {}
-    end,
-  }
+  -- use {
+  --   "pwntester/octo.nvim",
+  --   config = function()
+  --     require("octo").setup {}
+  --   end,
+  -- }
 
   use {
     "plasticboy/vim-markdown",
@@ -167,23 +167,23 @@ return packer.startup(function(use)
   use { "pangloss/vim-javascript", ft = "javascript" }
   use { "leafgarland/typescript-vim", ft = "typescript" }
 
-  use { "ocaml/vim-ocaml", ft = "ocaml" }
-  use { "ocaml/merlin", ft = "ocaml" }
+  -- use { "ocaml/vim-ocaml", ft = "ocaml" }
+  -- use { "ocaml/merlin", ft = "ocaml" }
 
-  use { "rescript-lang/vim-rescript", ft = "rescript" }
+  -- use { "rescript-lang/vim-rescript", ft = "rescript" }
 
-  use { "rust-lang/rust.vim", ft = "rust" }
-  use { "simrat39/rust-tools.nvim", ft = "rust" }
+  -- use { "rust-lang/rust.vim", ft = "rust" }
+  -- use { "simrat39/rust-tools.nvim", ft = "rust" }
 
-  use { "neovimhaskell/haskell-vim", ft = "haskell" }
+  -- use { "neovimhaskell/haskell-vim", ft = "haskell" }
 
-  use { "jparise/vim-graphql" }
+  -- use { "jparise/vim-graphql" }
 
   use { "LnL7/vim-nix", ft = "nix" }
 
-  use { "mlochbaum/BQN", rtp = "editors/vim", ft = "bqn" }
-  use {
-    "https://git.sr.ht/~detegr/nvim-bqn",
-    ft = "bqn",
-  }
+  -- use { "mlochbaum/BQN", rtp = "editors/vim", ft = "bqn" }
+  -- use {
+  --   "https://git.sr.ht/~detegr/nvim-bqn",
+  --   ft = "bqn",
+  -- }
 end)
