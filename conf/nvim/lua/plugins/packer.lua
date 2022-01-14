@@ -66,8 +66,8 @@ return packer.startup(function(use)
   }
 
   use {
-    "jose-elias-alvarez/null-ls.nvim",
-    -- "$HOME/dev/repo/private/oss/null-ls.nvim",
+    -- "jose-elias-alvarez/null-ls.nvim",
+    "$HOME/dev/repo/private/oss/null-ls.nvim",
     config = [[require('plugins.null-ls')]],
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   }
@@ -173,7 +173,24 @@ return packer.startup(function(use)
   use { "rescript-lang/vim-rescript", ft = "rescript" }
 
   use { "rust-lang/rust.vim", ft = "rust" }
-  use { "simrat39/rust-tools.nvim", ft = "rust" }
+  -- use {
+  --   "simrat39/rust-tools.nvim",
+  --   requires = {
+  --     "neovim/nvim-lspconfig",
+  --     "nvim-lua/plenary.nvim",
+  --     "mfussenegger/nvim-dap",
+  --   },
+  --   config = [[require('plugins.rust-tools')]],
+  --   ft = "rust",
+  -- }
+  use {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("crates").setup()
+    end,
+  }
 
   use { "neovimhaskell/haskell-vim", ft = "haskell" }
 

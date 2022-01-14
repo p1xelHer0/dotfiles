@@ -4,7 +4,8 @@ let
   homeDir = builtins.getEnv ("HOME");
   user = builtins.getEnv ("USER");
 
-in with pkgs.stdenv;
+in
+with pkgs.stdenv;
 with lib; {
   imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
@@ -284,7 +285,7 @@ with lib; {
       icon_font = ''"JetBrainsMono Nerd Font Mono:Medium:12.0"'';
 
       right_shell = "on";
-      right_shell_command = "kb";
+      right_shell_command = "whoami";
 
       # colors also set in nighthook
       background_color = "0xff080807";
@@ -527,6 +528,8 @@ with lib; {
         dots = "cd $HOME/dotfiles && nvim";
         swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
 
+        note = "tmux split-window -h 'cd $HOME/library/Mobile\\\ Documents/iCloud~md~obsidian/Documents/p1xelHer0 && nvim $(fzf)'";
+
         fixusb = "sudo killall -STOP -c usbd";
 
         rl = "exec zsh";
@@ -655,7 +658,7 @@ with lib; {
 
       enableZshIntegration = true;
 
-      defaultCommand = "rg --files --hidden --follow";
+      defaultCommand = "rg --files --hidden --follow -g '!.obsidian'";
       defaultOptions = [
         "--color=fg:-1"
         # "--color=bg:0"
@@ -678,12 +681,12 @@ with lib; {
         "--reverse --no-bold --no-unicode --preview-window=hidden"
       ];
 
-      fileWidgetCommand = "rg --files --hidden --follow";
+      fileWidgetCommand = "rg --files --hidden --follow -g '!.obsidian'";
       fileWidgetOptions = [
         "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
       ];
 
-      changeDirWidgetCommand = "rg --files --hidden --follow";
+      changeDirWidgetCommand = "rg --files --hidden --follow -g '!.obsidian'";
       changeDirWidgetOptions = [ ];
 
       historyWidgetOptions = [ ];
@@ -708,60 +711,62 @@ with lib; {
       includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
     };
 
-    xdg.configFile."alacritty/light.yml".text = let
-      lightColors = {
-        colors = {
-          primary.foreground = "#080807";
-          primary.background = "#faeed7";
+    xdg.configFile."alacritty/light.yml".text =
+      let
+        lightColors = {
+          colors = {
+            primary.foreground = "#080807";
+            primary.background = "#faeed7";
 
-          normal = {
-            black = "#faeed7";
-            red = "0xbf9d88";
-            green = "0x9da488";
-            yellow = "0xd1a47f";
-            blue = "#080807";
-            magenta = "#080807";
-            cyan = "#080807";
-            white = "#080807";
+            normal = {
+              black = "#faeed7";
+              red = "0xbf9d88";
+              green = "0x9da488";
+              yellow = "0xd1a47f";
+              blue = "#080807";
+              magenta = "#080807";
+              cyan = "#080807";
+              white = "#080807";
+            };
+
+            bright = {
+              black = "#c9bfad";
+              red = "#bf9d88";
+              green = "#9da488";
+              yellow = "#d1a47f";
+              blue = "#080807";
+              magenta = "#080807";
+              cyan = "#080807";
+              white = "#080807";
+            };
+
+            indexed_colors = [
+              {
+                index = 16;
+                color = "#f2e6d0";
+              }
+              {
+                index = 17;
+                color = "#ebdfca";
+              }
+              {
+                index = 18;
+                color = "#e3d7c3";
+              }
+              {
+                index = 19;
+                color = "#dbd0bd";
+              }
+              {
+                index = 20;
+                color = "#d4c9b6";
+              }
+            ];
           };
-
-          bright = {
-            black = "#c9bfad";
-            red = "#bf9d88";
-            green = "#9da488";
-            yellow = "#d1a47f";
-            blue = "#080807";
-            magenta = "#080807";
-            cyan = "#080807";
-            white = "#080807";
-          };
-
-          indexed_colors = [
-            {
-              index = 16;
-              color = "#f2e6d0";
-            }
-            {
-              index = 17;
-              color = "#ebdfca";
-            }
-            {
-              index = 18;
-              color = "#e3d7c3";
-            }
-            {
-              index = 19;
-              color = "#dbd0bd";
-            }
-            {
-              index = 20;
-              color = "#d4c9b6";
-            }
-          ];
         };
-      };
-    in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-    (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+      in
+      builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+        (builtins.toJSON (config.programs.alacritty.settings // lightColors));
 
     programs.alacritty = {
       enable = true;
