@@ -88,14 +88,65 @@ with lib; {
     "/System/Library/Sounds/Frog.aiff";
 
   system.keyboard = {
-    # enableKeyMapping = true;
-    # remapCapsLockToControl = true;
+    enableKeyMapping = true;
+    remapCapsLockToControl = true;
   };
 
   fonts = { enableFontDir = true; };
 
-  services.yabai = {
+  services.nix-daemon = {
     enable = true;
+  };
+
+  homebrew = {
+    enable = true;
+    brewPrefix = "/opt/homebrew/bin";
+    global = {
+      brewfile = true;
+      noLock = true;
+    };
+
+    taps = [
+      "homebrew/bundle"
+      "homebrew/cask"
+      "homebrew/cask-versions"
+      "homebrew/core"
+
+      "michaeleisel/zld"
+    ];
+
+    brews = [
+      "michaeleisel/zld/zld"
+      "mas"
+    ];
+
+    casks = [
+      "discord"
+      "firefox"
+      "karabiner-elements"
+      "linearmouse"
+      "obsidian"
+      "sekey"
+    ];
+
+    # extraConfig = ''
+    #   cask "linearmouse", args: ["no-quarantine"]
+    # '';
+
+    masApps = {
+      "1Password 7" = 1333542190;
+      Developer = 640199958;
+      GrandPerspective = 1111570163;
+      "Key Codes" = 414568915;
+      Messenger = 1480068668;
+      Slack = 803453959;
+      Telegram = 747648890;
+      Xcode = 497799835;
+    };
+  };
+
+  services.yabai = {
+    enable = false;
     package = pkgs.yabai;
 
     # Had no luck with this, run:
@@ -147,16 +198,13 @@ with lib; {
   };
 
   services.skhd = {
-    enable = true;
+    enable = false;
     skhdConfig = ''
       # open alacritty
       cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
 
       # swap dark/light appearance
       alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
-
-      # disable mouse acceleration
-      cmd + alt - m : $HOME/dev/Repo/Private/oss/killmouseaccel/kma mouse
 
       # focus window
       cmd - h : yabai -m window --focus west
@@ -267,7 +315,7 @@ with lib; {
   };
 
   services.spacebar = {
-    enable = true;
+    enable = false;
     package = pkgs.spacebar;
     config = {
       title = "on";
@@ -383,7 +431,7 @@ with lib; {
     };
   };
 
-  home-manager.users.pontusnagy = { config, pkgs, ... }: {
+  home-manager.users.p1xelher0 = { config, pkgs, ... }: {
     home.stateVersion = "20.09";
 
     # nixpkgs.overlays = [
@@ -406,9 +454,9 @@ with lib; {
       fswatch
       gh
       gitAndTools.diff-so-fancy
-      gnupg
+      # gnupg
       jq
-      niv
+      # niv
       p7zip
       reattach-to-user-namespace
       ripgrep
@@ -469,7 +517,7 @@ with lib; {
         DOTS_BIN = "$HOME/dotfiles/bin";
         DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
         RESCRIPT_LSP =
-          "/Users/pontusnagy/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
+          "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
       };
 
       envExtra = ''
@@ -480,6 +528,10 @@ with lib; {
       initExtra = ''
         export PATH=$DOTS_BIN:$PATH
         export PATH=$DOTS_DARWIN_BIN:$PATH
+        export PATH=/opt/homebrew/bin:$PATH
+
+        export HOMEBREW_CASK_OPTS=--no-quarantine
+
         export PATH=$RESCRIPT_LSP:$PATH
         export RPROMPT=""
 
@@ -630,7 +682,7 @@ with lib; {
     programs.tmux = {
       enable = true;
 
-      extraConfig = builtins.readFile ./conf/tmux/tmux.conf;
+      extraConfig = builtins.readFile ./.config/tmux/tmux.conf;
 
       plugins = with pkgs; [
         {
@@ -696,7 +748,7 @@ with lib; {
       # package = pkgs.neovim-nightly;
       enable = true;
 
-      extraConfig = builtins.readFile ./conf/nvim/init.vim;
+      extraConfig = builtins.readFile ./.config/nvim/init.vim;
 
       withNodeJs = true;
 
@@ -707,9 +759,67 @@ with lib; {
       enable = true;
       package = pkgs.gitAndTools.gitFull;
       userName = "Pontus Nagy";
-      userEmail = "pontusnagy@gmail.com";
+      userEmail = "p_nagy@icloud.com";
       includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
     };
+
+    xdg.configFile."alacritty/dark.yml".text =
+      let
+        lightColors = {
+          colors = {
+            primary.foreground = "#080807";
+            primary.background = "#faeed7";
+
+            normal = {
+              black = "#faeed7";
+              red = "0xbf9d88";
+              green = "0x9da488";
+              yellow = "0xd1a47f";
+              blue = "#080807";
+              magenta = "#080807";
+              cyan = "#080807";
+              white = "#080807";
+            };
+
+            bright = {
+              black = "#c9bfad";
+              red = "#bf9d88";
+              green = "#9da488";
+              yellow = "#d1a47f";
+              blue = "#080807";
+              magenta = "#080807";
+              cyan = "#080807";
+              white = "#080807";
+            };
+
+            indexed_colors = [
+              {
+                index = 16;
+                color = "#f2e6d0";
+              }
+              {
+                index = 17;
+                color = "#ebdfca";
+              }
+              {
+                index = 18;
+                color = "#e3d7c3";
+              }
+              {
+                index = 19;
+                color = "#dbd0bd";
+              }
+              {
+                index = 20;
+                color = "#d4c9b6";
+              }
+            ];
+          };
+        };
+      in
+      builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+        (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+
 
     xdg.configFile."alacritty/light.yml".text =
       let
@@ -769,7 +879,7 @@ with lib; {
         (builtins.toJSON (config.programs.alacritty.settings // lightColors));
 
     programs.alacritty = {
-      enable = true;
+      enable = false;
 
       settings = {
         window = {

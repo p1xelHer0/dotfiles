@@ -85,16 +85,9 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   "n",
   "<Leader><Leader>r",
-  ":so $HOME/Dev/Repo/Private/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/init.vim<CR>",
+  ":so $HOME/code/github/p1xelHer0/ttwnty.vim/colors/ttwnty.vim<CR>:so $HOME/dotfiles/conf/nvim/init.vim<CR>",
   { noremap = true }
 )
-
--- vim.api.nvim_set_keymap(
---   "n",
---   "<Leader><Leader>f",
---   ":Neoformat<CR>",
---   { noremap = true }
--- )
 
 -- Telescope
 vim.api.nvim_set_keymap(

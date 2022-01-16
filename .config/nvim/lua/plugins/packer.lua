@@ -66,8 +66,8 @@ return packer.startup(function(use)
   }
 
   use {
-    -- "jose-elias-alvarez/null-ls.nvim",
-    "$HOME/dev/repo/private/oss/null-ls.nvim",
+    "jose-elias-alvarez/null-ls.nvim",
+    -- "$HOME/code/github/jose-elias-alvarez/null-ls.nvim",
     config = [[require('plugins.null-ls')]],
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   }
