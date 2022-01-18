@@ -1,5 +1,3 @@
-local telescope = require "telescope"
-
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
   return
@@ -18,6 +16,27 @@ telescope.setup {
         ["<C-u>"] = false,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+      },
+    },
+  },
+  pickers = {
+    find_files = {
+      find_command = {
+        "rg",
+        "--files",
+        "-.",
+        "--L",
+        "-g",
+        "'!.(git|obsidian)'",
+      },
+    },
+    live_grep = {
+      find_command = {
+        "rg",
+        "-.",
+        "--L",
+        "-g",
+        "'!.(git|obsidian)'",
       },
     },
   },

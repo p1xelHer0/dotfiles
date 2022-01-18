@@ -111,22 +111,25 @@ with lib; {
       "homebrew/cask"
       "homebrew/cask-versions"
       "homebrew/core"
-
       "michaeleisel/zld"
     ];
 
     brews = [
-      "michaeleisel/zld/zld"
       "mas"
+      "michaeleisel/zld/zld" # faster linker for Bevy development
+      "pam-reattach" # run Touch ID within tmux
     ];
 
     casks = [
       "discord"
       "firefox"
       "karabiner-elements"
+      "keycastr"
       "linearmouse"
       "obsidian"
+      "retroarch-metal"
       "sekey"
+      "spotify"
     ];
 
     # extraConfig = ''
@@ -141,6 +144,7 @@ with lib; {
       Messenger = 1480068668;
       Slack = 803453959;
       Telegram = 747648890;
+      Twitter = 1482454543;
       Xcode = 497799835;
     };
   };
@@ -198,118 +202,120 @@ with lib; {
   };
 
   services.skhd = {
-    enable = false;
+    enable = true;
     skhdConfig = ''
       # open alacritty
-      cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
+      # cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
+      #
+      cmd - return : open -n /Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
 
       # swap dark/light appearance
       alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
 
-      # focus window
-      cmd - h : yabai -m window --focus west
-      cmd - j : yabai -m window --focus south
-      cmd - k : yabai -m window --focus north
-      cmd - l : yabai -m window --focus east
-
-      # move window
-      shift + cmd - h : yabai -m window --warp west
-      shift + cmd - j : yabai -m window --warp south
-      shift + cmd - k : yabai -m window --warp north
-      shift + cmd - l : yabai -m window --warp east
-
-      # swap window
-      ctrl + cmd - h : yabai -m window --swap west
-      ctrl + cmd - j  : yabai -m window --swap south
-      ctrl + cmd - k : yabai -m window --swap north
-      ctrl + cmd - l : yabai -m window --swap east
-
-      # balance size of windows
-      shift + cmd - 0 : yabai -m space --balance
-
-      # increase window size
-      shift + alt - a : yabai -m window --resize left:-20:0
-      shift + alt - s : yabai -m window --resize bottom:0:20
-      shift + alt - w : yabai -m window --resize top:0:-20
-      shift + alt - d : yabai -m window --resize right:20:0
-
-      # decrease window size
-      shift + cmd - a : yabai -m window --resize left:20:0
-      shift + cmd - s : yabai -m window --resize bottom:0:-20
-      shift + cmd - w : yabai -m window --resize top:0:20
-      shift + cmd - d : yabai -m window --resize right:-20:0
-
-      # create desktop
-      shift + cmd - n : yabai -m space --create
-
-      # destroy desktop
-      ctrl + cmd - w : yabai -m space --destroy
-
-      # fast focus desktop
-      ctrl + cmd - space : yabai -m space --focus last
-      ctrl - right : yabai -m space --focus next
-      ctrl - left : yabai -m space --focus prev
-      ctrl - f1 : yabai -m space --focus 1
-      ctrl - f2 : yabai -m space --focus 2
-      ctrl - f3 : yabai -m space --focus 3
-      ctrl - f4 : yabai -m space --focus 4
-      ctrl - f5 : yabai -m space --focus 5
-      ctrl - f6 : yabai -m space --focus 6
-      ctrl - f7 : yabai -m space --focus 7
-      ctrl - f8 : yabai -m space --focus 8
-      ctrl - f9 : yabai -m space --focus 9
-      ctrl - f10 : yabai -m space --focus 10
-      ctrl - f11 : yabai -m space --focus 11
-      ctrl - f12 : yabai -m space --focus 12
-
-      # send window to desktop and follow focus
-      shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
-      shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
-      shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
-      shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
-      shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
-      shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
-      shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
-      shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
-      shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
-      shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
-
-      # focus monitor
-      # ctrl + cmd - e  : yabai -m display --focus 1
-      # ctrl + cmd - r  : yabai -m display --focus 2
-
-      # send window to monitor and follow focus
-      # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
-      # ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
-      # ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
-
-      # rotate tree
-      alt - r : yabai -m space --rotate 90
-
-      # mirror tree y-axis
-      alt - y : yabai -m space --mirror y-axis
-
-      # mirror tree x-axis
-      alt - x : yabai -m space --mirror x-axis
-
-      # toggle desktop offset
-      alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
-
-      # toggle window parent zoom
-      alt - d : yabai -m window --toggle zoom-parent
-
-      # toggle window fullscreen zoom
-      alt - f : yabai -m window --toggle zoom-fullscreen
-
-      # toggle window border
-      alt - b : yabai -m window --toggle border
-
-      # toggle window split type
-      alt - e : yabai -m window --toggle split
-
-      # float / unfloat window and center on screen
-      alt - t : yabai -m window --toggle float;\
-                yabai -m window --grid 4:4:1:1:2:2
+      # # focus window
+      # cmd - h : yabai -m window --focus west
+      # cmd - j : yabai -m window --focus south
+      # cmd - k : yabai -m window --focus north
+      # cmd - l : yabai -m window --focus east
+      #
+      # # move window
+      # shift + cmd - h : yabai -m window --warp west
+      # shift + cmd - j : yabai -m window --warp south
+      # shift + cmd - k : yabai -m window --warp north
+      # shift + cmd - l : yabai -m window --warp east
+      #
+      # # swap window
+      # ctrl + cmd - h : yabai -m window --swap west
+      # ctrl + cmd - j  : yabai -m window --swap south
+      # ctrl + cmd - k : yabai -m window --swap north
+      # ctrl + cmd - l : yabai -m window --swap east
+      #
+      # # balance size of windows
+      # shift + cmd - 0 : yabai -m space --balance
+      #
+      # # increase window size
+      # shift + alt - a : yabai -m window --resize left:-20:0
+      # shift + alt - s : yabai -m window --resize bottom:0:20
+      # shift + alt - w : yabai -m window --resize top:0:-20
+      # shift + alt - d : yabai -m window --resize right:20:0
+      #
+      # # decrease window size
+      # shift + cmd - a : yabai -m window --resize left:20:0
+      # shift + cmd - s : yabai -m window --resize bottom:0:-20
+      # shift + cmd - w : yabai -m window --resize top:0:20
+      # shift + cmd - d : yabai -m window --resize right:-20:0
+      #
+      # # create desktop
+      # shift + cmd - n : yabai -m space --create
+      #
+      # # destroy desktop
+      # ctrl + cmd - w : yabai -m space --destroy
+      #
+      # # fast focus desktop
+      # ctrl + cmd - space : yabai -m space --focus last
+      # ctrl - right : yabai -m space --focus next
+      # ctrl - left : yabai -m space --focus prev
+      # ctrl - f1 : yabai -m space --focus 1
+      # ctrl - f2 : yabai -m space --focus 2
+      # ctrl - f3 : yabai -m space --focus 3
+      # ctrl - f4 : yabai -m space --focus 4
+      # ctrl - f5 : yabai -m space --focus 5
+      # ctrl - f6 : yabai -m space --focus 6
+      # ctrl - f7 : yabai -m space --focus 7
+      # ctrl - f8 : yabai -m space --focus 8
+      # ctrl - f9 : yabai -m space --focus 9
+      # ctrl - f10 : yabai -m space --focus 10
+      # ctrl - f11 : yabai -m space --focus 11
+      # ctrl - f12 : yabai -m space --focus 12
+      #
+      # # send window to desktop and follow focus
+      # shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
+      # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+      # shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
+      # shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
+      # shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
+      # shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
+      # shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
+      # shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
+      # shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
+      # shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
+      #
+      # # focus monitor
+      # # ctrl + cmd - e  : yabai -m display --focus 1
+      # # ctrl + cmd - r  : yabai -m display --focus 2
+      #
+      # # send window to monitor and follow focus
+      # # ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+      # # ctrl + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
+      # # ctrl + cmd - 3  : yabai -m window --display 3; yabai -m display --focus 3
+      #
+      # # rotate tree
+      # alt - r : yabai -m space --rotate 90
+      #
+      # # mirror tree y-axis
+      # alt - y : yabai -m space --mirror y-axis
+      #
+      # # mirror tree x-axis
+      # alt - x : yabai -m space --mirror x-axis
+      #
+      # # toggle desktop offset
+      # alt - a : yabai -m space --toggle padding; yabai -m space --toggle gap
+      #
+      # # toggle window parent zoom
+      # alt - d : yabai -m window --toggle zoom-parent
+      #
+      # # toggle window fullscreen zoom
+      # alt - f : yabai -m window --toggle zoom-fullscreen
+      #
+      # # toggle window border
+      # alt - b : yabai -m window --toggle border
+      #
+      # # toggle window split type
+      # alt - e : yabai -m window --toggle split
+      #
+      # # float / unfloat window and center on screen
+      # alt - t : yabai -m window --toggle float;\
+      #           yabai -m window --grid 4:4:1:1:2:2
     '';
 
   };
@@ -406,7 +412,7 @@ with lib; {
             alacrittySwitchTheme() {
               DIR=${homeDir}/.config/alacritty
               if [[  $MODE == "dark"  ]]; then
-                cp -f $DIR/alacritty.yml $DIR/live.yml
+                cp -f $DIR/dark.yml $DIR/live.yml
               elif [[  $MODE == "light"  ]]; then
                 cp -f $DIR/light.yml $DIR/live.yml
               fi
@@ -434,29 +440,28 @@ with lib; {
   home-manager.users.p1xelher0 = { config, pkgs, ... }: {
     home.stateVersion = "20.09";
 
-    # nixpkgs.overlays = [
-    #   (
-    #     import (
-    #       builtins.fetchTarball {
-    #         url =
-    #           "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    #       }
-    #     )
-    #   )
-    # ];
+    nixpkgs.overlays = [
+      (
+        import (
+          builtins.fetchTarball {
+            url =
+              "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+          }
+        )
+      )
+    ];
 
     home.packages = with pkgs; [
+      # Fonts
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+
+      # Tools
       cachix
       curl
       direnv
       fasd
-      flyctl
       fswatch
-      gh
-      gitAndTools.diff-so-fancy
-      # gnupg
       jq
-      # niv
       p7zip
       reattach-to-user-namespace
       ripgrep
@@ -465,14 +470,16 @@ with lib; {
       tree-sitter
       watchman
       wget
-
       htop
-      # irssi
-      # protonmail-bridge
-      # spotify-tui
-      # weechat
 
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      # Git
+      gh
+      gitAndTools.diff-so-fancy
+      lazygit
+
+      # fly.io
+      flyctl
+
 
       # Nix
       nixfmt
@@ -498,10 +505,17 @@ with lib; {
       rust-analyzer
 
       # Lua
+      sumneko-lua-language-server
       stylua
 
       #BQN
       cbqn
+
+      # Media
+      # irssi
+      # protonmail-bridge
+      # spotify-tui
+      # weechat
     ];
 
     programs.zsh = {
@@ -685,15 +699,6 @@ with lib; {
       extraConfig = builtins.readFile ./.config/tmux/tmux.conf;
 
       plugins = with pkgs; [
-        {
-          plugin = tmuxPlugins.battery;
-          extraConfig = ''
-            set -g @batt_charged_icon " *"
-            set -g @batt_charging_icon " +"
-            set -g @batt_discharging_icon " -"
-            set -g @batt_attached_icon " !"
-          '';
-        }
         tmuxPlugins.resurrect
         {
           plugin = tmuxPlugins.continuum;
@@ -710,7 +715,7 @@ with lib; {
 
       enableZshIntegration = true;
 
-      defaultCommand = "rg --files --hidden --follow -g '!.obsidian'";
+      defaultCommand = "rg --files --hidden --follow --glob '!.(git|obsidian)'";
       defaultOptions = [
         "--color=fg:-1"
         # "--color=bg:0"
@@ -733,12 +738,12 @@ with lib; {
         "--reverse --no-bold --no-unicode --preview-window=hidden"
       ];
 
-      fileWidgetCommand = "rg --files --hidden --follow -g '!.obsidian'";
+      fileWidgetCommand = "rg --files --hidden --follow --glob '!.(git|obsidian)'";
       fileWidgetOptions = [
         "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
       ];
 
-      changeDirWidgetCommand = "rg --files --hidden --follow -g '!.obsidian'";
+      changeDirWidgetCommand = "rg --files --hidden --follow --glob '!.(git|obsidian)'";
       changeDirWidgetOptions = [ ];
 
       historyWidgetOptions = [ ];
@@ -760,65 +765,70 @@ with lib; {
       package = pkgs.gitAndTools.gitFull;
       userName = "Pontus Nagy";
       userEmail = "p_nagy@icloud.com";
-      includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
+      includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
     };
 
     xdg.configFile."alacritty/dark.yml".text =
       let
-        lightColors = {
+        darkColors = {
           colors = {
-            primary.foreground = "#080807";
-            primary.background = "#faeed7";
+            primary.background = "0x080807";
+            primary.foreground = "0xb5a488";
+
+            cursor = {
+              cursor = "0xffffff";
+              text = "0x080807";
+            };
 
             normal = {
-              black = "#faeed7";
+              black = "0x080807";
               red = "0xbf9d88";
               green = "0x9da488";
               yellow = "0xd1a47f";
-              blue = "#080807";
-              magenta = "#080807";
-              cyan = "#080807";
-              white = "#080807";
+              blue = "0xb5a488";
+              magenta = "0xb5a488";
+              cyan = "0xb5a488";
+              white = "0xb5a488";
             };
 
             bright = {
-              black = "#c9bfad";
-              red = "#bf9d88";
-              green = "#9da488";
-              yellow = "#d1a47f";
-              blue = "#080807";
-              magenta = "#080807";
-              cyan = "#080807";
-              white = "#080807";
+              black = "0x30302c";
+              red = "0xb5a488";
+              green = "0xb5a488";
+              yellow = "0xb5a488";
+              blue = "0xb5a488";
+              magenta = "0xb5a488";
+              cyan = "0xb5a488";
+              white = "0xb5a488";
             };
 
             indexed_colors = [
               {
                 index = 16;
-                color = "#f2e6d0";
+                color = "0x0d0d0b";
               }
               {
                 index = 17;
-                color = "#ebdfca";
+                color = "0x121210";
               }
               {
                 index = 18;
-                color = "#e3d7c3";
+                color = "0x1a1917";
               }
               {
                 index = 19;
-                color = "#dbd0bd";
+                color = "0x242320";
               }
               {
                 index = 20;
-                color = "#d4c9b6";
+                color = "0x2b2b27";
               }
             ];
           };
         };
       in
       builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-        (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+        (builtins.toJSON (config.programs.alacritty.settings // darkColors));
 
 
     xdg.configFile."alacritty/light.yml".text =
@@ -908,7 +918,7 @@ with lib; {
         };
 
         font = {
-          size = 14;
+          size = 16;
 
           normal = {
             family = "JetBrainsMono Nerd Font Mono";
@@ -949,61 +959,6 @@ with lib; {
           };
 
           use_thin_strokes = true;
-        };
-
-        colors = {
-          primary.background = "0x080807";
-          primary.foreground = "0xb5a488";
-
-          cursor = {
-            cursor = "0xffffff";
-            text = "0x080807";
-          };
-
-          normal = {
-            black = "0x080807";
-            red = "0xbf9d88";
-            green = "0x9da488";
-            yellow = "0xd1a47f";
-            blue = "0xb5a488";
-            magenta = "0xb5a488";
-            cyan = "0xb5a488";
-            white = "0xb5a488";
-          };
-
-          bright = {
-            black = "0x30302c";
-            red = "0xb5a488";
-            green = "0xb5a488";
-            yellow = "0xb5a488";
-            blue = "0xb5a488";
-            magenta = "0xb5a488";
-            cyan = "0xb5a488";
-            white = "0xb5a488";
-          };
-
-          indexed_colors = [
-            {
-              index = 16;
-              color = "0x0d0d0b";
-            }
-            {
-              index = 17;
-              color = "0x121210";
-            }
-            {
-              index = 18;
-              color = "0x1a1917";
-            }
-            {
-              index = 19;
-              color = "0x242320";
-            }
-            {
-              index = 20;
-              color = "0x2b2b27";
-            }
-          ];
         };
 
         key_bindings = [

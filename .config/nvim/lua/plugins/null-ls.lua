@@ -8,7 +8,7 @@ local on_attach = require "lsp.settings.on_attach"
 local sources = {
   null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.stylua,
-  null_ls.builtins.formatting.ocamlformat,
+  -- null_ls.builtins.formatting.ocamlformat,
 }
 
 null_ls.setup { sources = sources, on_attach = on_attach }
