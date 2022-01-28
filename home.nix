@@ -33,8 +33,6 @@
     nodePackages.vscode-json-languageserver-bin
     nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-css-languageserver-bin
-    # nodePackages.typescript
-    # nodePackages.typescript-language-server
 
     # Azure
     azure-cli

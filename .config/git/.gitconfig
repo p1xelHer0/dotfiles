@@ -1,5 +1,7 @@
 [core]
 	autocrlf = input
+[init]
+	defaultBranch = main
 [color]
 	ui = auto
 [color "status"]

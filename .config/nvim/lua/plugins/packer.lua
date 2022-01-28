@@ -67,7 +67,7 @@ return packer.startup(function(use)
 
   use {
     "jose-elias-alvarez/null-ls.nvim",
-    -- "$HOME/dev/repo/private/oss/null-ls.nvim",
+    -- "$HOME/code/github/jose-elias-alvarez/null-ls.nvim",
     config = [[require('plugins.null-ls')]],
     requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   }
@@ -167,23 +167,9 @@ return packer.startup(function(use)
   use { "pangloss/vim-javascript", ft = "javascript" }
   use { "leafgarland/typescript-vim", ft = "typescript" }
 
-  -- use { "ocaml/vim-ocaml", ft = "ocaml" }
-  -- use { "ocaml/merlin", ft = "ocaml" }
-
   -- use { "rescript-lang/vim-rescript", ft = "rescript" }
-
-  -- use { "rust-lang/rust.vim", ft = "rust" }
-  -- use { "simrat39/rust-tools.nvim", ft = "rust" }
-
-  -- use { "neovimhaskell/haskell-vim", ft = "haskell" }
 
   -- use { "jparise/vim-graphql" }
 
   use { "LnL7/vim-nix", ft = "nix" }
-
-  -- use { "mlochbaum/BQN", rtp = "editors/vim", ft = "bqn" }
-  -- use {
-  --   "https://git.sr.ht/~detegr/nvim-bqn",
-  --   ft = "bqn",
-  -- }
 end)

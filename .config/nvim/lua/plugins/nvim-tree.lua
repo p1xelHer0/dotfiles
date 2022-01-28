@@ -3,4 +3,6 @@ if not status_ok then
   return
 end
 
-nvim_tree.setup {}
+nvim_tree.setup {
+  git = { ignore = false },
+}

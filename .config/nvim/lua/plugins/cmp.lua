@@ -26,7 +26,10 @@ cmp.setup {
     { name = "nvim_lua" },
   }, {
     { name = "buffer" },
-  }),
+  }, {
+    { name = "crates" },
+  }
+),
 
   snippet = {
     expand = function(args)
