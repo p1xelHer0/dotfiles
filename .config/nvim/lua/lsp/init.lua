@@ -1,0 +1,7 @@
+require "lsp.css"
+require "lsp.html"
+require "lsp.json"
+require "lsp.lua"
+require "lsp.nix"
+require "lsp.rescript"
+require "lsp.typescript"
