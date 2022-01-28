@@ -13,6 +13,7 @@
     curl
     fasd
     gitAndTools.diff-so-fancy
+    lazygit
     jq
     ripgrep
     tree-sitter
@@ -32,8 +33,8 @@
     nodePackages.vscode-json-languageserver-bin
     nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-css-languageserver-bin
-    nodePackages.typescript
-    nodePackages.typescript-language-server
+    # nodePackages.typescript
+    # nodePackages.typescript-language-server
 
     # Azure
     azure-cli
@@ -65,6 +66,7 @@
     shellAliases = {
       "l" = "clear";
       ":q" = "tmux kill-pane";
+
 
       v = "nvim";
       vim = "nvim";
