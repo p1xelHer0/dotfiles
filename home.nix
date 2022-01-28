@@ -152,7 +152,7 @@
   programs.tmux = {
     enable = true;
 
-    extraConfig = builtins.readFile ~/dotfiles/conf/tmux/tmux.conf;
+    extraConfig = builtins.readFile ~/dotfiles/.config/tmux/tmux.conf;
   };
 
   programs.fzf = {
@@ -197,7 +197,7 @@
   programs.neovim = {
     enable = true;
 
-    extraConfig = builtins.readFile ~/dotfiles/conf/nvim/init.vim;
+    extraConfig = builtins.readFile ~/dotfiles/.config/nvim/init.vim;
 
     withNodeJs = true;
 
@@ -209,6 +209,6 @@
     package = pkgs.gitAndTools.gitFull;
     userName = "Pontus Nagy";
     userEmail = "pontus.nagy@aspia.se";
-    includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
+    includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
   };
 }
