@@ -54,23 +54,23 @@ vim.api.nvim_set_keymap("i", "<Right>", "<NOP>", {})
 
 vim.api.nvim_set_keymap("n", "Y", "0Y", { noremap = true })
 
-function _G.smart_yank(k)
-  return 'my"' .. vim.api.nvim_eval "v:register" .. k .. "`y"
-end
-
-vim.api.nvim_set_keymap(
-  "v",
-  "y",
-  'v:lua.smart_yank("y")',
-  { expr = true, noremap = true }
-)
-
-vim.api.nvim_set_keymap(
-  "v",
-  "y",
-  'v:lua.smart_yank("Y")',
-  { expr = true, noremap = true }
-)
+-- function _G.smart_yank(k)
+--   return 'my"' .. vim.api.nvim_eval "v:register" .. k .. "`y"
+-- end
+--
+-- vim.api.nvim_set_keymap(
+--   "v",
+--   "y",
+--   'v:lua.smart_yank("y")',
+--   { expr = true, noremap = true }
+-- )
+--
+-- vim.api.nvim_set_keymap(
+--   "v",
+--   "y",
+--   'v:lua.smart_yank("Y")',
+--   { expr = true, noremap = true }
+-- )
 
 vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true })
@@ -113,7 +113,7 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
   "n",
-  "<C-'>",
+  "<Leader>p",
   [[<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>]],
   { noremap = true, silent = true }
 )
@@ -169,7 +169,6 @@ vim.api.nvim_set_keymap(
 )
 
 vim.api.nvim_set_keymap("n", "ga", "<Plug>(EasyAlign)", { silent = true })
-
 vim.api.nvim_set_keymap("x", "ga", "<Plug>(EasyAlign)", { silent = true })
 
 vim.api.nvim_set_keymap(

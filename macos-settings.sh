@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# ask for the administrator password upfront
 sudo -v
-
-# keep-alive: update existing `sudo` time stamp until `set-defaults.sh` has finished
-# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # disable the sound effects on boot (sudo nvram -d SystemAudioVolume to turn on again)
 sudo nvram SystemAudioVolume=%80
@@ -15,15 +11,28 @@ sudo pmset -a standbydelay 86400
 # opening and closing windows and popovers
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 
-# always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# disable animations when opening a Quick Look window.
+defaults write -g QLPanelAnimationDuration -float 0
+
+# show scrollbars only when scrolling
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # possible values: `WhenScrolling`, `Automatic` and `Always`
 
-# disable smooth scrolling
-defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+# enable smooth scrolling
+defaults write NSGlobalDomain NSScrollAnimationEnabled -bool true
 
 # increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# disable animations when opening application from the Dock
+defaults write com.apple.dock launchanim -bool false
+
+# make all animations faster that are used by Mission Control
+defaults write com.apple.dock expose-animation-duration -float 0.1
+
+# disable the animation when you sending and replying an e-mail
+defaults write com.apple.mail DisableReplyAnimations -bool true
+defaults write com.apple.mail DisableSendAnimations -bool true
 
 # expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -36,16 +45,9 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# reveal IP address, hostname, OS version, etc. when clicking the clock
-# in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
 # require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-# save screenshots to the $HOME/screenshots
-defaults write com.apple.screencapture location -string "$HOME/screenshots"
 
 # save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -59,12 +61,15 @@ defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 # visualize CPU usage in the Activity Monitor Dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
 
-# hhow all processes in Activity Monitor
+# show all processes in Activity Monitor
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 # sort Activity Monitor results by CPU usage
 defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+
+### Finder
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
@@ -74,13 +79,13 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
-# finder: disable window animations and Get Info animations
+# Finder: disable window animations and Get Info animations
 defaults write com.apple.finder DisableAllAnimations -bool true
 
-# finder: show hidden files by default
+# Finder: show hidden files by default
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
-# finder: show status bar
+# Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
 
 # display full POSIX path as Finder window title
@@ -153,14 +158,8 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
            kill all "${app}" > /dev/null 2>&1
 done
 
-# wait a bit before moving on...
 sleep 1
 
-# ...and then
-echo "Success! Defaults are set."
-echo "Some changes will not take effect until you reboot your machine."
-
-# see if the user wants to reboot
 function reboot() {
   read -p "Do you want to reboot your computer now? (y/N)" choice
   case "$choice" in
@@ -170,10 +169,8 @@ function reboot() {
   esac
 }
 
-# call on the function
 if [[ "Yes" == $(reboot) ]]
 then
-  echo "Rebooting."
   sudo reboot
   exit 0
 else

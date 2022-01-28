@@ -21,22 +21,11 @@ telescope.setup {
   },
   pickers = {
     find_files = {
-      find_command = {
-        "rg",
-        "--files",
-        "-.",
-        "--L",
-        "-g",
-        "'!.(git|obsidian)'",
-      },
+      hidden = true,
     },
     live_grep = {
       find_command = {
-        "rg",
-        "-.",
-        "--L",
-        "-g",
-        "'!.(git|obsidian)'",
+        hidden = true,
       },
     },
   },

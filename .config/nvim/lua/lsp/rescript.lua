@@ -4,7 +4,7 @@ local capabilities = require "lsp.settings.capabilities"
 local on_attach = require "lsp.settings.on_attach"
 
 local rescript_server_binary =
-  "/Users/pontusnagy/.local/share/nvim/site/pack/packer/opt/vim-rescript/server/out/server.js"
+  "/Users/p1xelher0/.vscode/extensions/chenglou92.rescript-vscode-1.2.0/server/out/server.js"
 
 nvim_lsp.rescriptls.setup {
   cmd = {

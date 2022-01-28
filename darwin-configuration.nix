@@ -9,7 +9,7 @@ with pkgs.stdenv;
 with lib; {
   imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
-  environment.systemPackages = [ pkgs.lorri pkgs.zsh ];
+  environment.systemPackages = with pkgs; [ nixUnstable zsh ];
 
   # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
   environment.darwinConfig = "${homeDir}/dotfiles/darwin-configuration.nix";
@@ -37,7 +37,7 @@ with lib; {
       tilesize = 64;
     };
 
-    screencapture.location = "${homeDir}/screenshots";
+    screencapture.location = "${homeDir}/Pictures/screenshots";
 
     finder = {
       AppleShowAllExtensions = true;
@@ -112,24 +112,36 @@ with lib; {
       "homebrew/cask-versions"
       "homebrew/core"
       "michaeleisel/zld"
+      "qmk/qmk"
     ];
 
     brews = [
       "mas"
       "michaeleisel/zld/zld" # faster linker for Bevy development
       "pam-reattach" # run Touch ID within tmux
+      "qmk/qmk/qmk"
+      "sdl2"
+      "sdl2_image"
+      "sdl2_ttf"
     ];
 
     casks = [
+      "alt-tab"
       "discord"
+      "docker"
       "firefox"
+      "gpg-suite-no-mail"
+      "hammerspoon"
       "karabiner-elements"
       "keycastr"
       "linearmouse"
+      "obs"
       "obsidian"
       "retroarch-metal"
-      "sekey"
+      "secretive"
       "spotify"
+      "visual-studio-code"
+      "vlc"
     ];
 
     # extraConfig = ''
@@ -363,21 +375,21 @@ with lib; {
   '';
 
   launchd.user.agents = {
-    "lorri" = {
-      serviceConfig = {
-        WorkingDirectory = (builtins.getEnv "HOME");
-        EnvironmentVariables = { };
-        KeepAlive = true;
-        RunAtLoad = true;
-        StandardOutPath = "/var/tmp/lorri.log";
-        StandardErrorPath = "/var/tmp/lorri.log";
-      };
-      script = ''
-        source ${config.system.build.setEnvironment}
-        exec ${pkgs.lorri}/bin/lorri daemon
-      '';
-    };
-
+  #   "lorri" = {
+  #     serviceConfig = {
+  #       WorkingDirectory = (builtins.getEnv "HOME");
+  #       EnvironmentVariables = { };
+  #       KeepAlive = true;
+  #       RunAtLoad = true;
+  #       StandardOutPath = "/var/tmp/lorri.log";
+  #       StandardErrorPath = "/var/tmp/lorri.log";
+  #     };
+  #     script = ''
+  #       source ${config.system.build.setEnvironment}
+  #       exec ${pkgs.lorri}/bin/lorri daemon
+  #     '';
+  #   };
+  #
     "nighthook" = {
       serviceConfig = {
         Label = "ae.cmacr.nighthook";
@@ -440,15 +452,26 @@ with lib; {
   home-manager.users.p1xelher0 = { config, pkgs, ... }: {
     home.stateVersion = "20.09";
 
+    xdg.configFile."nix/nix.conf".text = ''
+      experimental-features = nix-command flakes
+    '';
+
     nixpkgs.overlays = [
-      (
-        import (
-          builtins.fetchTarball {
-            url =
-              "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-          }
-        )
-      )
+      # (
+      #   import (
+      #     builtins.fetchTarball {
+      #       url =
+      #         "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+      #     }
+      #   )
+      # )
+      (self: super: {
+        # https://github.com/nmattia/niv/issues/332#issuecomment-958449218
+        niv =
+          self.haskell.lib.compose.overrideCabal
+            (drv: { enableSeparateBinOutput = false; })
+            super.haskellPackages.niv;
+      })
     ];
 
     home.packages = with pkgs; [
@@ -458,7 +481,6 @@ with lib; {
       # Tools
       cachix
       curl
-      direnv
       fasd
       fswatch
       jq
@@ -470,7 +492,6 @@ with lib; {
       tree-sitter
       watchman
       wget
-      htop
 
       # Git
       gh
@@ -480,15 +501,14 @@ with lib; {
       # fly.io
       flyctl
 
-
       # Nix
+      niv
       nixfmt
       rnix-lsp
 
       # Web
       fnm
       nodePackages.yarn
-      nodePackages.pnpm
       nodePackages.vercel
       nodePackages.prettier
       nodePackages.vscode-json-languageserver-bin
@@ -498,11 +518,15 @@ with lib; {
       nodePackages.typescript-language-server
 
       # OCaml
-      opam
+      # opam
 
       # Rust
-      rustup
+      # rustup
       rust-analyzer
+
+      # TOML
+      taplo-cli
+      taplo-lsp
 
       # Lua
       sumneko-lua-language-server
@@ -542,9 +566,9 @@ with lib; {
       initExtra = ''
         export PATH=$DOTS_BIN:$PATH
         export PATH=$DOTS_DARWIN_BIN:$PATH
-        export PATH=/opt/homebrew/bin:$PATH
+        export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
-        export HOMEBREW_CASK_OPTS=--no-quarantine
+        export PATH=/opt/homebrew/bin:$PATH
 
         export PATH=$RESCRIPT_LSP:$PATH
         export RPROMPT=""
@@ -559,11 +583,11 @@ with lib; {
 
         eval "$(fasd --init auto)"
 
-        eval "$(fnm env)"
-
         eval "$(direnv hook zsh)"
 
-        eval "$(opam env)"
+        eval "$(fnm env)"
+
+        # eval "$(opam env)"
 
         # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
@@ -766,6 +790,14 @@ with lib; {
       userName = "Pontus Nagy";
       userEmail = "p_nagy@icloud.com";
       includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
+    };
+
+    programs.direnv = {
+      enable = true;
+
+      nix-direnv = {
+        enable = true;
+      };
     };
 
     xdg.configFile."alacritty/dark.yml".text =
