@@ -1,18 +1,24 @@
 [core]
-	autocrlf = input
+  autocrlf = input
+  pager = delta
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers-left-format = "{np:^4} "
+  line-numbers-right-format = " {np:^4}"
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
 [color]
-	ui = auto
+  ui = auto
 [color "status"]
-	added = 2
-	changed = 3
-	untracked = 4
+  added = 2
+  changed = 3
+  untracked = 4
 [color "branch"]
-	remote = 6
-[credential]
-	helper = store --file ~/.git-credentials
-	helper = cache --timeout 86400
-[pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
-	show = diff-so-fancy | less --tabs=1,5 -RFX
+  remote = 6

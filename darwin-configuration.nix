@@ -126,10 +126,12 @@ with lib; {
     ];
 
     casks = [
+      "1password-cli"
       "alt-tab"
       "discord"
       "docker"
       "firefox"
+      "google-chrome"
       "gpg-suite-no-mail"
       "hammerspoon"
       "karabiner-elements"
@@ -375,21 +377,21 @@ with lib; {
   '';
 
   launchd.user.agents = {
-  #   "lorri" = {
-  #     serviceConfig = {
-  #       WorkingDirectory = (builtins.getEnv "HOME");
-  #       EnvironmentVariables = { };
-  #       KeepAlive = true;
-  #       RunAtLoad = true;
-  #       StandardOutPath = "/var/tmp/lorri.log";
-  #       StandardErrorPath = "/var/tmp/lorri.log";
-  #     };
-  #     script = ''
-  #       source ${config.system.build.setEnvironment}
-  #       exec ${pkgs.lorri}/bin/lorri daemon
-  #     '';
-  #   };
-  #
+    #   "lorri" = {
+    #     serviceConfig = {
+    #       WorkingDirectory = (builtins.getEnv "HOME");
+    #       EnvironmentVariables = { };
+    #       KeepAlive = true;
+    #       RunAtLoad = true;
+    #       StandardOutPath = "/var/tmp/lorri.log";
+    #       StandardErrorPath = "/var/tmp/lorri.log";
+    #     };
+    #     script = ''
+    #       source ${config.system.build.setEnvironment}
+    #       exec ${pkgs.lorri}/bin/lorri daemon
+    #     '';
+    #   };
+    #
     "nighthook" = {
       serviceConfig = {
         Label = "ae.cmacr.nighthook";
@@ -483,11 +485,13 @@ with lib; {
       curl
       fasd
       fswatch
+      htop
       jq
       p7zip
       reattach-to-user-namespace
       ripgrep
       shellcheck
+      simple-http-server
       tree
       tree-sitter
       watchman
@@ -495,8 +499,7 @@ with lib; {
 
       # Git
       gh
-      gitAndTools.diff-so-fancy
-      lazygit
+      delta
 
       # fly.io
       flyctl
@@ -518,10 +521,10 @@ with lib; {
       nodePackages.typescript-language-server
 
       # OCaml
-      # opam
+      opam
 
       # Rust
-      # rustup
+      rustup
       rust-analyzer
 
       # TOML
@@ -534,6 +537,7 @@ with lib; {
 
       #BQN
       cbqn
+
 
       # Media
       # irssi
@@ -567,6 +571,7 @@ with lib; {
         export PATH=$DOTS_BIN:$PATH
         export PATH=$DOTS_DARWIN_BIN:$PATH
         export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+        export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
         export PATH=/opt/homebrew/bin:$PATH
 
@@ -583,11 +588,11 @@ with lib; {
 
         eval "$(fasd --init auto)"
 
-        eval "$(direnv hook zsh)"
+        # eval "$(direnv hook zsh)"
 
         eval "$(fnm env)"
 
-        # eval "$(opam env)"
+        eval "$(opam env)"
 
         # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
@@ -925,8 +930,8 @@ with lib; {
 
       settings = {
         window = {
-          padding.x = 30;
-          padding.y = 30;
+          padding.x = 16;
+          padding.y = 16;
 
           decorations = "buttonless";
           startup_mode = "Windowed";

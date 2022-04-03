@@ -133,12 +133,12 @@ return packer.startup(function(use)
     },
     config = [[require('plugins.gitsigns')]],
   }
-  use {
-    "p00f/nvim-ts-rainbow",
-    requires = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-  }
+  -- use {
+  --   "p00f/nvim-ts-rainbow",
+  --   requires = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  -- }
 
   use {
     "pwntester/octo.nvim",
