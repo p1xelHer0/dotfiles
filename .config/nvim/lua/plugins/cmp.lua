@@ -28,8 +28,7 @@ cmp.setup {
     { name = "buffer" },
   }, {
     { name = "crates" },
-  }
-),
+  }),
 
   snippet = {
     expand = function(args)

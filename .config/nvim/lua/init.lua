@@ -204,28 +204,6 @@ vim.opt.runtimepath:append "<SHARE_DIR>/merlin/vim"
 
 vim.g.ditto_dir = "$HOME/dotfiles/conf/ditto"
 
-vim.g.nvim_tree_icons = {
-  git = {
-    deleted = "-",
-    renamed = '"',
-    staged = "^",
-    unmerged = "=",
-    unstaged = "~",
-    untracked = "+",
-    ignored = "",
-  },
-  folder = {
-    arrow_closed = "",
-    arrow_open = "",
-    default = "/",
-    open = "—",
-    empty = "\\",
-    empty_open = "-",
-    symlink = ">",
-    symlink_open = "v",
-  },
-}
-
 local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
 
 if parsers_ok then

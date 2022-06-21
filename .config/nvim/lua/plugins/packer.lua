@@ -126,13 +126,14 @@ return packer.startup(function(use)
     "folke/twilight.nvim",
     config = [[require('plugins.twilight')]],
   }
+
   use {
     "lewis6991/gitsigns.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
+    requires = "nvim-lua/plenary.nvim",
     config = [[require('plugins.gitsigns')]],
   }
+  use { "rhysd/git-messenger.vim" }
+
   -- use {
   --   "p00f/nvim-ts-rainbow",
   --   requires = {

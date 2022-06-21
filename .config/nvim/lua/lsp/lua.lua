@@ -23,6 +23,9 @@ nvim_lsp.sumneko_lua.setup {
       telemetry = {
         enable = false,
       },
+      format = {
+        enable = false,
+      },
     },
   },
   capabilities = capabilities,

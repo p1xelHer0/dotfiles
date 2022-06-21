@@ -9,6 +9,15 @@ with pkgs.stdenv;
 with lib; {
   imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
+
+  nixpkgs.overlays = [
+    (
+      import (builtins.fetchTarball {
+        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+      })
+    )
+  ];
+
   environment.systemPackages = with pkgs; [ nixUnstable zsh ];
 
   # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
@@ -92,7 +101,11 @@ with lib; {
     remapCapsLockToControl = true;
   };
 
-  fonts = { enableFontDir = true; };
+  fonts = {
+    fontDir = {
+      enable = true;
+    };
+  };
 
   services.nix-daemon = {
     enable = true;
@@ -219,9 +232,7 @@ with lib; {
     enable = true;
     skhdConfig = ''
       # open alacritty
-      # cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
-      #
-      cmd - return : open -n /Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
+      cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
 
       # swap dark/light appearance
       alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
@@ -458,24 +469,6 @@ with lib; {
       experimental-features = nix-command flakes
     '';
 
-    nixpkgs.overlays = [
-      # (
-      #   import (
-      #     builtins.fetchTarball {
-      #       url =
-      #         "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-      #     }
-      #   )
-      # )
-      (self: super: {
-        # https://github.com/nmattia/niv/issues/332#issuecomment-958449218
-        niv =
-          self.haskell.lib.compose.overrideCabal
-            (drv: { enableSeparateBinOutput = false; })
-            super.haskellPackages.niv;
-      })
-    ];
-
     home.packages = with pkgs; [
       # Fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -520,6 +513,10 @@ with lib; {
       nodePackages.typescript
       nodePackages.typescript-language-server
 
+      # dotnet
+      dotnet-sdk
+      omnisharp-roslyn
+
       # OCaml
       opam
 
@@ -537,7 +534,6 @@ with lib; {
 
       #BQN
       cbqn
-
 
       # Media
       # irssi
@@ -728,14 +724,14 @@ with lib; {
       extraConfig = builtins.readFile ./.config/tmux/tmux.conf;
 
       plugins = with pkgs; [
-        tmuxPlugins.resurrect
-        {
-          plugin = tmuxPlugins.continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-            set -g @continuum-save-interval '15'
-          '';
-        }
+        # tmuxPlugins.resurrect
+        # {
+        #   plugin = tmuxPlugins.continuum;
+        #   extraConfig = ''
+        #     set -g @continuum-restore 'on'
+        #     set -g @continuum-save-interval '15'
+        #   '';
+        # }
       ];
     };
 
@@ -779,8 +775,8 @@ with lib; {
     };
 
     programs.neovim = {
-      # package = pkgs.neovim-nightly;
       enable = true;
+      # package = pkgs.neovim-nightly;
 
       extraConfig = builtins.readFile ./.config/nvim/init.vim;
 
@@ -926,7 +922,7 @@ with lib; {
         (builtins.toJSON (config.programs.alacritty.settings // lightColors));
 
     programs.alacritty = {
-      enable = false;
+      enable = true;
 
       settings = {
         window = {
