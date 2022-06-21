@@ -26,6 +26,16 @@ augroup lexical
   autocmd FileType markdown,mkd call lexical#init()
 augroup END
 
+augroup filetype_jsx
+    autocmd!
+    autocmd FileType javascript set filetype=javascriptreact
+augroup END
+
+augroup filetype_tsx
+  autocmd!
+  autocmd FileType typescript set filetype=typescriptreact
+augroup END
+
 " repeat last macro if in a Normal buffer
 nnoremap <expr> <CR> empty(&buftype) ? '@@' : '<CR>'
 
