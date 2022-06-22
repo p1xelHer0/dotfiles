@@ -31,7 +31,7 @@ comment_nvim.setup {
       or ft == "javascriptreact"
       or ft == "javascript.jsx"
     then
-      tsx_comments(ctx)
+      return tsx_comments(ctx)
     end
   end,
 }

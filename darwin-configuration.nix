@@ -507,6 +507,7 @@ with lib; {
       nodePackages.yarn
       nodePackages.vercel
       nodePackages.prettier
+      nodePackages.eslint_d
       nodePackages.vscode-json-languageserver-bin
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-css-languageserver-bin
