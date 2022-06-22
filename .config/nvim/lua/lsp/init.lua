@@ -1,3 +1,4 @@
+require "lsp.csharp"
 require "lsp.css"
 require "lsp.html"
 require "lsp.json"
