@@ -202,7 +202,7 @@ vim.api.nvim_set_keymap(
 vim.opt.runtimepath:append "/usr/local/opt/fzf"
 vim.opt.runtimepath:append "<SHARE_DIR>/merlin/vim"
 
-vim.g.ditto_dir = "$HOME/dotfiles/conf/ditto"
+vim.g.ditto_dir = "$HOME/dotfiles/.config/ditto"
 
 local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
 

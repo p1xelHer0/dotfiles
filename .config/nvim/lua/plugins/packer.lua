@@ -94,6 +94,11 @@ return packer.startup(function(use)
   }
 
   use {
+    "L3MON4D3/LuaSnip",
+    config = [[require('plugins.luasnip')]],
+  }
+
+  use {
     "numToStr/Comment.nvim",
     requires = "JoosepAlviste/nvim-ts-context-commentstring",
     config = [[require('plugins.comment-nvim')]],
@@ -106,6 +111,10 @@ return packer.startup(function(use)
 
   use { "nvim-lua/lsp_extensions.nvim" }
   use { "neovim/nvim-lspconfig" }
+  use {
+    "j-hui/fidget.nvim",
+    config = [[require('plugins.fidget')]],
+  }
 
   use { "mfussenegger/nvim-dap" }
 

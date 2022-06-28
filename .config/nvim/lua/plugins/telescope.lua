@@ -24,12 +24,11 @@ telescope.setup {
       hidden = true,
     },
     live_grep = {
-      find_command = {
-        hidden = true,
-      },
+      additional_args = function()
+        return { "--hidden" }
+      end,
     },
   },
 }
 
-telescope.load_extension "fzf"
 telescope.load_extension "frecency"

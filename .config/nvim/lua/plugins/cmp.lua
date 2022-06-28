@@ -3,7 +3,7 @@ if not cmp_ok then
   return
 end
 
-local luasnip_ok, luasnip = pcall(require, "luasnip")
+local luasnip_ok, ls = pcall(require, "luasnip")
 if not luasnip_ok then
   return
 end
@@ -19,9 +19,9 @@ end
 
 cmp.setup {
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-  }, {
     { name = "luasnip" },
+  }, {
+    { name = "nvim_lsp" },
   }, {
     { name = "nvim_lua" },
   }, {
@@ -32,7 +32,7 @@ cmp.setup {
 
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      ls.lsp_expand(args.body)
     end,
   },
 
@@ -52,32 +52,44 @@ cmp.setup {
   },
 
   mapping = {
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<C-j>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      elseif ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+      elseif ls.expandable() then
+        ls.expand()
       elseif has_words_before() then
         cmp.complete()
       else
         fallback()
       end
     end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    ["<C-k>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif ls.jumpable(-1) then
+        ls.jump(-1)
       else
         fallback()
       end
     end, { "i", "s" }),
+    ["<C-l>"] = cmp.mapping(function(fallback)
+      if ls.choice_active() then
+        ls.change_choice(1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
   },
 
-  -- experimental = {
-  --   native_menu = false,
-  --   ghost_text = true,
-  -- },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  },
 }
 
 cmp.setup.cmdline("/", {

@@ -741,38 +741,26 @@ with lib; {
 
       enableZshIntegration = true;
 
-      defaultCommand = "rg --files --hidden --follow --glob '!.(git|obsidian)'";
+      defaultCommand = "rg --files --hidden --smart-case";
       defaultOptions = [
-        "--color=fg:-1"
-        # "--color=bg:0"
-        # "--color=preview-fg:0"
-        # "--color=preview-bg:0"
-        # "--color=hl:2"
-        "--color=fg+:0"
-        "--color=bg+:3"
+        "--color=fg:7"
+        "--color=bg:-1"
+        "--color=preview-fg:7"
+        "--color=preview-bg:-1"
+        "--color=hl:reverse:3"
+        "--color=fg+:7"
+        "--color=bg+:18"
         "--color=gutter:-1"
-        "--color=hl+:8"
-        # "--color=info:0"
-        # "--color=border:0"
-        # "--color=prompt:0"
-        # "--color=pointer:-1"
-        # "--color=marker:-1"
-        # "--color=spinner:-1"
-        # "--color=header:-1"
-
-        # "--color=prompt:2,pointer:0,marker:3,spinner:1"
+        "--color=hl+:reverse:3"
+        "--color=info:8"
+        "--color=border:16"
+        "--color=prompt:2"
+        "--color=pointer:2"
+        "--color=marker:2"
+        "--color=spinner:1"
+        "--color=header:8"
         "--reverse --no-bold --no-unicode --preview-window=hidden"
       ];
-
-      fileWidgetCommand = "rg --files --hidden --follow --glob '!.(git|obsidian)'";
-      fileWidgetOptions = [
-        "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-      ];
-
-      changeDirWidgetCommand = "rg --files --hidden --follow --glob '!.(git|obsidian)'";
-      changeDirWidgetOptions = [ ];
-
-      historyWidgetOptions = [ ];
     };
 
     programs.neovim = {
