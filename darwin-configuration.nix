@@ -10,12 +10,12 @@ with lib; {
   imports = [ <home-manager/nix-darwin> ./lib/night.nix ];
   system.stateVersion = 4;
 
+  nix.configureBuildUsers = true;
+
   nixpkgs.overlays = [
-    (
-      import (builtins.fetchTarball {
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      })
-    )
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
   ];
 
   environment.systemPackages = with pkgs; [ nixUnstable zsh ];
@@ -32,13 +32,11 @@ with lib; {
     home = homeDir;
   };
 
-  users.nix.configureBuildUsers = true;
-
   system.defaults = {
     dock = {
       autohide = true;
-      autohide-delay = "0.0";
-      autohide-time-modifier = "0.0";
+      autohide-delay = 0.0;
+      autohide-time-modifier = 0.0;
       minimize-to-application = true;
       mru-spaces = false;
       orientation = "bottom";
@@ -80,16 +78,16 @@ with lib; {
       NSAutomaticSpellingCorrectionEnabled = false;
       NSScrollAnimationEnabled = false;
       NSTableViewDefaultSizeMode = 1;
-      NSWindowResizeTime = "0.0";
+      NSWindowResizeTime = 0.0;
       _HIHideMenuBar = true;
     };
     NSGlobalDomain."com.apple.keyboard.fnState" = true;
     NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
-    NSGlobalDomain."com.apple.springing.delay" = "0.0";
+    NSGlobalDomain."com.apple.springing.delay" = 0.0;
     NSGlobalDomain."com.apple.swipescrolldirection" = false;
-    NSGlobalDomain."com.apple.trackpad.scaling" = "0.55";
+    NSGlobalDomain."com.apple.trackpad.scaling" = 0.55;
     NSGlobalDomain."com.apple.springing.enabled" = false;
-    NSGlobalDomain."com.apple.sound.beep.volume" = "0.4723665";
+    NSGlobalDomain."com.apple.sound.beep.volume" = 0.4723665;
     NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
   };
 
@@ -116,22 +114,24 @@ with lib; {
     brewPrefix = "/opt/homebrew/bin";
     global = {
       brewfile = true;
-      noLock = true;
+      lockfiles = true;
     };
 
     taps = [
+      "fsouza/prettierd"
       "homebrew/bundle"
       "homebrew/cask"
       "homebrew/cask-versions"
       "homebrew/core"
-      "michaeleisel/zld"
       "qmk/qmk"
+      "michaeleisel/zld"
     ];
 
     brews = [
       "mas"
       "michaeleisel/zld/zld" # faster linker for Bevy development
       "pam-reattach" # run Touch ID within tmux
+      "fsouza/prettierd/prettierd"
       "qmk/qmk/qmk"
       "sdl2"
       "sdl2_image"
@@ -164,7 +164,6 @@ with lib; {
     # '';
 
     masApps = {
-      "1Password 7" = 1333542190;
       Developer = 640199958;
       GrandPerspective = 1111570163;
       "Key Codes" = 414568915;
@@ -360,8 +359,8 @@ with lib; {
       spacing_left = 12;
       spacing_right = 12;
 
-      text_font = ''"JetBrainsMono Nerd Font Mono:Medium:12.0"'';
-      icon_font = ''"JetBrainsMono Nerd Font Mono:Medium:12.0"'';
+      text_font = ''"JetBrainsMonoNL Nerd Font Mono:Medium:12.0"'';
+      icon_font = ''"JetBrainsMonoNL Nerd Font Mono:Medium:12.0"'';
 
       right_shell = "on";
       right_shell_command = "whoami";
@@ -474,9 +473,11 @@ with lib; {
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 
       # Tools
-      cachix
+      bat
       curl
-      fasd
+      exa
+      fasd # discontinued?
+      fd
       fswatch
       htop
       jq
@@ -489,6 +490,13 @@ with lib; {
       tree-sitter
       watchman
       wget
+      yamllint
+      zoxide
+
+      # Writing
+      ispell
+      nodePackages.write-good
+      proselint
 
       # Git
       gh
@@ -498,6 +506,7 @@ with lib; {
       flyctl
 
       # Nix
+      cachix
       niv
       nixfmt
       rnix-lsp
@@ -507,6 +516,7 @@ with lib; {
       nodePackages.yarn
       nodePackages.vercel
       nodePackages.prettier
+      nodePackages.eslint
       nodePackages.eslint_d
       nodePackages.vscode-json-languageserver-bin
       nodePackages.vscode-html-languageserver-bin
@@ -514,33 +524,42 @@ with lib; {
       nodePackages.typescript
       nodePackages.typescript-language-server
 
+      # BQN
+      cbqn
+
       # dotnet
       dotnet-sdk
       omnisharp-roslyn
 
+      # Go
+      go
+      gopls
+      # go install github.com/mattn/efm-langserver@latest
+      # go install github.com/segmentio/golines@latest
+      # go install github.com/client9/misspell/cmd/misspell@latest
+
+      # Lua
+      selene
+      stylua
+      sumneko-lua-language-server
+
       # OCaml
       opam
 
+      # Python
+      nodePackages.pyright
+      python310Packages.autopep8
+
       # Rust
       rustup
-      rust-analyzer
+      # rust-analyzer
 
       # TOML
       taplo-cli
       taplo-lsp
 
-      # Lua
-      sumneko-lua-language-server
-      stylua
-
-      #BQN
-      cbqn
-
-      # Media
-      # irssi
-      # protonmail-bridge
-      # spotify-tui
-      # weechat
+      # YAML
+      nodePackages.yaml-language-server
     ];
 
     programs.zsh = {
@@ -555,6 +574,8 @@ with lib; {
 
         DOTS_BIN = "$HOME/dotfiles/bin";
         DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
+        GOPATH = "$HOME/go";
+        GOPATH_BIN = "$GOPATH/bin";
         RESCRIPT_LSP =
           "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
       };
@@ -571,6 +592,8 @@ with lib; {
         export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
         export PATH=/opt/homebrew/bin:$PATH
+        export PATH=$GOPATH:$PATH
+        export PATH=$GOPATH_BIN:$PATH
 
         export PATH=$RESCRIPT_LSP:$PATH
         export RPROMPT=""
@@ -583,7 +606,8 @@ with lib; {
 
         source "$DOTS_BIN/fzf_git"
 
-        eval "$(fasd --init auto)"
+        # eval "$(fasd --init auto)"
+        eval "$(zoxide init zsh)"
 
         # eval "$(direnv hook zsh)"
 
@@ -614,6 +638,8 @@ with lib; {
         v = "nvim";
         vim = "nvim";
         vf = "nvim $(fzf)";
+
+        os = "eval $(opam env)";
         ev = "npx esy nvim";
         evf = "npx esy nvim $(fzf)";
 
@@ -725,14 +751,14 @@ with lib; {
       extraConfig = builtins.readFile ./.config/tmux/tmux.conf;
 
       plugins = with pkgs; [
-        # tmuxPlugins.resurrect
-        # {
-        #   plugin = tmuxPlugins.continuum;
-        #   extraConfig = ''
-        #     set -g @continuum-restore 'on'
-        #     set -g @continuum-save-interval '15'
-        #   '';
-        # }
+        #   tmuxPlugins.resurrect
+        #   {
+        #     plugin = tmuxPlugins.continuum;
+        #     extraConfig = ''
+        #       set -g @continuum-restore 'on'
+        #       set -g @continuum-save-interval '15'
+        #     '';
+        #   }
       ];
     };
 
@@ -759,6 +785,7 @@ with lib; {
         "--color=marker:2"
         "--color=spinner:1"
         "--color=header:8"
+
         "--reverse --no-bold --no-unicode --preview-window=hidden"
       ];
     };
@@ -769,9 +796,9 @@ with lib; {
 
       extraConfig = builtins.readFile ./.config/nvim/init.vim;
 
-      withNodeJs = true;
-
-      plugins = with pkgs.vimPlugins; [ packer-nvim ];
+      withNodeJs = false;
+      withPython3 = true;
+      withRuby = false;
     };
 
     programs.git = {
@@ -794,57 +821,53 @@ with lib; {
       let
         darkColors = {
           colors = {
-            primary.background = "0x080807";
-            primary.foreground = "0xb5a488";
-
-            cursor = {
-              cursor = "0xffffff";
-              text = "0x080807";
-            };
+            primary.background = "0x222436";
+            primary.foreground = "0xc8d3f5";
 
             normal = {
-              black = "0x080807";
-              red = "0xbf9d88";
-              green = "0x9da488";
-              yellow = "0xd1a47f";
-              blue = "0xb5a488";
-              magenta = "0xb5a488";
-              cyan = "0xb5a488";
-              white = "0xb5a488";
+              black = "0x1b1d2b";
+              red = "0xff757f";
+              green = "0xc3e88d";
+              yellow = "0xffc777";
+              blue = "0x82aaff";
+              magenta = "0xc099ff";
+              cyan = "0x86e1fc";
+              white = "0x828bb8";
             };
 
             bright = {
-              black = "0x30302c";
-              red = "0xb5a488";
-              green = "0xb5a488";
-              yellow = "0xb5a488";
-              blue = "0xb5a488";
-              magenta = "0xb5a488";
-              cyan = "0xb5a488";
-              white = "0xb5a488";
+              black = "0x444a73";
+              red = "0xff757f";
+              green = "0xc3e88d";
+              yellow = "0xffc777";
+              blue = "0x82aaff";
+              magenta = "0xc099ff";
+              cyan = "0x86e1fc";
+              white = "0xc8d3f5";
             };
+
 
             indexed_colors = [
               {
                 index = 16;
-                color = "0x0d0d0b";
+                color = "0xff966c";
               }
               {
                 index = 17;
-                color = "0x121210";
+                color = "0xc53b53";
               }
-              {
-                index = 18;
-                color = "0x1a1917";
-              }
-              {
-                index = 19;
-                color = "0x242320";
-              }
-              {
-                index = 20;
-                color = "0x2b2b27";
-              }
+              # {
+              #   index = 18;
+              #   color = "0x1a1917";
+              # }
+              # {
+              #   index = 19;
+              #   color = "0x242320";
+              # }
+              # {
+              #   index = 20;
+              #   color = "0x2b2b27";
+              # }
             ];
           };
         };
@@ -914,6 +937,10 @@ with lib; {
       enable = true;
 
       settings = {
+        env = {
+          TERM = "xterm-256color";
+        };
+
         window = {
           padding.x = 16;
           padding.y = 16;
@@ -943,44 +970,42 @@ with lib; {
           size = 16;
 
           normal = {
-            family = "JetBrainsMono Nerd Font Mono";
+            family = "JetBrainsMonoNL Nerd Font Mono";
             # family = "Menlo";
             # family = "BQN386 Unicode";
-            style = "Regular";
+            style = "Medium";
           };
 
           bold = {
-            family = "JetBrainsMono Nerd Font Mono";
+            family = "JetBrainsMonoNL Nerd Font Mono";
             # family = "Menlo";
             # family = "BQN386 Unicode";
-            style = "Bold";
+            style = "ExtraBold";
           };
 
           italic = {
-            family = "JetBrainsMono Nerd Font Mono";
+            family = "JetBrainsMonoNL Nerd Font Mono";
             # family = "Menlo";
             # family = "BQN386 Unicode";
-            style = "Italic";
+            style = "Medium Italic";
           };
 
           bold_italic = {
-            family = "JetBrainsMono Nerd Font Mono";
+            family = "JetBrainsMonoNL Nerd Font Mono";
             # family = "Menlo";
             # family = "BQN386 Unicode";
-            style = "Bold Italic";
+            style = "ExtraBold Italic";
           };
 
           offset = {
             x = 0;
-            y = 8;
+            y = 12;
           };
 
           glyph_offset = {
             x = 0;
-            y = 4;
+            y = 6;
           };
-
-          use_thin_strokes = true;
         };
 
         key_bindings = [
