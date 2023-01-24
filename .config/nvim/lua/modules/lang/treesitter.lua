@@ -51,7 +51,7 @@ local treesitter = function()
     return
   end
   local lines = vim.fn.line("$")
-  if lines > 30000 then -- skip some settings for large file
+  if lines > 30000 then
     vim.cmd([[syntax manual]])
     print("skip treesitter")
     return
@@ -164,23 +164,6 @@ local treesitter_ref = function()
     autotag = { enable = true },
   })
   local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.sql = {
-    install_info = {
-      url = vim.fn.expand("$HOME") .. "/github/nvim-treesitter/tree-sitter-sql", -- local path or git repo
-      files = { "src/parser.c" },
-    },
-    filetype = "sql", -- if filetype does not agrees with parser name
-    used_by = { "psql", "pgsql" }, -- additional filetypes that use this parser
-  }
-  parser_config.proto = {
-    install_info = {
-      url = vim.fn.expand("$HOME") .. "/github/nvim-treesitter/tree-sitter-proto", -- local path or git repo
-      files = { "src/parser.c" },
-    },
-    filetype = "proto", -- if filetype does not agrees with parser name
-    used_by = { "proto" }, -- additional filetypes that use this parser
-  }
-
   parser_config.norg = {
     install_info = {
       url = "https://github.com/nvim-neorg/tree-sitter-norg",
@@ -190,15 +173,14 @@ local treesitter_ref = function()
   }
 end
 
-function textsubjects()
+local textsubjects = function()
   lprint("txt subjects")
   require("nvim-treesitter.configs").setup({
-
     textsubjects = {
       enable = true,
       prev_selection = ",",
       keymaps = {
-        [">"] = "textsubjects-smart",
+        ["."] = "textsubjects-smart",
         [";"] = "textsubjects-container-outer",
         ["i;"] = "textsubjects-container-inner",
       },
@@ -245,8 +227,7 @@ end
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = vim.api.nvim_create_augroup("SyntaxFtAuGroup", {}),
   callback = function()
-    local ft = vim.o.ft
-    if vim.tbl_contains(ts_ensure_installed, ft) then
+    if vim.tbl_contains(ts_ensure_installed, vim.o.ft) then
       return
     end
 
@@ -254,7 +235,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     if fsize < 100000 then
       vim.cmd("syntax on")
     end
-
   end,
 })
 
@@ -262,7 +242,7 @@ return {
   treesitter = treesitter,
   treesitter_obj = treesitter_obj,
   treesitter_ref = treesitter_ref,
-  textsubjects = textsubjects,
+  -- textsubjects = textsubjects,
   context = treesitter_context,
   installed = ts_ensure_installed,
 }

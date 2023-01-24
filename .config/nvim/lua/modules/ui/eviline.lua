@@ -10,7 +10,8 @@ local HSL = require("wlanimation.utils")
 local sep = helper.separators
 -- local luffy_text = ""
 local git_rev_components = require("windline.components.git_rev")
-local home = require("core.global").home
+local home = vim.env.HOME
+local diagnostic = require("core.helper").get_icons().diagnostic
 local hover_info
 
 local hl_list = {
@@ -125,6 +126,7 @@ local on_hover = function()
   if hoverProvider == false then
     return ""
   end
+
   vim.lsp.buf_request(0, "textDocument/hover", params, function(err, result, ctx, config)
     config = config or {}
     if err then
@@ -218,7 +220,6 @@ end
 
 local mode = function()
   local mod = vim.fn.mode()
-  -- print(state.mode[2])
   if mod == "n" or mod == "no" or mod == "nov" then
     return { "  ", state.mode[2] }
   elseif mod == "i" or mod == "ic" or mod == "ix" then
@@ -251,10 +252,17 @@ basic.vi_mode = {
   end,
 }
 
-basic.square_mode = {
+basic.square_mode_left = {
   hl_colors = colors_mode,
   text = function()
-    return { { "▊", state.mode[2] } }
+    return { { "█", state.mode[2] } }
+  end,
+}
+
+basic.square_mode_right = {
+  hl_colors = colors_mode,
+  text = function()
+    return { { "█", state.mode[2] } }
   end,
 }
 
@@ -269,15 +277,16 @@ basic.lsp_diagnos = {
   text = function()
     if lsp_comps.check_lsp() then
       return {
-        { " ", "red" },
-        { lsp_comps.lsp_error({ format = " %s", show_zero = true }), "red" },
-        { lsp_comps.lsp_warning({ format = "  %s", show_zero = true }), "yellow" },
-        { lsp_comps.lsp_hint({ format = "  %s", show_zero = true }), "blue" },
+        { lsp_comps.lsp_error({ format = diagnostic.Error .. "%s ", show_zero = false }), "red" },
+        { lsp_comps.lsp_warning({ format = diagnostic.Warn .. "%s ", show_zero = false }), "yellow" },
+        { lsp_comps.lsp_info({ format = diagnostic.Info .. "%s ", show_zero = false }), "blue" },
+        { lsp_comps.lsp_hint({ format = diagnostic.Hint .. "%s ", show_zero = false }), "green" },
       }
     end
     return ""
   end,
 }
+
 local winbar = {
   filetypes = { "winbar" },
   active = {
@@ -301,10 +310,6 @@ local winbar = {
     },
   },
 }
-
-local function get_offset()
-  return ":" .. fn.line2byte(fn.line(".")) + fn.col(".") - 1
-end
 
 function scrollbar_instance(scrollbar_chars)
   local current_line = vim.fn.line(".")
@@ -464,20 +469,6 @@ basic.file_right = {
   end,
 }
 
-basic.offset = {
-  hl_colors = {
-    default = hl_list.NormalBg,
-    white = { "white", "NormalBg" },
-  },
-  text = function(_, winnr, width, is_float)
-    if width > breakpoint_width then
-      return {
-        { get_offset(), "white" },
-      }
-    end
-  end,
-}
-
 basic.scrollbar_right = {
   hl_colors = {
     default = hl_list.NormalBg,
@@ -488,6 +479,22 @@ basic.scrollbar_right = {
     if width > breakpoint_width or is_float then
       return { { b_components.progress_lua, "" }, { " ", "" }, { scrollbar_instance(), "blue" } }
     end
+  end,
+}
+
+basic.signature_info = {
+  name = "lspayay",
+  text = function()
+    local ok, lspsaga = pcall(require, "lspsaga.symbolwinbar")
+    local sym
+    if ok then
+      sym = lspsaga.get_symbol_node()
+    end
+    local win_val = ""
+    if sym ~= nil then
+      win_val = win_val .. sym
+    end
+    return win_val
   end,
 }
 
@@ -568,23 +575,24 @@ local explorer = {
 local default = {
   filetypes = { "default" },
   active = {
-    basic.square_mode,
+    basic.square_mode_left,
     basic.vi_mode,
-    basic.git_branch,
     basic.file,
-    basic.lsp_diagnos,
+    basic.git_branch,
+    -- basic.signature_info,
+    -- basic.lsp_diagnos,
+    -- basic.funcname,
+    basic.divider,
+
     basic.lsp_info,
-    basic.funcname,
-    basic.divider, -- {sep.slant_right,{'black_light', 'green_light'}},
-    { sep.slant_right, { "green_light", "blue_light" } },
+    basic.divider,
     basic.file_right,
-    basic.offset,
     basic.scrollbar_right,
     { lsp_comps.lsp_name(), { "magenta", "NormalBg" }, breakpoint_width },
     basic.git,
     basic.folder,
     { " ", hl_list.NormalBg },
-    basic.square_mode,
+    basic.square_mode_right,
   },
   inactive = {
     { b_components.full_file_name, hl_list.Inactive },
@@ -597,46 +605,46 @@ local default = {
 }
 
 windline.setup({
-  colors_name = function(colors)
-    --- add more color
-
-    local mod = function(c, value)
-      if vim.o.background == "dark" then
-        return HSL.rgb_to_hsl(c):tint(value):to_rgb()
-      end
-      return HSL.rgb_to_hsl(c):shade(value):to_rgb()
-    end
-
-    local normalFg, normalBg = require("windline.themes").get_hl_color("StatusLine")
-
-    colors.NormalFg = normalFg or colors.white
-    colors.NormalBg = normalBg or mod(colors.white, 0.3)
-    colors.FilenameFg = colors.white_light
-    colors.FilenameBg = colors.NormalFg
-
-    -- this color will not update if you change a colorscheme
-    colors.gray = "#fefefe"
-    colors.magenta_a = colors.magenta
-    colors.magenta_b = mod(colors.magenta, 0.5)
-    colors.magenta_c = mod(colors.magenta, 0.7)
-
-    colors.yellow_a = colors.yellow
-    colors.yellow_b = mod(colors.yellow, 0.5)
-    colors.yellow_c = mod(colors.yellow, 0.7)
-
-    colors.blue_a = colors.blue
-    colors.blue_b = mod(colors.blue, 0.5)
-    colors.blue_c = mod(colors.blue, 0.7)
-
-    colors.green_a = mod(colors.green, 0.3)
-    colors.green_b = mod(colors.green, 0.5)
-    colors.green_c = mod(colors.green, 0.7)
-
-    colors.red_a = colors.red
-    colors.red_b = mod(colors.red, 0.5)
-    colors.red_c = mod(colors.red, 0.7)
-    return colors
-  end,
+  -- colors_name = function(colors)
+  --   --- add more color
+  --
+  --   local mod = function(c, value)
+  --     if vim.o.background == "dark" then
+  --       return HSL.rgb_to_hsl(c):tint(value):to_rgb()
+  --     end
+  --     return HSL.rgb_to_hsl(c):shade(value):to_rgb()
+  --   end
+  --
+  --   local normalFg, normalBg = require("windline.themes").get_hl_color("StatusLine")
+  --
+  --   colors.NormalFg = normalFg or colors.white
+  --   colors.NormalBg = normalBg or mod(colors.white, 0.3)
+  --   colors.FilenameFg = colors.white_light
+  --   colors.FilenameBg = colors.NormalFg
+  --
+  --   -- this color will not update if you change a colorscheme
+  --   colors.gray = "#fefefe"
+  --   colors.magenta_a = colors.magenta
+  --   colors.magenta_b = mod(colors.magenta, 0.5)
+  --   colors.magenta_c = mod(colors.magenta, 0.7)
+  --
+  --   colors.yellow_a = colors.yellow
+  --   colors.yellow_b = mod(colors.yellow, 0.5)
+  --   colors.yellow_c = mod(colors.yellow, 0.7)
+  --
+  --   colors.blue_a = colors.blue
+  --   colors.blue_b = mod(colors.blue, 0.5)
+  --   colors.blue_c = mod(colors.blue, 0.7)
+  --
+  --   colors.green_a = mod(colors.green, 0.3)
+  --   colors.green_b = mod(colors.green, 0.5)
+  --   colors.green_c = mod(colors.green, 0.7)
+  --
+  --   colors.red_a = colors.red
+  --   colors.red_b = mod(colors.red, 0.5)
+  --   colors.red_c = mod(colors.red, 0.7)
+  --   return colors
+  -- end,
   statuslines = { default, quickfix, explorer },
 })
 

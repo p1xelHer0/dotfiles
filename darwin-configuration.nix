@@ -452,9 +452,9 @@ with lib; {
               fi
             }
 
-            spacebarSwitchTheme $@
+            # spacebarSwitchTheme $@
             alacrittySwitchTheme $@
-            yabaiSwitchTheme $@
+            # yabaiSwitchTheme $@
           ''}"
         ];
       };
@@ -463,6 +463,9 @@ with lib; {
 
   home-manager.users.p1xelher0 = { config, pkgs, ... }: {
     home.stateVersion = "20.09";
+
+    # build currently fails with this `true`, `false` for now
+    manual.manpages.enable = false;
 
     xdg.configFile."nix/nix.conf".text = ''
       experimental-features = nix-command flakes
@@ -484,32 +487,34 @@ with lib; {
       p7zip
       reattach-to-user-namespace
       ripgrep
+      gh
       shellcheck
       simple-http-server
       tree
       tree-sitter
+      delta
+      flyctl
       watchman
       wget
       yamllint
-      zoxide
+      zoxide # fasd replacement but fasd is still better...?
+      zola
 
       # Writing
       ispell
       nodePackages.write-good
       proselint
 
-      # Git
-      gh
-      delta
-
-      # fly.io
-      flyctl
-
       # Nix
       cachix
       niv
       nixfmt
       rnix-lsp
+
+      # Lua
+      selene
+      stylua
+      sumneko-lua-language-server
 
       # Web
       fnm
@@ -524,12 +529,24 @@ with lib; {
       nodePackages.typescript
       nodePackages.typescript-language-server
 
+      # OCaml
+      opam
+
+      # Rust
+      rustup
+      # rust-analyzer - install this with Rustup instead
+      # to make sure it matches the compiler
+
       # BQN
       cbqn
 
-      # dotnet
+      # .NET
       dotnet-sdk
       omnisharp-roslyn
+
+      # Python
+      nodePackages.pyright
+      python310Packages.autopep8
 
       # Go
       go
@@ -538,21 +555,15 @@ with lib; {
       # go install github.com/segmentio/golines@latest
       # go install github.com/client9/misspell/cmd/misspell@latest
 
-      # Lua
-      selene
-      stylua
-      sumneko-lua-language-server
+      # Lisp
+      chicken
+      guile
+      chez-racket
+      sbcl
 
-      # OCaml
-      opam
-
-      # Python
-      nodePackages.pyright
-      python310Packages.autopep8
-
-      # Rust
-      rustup
-      # rust-analyzer
+      # Erlang/Elixir
+      elixir
+      elixir_ls
 
       # TOML
       taplo-cli
@@ -797,7 +808,7 @@ with lib; {
       extraConfig = builtins.readFile ./.config/nvim/init.vim;
 
       withNodeJs = false;
-      withPython3 = true;
+      withPython3 = false;
       withRuby = false;
     };
 
@@ -821,53 +832,44 @@ with lib; {
       let
         darkColors = {
           colors = {
-            primary.background = "0x222436";
-            primary.foreground = "0xc8d3f5";
+            primary = {
+              background = "0x0d1117";
+              foreground = "0xb3b1ad";
+            };
+
+            cursor = {
+              cursor = "0xffffff";
+              text = "0x0d1117";
+            };
 
             normal = {
-              black = "0x1b1d2b";
-              red = "0xff757f";
-              green = "0xc3e88d";
-              yellow = "0xffc777";
-              blue = "0x82aaff";
-              magenta = "0xc099ff";
-              cyan = "0x86e1fc";
-              white = "0x828bb8";
+              black = "0x0d1117";
+              red = "0xff7b72";
+              green = "0x3fb950";
+              yellow = "0xd29922";
+              blue = "0x58a6ff";
+              magenta = "0xbc8cff";
+              cyan = "0x39c5cf";
+              white = "0xb1bac4";
             };
 
             bright = {
-              black = "0x444a73";
-              red = "0xff757f";
-              green = "0xc3e88d";
-              yellow = "0xffc777";
-              blue = "0x82aaff";
-              magenta = "0xc099ff";
-              cyan = "0x86e1fc";
-              white = "0xc8d3f5";
+              black = "0x6e7681";
+              red = "0xffa198";
+              green = "0x56d364";
+              yellow = "0xe3b341";
+              blue = "0x79c0ff";
+              magenta = "0xd2a8ff";
+              cyan = "0x56d4dd";
+              white = "0xf0f6fc";
             };
 
-
             indexed_colors = [
-              {
-                index = 16;
-                color = "0xff966c";
-              }
-              {
-                index = 17;
-                color = "0xc53b53";
-              }
-              # {
-              #   index = 18;
-              #   color = "0x1a1917";
-              # }
-              # {
-              #   index = 19;
-              #   color = "0x242320";
-              # }
-              # {
-              #   index = 20;
-              #   color = "0x2b2b27";
-              # }
+              { index = 16; color = "0x5d646e"; }
+              { index = 17; color = "0x4c525b"; }
+              { index = 18; color = "0x3b4149"; }
+              { index = 19; color = "0x2c3037"; }
+              { index = 20; color = "0x262a30"; }
             ];
           };
         };
@@ -880,52 +882,44 @@ with lib; {
       let
         lightColors = {
           colors = {
-            primary.foreground = "#080807";
-            primary.background = "#faeed7";
+            primary = {
+              background = "0xffffff";
+              foreground = "0x0e1116";
+            };
+
+            cursor = {
+              cursor = "0x000000";
+              text = "0xffffff";
+            };
 
             normal = {
-              black = "#faeed7";
-              red = "0xbf9d88";
-              green = "0x9da488";
-              yellow = "0xd1a47f";
-              blue = "#080807";
-              magenta = "#080807";
-              cyan = "#080807";
-              white = "#080807";
+              black = "0xffffff";
+              red = "0xcf222e";
+              green = "0x116329";
+              yellow = "0x4d2d00";
+              blue = "0x0969da";
+              magenta = "0x8250df";
+              cyan = "0x1b7c83";
+              white = "0x6e7781";
             };
 
             bright = {
-              black = "#c9bfad";
-              red = "#bf9d88";
-              green = "#9da488";
-              yellow = "#d1a47f";
-              blue = "#080807";
-              magenta = "#080807";
-              cyan = "#080807";
-              white = "#080807";
+              black = "0x57606a";
+              red = "0xa40e26";
+              green = "0x1a7f37";
+              yellow = "0x633c01";
+              blue = "0x218bff";
+              magenta = "0xa475f9";
+              cyan = "0x3192aa";
+              white = "0x8c959f";
             };
 
             indexed_colors = [
-              {
-                index = 16;
-                color = "#f2e6d0";
-              }
-              {
-                index = 17;
-                color = "#ebdfca";
-              }
-              {
-                index = 18;
-                color = "#e3d7c3";
-              }
-              {
-                index = 19;
-                color = "#dbd0bd";
-              }
-              {
-                index = 20;
-                color = "#d4c9b6";
-              }
+              { index = 16; color = "0x9ca4ad"; }
+              { index = 17; color = "0xadb4bb"; }
+              { index = 18; color = "0xbec4c9"; }
+              { index = 19; color = "0xcfd4d7"; }
+              { index = 20; color = "0xe1e4e6"; }
             ];
           };
         };
