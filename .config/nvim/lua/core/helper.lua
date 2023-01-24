@@ -105,37 +105,4 @@ function helper.get_icons()
   }
 end
 
-local colors = {
-  red = "\027[31m",
-  green = "\027[32m",
-  orange = "\027[33m",
-  navy = "\027[34m",
-  magenta = "\027[35m",
-  cyan = "\027[36m",
-  grey = "\027[90m",
-  light_grey = "\027[37m",
-  peach = "\027[91m",
-  light_green = "\027[92m",
-  yellow = "\027[93m",
-  blue = "\027[94m",
-  pink = "\027[95m",
-  baby_blue = "\027[96m",
-}
-
-local function color_print(color)
-  return function(text)
-    print(colors[color] .. text .. "\027[m")
-  end
-end
-
-function helper.error(msg)
-  color_print("red")(msg)
-end
-
-setmetatable(helper, {
-  __index = function(_, k)
-    return color_print(k)
-  end,
-})
-
 return helper
