@@ -22,7 +22,7 @@ local eslint_d = {
 }
 local pythonBlack = {
   formatCommand = [[black --quiet -]],
-  formatStdin = true
+  formatStdin = true,
 }
 
 local sql_formatter = {
@@ -39,7 +39,7 @@ local clangfmtproto = {
 
 local efm_cfg = {
   flags = { debounce_text_changes = 2000 },
-  cmd = { "efm-langserver", "-loglevel", "1", "-logfile", vim.fn.expand("$HOME") .. "/tmp/efm.log" }, -- 1~10
+  cmd = { "efm-langserver", "-loglevel", "1", "-logfile", vim.env.HOME .. "/tmp/efm.log" }, -- 1~10
   init_options = { documentFormatting = true, codeAction = false, document_formatting = true },
   root_dir = require("lspconfig").util.root_pattern({ ".git/", "package.json", "." }),
   on_attach = function(client)

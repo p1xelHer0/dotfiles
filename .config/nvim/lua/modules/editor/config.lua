@@ -13,29 +13,30 @@ function config.autopairs()
       return
     end
   end
-  require('nvim-autopairs').setup({})
-  local status, cmp = pcall(require, 'cmp')
+  require("nvim-autopairs").setup({})
+  local status, cmp = pcall(require, "cmp")
   if not status then
     vim.cmd([[packadd nvim-cmp]])
-    cmp = require('cmp')
+    cmp = require("cmp")
   end
-  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
+  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 end
 
 function config.comment()
   require("Comment").setup({
     extended = true,
     pre_hook = function(ctx)
-      if vim.bo.filetype == "typescriptreact"
-          or vim.bo.filetype == "typescript"
-          or vim.bo.filetype == "javascript"
-          or vim.bo.filetype == "css"
-          or vim.bo.filetype == "html"
-          or vim.bo.filetype == "scss"
-          or vim.bo.filetype == "svelte"
-          or vim.bo.filetype == "uve"
-          or vim.bo.filetype == "graphql"
+      if
+        vim.bo.filetype == "typescriptreact"
+        or vim.bo.filetype == "typescript"
+        or vim.bo.filetype == "javascript"
+        or vim.bo.filetype == "css"
+        or vim.bo.filetype == "html"
+        or vim.bo.filetype == "scss"
+        or vim.bo.filetype == "svelte"
+        or vim.bo.filetype == "uve"
+        or vim.bo.filetype == "graphql"
       then
         local U = require("Comment.utils")
         local type = ctx.ctype == U.ctype.linewise and "__default" or "__multiline"
@@ -60,9 +61,9 @@ function config.comment()
           ctx.range.ecol = 1
         end
         if ctx.cmotion > 1 then
-          vim.fn.setpos("'<", { 0, ctx.range.srow, ctx.range.scol })
-          vim.fn.setpos("'>", { 0, ctx.range.erow, ctx.range.ecol })
-          vim.cmd([[exe "norm! gv"]])
+          -- vim.fn.setpos("'<", { 0, ctx.range.srow, ctx.range.scol })
+          -- vim.fn.setpos("'>", { 0, ctx.range.erow, ctx.range.ecol })
+          -- vim.cmd([[exe "norm! gv"]])
         end
       end
     end,

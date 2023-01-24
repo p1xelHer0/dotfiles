@@ -13,30 +13,10 @@ vim.keymap.set(
 vim.keymap.set("n", "ga", "<Plug>(EasyAlign)", { silent = true })
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", { silent = true })
 
-vim.keymap.set(
-  "n",
-  "<Leader>n",
-  ":NvimTreeToggle<CR>",
-  { noremap = true, silent = true }
-)
+vim.keymap.set("n", "<Leader>n", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
-vim.keymap.set(
-  "n",
-  "<Leader>N",
-  ":NvimTreeFindFileToggle<CR>",
-  { noremap = true, silent = true }
-)
+vim.keymap.set("n", "<Leader>N", ":NvimTreeFindFileToggle<CR>", { noremap = true, silent = true })
 
-vim.keymap.set(
-  "n",
-  "<Leader>mp",
-  ":MarkdownPreview<CR>",
-  { noremap = true, silent = true }
-)
+vim.keymap.set("n", "<Leader>mp", ":MarkdownPreview<CR>", { noremap = true, silent = true })
 
-vim.keymap.set(
-  "n",
-  "<Leader>zm",
-  ":ZenMode<CR>",
-  { noremap = true, silent = true }
-)
+vim.keymap.set("n", "<Leader>zm", ":ZenMode<CR>", { noremap = true, silent = true })

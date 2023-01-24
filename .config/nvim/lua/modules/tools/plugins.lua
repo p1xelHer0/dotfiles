@@ -1,27 +1,24 @@
 local tools = {}
 local conf = require("modules.tools.config")
 
+tools["rktjmp/lush.nvim"] = {}
+
+tools["rktjmp/shipwright.nvim"] = {}
+
 tools["christoomey/vim-tmux-navigator"] = {
   opt = true,
 }
 
-tools["kristijanhusak/vim-dadbod-ui"] = {
-  cmd = { "DBUIToggle", "DBUIAddConnection", "DBUI", "DBUIFindBuffer", "DBUIRenameBuffer", "DB" },
-  config = conf.vim_dadbod_ui,
-  requires = { "tpope/vim-dadbod", ft = { "sql" } },
+tools["nvim-telescope/telescope.nvim"] = {
+  config = conf.telescope,
+  setup = conf.telescope_preload,
+  requires = {
+    { "nvim-lua/plenary.nvim", opt = true },
+    { "nvim-telescope/telescope-fzf-native.nvim", run = "make", opt = true },
+    { "nvim-telescope/telescope-live-grep-args.nvim", opt = true },
+    { "nvim-telescope/telescope-file-browser.nvim", opt = true },
+  },
   opt = true,
-  setup = function()
-    vim.g.dbs = {
-      eraser = "postgres://postgres:password@localhost:5432/eraser_local",
-      staging = "postgres://postgres:password@localhost:5432/my-staging-db",
-      wp = "mysql://root@localhost/wp_awesome",
-    }
-  end,
-}
-
-tools["ThePrimeagen/git-worktree.nvim"] = {
-  event = { "CmdwinEnter", "CmdlineEnter" },
-  config = conf.worktree,
 }
 
 tools["ThePrimeagen/harpoon"] = {
@@ -40,45 +37,9 @@ tools["ThePrimeagen/harpoon"] = {
   end,
 }
 
-tools['pwntester/octo.nvim'] = {
-  cmd = { 'Octo', 'Octo pr list' },
-  config = function()
-    require "octo".setup()
-  end
-}
-
 tools["TimUntersberger/neogit"] = {
   cmd = { "Neogit" },
   config = conf.neogit,
-}
-
-tools["liuchengxu/vista.vim"] = { cmd = "Vista", setup = conf.vim_vista, opt = true }
-
-tools["plasticboy/vim-markdown"] = {
-  ft = "markdown",
-  requires = { "godlygeek/tabular" },
-  cmd = { "Toc" },
-  setup = conf.markdown,
-  opt = true,
-}
-
-tools["iamcco/markdown-preview.nvim"] = {
-  ft = { "markdown", "pandoc.markdown", "rmd" },
-  cmd = { "MarkdownPreview" },
-  setup = conf.mkdp,
-  run = [[sh -c "cd app && yarn install"]],
-  opt = true,
-}
-
-tools["nanotee/zoxide.vim"] = { cmd = { "Z", "Lz", "Zi" } }
-
-tools["liuchengxu/vim-clap"] = {
-  cmd = { "Clap" },
-  run = function()
-    vim.fn["clap#installer#download_binary"]()
-  end,
-  setup = conf.clap,
-  config = conf.clap_after,
 }
 
 tools["sindrets/diffview.nvim"] = {
@@ -94,20 +55,7 @@ tools["sindrets/diffview.nvim"] = {
 
 tools["lewis6991/gitsigns.nvim"] = {
   config = conf.gitsigns,
-  -- keys = {']c', '[c'},  -- load by lazy.lua
   opt = true,
-}
-
-tools["akinsho/git-conflict.nvim"] = {
-  cmd = {
-    "GitConflictListQf",
-    "GitConflictChooseOurs",
-    "GitConflictChooseTheirs",
-    "GitConflictChooseBoth",
-    "GitConflictNextConflict",
-  },
-  opt = true,
-  config = conf.git_conflict,
 }
 
 tools["rbong/vim-flog"] = {
@@ -116,41 +64,52 @@ tools["rbong/vim-flog"] = {
 }
 
 tools["tpope/vim-fugitive"] = {
-  cmd = { "Gvsplit", "Git", "Gedit", "Gstatus", "Gdiffsplit", "Gvdiffsplit", "Flog", "Flogsplit" },
+  cmd = {
+    "Gvsplit",
+    "Git",
+    "Gedit",
+    "Gstatus",
+    "Gdiffsplit",
+    "Gvdiffsplit",
+    "Flog",
+    "Flogsplit",
+  },
   opt = true,
+}
+
+tools["iamcco/markdown-preview.nvim"] = {
+  cmd = { "MarkdownPreview" },
+  ft = { "markdown", "pandoc.markdown", "rmd" },
+  opt = true,
+  run = [[sh -c "cd app && yarn install"]],
+  setup = conf.mkdp,
 }
 
 tools["tpope/vim-repeat"] = {
   opt = true,
 }
 
-tools["kevinhwang91/nvim-bqf"] = {
-  opt = true,
-  event = { "CmdlineEnter", "QuickfixCmdPre" },
-  config = conf.bqf,
-}
-
 tools["ahmedkhalf/project.nvim"] = {
-  opt = true,
   after = { "telescope.nvim" },
   config = conf.project,
+  opt = true,
 }
 
 tools["jvgrootveld/telescope-zoxide"] = {
-  opt = true,
   after = { "telescope.nvim" },
   config = function()
-    require("utils.telescope")
+    require("modules.tools.telescope")
     require("telescope").load_extension("zoxide")
   end,
+  opt = true,
 }
 
 tools["AckslD/nvim-neoclip.lua"] = {
   opt = true,
   requires = { "kkharji/sqlite.lua", module = "sqlite" },
   config = function()
-    require("utils.telescope")
-    require("neoclip").setup({ db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3" })
+    require("modules.tools.telescope")
+    require("neoclip").setup({ db_path = require("core.helper").get_data_path() .. "/databases/neoclip.sqlite3" })
     require("telescope").load_extension("neoclip")
   end,
 }
@@ -168,7 +127,7 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
           show_scores = false,
           show_unindexed = true,
           ignore_patterns = { "*.git/*", "*/tmp/*" },
-          disable_devicons = false,
+          disable_devicons = true,
           workspaces = {
             -- ["conf"] = "/home/my_username/.config",
             -- ["data"] = "/home/my_username/.local/share",

@@ -28,4 +28,3 @@ ls.add_snippets("gitcommit", {
   make("chore", "chore"),
   make("ci", "ci"),
 })
-

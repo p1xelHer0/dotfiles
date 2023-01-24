@@ -1,54 +1,46 @@
 local api = vim.api
-local group = vim.api.nvim_create_augroup('p1xelHer0autocmds', {})
+local group = vim.api.nvim_create_augroup("internal.autocmd", {})
 
-api.nvim_create_autocmd({ 'BufWritePre' }, {
+api.nvim_create_autocmd({ "BufWritePre" }, {
   group = group,
-  pattern = { '/tmp/*', 'COMMIT_EDITMSG', 'MERGE_MSG', '*.tmp', '*.bak' },
+  pattern = { "/tmp/*", "COMMIT_EDITMSG", "MERGE_MSG", "*.tmp", "*.bak" },
   callback = function()
     vim.opt_local.undofile = false
   end,
 })
 
-api.nvim_create_autocmd('BufRead', {
+api.nvim_create_autocmd("BufRead", {
   group = group,
-  pattern = '*.conf',
+  pattern = "*.conf",
   callback = function()
-    api.nvim_buf_set_option(0, 'filetype', 'conf')
+    api.nvim_buf_set_option(0, "filetype", "conf")
   end,
 })
 
-api.nvim_create_autocmd('TextYankPost', {
+api.nvim_create_autocmd("TextYankPost", {
   group = group,
-  pattern = '*',
+  pattern = "*",
   callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 400 })
   end,
 })
 
-
-api.nvim_create_autocmd({ 'WinEnter', 'BufEnter', 'InsertLeave' }, {
+api.nvim_create_autocmd({ "WinEnter", "BufEnter", "InsertLeave" }, {
   group = group,
-  pattern = '*',
+  pattern = "*",
   callback = function()
-    if vim.bo.filetype ~= 'dashboard' and not vim.opt_local.cursorline:get() then
+    if not vim.opt_local.cursorline:get() then
       vim.opt_local.cursorline = true
     end
   end,
 })
 
-api.nvim_create_autocmd({ 'WinLeave', 'BufLeave', 'InsertEnter' }, {
+api.nvim_create_autocmd({ "WinLeave", "BufLeave", "InsertEnter" }, {
   group = group,
-  pattern = '*',
+  pattern = "*",
   callback = function()
-    if vim.bo.filetype ~= 'dashboard' and vim.opt_local.cursorline:get() then
+    if vim.opt_local.cursorline:get() then
       vim.opt_local.cursorline = false
     end
-  end,
-})
-
-api.nvim_create_autocmd('LspAttach', {
-  group = group,
-  callback = function(opt)
-    -- require('internal.formatter'):event(opt.buf)
   end,
 })
