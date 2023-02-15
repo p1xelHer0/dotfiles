@@ -11,11 +11,11 @@ lsp["jose-elias-alvarez/null-ls.nvim"] = {
   opt = true,
 }
 
-lsp["glepnir/lspsaga.nvim"] = {
-  branch = "main",
-  config = conf.lspsaga,
-  opt = true,
-}
+-- lsp["glepnir/lspsaga.nvim"] = {
+--   branch = "main",
+--   config = conf.lspsaga,
+--   opt = true,
+-- }
 
 lsp["hrsh7th/nvim-cmp"] = {
   after = { "LuaSnip" },

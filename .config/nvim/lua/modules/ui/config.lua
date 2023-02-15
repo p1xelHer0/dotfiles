@@ -8,9 +8,9 @@ function config.github_theme()
 end
 
 function config.auto_dark_mode()
-  local dark_colorscheme = "github_dark_colorblind"
+  local dark_colorscheme = "github_dark_default"
   -- local dark_colorscheme = "p1xel"
-  local light_colorscheme = "github_light_colorblind"
+  local light_colorscheme = "github_light_default"
   -- local light_colorscheme = "p1xel"
   local auto_dark_mode = require("auto-dark-mode")
   auto_dark_mode.setup({

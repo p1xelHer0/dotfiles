@@ -242,7 +242,7 @@ return {
   treesitter = treesitter,
   treesitter_obj = treesitter_obj,
   treesitter_ref = treesitter_ref,
-  -- textsubjects = textsubjects,
+  textsubjects = textsubjects,
   context = treesitter_context,
   installed = ts_ensure_installed,
 }

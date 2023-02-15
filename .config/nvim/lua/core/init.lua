@@ -1,7 +1,8 @@
 local g = vim.g
+local helper = require("core.helper")
 
 local createdir = function()
-  local cache_dir = require("core.helper").get_cache_path()
+  local cache_dir = helper.get_cache_path()
   local data_dir = {
     cache_dir .. "/backup",
     cache_dir .. "/session",
@@ -51,16 +52,24 @@ g.mapleader = " "
 vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
 vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 
-local pack = require("core.pack")
-
-if pcall(require, "impatient") then
-  require("impatient")
+local lazy_path = helper.get_lazy_path()
+if not vim.loop.fs_stat(lazy_path) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazy_path,
+  })
 end
+vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
-pack.ensure_plugins()
+-- local pack = require("core.pack")
+
+local lazy_vim = require("core.lazy_vim")
+lazy_vim.setup()
+
 require("core.options")
-pack.load_compile()
 require("keymap")
 require("internal.autocmd")
-_G.lprint = require("utils.log").lprint
-require("core.lazy")
