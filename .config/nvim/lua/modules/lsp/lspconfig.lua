@@ -27,7 +27,7 @@ local setup = function()
     severity_sort = true,
   })
 
-  nvim_lspconfig.sumneko_lua.setup({
+  nvim_lspconfig.lua_ls.setup({
     capabilities = capabilities,
     settings = {
       Lua = {
@@ -94,6 +94,8 @@ local setup = function()
       "--languageserver",
       "--hostPID",
       tostring(vim.fn.getpid()),
+      "-s",
+      "useModernNet=true",
     },
     on_attach = on_attach,
   })
