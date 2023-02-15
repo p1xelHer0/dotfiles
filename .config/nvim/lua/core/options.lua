@@ -1,4 +1,5 @@
 local cache_dir = require("core.helper").get_cache_path()
+local dotfiles_dir = require("core.helper").get_dotfiles_path()
 
 local o = vim.opt
 local blend = 7
@@ -60,7 +61,7 @@ o.directory       = cache_dir .. '/swap'
 o.undodir         = cache_dir .. '/undo'
 o.backupdir       = cache_dir .. '/backup'
 o.viewdir         = cache_dir .. '/view'
-o.spellfile       = cache_dir .. '/spell/en.uft-8.add'
+o.spellfile       = dotfiles_dir .. '/.config/nvim/spell/en.uft-8.add'
 o.history         = 4000
 o.shada           = [[!,'100,<0,s100,h]]
 o.sessionoptions  = 'blank,buffers,curdir,folds,help,tabpages,winsize'
@@ -121,8 +122,6 @@ o.ruler           = true
 o.number          = true
 o.relativenumber  = true
 o.signcolumn      = 'yes'
-o.conceallevel    = 2
-o.concealcursor   = 'niv'
 o.list            = true
 o.listchars = {
   eol             = " " ,

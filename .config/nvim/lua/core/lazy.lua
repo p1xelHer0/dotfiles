@@ -66,7 +66,7 @@ function Lazyload()
 
   if load_lsp then
     loader("nvim-lspconfig")
-    loader("lspsaga.nvim")
+    -- loader("lspsaga.nvim")
   end
 
   if load_ts_plugins then

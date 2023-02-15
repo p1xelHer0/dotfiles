@@ -78,9 +78,6 @@ function config.diffview()
 end
 
 function config.gitsigns()
-  if not packer_plugins["plenary.nvim"].loaded then
-    require("packer").loader("plenary.nvim")
-  end
   local signs = require("core.helper").get_icons()
   require("gitsigns").setup({
     signs = {
@@ -123,7 +120,7 @@ function config.gitsigns()
     },
     update_debounce = 400,
     numhl = false,
-    word_diff = true,
+    word_diff = false,
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
 

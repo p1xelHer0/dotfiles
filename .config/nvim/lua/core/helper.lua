@@ -18,6 +18,10 @@ function helper.get_data_path()
   return data
 end
 
+function helper.get_lazy_path()
+  return helper.get_data_path() .. "lazy/lazy.nvim"
+end
+
 function helper.get_dotfiles_path()
   return home .. "/dotfiles"
 end

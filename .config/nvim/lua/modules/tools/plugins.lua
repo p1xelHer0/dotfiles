@@ -1,9 +1,9 @@
 local tools = {}
 local conf = require("modules.tools.config")
 
-tools["rktjmp/lush.nvim"] = {}
+-- tools["rktjmp/lush.nvim"] = {}
 
-tools["rktjmp/shipwright.nvim"] = {}
+-- tools["rktjmp/shipwright.nvim"] = {}
 
 tools["christoomey/vim-tmux-navigator"] = {
   opt = true,
@@ -82,7 +82,6 @@ tools["iamcco/markdown-preview.nvim"] = {
   ft = { "markdown", "pandoc.markdown", "rmd" },
   opt = true,
   run = [[sh -c "cd app && yarn install"]],
-  setup = conf.mkdp,
 }
 
 tools["tpope/vim-repeat"] = {
