@@ -234,7 +234,8 @@ with lib; {
       cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
 
       # swap dark/light appearance
-      alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
+      # alt - return : osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to not dark mode'
+      alt - return : osascript -e 'choose color'
 
       # # focus window
       # cmd - h : yabai -m window --focus west
@@ -488,6 +489,7 @@ with lib; {
       reattach-to-user-namespace
       ripgrep
       gh
+      hyperfine
       shellcheck
       simple-http-server
       tree
@@ -528,6 +530,7 @@ with lib; {
       nodePackages.vscode-css-languageserver-bin
       nodePackages.typescript
       nodePackages.typescript-language-server
+      nodePackages.tailwindcss
 
       # OCaml
       opam
@@ -541,7 +544,7 @@ with lib; {
       cbqn
 
       # .NET
-      dotnet-sdk
+      dotnet-sdk_7
       omnisharp-roslyn
 
       # Python
