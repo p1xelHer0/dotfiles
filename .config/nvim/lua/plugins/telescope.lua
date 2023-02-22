@@ -18,7 +18,7 @@ local M = {
   },
   opts = {
     defaults = {
-      -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
       mappings = {
         n = {
           ["<C-c>"] = "close",
