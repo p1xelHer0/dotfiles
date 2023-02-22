@@ -2,7 +2,6 @@ local M = {}
 
 function M.format(client, bufnr)
   return function()
-    lprint(client.name)
     vim.lsp.buf.format({
       bufnr = bufnr,
       filter = function()
@@ -26,19 +25,17 @@ end
 
 function M.capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  if not packer_plugins["cmp-nvim-lsp"].loaded then
-    vim.cmd([[packadd cmp-nvim-lsp]])
-  end
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
   return capabilities
 end
 
 function M.on_attach(client, bufnr)
+  require("keymap.lsp").setup(client, bufnr)
+
+  -- setup client specific keymap if it exists
   local has_keymap_file, current_client = pcall(require, "keymap." .. client.name)
   if has_keymap_file then
     current_client.setup(client, bufnr)
-  else
-    require("keymap.lsp").setup(client, bufnr)
   end
 end
 

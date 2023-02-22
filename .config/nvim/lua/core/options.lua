@@ -1,6 +1,3 @@
-local cache_dir = require("core.helper").get_cache_path()
-local dotfiles_dir = require("core.helper").get_dotfiles_path()
-
 local o = vim.opt
 local blend = 7
 
@@ -10,8 +7,8 @@ o.exrc            = false
 o.modelines       = 1
 o.errorbells      = false
 o.termguicolors   = true
-o.syntax          = 'off'  -- set by Tree-sitter - modules/lang/treesitter.lua
-o.background      = 'dark' -- set by auto-dark-mode.nvim - modules/ui/config.lua
+o.syntax          = 'off'
+o.background      = 'dark'
 o.synmaxcol       = 1000
 o.shortmess       = 'aoIcF'
 o.fillchars = {
@@ -56,12 +53,8 @@ o.undofile        = true
 o.swapfile        = false
 o.backup          = false
 o.writebackup     = false
-o.backupskip      = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim'
-o.directory       = cache_dir .. '/swap'
-o.undodir         = cache_dir .. '/undo'
-o.backupdir       = cache_dir .. '/backup'
-o.viewdir         = cache_dir .. '/view'
-o.spellfile       = dotfiles_dir .. '/.config/nvim/spell/en.uft-8.add'
+o.backupskip      = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*'
+o.spellfile       = require("core.config").get_dotfiles_path() .. '/.config/nvim/spell/en.uft-8.add'
 o.history         = 4000
 o.shada           = [[!,'100,<0,s100,h]]
 o.sessionoptions  = 'blank,buffers,curdir,folds,help,tabpages,winsize'
@@ -147,15 +140,26 @@ o.splitbelow      = true
 o.splitright      = true
 -- stylua: ignore end
 
-vim.g.clipboard = {
-  name = "macOS-clipboard",
-  copy = {
-    ["+"] = "pbcopy",
-    ["*"] = "pbcopy",
+local config = require("core.config")
+local signs = config.get_icons()
+
+local diagnostic_signs = signs.diagnostic
+for type, icon in pairs(diagnostic_signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+local severity_signs = signs.severity
+
+vim.diagnostic.config({
+  underline = true,
+  signs = true,
+  virtual_text = {
+    source = "if_many",
+    prefix = "",
+    format = function(diagnostic)
+      return string.format("%s %s ", severity_signs[diagnostic.severity], diagnostic.message)
+    end,
   },
-  paste = {
-    ["+"] = "pbpaste",
-    ["*"] = "pbpaste",
-  },
-  cache_enabled = 0,
-}
+  update_in_insert = false,
+  severity_sort = true,
+})

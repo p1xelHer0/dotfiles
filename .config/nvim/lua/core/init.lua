@@ -1,27 +1,5 @@
 local g = vim.g
-local helper = require("core.helper")
-
-local createdir = function()
-  local cache_dir = helper.get_cache_path()
-  local data_dir = {
-    cache_dir .. "/backup",
-    cache_dir .. "/session",
-    cache_dir .. "/swap",
-    cache_dir .. "/tags",
-    cache_dir .. "/undo",
-  }
-
-  if vim.fn.isdirectory(cache_dir) == 0 then
-    os.execute("mkdir -p " .. cache_dir)
-    for _, v in pairs(data_dir) do
-      if vim.fn.isdirectory(v) == 0 then
-        os.execute("mkdir -p " .. v)
-      end
-    end
-  end
-end
-
-createdir()
+local helper = require("core.config")
 
 g.loaded_gzip = 1
 g.loaded_tar = 1
@@ -48,9 +26,7 @@ g.loaded_python3_provider = 0
 g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 
-g.mapleader = " "
-vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
-vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
+require("keymap")
 
 local lazy_path = helper.get_lazy_path()
 if not vim.loop.fs_stat(lazy_path) then
@@ -65,11 +41,8 @@ if not vim.loop.fs_stat(lazy_path) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
--- local pack = require("core.pack")
-
-local lazy_vim = require("core.lazy_vim")
-lazy_vim.setup()
+local lazy = require("core.lazy")
+lazy.setup()
 
 require("core.options")
-require("keymap")
-require("internal.autocmd")
+require("core.autocmd")

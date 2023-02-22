@@ -1,52 +1,35 @@
-local helper = {}
-local home = os.getenv("HOME")
+local M = {}
 
-function helper.get_config_path()
-  local config = os.getenv("XDG_CONFIG_DIR")
-
-  if not config then
-    return home .. "/.config/nvim"
-  end
-  return config
+function M.get_lazy_path()
+  return vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 end
 
-function helper.get_data_path()
-  local data = os.getenv("XDG_DATA_DIR")
-  if not data then
-    return home .. "/.local/share/nvim"
-  end
-  return data
+function M.get_dotfiles_path()
+  return os.getenv("HOME") .. "/dotfiles"
 end
 
-function helper.get_lazy_path()
-  return helper.get_data_path() .. "lazy/lazy.nvim"
+function M.get_log_path()
+  return vim.fn.stdpath("cache") .. "/nvim_debug.log"
 end
 
-function helper.get_dotfiles_path()
-  return home .. "/dotfiles"
-end
-
-function helper.get_cache_path()
-  return vim.fn.stdpath("cache")
-end
-
-function helper.get_log_path()
-  return string.format("%s%s%s", helper.get_cache_path(), "/", "nvim_debug.log")
-end
-
-function helper.get_icons()
+function M.get_icons()
   local error = "🚨"
   local warn = "🚧"
   local info = "🧵"
   local hint = "🍬"
   local done = "🎉"
-  local working = "⏳"
+  local working = ""
   local removed = "🗑"
   local moved = "🚚"
   local definition = "🧬"
   local reference = "📑"
   local link = "📎"
   local unsaved = "📝"
+  local text = "📜"
+  local path = "🐾"
+  local home = "🏡"
+  local spell = "📚"
+  local snippet = "💌"
   local indent = "│"
 
   return {
@@ -62,21 +45,21 @@ function helper.get_icons()
       info,
       hint,
     },
-    packer = {
-      working = working .. " ",
-      error = error .. " ",
-      done = done .. " ",
-      removed = removed .. " ",
-      moved = moved .. " ",
-    },
-    lspsaga = {
+    general = {
       def = definition .. " ",
-      ref = reference .. " ",
-      link = link .. " ",
       indent = indent,
+      link = link .. " ",
+      lsp = "🔮",
+      lua = "🌔",
+      path = path,
+      ref = reference .. " ",
+      snippet = snippet,
+      text = text,
+      treesitter = "🌳",
+      unsaved = unsaved,
     },
     kind_icons = {
-      Text = "📜",
+      Text = text,
       Method = "𝒎 ",
       Function = "  ",
       Constructor = "🛠",
@@ -102,11 +85,7 @@ function helper.get_icons()
       Operator = " ",
       TypeParameter = "𝒕 ",
     },
-
-    LSP = "",
-    Treesitter = "",
-    Unsaved = "",
   }
 end
 
-return helper
+return M

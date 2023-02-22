@@ -1,5 +1,5 @@
 local api = vim.api
-local group = vim.api.nvim_create_augroup("internal.autocmd", {})
+local group = api.nvim_create_augroup("internal.autocmd", {})
 
 api.nvim_create_autocmd({ "BufWritePre" }, {
   group = group,
