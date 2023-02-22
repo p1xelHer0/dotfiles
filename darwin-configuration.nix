@@ -402,7 +402,7 @@ with lib; {
     #       exec ${pkgs.lorri}/bin/lorri daemon
     #     '';
     #   };
-    #
+
     "nighthook" = {
       serviceConfig = {
         Label = "ae.cmacr.nighthook";
@@ -443,6 +443,16 @@ with lib; {
               fi
             }
 
+            neovimSwitchTheme() {
+              FILE=${homeDir}/.config/nvim_with_theme
+              if [[  $MODE == "dark"  ]]; then
+                echo "nvim -c 'set background=dark'" > $FILE
+              elif [[  $MODE == "light"  ]]; then
+                echo "nvim -c 'set background=light'" > $FILE
+              fi
+            }
+
+
             yabaiSwitchTheme() {
               if [[  $MODE == "dark"  ]]; then
                 yabai -m config active_window_border_color "0xff9da488"
@@ -455,6 +465,7 @@ with lib; {
 
             # spacebarSwitchTheme $@
             alacrittySwitchTheme $@
+            neovimSwitchTheme $@
             # yabaiSwitchTheme $@
           ''}"
         ];
@@ -640,8 +651,6 @@ with lib; {
         ":q" = "tmux kill-pane";
 
         ip = "dig +short myip.opendns.com @resolver1.opendns.com";
-        ipl =
-          "ifconfig | grep -Eo 'inet (addr:)?([0-9]*.){3}[0-9]*' | grep -Eo '([0-9]*.){3}[0-9]*' | grep -v '127.0.0.1'";
 
         perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
 
@@ -649,6 +658,7 @@ with lib; {
         drs =
           "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
 
+        nvim = "sh $HOME/.config/nvim_with_theme";
         v = "nvim";
         vim = "nvim";
         vf = "nvim $(fzf)";
@@ -804,11 +814,13 @@ with lib; {
       ];
     };
 
+    xdg.configFile."theme".text = "dark";
+
     programs.neovim = {
       enable = true;
       # package = pkgs.neovim-nightly;
 
-      extraConfig = builtins.readFile ./.config/nvim/init.vim;
+      extraLuaConfig = builtins.readFile ./.config/nvim/lua/init.lua;
 
       withNodeJs = false;
       withPython3 = false;
@@ -836,35 +848,35 @@ with lib; {
         darkColors = {
           colors = {
             primary = {
-              background = "0x0d1117";
-              foreground = "0xb3b1ad";
+              background = "0x222436";
+              foreground = "0xc8d3f5";
             };
 
             cursor = {
               cursor = "0xffffff";
-              text = "0x0d1117";
+              text = "0x222436";
             };
 
             normal = {
-              black = "0x0d1117";
-              red = "0xff7b72";
-              green = "0x3fb950";
-              yellow = "0xd29922";
-              blue = "0x58a6ff";
-              magenta = "0xbc8cff";
-              cyan = "0x39c5cf";
-              white = "0xb1bac4";
+              black = "0x222436";
+              red = "0xff757f";
+              green = "0xc3e88d";
+              yellow = "0xffc777";
+              blue = "0x82aaff";
+              magenta = "0xc099ff";
+              cyan = "0x86e1fc";
+              white = "0x828bb8";
             };
 
             bright = {
-              black = "0x6e7681";
-              red = "0xffa198";
-              green = "0x56d364";
-              yellow = "0xe3b341";
-              blue = "0x79c0ff";
-              magenta = "0xd2a8ff";
-              cyan = "0x56d4dd";
-              white = "0xf0f6fc";
+              black = "0x444a73";
+              red = "0xff757f";
+              green = "0xc3e88d";
+              yellow = "0xffc777";
+              blue = "0x82aaff";
+              magenta = "0xc099ff";
+              cyan = "0x86e1fc";
+              white = "0xc8d3f5";
             };
 
             indexed_colors = [
@@ -886,35 +898,35 @@ with lib; {
         lightColors = {
           colors = {
             primary = {
-              background = "0xffffff";
-              foreground = "0x0e1116";
+              background = "0xe1e2e7";
+              foreground = "0x3760bf";
             };
 
             cursor = {
               cursor = "0x000000";
-              text = "0xffffff";
+              text = "0xe1e2e7";
             };
 
             normal = {
-              black = "0xffffff";
-              red = "0xcf222e";
-              green = "0x116329";
-              yellow = "0x4d2d00";
-              blue = "0x0969da";
-              magenta = "0x8250df";
-              cyan = "0x1b7c83";
-              white = "0x6e7781";
+              black = "0xe1e2e7";
+              red = "0xf52a65";
+              green = "0x587539";
+              yellow = "0x8c6c3e";
+              blue = "0x2e7de9";
+              magenta = "0x9854f1";
+              cyan = "0x007197";
+              white = "0x6172b0";
             };
 
             bright = {
-              black = "0x57606a";
-              red = "0xa40e26";
-              green = "0x1a7f37";
-              yellow = "0x633c01";
-              blue = "0x218bff";
-              magenta = "0xa475f9";
-              cyan = "0x3192aa";
-              white = "0x8c959f";
+              black = "0xa1a6c5";
+              red = "0xf52a65";
+              green = "0x587539";
+              yellow = "0x8c6c3e";
+              blue = "0x2e7de9";
+              magenta = "0x9854f1";
+              cyan = "0x007197";
+              white = "0x3760bf";
             };
 
             indexed_colors = [

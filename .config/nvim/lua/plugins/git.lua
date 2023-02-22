@@ -1,9 +1,10 @@
 local M = {
   {
     "TimUntersberger/neogit",
+    dependencies = { "sindrets/diffview.nvim" },
     cmd = { "Neogit " },
     config = function()
-      local signs = require("core.helper").get_icons()
+      local signs = require("core.config").get_icons()
       require("neogit").setup({
         auto_refresh = false,
         signs = {
@@ -16,8 +17,8 @@ local M = {
         },
       })
     end,
-    dependencies = { "sindrets/diffview.nvim" },
   },
+
   {
     "sindrets/diffview.nvim",
     cmd = {
@@ -29,7 +30,7 @@ local M = {
     },
     config = function()
       local cb = require("diffview.config").diffview_callback
-      local signs = require("core.helper").get_icons()
+      local signs = require("core.config").get_icons()
       require("diffview").setup({
         diff_binaries = false, -- Show diffs for binaries
         use_icons = false, -- Requires nvim-web-devicons
@@ -64,122 +65,61 @@ local M = {
       })
     end,
   },
+
   {
     "lewis6991/gitsigns.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = { "Gitsigns " },
     config = function()
-      local signs = require("core.helper").get_icons()
+      local signs = require("core.config").get_icons()
       require("gitsigns").setup({
         signs = {
           add = {
             hl = "GitSignsAdd",
-            text = "+",
+            -- text = "+",
+            text = signs.general.indent,
             numhl = "GitSignsAddNr",
-            -- linehl = "GitSignsAddLn",
           },
           change = {
             hl = "GitSignsChange",
-            text = "~",
+            -- text = "~",
+            text = signs.general.indent,
             numhl = "GitSignsChangeNr",
-            -- linehl = "GitSignsChangeLn",
           },
           delete = {
             hl = "GitSignsDelete",
             text = "_",
             numhl = "GitSignsDeleteNr",
-            -- linehl = "GitSignsDeleteLn",
           },
           topdelete = {
             hl = "GitSignsDelete",
             text = "‾",
             numhl = "GitSignsDeleteNr",
-            -- linehl = "GitSignsDeleteLn",
           },
           changedelete = {
             hl = "GitSignsChange",
-            text = "~",
+            -- text = "~",
+            text = signs.general.indent,
             numhl = "GitSignsChangeNr",
-            -- linehl = "GitSignsChangeLn",
           },
           untracked = {
             hl = "GitSignsAdd",
-            text = "~",
+            -- text = "~",
+            text = signs.general.indent,
             numhl = "GitSignsAddNr",
-            -- linehl = "GitSignsAddLn",
           },
         },
-        update_debounce = 400,
-        numhl = false,
-        word_diff = false,
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-
-          -- Navigation
-          map("n", "]c", function()
-            if vim.wo.diff then
-              return "]c"
-            end
-            vim.schedule(function()
-              gs.next_hunk()
-            end)
-            return "<Ignore>"
-          end, { expr = true })
-
-          map("n", "[c", function()
-            if vim.wo.diff then
-              return "[c"
-            end
-            vim.schedule(function()
-              gs.prev_hunk()
-            end)
-            return "<Ignore>"
-          end, { expr = true })
-
-          -- Actions
-          map({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
-          map({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
-          -- map("n", "<leader>hS", gs.stage_buffer) -- hydra
-          -- map("n", "<leader>hu", gs.undo_stage_hunk)
-          -- map("n", "<leader>hR", gs.reset_buffer)
-          -- map("n", "<leader>hp", gs.preview_hunk)
-          map("n", "<leader>hb", function()
-            gs.blame_line({ full = true })
-          end)
-          map("n", "<leader>tb", gs.toggle_current_line_blame)
-          map("n", "<leader>hd", gs.diffthis)
-          map("n", "<leader>hD", function()
-            gs.diffthis("~")
-          end)
-          -- map("n", "<leader>td", gs.toggle_deleted)
-
-          -- Text object
-          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
-        end,
-        watch_gitdir = { interval = 1000, follow_files = true },
-        status_formatter = nil, -- Use default
-        debug_mode = false,
-        current_line_blame = true,
-        current_line_blame_opts = { delay = 1500 },
-        diff_opts = { internal = true },
       })
-
-      -- vim.api.nvim_set_hl(0, "GitSignsAddInline", { link = "DiffAdd" }) -- diff mode: Deleted line |diff.txt|
-      -- vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { link = "DiffDelete" }) -- diff mode: Deleted line |diff.txt|
-      -- vim.api.nvim_set_hl(0, "GitSignsChangeInline", { link = "DiffAdd" }) -- diff mode: Deleted line |diff.txt|
-      -- vim.api.nvim_create_user_command("Stage", "'<,'>Gitsigns stage_hunk", { range = true })
     end,
-    dependencies = { "nvim-lua/plenary.nvim" },
   },
+
   {
     "rbong/vim-flog",
-    cmd = { "Flog", "Flogsplit" },
     dependencies = { "tpope/vim-fugitive" },
+    cmd = { "Flog", "Flogsplit" },
   },
+
   {
     "tpope/vim-fugitive",
     cmd = {
