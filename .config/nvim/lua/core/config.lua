@@ -8,10 +8,6 @@ function M.get_dotfiles_path()
   return os.getenv("HOME") .. "/dotfiles"
 end
 
-function M.get_log_path()
-  return vim.fn.stdpath("cache") .. "/nvim_debug.log"
-end
-
 function M.get_icons()
   local error = "🚨"
   local warn = "🚧"

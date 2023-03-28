@@ -56,6 +56,22 @@ local M = {
       "ColorizerReloadAllBuffers",
       "ColorizerToggle",
     },
+    opts = {
+      user_default_options = {
+        names = false,
+        mode = "background",
+      },
+      tailwind = true,
+    },
+  },
+  {
+    "themaxmarchuk/tailwindcss-colors.nvim",
+    cmd = {
+      "TailwindColorsAttach",
+      "TailwindColorsDeatach",
+      "TailwindColorsRefresh",
+      "TailwindColorsToggle",
+    },
   },
 }
 

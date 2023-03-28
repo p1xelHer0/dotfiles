@@ -152,6 +152,10 @@ defaults write com.apple.terminal StringEncodings -array 4
 # see: https://security.stackexchange.com/a/47786/8918
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
+
+# change Hammerspoon to use XDG_CONFIG_HOME
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "$HOME/.config/hammerspoon/init.lua"
+
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
            "Dock" "Finder" "Mail" "Messages" "Safari" "SystemUIServer" \
            "Terminal" "Twitter" "iCal"; do
