@@ -49,15 +49,15 @@ o.clipboard       = 'unnamedplus'
 
 o.autochdir       = false
 o.hidden          = true
-o.undofile        = true
-o.swapfile        = false
-o.backup          = false
-o.writebackup     = false
+-- o.undofile        = true
+-- o.swapfile        = false
+-- o.backup          = true
+-- o.writebackup     = true
 o.backupskip      = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*'
 o.spellfile       = require("core.config").get_dotfiles_path() .. '/.config/nvim/spell/en.uft-8.add'
-o.history         = 4000
-o.shada           = [[!,'100,<0,s100,h]]
-o.sessionoptions  = 'blank,buffers,curdir,folds,help,tabpages,winsize'
+-- o.history         = 4000
+-- o.shada           = [[!,'100,<0,s100,h]]
+-- o.sessionoptions  = 'blank,buffers,curdir,folds,help,tabpages,winsize'
 
 o.magic           = true
 o.hlsearch        = true

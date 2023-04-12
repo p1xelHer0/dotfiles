@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
-
 let
   homeDir = builtins.getEnv ("HOME");
   user = builtins.getEnv ("USER");
-
 in
 with pkgs.stdenv;
 with lib; {
@@ -11,12 +9,6 @@ with lib; {
   system.stateVersion = 4;
 
   nix.configureBuildUsers = true;
-
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
 
   environment.systemPackages = with pkgs; [ nixUnstable zsh ];
 
@@ -128,6 +120,7 @@ with lib; {
     ];
 
     brews = [
+      "gnu-sed" # needed for nvim-spectre
       "mas"
       "michaeleisel/zld/zld" # faster linker for Bevy development
       "pam-reattach" # run Touch ID within tmux
@@ -184,7 +177,7 @@ with lib; {
     enableScriptingAddition = false;
     config = {
       focus_follows_mouse = "autoraise";
-      mouse_follows_focus = "on";
+      mouse_follows_focus = "off";
 
       window_placement = "second_child";
 
@@ -443,15 +436,10 @@ with lib; {
               fi
             }
 
-            neovimSwitchTheme() {
-              FILE=${homeDir}/.config/nvim_with_theme
-              if [[  $MODE == "dark"  ]]; then
-                echo "nvim -c 'set background=dark'" > $FILE
-              elif [[  $MODE == "light"  ]]; then
-                echo "nvim -c 'set background=light'" > $FILE
-              fi
+            switchTheme() {
+              FILE=${homeDir}/.config/.theme
+              echo $MODE > $FILE
             }
-
 
             yabaiSwitchTheme() {
               if [[  $MODE == "dark"  ]]; then
@@ -465,7 +453,7 @@ with lib; {
 
             # spacebarSwitchTheme $@
             alacrittySwitchTheme $@
-            neovimSwitchTheme $@
+            switchTheme $@
             # yabaiSwitchTheme $@
           ''}"
         ];
@@ -473,567 +461,569 @@ with lib; {
     };
   };
 
-  home-manager.users.p1xelher0 = { config, pkgs, ... }: {
-    home.stateVersion = "20.09";
+  home-manager.users.p1xelher0 = { config, pkgs, ... }:
+    let
+      inherit (config.lib.file) mkOutOfStoreSymlink;
+    in
+    {
+      home.stateVersion = "20.09";
 
-    # build currently fails with this `true`, `false` for now
-    manual.manpages.enable = false;
+      nixpkgs.overlays = [
+        (import (builtins.fetchTarball {
+          url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+        }))
+      ];
 
-    xdg.configFile."nix/nix.conf".text = ''
-      experimental-features = nix-command flakes
-    '';
+      # build currently fails with this `true`, `false` for now
+      manual.manpages.enable = false;
 
-    home.packages = with pkgs; [
-      # Fonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-
-      # Tools
-      bat
-      curl
-      exa
-      fasd # discontinued?
-      fd
-      fswatch
-      htop
-      jq
-      p7zip
-      reattach-to-user-namespace
-      ripgrep
-      gh
-      hyperfine
-      shellcheck
-      simple-http-server
-      tree
-      tree-sitter
-      delta
-      flyctl
-      watchman
-      wget
-      yamllint
-      zoxide # fasd replacement but fasd is still better...?
-      zola
-
-      # Writing
-      ispell
-      nodePackages.write-good
-      proselint
-
-      # Nix
-      cachix
-      niv
-      nixfmt
-      rnix-lsp
-
-      # Lua
-      selene
-      stylua
-      sumneko-lua-language-server
-
-      # Web
-      fnm
-      nodePackages.yarn
-      nodePackages.vercel
-      nodePackages.prettier
-      nodePackages.eslint
-      nodePackages.eslint_d
-      nodePackages.vscode-json-languageserver-bin
-      nodePackages.vscode-html-languageserver-bin
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      nodePackages.tailwindcss
-
-      # OCaml
-      opam
-
-      # Rust
-      rustup
-      # rust-analyzer - install this with Rustup instead
-      # to make sure it matches the compiler
-
-      # BQN
-      cbqn
-
-      # .NET
-      dotnet-sdk_7
-      omnisharp-roslyn
-
-      # Python
-      nodePackages.pyright
-      python310Packages.autopep8
-
-      # Go
-      go
-      gopls
-      # go install github.com/mattn/efm-langserver@latest
-      # go install github.com/segmentio/golines@latest
-      # go install github.com/client9/misspell/cmd/misspell@latest
-
-      # Lisp
-      chicken
-      guile
-      chez-racket
-      sbcl
-
-      # Erlang/Elixir
-      elixir
-      elixir_ls
-
-      # TOML
-      taplo-cli
-      taplo-lsp
-
-      # YAML
-      nodePackages.yaml-language-server
-    ];
-
-    programs.zsh = {
-      enable = true;
-
-      enableAutosuggestions = false;
-      enableCompletion = true;
-
-      sessionVariables = {
-        EDITOR = "nvim";
-        LC_ALL = "en_US.UTF-8";
-
-        DOTS_BIN = "$HOME/dotfiles/bin";
-        DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
-        GOPATH = "$HOME/go";
-        GOPATH_BIN = "$GOPATH/bin";
-        RESCRIPT_LSP =
-          "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
-      };
-
-      envExtra = ''
-        # profile zsh
-        # zmodload zsh/zprof
+      xdg.configFile."nix/nix.conf".text = ''
+        experimental-features = nix-command flakes
       '';
 
-      initExtra = ''
-        export PATH=$DOTS_BIN:$PATH
-        export PATH=$DOTS_DARWIN_BIN:$PATH
-        export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-        export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+      home.packages = with pkgs; [
+        # Fonts
+        (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 
-        export PATH=/opt/homebrew/bin:$PATH
-        export PATH=$GOPATH:$PATH
-        export PATH=$GOPATH_BIN:$PATH
+        # Tools
+        bat
+        curl
+        exa
+        fasd # discontinued?
+        fd
+        fswatch
+        htop
+        jq
+        p7zip
+        reattach-to-user-namespace
+        ripgrep
+        gh
+        hyperfine
+        shellcheck
+        simple-http-server
+        tree
+        tree-sitter
+        delta
+        flyctl
+        watchman
+        wget
+        yamllint
+        zoxide # fasd replacement but fasd is still better...?
+        zola
 
-        export PATH=$RESCRIPT_LSP:$PATH
-        export RPROMPT=""
+        # Writing
+        ispell
+        nodePackages.write-good
+        proselint
 
-        # ZVM_LAZY_KEYBINDINGS=false
-        # ZVM_VI_HIGHLIGHT_BACKGROUND=3
+        # Nix
+        cachix
+        niv
+        nixfmt
+        rnix-lsp
 
-        # use the maximum amount of file descriptors
-        ulimit -n 24576
+        # Lua
+        selene
+        stylua
+        sumneko-lua-language-server
 
-        source "$DOTS_BIN/fzf_git"
+        # Web
+        fnm
+        nodePackages.yarn
+        nodePackages.vercel
+        nodePackages.prettier
+        nodePackages.eslint
+        nodePackages.eslint_d
+        nodePackages.vscode-json-languageserver-bin
+        nodePackages.vscode-html-languageserver-bin
+        nodePackages.vscode-css-languageserver-bin
+        nodePackages.typescript
+        nodePackages.typescript-language-server
+        nodePackages.tailwindcss
 
-        # eval "$(fasd --init auto)"
-        eval "$(zoxide init zsh)"
+        # OCaml
+        opam
 
-        # eval "$(direnv hook zsh)"
+        # Rust
+        rustup
+        cargo-watch
+        # rust-analyzer - install this with Rustup instead
+        # to make sure it matches the compiler
 
-        eval "$(fnm env)"
+        # BQN
+        cbqn
 
-        eval "$(opam env)"
+        # .NET
+        dotnet-sdk_6
+        omnisharp-roslyn
 
-        # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+        # Python
+        nodePackages.pyright
+        python310Packages.autopep8
 
-        # profile zsh
-        # zprof
-      '';
+        # Go
+        go
+        gopls
+        # go install github.com/mattn/efm-langserver@latest
+        # go install github.com/segmentio/golines@latest
+        # go install github.com/client9/misspell/cmd/misspell@latest
 
-      shellAliases = {
-        "l" = "clear";
-        ":q" = "tmux kill-pane";
+        # Lisp
+        chicken
+        guile
+        chez-racket
+        sbcl
 
-        ip = "dig +short myip.opendns.com @resolver1.opendns.com";
+        # Erlang/Elixir
+        elixir
+        elixir_ls
 
-        perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
+        # TOML
+        taplo-cli
+        taplo-lsp
 
-        dre = "darwin-rebuild edit";
-        drs =
-          "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
-
-        nvim = "sh $HOME/.config/nvim_with_theme";
-        v = "nvim";
-        vim = "nvim";
-        vf = "nvim $(fzf)";
-
-        os = "eval $(opam env)";
-        ev = "npx esy nvim";
-        evf = "npx esy nvim $(fzf)";
-
-        dots = "cd $HOME/dotfiles && nvim";
-        swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
-
-        note = "tmux split-window -h 'cd $HOME/library/Mobile\\\ Documents/iCloud~md~obsidian/Documents/p1xelHer0 && nvim $(fzf)'";
-
-        fixusb = "sudo killall -STOP -c usbd";
-
-        rl = "exec zsh";
-
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
-        "....." = "cd ../../../..";
-      };
-
-      plugins = [
-        # {
-        #   name = "zsh-vi-mode";
-        #   file = "zsh-vi-mode.plugin.zsh";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "jeffreytse";
-        #     repo = "zsh-vi-mode";
-        #     rev = "v0.8.3";
-        #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
-        #   };
-        # }
+        # YAML
+        nodePackages.yaml-language-server
       ];
-    };
 
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        add_newline = false;
-        scan_timeout = 10;
-
-        character = {
-          success_symbol = "[λ](bold green)";
-          error_symbol = "[λ](bold red)";
-        };
-
-        format = ''
-          $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
-          $character'';
-
-        directory = { read_only = "X"; };
-
-        git_branch.format = "$branch ";
-
-        git_commit = {
-          style = "bold cyan";
-          tag_disabled = true;
-        };
-
-        git_status = {
-          format = "$all_status$ahead_behind ";
-
-          conflicted = "";
-
-          ahead = "[>](yellow)";
-          behind = "[<](yellow)";
-          diverged = "[?](bold red)";
-
-          staged = "[^](green)";
-          modified = "[~](yellow)";
-
-          untracked = "[+](green)";
-          renamed = ''["](green)'';
-          deleted = "[-](red)";
-
-          stashed = "[# ](bold blue)";
-        };
-
-        cmd_duration = {
-          format = "[$duration]($style) ";
-          style = "yellow";
-        };
-
-        nodejs = {
-          format = "[$symbol($version)]($style) ";
-          symbol = "[node](green)";
-        };
-
-        ocaml = {
-          format = "[$symbol($version)]($style) ";
-          symbol = "[ocaml](yellow)";
-        };
-
-        rust = {
-          format = "[$symbol($version)]($style) ";
-          symbol = "[rust](red)";
-        };
-
-        nix_shell = {
-          format = "[$symbol$state( ($name))]($style) ";
-          symbol = "[nix](blue)";
-          impure_msg = "i";
-          pure_msg = "p";
-        };
-      };
-    };
-
-    programs.tmux = {
-      enable = true;
-
-      extraConfig = builtins.readFile ./.config/tmux/tmux.conf;
-
-      plugins = with pkgs; [
-        #   tmuxPlugins.resurrect
-        #   {
-        #     plugin = tmuxPlugins.continuum;
-        #     extraConfig = ''
-        #       set -g @continuum-restore 'on'
-        #       set -g @continuum-save-interval '15'
-        #     '';
-        #   }
-      ];
-    };
-
-    programs.fzf = {
-      enable = true;
-
-      enableZshIntegration = true;
-
-      defaultCommand = "rg --files --hidden --smart-case";
-      defaultOptions = [
-        "--color=fg:7"
-        "--color=bg:-1"
-        "--color=preview-fg:7"
-        "--color=preview-bg:-1"
-        "--color=hl:reverse:3"
-        "--color=fg+:7"
-        "--color=bg+:18"
-        "--color=gutter:-1"
-        "--color=hl+:reverse:3"
-        "--color=info:8"
-        "--color=border:16"
-        "--color=prompt:2"
-        "--color=pointer:2"
-        "--color=marker:2"
-        "--color=spinner:1"
-        "--color=header:8"
-
-        "--reverse --no-bold --no-unicode --preview-window=hidden"
-      ];
-    };
-
-    xdg.configFile."theme".text = "dark";
-
-    programs.neovim = {
-      enable = true;
-      # package = pkgs.neovim-nightly;
-
-      extraLuaConfig = builtins.readFile ./.config/nvim/lua/init.lua;
-
-      withNodeJs = false;
-      withPython3 = false;
-      withRuby = false;
-    };
-
-    programs.git = {
-      enable = true;
-      package = pkgs.gitAndTools.gitFull;
-      userName = "Pontus Nagy";
-      userEmail = "p_nagy@icloud.com";
-      includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
-    };
-
-    programs.direnv = {
-      enable = true;
-
-      nix-direnv = {
+      programs.zsh = {
         enable = true;
-      };
-    };
 
-    xdg.configFile."alacritty/dark.yml".text =
-      let
-        darkColors = {
-          colors = {
-            primary = {
-              background = "0x222436";
-              foreground = "0xc8d3f5";
-            };
+        enableAutosuggestions = false;
+        enableCompletion = true;
 
-            cursor = {
-              cursor = "0xffffff";
-              text = "0x222436";
-            };
+        sessionVariables = {
+          EDITOR = "nvim";
+          LC_ALL = "en_US.UTF-8";
 
-            normal = {
-              black = "0x222436";
-              red = "0xff757f";
-              green = "0xc3e88d";
-              yellow = "0xffc777";
-              blue = "0x82aaff";
-              magenta = "0xc099ff";
-              cyan = "0x86e1fc";
-              white = "0x828bb8";
-            };
-
-            bright = {
-              black = "0x444a73";
-              red = "0xff757f";
-              green = "0xc3e88d";
-              yellow = "0xffc777";
-              blue = "0x82aaff";
-              magenta = "0xc099ff";
-              cyan = "0x86e1fc";
-              white = "0xc8d3f5";
-            };
-
-            indexed_colors = [
-              { index = 16; color = "0x5d646e"; }
-              { index = 17; color = "0x4c525b"; }
-              { index = 18; color = "0x3b4149"; }
-              { index = 19; color = "0x2c3037"; }
-              { index = 20; color = "0x262a30"; }
-            ];
-          };
-        };
-      in
-      builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-        (builtins.toJSON (config.programs.alacritty.settings // darkColors));
-
-
-    xdg.configFile."alacritty/light.yml".text =
-      let
-        lightColors = {
-          colors = {
-            primary = {
-              background = "0xe1e2e7";
-              foreground = "0x3760bf";
-            };
-
-            cursor = {
-              cursor = "0x000000";
-              text = "0xe1e2e7";
-            };
-
-            normal = {
-              black = "0xe1e2e7";
-              red = "0xf52a65";
-              green = "0x587539";
-              yellow = "0x8c6c3e";
-              blue = "0x2e7de9";
-              magenta = "0x9854f1";
-              cyan = "0x007197";
-              white = "0x6172b0";
-            };
-
-            bright = {
-              black = "0xa1a6c5";
-              red = "0xf52a65";
-              green = "0x587539";
-              yellow = "0x8c6c3e";
-              blue = "0x2e7de9";
-              magenta = "0x9854f1";
-              cyan = "0x007197";
-              white = "0x3760bf";
-            };
-
-            indexed_colors = [
-              { index = 16; color = "0x9ca4ad"; }
-              { index = 17; color = "0xadb4bb"; }
-              { index = 18; color = "0xbec4c9"; }
-              { index = 19; color = "0xcfd4d7"; }
-              { index = 20; color = "0xe1e4e6"; }
-            ];
-          };
-        };
-      in
-      builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-        (builtins.toJSON (config.programs.alacritty.settings // lightColors));
-
-    programs.alacritty = {
-      enable = true;
-
-      settings = {
-        env = {
-          TERM = "xterm-256color";
+          DOTS_BIN = "$HOME/dotfiles/bin";
+          DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
+          GOPATH = "$HOME/go";
+          GOPATH_BIN = "$GOPATH/bin";
+          RESCRIPT_LSP =
+            "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
         };
 
-        window = {
-          padding.x = 16;
-          padding.y = 16;
+        envExtra = ''
+          # profile zsh
+          # zmodload zsh/zprof
+        '';
 
-          decorations = "buttonless";
-          startup_mode = "Windowed";
+        initExtra = ''
+          export PATH=$DOTS_BIN:$PATH
+          export PATH=$DOTS_DARWIN_BIN:$PATH
+          export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+          export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+
+          export PATH=/opt/homebrew/bin:$PATH
+          export PATH=$GOPATH:$PATH
+          export PATH=$GOPATH_BIN:$PATH
+
+          export PATH=$RESCRIPT_LSP:$PATH
+          export RPROMPT=""
+
+          # ZVM_LAZY_KEYBINDINGS=false
+          # ZVM_VI_HIGHLIGHT_BACKGROUND=3
+
+          # use the maximum amount of file descriptors
+          ulimit -n 24576
+
+          source "$DOTS_BIN/fzf_git"
+
+          # eval "$(fasd --init auto)"
+          eval "$(zoxide init zsh)"
+
+          # eval "$(direnv hook zsh)"
+
+          eval "$(fnm env)"
+
+          eval "$(opam env)"
+
+          # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+          # profile zsh
+          # zprof
+        '';
+
+        shellAliases = {
+          "l" = "clear";
+          ":q" = "tmux kill-pane";
+
+          ip = "dig +short myip.opendns.com @resolver1.opendns.com";
+
+          perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
+
+          dre = "darwin-rebuild edit";
+          drs =
+            "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
+
+          v = "nvim";
+          vim = "nvim";
+          vf = "nvim $(fzf)";
+
+          os = "eval $(opam env)";
+          ev = "npx esy nvim";
+          evf = "npx esy nvim $(fzf)";
+
+          dots = "cd $HOME/dotfiles && nvim";
+          nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
+          nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";
+          nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
+
+          note = "tmux split-window -h 'cd $HOME/library/Mobile\\\ Documents/iCloud~md~obsidian/Documents/p1xelHer0 && nvim $(fzf)'";
+
+          fixusb = "sudo killall -STOP -c usbd";
+
+          rl = "exec zsh";
+
+          ".." = "cd ..";
+          "..." = "cd ../..";
+          "...." = "cd ../../..";
+          "....." = "cd ../../../..";
         };
 
-        draw_bold_text_with_bright_colors = true;
-
-        live_config_reload = true;
-
-        mouse.hide_when_typing = true;
-
-        scrolling.history = 0;
-
-        selection.save_to_clipboard = false;
-
-        bell.duration = 0;
-
-        cursor = {
-          style = "Block";
-          unfocused_hollow = true;
-        };
-
-        font = {
-          size = 16;
-
-          normal = {
-            family = "JetBrainsMonoNL Nerd Font Mono";
-            # family = "Menlo";
-            # family = "BQN386 Unicode";
-            style = "Medium";
-          };
-
-          bold = {
-            family = "JetBrainsMonoNL Nerd Font Mono";
-            # family = "Menlo";
-            # family = "BQN386 Unicode";
-            style = "ExtraBold";
-          };
-
-          italic = {
-            family = "JetBrainsMonoNL Nerd Font Mono";
-            # family = "Menlo";
-            # family = "BQN386 Unicode";
-            style = "Medium Italic";
-          };
-
-          bold_italic = {
-            family = "JetBrainsMonoNL Nerd Font Mono";
-            # family = "Menlo";
-            # family = "BQN386 Unicode";
-            style = "ExtraBold Italic";
-          };
-
-          offset = {
-            x = 0;
-            y = 12;
-          };
-
-          glyph_offset = {
-            x = 0;
-            y = 6;
-          };
-        };
-
-        key_bindings = [
-          {
-            key = "Paste";
-            action = "Paste";
-          }
-          {
-            key = "Copy";
-            action = "Copy";
-          }
+        plugins = [
+          # {
+          #   name = "zsh-vi-mode";
+          #   file = "zsh-vi-mode.plugin.zsh";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "jeffreytse";
+          #     repo = "zsh-vi-mode";
+          #     rev = "v0.8.3";
+          #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
+          #   };
+          # }
         ];
       };
+
+      programs.starship = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          add_newline = false;
+          scan_timeout = 10;
+
+          character = {
+            success_symbol = "[λ](bold green)";
+            error_symbol = "[λ](bold red)";
+          };
+
+          format = ''
+            $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+            $character'';
+
+          directory = { read_only = "X"; };
+
+          git_branch.format = "$branch ";
+
+          git_commit = {
+            style = "bold cyan";
+            tag_disabled = true;
+          };
+
+          git_status = {
+            format = "$all_status$ahead_behind ";
+
+            conflicted = "";
+
+            ahead = "[>](yellow)";
+            behind = "[<](yellow)";
+            diverged = "[?](bold red)";
+
+            staged = "[^](green)";
+            modified = "[~](yellow)";
+
+            untracked = "[+](green)";
+            renamed = ''["](green)'';
+            deleted = "[-](red)";
+
+            stashed = "[# ](bold blue)";
+          };
+
+          cmd_duration = {
+            format = "[$duration]($style) ";
+            style = "yellow";
+          };
+
+          nodejs = {
+            format = "[$symbol($version)]($style) ";
+            symbol = "[node](green)";
+          };
+
+          ocaml = {
+            format = "[$symbol($version)]($style) ";
+            symbol = "[ocaml](yellow)";
+          };
+
+          rust = {
+            format = "[$symbol($version)]($style) ";
+            symbol = "[rust](red)";
+          };
+
+          nix_shell = {
+            format = "[$symbol$state( ($name))]($style) ";
+            symbol = "[nix](blue)";
+            impure_msg = "i";
+            pure_msg = "p";
+          };
+        };
+      };
+      /* defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua" */
+      xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/_darwin/hammerspoon/init.lua";
+
+      xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/tmux/tmux.conf";
+      programs.tmux.enable = true;
+
+      programs.fzf = {
+        enable = true;
+
+        enableZshIntegration = true;
+
+        defaultCommand = "rg --files --hidden --smart-case";
+        defaultOptions = [
+          "--color=fg:7"
+          "--color=bg:-1"
+          "--color=preview-fg:7"
+          "--color=preview-bg:-1"
+          "--color=hl:reverse:3"
+          "--color=fg+:7"
+          "--color=bg+:18"
+          "--color=gutter:-1"
+          "--color=hl+:reverse:3"
+          "--color=info:8"
+          "--color=border:16"
+          "--color=prompt:2"
+          "--color=pointer:2"
+          "--color=marker:2"
+          "--color=spinner:1"
+          "--color=header:8"
+
+          "--reverse --no-bold --no-unicode --preview-window=hidden"
+        ];
+      };
+
+      xdg.configFile."theme".text = "dark";
+
+      xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/nvim/lua";
+      programs.neovim = {
+        enable = true;
+        package = pkgs.neovim-nightly;
+        extraConfig = "lua require('init')";
+        withNodeJs = false;
+        withPython3 = false;
+        withRuby = false;
+      };
+
+      programs.git = {
+        enable = true;
+        package = pkgs.gitAndTools.gitFull;
+        userName = "Pontus Nagy";
+        userEmail = "p_nagy@icloud.com";
+        includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
+        /**/
+        /* extraConfig = { */
+        /*   diff.colorAdded = "2"; */
+        /*   diff.colorChanged = "3"; */
+        /*   diff.colorUntracked = "2"; */
+        /*   diff.colorMoved = "2"; */
+        /* }; */
+        /**/
+        /* delta = { */
+        /*   enable = true; */
+        /* }; */
+      };
+
+      programs.direnv = {
+        enable = true;
+
+        nix-direnv = {
+          enable = true;
+        };
+      };
+
+      xdg.configFile."alacritty/dark.yml".text =
+        let
+          darkColors = {
+            colors = {
+              primary = {
+                background = "0x222436";
+                foreground = "0xc8d3f5";
+              };
+
+              cursor = {
+                cursor = "0xffffff";
+                text = "0x222436";
+              };
+
+              normal = {
+                black = "0x222436";
+                red = "0xff757f";
+                green = "0xc3e88d";
+                yellow = "0xffc777";
+                blue = "0x82aaff";
+                magenta = "0xc099ff";
+                cyan = "0x86e1fc";
+                white = "0x828bb8";
+              };
+
+              bright = {
+                black = "0x444a73";
+                red = "0xff757f";
+                green = "0xc3e88d";
+                yellow = "0xffc777";
+                blue = "0x82aaff";
+                magenta = "0xc099ff";
+                cyan = "0x86e1fc";
+                white = "0xc8d3f5";
+              };
+
+              indexed_colors = [
+                { index = 16; color = "0x5d646e"; }
+                { index = 17; color = "0x4c525b"; }
+                { index = 18; color = "0x3b4149"; }
+                { index = 19; color = "0x2c3037"; }
+                { index = 20; color = "0x262a30"; }
+              ];
+            };
+          };
+        in
+        builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+          (builtins.toJSON (config.programs.alacritty.settings // darkColors));
+
+
+      xdg.configFile."alacritty/light.yml".text =
+        let
+          lightColors = {
+            colors = {
+              primary = {
+                background = "0xe1e2e7";
+                foreground = "0x3760bf";
+              };
+
+              cursor = {
+                cursor = "0x000000";
+                text = "0xe1e2e7";
+              };
+
+              normal = {
+                black = "0xe1e2e7";
+                red = "0xf52a65";
+                green = "0x587539";
+                yellow = "0x8c6c3e";
+                blue = "0x2e7de9";
+                magenta = "0x9854f1";
+                cyan = "0x007197";
+                white = "0x6172b0";
+              };
+
+              bright = {
+                black = "0xa1a6c5";
+                red = "0xf52a65";
+                green = "0x587539";
+                yellow = "0x8c6c3e";
+                blue = "0x2e7de9";
+                magenta = "0x9854f1";
+                cyan = "0x007197";
+                white = "0x3760bf";
+              };
+
+              indexed_colors = [
+                { index = 16; color = "0x9ca4ad"; }
+                { index = 17; color = "0xadb4bb"; }
+                { index = 18; color = "0xbec4c9"; }
+                { index = 19; color = "0xcfd4d7"; }
+                { index = 20; color = "0xe1e4e6"; }
+              ];
+            };
+          };
+        in
+        builtins.replaceStrings [ "\\\\" ] [ "\\" ]
+          (builtins.toJSON (config.programs.alacritty.settings // lightColors));
+
+      programs.alacritty = {
+        enable = true;
+
+        settings = {
+          env = {
+            TERM = "xterm-256color";
+          };
+
+          window = {
+            padding.x = 16;
+            padding.y = 16;
+
+            decorations = "buttonless";
+            startup_mode = "Windowed";
+          };
+
+          draw_bold_text_with_bright_colors = false;
+
+          live_config_reload = true;
+
+          mouse.hide_when_typing = true;
+
+          scrolling.history = 0;
+
+          selection.save_to_clipboard = false;
+
+          bell.duration = 0;
+
+          cursor = {
+            style = "Block";
+            unfocused_hollow = true;
+          };
+
+          font = {
+            size = 16;
+
+            normal = {
+              family = "JetBrainsMonoNL Nerd Font Mono";
+              style = "Medium";
+            };
+
+            bold = {
+              family = "JetBrainsMonoNL Nerd Font Mono";
+              style = "ExtraBold";
+            };
+
+            italic = {
+              family = "JetBrainsMonoNL Nerd Font Mono";
+              style = "Medium Italic";
+            };
+
+            bold_italic = {
+              family = "JetBrainsMonoNL Nerd Font Mono";
+              style = "ExtraBold Italic";
+            };
+
+            offset = {
+              x = 0;
+              y = 12;
+            };
+
+            glyph_offset = {
+              x = 0;
+              y = 6;
+            };
+          };
+
+          key_bindings = [
+            {
+              key = "Paste";
+              action = "Paste";
+            }
+            {
+              key = "Copy";
+              action = "Copy";
+            }
+          ];
+        };
+      };
+
+      programs.neomutt = { enable = false; };
+
+      programs.msmtp = { enable = false; };
+
+      programs.offlineimap = { enable = false; };
     };
-
-    programs.neomutt = { enable = false; };
-
-    programs.msmtp = { enable = false; };
-
-    programs.offlineimap = { enable = false; };
-  };
 }

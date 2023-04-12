@@ -118,8 +118,6 @@ local M = {
           "--languageserver",
           "--hostPID",
           tostring(vim.fn.getpid()),
-          "-s",
-          "useModernNet=true",
         },
         on_attach = on_attach,
       })

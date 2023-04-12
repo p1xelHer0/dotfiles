@@ -37,26 +37,38 @@ local M = {
         cmd = { "/nix/store/bc23kmwxgwlyvpxdnfr92n2kw7j67im8-rust-default-1.68.0-nightly-2022-12-13/bin/rust-analyzer" },
         capabilities = capabilities,
         on_attach = require("internal.lsp").on_attach,
-      },
-      flags = {
-        debounce_text_changes = false,
-      },
-      settings = {
-        ["rust-analyzer"] = {
-          assist = {
-            importGranularity = "module",
-            importPrefix = "by_self",
-          },
-          cargo = {
-            loadOutDirsFromCheck = true,
-          },
-          procMacro = {
-            enable = true,
+        standalone = false,
+
+        settings = {
+          ["rust-analyzer"] = {
+            assist = {
+              importGranularity = "module",
+              importPrefix = "by_self",
+            },
+            cargo = {
+              loadOutDirsFromCheck = true,
+            },
+            checkOnSave = {
+              allFeatures = true,
+              overrideCommand = {
+                "cargo",
+                "clippy",
+                "--workspace",
+                "--message-format=json",
+                "--all-features",
+              },
+            },
+            procMacro = {
+              enable = true,
+            },
           },
         },
       },
       dap = {
         adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+      },
+      flags = {
+        debounce_text_changes = false,
       },
     })
   end,

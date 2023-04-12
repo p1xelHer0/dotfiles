@@ -10,6 +10,7 @@ local M = {
       end,
     },
   },
+  cmd = { "Telescope" },
   keys = {
     { mode = "n", "<C-p>", "<Cmd>Telescope find_files<CR>", { noremap = true, silent = true } },
     { mode = "n", "<Leader>f", "<Cmd>Telescope live_grep<CR>", { silent = true } },
