@@ -139,27 +139,3 @@ o.previewheight   = 12
 o.splitbelow      = true
 o.splitright      = true
 -- stylua: ignore end
-
-local config = require("core.config")
-local signs = config.get_icons()
-
-local diagnostic_signs = signs.diagnostic
-for type, icon in pairs(diagnostic_signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-local severity_signs = signs.severity
-
-vim.diagnostic.config({
-  underline = true,
-  signs = true,
-  virtual_text = {
-    source = "if_many",
-    prefix = "",
-    format = function(diagnostic)
-      return string.format("%s %s ", severity_signs[diagnostic.severity], diagnostic.message)
-    end,
-  },
-  update_in_insert = false,
-  severity_sort = true,
-})

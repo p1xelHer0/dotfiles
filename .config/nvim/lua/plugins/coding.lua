@@ -15,34 +15,55 @@ local M = {
         "zbirenbaum/copilot-cmp",
         dependencies = {
           "zbirenbaum/copilot.lua",
-          config = true,
-        },
-        config = function()
-          require("copilot").setup({
+          opts = {
             suggestion = { enabled = false },
             panel = { enabled = false },
-          })
+          },
+          config = function(_, opts)
+            local copilot = require("copilot")
+            copilot.setup(opts)
+          end,
+        },
+        opts = {},
+        config = function(_, opts)
+          local copilot = require("copilot_cmp")
+          copilot.setup(opts)
         end,
       },
     },
     event = "InsertEnter",
-    opts = function()
+    config = function()
       local cmp = require("cmp")
 
       local sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer", keyword_length = 5 },
-        { name = "luasnip" },
-        { name = "copilot" },
-        { name = "path", keyword_length = 5 },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "buffer", keyword_length = 5, group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        { name = "copilot", group_index = 2 },
+        { name = "path", keyword_length = 5, group_index = 2 },
       }
+
+      vim.api.nvim_create_autocmd("BufRead", {
+        group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+        pattern = "Cargo.toml",
+        callback = function()
+          cmp.setup.buffer({ sources = { { name = "crates", group_index = 2 } } })
+        end,
+      })
 
       local ft = vim.o.ft
       if ft == "markdown" or ft == "txt" or ft == "none" then
-        table.insert(sources, { name = "spell" })
+        table.insert(sources, { name = "spell", group_index = 2 })
+      end
+      if ft == "lua" then
+        table.insert(sources, { name = "nvim_lua", group_index = 2 })
       end
 
-      return {
+      cmp.setup({
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
         mapping = cmp.mapping.preset.insert({
           ["<C-y>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
@@ -60,9 +81,6 @@ local M = {
         },
         sources = sources,
         -- formatting = {
-        --   format = require("tailwindcss-colorizer-cmp").formatter,
-        -- },
-        -- formatting = {
         --   format = function(entry, vim_item)
         --     local kind_icons = require("core.config").get_icons().kind_icons
         --     vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
@@ -79,9 +97,32 @@ local M = {
         --   end,
         -- },
         experimental = {
-          ghost_text = true,
+          -- ghost_text = true,
         },
-      }
+      })
+      cmp.setup.filetype("gitcommit", {
+        sources = cmp.config.sources({
+          { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+        }, {
+          { name = "buffer" },
+        }),
+      })
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          { name = "cmdline" },
+        }),
+      })
     end,
   },
 
@@ -110,6 +151,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "windwp/nvim-autopairs",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -138,23 +180,37 @@ local M = {
   },
 
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = true,
-  },
-
-  {
     "echasnovski/mini.comment",
     event = "VeryLazy",
     opts = {
       hooks = {
         pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
+          require("ts_context_commentstring.internal").update_commentstring()
         end,
       },
     },
     config = function(_, opts)
       require("mini.comment").setup(opts)
+    end,
+  },
+
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "rouge8/neotest-rust",
+    },
+    config = function()
+      require("keymap.neotest").setup()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-rust")({
+            args = { "--no-capture" },
+          }),
+        },
+      })
     end,
   },
 }

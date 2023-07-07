@@ -7,8 +7,6 @@ local M = {
     end,
   },
 
-  { "tpope/vim-repeat", event = "VeryLazy" },
-
   {
     "iamcco/markdown-preview.nvim",
     cmd = {
@@ -21,6 +19,19 @@ local M = {
     config = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
+  },
+
+  {
+    "lervag/vimtex",
+    ft = "tex",
+    config = function()
+      vim.g.vimtex_view_method = "zathura"
+    end,
+  },
+
+  {
+    "christoomey/vim-tmux-navigator",
+    keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
   },
 }
 

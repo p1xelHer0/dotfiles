@@ -1,22 +1,6 @@
 local api = vim.api
 local group = api.nvim_create_augroup("internal.autocmd", {})
 
-api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = group,
-  pattern = { "/tmp/*", "COMMIT_EDITMSG", "MERGE_MSG", "*.tmp", "*.bak" },
-  callback = function()
-    vim.opt_local.undofile = false
-  end,
-})
-
-api.nvim_create_autocmd("BufRead", {
-  group = group,
-  pattern = "*.conf",
-  callback = function()
-    api.nvim_buf_set_option(0, "filetype", "conf")
-  end,
-})
-
 api.nvim_create_autocmd("TextYankPost", {
   group = group,
   pattern = "*",

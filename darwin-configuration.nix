@@ -10,7 +10,7 @@ with lib; {
 
   nix.configureBuildUsers = true;
 
-  environment.systemPackages = with pkgs; [ nixUnstable zsh ];
+  environment.systemPackages = with pkgs; [ zsh ];
 
   # darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix
   environment.darwinConfig = "${homeDir}/dotfiles/darwin-configuration.nix";
@@ -110,6 +110,7 @@ with lib; {
     };
 
     taps = [
+      "DevCleaner/devcleaner"
       "fsouza/prettierd"
       "homebrew/bundle"
       "homebrew/cask"
@@ -134,15 +135,19 @@ with lib; {
     casks = [
       "1password-cli"
       "alt-tab"
+      "appcleaner"
+      "devcleaner"
       "discord"
       "docker"
       "firefox"
       "google-chrome"
       "gpg-suite-no-mail"
+      "grandperspective"
       "hammerspoon"
       "karabiner-elements"
       "keycastr"
       "linearmouse"
+      "mactex-no-gui"
       "obs"
       "obsidian"
       "retroarch-metal"
@@ -152,18 +157,14 @@ with lib; {
       "vlc"
     ];
 
-    # extraConfig = ''
-    #   cask "linearmouse", args: ["no-quarantine"]
-    # '';
-
     masApps = {
-      Developer = 640199958;
-      GrandPerspective = 1111570163;
       "Key Codes" = 414568915;
+      Developer = 640199958;
+      Lungo = 1263070803;
       Messenger = 1480068668;
       Slack = 803453959;
       Telegram = 747648890;
-      Twitter = 1482454543;
+      Typesy = 1059295091;
       Xcode = 497799835;
     };
   };
@@ -468,11 +469,11 @@ with lib; {
     {
       home.stateVersion = "20.09";
 
-      nixpkgs.overlays = [
-        (import (builtins.fetchTarball {
-          url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-        }))
-      ];
+      # nixpkgs.overlays = [
+      #  (import (builtins.fetchTarball {
+      #   url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+      # }))
+      # ];
 
       # build currently fails with this `true`, `false` for now
       manual.manpages.enable = false;
@@ -488,28 +489,33 @@ with lib; {
         # Tools
         bat
         curl
+        delta
         exa
         fasd # discontinued?
         fd
+        ffmpeg
+        flyctl
         fswatch
+        gh
+        gifsicle
         htop
+        hyperfine
+        imagemagick
         jq
         p7zip
         reattach-to-user-namespace
         ripgrep
-        gh
-        hyperfine
         shellcheck
         simple-http-server
+        slides
         tree
         tree-sitter
-        delta
-        flyctl
         watchman
         wget
         yamllint
-        zoxide # fasd replacement but fasd is still better...?
+        zathura
         zola
+        zoxide # fasd replacement but fasd is still better...?
 
         # Writing
         ispell
@@ -530,6 +536,7 @@ with lib; {
         # Web
         fnm
         nodePackages.yarn
+        nodePackages.pnpm
         nodePackages.vercel
         nodePackages.prettier
         nodePackages.eslint
@@ -547,14 +554,20 @@ with lib; {
         # Rust
         rustup
         cargo-watch
+        cargo-nextest
         # rust-analyzer - install this with Rustup instead
         # to make sure it matches the compiler
+
+        # Elm
+        elmPackages.elm
+        elmPackages.elm-language-server
+        elmPackages.elm-format
 
         # BQN
         cbqn
 
         # .NET
-        dotnet-sdk_6
+        # dotnet-sdk_6
         omnisharp-roslyn
 
         # Python
@@ -596,17 +609,19 @@ with lib; {
           EDITOR = "nvim";
           LC_ALL = "en_US.UTF-8";
 
+
           DOTS_BIN = "$HOME/dotfiles/bin";
           DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
           GOPATH = "$HOME/go";
           GOPATH_BIN = "$GOPATH/bin";
+          DOTNET_BIN = "/usr/local/share/dotnet";
           RESCRIPT_LSP =
             "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
+          MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
         };
 
         envExtra = ''
-          # profile zsh
-          # zmodload zsh/zprof
+          bindkey -s ^f "tmux-sessionizer\n"
         '';
 
         initExtra = ''
@@ -619,35 +634,36 @@ with lib; {
           export PATH=$GOPATH:$PATH
           export PATH=$GOPATH_BIN:$PATH
 
-          export PATH=$RESCRIPT_LSP:$PATH
-          export RPROMPT=""
+          export PATH=$DOTNET_BIN:$PATH
 
-          # ZVM_LAZY_KEYBINDINGS=false
-          # ZVM_VI_HIGHLIGHT_BACKGROUND=3
+          export PATH=$DOTS_BIN:$PATH
+
+          export PATH=$RESCRIPT_LSP:$PATH
+
+          export PATH=$MACTEX_BIN:$PATH
+
+          export RPROMPT=""
 
           # use the maximum amount of file descriptors
           ulimit -n 24576
 
           source "$DOTS_BIN/fzf_git"
 
-          # eval "$(fasd --init auto)"
           eval "$(zoxide init zsh)"
 
-          # eval "$(direnv hook zsh)"
+          eval "$(direnv hook zsh)"
 
           eval "$(fnm env)"
 
           eval "$(opam env)"
-
-          # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
-
-          # profile zsh
-          # zprof
         '';
 
         shellAliases = {
           "l" = "clear";
           ":q" = "tmux kill-pane";
+
+          "ts" = "tmux-sessionizer";
+          "ta" = "tmux a";
 
           ip = "dig +short myip.opendns.com @resolver1.opendns.com";
 
@@ -771,8 +787,18 @@ with lib; {
       /* defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua" */
       xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/_darwin/hammerspoon/init.lua";
 
+      xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/zellij/config.kdl";
+      programs.zellij = {
+        enable = true;
+      };
+
       xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/tmux/tmux.conf";
-      programs.tmux.enable = true;
+      programs.tmux = {
+        enable = true;
+        plugins = with pkgs; [
+          tmuxPlugins.tmux-fzf
+        ];
+      };
 
       programs.fzf = {
         enable = true;
@@ -807,7 +833,7 @@ with lib; {
       xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "${homeDir}/dotfiles/.config/nvim/lua";
       programs.neovim = {
         enable = true;
-        package = pkgs.neovim-nightly;
+        # package = pkgs.neovim-nightly;
         extraConfig = "lua require('init')";
         withNodeJs = false;
         withPython3 = false;
@@ -954,6 +980,7 @@ with lib; {
 
             decorations = "buttonless";
             startup_mode = "Windowed";
+            option_as_alt = "Both";
           };
 
           draw_bold_text_with_bright_colors = false;
@@ -998,12 +1025,12 @@ with lib; {
 
             offset = {
               x = 0;
-              y = 12;
+              y = 4;
             };
 
             glyph_offset = {
               x = 0;
-              y = 6;
+              y = 2;
             };
           };
 

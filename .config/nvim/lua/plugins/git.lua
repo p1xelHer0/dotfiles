@@ -1,8 +1,14 @@
 local M = {
   {
     "TimUntersberger/neogit",
-    dependencies = { "sindrets/diffview.nvim", "nvim-lua/plenary.nvim" },
-    cmd = { "Neogit", "Neogit " },
+    dependencies = {
+      {
+        "sindrets/diffview.nvim",
+        opts = { icons = false },
+      },
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = { "Neogit" },
     opts = {
       integrations = {
         diffview = true,
@@ -34,12 +40,12 @@ local M = {
       signs = {
         add = {
           hl = "GitSignsAdd",
-          text = require("core.config").get_icons().general.indent,
+          text = require("core.config").get_icons().general.gutter,
           numhl = "GitSignsAddNr",
         },
         change = {
           hl = "GitSignsChange",
-          text = require("core.config").get_icons().general.indent,
+          text = require("core.config").get_icons().general.gutter,
           numhl = "GitSignsChangeNr",
         },
         delete = {
@@ -54,12 +60,12 @@ local M = {
         },
         changedelete = {
           hl = "GitSignsChange",
-          text = require("core.config").get_icons().general.indent,
+          text = require("core.config").get_icons().general.gutter,
           numhl = "GitSignsChangeNr",
         },
         untracked = {
           hl = "GitSignsAdd",
-          text = require("core.config").get_icons().general.indent,
+          text = require("core.config").get_icons().general.gutter,
           numhl = "GitSignsAddNr",
         },
       },

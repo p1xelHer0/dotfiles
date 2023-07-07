@@ -3,9 +3,16 @@ local M = {
     "neovim/nvim-lspconfig",
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+      {
+        "folke/neodev.nvim",
+        opts = {
+          experimental = { pathStrict = true },
+          library = {
+            plugins = { "neotest" },
+          },
+        },
+      },
       { "hrsh7th/cmp-nvim-lsp" },
-      { "jose-elias-alvarez/typescript.nvim" },
       {
         "j-hui/fidget.nvim",
         opts = {
@@ -17,7 +24,23 @@ local M = {
             blend = 7,
           },
         },
+        {
+          "SmiteshP/nvim-navic",
+          dependencies = {
+            "MunifTanjim/nui.nvim",
+          },
+          config = true,
+        },
+        {
+          "SmiteshP/nvim-navbuddy",
+          dependencies = {
+            "MunifTanjim/nui.nvim",
+          },
+          cmd = "Navbuddy",
+          config = true,
+        },
       },
+      { "jose-elias-alvarez/typescript.nvim" },
     },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
@@ -39,7 +62,30 @@ local M = {
         },
       },
     },
-    config = function()
+    config = function(_, opts)
+      for name, icon in pairs(require("core.config").get_icons().diagnostics) do
+        local hl = "DiagnosticSign" .. name
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+
+      vim.diagnostic.config({
+        underline = true,
+        signs = true,
+        virtual_text = {
+          source = "if_many",
+          prefix = "",
+          format = function(diagnostic)
+            return string.format(
+              "%s %s ",
+              require("core.config").get_icons().severity[diagnostic.severity],
+              diagnostic.message
+            )
+          end,
+        },
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
       local nvim_lspconfig = require("lspconfig")
       local on_attach = require("internal.lsp").on_attach
       local capabilities = require("internal.lsp").capabilities()
@@ -146,6 +192,7 @@ local M = {
 
       local servers = {
         "elixirls",
+        "elmls",
         "ocamllsp",
         "pyright",
         "rnix",
@@ -170,17 +217,24 @@ local M = {
       local lspconfig = require("lspconfig")
       local on_attach = require("internal.lsp").on_attach
 
-      local diagnostics = null_ls.builtins.diagnostics
-      -- local hover = null_ls.builtins.hover
       local actions = null_ls.builtins.code_actions
+      local completion = null_ls.builtins.completion
+      local diagnostics = null_ls.builtins.diagnostics
+      local formatting = null_ls.builtins.formatting
+      -- local hover = null_ls.builtins.hover
 
       local sources = {
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.code_actions.gitsigns,
-        null_ls.builtins.code_actions.refactoring,
-        null_ls.builtins.formatting.trim_newlines,
-        null_ls.builtins.formatting.trim_whitespace,
+        actions.gitsigns,
+        actions.proselint.with({
+          filetypes = { "markdown", "tex" },
+          command = "proselint",
+          args = { "--json" },
+        }),
+        actions.refactoring,
 
+        completion.spell,
+
+        diagnostics.yamllint,
         diagnostics.misspell.with({
           filetypes = { "markdown", "text", "txt" },
           args = { "$FILENAME" },
@@ -197,11 +251,10 @@ local M = {
           command = "proselint",
           args = { "--json" },
         }),
-        actions.proselint.with({
-          filetypes = { "markdown", "tex" },
-          command = "proselint",
-          args = { "--json" },
-        }),
+
+        formatting.elm_format,
+        formatting.trim_newlines,
+        formatting.trim_whitespace,
       }
 
       local function add_builtin_if_exists(bin, type)
@@ -216,11 +269,12 @@ local M = {
 
       add_builtin_if_exists("eslint_d", d)
       add_builtin_if_exists("eslint_d", ca)
-      -- add_builtin_if_exists("selene", d)
+      add_builtin_if_exists("selene", d)
       add_builtin_if_exists("shellcheck", d)
 
       add_builtin_if_exists("ocamlformat", fmt)
       add_builtin_if_exists("prettierd", fmt)
+      add_builtin_if_exists("mdformat", fmt)
       add_builtin_if_exists("rustfmt", fmt)
       add_builtin_if_exists("shfmt", fmt)
       add_builtin_if_exists("stylua", fmt)
@@ -229,14 +283,15 @@ local M = {
         sources = sources,
         fallback_severity = vim.diagnostic.severity.WARN,
         root_dir = lspconfig.util.root_pattern(
+          "*.opam",
+          ".git",
+          ".neoconf.json",
           ".null-ls-root",
           "Makefile",
-          ".git",
-          "package.json",
-          "tsconfig.json",
-          "*.opam",
           "dune-project",
-          "esy.json"
+          "esy.json",
+          "package.json",
+          "tsconfig.json"
         ),
         on_attach = on_attach,
       }
@@ -317,6 +372,74 @@ local M = {
 
       require("symbols-outline").setup(opts)
     end,
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
+    dependencies = {
+      { "neovim/nvim-lspconfig" },
+      {
+        "Saecki/crates.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+          null_ls = {
+            enabled = true,
+            name = "crates.nvim",
+          },
+        },
+      },
+    },
+    ft = "rust",
+    event = "BufEnter Cargo.toml",
+    config = function()
+      -- check ~/.vscode/extensions/ for correct version
+      local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.9.0/"
+      local codelldb_path = extension_path .. "adapter/codelldb"
+      local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+
+      require("rust-tools").setup({
+        server = {
+          cmd = { "/Users/p1xelher0/.rustup/toolchains/nightly-aarch64-apple-darwin/bin/rust-analyzer" },
+          -- cmd = { "/nix/store/bc23kmwxgwlyvpxdnfr92n2kw7j67im8-rust-default-1.68.0-nightly-2022-12-13/bin/rust-analyzer" },
+          capabilities = require("internal.lsp").capabilities(),
+          on_attach = require("internal.lsp").on_attach,
+          standalone = false,
+
+          settings = {
+            ["rust-analyzer"] = {
+              assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+              },
+              cargo = {
+                loadOutDirsFromCheck = true,
+              },
+              checkOnSave = {
+                allFeatures = true,
+                overrideCommand = {
+                  "cargo",
+                  "clippy",
+                  "--workspace",
+                  "--message-format=json",
+                  "--all-features",
+                },
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
+        dap = {
+          adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+        },
+      })
+    end,
+  },
+
+  {
+    "elm-tooling/elm-vim",
+    ft = "elm",
   },
 }
 

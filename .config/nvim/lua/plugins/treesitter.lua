@@ -5,6 +5,7 @@ local ensure_installed = {
   "cpp",
   "css",
   "elixir",
+  "elm",
   "erlang",
   "go",
   "graphql",
@@ -17,6 +18,7 @@ local ensure_installed = {
   "json",
   "json5",
   "jsonc",
+  "kdl",
   "llvm",
   "lua",
   "make",
@@ -41,11 +43,11 @@ local ensure_installed = {
 local M = {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
       "RRethy/nvim-treesitter-textsubjects",
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },

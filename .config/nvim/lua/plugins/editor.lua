@@ -1,4 +1,12 @@
 local M = {
+  { "editorconfig/editorconfig-vim", event = "VeryLazy" },
+
+  { "tpope/vim-repeat", event = "VeryLazy" },
+
+  { "tpope/vim-abolish", event = "VeryLazy" },
+
+  { "NMAC427/guess-indent.nvim", event = "InsertEnter" },
+
   {
     "windwp/nvim-spectre",
     keys = {

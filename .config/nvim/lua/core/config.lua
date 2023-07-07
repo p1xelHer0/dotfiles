@@ -29,7 +29,7 @@ function M.get_icons()
   local indent = "│"
 
   return {
-    diagnostic = {
+    diagnostics = {
       Error = error,
       Warn = warn,
       Info = info,
@@ -53,6 +53,19 @@ function M.get_icons()
       text = text,
       treesitter = "🌳",
       unsaved = unsaved,
+    },
+    git = {
+      added = "+",
+      deleted = "-",
+      gutter = "█",
+      ignored = "",
+      modified = "~",
+      removed = "-",
+      renamed = '"',
+      staged = "^",
+      unmerged = "=",
+      unstaged = "~",
+      untracked = "+",
     },
     kind_icons = {
       Text = text,

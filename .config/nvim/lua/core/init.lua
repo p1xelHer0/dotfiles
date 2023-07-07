@@ -1,5 +1,4 @@
 local g = vim.g
-local helper = require("core.config")
 
 g.loaded_gzip = 1
 g.loaded_tar = 1
@@ -28,21 +27,19 @@ g.loaded_perl_provider = 0
 
 require("keymap")
 
-local lazy_path = helper.get_lazy_path()
+local lazy_path = require("core.config").get_lazy_path()
 if not vim.loop.fs_stat(lazy_path) then
   vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazy_path,
   })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
-local lazy = require("core.lazy")
-lazy.setup()
-
+require("core.lazy")
 require("core.options")
 require("core.autocmd")
