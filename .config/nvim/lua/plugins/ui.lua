@@ -4,12 +4,6 @@ local M = {
     event = "VimEnter",
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
-      require("alpha.term")
-      dashboard.section.terminal.command = "cat | " .. require("core.config").get_dotfiles_path() .. "/.config/nvim/logo"
-      dashboard.section.terminal.width = 70
-      dashboard.section.terminal.height = 10
-      dashboard.section.terminal.opts.redraw = true
-      dashboard.section.header.val = ""
 
       dashboard.section.buttons.val = {
         dashboard.button("e", "New file", ":ene <BAR> startinsert<CR>"),
@@ -31,8 +25,8 @@ local M = {
       dashboard.section.buttons.opts.hl = "AlphaButtons"
       dashboard.section.footer.opts.hl = "AlphaFooter"
 
-      dashboard.opts.layout[1].val = 6
-      dashboard.opts.layout[3] = dashboard.section.terminal
+      -- dashboard.opts.layout[1].val = 6
+      -- dashboard.opts.layout[3] = dashboard.section.terminal
 
       return dashboard
     end,
