@@ -24,21 +24,6 @@ local M = {
             blend = 7,
           },
         },
-        {
-          "SmiteshP/nvim-navic",
-          dependencies = {
-            "MunifTanjim/nui.nvim",
-          },
-          config = true,
-        },
-        {
-          "SmiteshP/nvim-navbuddy",
-          dependencies = {
-            "MunifTanjim/nui.nvim",
-          },
-          cmd = "Navbuddy",
-          config = true,
-        },
       },
       { "jose-elias-alvarez/typescript.nvim" },
     },
@@ -157,27 +142,6 @@ local M = {
         on_attach = on_attach,
       })
 
-      nvim_lspconfig.omnisharp.setup({
-        capabilities = capabilities,
-        cmd = {
-          "/Users/p1xelher0/.nix-profile/bin/omnisharp",
-          "--languageserver",
-          "--hostPID",
-          tostring(vim.fn.getpid()),
-        },
-        on_attach = on_attach,
-      })
-
-      nvim_lspconfig.gopls.setup({
-        cmd = { "gopls", "--remote=auto" },
-        capabilities = capabilities,
-        init_options = {
-          usePlaceholders = true,
-          completeUnimported = true,
-        },
-        on_attach = on_attach,
-      })
-
       nvim_lspconfig.clangd.setup({
         capabilities = capabilities,
         cmd = {
@@ -210,7 +174,7 @@ local M = {
   },
 
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local null_ls = require("null-ls")

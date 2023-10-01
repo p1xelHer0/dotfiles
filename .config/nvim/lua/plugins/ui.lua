@@ -78,6 +78,7 @@ local M = {
           vim.api.nvim_set_option("background", "light")
         end,
       })
+
       auto_dark_mode.init()
     end,
   },
@@ -87,16 +88,18 @@ local M = {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       symbol = require("core.config").get_icons().general.indent,
+      options = { try_as_border = true },
     },
     config = function(_, opts)
-      local disable_for_ft = { "help", "lazy", "NvimTree" }
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = disable_for_ft,
+        pattern = { "help", "lazy", "NvimTree" },
         callback = function()
           vim.b.miniindentscope_disable = true
         end,
       })
+
       require("mini.indentscope").setup(opts)
+      vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
     end,
   },
 

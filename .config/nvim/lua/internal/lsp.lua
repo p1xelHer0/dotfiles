@@ -12,18 +12,6 @@ function M.format(client, bufnr)
   end
 end
 
-function M.jump_to_error_next()
-  return function()
-    require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-  end
-end
-
-function M.jump_to_error_prev()
-  return function()
-    require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-  end
-end
-
 function M.capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

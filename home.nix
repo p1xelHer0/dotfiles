@@ -13,7 +13,7 @@ in
     bat
     curl
     delta
-    exa
+    eza
     fd
     ffmpeg
     flyctl
@@ -144,6 +144,7 @@ in
     '';
 
     initExtra = ''
+      export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
@@ -489,7 +490,7 @@ in
 
     settings = {
       env = {
-        TERM = "xterm-256color";
+        TERM = "alacritty";
       };
 
       window = {
@@ -543,12 +544,12 @@ in
 
         offset = {
           x = 0;
-          y = 4;
+          y = 2;
         };
 
         glyph_offset = {
           x = 0;
-          y = 2;
+          y = 0;
         };
       };
 

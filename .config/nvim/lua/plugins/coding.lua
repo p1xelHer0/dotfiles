@@ -11,25 +11,6 @@ local M = {
       "saadparwaiz1/cmp_luasnip",
       "f3fora/cmp-spell",
       "roobert/tailwindcss-colorizer-cmp.nvim",
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = {
-          "zbirenbaum/copilot.lua",
-          opts = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
-          },
-          config = function(_, opts)
-            local copilot = require("copilot")
-            copilot.setup(opts)
-          end,
-        },
-        opts = {},
-        config = function(_, opts)
-          local copilot = require("copilot_cmp")
-          copilot.setup(opts)
-        end,
-      },
     },
     event = "InsertEnter",
     config = function()
@@ -39,7 +20,6 @@ local M = {
         { name = "nvim_lsp", group_index = 2 },
         { name = "buffer", keyword_length = 5, group_index = 2 },
         { name = "luasnip", group_index = 2 },
-        { name = "copilot", group_index = 2 },
         { name = "path", keyword_length = 5, group_index = 2 },
       }
 
@@ -199,7 +179,6 @@ local M = {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
       "rouge8/neotest-rust",
     },
     config = function()
