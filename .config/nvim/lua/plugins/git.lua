@@ -40,32 +40,32 @@ local M = {
       signs = {
         add = {
           hl = "GitSignsAdd",
-          text = require("core.config").get_icons().general.gutter,
+          text = require("core.config").get_icons().git.add,
           numhl = "GitSignsAddNr",
         },
         change = {
           hl = "GitSignsChange",
-          text = require("core.config").get_icons().general.gutter,
+          text = require("core.config").get_icons().git.change,
           numhl = "GitSignsChangeNr",
         },
         delete = {
           hl = "GitSignsDelete",
-          text = "_",
+          text = require("core.config").get_icons().git.delete,
           numhl = "GitSignsDeleteNr",
         },
         topdelete = {
           hl = "GitSignsDelete",
-          text = "‾",
+          text = require("core.config").get_icons().git.top_delete,
           numhl = "GitSignsDeleteNr",
         },
         changedelete = {
           hl = "GitSignsChange",
-          text = require("core.config").get_icons().general.gutter,
+          text = require("core.config").get_icons().git.change_delete,
           numhl = "GitSignsChangeNr",
         },
         untracked = {
           hl = "GitSignsAdd",
-          text = require("core.config").get_icons().general.gutter,
+          text = require("core.config").get_icons().git.untracked,
           numhl = "GitSignsAddNr",
         },
       },

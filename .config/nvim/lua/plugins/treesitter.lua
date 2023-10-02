@@ -1,13 +1,11 @@
 local ensure_installed = {
   "bash",
   "c",
-  "c_sharp",
   "cpp",
   "css",
   "elixir",
   "elm",
   "erlang",
-  "go",
   "graphql",
   "haskell",
   "html",
@@ -43,9 +41,9 @@ local M = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
-      "RRethy/nvim-treesitter-textsubjects",
+      -- "RRethy/nvim-treesitter-textsubjects",
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
@@ -69,17 +67,17 @@ local M = {
       indent = { enable = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = ensure_installed,
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-      textobjects = {},
-      textsubjects = {},
+      -- incremental_selection = {
+      --   enable = true,
+      --   keymaps = {
+      --     init_selection = "gnn",
+      --     node_incremental = "grn",
+      --     scope_incremental = "grc",
+      --     node_decremental = "grm",
+      --   },
+      -- },
+      -- textobjects = {},
+      -- textsubjects = {},
       refactor = {},
     },
     config = function(_, opts)

@@ -27,6 +27,7 @@ function M.get_icons()
   local spell = "📚"
   local snippet = "💌"
   local indent = "│"
+  local gutter = "▎"
 
   return {
     diagnostics = {
@@ -55,9 +56,11 @@ function M.get_icons()
       unsaved = unsaved,
     },
     git = {
-      added = "+",
-      deleted = "-",
-      gutter = "█",
+      add = gutter,
+      change = gutter,
+      change_delete = gutter,
+      delete = "_",
+      top_delete = "‾",
       ignored = "",
       modified = "~",
       removed = "-",

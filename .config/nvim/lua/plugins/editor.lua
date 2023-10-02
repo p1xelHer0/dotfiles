@@ -5,8 +5,6 @@ local M = {
 
   { "tpope/vim-abolish", event = "VeryLazy" },
 
-  { "NMAC427/guess-indent.nvim", event = "InsertEnter" },
-
   {
     "windwp/nvim-spectre",
     keys = {
@@ -36,7 +34,7 @@ local M = {
     ft = { "fnl", "clj", "lisp", "lsp", "cl", "fasl", "rkt" },
     config = function()
       -- https://github.com/p00f/nvim-ts-rainbow/issues/30
-      local enabled_list = { "clojure", "fennel", "commonlisp", "query", "scheme", "racket " }
+      local enabled_list = { "clojure", "fennel", "commonlisp", "query", "scheme", "racket" }
       local parsers = require("nvim-treesitter.parsers")
       local rainbow = {
         extended_mode = true,

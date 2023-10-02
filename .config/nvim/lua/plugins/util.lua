@@ -22,6 +22,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "lervag/vimtex",
     ft = "tex",
     config = function()
