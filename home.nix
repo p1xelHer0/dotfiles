@@ -84,8 +84,10 @@ in
 
     # Elm
     elmPackages.elm
-    elmPackages.elm-language-server
     elmPackages.elm-format
+    elmPackages.elm-language-server
+    elmPackages.elm-review
+    elmPackages.elm-test
 
     # BQN
     cbqn
@@ -523,7 +525,7 @@ in
 
         normal = {
           family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "Medium";
+          style = "SemiBold";
         };
 
         bold = {
@@ -533,7 +535,7 @@ in
 
         italic = {
           family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "Medium Italic";
+          style = "SemiBold Italic";
         };
 
         bold_italic = {
@@ -543,12 +545,12 @@ in
 
         offset = {
           x = 0;
-          y = 4;
+          y = 2;
         };
 
         glyph_offset = {
           x = 0;
-          y = 2;
+          y = 1;
         };
       };
 

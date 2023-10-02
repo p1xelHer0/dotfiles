@@ -1,6 +1,6 @@
 local M = {
   {
-    "TimUntersberger/neogit",
+    "NeogitOrg/neogit",
     dependencies = {
       {
         "sindrets/diffview.nvim",

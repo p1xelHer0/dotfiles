@@ -10,7 +10,6 @@ local ensure_installed = {
   "go",
   "graphql",
   "haskell",
-  "help",
   "html",
   "http",
   "javascript",

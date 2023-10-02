@@ -24,21 +24,21 @@ local M = {
             blend = 7,
           },
         },
-        {
-          "SmiteshP/nvim-navic",
-          dependencies = {
-            "MunifTanjim/nui.nvim",
-          },
-          config = true,
-        },
-        {
-          "SmiteshP/nvim-navbuddy",
-          dependencies = {
-            "MunifTanjim/nui.nvim",
-          },
-          cmd = "Navbuddy",
-          config = true,
-        },
+        -- {
+        --   "SmiteshP/nvim-navic",
+        --   dependencies = {
+        --     "MunifTanjim/nui.nvim",
+        --   },
+        --   config = true,
+        -- },
+        -- {
+        --   "SmiteshP/nvim-navbuddy",
+        --   dependencies = {
+        --     "MunifTanjim/nui.nvim",
+        --   },
+        --   cmd = "Navbuddy",
+        --   config = true,
+        -- },
       },
       { "jose-elias-alvarez/typescript.nvim" },
     },
@@ -157,26 +157,26 @@ local M = {
         on_attach = on_attach,
       })
 
-      nvim_lspconfig.omnisharp.setup({
-        capabilities = capabilities,
-        cmd = {
-          "/Users/p1xelher0/.nix-profile/bin/omnisharp",
-          "--languageserver",
-          "--hostPID",
-          tostring(vim.fn.getpid()),
-        },
-        on_attach = on_attach,
-      })
-
-      nvim_lspconfig.gopls.setup({
-        cmd = { "gopls", "--remote=auto" },
-        capabilities = capabilities,
-        init_options = {
-          usePlaceholders = true,
-          completeUnimported = true,
-        },
-        on_attach = on_attach,
-      })
+      -- nvim_lspconfig.omnisharp.setup({
+      --   capabilities = capabilities,
+      --   cmd = {
+      --     "/Users/p1xelher0/.nix-profile/bin/omnisharp",
+      --     "--languageserver",
+      --     "--hostPID",
+      --     tostring(vim.fn.getpid()),
+      --   },
+      --   on_attach = on_attach,
+      -- })
+      --
+      -- nvim_lspconfig.gopls.setup({
+      --   cmd = { "gopls", "--remote=auto" },
+      --   capabilities = capabilities,
+      --   init_options = {
+      --     usePlaceholders = true,
+      --     completeUnimported = true,
+      --   },
+      --   on_attach = on_attach,
+      -- })
 
       nvim_lspconfig.clangd.setup({
         capabilities = capabilities,
@@ -190,13 +190,53 @@ local M = {
         on_attach = on_attach,
       })
 
+      nvim_lspconfig.tailwindcss.setup({
+        filetypes = { "html", "elm" },
+        init_options = {
+          userLanguages = {
+            elm = "html",
+            html = "html",
+          },
+        },
+        settings = {
+          tailwindCSS = {
+            includeLanguages = {
+              elm = "html",
+              html = "html",
+            },
+            classAttributes = { "class", "className", "classList", "ngClass" },
+            experimental = {
+              classRegex = {
+                '\\bclass[\\s(<|]+"([^"]*)"',
+                '\\bclass[\\s(]+"[^"]*"[\\s+]+"([^"]*)"',
+                '\\bclass[\\s<|]+"[^"]*"\\s*\\+{2}\\s*" ([^"]*)"',
+                '\\bclass[\\s<|]+"[^"]*"\\s*\\+{2}\\s*" [^"]*"\\s*\\+{2}\\s*" ([^"]*)"',
+                '\\bclass[\\s<|]+"[^"]*"\\s*\\+{2}\\s*" [^"]*"\\s*\\+{2}\\s*" [^"]*"\\s*\\+{2}\\s*" ([^"]*)"',
+                '\\bclassList[\\s\\[\\(]+"([^"]*)"',
+                '\\bclassList[\\s\\[\\(]+"[^"]*",\\s[^\\)]+\\)[\\s\\[\\(,]+"([^"]*)"',
+                '\\bclassList[\\s\\[\\(]+"[^"]*",\\s[^\\)]+\\)[\\s\\[\\(,]+"[^"]*",\\s[^\\)]+\\)[\\s\\[\\(,]+"([^"]*)"',
+              },
+            },
+            lint = {
+              cssConflict = "warning",
+              invalidApply = "error",
+              invalidConfigPath = "error",
+              invalidScreen = "error",
+              invalidTailwindDirective = "error",
+              invalidVariant = "error",
+              recommendedVariantOrder = "warning",
+            },
+            validate = true,
+          },
+        },
+      })
+
       local servers = {
         "elixirls",
         "elmls",
         "ocamllsp",
         "pyright",
         "rnix",
-        "tailwindcss",
         "taplo",
       }
 
@@ -375,6 +415,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "simrat39/rust-tools.nvim",
     dependencies = {
       { "neovim/nvim-lspconfig" },

@@ -100,9 +100,12 @@ local M = {
           -- ghost_text = true,
         },
       })
+
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
-          { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+          { name = "luasnip" },
+        }, {
+          { name = "gi" },
         }, {
           { name = "buffer" },
         }),
@@ -128,26 +131,49 @@ local M = {
 
   {
     "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
     config = function()
-      local ls = require("luasnip")
       local dotfiles_dir = require("core.config").get_dotfiles_path()
 
       require("luasnip.loaders.from_lua").load({
-        paths = { dotfiles_dir .. "/.config/nvim/lua/snippets/" },
-      })
-
-      ls.config.set_config({
-        history = true,
-        updateevents = "TextChanged,TextChangedI",
+        paths = { dotfiles_dir .. "/.config/nvim/lua/LuaSnip/" },
       })
     end,
-    event = "InsertEnter",
+    keys = {
+      {
+        "<Tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<Tab>"
+        end,
+        expr = true,
+        silent = true,
+        mode = "i",
+      },
+      {
+        "<Tab>",
+        function()
+          require("luasnip").jump(1)
+        end,
+        mode = "s",
+      },
+      {
+        "<S-Tab>",
+        function()
+          require("luasnip").jump(-1)
+        end,
+        mode = { "i", "s" },
+      },
+    },
   },
 
   {

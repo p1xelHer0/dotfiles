@@ -12,7 +12,10 @@ M.setup = function(client, bufnr)
   k("n", "ga", vim.lsp.buf.code_action, opts)
   k("n", "gd", vim.lsp.buf.definition, opts)
   k("n", "gD", vim.lsp.buf.declaration, opts)
-  k("n", "gr", vim.lsp.buf.rename, opts)
+  k("n", "gn", vim.lsp.buf.rename, opts)
+  k("n", "gr", "<Cmd>Telescope lsp_references<CR>", opts)
+  k("n", "gs", "<Cmd>Telescope lsp_document_symbols<CR>", opts)
+  k("n", "gS", "<Cmd>Telescope lsp_workspace_symbols<CR>", opts)
 end
 
 return M

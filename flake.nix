@@ -34,6 +34,18 @@
             }
           ];
         };
+
+        Pontus-SAVR-MacBook = darwinSystem {
+          system = "x86_64-darwin";
+          modules = [
+            ./work.nix
+            home-manager.darwinModules.home-manager
+            {
+              nixpkgs = nixpkgsConfig;
+              home-manager.users.pontusnagy = import ./work-home.nix;
+            }
+          ];
+        };
       };
     };
 }

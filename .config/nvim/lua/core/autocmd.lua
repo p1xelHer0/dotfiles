@@ -28,3 +28,11 @@ api.nvim_create_autocmd({ "WinLeave", "BufLeave", "InsertEnter" }, {
     end
   end,
 })
+
+api.nvim_create_autocmd("BufEnter", {
+  pattern = ".env**",
+  group = group,
+  callback = function(args)
+    vim.diagnostic.disable(args.buf)
+  end,
+})
