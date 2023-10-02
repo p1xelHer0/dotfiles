@@ -195,21 +195,6 @@ in
   '';
 
   launchd.user.agents = {
-    #   "lorri" = {
-    #     serviceConfig = {
-    #       WorkingDirectory = (builtins.getEnv "HOME");
-    #       EnvironmentVariables = { };
-    #       KeepAlive = true;
-    #       RunAtLoad = true;
-    #       StandardOutPath = "/var/tmp/lorri.log";
-    #       StandardErrorPath = "/var/tmp/lorri.log";
-    #     };
-    #     script = ''
-    #       source ${config.system.build.setEnvironment}
-    #       exec ${pkgs.lorri}/bin/lorri daemon
-    #     '';
-    #   };
-
     "nighthook" = {
       serviceConfig = {
         Label = "nighthook";
@@ -226,20 +211,6 @@ in
               MODE="light"
             fi
 
-            spacebarSwitchTheme() {
-              if pgrep -q spacebar; then
-                if [[  $MODE == "dark"  ]]; then
-                  spacebar -m config background_color 0xff080807
-                  spacebar -m config foreground_color 0xffb5a488
-                  spacebar -m config space_icon_color 0xff9da488
-                elif [[  $MODE == "light"  ]]; then
-                  spacebar -m config background_color 0xfffaeed7
-                  spacebar -m config foreground_color 0xff080807
-                  spacebar -m config space_icon_color 0xff9da488
-                fi
-              fi
-            }
-
             alacrittySwitchTheme() {
               DIR=/Users/p1xelher0/.config/alacritty
               if [[  $MODE == "dark"  ]]; then
@@ -249,25 +220,7 @@ in
               fi
             }
 
-            switchTheme() {
-              FILE=~/.config/.theme
-              echo $MODE > $FILE
-            }
-
-            yabaiSwitchTheme() {
-              if [[  $MODE == "dark"  ]]; then
-                yabai -m config active_window_border_color "0xff9da488"
-                yabai -m config normal_window_border_color "0xff30302c"
-              elif [[  $MODE == "light"  ]]; then
-                yabai -m config active_window_border_color "0xff9da488"
-                yabai -m config normal_window_border_color "0xffc9bfad"
-              fi
-            }
-
-            # spacebarSwitchTheme $@
             alacrittySwitchTheme $@
-            # switchTheme $@
-            # yabaiSwitchTheme $@
           ''}"
         ];
       };

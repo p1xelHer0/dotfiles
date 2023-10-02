@@ -14,7 +14,7 @@ in
     bitwarden-cli
     curl
     delta
-    exa
+    eza
     fd
     fswatch
     gh
@@ -57,8 +57,6 @@ in
 
     # Web
     fnm
-    nodePackages.yarn
-    nodePackages.pnpm
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
@@ -442,7 +440,7 @@ in
 
     settings = {
       env = {
-        TERM = "xterm-256color";
+        TERM = "alacritty";
       };
 
       window = {
@@ -476,7 +474,7 @@ in
 
         normal = {
           family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "Medium";
+          style = "SemiBold";
         };
 
         bold = {
@@ -486,7 +484,7 @@ in
 
         italic = {
           family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "Medium Italic";
+          style = "SemiBold Italic";
         };
 
         bold_italic = {
@@ -496,12 +494,12 @@ in
 
         offset = {
           x = 0;
-          y = 4;
+          y = 2;
         };
 
         glyph_offset = {
           x = 0;
-          y = 2;
+          y = 0;
         };
       };
 

@@ -161,14 +161,6 @@ in
     };
   };
 
-  services.skhd = {
-    enable = true;
-    skhdConfig = ''
-      # open alacritty
-      cmd - return : open -n $HOME/.nix-profile/Applications/Alacritty.app --args --config-file $HOME/.config/alacritty/live.yml
-    '';
-  };
-
   # nighthook
   # if there's no 'live.yml' alacritty config initially,
   # copy it from the default config
