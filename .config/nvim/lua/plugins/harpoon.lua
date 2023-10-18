@@ -3,6 +3,7 @@ local M = {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  event = "VeryLazy",
   config = function(_, opts)
     require("harpoon").setup(opts)
 
@@ -11,7 +12,7 @@ local M = {
 
     k("n", "<Leader>a", require("harpoon.mark").add_file, k_opts)
 
-    k("n", "<C-e>", "<Cmd>Telescope harpoon marks<CR>", k_opts)
+    k("n", "<C-e>", require("harpoon.ui").toggle_quick_menu, k_opts)
 
     for i = 1, 9 do
       k("n", "<Leader>" .. i, function()

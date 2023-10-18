@@ -6,6 +6,58 @@ local M = {
   { "tpope/vim-abolish", event = "VeryLazy" },
 
   {
+    "mbbill/undotree",
+    keys = {
+      {
+        "<Leader>U",
+        vim.cmd.UndotreeToggle,
+      },
+    },
+  },
+
+  {
+    "stevearc/conform.nvim",
+    lazy = true,
+    cmd = "ConformInfo",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<Leader><Leader>f",
+        function()
+          require("conform").format()
+        end,
+      },
+    },
+    opts = {
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        javascript = { "prettierd" },
+        css = { "prettierd" },
+        sass = { "prettierd" },
+        scss = { "prettierd" },
+        sh = { "shfmt" },
+        elm = { "elm-format" },
+        lua = { "stylua" },
+        markdown = { "mdformat" },
+        nix = { "nixformat" },
+        ocaml = { "ocamlformat" },
+      },
+    },
+    config = function(_, opts)
+      opts.formatters = opts.formatters or {}
+      for f, o in pairs(opts.formatters) do
+        local ok, formatter = pcall(require, "conform.formatters." .. f)
+        opts.formatters[f] = vim.tbl_deep_extend("force", {}, ok and formatter or {}, o)
+      end
+
+      require("conform").setup(opts)
+    end,
+  },
+
+  {
     "windwp/nvim-spectre",
     keys = {
       {
@@ -29,32 +81,6 @@ local M = {
   },
 
   {
-    url = "https://git.sr.ht/~p00f/nvim-ts-rainbow",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    ft = { "fnl", "clj", "lisp", "lsp", "cl", "fasl", "rkt" },
-    config = function()
-      -- https://github.com/p00f/nvim-ts-rainbow/issues/30
-      local enabled_list = { "clojure", "fennel", "commonlisp", "query", "scheme", "racket" }
-      local parsers = require("nvim-treesitter.parsers")
-      local rainbow = {
-        extended_mode = true,
-        enable = true,
-        disable = vim.tbl_filter(function(p)
-          local disable = true
-          for _, lang in pairs(enabled_list) do
-            if p == lang then
-              disable = false
-            end
-          end
-          return disable
-        end, parsers.available_parsers()),
-      }
-
-      require("nvim-treesitter.configs").setup({ rainbow = rainbow })
-    end,
-  },
-
-  {
     "NvChad/nvim-colorizer.lua",
     cmd = {
       "ColorizerAttachToBuffer",
@@ -70,6 +96,7 @@ local M = {
       tailwind = true,
     },
   },
+
   {
     "themaxmarchuk/tailwindcss-colors.nvim",
     cmd = {

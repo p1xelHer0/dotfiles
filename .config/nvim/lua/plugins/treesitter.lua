@@ -55,7 +55,7 @@ local M = {
     opts = {
       highlight = {
         enable = true,
-        disable = function(lang, buf)
+        disable = function(_lang, buf)
           local max_filesize = 100 * 1024 -- 100 KB
           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
           if ok and stats and stats.size > max_filesize then
@@ -94,10 +94,29 @@ local M = {
   },
 
   {
+    enabled = false,
     "m-demare/hlargs.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = { "BufReadPost", "BufNewFile" },
-    config = true,
+    config = function(_, opts)
+      vim.api.nvim_create_augroup("LspAttach_hlargs", { clear = true })
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = "LspAttach_hlargs",
+        callback = function(args)
+          if not (args.data and args.data.client_id) then
+            return
+          end
+
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          local caps = client.server_capabilities
+          if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
+            require("hlargs").disable_buf(args.buf)
+          end
+        end,
+      })
+
+      require("hlargs.nvim").setup(opts)
+    end,
   },
 
   {

@@ -13,33 +13,6 @@ local M = {
         },
       },
       { "hrsh7th/cmp-nvim-lsp" },
-      {
-        "j-hui/fidget.nvim",
-        opts = {
-          text = {
-            spinner = "triangle",
-            done = "✅",
-          },
-          window = {
-            blend = 7,
-          },
-        },
-        -- {
-        --   "SmiteshP/nvim-navic",
-        --   dependencies = {
-        --     "MunifTanjim/nui.nvim",
-        --   },
-        --   config = true,
-        -- },
-        -- {
-        --   "SmiteshP/nvim-navbuddy",
-        --   dependencies = {
-        --     "MunifTanjim/nui.nvim",
-        --   },
-        --   cmd = "Navbuddy",
-        --   config = true,
-        -- },
-      },
       { "jose-elias-alvarez/typescript.nvim" },
     },
     event = { "BufReadPre", "BufNewFile" },
@@ -157,27 +130,6 @@ local M = {
         on_attach = on_attach,
       })
 
-      -- nvim_lspconfig.omnisharp.setup({
-      --   capabilities = capabilities,
-      --   cmd = {
-      --     "/Users/p1xelher0/.nix-profile/bin/omnisharp",
-      --     "--languageserver",
-      --     "--hostPID",
-      --     tostring(vim.fn.getpid()),
-      --   },
-      --   on_attach = on_attach,
-      -- })
-      --
-      -- nvim_lspconfig.gopls.setup({
-      --   cmd = { "gopls", "--remote=auto" },
-      --   capabilities = capabilities,
-      --   init_options = {
-      --     usePlaceholders = true,
-      --     completeUnimported = true,
-      --   },
-      --   on_attach = on_attach,
-      -- })
-
       nvim_lspconfig.clangd.setup({
         capabilities = capabilities,
         cmd = {
@@ -261,7 +213,6 @@ local M = {
       local completion = null_ls.builtins.completion
       local diagnostics = null_ls.builtins.diagnostics
       local formatting = null_ls.builtins.formatting
-      -- local hover = null_ls.builtins.hover
 
       local sources = {
         actions.gitsigns,
@@ -292,7 +243,6 @@ local M = {
           args = { "--json" },
         }),
 
-        formatting.elm_format,
         formatting.trim_newlines,
         formatting.trim_whitespace,
       }
@@ -305,19 +255,11 @@ local M = {
 
       local d = "diagnostics"
       local ca = "code_actions"
-      local fmt = "formatting"
 
       add_builtin_if_exists("eslint_d", d)
       add_builtin_if_exists("eslint_d", ca)
-      add_builtin_if_exists("selene", d)
+      -- add_builtin_if_exists("selene", d)
       add_builtin_if_exists("shellcheck", d)
-
-      add_builtin_if_exists("ocamlformat", fmt)
-      add_builtin_if_exists("prettierd", fmt)
-      add_builtin_if_exists("mdformat", fmt)
-      add_builtin_if_exists("rustfmt", fmt)
-      add_builtin_if_exists("shfmt", fmt)
-      add_builtin_if_exists("stylua", fmt)
 
       local config = {
         sources = sources,
@@ -415,7 +357,7 @@ local M = {
   },
 
   {
-    enabled = false,
+    enabled = true,
     "simrat39/rust-tools.nvim",
     dependencies = {
       { "neovim/nvim-lspconfig" },

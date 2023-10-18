@@ -85,7 +85,7 @@ local M = {
 
   {
     "echasnovski/mini.indentscope",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     opts = {
       symbol = require("core.config").get_icons().general.indent,
       options = { try_as_border = true },
@@ -98,8 +98,8 @@ local M = {
         end,
       })
 
-      require("mini.indentscope").setup(opts)
       vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
+      require("mini.indentscope").setup(opts)
     end,
   },
 
@@ -157,6 +157,106 @@ local M = {
   },
 
   {
+    enabled = false,
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            any = {
+              { find = "%d+L, %d+B" },
+              { find = "; after #%d+" },
+              { find = "; before #%d+" },
+            },
+          },
+          view = "mini",
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+      },
+    },
+    keys = {
+      {
+        "<S-Enter>",
+        function()
+          require("noice").redirect(vim.fn.getcmdline())
+        end,
+        mode = "c",
+        desc = "Redirect Cmdline",
+      },
+      {
+        "<Leader>snl",
+        function()
+          require("noice").cmd("last")
+        end,
+        desc = "Noice Last Message",
+      },
+      {
+        "<Leader>snh",
+        function()
+          require("noice").cmd("history")
+        end,
+        desc = "Noice History",
+      },
+      {
+        "<Leader>sna",
+        function()
+          require("noice").cmd("all")
+        end,
+        desc = "Noice All",
+      },
+      {
+        "<Leader>snd",
+        function()
+          require("noice").cmd("dismiss")
+        end,
+        desc = "Dismiss All",
+      },
+      {
+        "<C-d>",
+        function()
+          if not require("noice.lsp").scroll(4) then
+            return "<C-d>"
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll forward",
+        mode = { "i", "n", "s" },
+      },
+      {
+        "<C-u>",
+        function()
+          if not require("noice.lsp").scroll(-4) then
+            return "<C-u>"
+          end
+        end,
+        silent = true,
+        expr = true,
+        desc = "Scroll backward",
+        mode = { "i", "n", "s" },
+      },
+    },
+  },
+
+  {
     "folke/zen-mode.nvim",
     dependencies = {
       "folke/twilight.nvim",
@@ -169,6 +269,11 @@ local M = {
       },
     },
     keys = { { "<Leader>z", "<Cmd>ZenMode<CR>", desc = "Zen Mode" } },
+  },
+
+  {
+    "rktjmp/lush.nvim",
+    cmd = "Lushify",
   },
 }
 

@@ -1,17 +1,5 @@
 local M = {}
 
-function M.format(client, bufnr)
-  return function()
-    -- only use null-ls for formatting
-    vim.lsp.buf.format({
-      bufnr = bufnr,
-      filter = function()
-        return client.name == "null-ls"
-      end,
-    })
-  end
-end
-
 function M.capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

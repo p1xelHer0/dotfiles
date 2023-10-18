@@ -18,12 +18,6 @@ local M = {
         require("telescope").load_extension("ui-select")
       end,
     },
-    -- {
-    --   "nvim-telescope/telescope-dap.nvim",
-    --   config = function()
-    --     require("telescope").load_extension("dap")
-    --   end,
-    -- },
   },
   cmd = { "Telescope" },
   keys = {
@@ -35,32 +29,48 @@ local M = {
     { mode = "n", "<Leader>h", "<Cmd>Telescope harpoon marks<CR>", { silent = true } },
     { mode = "n", "<Leader>T", "<Cmd>Telescope<CR>", { silent = true, noremap = true } },
   },
-  opts = {
-    defaults = {
-      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-      mappings = {
-        n = {
-          ["<C-c>"] = "close",
+  opts = function()
+    local theme = "dropdown"
+    local borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+    -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+    -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+    -- preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+
+    return {
+      defaults = {
+        mappings = {
+          n = {
+            ["q"] = "close",
+          },
+        },
+        borderchars = borderchars,
+        theme = theme,
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+          no_ignore = true,
+        },
+        live_grep = {
+          additional_args = function()
+            return { "--hidden" }
+          end,
         },
       },
-    },
-    pickers = {
-      find_files = {
-        hidden = true,
-        no_ignore = true,
+      extensions = {
+        ["ui-select"] = {
+          theme = "cursor",
+        },
       },
-      live_grep = {
-        additional_args = function()
-          return { "--hidden" }
-        end,
-      },
-    },
-    extensions = {
-      ["ui-select"] = {
-        theme = "dropdown",
-      },
-    },
-  },
+    }
+  end,
+  config = function(_, opts)
+    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { reverse = true })
+    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { reverse = true })
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { reverse = true })
+
+    require("telescope").setup(opts)
+  end,
 }
 
 return M
