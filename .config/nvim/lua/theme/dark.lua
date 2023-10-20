@@ -41,7 +41,7 @@ local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {
     -- stylua: ignore start
-    Normal       { fg = fg }, -- Normal text
+    Normal       { fg = fg, bg = bg }, -- Normal text
     CursorLine   { bg = c.index.i16 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     CursorLineNr { fg = c.bright.black, bg = c.index.i16 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     ColorColumn  { CursorLine }, -- Columns set with 'colorcolumn'
@@ -253,10 +253,10 @@ local theme = lush(function(injected_functions)
     -------------------------------------------------------------------------------------------------------------------
     --- Diff & Git
     -------------------------------------------------------------------------------------------------------------------
-    DiffAdd               { fg = c.bright.green.mix(Normal.fg, 50),  bg = c.normal.green.da(55)  }, -- Diff mode: Added line |diff.txt|
-    DiffChange            { fg = c.bright.yellow.mix(Normal.fg, 50), bg = c.normal.yellow.da(55) }, -- Diff mode: Changed line |diff.txt|
-    DiffDelete            { fg = c.bright.red.mix(Normal.fg, 50),    bg = c.normal.red.da(55)    }, -- Diff mode: Deleted line |diff.txt|
-    DiffText              { fg = c.bright.blue.mix(Normal.fg, 50),   bg = c.normal.blue.da(50)   }, -- Diff mode: Changed text within a changed line |diff.txt|
+    DiffAdd               { bg = c.normal.green.da(55)  }, -- Diff mode: Added line |diff.txt|
+    DiffDelete            { bg = c.normal.red.da(55)    }, -- Diff mode: Deleted line |diff.txt|
+    DiffChange            { bg = c.normal.yellow.da(55) }, -- Diff mode: Changed line |diff.txt|
+    DiffText              { bg = c.normal.blue.da(50)   }, -- Diff mode: Changed text within a changed line |diff.txt|
     GitAdd                { fg = c.normal.green                                                  },
     GitDelete             { fg = c.normal.red                                                    },
     GitChange             { fg = c.normal.yellow                                                 },
@@ -270,6 +270,11 @@ local theme = lush(function(injected_functions)
     GitSignsDelete        { GitDelete },
     GitSignsChange        { GitChange },
     GitSignsNew           { GitNew },
+    NeogitDiffAdd         { DiffAdd },
+    NeogitDiffDelete      { DiffDelete },
+    NeogitDiffChange      { DiffChange },
+    NeogitDiffText        { DiffText },
+
 
     MiniIndentscopeSymbol { fg = CursorLine.bg },
 

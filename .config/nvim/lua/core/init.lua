@@ -41,5 +41,6 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
 require("core.lazy")
+-- require("core.theme")
 require("core.options")
 require("core.autocmd")

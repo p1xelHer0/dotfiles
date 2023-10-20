@@ -13,9 +13,15 @@ k("n", "<Leader>q", ":q<CR>", opts)
 k("n", "<Leader>Q", ":q!<CR>", opts)
 k("n", "<Leader>x", ":x<CR>", opts)
 k("n", "<Leader>X", ":x!<CR>", opts)
+k("n", "<Leader>e", ":e<CR>", opts)
+
 k("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 k("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
 k("n", "<Leader>/", ":nohl<CR>", opts)
+
 k("n", "<Leader>L", function()
   require("lazy").home()
 end, opts)
+
+k("n", "<Leader>0", ":Inspect<CR>", opts)

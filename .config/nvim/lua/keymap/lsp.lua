@@ -8,24 +8,12 @@ M.setup = function(client, bufnr)
 
   k("n", "]d", function()
     vim.diagnostic.goto_next({
-      wrap = false,
+      severity = require("internal.lsp").diagnostic_severity(),
     })
   end, opts)
   k("n", "[d", function()
     vim.diagnostic.goto_prev({
-      wrap = false,
-    })
-  end, opts)
-  k("n", "]e", function()
-    vim.diagnostic.goto_prev({
-      severity = vim.diagnostic.severity.ERROR,
-      wrap = false,
-    })
-  end, opts)
-  k("n", "[e", function()
-    vim.diagnostic.goto_prev({
-      severity = vim.diagnostic.severity.ERROR,
-      wrap = false,
+      severity = require("internal.lsp").diagnostic_severity(),
     })
   end, opts)
   k("n", "K", vim.lsp.buf.hover, opts)

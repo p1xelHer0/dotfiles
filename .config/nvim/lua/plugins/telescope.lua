@@ -59,7 +59,7 @@ local M = {
       },
       extensions = {
         ["ui-select"] = {
-          theme = "cursor",
+          require("telescope.themes").get_dropdown({}),
         },
       },
     }

@@ -135,8 +135,9 @@ in
     ];
 
     brews = [
-      "mas"
       "fsouza/prettierd/prettierd"
+      "mas"
+      "ncurses"
     ];
 
     casks = [

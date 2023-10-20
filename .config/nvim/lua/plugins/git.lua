@@ -9,6 +9,14 @@ local M = {
       "nvim-lua/plenary.nvim",
     },
     cmd = { "Neogit" },
+    keys = {
+      {
+        "<Leader>G",
+        function()
+          require("neogit").open()
+        end,
+      },
+    },
     opts = {
       integrations = {
         diffview = true,

@@ -74,6 +74,7 @@ in
 
     # PHP
     php82
+    php82Packages.composer
 
     # Ruby
     cocoapods
@@ -107,6 +108,7 @@ in
     '';
 
     initExtra = ''
+      export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh

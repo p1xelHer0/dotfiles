@@ -157,7 +157,7 @@ local M = {
   },
 
   {
-    enabled = false,
+    enabled = true,
     "windwp/nvim-autopairs",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",

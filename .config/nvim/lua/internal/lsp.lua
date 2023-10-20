@@ -6,13 +6,31 @@ function M.capabilities()
   return capabilities
 end
 
+function M.diagnostic_severity()
+  local num_warnings = 0
+
+  for _, d in ipairs(vim.diagnostic.get(0)) do
+    if d.severity == vim.diagnostic.severity.ERROR then
+      return vim.diagnostic.severity.ERROR
+    elseif d.severity == vim.diagnostic.severity.WARN then
+      num_warnings = num_warnings + 1
+    end
+  end
+
+  if num_warnings > 0 then
+    return vim.diagnostic.severity.WARN
+  else
+    return nil
+  end
+end
+
 function M.on_attach(client, bufnr)
   require("keymap.lsp").setup(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     -- require("navic-nvim").attach(client, bufnr)
   end
 
-  vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+  -- vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
 

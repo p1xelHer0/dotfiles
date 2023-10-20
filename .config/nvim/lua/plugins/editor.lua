@@ -6,13 +6,45 @@ local M = {
   { "tpope/vim-abolish", event = "VeryLazy" },
 
   {
-    "mbbill/undotree",
+    "kevinhwang91/nvim-hlslens",
+    keys = {
+      {
+        "n",
+        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        silent = true,
+        noremap = true,
+      },
+      {
+        "N",
+        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        silent = true,
+        noremap = true,
+      },
+      { "*", [[*<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
+      { "#", [[#<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
+      { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
+      { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
+    },
+    opts = {},
+    config = function(_, opts)
+      require("hlslens").setup(opts)
+    end,
+  },
+
+  {
+    "jiaoshijie/undotree",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
     keys = {
       {
         "<Leader>U",
-        vim.cmd.UndotreeToggle,
+        function()
+          require("undotree").toggle()
+        end,
       },
     },
+    config = true,
   },
 
   {
@@ -32,6 +64,7 @@ local M = {
       format_on_save = {
         timeout_ms = 500,
         lsp_fallback = true,
+        quiet = true,
       },
       formatters_by_ft = {
         javascript = { "prettierd" },
@@ -55,6 +88,9 @@ local M = {
 
       require("conform").setup(opts)
     end,
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
 
   {
@@ -66,6 +102,45 @@ local M = {
           require("spectre").open()
         end,
         desc = "Replace in files (Spectre)",
+      },
+    },
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = { use_diagnostic_signs = true },
+    keys = {
+      { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "<leader>xL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+      { "<leader>xQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+      {
+        "[q",
+        function()
+          if require("trouble").is_open() then
+            require("trouble").previous({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(vim.cmd.cprev)
+            if not ok then
+              vim.notify(err, vim.log.levels.ERROR)
+            end
+          end
+        end,
+        desc = "Previous trouble/quickfix item",
+      },
+      {
+        "]q",
+        function()
+          if require("trouble").is_open() then
+            require("trouble").next({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(vim.cmd.cnext)
+            if not ok then
+              vim.notify(err, vim.log.levels.ERROR)
+            end
+          end
+        end,
+        desc = "Next trouble/quickfix item",
       },
     },
   },

@@ -57,6 +57,7 @@ local M = {
   },
 
   {
+    enabled = true,
     "f-person/auto-dark-mode.nvim",
     lazy = false,
     priority = 1000,
@@ -101,6 +102,11 @@ local M = {
       vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
       require("mini.indentscope").setup(opts)
     end,
+  },
+
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
   },
 
   {
@@ -273,7 +279,7 @@ local M = {
 
   {
     "rktjmp/lush.nvim",
-    cmd = "Lushify",
+    lazy = false,
   },
 }
 
