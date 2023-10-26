@@ -44,7 +44,6 @@ local M = {
       -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
       -- "RRethy/nvim-treesitter-textsubjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },

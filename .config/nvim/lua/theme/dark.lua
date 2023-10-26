@@ -55,7 +55,7 @@ local theme = lush(function(injected_functions)
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
     ErrorMsg     { fg = c.normal.red }, -- Error messages on the command line
-    VertSplit    { fg = bg }, -- Column separating vertically split windows
+    VertSplit    { EndOfBuffer }, -- Column separating vertically split windows
     Folded       { fg = c.normal.white }, -- Line used for closed folds
     FoldColumn   { fg = c.index.i20 }, -- 'foldcolumn'
     SignColumn   { fg = c.bright.black }, -- Column where |signs| are displayed
@@ -68,8 +68,7 @@ local theme = lush(function(injected_functions)
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg      { fg = c.normal.green, gui = "bold" }, -- |more-prompt|
     NonText      { EndOfBuffer }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    NormalFloat  { }, -- Normal text in floating windows.
-    -- NormalNC     { Normal.li(100) }, -- normal text in non-current windows
+   -- NormalNC     { Normal.li(100) }, -- normal text in non-current windows
     Pmenu        { bg = c.index.i16 }, -- Popup menu: Normal item.
     PmenuSel     { bg = c.index.i18 }, -- Popup menu: Selected item.
     PmenuSbar    { bg = c.index.i18 }, -- Popup menu: Scrollbar.
@@ -94,7 +93,9 @@ local theme = lush(function(injected_functions)
     -- Ignore       { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
     Error        { ErrorMsg }, -- Any erroneous construct
     Todo         { fg = bg, bg = c.normal.magenta }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-
+    NormalFloat  { }, -- Normal text in floating windows.
+    FloatTitle   { Title },
+    FloatBorder  { fg = c.bright.black },
 
     -------------------------------------------------------------------------------------------------------------------
     --- Syntax
@@ -275,6 +276,10 @@ local theme = lush(function(injected_functions)
     NeogitDiffChange      { DiffChange },
     NeogitDiffText        { DiffText },
 
+    TelescopeBorder          { FloatBorder },
+    TelescopePreviewTitle    { Substitute },
+    TelescopePromptTitle    { IncSearch },
+    TelescopeResultsTitle    { Search },
 
     MiniIndentscopeSymbol { fg = CursorLine.bg },
 
@@ -288,6 +293,7 @@ local theme = lush(function(injected_functions)
     -- NvimTreeBookmark { Normal },
     -- NvimTreeSymlink { },
     -- NvimTreeImageFile { Normal },
+    -- NvimTreeExecFile { },
     NvimTreeFolderIcon { Directory },
     -- NvimTreeOpenedFile { },
     -- NvimTreeRootFolder { },
@@ -296,6 +302,10 @@ local theme = lush(function(injected_functions)
     -- NvimTreeModifiedFile { },
     -- NvimTreeWindowPicker { },
     -- NvimTreeLiveFilterPrefix { },
+
+    HlSearchNear     { IncSearch },
+    HlSearchLens     { Description },
+    -- HlSearchLensNear { HlSearchLens },
   }
 end)
 
