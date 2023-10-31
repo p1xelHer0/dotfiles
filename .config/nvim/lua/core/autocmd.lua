@@ -49,3 +49,23 @@ api.nvim_create_autocmd("BufEnter", {
     vim.diagnostic.disable(args.buf)
   end,
 })
+
+-- Set tmux title to current Neovim buffer
+if vim.env.TMUX then
+  api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile", "BufEnter" }, {
+    pattern = "*",
+    group = group,
+    callback = function()
+      local buffer_name = vim.fn.expand("%:t")
+      vim.fn.system(string.format([[tmux rename-window %s]], buffer_name))
+    end,
+  })
+
+  api.nvim_create_autocmd({ "VimLeave", "FocusLost" }, {
+    pattern = "*",
+    group = group,
+    callback = function()
+      vim.fn.system([[tmux setw automatic-rename]])
+    end,
+  })
+end

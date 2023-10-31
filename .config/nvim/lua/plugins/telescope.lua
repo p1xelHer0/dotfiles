@@ -56,6 +56,13 @@ local M = {
             return { "--hidden" }
           end,
         },
+        buffers = {
+          mappings = {
+            n = {
+              ["dd"] = "delete_buffer",
+            },
+          },
+        },
       },
       extensions = {
         ["ui-select"] = {

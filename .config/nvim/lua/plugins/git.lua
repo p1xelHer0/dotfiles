@@ -84,6 +84,20 @@ local M = {
   },
 
   {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = { "Octo", "Octo " },
+    opts = {},
+    config = function(_, opts)
+      require("octo").setup(opts)
+    end,
+  },
+
+  {
     "rbong/vim-flog",
     dependencies = { "tpope/vim-fugitive" },
     cmd = { "Flog", "Flogsplit" },
