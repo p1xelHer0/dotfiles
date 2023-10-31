@@ -59,9 +59,9 @@ in
 
     # Web
     fnm
-    nodePackages.yarn
+    # nodePackages.yarn
     nodePackages.pnpm
-    nodePackages.vercel
+    # nodePackages.vercel
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
@@ -104,14 +104,14 @@ in
     # go install github.com/client9/misspell/cmd/misspell@latest
 
     # Lisp
-    chicken
-    guile
-    chez-racket
-    sbcl
+    # chicken
+    # guile
+    # chez-racket
+    # sbcl
 
     # Erlang/Elixir
-    elixir
-    elixir_ls
+    # elixir
+    # elixir_ls
 
     # TOML
     taplo-cli
@@ -198,7 +198,7 @@ in
       vim = "nvim";
       vf = "nvim $(fzf)";
 
-      os = "eval $(opam env)";
+      opameval = "eval $(opam env)";
       ev = "npx esy nvim";
       evf = "npx esy nvim $(fzf)";
 
