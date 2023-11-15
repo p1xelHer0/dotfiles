@@ -4,7 +4,6 @@ local blend = 7
 local scrolloff = require("core.config").get_options().scrolloff
 
 -- stylua: ignore start
-o.mouse           = ''
 o.exrc            = false
 o.modelines       = 1
 o.errorbells      = false

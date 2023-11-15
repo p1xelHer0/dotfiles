@@ -3,7 +3,7 @@ require("lazy").setup({
     { import = "plugins" },
   },
   lockfile = require("core.config").get_dotfiles_path() .. "/.config/nvim/lazy-lock.json",
-  install = { colorscheme = { "github_dark_colorblind" } },
+  install = { colorscheme = { "github_dark_tritanopia" } },
   change_detection = {
     notify = false,
   },

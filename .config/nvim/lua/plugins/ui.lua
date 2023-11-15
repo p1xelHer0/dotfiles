@@ -77,7 +77,7 @@ local M = {
         config = function()
           require("github-theme").setup({})
 
-          vim.cmd([[colorscheme github_dark_colorblind]])
+          vim.cmd([[colorscheme github_dark_tritanopia]])
         end,
       },
     },
@@ -86,11 +86,11 @@ local M = {
       auto_dark_mode.setup({
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
-          vim.cmd([[colorscheme github_dark_colorblind]])
+          vim.cmd([[colorscheme github_dark_tritanopia]])
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
-          vim.cmd([[colorscheme github_light_colorblind]])
+          vim.cmd([[colorscheme github_light_tritanopia]])
         end,
       })
 

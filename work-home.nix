@@ -343,35 +343,35 @@ in
       darkColors = {
         colors = {
           primary = {
-            background = "0x222436";
-            foreground = "0xc8d3f5";
+            background = "0x0d1117";
+            foreground = "0xc9d1d9";
           };
 
           cursor = {
-            cursor = "0xffffff";
-            text = "0x222436";
+            cursor = "0xc9d1d9";
+            text = "0x0d1117";
           };
 
           normal = {
-            black = "0x222436";
-            red = "0xff757f";
-            green = "0xc3e88d";
-            yellow = "0xffc777";
-            blue = "0x82aaff";
-            magenta = "0xc099ff";
-            cyan = "0x86e1fc";
-            white = "0x828bb8";
+            black = "0x484f58";
+            red = "0xff7b72";
+            green = "0x58a6ff";
+            yellow = "0xd29922";
+            blue = "0x58a6ff";
+            magenta = "0xbc8cff";
+            cyan = "0x39c5cf";
+            white = "0xb1bac4";
           };
 
           bright = {
-            black = "0x444a73";
-            red = "0xff757f";
-            green = "0xc3e88d";
-            yellow = "0xffc777";
-            blue = "0x82aaff";
-            magenta = "0xc099ff";
-            cyan = "0x86e1fc";
-            white = "0xc8d3f5";
+            black = "0x6e7681";
+            red = "0xffa198";
+            green = "0x79c0ff";
+            yellow = "0xe3b341";
+            blue = "0x79c0ff";
+            magenta = "0xbc8cff";
+            cyan = "0x39c5cf";
+            white = "0xb1bac4";
           };
 
           indexed_colors = [
@@ -393,35 +393,35 @@ in
       lightColors = {
         colors = {
           primary = {
-            background = "0xe1e2e7";
-            foreground = "0x3760bf";
+            background = "0xffffff";
+            foreground = "0x1b1f24";
           };
 
           cursor = {
-            cursor = "0x000000";
-            text = "0xe1e2e7";
+            cursor = "0x24292f";
+            text = "0xffffff";
           };
 
           normal = {
-            black = "0xe1e2e7";
-            red = "0xf52a65";
-            green = "0x587539";
-            yellow = "0x8c6c3e";
-            blue = "0x2e7de9";
-            magenta = "0x9854f1";
-            cyan = "0x007197";
-            white = "0x6172b0";
+            black = "0x24292f";
+            red = "0xcf222e";
+            green = "0x0550ae";
+            yellow = "0x4d2d00";
+            blue = "0x0969da";
+            magenta = "0x8250df";
+            cyan = "0x1b7c83";
+            white = "0x6e7781";
           };
 
           bright = {
-            black = "0xa1a6c5";
-            red = "0xf52a65";
-            green = "0x587539";
-            yellow = "0x8c6c3e";
-            blue = "0x2e7de9";
-            magenta = "0x9854f1";
-            cyan = "0x007197";
-            white = "0x3760bf";
+            black = "0x57606a";
+            red = "0xa40e26";
+            green = "0x0969da";
+            yellow = "0x633c01";
+            blue = "0x218bff";
+            magenta = "0x8250df";
+            cyan = "0x1b7c83";
+            white = "0x6e7781";
           };
 
           indexed_colors = [

@@ -7,8 +7,25 @@ let
       description = "${name} color of palette";
       type = colorType;
     }));
-  fromBase16 = { base00, base01, base02, base03, base04, base05, base06, base07
-    , base08, base09, base0A, base0B, base0C, base0D, base0E, base0F, ... }:
+  fromBase16 =
+    { base00
+    , base01
+    , base02
+    , base03
+    , base04
+    , base05
+    , base06
+    , base07
+    , base08
+    , base09
+    , base0A
+    , base0B
+    , base0C
+    , base0D
+    , base0E
+    , base0F
+    , ...
+    }:
     builtins.mapAttrs (_: v: "#" + v) {
       bg = base00;
       fg = base07;
@@ -32,7 +49,8 @@ let
       phases = [ "buildPhase" ];
       buildPhase = "echo '${yaml}' | ${pkgs.yaml2json}/bin/yaml2json > $out";
     }));
-in {
+in
+{
   options = {
     themes = {
       colors = mkOption {
@@ -63,13 +81,13 @@ in {
   config = {
     themes.colors = (fromBase16 (fromYAML
       (builtins.readFile "${inputs.base16-unclaimed-schemes}/irblack.yaml")))
-      // {
-        alt = "#001d6c";
+    // {
+      alt = "#001d6c";
 
-        red = "#da1e28";
-        green = "#24a148";
-        orange = "#ff832b";
-        yellow = "#f1c21b";
-      };
+      red = "#da1e28";
+      green = "#24a148";
+      orange = "#ff832b";
+      yellow = "#f1c21b";
+    };
   };
 }
