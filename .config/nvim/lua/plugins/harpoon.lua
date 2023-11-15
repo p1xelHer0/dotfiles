@@ -1,8 +1,5 @@
 local M = {
   "ThePrimeagen/harpoon",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
   event = "VeryLazy",
   config = function(_, opts)
     require("harpoon").setup(opts)
@@ -19,8 +16,6 @@ local M = {
         require("harpoon.ui").nav_file(i)
       end, k_opts)
     end
-
-    require("telescope").load_extension("harpoon")
   end,
 }
 

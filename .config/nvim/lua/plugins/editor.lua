@@ -33,9 +33,6 @@ local M = {
 
   {
     "jiaoshijie/undotree",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     keys = {
       {
         "<Leader>U",
