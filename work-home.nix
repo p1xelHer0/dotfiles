@@ -353,7 +353,7 @@ in
           };
 
           normal = {
-            black = "0x484f58";
+            black = "0x0d1117";
             red = "0xff7b72";
             green = "0x58a6ff";
             yellow = "0xd29922";
@@ -403,7 +403,7 @@ in
           };
 
           normal = {
-            black = "0x24292f";
+            black = "0xffffff";
             red = "0xcf222e";
             green = "0x0550ae";
             yellow = "0x4d2d00";
