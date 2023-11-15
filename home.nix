@@ -7,7 +7,7 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Meslo" ]; })
 
     # Tools
     bat
@@ -81,6 +81,9 @@ in
     cargo-nextest
     # rust-analyzer - install this with Rustup instead
     # to make sure it matches the compiler
+
+    # C/C++/Rust
+    # vscode-extensions.vadimcn.vscode-lldb
 
     # Elm
     elmPackages.elm
@@ -487,84 +490,94 @@ in
     builtins.replaceStrings [ "\\\\" ] [ "\\" ]
       (builtins.toJSON (config.programs.alacritty.settings // lightColors));
 
-  programs.alacritty = {
-    enable = true;
+  programs.alacritty =
+    let
+      # fontFamily = "Iosevka Nerd Font Mono";
+      # fontFamily = "MesloLGL Nerd Font Mono";
+      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+    in
+    {
+      enable = true;
 
-    settings = {
-      env = {
-        TERM = "alacritty";
+      settings = {
+        env = {
+          TERM = "alacritty";
+        };
+
+        window = {
+          padding.x = 16;
+          padding.y = 16;
+
+          decorations = "buttonless";
+          startup_mode = "Windowed";
+          option_as_alt = "Both";
+        };
+
+        draw_bold_text_with_bright_colors = false;
+
+        live_config_reload = true;
+
+        mouse.hide_when_typing = true;
+
+        scrolling.history = 0;
+
+        selection.save_to_clipboard = false;
+
+        bell.duration = 0;
+
+        cursor = {
+          style = "Block";
+          unfocused_hollow = true;
+        };
+
+        font = {
+          size = 12;
+
+          normal = {
+            family = fontFamily;
+            style = "Regular";
+            # style = "SemiBold";
+          };
+
+          bold = {
+            family = fontFamily;
+            style = "Bold";
+            # style = "ExtraBold";
+          };
+
+          italic = {
+            family = fontFamily;
+            style = "Italic";
+            # style = "SemiBold Italic";
+          };
+
+          bold_italic = {
+            family = fontFamily;
+            style = "Bold Italic";
+            # style = "ExtraBold Italic";
+          };
+
+          offset = {
+            x = 1;
+            y = 4;
+          };
+
+          glyph_offset = {
+            x = 0;
+            y = 2;
+          };
+        };
+
+        key_bindings = [
+          {
+            key = "Paste";
+            action = "Paste";
+          }
+          {
+            key = "Copy";
+            action = "Copy";
+          }
+        ];
       };
-
-      window = {
-        padding.x = 16;
-        padding.y = 16;
-
-        decorations = "buttonless";
-        startup_mode = "Windowed";
-        option_as_alt = "Both";
-      };
-
-      draw_bold_text_with_bright_colors = false;
-
-      live_config_reload = true;
-
-      mouse.hide_when_typing = true;
-
-      scrolling.history = 0;
-
-      selection.save_to_clipboard = false;
-
-      bell.duration = 0;
-
-      cursor = {
-        style = "Block";
-        unfocused_hollow = true;
-      };
-
-      font = {
-        size = 16;
-
-        normal = {
-          family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "SemiBold";
-        };
-
-        bold = {
-          family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "ExtraBold";
-        };
-
-        italic = {
-          family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "SemiBold Italic";
-        };
-
-        bold_italic = {
-          family = "JetBrainsMonoNL Nerd Font Mono";
-          style = "ExtraBold Italic";
-        };
-
-        offset = {
-          x = 0;
-          y = 2;
-        };
-
-        glyph_offset = {
-          x = 0;
-          y = 0;
-        };
-      };
-
-      key_bindings = [
-        {
-          key = "Paste";
-          action = "Paste";
-        }
-        {
-          key = "Copy";
-          action = "Copy";
-        }
-      ];
     };
-  };
 }

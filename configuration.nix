@@ -121,7 +121,7 @@ in
     global.brewfile = true;
 
     onActivation = {
-      upgrade = true;
+      upgrade = false;
       cleanup = "zap";
     };
 
@@ -155,6 +155,7 @@ in
       "devcleaner"
       "discord"
       "firefox"
+      "firefox-developer-edition"
       "google-chrome"
       "gpg-suite-no-mail"
       "grandperspective"

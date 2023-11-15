@@ -77,6 +77,7 @@ local M = {
         markdown = { "mdformat" },
         nix = { "nixformat" },
         ocaml = { "ocamlformat" },
+        rust = { "rustfmt" },
       },
     },
     config = function(_, opts)

@@ -269,10 +269,33 @@ local M = {
     },
     cmd = "ZenMode",
     opts = {
+      window = {
+        backdrop = 1,
+        width = 120,
+        options = {
+          signcolumn = "no",
+          number = false,
+          relativenumber = false,
+          cursorline = false,
+          cursorcolumn = false,
+          -- foldcolumn = "0",
+          -- list = false,
+        },
+      },
       plugins = {
         gitsigns = true,
         tmux = true,
+        alacritty = {
+          enabled = true,
+          font = "20",
+        },
       },
+      on_open = function()
+        vim.opt.scrolloff = 999
+      end,
+      on_close = function()
+        vim.opt.scrolloff = require("core.config").get_options().scrolloff
+      end,
     },
     keys = { { "<Leader>z", "<Cmd>ZenMode<CR>", desc = "Zen Mode" } },
   },

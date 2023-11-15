@@ -415,7 +415,7 @@ local M = {
   },
 
   {
-    enabled = false,
+    enabled = true,
     "simrat39/rust-tools.nvim",
     dependencies = {
       { "neovim/nvim-lspconfig" },
@@ -434,7 +434,7 @@ local M = {
     event = "BufEnter Cargo.toml",
     config = function()
       -- check ~/.vscode/extensions/ for correct version
-      local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.9.0/"
+      local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/"
       local codelldb_path = extension_path .. "adapter/codelldb"
       local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
@@ -443,7 +443,7 @@ local M = {
           cmd = { "/Users/p1xelher0/.rustup/toolchains/nightly-aarch64-apple-darwin/bin/rust-analyzer" },
           -- cmd = { "/nix/store/bc23kmwxgwlyvpxdnfr92n2kw7j67im8-rust-default-1.68.0-nightly-2022-12-13/bin/rust-analyzer" },
           capabilities = require("internal.lsp").capabilities(),
-          on_attach = require("internal.lsp").on_attach,
+          -- on_attach = require("internal.lsp").on_attach,
           standalone = false,
 
           settings = {

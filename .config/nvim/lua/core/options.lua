@@ -1,6 +1,8 @@
 local o = vim.opt
 local blend = 7
 
+local scrolloff = require("core.config").get_options().scrolloff
+
 -- stylua: ignore start
 o.mouse           = ''
 o.exrc            = false
@@ -105,10 +107,11 @@ o.startofline     = false
 o.showmode        = true
 o.showcmd         = true
 o.laststatus      = 3
-o.scrolloff       = 5
-o.sidescrolloff   = 5
+o.scrolloff       = scrolloff
+o.sidescrolloff   = scrolloff
 o.textwidth       = 80
 o.wrap            = true
+o.whichwrap:append "<>[]hl"
 o.linebreak       = true
 o.breakindentopt  = 'shift:2,min:20'
 o.ruler           = true
@@ -130,6 +133,7 @@ o.foldenable      = true
 o.foldlevel       = 99
 o.foldlevelstart  = 99
 o.foldmethod      = 'indent'
+
 
 o.winwidth        = 30
 o.winminwidth     = 10

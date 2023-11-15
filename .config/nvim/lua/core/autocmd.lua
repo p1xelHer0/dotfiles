@@ -52,7 +52,7 @@ api.nvim_create_autocmd("BufEnter", {
 
 -- Set tmux title to current Neovim buffer
 if vim.env.TMUX then
-  api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile", "BufEnter" }, {
+  api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile", "BufEnter", "FocusGained" }, {
     pattern = "*",
     group = group,
     callback = function()

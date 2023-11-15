@@ -100,4 +100,10 @@ function M.get_icons()
   }
 end
 
+function M.get_options()
+  return {
+    scrolloff = 5,
+  }
+end
+
 return M

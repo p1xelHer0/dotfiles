@@ -25,7 +25,9 @@ g.loaded_python3_provider = 0
 g.loaded_ruby_provider = 0
 g.loaded_perl_provider = 0
 
+require("core.options")
 require("keymap")
+require("core.autocmd")
 
 local lazy_path = require("core.config").get_lazy_path()
 if not vim.loop.fs_stat(lazy_path) then
@@ -42,5 +44,3 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
 require("core.lazy")
 -- require("core.theme")
-require("core.options")
-require("core.autocmd")

@@ -205,7 +205,7 @@ local M = {
   },
 
   {
-    enabled = false,
+    enabled = true,
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-lua/plenary.nvim",
