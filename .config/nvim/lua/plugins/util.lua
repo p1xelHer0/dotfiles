@@ -34,6 +34,8 @@ local M = {
     "christoomey/vim-tmux-navigator",
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
   },
+
+  { "nvim-lua/plenary.nvim", lazy = true },
 }
 
 return M

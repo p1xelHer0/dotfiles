@@ -157,42 +157,6 @@ local M = {
   },
 
   {
-    enabled = true,
-    "windwp/nvim-autopairs",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp",
-    },
-    event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup({})
-      local status, cmp = pcall(require, "cmp")
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-    end,
-  },
-
-  {
-    "windwp/nvim-ts-autotag",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "InsertEnter",
-    config = true,
-  },
-
-  {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = true,
-  },
-
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    lazy = true,
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  {
     "echasnovski/mini.comment",
     event = "VeryLazy",
     opts = {
@@ -205,23 +169,8 @@ local M = {
   },
 
   {
-    enabled = true,
-    "nvim-neotest/neotest",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "rouge8/neotest-rust",
-    },
-    config = function()
-      require("keymap.neotest").setup()
-      require("neotest").setup({
-        adapters = {
-          require("neotest-rust")({
-            args = { "--no-capture" },
-          }),
-        },
-      })
-    end,
+    "LunarVim/bigfile.nvim",
+    lazy = true,
   },
 }
 

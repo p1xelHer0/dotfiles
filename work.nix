@@ -121,7 +121,7 @@ in
     global.brewfile = true;
 
     onActivation = {
-      upgrade = true;
+      upgrade = false;
       cleanup = "zap";
     };
 

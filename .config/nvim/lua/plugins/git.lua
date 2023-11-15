@@ -6,7 +6,6 @@ local M = {
         "sindrets/diffview.nvim",
         opts = { icons = false },
       },
-      "nvim-lua/plenary.nvim",
     },
     cmd = { "Neogit" },
     keys = {
@@ -26,7 +25,6 @@ local M = {
 
   {
     "sindrets/diffview.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
     cmd = {
       "DiffviewClose",
       "DiffviewFileHistory",
@@ -41,7 +39,6 @@ local M = {
 
   {
     "lewis6991/gitsigns.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "Gitsigns " },
     opts = {
@@ -86,7 +83,6 @@ local M = {
   {
     "pwntester/octo.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
       "nvim-tree/nvim-web-devicons",
     },

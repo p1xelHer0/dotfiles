@@ -86,6 +86,7 @@ local M = {
 
   {
     "echasnovski/mini.indentscope",
+    version = false,
     event = "VeryLazy",
     opts = {
       symbol = require("core.config").get_icons().general.indent,
@@ -100,6 +101,7 @@ local M = {
       })
 
       vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
+
       require("mini.indentscope").setup(opts)
     end,
   },
@@ -113,36 +115,7 @@ local M = {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     lazy = true,
-    -- run the setup function
-    config = function()
-      require("lualine").setup({
-        options = {
-          icons_enabled = true,
-          theme = "tokyonight",
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
-          disabled_filetypes = {},
-        },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch" },
-          lualine_c = { "filename" },
-          lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { "filename" },
-          lualine_x = { "location" },
-          lualine_y = {},
-          lualine_z = {},
-        },
-        tabline = {},
-        extensions = {},
-      })
-    end,
+    config = true,
   },
 
   {

@@ -13,33 +13,22 @@ local M = {
         },
       },
       { "hrsh7th/cmp-nvim-lsp" },
-      {
-        "j-hui/fidget.nvim",
-        opts = {
-          text = {
-            spinner = "triangle",
-            done = "✅",
-          },
-          window = {
-            blend = 7,
-          },
-        },
-        -- {
-        --   "SmiteshP/nvim-navic",
-        --   dependencies = {
-        --     "MunifTanjim/nui.nvim",
-        --   },
-        --   config = true,
-        -- },
-        -- {
-        --   "SmiteshP/nvim-navbuddy",
-        --   dependencies = {
-        --     "MunifTanjim/nui.nvim",
-        --   },
-        --   cmd = "Navbuddy",
-        --   config = true,
-        -- },
-      },
+      { "j-hui/fidget.nvim" },
+      -- {
+      --   "SmiteshP/nvim-navic",
+      --   dependencies = {
+      --     "MunifTanjim/nui.nvim",
+      --   },
+      --   config = true,
+      -- },
+      -- {
+      --   "SmiteshP/nvim-navbuddy",
+      --   dependencies = {
+      --     "MunifTanjim/nui.nvim",
+      --   },
+      --   cmd = "Navbuddy",
+      --   config = true,
+      -- },
       { "jose-elias-alvarez/typescript.nvim" },
     },
     event = { "BufReadPre", "BufNewFile" },
@@ -56,7 +45,9 @@ local M = {
               format = {
                 enable = true,
               },
-              validate = { enable = true },
+              validate = {
+                enable = true,
+              },
             },
           },
         },
@@ -157,27 +148,6 @@ local M = {
         on_attach = on_attach,
       })
 
-      -- nvim_lspconfig.omnisharp.setup({
-      --   capabilities = capabilities,
-      --   cmd = {
-      --     "/Users/p1xelher0/.nix-profile/bin/omnisharp",
-      --     "--languageserver",
-      --     "--hostPID",
-      --     tostring(vim.fn.getpid()),
-      --   },
-      --   on_attach = on_attach,
-      -- })
-      --
-      -- nvim_lspconfig.gopls.setup({
-      --   cmd = { "gopls", "--remote=auto" },
-      --   capabilities = capabilities,
-      --   init_options = {
-      --     usePlaceholders = true,
-      --     completeUnimported = true,
-      --   },
-      --   on_attach = on_attach,
-      -- })
-
       nvim_lspconfig.clangd.setup({
         capabilities = capabilities,
         cmd = {
@@ -235,9 +205,9 @@ local M = {
         "elixirls",
         "elmls",
         "ocamllsp",
-        "pyright",
         "rnix",
         "taplo",
+        "typescript",
       }
 
       for _, server in ipairs(servers) do
@@ -421,7 +391,6 @@ local M = {
       { "neovim/nvim-lspconfig" },
       {
         "Saecki/crates.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
           null_ls = {
             enabled = true,

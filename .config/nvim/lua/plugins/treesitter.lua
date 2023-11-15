@@ -37,46 +37,39 @@ local ensure_installed = {
   "yaml",
 }
 
+local ts = "nvim-treesitter/nvim-treesitter"
+
 local M = {
   {
-    "nvim-treesitter/nvim-treesitter",
+    ts,
     dependencies = {
       -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
       -- "RRethy/nvim-treesitter-textsubjects",
+
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        lazy = true,
+        opts = {
+          enable = true,
+          enable_autocmd = false,
+        },
+        config = function(_, opts)
+          require("ts_context_commentstring").setup(opts)
+        end,
+      },
     },
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    keys = {
-      { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Schrink selection", mode = "x" },
-    },
     opts = {
+      ensure_installed = ensure_installed,
       highlight = {
         enable = true,
-        disable = function(_lang, buf)
-          local max_filesize = 100 * 1024 -- 100 KB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            return true
-          end
-        end,
         additional_vim_regex_highlighting = false,
       },
-      indent = { enable = true },
-      context_commentstring = { enable = true, enable_autocmd = false },
-      ensure_installed = ensure_installed,
-      -- incremental_selection = {
-      --   enable = true,
-      --   keymaps = {
-      --     init_selection = "gnn",
-      --     node_incremental = "grn",
-      --     scope_incremental = "grc",
-      --     node_decremental = "grm",
-      --   },
-      -- },
-      -- textobjects = {},
-      -- textsubjects = {},
+      indent = {
+        enable = true,
+      },
       refactor = {},
     },
     config = function(_, opts)
@@ -85,17 +78,43 @@ local M = {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "CursorHold", "WinScrolled" },
-    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = ts,
+    lazy = true,
     config = true,
   },
 
   {
-    enabled = false,
+    enabled = true,
+    "windwp/nvim-ts-autotag",
+    dependencies = ts,
+    event = "InsertEnter",
+    config = true,
+  },
+
+  {
+    enabled = true,
+    "windwp/nvim-autopairs",
+    dependencies = {
+      ts,
+      "hrsh7th/nvim-cmp",
+    },
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({})
+      local status, cmp = pcall(require, "cmp")
+      if not status then
+      else
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+      end
+    end,
+  },
+
+  {
+    enabled = true,
     "m-demare/hlargs.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = ts,
     event = { "BufReadPost", "BufNewFile" },
     config = function(_, opts)
       vim.api.nvim_create_augroup("LspAttach_hlargs", { clear = true })
@@ -114,13 +133,39 @@ local M = {
         end,
       })
 
-      require("hlargs.nvim").setup(opts)
+      require("hlargs").setup(opts)
+    end,
+  },
+  {
+    enabled = true,
+    "nvim-neotest/neotest",
+    dependencies = {
+      "rouge8/neotest-rust",
+    },
+    config = function()
+      require("keymap.neotest").setup()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-rust")({
+            args = { "--no-capture" },
+          }),
+        },
+      })
     end,
   },
 
   {
+    enabled = true,
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = ts,
+    event = { "CursorHold", "WinScrolled" },
+    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+    config = true,
+  },
+
+  {
+    enabled = true,
     "nvim-treesitter/playground",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "TSPlaygroundToggle",
   },
 }

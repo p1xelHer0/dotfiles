@@ -1,7 +1,6 @@
 local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-lua/plenary.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
@@ -28,6 +27,14 @@ local M = {
     { mode = "n", "<Leader>gs", "<Cmd>Telescope git_status<CR>", { silent = true } },
     { mode = "n", "<Leader>h", "<Cmd>Telescope harpoon marks<CR>", { silent = true } },
     { mode = "n", "<Leader>T", "<Cmd>Telescope<CR>", { silent = true, noremap = true } },
+    {
+      mode = "n",
+      "<Leader>r",
+      function()
+        require("telescope").extensions.refactoring.refactors()
+      end,
+      { silent = true, noremap = true },
+    },
   },
   opts = function()
     local theme = "dropdown"
@@ -75,6 +82,9 @@ local M = {
     vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { reverse = true })
     vim.api.nvim_set_hl(0, "TelescopePromptTitle", { reverse = true })
     vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { reverse = true })
+
+    require("telescope").load_extension("refactoring")
+    require("telescope").load_extension("harpoon")
 
     require("telescope").setup(opts)
   end,

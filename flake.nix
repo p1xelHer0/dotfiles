@@ -2,11 +2,8 @@
   description = "p1xelHer0's system";
 
   inputs = {
-    # Package sets
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-
-    # Environment/system management
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
@@ -18,7 +15,9 @@
       inherit (darwin.lib) darwinSystem;
 
       nixpkgsConfig = {
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
     in
     {
