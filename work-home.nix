@@ -478,7 +478,7 @@ in
         };
 
         font = {
-          size = 12;
+          size = 16;
 
           normal = {
             family = fontFamily;

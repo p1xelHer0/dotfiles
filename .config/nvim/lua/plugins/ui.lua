@@ -129,7 +129,15 @@ local M = {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     lazy = true,
-    config = true,
+    opts = {
+      options = {
+        section_separators = "",
+        component_separators = "",
+      },
+    },
+    config = function(_, opts)
+      require("lualine").setup(opts)
+    end,
   },
 
   {
