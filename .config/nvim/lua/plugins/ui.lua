@@ -126,7 +126,7 @@ local M = {
     lazy = true,
     opts = {
       options = {
-        icons = false,
+        icons_enabled = false,
         section_separators = "",
         component_separators = "",
       },
