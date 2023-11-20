@@ -7,7 +7,7 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Meslo" ]; })
 
     # Tools
     bat
@@ -439,9 +439,9 @@ in
 
   programs.alacritty =
     let
-      # fontFamily = "Iosevka Nerd Font Mono";
+      fontFamily = "Iosevka Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
-      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+      # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
     in
     {
       enable = true;

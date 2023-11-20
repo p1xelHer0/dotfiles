@@ -63,21 +63,13 @@ local M = {
     priority = 1000,
     dependencies = {
       {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-          vim.cmd([[colorscheme tokyonight]])
-        end,
-      },
-      {
         "projekt0n/github-nvim-theme",
         lazy = false,
         priority = 1000,
         config = function()
           require("github-theme").setup({})
 
-          vim.cmd([[colorscheme github_dark_tritanopia]])
+          vim.cmd([[colorscheme github_dark_colorblind]])
         end,
       },
     },
@@ -86,11 +78,11 @@ local M = {
       auto_dark_mode.setup({
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
-          vim.cmd([[colorscheme github_dark_tritanopia]])
+          vim.cmd([[colorscheme github_dark_colorblind]])
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
-          vim.cmd([[colorscheme github_light_tritanopia]])
+          vim.cmd([[colorscheme github_light_colorblind]])
         end,
       })
 
@@ -114,9 +106,9 @@ local M = {
         end,
       })
 
-      vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
-
       require("mini.indentscope").setup(opts)
+
+      vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
     end,
   },
 
