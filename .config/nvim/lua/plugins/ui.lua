@@ -67,7 +67,15 @@ local M = {
         lazy = false,
         priority = 1000,
         config = function()
-          require("github-theme").setup({})
+          require("github-theme").setup({
+            options = {},
+            groups = {
+              all = {
+                CursorLine = { link = "String" },
+              },
+            },
+            -- ...
+          })
 
           vim.cmd([[colorscheme github_dark_colorblind]])
         end,
@@ -113,16 +121,12 @@ local M = {
   },
 
   {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     lazy = true,
     opts = {
       options = {
+        icons = false,
         section_separators = "",
         component_separators = "",
       },
