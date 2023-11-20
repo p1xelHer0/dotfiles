@@ -207,7 +207,6 @@ local M = {
         "ocamllsp",
         "rnix",
         "taplo",
-        "typescript",
       }
 
       for _, server in ipairs(servers) do

@@ -84,10 +84,16 @@ local M = {
     "pwntester/octo.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",
-      "nvim-tree/nvim-web-devicons",
     },
-    cmd = { "Octo", "Octo " },
-    opts = {},
+    cmd = {
+      "Octo",
+      "Octo ",
+    },
+    opts = {
+      file_panel = {
+        use_icons = false,
+      },
+    },
     config = function(_, opts)
       require("octo").setup(opts)
     end,

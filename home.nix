@@ -492,9 +492,9 @@ in
 
   programs.alacritty =
     let
-      # fontFamily = "Iosevka Nerd Font Mono";
+      fontFamily = "Iosevka Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
-      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+      # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
     in
     {
       enable = true;
@@ -531,7 +531,7 @@ in
         };
 
         font = {
-          size = 12;
+          size = 22;
 
           normal = {
             family = fontFamily;
