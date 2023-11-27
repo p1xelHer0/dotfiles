@@ -71,7 +71,7 @@ local M = {
             options = {},
             groups = {
               all = {
-                CursorLine = { link = "String" },
+                -- CursorLine = { bg = "bg1" },
               },
             },
             -- ...

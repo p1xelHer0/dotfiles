@@ -6,6 +6,50 @@ local M = {
   { "tpope/vim-abolish", event = "VeryLazy" },
 
   {
+    "tpope/vim-projectionist",
+    event = "VeryLazy",
+    opts = {
+      ["*"] = {
+        -- Elm
+        ["app/elm/App/*Service.elm"] = {
+          alternate = "app/elm/App/{}.elm",
+        },
+        ["app/elm/App/Pages/*.elm"] = {
+          alternate = "app/elm/App/Pages/{}Service.elm",
+        },
+        ["app/elm/App/Fullscreens/*.elm"] = {
+          alternate = "app/elm/App/Fullscreens/{}Service.elm",
+        },
+        ["app/elm/App/Services/*.elm"] = {
+          alternate = "app/elm/App/Services/{}Service.elm",
+        },
+
+        -- .env
+        [".env*"] = {
+          alternate = ".env{}.local",
+        },
+        [".env*.local"] = {
+          alternate = ".env{}",
+        },
+      },
+      -- OCaml
+      ["dune*|*.opam|esy.json"] = {
+        ["**.ml"] = {
+          alternate = "{}.mli",
+        },
+        ["**.mli"] = {
+          alternate = "{}.ml",
+        },
+      },
+    },
+    config = function(_, opts)
+      vim.g.projectionist_heuristics = opts
+      require("keymap.projectionist").setup()
+    end,
+  },
+
+  {
+    enable = false,
     "kevinhwang91/nvim-hlslens",
     keys = {
       {
@@ -103,6 +147,7 @@ local M = {
       },
     },
   },
+
   {
     "folke/trouble.nvim",
     cmd = {
@@ -110,8 +155,9 @@ local M = {
       "Trouble",
     },
     opts = {
-      use_diagnostic_signs = true,
+      severity = vim.diagnostic.severity.ERROR,
       icons = false,
+      use_diagnostic_signs = true,
     },
     keys = {
       { "<leader>xx", "<Cmd>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },

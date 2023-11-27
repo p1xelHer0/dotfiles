@@ -7,7 +7,7 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Meslo" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "IosevkaTerm" ]; })
 
     # Tools
     bat
@@ -439,8 +439,7 @@ in
 
   programs.alacritty =
     let
-      fontFamily = "Iosevka Nerd Font Mono";
-      # fontFamily = "MesloLGL Nerd Font Mono";
+      fontFamily = "IosevkaTerm Nerd Font Mono";
       # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
     in
     {
@@ -478,30 +477,30 @@ in
         };
 
         font = {
-          size = 16;
+          size = 22;
 
           normal = {
             family = fontFamily;
-            style = "Regular";
-            # style = "SemiBold";
+            # style = "Regular";
+            style = "SemiBold";
           };
 
           bold = {
             family = fontFamily;
-            style = "Bold";
-            # style = "ExtraBold";
+            # style = "Bold";
+            style = "ExtraBold";
           };
 
           italic = {
             family = fontFamily;
-            style = "Italic";
-            # style = "SemiBold Italic";
+            # style = "Italic";
+            style = "SemiBold Italic";
           };
 
           bold_italic = {
             family = fontFamily;
-            style = "Bold Italic";
-            # style = "ExtraBold Italic";
+            # style = "Bold Italic";
+            style = "ExtraBold Italic";
           };
 
           offset = {
