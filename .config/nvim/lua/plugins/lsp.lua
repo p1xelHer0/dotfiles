@@ -54,24 +54,24 @@ local M = {
       },
     },
     config = function(_, opts)
-      for name, icon in pairs(require("core.config").get_icons().diagnostics) do
-        local hl = "DiagnosticSign" .. name
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
-
+      -- for name, icon in pairs(require("core.config").get_icons().diagnostics) do
+      --   local hl = "DiagnosticSign" .. name
+      --   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      -- end
+      --
       vim.diagnostic.config({
         underline = true,
         signs = true,
         virtual_text = {
           source = "if_many",
-          prefix = "",
-          format = function(diagnostic)
-            return string.format(
-              "%s %s ",
-              require("core.config").get_icons().severity[diagnostic.severity],
-              diagnostic.message
-            )
-          end,
+          -- prefix = "",
+          -- format = function(diagnostic)
+          --   return string.format(
+          --     "%s %s ",
+          --     require("core.config").get_icons().severity[diagnostic.severity],
+          --     diagnostic.message
+          --   )
+          -- end,
         },
         update_in_insert = false,
         severity_sort = true,

@@ -1,3 +1,4 @@
+local M = {}
 local api = vim.api
 local group = api.nvim_create_augroup("internal.autocmd", {})
 
@@ -69,3 +70,19 @@ if vim.env.TMUX then
     end,
   })
 end
+
+M.silicon_setup = function()
+  api.nvim_create_augroup("internal.autocmd.silicon_refresh", { clear = true })
+
+  api.nvim_create_autocmd({ "ColorScheme" }, {
+    group = "internal.autocmd.silicon_refresh",
+    callback = function()
+      local silicon_utils = require("silicon_utils")
+      silicon_utils.build_tmTheme()
+      silicon_utils.reload_silicon_cache({ async = true })
+    end,
+    desc = "Reload silicon themes cache on colorscheme switch",
+  })
+end
+
+return M

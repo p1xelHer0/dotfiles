@@ -7,7 +7,7 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "Meslo" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "IosevkaTerm" "IBMPlexMono" ]; })
 
     # Tools
     bat
@@ -31,6 +31,7 @@ in
     reattach-to-user-namespace
     ripgrep
     shellcheck
+    silicon
     simple-http-server
     slides
     tree
@@ -492,7 +493,8 @@ in
 
   programs.alacritty =
     let
-      fontFamily = "Iosevka Nerd Font Mono";
+      fontFamily = "IosevkaTerm Nerd Font Mono";
+      # fontFamily = "BlexMono Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
       # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
     in

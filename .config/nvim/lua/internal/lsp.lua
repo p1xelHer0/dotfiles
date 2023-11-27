@@ -6,6 +6,8 @@ function M.capabilities()
   return capabilities
 end
 
+---Returns the highest vim.diagnostic.severity
+---@return integer | nil
 function M.diagnostic_severity()
   local num_warnings = 0
 
