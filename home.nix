@@ -7,7 +7,14 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "IosevkaTerm" "IBMPlexMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "IBMPlexMono"
+        "IosevkaTerm"
+        "JetBrainsMono"
+        "Meslo"
+      ];
+    })
 
     # Tools
     bat
@@ -22,7 +29,6 @@ in
     gifsicle
     gnused # needed for nvim-spectre
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed") # https://github.com/nvim-pack/nvim-spectre/issues/101
-    (pkgs.writeShellScriptBin "reapamlol" "echo ${pkgs.pam-reattach}/lib/pam/pam_reattach.so")
     htop
     hyperfine
     imagemagick
@@ -34,6 +40,7 @@ in
     silicon
     simple-http-server
     slides
+    tmuxinator
     tree
     tree-sitter
     watchman
@@ -135,9 +142,10 @@ in
       EDITOR = "nvim";
       LC_ALL = "en_US.UTF-8";
 
+      DOTS = "$HOME/dotfiles";
+      DOTS_BIN = "$DOTS/bin";
+      DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
 
-      DOTS_BIN = "$HOME/dotfiles/bin";
-      DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
       GOPATH = "$HOME/go";
       GOPATH_BIN = "$GOPATH/bin";
       RESCRIPT_LSP =
@@ -165,6 +173,8 @@ in
       export PATH=$RESCRIPT_LSP:$PATH
 
       export PATH=$MACTEX_BIN:$PATH
+
+      export TMUXINATOR_CONFIG=$DOTS/.config/tmux/tmuxinator
 
       export RPROMPT=""
 
@@ -309,7 +319,7 @@ in
       };
     };
   };
-  # defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+
   xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/_darwin/hammerspoon/init.lua";
 
   xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
@@ -324,6 +334,7 @@ in
       tmuxPlugins.tmux-fzf
     ];
   };
+  xdg.configFile."tmuxinator/.tmuxinator.yml".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmuxinator.conf";
 
   programs.fzf = {
     enable = true;
@@ -533,30 +544,26 @@ in
         };
 
         font = {
-          size = 22;
+          size = 18;
 
           normal = {
             family = fontFamily;
-            style = "Regular";
-            # style = "SemiBold";
+            style = "SemiBold";
           };
 
           bold = {
             family = fontFamily;
-            style = "Bold";
-            # style = "ExtraBold";
+            style = "ExtraBold";
           };
 
           italic = {
             family = fontFamily;
-            style = "Italic";
-            # style = "SemiBold Italic";
+            style = "SemiBold Italic";
           };
 
           bold_italic = {
             family = fontFamily;
-            style = "Bold Italic";
-            # style = "ExtraBold Italic";
+            style = "ExtraBold Italic";
           };
 
           offset = {
@@ -582,4 +589,8 @@ in
         ];
       };
     };
+
+  # home.extraProfileCommands = ''
+  #   defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+  # '';
 }

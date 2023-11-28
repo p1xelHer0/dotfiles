@@ -1,0 +1,17 @@
+---
+name: savr
+root: ~/code/github/savrcom
+
+windows:
+  - frontier:
+      root: ~/code/github/savrcom/frontier
+      layout: even-horizontal
+      panes:
+        - nvim
+        - npm run docker
+
+  - api:
+      root: ~/code/github/savrcom/laravel-data-api
+      layout: even-horizontal
+      panes:
+        - ./savr up
