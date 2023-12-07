@@ -27,8 +27,8 @@ in
     fswatch
     gh
     gifsicle
-    gnused # needed for nvim-spectre
-    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed") # https://github.com/nvim-pack/nvim-spectre/issues/101
+    gnused
+    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
     imagemagick

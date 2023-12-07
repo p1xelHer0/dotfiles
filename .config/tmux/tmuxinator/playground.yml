@@ -1,6 +1,6 @@
 ---
-name: savr
-root: ~/code/github/savrcom/frontier
+name: playground
+root: ~/code/github/savrcom/frontier-playground
 
 windows:
   - frontier:

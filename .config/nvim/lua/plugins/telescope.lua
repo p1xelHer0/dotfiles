@@ -24,6 +24,7 @@ local M = {
     { mode = "n", "<Leader>b", "<Cmd>Telescope buffers<CR>", { silent = true, noremap = true } },
     { mode = "n", "<Leader>d", "<Cmd>Telescope diagnostics<CR>", { silent = true } },
     { mode = "n", "<Leader>f", "<Cmd>Telescope live_grep<CR>", { silent = true } },
+    { mode = "n", "<Leader>F", "<Cmd>Telescope grep_string<CR>", { silent = true } },
     { mode = "n", "<Leader>gs", "<Cmd>Telescope git_status<CR>", { silent = true } },
     { mode = "n", "<Leader>h", "<Cmd>Telescope harpoon marks<CR>", { silent = true } },
     { mode = "n", "<Leader>T", "<Cmd>Telescope<CR>", { silent = true, noremap = true } },
@@ -56,7 +57,7 @@ local M = {
       pickers = {
         find_files = {
           hidden = true,
-          no_ignore = true,
+          -- no_ignore = true,
         },
         live_grep = {
           additional_args = function()

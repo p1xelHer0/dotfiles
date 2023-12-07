@@ -1,6 +1,6 @@
 ---
-name: savr
-root: ~/code/github/savrcom/frontier
+name: PR
+root: ~/code/github/savrcom/frontier-pr
 
 windows:
   - frontier:

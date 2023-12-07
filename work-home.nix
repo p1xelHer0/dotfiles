@@ -25,8 +25,7 @@ in
     fd
     fswatch
     gh
-    gnused # needed for nvim-spectre
-    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed") # https://github.com/nvim-pack/nvim-spectre/issues/101
+    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
     jq

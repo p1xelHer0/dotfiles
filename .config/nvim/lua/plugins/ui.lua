@@ -278,11 +278,11 @@ local M = {
         tmux = true,
         alacritty = {
           enabled = true,
-          font = "20",
+          font = "24",
         },
       },
       on_open = function()
-        vim.opt.scrolloff = 999
+        vim.opt.scrolloff = 99999
       end,
       on_close = function()
         vim.opt.scrolloff = require("core.config").get_options().scrolloff
