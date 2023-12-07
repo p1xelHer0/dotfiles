@@ -127,6 +127,7 @@ in
 
     taps = [
       "DevCleaner/devcleaner"
+      "cyclone-scheme/cyclone"
       "fsouza/prettierd"
       "homebrew/bundle"
       "homebrew/cask"
@@ -140,13 +141,17 @@ in
     brews = [
       "mas"
       "fsouza/prettierd/prettierd"
-      "qmk/qmk/qmk"
 
-      # QMK dependencies
+      # QMK
+      "qmk/qmk/qmk"
       # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
       "avr-gcc@8"
       "arm-gcc-bin@8"
+
       "ncurses"
+
+      "roswell"
+      "cyclone-scheme/cyclone/cyclone-bootstrap"
     ];
 
     casks = [
@@ -166,6 +171,7 @@ in
       "mactex-no-gui"
       "obs"
       "obsidian"
+      "racket"
       "retroarch-metal"
       "runelite"
       "secretive"

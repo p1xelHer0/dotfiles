@@ -8,28 +8,28 @@ o.exrc            = false
 o.modelines       = 1
 o.errorbells      = false
 o.termguicolors   = true
-o.syntax          = 'off'
-o.background      = 'dark'
+o.syntax          = "off"
+o.background      = "dark"
 o.synmaxcol       = 1000
-o.shortmess       = 'aoIcF'
+o.shortmess       = "aoIcF"
 o.fillchars = {
-  stl             = ' ',
-  stlnc           = ' ',
-  wbr             = ' ',
-  horiz           = '─',
-  horizup         = '┴',
-  horizdown       = '┬',
-  vert            = '│',
-  vertleft        = '┤',
-  vertright       = '├',
-  verthoriz       = '┼',
-  fold            = '·',
-  foldopen        = '-',
-  foldclose       = '+',
-  foldsep         = '│',
-  diff            = '-',
-  msgsep          = ' ',
-  eob             = '~',
+  stl             = " ",
+  stlnc           = " ",
+  wbr             = " ",
+  horiz           = "─",
+  horizup         = "┴",
+  horizdown       = "┬",
+  vert            = "│",
+  vertleft        = "┤",
+  vertright       = "├",
+  verthoriz       = "┼",
+  fold            = "·",
+  foldopen        = "-",
+  foldclose       = "+",
+  foldsep         = "│",
+  diff            = "-",
+  msgsep          = " ",
+  eob             = "~",
 }
 o.ttimeoutlen     = 10
 o.ttimeout        = true
@@ -38,15 +38,15 @@ o.timeout         = true
 o.updatetime      = 250
 o.redrawtime      = 100
 
-o.fileformats     = 'unix'
-o.encoding        = 'utf-8'
-o.fileencoding    = 'utf-8'
+o.fileformats     = "unix"
+o.encoding        = "utf-8"
+o.fileencoding    = "utf-8"
 
 o.path            = [[.,,,$PWD/**]]
 o.grepprg         = 'rg --hidden --vimgrep --smart-case --glob "!{.git,node_modules,*~}/*" --'
 o.grepformat      = "%f:%l:%c:%m"
 
-o.clipboard       = 'unnamedplus'
+o.clipboard       = "unnamedplus"
 
 o.autochdir       = false
 o.hidden          = true
@@ -54,11 +54,11 @@ o.hidden          = true
 -- o.swapfile        = false
 -- o.backup          = true
 -- o.writebackup     = true
-o.backupskip      = '/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*'
-o.spellfile       = require("core.config").get_dotfiles_path() .. '/.config/nvim/spell/en.uft-8.add'
+o.backupskip      = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*"
+o.spellfile       = require("core.config").get_dotfiles_path() .. "/.config/nvim/spell/en.uft-8.add"
 -- o.history         = 4000
 -- o.shada           = [[!,'100,<0,s100,h]]
--- o.sessionoptions  = 'blank,buffers,curdir,folds,help,tabpages,winsize'
+-- o.sessionoptions  = "blank,buffers,curdir,folds,help,tabpages,winsize"
 
 o.magic           = true
 o.hlsearch        = true
@@ -66,7 +66,7 @@ o.incsearch       = true
 o.ignorecase      = true
 o.smartcase       = true
 o.showmatch       = false
-o.inccommand      = 'nosplit'
+o.inccommand      = "nosplit"
 o.wrapscan        = true
 
 o.tabstop         = 2
@@ -76,8 +76,8 @@ o.shiftround      = true
 o.expandtab       = true
 o.smarttab        = true
 
-o.diffopt         = 'filler,internal,algorithm:patience'
-o.jumpoptions     = 'stack'
+o.diffopt         = "filler,internal,algorithm:patience"
+o.jumpoptions     = "stack"
 
 o.formatoptions   = o.formatoptions
   - "a" -- Auto formatting is BAD.
@@ -90,14 +90,14 @@ o.formatoptions   = o.formatoptions
   + "j" -- Auto-remove comments if possible.
   - "2" -- I'm not in gradeschool anymore
 
-o.completeopt     = 'menu,menuone,noselect'
+o.completeopt     = "menu,menuone,noselect"
 o.infercase       = true
 o.wildmenu        = true
-o.wildoptions     = 'pum'
+o.wildoptions     = "pum"
 o.pumheight       = 15
 o.pumblend        = blend
 o.wildignorecase  = true
-o.wildignore      = '.git/**,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**'
+o.wildignore      = ".git/**,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**"
 
 o.autoindent      = true
 o.smartindent     = true
@@ -112,26 +112,26 @@ o.textwidth       = 80
 o.wrap            = true
 o.whichwrap:append "<>[]hl"
 o.linebreak       = true
-o.breakindentopt  = 'shift:2,min:20'
+o.breakindentopt  = "shift:2,min:20"
 o.ruler           = true
-o.number          = true
-o.relativenumber  = true
-o.signcolumn      = 'yes'
+o.number          = false
+o.relativenumber  = false
+o.signcolumn      = "no"
 o.list            = true
 o.listchars = {
   eol             = " " ,
-  tab             = '» ',
-  trail           = '·' ,
-  extends         = '→' ,
-  precedes        = '←' ,
-  nbsp            = '␣' ,
+  tab             = "» ",
+  trail           = "·" ,
+  extends         = "→" ,
+  precedes        = "←" ,
+  nbsp            = "␣" ,
 }
-o.showbreak       = '↪ '
+o.showbreak       = "↪ "
 
 o.foldenable      = true
 o.foldlevel       = 99
 o.foldlevelstart  = 99
-o.foldmethod      = 'indent'
+o.foldmethod      = "indent"
 
 
 o.winwidth        = 30

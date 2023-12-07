@@ -106,4 +106,15 @@ function M.get_options()
   }
 end
 
+function M.get_lisp_ft()
+  return {
+    "clojure",
+    "fennel",
+    "janet",
+    "lisp",
+    "racket",
+    "scheme",
+  }
+end
+
 return M

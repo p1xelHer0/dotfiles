@@ -34,6 +34,7 @@ in
     imagemagick
     jq
     p7zip
+    readline
     reattach-to-user-namespace
     ripgrep
     shellcheck
@@ -114,11 +115,36 @@ in
     # go install github.com/segmentio/golines@latest
     # go install github.com/client9/misspell/cmd/misspell@latest
 
-    # Lisp
-    # chicken
-    # guile
-    # chez-racket
-    # sbcl
+    ## Lisps
+    # roswell # brew
+
+    # Common Lisp
+    # sbcl # installed with ros
+    # lispPackages.quicklisp # handled with ros install qlot
+
+    # Scheme
+    # gerbil
+    gerbil-unstable
+    # cyclone-scheme
+
+    # Clojure
+    # clojure
+    # leiningen
+    # clojure-lsp
+    # cljfmt
+
+    # Racket
+    # racket # broken on macOS - using brew
+    # racket-minimal # broken on macOS - using brew
+    # raco pkg install racket-langserver
+
+    # Fennel
+    luaPackages.fennel
+    # cargo install --git https://github.com/rydesun/fennel-language-server
+
+    # Janet
+    janet
+    jpm
 
     # Erlang/Elixir
     # elixir
@@ -151,6 +177,11 @@ in
       RESCRIPT_LSP =
         "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
       MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
+      ROSWELL_BIN = "$HOME/.roswell/bin";
+
+      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
+
+      RPROMPT = "";
     };
 
     envExtra = ''
@@ -174,9 +205,7 @@ in
 
       export PATH=$MACTEX_BIN:$PATH
 
-      export TMUXINATOR_CONFIG=$DOTS/.config/tmux/tmuxinator
-
-      export RPROMPT=""
+      export PATH=$ROSWELL_BIN:$PATH
 
       # use the maximum amount of file descriptors
       ulimit -n 24576
@@ -334,7 +363,6 @@ in
       tmuxPlugins.tmux-fzf
     ];
   };
-  xdg.configFile."tmuxinator/.tmuxinator.yml".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmuxinator.conf";
 
   programs.fzf = {
     enable = true;
@@ -567,12 +595,12 @@ in
           };
 
           offset = {
-            x = 1;
+            x = 0;
             y = 4;
           };
 
           glyph_offset = {
-            x = 0;
+            x = 1;
             y = 2;
           };
         };
@@ -590,7 +618,7 @@ in
       };
     };
 
-  # home.extraProfileCommands = ''
-  #   defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
-  # '';
+  programs.kitty = {
+    enable = true;
+  };
 }

@@ -6,6 +6,12 @@ local M = {
   { "tpope/vim-abolish", event = "VeryLazy" },
 
   {
+    "eraserhd/parinfer-rust",
+    build = "cargo build --release",
+    ft = require("core.config").get_lisp_ft(),
+  },
+
+  {
     "tpope/vim-projectionist",
     event = "VeryLazy",
     opts = {

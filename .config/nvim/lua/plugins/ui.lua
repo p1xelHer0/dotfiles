@@ -66,33 +66,34 @@ local M = {
         "projekt0n/github-nvim-theme",
         lazy = false,
         priority = 1000,
-        config = function()
-          require("github-theme").setup({
-            options = {},
-            groups = {
-              all = {
-                -- CursorLine = { bg = "bg1" },
-              },
+        opts = {
+          options = {},
+          groups = {
+            all = {
+              -- CursorLine = { bg = "bg1" },
             },
-            -- ...
-          })
+          },
+        },
+        config = function(_, opts)
+          require("github-theme").setup(opts)
 
           vim.cmd([[colorscheme github_dark_colorblind]])
         end,
       },
     },
-    config = function()
+    opts = {
+      set_dark_mode = function()
+        vim.api.nvim_set_option("background", "dark")
+        vim.cmd([[colorscheme github_dark_colorblind]])
+      end,
+      set_light_mode = function()
+        vim.api.nvim_set_option("background", "light")
+        vim.cmd([[colorscheme github_light_colorblind]])
+      end,
+    },
+    config = function(_, opts)
       local auto_dark_mode = require("auto-dark-mode")
-      auto_dark_mode.setup({
-        set_dark_mode = function()
-          vim.api.nvim_set_option("background", "dark")
-          vim.cmd([[colorscheme github_dark_colorblind]])
-        end,
-        set_light_mode = function()
-          vim.api.nvim_set_option("background", "light")
-          vim.cmd([[colorscheme github_light_colorblind]])
-        end,
-      })
+      auto_dark_mode.setup(opts)
 
       auto_dark_mode.init()
     end,
@@ -288,7 +289,9 @@ local M = {
         vim.opt.scrolloff = require("core.config").get_options().scrolloff
       end,
     },
-    keys = { { "<Leader>z", "<Cmd>ZenMode<CR>", desc = "Zen Mode" } },
+    keys = {
+      { "<Leader>z", "<Cmd>ZenMode<CR>", desc = "Zen Mode" },
+    },
   },
 
   {

@@ -1,15 +1,18 @@
 local ensure_installed = {
   "bash",
   "c",
+  "clojure",
+  "commonlisp",
   "cpp",
   "css",
   "elixir",
   "elm",
   "erlang",
-  "graphql",
+  "fennel",
   "haskell",
   "html",
   "http",
+  "janet_simple",
   "javascript",
   "jsdoc",
   "json",
@@ -27,8 +30,10 @@ local ensure_installed = {
   "ocamllex",
   "python",
   "query",
+  "racket",
   "regex",
   "rust",
+  "scheme",
   "scss",
   "toml",
   "tsx",
@@ -161,6 +166,15 @@ local M = {
     event = { "CursorHold", "WinScrolled" },
     cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
     config = true,
+  },
+
+  {
+    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    dependencies = ts,
+    opts = {},
+    config = function(_, opts)
+      require("rainbow-delimiters.setup").setup(opts)
+    end,
   },
 
   {

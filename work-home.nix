@@ -278,7 +278,6 @@ in
       tmuxPlugins.tmux-fzf
     ];
   };
-  xdg.configFile."tmuxinator/.tmuxinator.yml".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/tmux/tmuxinator.conf";
 
   programs.fzf = {
     enable = true;
