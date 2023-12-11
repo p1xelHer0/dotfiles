@@ -21,6 +21,7 @@ in
     bitwarden-cli
     curl
     delta
+    entr
     eza
     fd
     fswatch
@@ -533,8 +534,8 @@ in
         ];
       };
     };
-
-  # home.extraProfileCommands = ''
-  #   defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
-  # '';
+  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
+  programs.kitty = {
+    enable = true;
+  };
 }

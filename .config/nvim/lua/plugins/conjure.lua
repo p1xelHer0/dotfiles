@@ -25,5 +25,9 @@ return {
   end,
   init = function()
     vim.g["conjure#debug"] = true
+
+    vim.g["conjure#client#scheme#stdio#command"] = "gxi"
+    vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "> "
+    vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
   end,
 }

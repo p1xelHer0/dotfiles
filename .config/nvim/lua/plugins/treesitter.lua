@@ -42,40 +42,44 @@ local ensure_installed = {
   "yaml",
 }
 
-local ts = "nvim-treesitter/nvim-treesitter"
-
 local M = {
   {
-    ts,
+    "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      -- "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
-      -- "RRethy/nvim-treesitter-textsubjects",
-
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        lazy = true,
-        opts = {
-          enable = true,
-          enable_autocmd = false,
-        },
-        config = function(_, opts)
-          require("ts_context_commentstring").setup(opts)
-        end,
-      },
     },
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = function()
+      return require("internal.events").lazyFile
+    end,
+
     opts = {
       ensure_installed = ensure_installed,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = true,
       },
       indent = {
         enable = true,
       },
-      refactor = {},
+      refactor = {
+        navigation = {
+          enable = true,
+          keymaps = {
+            goto_definition = "gnd",
+            list_definitions = "gnD",
+            list_definitions_toc = "gO",
+            goto_next_usage = "<a-*>",
+            goto_previous_usage = "<a-#>",
+          },
+        },
+        smart_rename = {
+          enable = true,
+          keymaps = {
+            smart_rename = "grr",
+          },
+        },
+      },
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -83,44 +87,30 @@ local M = {
   },
 
   {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = ts,
-    lazy = true,
-    config = true,
-  },
-
-  {
-    enabled = true,
-    "windwp/nvim-ts-autotag",
-    dependencies = ts,
-    event = "InsertEnter",
-    config = true,
-  },
-
-  {
-    enabled = true,
-    "windwp/nvim-autopairs",
-    dependencies = {
-      ts,
-      "hrsh7th/nvim-cmp",
-    },
-    event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup({})
-      local status, cmp = pcall(require, "cmp")
-      if not status then
-      else
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-      end
+    "andymass/vim-matchup",
+    event = function()
+      return require("internal.events").lazyFile
+    end,
+    opts = {},
+    init = function()
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
 
   {
-    enabled = true,
+    "windwp/nvim-ts-autotag",
+    event = function()
+      return require("internal.events").lazyFile
+    end,
+    opts = {},
+  },
+
+  {
     "m-demare/hlargs.nvim",
-    dependencies = ts,
-    event = { "BufReadPost", "BufNewFile" },
+    event = function()
+      return require("internal.events").lazyFile
+    end,
     config = function(_, opts)
       vim.api.nvim_create_augroup("LspAttach_hlargs", { clear = true })
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -141,8 +131,9 @@ local M = {
       require("hlargs").setup(opts)
     end,
   },
+
   {
-    enabled = true,
+    enabled = false,
     "nvim-neotest/neotest",
     dependencies = {
       "rouge8/neotest-rust",
@@ -160,25 +151,34 @@ local M = {
   },
 
   {
-    enabled = true,
     "nvim-treesitter/nvim-treesitter-context",
-    dependencies = ts,
-    event = { "CursorHold", "WinScrolled" },
-    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+    event = function()
+      return require("internal.events").lazyFile
+    end,
     config = true,
   },
 
   {
-    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    dependencies = ts,
-    opts = {},
+    "hiphish/rainbow-delimiters.nvim",
+    event = function()
+      return require("internal.events").lazyFile
+    end,
+    opts = {
+      highlight = {
+        "Normal",
+        "DiagnosticWarn",
+        "DiagnosticHint",
+        "DiagnosticError",
+        "DiagnosticOk",
+        "DiagnosticInfo",
+      },
+    },
     config = function(_, opts)
       require("rainbow-delimiters.setup").setup(opts)
     end,
   },
 
   {
-    enabled = true,
     "nvim-treesitter/playground",
     cmd = "TSPlaygroundToggle",
   },

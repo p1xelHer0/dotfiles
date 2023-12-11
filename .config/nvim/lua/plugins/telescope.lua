@@ -20,7 +20,8 @@ local M = {
   },
   cmd = { "Telescope" },
   keys = {
-    { mode = "n", "<C-p>", "<Cmd>Telescope find_files<CR>", { noremap = true, silent = true } },
+    { mode = "n", "<C-p>", "<Cmd>Telescope git_files<CR>", { noremap = true, silent = true } },
+    { mode = "n", "<Leader>P", "<Cmd>Telescope find_files<CR>", { noremap = true, silent = true } },
     { mode = "n", "<Leader>b", "<Cmd>Telescope buffers<CR>", { silent = true, noremap = true } },
     { mode = "n", "<Leader>d", "<Cmd>Telescope diagnostics<CR>", { silent = true } },
     { mode = "n", "<Leader>f", "<Cmd>Telescope live_grep<CR>", { silent = true } },
@@ -40,9 +41,6 @@ local M = {
   opts = function()
     local theme = "dropdown"
     local borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
-    -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-    -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-    -- preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 
     return {
       defaults = {
@@ -84,7 +82,6 @@ local M = {
     vim.api.nvim_set_hl(0, "TelescopePromptTitle", { reverse = true })
     vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { reverse = true })
 
-    require("telescope").load_extension("refactoring")
     require("telescope").load_extension("harpoon")
 
     require("telescope").setup(opts)

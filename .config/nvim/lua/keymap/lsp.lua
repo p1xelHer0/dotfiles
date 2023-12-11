@@ -16,6 +16,7 @@ M.setup = function(client, bufnr)
       severity = require("internal.lsp").diagnostic_severity(),
     })
   end, opts)
+  -- @TODO - only add these capable
   k("n", "K", vim.lsp.buf.hover, opts)
   k("n", "ga", vim.lsp.buf.code_action, opts)
   k("n", "gd", vim.lsp.buf.definition, opts)

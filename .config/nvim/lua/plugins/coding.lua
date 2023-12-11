@@ -157,6 +157,14 @@ local M = {
   },
 
   {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    opts = {
+      enable_autocmd = false,
+    },
+  },
+
+  {
     "echasnovski/mini.comment",
     event = "VeryLazy",
     opts = {

@@ -163,7 +163,7 @@ local M = {
       -- cargo install --git https://github.com/rydesun/fennel-language-server
       require("lspconfig.configs").fennel_language_server = {
         default_config = {
-          cmd = { "$HOME/.cargo/bin/fennel_language_server" },
+          cmd = { "/Users/p1xelher0/.cargo/bin/fennel-language-server" },
           filetypes = { "fennel" },
           single_file_support = true,
           root_dir = nvim_lspconfig.util.root_pattern("fnl"),
@@ -229,7 +229,7 @@ local M = {
         "elmls",
         "fennel_language_server",
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
-        "racket_langserver", -- raco pkg install racket-langserver
+        -- "racket_langserver", -- raco pkg install racket-langserver
         "rnix",
         "taplo",
       }

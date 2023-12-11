@@ -122,7 +122,7 @@ in
 
     onActivation = {
       upgrade = false;
-      cleanup = "zap";
+      # cleanup = "zap";
     };
 
     taps = [
@@ -171,6 +171,7 @@ in
       "mactex-no-gui"
       "obs"
       "obsidian"
+      "orbstack"
       "racket"
       "retroarch-metal"
       "runelite"

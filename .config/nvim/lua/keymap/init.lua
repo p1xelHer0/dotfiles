@@ -3,12 +3,12 @@ local opts = { noremap = true, silent = true }
 
 -- Leader
 k("n", " ", "", { noremap = true })
-k("n", "\\", "", { noremap = true })
+k("n", ",", "", { noremap = true })
 k("x", " ", "", { noremap = true })
-k("x", "\\", "", { noremap = true })
+k("x", ",", "", { noremap = true })
 
 vim.g.mapleader = " "
-vim.g.localleader = "\\"
+vim.g.maplocalleader = ","
 
 -- Normal mode
 k("n", "<Leader>w", ":w<CR>", opts)

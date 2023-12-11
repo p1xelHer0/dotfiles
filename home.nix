@@ -20,6 +20,7 @@ in
     bat
     curl
     delta
+    entr
     eza
     fd
     ffmpeg
@@ -123,9 +124,9 @@ in
     # lispPackages.quicklisp # handled with ros install qlot
 
     # Scheme
-    # gerbil
-    gerbil-unstable
-    # cyclone-scheme
+    # gerbil # brew
+    # gerbil-unstable # brew
+    # cyclone-scheme # brew
 
     # Clojure
     # clojure
@@ -618,6 +619,7 @@ in
       };
     };
 
+  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
   programs.kitty = {
     enable = true;
   };

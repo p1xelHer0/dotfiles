@@ -1,14 +1,66 @@
 local M = {
-  { "editorconfig/editorconfig-vim", event = "VeryLazy" },
+  {
+    "tpope/vim-repeat",
+    event = "VeryLazy",
+  },
 
-  { "tpope/vim-repeat", event = "VeryLazy" },
-
-  { "tpope/vim-abolish", event = "VeryLazy" },
+  {
+    "tpope/vim-abolish",
+    event = "VeryLazy",
+  },
 
   {
     "eraserhd/parinfer-rust",
     build = "cargo build --release",
     ft = require("core.config").get_lisp_ft(),
+  },
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<C-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
   },
 
   {
@@ -55,33 +107,6 @@ local M = {
   },
 
   {
-    enable = false,
-    "kevinhwang91/nvim-hlslens",
-    keys = {
-      {
-        "n",
-        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-        silent = true,
-        noremap = true,
-      },
-      {
-        "N",
-        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-        silent = true,
-        noremap = true,
-      },
-      { "*", [[*<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
-      { "#", [[#<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
-      { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
-      { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], silent = true, noremap = true },
-    },
-    opts = {},
-    config = function(_, opts)
-      require("hlslens").setup(opts)
-    end,
-  },
-
-  {
     "jiaoshijie/undotree",
     keys = {
       {
@@ -91,14 +116,15 @@ local M = {
         end,
       },
     },
-    config = true,
+    opts = {},
   },
 
   {
     "stevearc/conform.nvim",
-    lazy = true,
     cmd = "ConformInfo",
-    event = "VeryLazy",
+    event = function()
+      return require("internal.events").lazyFile
+    end,
     keys = {
       {
         "<Leader><Leader>f",
@@ -108,11 +134,11 @@ local M = {
       },
     },
     opts = {
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-        quiet = true,
-      },
+      -- format_on_save = {
+      --   timeout_ms = 500,
+      --   lsp_fallback = true,
+      --   quiet = true,
+      -- },
       formatters_by_ft = {
         javascript = { "prettierd" },
         css = { "prettierd" },
@@ -121,7 +147,7 @@ local M = {
         sh = { "shfmt" },
         elm = { "elm-format" },
         lua = { "stylua" },
-        markdown = { "mdformat" },
+        -- markdown = { "mdformat" },
         nix = { "nixformat" },
         ocaml = { "ocamlformat" },
         rust = { "rustfmt" },
@@ -199,16 +225,6 @@ local M = {
         desc = "Next trouble/quickfix item",
       },
     },
-  },
-
-  {
-    "andymass/vim-matchup",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = { "CursorHold", "CursorHoldI" },
-    config = function()
-      vim.g.matchup_matchparen_deferred = 1
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
   },
 
   {
