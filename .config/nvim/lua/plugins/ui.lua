@@ -100,6 +100,21 @@ local M = {
   },
 
   {
+    "rebelot/kanagawa.nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "catppuccin/nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "savq/melange-nvim",
+    event = "VeryLazy",
+  },
+
+  {
     "echasnovski/mini.indentscope",
     version = false,
     event = "VeryLazy",
