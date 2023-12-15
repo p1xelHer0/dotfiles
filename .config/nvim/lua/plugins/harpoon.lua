@@ -1,19 +1,25 @@
 local M = {
   "ThePrimeagen/harpoon",
+  branch = "harpoon2",
   event = "VeryLazy",
   config = function(_, opts)
-    require("harpoon").setup(opts)
-
     local k = vim.keymap.set
     local k_opts = { noremap = true }
+    local harpoon = require("harpoon")
 
-    k("n", "<Leader>a", require("harpoon.mark").add_file, k_opts)
+    harpoon.setup(opts)
 
-    k("n", "<C-e>", require("harpoon.ui").toggle_quick_menu, k_opts)
+    k("n", "<Leader>a", function()
+      harpoon:list():append()
+    end, k_opts)
+
+    k("n", "<C-e>", function()
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end)
 
     for i = 1, 9 do
       k("n", "<Leader>" .. i, function()
-        require("harpoon.ui").nav_file(i)
+        harpoon:list():select(i)
       end, k_opts)
     end
   end,

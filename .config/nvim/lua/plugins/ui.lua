@@ -296,6 +296,12 @@ local M = {
   },
 
   {
+    "folke/todo-comments.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+
+  {
     enabled = false,
     "folke/noice.nvim",
     event = "VeryLazy",

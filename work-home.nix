@@ -163,6 +163,8 @@ in
       ev = "npx esy nvim";
       evf = "npx esy nvim $(fzf)";
 
+      envd = "nvim -d .env .env.example";
+
       dots = "cd $HOME/dotfiles && nvim";
       nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
       nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";

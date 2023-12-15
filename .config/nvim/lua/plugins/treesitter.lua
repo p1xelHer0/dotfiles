@@ -163,16 +163,6 @@ local M = {
     event = function()
       return require("internal.events").lazyFile
     end,
-    opts = {
-      highlight = {
-        "Normal",
-        "DiagnosticWarn",
-        "DiagnosticHint",
-        "DiagnosticError",
-        "DiagnosticOk",
-        "DiagnosticInfo",
-      },
-    },
     config = function(_, opts)
       require("rainbow-delimiters.setup").setup(opts)
     end,

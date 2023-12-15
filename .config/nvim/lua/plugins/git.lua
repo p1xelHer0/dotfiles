@@ -4,7 +4,9 @@ local M = {
     dependencies = {
       {
         "sindrets/diffview.nvim",
-        opts = { icons = false },
+        opts = {
+          use_icons = false,
+        },
       },
     },
     cmd = { "Neogit" },
@@ -19,6 +21,7 @@ local M = {
     opts = {
       integrations = {
         diffview = true,
+        telescope = true,
       },
     },
   },
@@ -97,25 +100,6 @@ local M = {
     config = function(_, opts)
       require("octo").setup(opts)
     end,
-  },
-
-  {
-    "rbong/vim-flog",
-    dependencies = { "tpope/vim-fugitive" },
-    cmd = { "Flog", "Flogsplit" },
-  },
-
-  {
-    "tpope/vim-fugitive",
-    cmd = {
-      "G",
-      "Gdiffsplit",
-      "Gedit",
-      "Git",
-      "Gstatus",
-      "Gvdiffsplit",
-      "Gvsplit",
-    },
   },
 }
 
