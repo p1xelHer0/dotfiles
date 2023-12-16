@@ -10,6 +10,7 @@ local M = {
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
       "f3fora/cmp-spell",
+      "ray-x/cmp-treesitter",
       "roobert/tailwindcss-colorizer-cmp.nvim",
     },
     event = "InsertEnter",
@@ -18,6 +19,7 @@ local M = {
 
       local sources = {
         { name = "nvim_lsp", group_index = 2 },
+        { name = "treesitter", group_index = 2 },
         { name = "buffer", keyword_length = 5, group_index = 2 },
         { name = "luasnip", group_index = 2 },
         { name = "path", keyword_length = 5, group_index = 2 },

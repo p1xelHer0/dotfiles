@@ -9,8 +9,6 @@ local M = {
         dashboard.button("e", "New file", ":ene <BAR> startinsert<CR>"),
         dashboard.button("p", "Find file", ":Telescope git_files<CR>"),
         dashboard.button("f", "Find text", ":Telescope live_grep<CR>"),
-        dashboard.button("r", "Recent files", ":Telescope oldfiles<CR>"),
-        dashboard.button("n", "Tree view", ":NvimTree<CR>"),
         dashboard.button("g", "Neogit", ":Neogit<CR>"),
         dashboard.button("l", "Lazy", ":Lazy<CR>"),
         dashboard.button("q", "Quit", ":qa<CR>"),
@@ -31,7 +29,6 @@ local M = {
       return dashboard
     end,
     config = function(_, dashboard)
-      -- close Lazy and re-open when the dashboard is ready
       if vim.o.filetype == "lazy" then
         vim.cmd.close()
         vim.api.nvim_create_autocmd("User", {
@@ -133,22 +130,6 @@ local M = {
       require("mini.indentscope").setup(opts)
 
       vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
-    end,
-  },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    lazy = true,
-    opts = {
-      options = {
-        icons_enabled = false,
-        section_separators = "",
-        component_separators = "",
-      },
-    },
-    config = function(_, opts)
-      require("lualine").setup(opts)
     end,
   },
 

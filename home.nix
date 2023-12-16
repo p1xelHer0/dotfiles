@@ -117,11 +117,12 @@ in
     # go install github.com/client9/misspell/cmd/misspell@latest
 
     ## Lisps
-    # roswell # brew
 
     # Common Lisp
-    # sbcl # installed with ros
+    # sbcl # installed with roswell
+    # roswell # brew
     # lispPackages.quicklisp # handled with ros install qlot
+    # sbclPackages.qlot # see https://github.com/fukamachi/qlot#installation
 
     # Scheme
     # gerbil # brew
@@ -175,18 +176,24 @@ in
 
       GOPATH = "$HOME/go";
       GOPATH_BIN = "$GOPATH/bin";
+
       RESCRIPT_LSP =
         "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
+
       MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
+
       ROSWELL_BIN = "$HOME/.roswell/bin";
+      QLOT_BIN = "$HOME/.qlot/bin";
 
       TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
 
-      RPROMPT = "";
+      RPROMPT = " ";
     };
 
     envExtra = ''
-      bindkey -s ^f "tmux-sessionizer\n"
+        bindkey -s ^f "
+      tmux-sessionizer\
+      n "
     '';
 
     initExtra = ''
@@ -194,7 +201,7 @@ in
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+      export PKG_CONFIG_PATH=" /opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
       export PATH=/opt/homebrew/bin:$PATH
       export PATH=$GOPATH:$PATH
@@ -207,6 +214,7 @@ in
       export PATH=$MACTEX_BIN:$PATH
 
       export PATH=$ROSWELL_BIN:$PATH
+      export PATH=$QLOT_BIN:$PATH
 
       # use the maximum amount of file descriptors
       ulimit -n 24576
@@ -231,7 +239,8 @@ in
 
       ip = "dig +short myip.opendns.com @resolver1.opendns.com";
 
-      perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
+      perf = "for i in $(seq 1 10);
+      do /usr/bin/time $SHELL -i -c exit; done";
 
       dre = "darwin-rebuild edit";
       drb = "nix build $HOME/dotfiles#darwinConfigurations.p1xelBook.system";
@@ -396,6 +405,8 @@ in
   xdg.configFile."theme".text = "dark";
 
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/lua";
+  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/after";
+  xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim-nightly;
@@ -620,6 +631,7 @@ in
     };
 
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
+  xdg.configFile."kitty/color.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/color.conf";
   programs.kitty = {
     enable = true;
   };

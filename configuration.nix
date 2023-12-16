@@ -159,6 +159,7 @@ in
       "appcleaner"
       "devcleaner"
       "discord"
+      "element"
       "firefox"
       "firefox-developer-edition"
       "google-chrome"
@@ -179,6 +180,7 @@ in
       "spotify"
       "visual-studio-code"
       "vlc"
+      "zulip"
     ];
 
     masApps = {

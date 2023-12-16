@@ -180,7 +180,19 @@ local M = {
         },
       }
 
-      nvim_lspconfig.fennel_language_server.setup({})
+      -- install roswell: https://github.com/roswell/roswell/wiki/Installation
+      -- add ~/.roswell/bin to your $PATH
+      -- install qlot, manually, not with roswell: https://github.com/fukamachi/qlot#installation
+      -- ros install lem-project/lem-mailbox lem-project/micros lem-project/lem cxxxr/cl-lsp
+      -- this will build all dependencies needed for cl-lsp
+      -- and install it using roswell + qlot
+      require("lspconfig.configs").cl_lsp = {
+        default_config = {
+          cmd = { "cl-lsp", "--stdio" },
+          filetypes = { "lisp" },
+          root_dir = nvim_lspconfig.util.root_pattern("package.lisp", "qlfile", "qlfile.lock", ".git"),
+        },
+      }
 
       nvim_lspconfig.tailwindcss.setup({
         filetypes = { "html", "elm" },
@@ -228,6 +240,7 @@ local M = {
         "elixirls",
         "elmls",
         "fennel_language_server",
+        "cl_lsp",
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
         -- "racket_langserver", -- raco pkg install racket-langserver
         "rnix",

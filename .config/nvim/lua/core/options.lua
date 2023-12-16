@@ -127,6 +127,7 @@ o.listchars = {
   nbsp            = "␣" ,
 }
 o.showbreak       = "↪ "
+o.conceallevel    = 2
 
 o.foldenable      = true
 o.foldlevel       = 99
