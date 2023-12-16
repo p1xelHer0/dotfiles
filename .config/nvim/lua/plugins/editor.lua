@@ -125,6 +125,7 @@ local M = {
     event = function()
       return require("internal.events").lazyFile
     end,
+
     keys = {
       {
         "<Leader><Leader>f",
@@ -134,11 +135,11 @@ local M = {
       },
     },
     opts = {
-      -- format_on_save = {
-      --   timeout_ms = 500,
-      --   lsp_fallback = true,
-      --   quiet = true,
-      -- },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+        quiet = true,
+      },
       formatters_by_ft = {
         javascript = { "prettierd" },
         css = { "prettierd" },
