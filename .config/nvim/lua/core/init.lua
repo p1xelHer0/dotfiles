@@ -35,12 +35,25 @@ if not vim.loop.fs_stat(lazy_path) then
     "git",
     "clone",
     "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
     "--branch=stable",
+    "https://github.com/folke/lazy.nvim.git",
     lazy_path,
   })
 end
-vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
+
+local hotpot_path = require("core.config").get_hotpot_path()
+-- if not vim.loop.fs_stat(hotpot_path) then
+--   vim.fn.system({
+--     "git",
+--     "clone",
+--     "--filter=blob:none",
+--     "--single-branch",
+--     "--branch=v0.9.7",
+--     "https://github.com/rktjmp/hotpot.nvim.git",
+--     hotpot_path,
+--   })
+-- end
+
+vim.opt.rtp:prepend({ hotpot_path, lazy_path })
 
 require("core.lazy")
--- require("core.theme")

@@ -1,5 +1,5 @@
 #!/bin/zsh
 #
-# -- kb - get current keyboard layout between Swedish Pro and Unicode Hex Input
+# -- kb - print SE with color1 background for tmux is Swedish keyboard layout is enabled
 
-defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | command rg -e '"KeyboardLayout Name" = "([^"]*)"' --replace '$1' --only-matching --color never | sed 's/U.S./US/;s/Swedish\ -\ Pro/SE/'
+defaults read ~/Library/Preferences/com.apple.HIToolbox.plist AppleSelectedInputSources | command rg -e '"KeyboardLayout Name" = "([^"]*)"' --replace '$1' --only-matching --color never | sed 's/U.S.//;s/Swedish\ -\ Pro/#[fg=color0,bg=color1] SE /'

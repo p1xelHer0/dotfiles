@@ -6,7 +6,12 @@ local hsl = lush.hsl
 -- stylua: ignore start
 local bg    = hsl("#0d1117")
 local fg    = hsl("#b5a488")
-local c = {
+local bg_d1 = bg.da(10)
+local bg_d2 = bg.da(30)
+local bg_l1 = bg.li(5)
+local bg_l2 = bg.li(10)
+
+local C = {
   normal = {
     red     = hsl("#c37878"),
     green   = hsl("#7f9375"),
@@ -36,78 +41,79 @@ local c = {
 }
 -- stylua: ignore end
 
----@diagnostic disable: undefined-global
+--- @diagnostic disable: undefined-global
+--  selene: allow(undefined_variable)
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {
     -- stylua: ignore start
     Normal       { fg = fg, bg = bg }, -- Normal text
-    CursorLine   { bg = c.index.i16 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorLineNr { fg = c.bright.black, bg = c.index.i16 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    CursorLine   { bg = C.index.i16 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLineNr { fg = C.bright.black, bg = C.index.i16 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     ColorColumn  { CursorLine }, -- Columns set with 'colorcolumn'
     CursorColumn { CursorLine }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     -- Conceal      { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
     -- Cursor       { }, -- Character under the cursor
     -- lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM     { }, -- Like Cursor, but used when in IME mode |CursorIM|
-    Directory    { fg = c.normal.green, gui = "bold" }, -- Directory names (and other special names in listings)
-   EndOfBuffer  { fg = c.index.i17 }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    Directory    { fg = C.normal.green, gui = "bold" }, -- Directory names (and other special names in listings)
+   EndOfBuffer  { fg = C.index.i17 }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
-    ErrorMsg     { fg = c.normal.red }, -- Error messages on the command line
+    ErrorMsg     { fg = C.normal.red }, -- Error messages on the command line
     VertSplit    { EndOfBuffer }, -- Column separating vertically split windows
-    Folded       { fg = c.normal.white }, -- Line used for closed folds
-    FoldColumn   { fg = c.index.i20 }, -- 'foldcolumn'
-    SignColumn   { fg = c.bright.black }, -- Column where |signs| are displayed
-    IncSearch    { fg = bg, bg = c.normal.white }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute   { fg = bg, bg = c.bright.red }, -- |:substitute| replacement text highlighting
-    LineNr       { fg = c.index.i20 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    MatchParen   { fg = c.bright.white, bg = c.normal.blue, gui = "bold"}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    Folded       { fg = C.normal.white }, -- Line used for closed folds
+    FoldColumn   { fg = C.index.i20 }, -- 'foldcolumn'
+    SignColumn   { fg = C.bright.black }, -- Column where |signs| are displayed
+    IncSearch    { fg = bg, bg = C.normal.white }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Substitute   { fg = bg, bg = C.bright.red }, -- |:substitute| replacement text highlighting
+    LineNr       { fg = C.index.i20 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    MatchParen   { fg = C.bright.white, bg = C.normal.blue, gui = "bold"}, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     ModeMsg      { Normal }, -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea      { fg = c.bright.black }, -- Area for messages and cmdline
+    MsgArea      { fg = C.bright.black }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg      { fg = c.normal.green, gui = "bold" }, -- |more-prompt|
+    MoreMsg      { fg = C.normal.green, gui = "bold" }, -- |more-prompt|
     NonText      { EndOfBuffer }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
    -- NormalNC     { Normal.li(100) }, -- normal text in non-current windows
-    Pmenu        { bg = c.index.i16 }, -- Popup menu: Normal item.
-    PmenuSel     { bg = c.index.i18 }, -- Popup menu: Selected item.
-    PmenuSbar    { bg = c.index.i18 }, -- Popup menu: Scrollbar.
-    PmenuThumb   { bg = c.bright.black }, -- Popup menu: Thumb of the scrollbar.
+    Pmenu        { bg = C.index.i16 }, -- Popup menu: Normal item.
+    PmenuSel     { bg = C.index.i18 }, -- Popup menu: Selected item.
+    PmenuSbar    { bg = C.index.i18 }, -- Popup menu: Scrollbar.
+    PmenuThumb   { bg = C.bright.black }, -- Popup menu: Thumb of the scrollbar.
     Question     { MoreMsg }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search       { fg = bg, bg = c.bright.yellow }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    SpecialKey   { fg = bg, bg = c.normal.red, gui = "bold" }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    StatusLine   { fg = c.normal.white }, -- Status line of current window
-    StatusLineNC { fg = c.index.i20 }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine      { bg = c.index.i17 }, -- Tab pages line, not active tab page label
+    Search       { fg = bg, bg = C.bright.yellow }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    SpecialKey   { fg = bg, bg = C.normal.red, gui = "bold" }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    StatusLine   { fg = C.normal.white }, -- Status line of current window
+    StatusLineNC { fg = C.index.i20 }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine      { bg = C.index.i17 }, -- Tab pages line, not active tab page label
     TabLineFill  { }, -- Tab pages line, where there are no labels
     TabLineSel   { }, -- Tab pages line, active tab page label
-    Title        { fg = c.normal.magenta, gui = "bold" }, -- Titles for output from ":set all", ":autocmd" etc.
+    Title        { fg = C.normal.magenta, gui = "bold" }, -- Titles for output from ":set all", ":autocmd" etc.
     Visual       { gui = "reverse"}, -- Visual mode selection
     -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    WarningMsg   { fg = c.normal.yellow }, -- Warning messages
+    WarningMsg   { fg = C.normal.yellow }, -- Warning messages
     Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     -- Winseparator { }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
     WildMenu     { PmenuSel }, -- Current match in 'wildmenu' completion
     Underlined   { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore       { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
     Error        { ErrorMsg }, -- Any erroneous construct
-    Todo         { fg = bg, bg = c.normal.magenta }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo         { fg = bg, bg = C.normal.magenta }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     NormalFloat  { }, -- Normal text in floating windows.
     FloatTitle   { Title },
-    FloatBorder  { fg = c.bright.black },
+    FloatBorder  { fg = bg_d1, bg = bg_d1 },
 
     -------------------------------------------------------------------------------------------------------------------
     --- Syntax
     -------------------------------------------------------------------------------------------------------------------
-    Comment         { fg = c.bright.black, gui = "italic" }, -- Any comment
+    Comment         { fg = C.bright.black, gui = "italic" }, -- Any comment
 
-    Constant        { fg = c.normal.green                 }, -- (*) Any constant
+    Constant        { fg = C.normal.green                 }, -- (*) Any constant
     -- String         {                                   }, --   A string constant: "this is a string"
     -- Character      {                                   }, --   A character constant: 'c', '\n'
-    Number         { fg = c.normal.blue                   }, --   A number constant: 234, 0xff
+    Number         { fg = C.normal.blue                   }, --   A number constant: 234, 0xff
     -- Float          {                                   }, --   A floating point constant: 2.3e10
-    Boolean        { fg = c.normal.yellow                 }, --   A boolean constant: TRUE, false
+    Boolean        { fg = C.normal.yellow                 }, --   A boolean constant: TRUE, false
 
     Identifier     { Normal                               }, -- (*) Any variable name
     -- Function       {                                   }, --   Function name (also: methods for classes)
@@ -116,9 +122,9 @@ local theme = lush(function(injected_functions)
     -- Conditional    {                                   }, --   if, then, else, endif, switch, etc.
     -- Repeat         {                                   }, --   for, do, while, etc.
     -- Label          {                                   }, --   case, default, etc.
-    Operator       { fg = c.normal.yellow                 }, --   "sizeof", "+", "*", etc.
-    Keyword        { fg = c.normal.green                  }, --   any other keyword
-    Exception      { fg = c.normal.red                    }, --   try, catch, throw
+    Operator       { fg = C.normal.yellow                 }, --   "sizeof", "+", "*", etc.
+    Keyword        { fg = C.normal.green                  }, --   any other keyword
+    Exception      { fg = C.normal.red                    }, --   try, catch, throw
 
     PreProc        { Normal                               }, -- (*) Generic Preprocessor
     -- Include        {                                   }, --   Preprocessor #include
@@ -126,7 +132,7 @@ local theme = lush(function(injected_functions)
     -- Macro          {                                   }, --   Same as Define
     -- PreCondit      {                                   }, --   Preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = c.normal.green                  }, -- (*) int, long, char, etc.
+    Type           { fg = C.normal.green                  }, -- (*) int, long, char, etc.
     -- StorageClass   {                                   }, --   static, register, volatile, etc.
     -- Structure      {                                   }, --   struct, union, enum, etc.
     -- Typedef        {                                   }, --   A typedef
@@ -145,9 +151,9 @@ local theme = lush(function(injected_functions)
     DiagnosticUnnecessary      { fg = Comment.fg                                         }, -- Comment
     DiagnosticError            { ErrorMsg                                                }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     DiagnosticWarn             { WarningMsg                                              }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticInfo             { fg = c.normal.blue                                      }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticHint             { fg = c.normal.white                                     }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticOk               { fg = c.normal.green                                     }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticInfo             { fg = C.normal.blue                                      }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticHint             { fg = C.normal.white                                     }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticOk               { fg = C.normal.green                                     }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     DiagnosticVirtualTextError { fg = DiagnosticError.fg, bg = DiagnosticError.fg.da(75) }, -- Used for "Error" diagnostic virtual text.
     DiagnosticVirtualTextWarn  { fg = DiagnosticWarn.fg,  bg = DiagnosticWarn.fg.da(75)  }, -- Used for "Warn" diagnostic virtual text.
     DiagnosticVirtualTextInfo  { fg = DiagnosticInfo.fg,  bg = DiagnosticInfo.fg.da(75)  }, -- Used for "Warn" diagnostic virtual text.
@@ -254,14 +260,14 @@ local theme = lush(function(injected_functions)
     -------------------------------------------------------------------------------------------------------------------
     --- Diff & Git
     -------------------------------------------------------------------------------------------------------------------
-    DiffAdd               { bg = c.normal.green.da(55)  }, -- Diff mode: Added line |diff.txt|
-    DiffDelete            { bg = c.normal.red.da(55)    }, -- Diff mode: Deleted line |diff.txt|
-    DiffChange            { bg = c.normal.yellow.da(55) }, -- Diff mode: Changed line |diff.txt|
-    DiffText              { bg = c.normal.blue.da(50)   }, -- Diff mode: Changed text within a changed line |diff.txt|
-    GitAdd                { fg = c.normal.green                                                  },
-    GitDelete             { fg = c.normal.red                                                    },
-    GitChange             { fg = c.normal.yellow                                                 },
-    GitNew                { fg = c.normal.blue                                                   },
+    DiffAdd               { bg = C.normal.green.da(55)  }, -- Diff mode: Added line |diff.txt|
+    DiffDelete            { bg = C.normal.red.da(55)    }, -- Diff mode: Deleted line |diff.txt|
+    DiffChange            { bg = C.normal.yellow.da(55) }, -- Diff mode: Changed line |diff.txt|
+    DiffText              { bg = C.normal.blue.da(50)   }, -- Diff mode: Changed text within a changed line |diff.txt|
+    GitAdd                { fg = C.normal.green                                                  },
+    GitDelete             { fg = C.normal.red                                                    },
+    GitChange             { fg = C.normal.yellow                                                 },
+    GitNew                { fg = C.normal.blue                                                   },
 
 
     -------------------------------------------------------------------------------------------------------------------
@@ -277,9 +283,73 @@ local theme = lush(function(injected_functions)
     NeogitDiffText        { DiffText },
 
     TelescopeBorder          { FloatBorder },
+    TelescopePreviewBorder    { bg = bg_d1 },
     TelescopePreviewTitle    { Substitute },
-    TelescopePromptTitle    { IncSearch },
-    TelescopeResultsTitle    { Search },
+    TelescopePreviewNormal    { bg = bg_d1 },
+
+    TelescopePromptBorder    { bg = bg_l1 },
+    TelescopePromptTitle    { fg = bg, bg = ErrorMsg.fg },
+    TelescopePromptNormal    { bg = bg_l1 },
+    TelescopePromptCounter    { fg = Number.fg },
+    TelescopePromptPrefix    { fg = Operator.fg },
+
+    TelescopeResultsBorder    { bg = bg_d2 },
+    TelescopeResultsTitle    { fg = bg, bg = Constant.fg },
+    TelescopeResultsNormal    { bg = bg_d2 },
+
+-- TelescopeTitle|1 col 1| TelescopeTitle
+-- TelescopeBorder|1 col 1| TelescopeBorder
+-- TelescopeNormal|1 col 1| TelescopeNormal
+-- TelescopeMatching|1 col 1| TelescopeMatching
+-- TelescopeMultiIcon|1 col 1| TelescopeMultiIcon
+-- TelescopeSelection|1 col 1| TelescopeSelection
+-- TelescopePreviewDate|1 col 1| TelescopePreviewDate
+-- TelescopePreviewLine|1 col 1| TelescopePreviewLine
+-- TelescopePreviewLink|1 col 1| TelescopePreviewLink
+-- TelescopePreviewPipe|1 col 1| TelescopePreviewPipe
+-- TelescopePreviewRead|1 col 1| TelescopePreviewRead
+-- TelescopePreviewSize|1 col 1| TelescopePreviewSize
+-- TelescopePreviewUser|1 col 1| TelescopePreviewUser
+-- TelescopePreviewBlock|1 col 1| TelescopePreviewBlock
+-- TelescopePreviewGroup|1 col 1| TelescopePreviewGroup
+-- TelescopePreviewMatch|1 col 1| TelescopePreviewMatch
+-- TelescopePreviewTitle|1 col 1| TelescopePreviewTitle
+-- TelescopePreviewWrite|1 col 1| TelescopePreviewWrite
+-- TelescopePromptPrefix|1 col 1| TelescopePromptPrefix
+-- TelescopeResultsClass|1 col 1| TelescopeResultsClass
+-- TelescopeResultsField|1 col 1| TelescopeResultsField
+-- TelescopeResultsTitle|1 col 1| TelescopeResultsTitle
+-- TelescopePreviewBorder|1 col 1| TelescopePreviewBorder
+-- TelescopePreviewHyphen|1 col 1| TelescopePreviewHyphen
+-- TelescopePreviewNormal|1 col 1| TelescopePreviewNormal
+-- TelescopePreviewSocket|1 col 1| TelescopePreviewSocket
+-- TelescopePreviewSticky|1 col 1| TelescopePreviewSticky
+-- TelescopePromptCounter|1 col 1| TelescopePromptCounter
+-- TelescopeResultsBorder|1 col 1| TelescopeResultsBorder
+-- TelescopeResultsLineNr|1 col 1| TelescopeResultsLineNr
+-- TelescopeResultsMethod|1 col 1| TelescopeResultsMethod
+-- TelescopeResultsNormal|1 col 1| TelescopeResultsNormal
+-- TelescopeResultsNumber|1 col 1| TelescopeResultsNumber
+-- TelescopeResultsStruct|1 col 1| TelescopeResultsStruct
+-- TelescopeMultiSelection|1 col 1| TelescopeMultiSelection
+-- TelescopePreviewCharDev|1 col 1| TelescopePreviewCharDev
+-- TelescopePreviewExecute|1 col 1| TelescopePreviewExecute
+-- TelescopePreviewMessage|1 col 1| TelescopePreviewMessage
+-- TelescopeResultsComment|1 col 1| TelescopeResultsComment
+-- TelescopeResultsDiffAdd|1 col 1| TelescopeResultsDiffAdd
+-- TelescopeSelectionCaret|1 col 1| TelescopeSelectionCaret
+-- TelescopeResultsConstant|1 col 1| TelescopeResultsConstant
+-- TelescopeResultsFunction|1 col 1| TelescopeResultsFunction
+-- TelescopeResultsOperator|1 col 1| TelescopeResultsOperator
+-- TelescopeResultsVariable|1 col 1| TelescopeResultsVariable
+-- TelescopePreviewDirectory|1 col 1| TelescopePreviewDirectory
+-- TelescopeResultsDiffChange|1 col 1| TelescopeResultsDiffChange
+-- TelescopeResultsDiffDelete|1 col 1| TelescopeResultsDiffDelete
+-- TelescopeResultsIdentifier|1 col 1| TelescopeResultsIdentifier
+-- TelescopeResultsDiffUntracked|1 col 1| TelescopeResultsDiffUntracked
+-- TelescopeResultsSpecialComment|1 col 1| TelescopeResultsSpecialComment
+-- TelescopePreviewMessageFillchar|1 col 1| TelescopePreviewMessageFillchar
+
 
     MiniIndentscopeSymbol { fg = CursorLine.bg },
 
@@ -302,10 +372,6 @@ local theme = lush(function(injected_functions)
     -- NvimTreeModifiedFile { },
     -- NvimTreeWindowPicker { },
     -- NvimTreeLiveFilterPrefix { },
-
-    HlSearchNear     { IncSearch },
-    HlSearchLens     { Description },
-    -- HlSearchLensNear { HlSearchLens },
   }
 end)
 

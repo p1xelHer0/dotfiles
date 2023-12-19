@@ -245,7 +245,7 @@ local M = {
     event = function()
       return require("internal.events").lazyFile
     end,
-    config = true,
+    opts = {},
   },
 
   {
@@ -257,11 +257,6 @@ local M = {
     config = function(_, opts)
       require("rainbow-delimiters.setup").setup(opts)
     end,
-  },
-
-  {
-    "nvim-treesitter/playground",
-    cmd = "TSPlaygroundToggle",
   },
 }
 

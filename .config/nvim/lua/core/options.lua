@@ -3,30 +3,30 @@ local blend = 7
 
 local scrolloff = require("core.config").get_options().scrolloff
 
+
 -- stylua: ignore start
 o.exrc            = false
 o.modelines       = 1
 o.errorbells      = false
 o.termguicolors   = true
 o.syntax          = "off"
-o.background      = "dark"
 o.synmaxcol       = 1000
 o.shortmess       = "aoIcF"
 o.fillchars = {
   stl             = " ",
   stlnc           = " ",
   wbr             = " ",
-  horiz           = "─",
-  horizup         = "┴",
-  horizdown       = "┬",
-  vert            = "│",
-  vertleft        = "┤",
-  vertright       = "├",
-  verthoriz       = "┼",
+  horiz           = " ",
+  horizup         = " ",
+  horizdown       = " ",
+  vert            = " ",
+  vertleft        = " ",
+  vertright       = " ",
+  verthoriz       = " ",
   fold            = "·",
   foldopen        = "-",
   foldclose       = "+",
-  foldsep         = "│",
+  foldsep         = " ",
   diff            = "-",
   msgsep          = " ",
   eob             = "~",
@@ -127,7 +127,7 @@ o.listchars = {
   nbsp            = "␣" ,
 }
 o.showbreak       = "↪ "
-o.conceallevel    = 2
+o.conceallevel    = 0
 
 o.foldenable      = true
 o.foldlevel       = 99

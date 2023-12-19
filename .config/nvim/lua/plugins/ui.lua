@@ -1,5 +1,35 @@
 local M = {
   {
+    -- dir = "/Users/p1xelher0/code/github/p1xelHer0/oxocarbon.nvim",
+    "nyoom-engineering/oxocarbon.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function(_, opts)
+      vim.cmd([[colorscheme oxocarbon]])
+    end,
+  },
+
+  {
+    "projekt0n/github-nvim-theme",
+    event = "VeryLazy",
+  },
+
+  {
+    "rebelot/kanagawa.nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "catppuccin/nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "savq/melange-nvim",
+    event = "VeryLazy",
+  },
+
+  {
     "goolord/alpha-nvim",
     event = "VimEnter",
     opts = function()
@@ -54,61 +84,8 @@ local M = {
   },
 
   {
-    enabled = true,
-    "f-person/auto-dark-mode.nvim",
-    lazy = false,
-    priority = 1000,
-    dependencies = {
-      {
-        "projekt0n/github-nvim-theme",
-        lazy = false,
-        priority = 1000,
-        opts = {
-          options = {},
-          groups = {
-            all = {
-              -- CursorLine = { bg = "bg1" },
-            },
-          },
-        },
-        config = function(_, opts)
-          require("github-theme").setup(opts)
-
-          vim.cmd([[colorscheme github_dark_colorblind]])
-        end,
-      },
-    },
-    opts = {
-      set_dark_mode = function()
-        vim.api.nvim_set_option("background", "dark")
-        vim.cmd([[colorscheme github_dark_colorblind]])
-      end,
-      set_light_mode = function()
-        vim.api.nvim_set_option("background", "light")
-        vim.cmd([[colorscheme github_light_colorblind]])
-      end,
-    },
-    config = function(_, opts)
-      local auto_dark_mode = require("auto-dark-mode")
-      auto_dark_mode.setup(opts)
-
-      auto_dark_mode.init()
-    end,
-  },
-
-  {
-    "rebelot/kanagawa.nvim",
-    event = "VeryLazy",
-  },
-
-  {
-    "catppuccin/nvim",
-    event = "VeryLazy",
-  },
-
-  {
-    "savq/melange-nvim",
-    event = "VeryLazy",
+    "levouh/tint.nvim",
+    opts = {},
   },
 
   {
@@ -128,12 +105,14 @@ local M = {
       })
 
       require("mini.indentscope").setup(opts)
-
+    end,
+    init = function()
       vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "LineNr" })
     end,
   },
 
   {
+    enabled = true,
     "stevearc/dressing.nvim",
     lazy = true,
     opts = {
@@ -280,106 +259,6 @@ local M = {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
     opts = {},
-  },
-
-  {
-    enabled = false,
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
-      },
-      routes = {
-        {
-          filter = {
-            event = "msg_show",
-            any = {
-              { find = "%d+L, %d+B" },
-              { find = "; after #%d+" },
-              { find = "; before #%d+" },
-            },
-          },
-          view = "mini",
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-        inc_rename = true,
-      },
-    },
-    keys = {
-      {
-        "<S-Enter>",
-        function()
-          require("noice").redirect(vim.fn.getcmdline())
-        end,
-        mode = "c",
-        desc = "Redirect Cmdline",
-      },
-      {
-        "<Leader>snl",
-        function()
-          require("noice").cmd("last")
-        end,
-        desc = "Noice Last Message",
-      },
-      {
-        "<Leader>snh",
-        function()
-          require("noice").cmd("history")
-        end,
-        desc = "Noice History",
-      },
-      {
-        "<Leader>sna",
-        function()
-          require("noice").cmd("all")
-        end,
-        desc = "Noice All",
-      },
-      {
-        "<Leader>snd",
-        function()
-          require("noice").cmd("dismiss")
-        end,
-        desc = "Dismiss All",
-      },
-      {
-        "<C-d>",
-        function()
-          if not require("noice.lsp").scroll(4) then
-            return "<C-d>"
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll forward",
-        mode = { "i", "n", "s" },
-      },
-      {
-        "<C-u>",
-        function()
-          if not require("noice.lsp").scroll(-4) then
-            return "<C-u>"
-          end
-        end,
-        silent = true,
-        expr = true,
-        desc = "Scroll backward",
-        mode = { "i", "n", "s" },
-      },
-    },
   },
 
   {

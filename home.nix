@@ -387,11 +387,11 @@ in
       "--color=preview-bg:-1"
       "--color=hl:reverse:3"
       "--color=fg+:7"
-      "--color=bg+:18"
+      "--color=bg+:8"
       "--color=gutter:-1"
       "--color=hl+:reverse:3"
       "--color=info:8"
-      "--color=border:16"
+      "--color=border:8"
       "--color=prompt:2"
       "--color=pointer:2"
       "--color=marker:2"
@@ -405,6 +405,7 @@ in
   xdg.configFile."theme".text = "dark";
 
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/lua";
+  xdg.configFile."nvim/fnl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/fnl";
   xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/after";
   xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
   programs.neovim = {
@@ -631,7 +632,8 @@ in
     };
 
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
-  xdg.configFile."kitty/color.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/color.conf";
+  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/oxocarbon_dark.conf";
+  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/github_colorblind_dark.conf";
   programs.kitty = {
     enable = true;
   };

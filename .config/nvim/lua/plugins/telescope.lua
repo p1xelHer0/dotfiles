@@ -39,8 +39,18 @@ local M = {
     },
   },
   opts = function()
-    local theme = "dropdown"
-    local borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+    -- local borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+    local borderchars = { " ", " ", " ", " ", " ", " ", " ", " " }
+    local dropdown_configs = {
+      layout_strategy = "vertical",
+      layout_config = {
+        prompt_position = "bottom",
+        vertical = {
+          width = 0.8,
+          height = 100,
+        },
+      },
+    }
 
     return {
       defaults = {
@@ -50,7 +60,6 @@ local M = {
           },
         },
         borderchars = borderchars,
-        theme = theme,
       },
       pickers = {
         find_files = {
@@ -72,19 +81,15 @@ local M = {
       },
       extensions = {
         ["ui-select"] = {
-          require("telescope.themes").get_dropdown({}),
+          require("telescope.themes").get_dropdown(dropdown_configs),
         },
       },
     }
   end,
   config = function(_, opts)
-    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { reverse = true })
-    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { reverse = true })
-    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { reverse = true })
-
     require("telescope").load_extension("harpoon")
-
     require("telescope").setup(opts)
+    require("core.theme").telescope()
   end,
 }
 

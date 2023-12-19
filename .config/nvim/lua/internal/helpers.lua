@@ -12,19 +12,13 @@ M.get_highlight = function(hl_name, value)
   end
   value = value or "foreground"
 
-  vim.print(value)
-
   local hl = vim.api.nvim_get_hl_by_name(hl_name, true)
 
   if not hl[value] then
     return nil
   end
 
-  vim.print(hl[value])
-
   local color = string.format("#%06x", hl[value])
-
-  vim.print(color)
 
   return color
 end

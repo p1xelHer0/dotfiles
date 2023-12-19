@@ -10,12 +10,23 @@ local M = {
   },
 
   {
-    "eraserhd/parinfer-rust",
-    build = "cargo build --release",
+    enabled = false,
+    "julienvincent/nvim-paredit",
     ft = require("core.config").get_lisp_ft(),
+    config = function()
+      require("nvim-paredit").setup()
+    end,
   },
 
   {
+    enabled = true,
+    "eraserhd/parinfer-rust",
+    ft = require("core.config").get_lisp_ft(),
+    build = "cargo build --release",
+  },
+
+  {
+    enabled = false,
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
@@ -135,11 +146,11 @@ local M = {
       },
     },
     opts = {
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-        quiet = true,
-      },
+      -- format_on_save = {
+      --   timeout_ms = 500,
+      --   lsp_fallback = true,
+      --   quiet = true,
+      -- },
       formatters_by_ft = {
         javascript = { "prettierd" },
         css = { "prettierd" },

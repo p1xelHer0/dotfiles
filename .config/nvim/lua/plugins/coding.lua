@@ -20,9 +20,9 @@ local M = {
       local sources = {
         { name = "nvim_lsp", group_index = 2 },
         { name = "treesitter", group_index = 2 },
-        { name = "buffer", keyword_length = 5, group_index = 2 },
+        { name = "buffer", group_index = 2 },
         { name = "luasnip", group_index = 2 },
-        { name = "path", keyword_length = 5, group_index = 2 },
+        { name = "path", keyword_length = 3, group_index = 2 },
       }
 
       vim.api.nvim_create_autocmd("BufRead", {
