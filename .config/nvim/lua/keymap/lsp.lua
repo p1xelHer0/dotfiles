@@ -24,10 +24,11 @@ M.setup = function(client, bufnr)
     k("n", "K", vim.lsp.buf.hover, opts)
   end
 
-  if capabilities.typeDefinitionProvider then
+  -- TODO - check this
+  -- if capabilities.typeDefinitionProvider then
     k("n", "gD", vim.lsp.buf.declaration, opts)
     k("n", "gd", vim.lsp.buf.definition, opts)
-  end
+  -- end
 
   if capabilities.renameProvider then
     k("n", "gn", vim.lsp.buf.rename, opts)

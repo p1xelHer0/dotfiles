@@ -160,6 +160,8 @@ in
     nodePackages.yaml-language-server
   ];
 
+  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
+
   programs.zsh = {
     enable = true;
 

@@ -95,6 +95,8 @@ in
     nodePackages.yaml-language-server
   ];
 
+  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/_darwin/karabiner/";
+
   programs.zsh = {
     enable = true;
 
@@ -537,6 +539,8 @@ in
       };
     };
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
+  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/oxocarbon_dark.conf";
+  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/github_colorblind_dark.conf";
   programs.kitty = {
     enable = true;
   };
