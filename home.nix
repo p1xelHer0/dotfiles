@@ -428,7 +428,7 @@ in
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    userName = "Pontus Nagy";
+    userName = "p1xelHer0";
     userEmail = "p_nagy@icloud.com";
     includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
     /**/
