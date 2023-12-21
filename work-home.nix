@@ -1,9 +1,15 @@
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
 {
   home.stateVersion = "23.11";
+
+  nixpkgs = {
+    overlays = [
+      inputs.neovim-nightly-overlay.overlay
+    ];
+  };
 
   home.packages = with pkgs; [
     # Fonts
@@ -317,7 +323,7 @@ in
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/nvim/lua";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    package = pkgs.neovim-nightly;
     extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;

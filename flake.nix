@@ -4,20 +4,27 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    nix-darwin.url = "github:lnl7/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, ... } @ inputs:
     let
-      inherit (darwin.lib) darwinSystem;
+      inherit (nix-darwin.lib) darwinSystem;
 
       nixpkgsConfig = {
         config = {
           allowUnfree = true;
         };
+        overlays = [
+          inputs.neovim-nightly-overlay.overlay
+        ];
       };
     in
     {
@@ -30,6 +37,7 @@
             {
               nixpkgs = nixpkgsConfig;
               home-manager.users.p1xelher0 = import ./home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
         };
@@ -42,6 +50,7 @@
             {
               nixpkgs = nixpkgsConfig;
               home-manager.users.pontusnagy = import ./work-home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
         };

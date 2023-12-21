@@ -100,6 +100,9 @@ local M = {
     config = function(_, opts)
       require("octo").setup(opts)
     end,
+    init = function()
+      vim.treesitter.language.register("markdown", "octo")
+    end,
   },
 }
 
