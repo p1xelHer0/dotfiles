@@ -11,22 +11,6 @@ local M = {
 
   {
     enabled = false,
-    "julienvincent/nvim-paredit",
-    ft = require("core.config").get_lisp_ft(),
-    config = function()
-      require("nvim-paredit").setup()
-    end,
-  },
-
-  {
-    enabled = true,
-    "eraserhd/parinfer-rust",
-    ft = require("core.config").get_lisp_ft(),
-    build = "cargo build --release",
-  },
-
-  {
-    enabled = false,
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
