@@ -253,7 +253,14 @@ local M = {
     event = function()
       return require("internal.events").lazyFile
     end,
-    opts = {},
+    opts = {
+      strategy = {
+        -- ...
+      },
+      query = {
+        -- ...
+      },
+    },
     config = function(_, opts)
       require("rainbow-delimiters.setup").setup(opts)
     end,

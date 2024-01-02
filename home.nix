@@ -24,6 +24,7 @@ in
 
     # Tools
     bat
+    cmake
     curl
     delta
     entr
@@ -56,6 +57,10 @@ in
     yamllint
     zola
     zoxide
+
+    # C/C++
+    # ncurses6
+    gcc
 
     # Writing
     ispell
@@ -212,6 +217,7 @@ in
       export PKG_CONFIG_PATH=" /opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
       export PATH=/opt/homebrew/bin:$PATH
+      export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
       export PATH=$GOPATH:$PATH
       export PATH=$GOPATH_BIN:$PATH
 
@@ -597,22 +603,22 @@ in
 
           normal = {
             family = fontFamily;
-            style = "SemiBold";
+            style = "Regular";
           };
 
           bold = {
             family = fontFamily;
-            style = "ExtraBold";
+            style = "Bold";
           };
 
           italic = {
             family = fontFamily;
-            style = "SemiBold Italic";
+            style = "Italic";
           };
 
           bold_italic = {
             family = fontFamily;
-            style = "ExtraBold Italic";
+            style = "Bold Italic";
           };
 
           offset = {

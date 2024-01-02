@@ -20,15 +20,60 @@ local M = {
   },
   cmd = { "Telescope" },
   keys = {
-    { mode = "n", "<C-p>", "<Cmd>Telescope git_files<CR>", { noremap = true, silent = true } },
-    { mode = "n", "<Leader>P", "<Cmd>Telescope find_files<CR>", { noremap = true, silent = true } },
-    { mode = "n", "<Leader>b", "<Cmd>Telescope buffers<CR>", { silent = true, noremap = true } },
-    { mode = "n", "<Leader>d", "<Cmd>Telescope diagnostics<CR>", { silent = true } },
-    { mode = "n", "<Leader>f", "<Cmd>Telescope live_grep<CR>", { silent = true } },
-    { mode = "n", "<Leader>F", "<Cmd>Telescope grep_string<CR>", { silent = true } },
-    { mode = "n", "<Leader>gs", "<Cmd>Telescope git_status<CR>", { silent = true } },
-    { mode = "n", "<Leader>h", "<Cmd>Telescope harpoon marks<CR>", { silent = true } },
-    { mode = "n", "<Leader>T", "<Cmd>Telescope<CR>", { silent = true, noremap = true } },
+    {
+      mode = "n",
+      "<C-p>",
+      "<Cmd>lua require 'plugins.telescope'.project_files()<CR>",
+      { noremap = true, silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>P",
+      "<Cmd>Telescope find_files<CR>",
+      { noremap = true, silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>b",
+      "<Cmd>Telescope buffers<CR>",
+      { silent = true, noremap = true },
+    },
+    {
+      mode = "n",
+      "<Leader>d",
+      "<Cmd>Telescope diagnostics<CR>",
+      { silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>f",
+      "<Cmd>Telescope live_grep<CR>",
+      { silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>F",
+      "<Cmd>Telescope grep_string<CR>",
+      { silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>gs",
+      "<Cmd>Telescope git_status<CR>",
+      { silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>h",
+      "<Cmd>Telescope harpoon marks<CR>",
+      { silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>T",
+      "<Cmd>Telescope<CR>",
+      { silent = true, noremap = true },
+    },
     {
       mode = "n",
       "<Leader>r",
@@ -92,5 +137,24 @@ local M = {
     require("core.theme").telescope()
   end,
 }
+
+local is_inside_work_tree = {}
+
+M.project_files = function()
+  local opts = {}
+  local builtin = require("telescope.builtin")
+
+  local cwd = vim.fn.getcwd()
+  if is_inside_work_tree[cwd] == nil then
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    is_inside_work_tree[cwd] = vim.v.shell_error == 0
+  end
+
+  if is_inside_work_tree[cwd] then
+    builtin.git_files(opts)
+  else
+    builtin.find_files(opts)
+  end
+end
 
 return M

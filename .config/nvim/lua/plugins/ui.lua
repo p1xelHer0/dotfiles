@@ -37,7 +37,7 @@ local M = {
 
       dashboard.section.buttons.val = {
         dashboard.button("e", "New file", ":ene <BAR> startinsert<CR>"),
-        dashboard.button("p", "Find file", ":Telescope git_files<CR>"),
+        dashboard.button("p", "Find file", ":lua require 'plugins.telescope'.project_files()<CR>"),
         dashboard.button("f", "Find text", ":Telescope live_grep<CR>"),
         dashboard.button("g", "Neogit", ":Neogit<CR>"),
         dashboard.button("l", "Lazy", ":Lazy<CR>"),
@@ -89,6 +89,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "echasnovski/mini.indentscope",
     version = false,
     event = "VeryLazy",

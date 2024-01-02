@@ -372,7 +372,9 @@ local M = {
 
       require("rust-tools").setup({
         server = {
-          cmd = { "/Users/p1xelher0/.rustup/toolchains/nightly-aarch64-apple-darwin/bin/rust-analyzer" },
+          cmd = {
+            "/Users/p1xelher0/.rustup/toolchains/nightly-aarch64-apple-darwin/bin/rust-analyzer",
+          },
           -- cmd = { "/nix/store/bc23kmwxgwlyvpxdnfr92n2kw7j67im8-rust-default-1.68.0-nightly-2022-12-13/bin/rust-analyzer" },
           capabilities = require("internal.lsp").capabilities(),
           -- on_attach = require("internal.lsp").on_attach,

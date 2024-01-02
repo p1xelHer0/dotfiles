@@ -188,10 +188,26 @@ local M = {
       use_diagnostic_signs = true,
     },
     keys = {
-      { "<leader>xx", "<Cmd>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },
-      { "<leader>xX", "<Cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>xL", "<Cmd>TroubleToggle loclist<CR>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<Cmd>TroubleToggle quickfix<CR>", desc = "Quickfix List (Trouble)" },
+      {
+        "<leader>xx",
+        "<Cmd>TroubleToggle document_diagnostics<CR>",
+        desc = "Document Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<Cmd>TroubleToggle workspace_diagnostics<CR>",
+        desc = "Workspace Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<Cmd>TroubleToggle loclist<CR>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<Cmd>TroubleToggle quickfix<CR>",
+        desc = "Quickfix List (Trouble)",
+      },
       {
         "[q",
         function()

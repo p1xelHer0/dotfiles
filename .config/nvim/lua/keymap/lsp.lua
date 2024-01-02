@@ -26,8 +26,8 @@ M.setup = function(client, bufnr)
 
   -- TODO - check this
   -- if capabilities.typeDefinitionProvider then
-    k("n", "gD", vim.lsp.buf.declaration, opts)
-    k("n", "gd", vim.lsp.buf.definition, opts)
+  k("n", "gD", vim.lsp.buf.declaration, opts)
+  k("n", "gd", vim.lsp.buf.definition, opts)
   -- end
 
   if capabilities.renameProvider then

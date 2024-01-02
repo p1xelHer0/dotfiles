@@ -32,10 +32,5 @@ return {
 
     --- Common Lisp
     -- vim.g["conjure#client#common_lisp#swank#connection#default_port"] = 50005
-
-    --- Gerbil Scheme
-    vim.g["conjure#client#scheme#stdio#command"] = "gxi -"
-    vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "> "
-    vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
   end,
 }

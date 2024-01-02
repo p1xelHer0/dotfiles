@@ -1,8 +1,18 @@
 local M = {
   "nvim-tree/nvim-tree.lua",
   keys = {
-    { mode = "n", "<Leader>n", "<Cmd>NvimTreeToggle<CR>", { noremap = true, silent = true } },
-    { mode = "n", "<Leader>N", "<Cmd>NvimTreeFindFile<CR>", { noremap = true, silent = true } },
+    {
+      mode = "n",
+      "<Leader>n",
+      "<Cmd>NvimTreeToggle<CR>",
+      { noremap = true, silent = true },
+    },
+    {
+      mode = "n",
+      "<Leader>N",
+      "<Cmd>NvimTreeFindFile<CR>",
+      { noremap = true, silent = true },
+    },
   },
   cmd = {
     "NvimTreeOpen",

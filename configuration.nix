@@ -149,6 +149,11 @@ in
       "arm-gcc-bin@8"
 
       "ncurses"
+      "sdl2"
+      "sdl2_image"
+      "sdl2_mixer"
+      "sdl2_ttf"
+      "sdl2_net"
 
       "roswell"
       "cyclone-scheme/cyclone/cyclone-bootstrap"

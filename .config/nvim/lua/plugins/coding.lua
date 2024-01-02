@@ -29,7 +29,9 @@ local M = {
         group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
         pattern = "Cargo.toml",
         callback = function()
-          cmp.setup.buffer({ sources = { { name = "crates", group_index = 2 } } })
+          cmp.setup.buffer({
+            sources = { { name = "crates", group_index = 2 } },
+          })
         end,
       })
 
