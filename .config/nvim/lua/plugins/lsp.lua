@@ -148,17 +148,17 @@ local M = {
         on_attach = on_attach,
       })
 
-      nvim_lspconfig.clangd.setup({
-        capabilities = capabilities,
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--suggest-missing-includes",
-          "--clang-tidy",
-          "--header-insertion=iwyu",
-        },
-        on_attach = on_attach,
-      })
+      -- nvim_lspconfig.clangd.setup({
+      --   capabilities = capabilities,
+      --   cmd = {
+      --     "clangd",
+      --     "--background-index",
+      --     "--suggest-missing-includes",
+      --     "--clang-tidy",
+      --     "--header-insertion=iwyu",
+      --   },
+      --   on_attach = on_attach,
+      -- })
 
       -- cargo install --git https://github.com/rydesun/fennel-language-server
       require("lspconfig.configs").fennel_language_server = {
@@ -241,7 +241,9 @@ local M = {
         "elmls",
         "fennel_language_server",
         "cl_lsp",
+        "ccls",
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
+        "ols",
         -- "racket_langserver", -- raco pkg install racket-langserver
         "rnix",
         "taplo",

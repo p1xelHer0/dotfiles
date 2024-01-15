@@ -85,6 +85,7 @@ local M = {
           alternate = ".env{}",
         },
       },
+
       -- OCaml
       ["dune*|*.opam|esy.json"] = {
         ["**.ml"] = {
@@ -92,6 +93,16 @@ local M = {
         },
         ["**.mli"] = {
           alternate = "{}.ml",
+        },
+      },
+
+      -- Gerbil
+      ["gerbil.pkg"] = {
+        ["**-test.ss"] = {
+          alternate = "{}.ss",
+        },
+        ["**.ss"] = {
+          alternate = "{}-test.ss",
         },
       },
     },
@@ -130,17 +141,18 @@ local M = {
       },
     },
     opts = {
-      -- format_on_save = {
-      --   timeout_ms = 500,
-      --   lsp_fallback = true,
-      --   quiet = true,
-      -- },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+        quiet = true,
+      },
       formatters_by_ft = {
         javascript = { "prettierd" },
         css = { "prettierd" },
         sass = { "prettierd" },
         scss = { "prettierd" },
         sh = { "shfmt" },
+        odin = { "odinfmt" },
         elm = { "elm-format" },
         lua = { "stylua" },
         -- markdown = { "mdformat" },

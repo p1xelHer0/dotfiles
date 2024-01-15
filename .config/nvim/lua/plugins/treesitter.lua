@@ -28,6 +28,7 @@ local ensure_installed = {
   "ocaml",
   "ocaml_interface",
   "ocamllex",
+  "odin",
   "python",
   "query",
   "racket",
@@ -263,6 +264,7 @@ local M = {
     },
     config = function(_, opts)
       require("rainbow-delimiters.setup").setup(opts)
+      -- vim.api.nvim_set_hl(0, "@punctuation.bracket.scheme", { link = "DiagnosticUnderlineError" })
     end,
   },
 }

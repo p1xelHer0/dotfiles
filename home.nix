@@ -15,6 +15,7 @@ in
     # Fonts
     (nerdfonts.override {
       fonts = [
+        "Hack"
         "IBMPlexMono"
         "IosevkaTerm"
         "JetBrainsMono"
@@ -24,7 +25,6 @@ in
 
     # Tools
     bat
-    cmake
     curl
     delta
     entr
@@ -59,8 +59,18 @@ in
     zoxide
 
     # C/C++
-    # ncurses6
-    gcc
+    ncurses6
+    # cmake
+    # gcc13
+    ccls
+    # vscode-extensions.vadimcn.vscode-lldb
+
+    # Zig
+    # zig
+
+    # Odin
+    # odin
+    # ols
 
     # Writing
     ispell
@@ -103,8 +113,8 @@ in
     # rust-analyzer - install this with Rustup instead
     # to make sure it matches the compiler
 
-    # C/C++/Rust
-    # vscode-extensions.vadimcn.vscode-lldb
+    # Haskell
+    # haskellPackages.ghcup
 
     # Elm
     elmPackages.elm
@@ -139,6 +149,10 @@ in
     # gerbil # brew
     # gerbil-unstable # brew
     # cyclone-scheme # brew
+    chicken
+    gambit
+    guile
+    # mitscheme
 
     # Clojure
     # clojure
@@ -190,6 +204,9 @@ in
       GOPATH = "$HOME/go";
       GOPATH_BIN = "$GOPATH/bin";
 
+      ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
+      ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
+
       RESCRIPT_LSP =
         "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
 
@@ -213,11 +230,14 @@ in
       export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
+
+      # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      export PKG_CONFIG_PATH=" /opt/homebrew/opt/openssl@3/lib/pkgconfig"
+      export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
       export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
+
       export PATH=$GOPATH:$PATH
       export PATH=$GOPATH_BIN:$PATH
 
@@ -230,14 +250,20 @@ in
       export PATH=$ROSWELL_BIN:$PATH
       export PATH=$QLOT_BIN:$PATH
 
+      # Gerbil
+      # export CC=gcc-13
+
+      # Odin
+      export PATH=/opt/homebrew/opt/llvm@14/bin:$PATH
+      export PATH=$ODIN_ROOT:$PATH
+      export PATH=$ODIN_TOOLS:$PATH
+
       # use the maximum amount of file descriptors
       ulimit -n 24576
 
       source "$DOTS_BIN/fzf_git"
 
       eval "$(zoxide init zsh)"
-
-      eval "$(direnv hook zsh)"
 
       eval "$(fnm env)"
 
@@ -648,6 +674,7 @@ in
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
   xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/oxocarbon_dark.conf";
   xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/github_colorblind_dark.conf";
+  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kanagawa.conf";
   programs.kitty = {
     enable = true;
   };

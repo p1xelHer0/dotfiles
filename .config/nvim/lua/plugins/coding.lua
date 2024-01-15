@@ -18,11 +18,19 @@ local M = {
       local cmp = require("cmp")
 
       local sources = {
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "treesitter", group_index = 2 },
-        { name = "buffer", group_index = 2 },
+        {
+          name = "nvim_lsp",
+          group_index = 1,
+          entry_filter = function(entry, ctx)
+            return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
+          end,
+        },
+        { name = "treesitter", group_index = 1 },
+
         { name = "luasnip", group_index = 2 },
-        { name = "path", keyword_length = 3, group_index = 2 },
+
+        { name = "path", group_index = 3 },
+        { name = "buffer", group_index = 3 },
       }
 
       vim.api.nvim_create_autocmd("BufRead", {
@@ -30,17 +38,17 @@ local M = {
         pattern = "Cargo.toml",
         callback = function()
           cmp.setup.buffer({
-            sources = { { name = "crates", group_index = 2 } },
+            sources = { { name = "crates", group_index = 1 } },
           })
         end,
       })
 
       local ft = vim.o.ft
       if ft == "markdown" or ft == "txt" or ft == "none" then
-        table.insert(sources, { name = "spell", group_index = 2 })
+        table.insert(sources, { name = "spell", group_index = 1 })
       end
       if ft == "lua" then
-        table.insert(sources, { name = "nvim_lua", group_index = 2 })
+        table.insert(sources, { name = "nvim_lua", group_index = 1 })
       end
 
       cmp.setup({

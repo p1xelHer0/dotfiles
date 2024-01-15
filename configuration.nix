@@ -148,6 +148,8 @@ in
       "avr-gcc@8"
       "arm-gcc-bin@8"
 
+      "llvm@14"
+      "gcc@13"
       "ncurses"
       "sdl2"
       "sdl2_image"

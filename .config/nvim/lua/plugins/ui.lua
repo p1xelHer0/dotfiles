@@ -1,11 +1,12 @@
 local M = {
   {
+    enable = false,
     -- dir = "/Users/p1xelher0/code/github/p1xelHer0/oxocarbon.nvim",
     "nyoom-engineering/oxocarbon.nvim",
     lazy = false,
     priority = 1000,
     config = function(_, opts)
-      vim.cmd([[colorscheme oxocarbon]])
+      -- vim.cmd([[colorscheme oxocarbon]])
     end,
   },
 
@@ -17,6 +18,11 @@ local M = {
   {
     "rebelot/kanagawa.nvim",
     event = "VeryLazy",
+    lazy = false,
+    priority = 1000,
+    config = function(_, opts)
+      vim.cmd([[colorscheme kanagawa]])
+    end,
   },
 
   {
@@ -89,7 +95,7 @@ local M = {
   },
 
   {
-    enabled = false,
+    enabled = true,
     "echasnovski/mini.indentscope",
     version = false,
     event = "VeryLazy",
