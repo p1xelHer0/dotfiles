@@ -15,7 +15,6 @@ in
     # Fonts
     (nerdfonts.override {
       fonts = [
-        "Hack"
         "IBMPlexMono"
         "IosevkaTerm"
         "JetBrainsMono"
@@ -25,26 +24,23 @@ in
 
     # Tools
     bat
+    bitwarden-cli
     curl
     delta
     entr
     eza
     fd
-    ffmpeg
-    flyctl
     fswatch
     gh
-    gifsicle
-    gnused
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
-    imagemagick
     jq
     p7zip
-    readline
     reattach-to-user-namespace
+    redis
     ripgrep
+    scc
     shellcheck
     silicon
     simple-http-server
@@ -58,28 +54,12 @@ in
     zola
     zoxide
 
-    # C/C++
-    ncurses6
-    # cmake
-    # gcc13
-    ccls
-    # vscode-extensions.vadimcn.vscode-lldb
-
-    # Zig
-    # zig
-
-    # Odin
-    # odin
-    # ols
-
     # Writing
     ispell
     nodePackages.write-good
     proselint
 
     # Nix
-    cachix
-    niv
     nixfmt
     rnix-lsp
 
@@ -90,9 +70,6 @@ in
 
     # Web
     fnm
-    # nodePackages.yarn
-    nodePackages.pnpm
-    # nodePackages.vercel
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
@@ -103,79 +80,18 @@ in
     nodePackages.typescript-language-server
     nodePackages.tailwindcss
 
-    # OCaml
-    opam
-
-    # Rust
-    rustup
-    cargo-watch
-    cargo-nextest
-    # rust-analyzer - install this with Rustup instead
-    # to make sure it matches the compiler
-
-    # Haskell
-    # haskellPackages.ghcup
-
     # Elm
     elmPackages.elm
-    elmPackages.elm-format
     elmPackages.elm-language-server
-    elmPackages.elm-review
-    elmPackages.elm-test
+    elmPackages.elm-format
 
-    # BQN
-    cbqn
+    # PHP
+    php82
+    php82Packages.composer
 
-    # Python
-    # nodePackages.pyright
-    # python310Packages.autopep8
-
-    # Go
-    # go
-    # gopls
-    # go install github.com/mattn/efm-langserver@latest
-    # go install github.com/segmentio/golines@latest
-    # go install github.com/client9/misspell/cmd/misspell@latest
-
-    ## Lisps
-
-    # Common Lisp
-    # sbcl # installed with roswell
-    # roswell # brew
-    # lispPackages.quicklisp # handled with ros install qlot
-    # sbclPackages.qlot # see https://github.com/fukamachi/qlot#installation
-
-    # Scheme
-    # gerbil # brew
-    # gerbil-unstable # brew
-    # cyclone-scheme # brew
-    chicken
-    gambit
-    guile
-    # mitscheme
-
-    # Clojure
-    # clojure
-    # leiningen
-    # clojure-lsp
-    # cljfmt
-
-    # Racket
-    # racket # broken on macOS - using brew
-    # racket-minimal # broken on macOS - using brew
-    # raco pkg install racket-langserver
-
-    # Fennel
-    luaPackages.fennel
-    # cargo install --git https://github.com/rydesun/fennel-language-server
-
-    # Janet
-    janet
-    jpm
-
-    # Erlang/Elixir
-    # elixir
-    # elixir_ls
+    # Ruby
+    cocoapods
+    ruby
 
     # TOML
     taplo-cli
@@ -185,7 +101,7 @@ in
     nodePackages.yaml-language-server
   ];
 
-  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
+  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/_darwin/karabiner/";
 
   programs.zsh = {
     enable = true;
@@ -200,63 +116,26 @@ in
       DOTS = "$HOME/dotfiles";
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
-
-      GOPATH = "$HOME/go";
-      GOPATH_BIN = "$GOPATH/bin";
-
-      ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
-      ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
-
-      RESCRIPT_LSP =
-        "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
-
-      MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
-
-      ROSWELL_BIN = "$HOME/.roswell/bin";
-      QLOT_BIN = "$HOME/.qlot/bin";
-
-      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
-
-      RPROMPT = " ";
     };
 
     envExtra = ''
-        bindkey -s ^f "
-      tmux-sessionizer\
-      n "
+      bindkey -s ^f "tmux-sessionizer\n"
     '';
 
     initExtra = ''
       export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
+
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
 
-      # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
+      export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 
       export PATH=/opt/homebrew/bin:$PATH
-      export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
 
-      export PATH=$GOPATH:$PATH
-      export PATH=$GOPATH_BIN:$PATH
+      export TMUXINATOR_CONFIG=$DOTS/.config/tmux/tmuxinator
 
-      export PATH=$DOTS_BIN:$PATH
-
-      export PATH=$RESCRIPT_LSP:$PATH
-
-      export PATH=$MACTEX_BIN:$PATH
-
-      export PATH=$ROSWELL_BIN:$PATH
-      export PATH=$QLOT_BIN:$PATH
-
-      # Gerbil
-      # export CC=gcc-13
-
-      # Odin
-      export PATH=/opt/homebrew/opt/llvm@14/bin:$PATH
-      export PATH=$ODIN_ROOT:$PATH
-      export PATH=$ODIN_TOOLS:$PATH
+      export RPROMPT=""
 
       # use the maximum amount of file descriptors
       ulimit -n 24576
@@ -266,8 +145,6 @@ in
       eval "$(zoxide init zsh)"
 
       eval "$(fnm env)"
-
-      eval "$(opam env)"
     '';
 
     shellAliases = {
@@ -279,8 +156,7 @@ in
 
       ip = "dig +short myip.opendns.com @resolver1.opendns.com";
 
-      perf = "for i in $(seq 1 10);
-      do /usr/bin/time $SHELL -i -c exit; done";
+      perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
 
       dre = "darwin-rebuild edit";
       drb = "nix build $HOME/dotfiles#darwinConfigurations.p1xelBook.system";
@@ -291,16 +167,16 @@ in
       vim = "nvim";
       vf = "nvim $(fzf)";
 
-      opameval = "eval $(opam env)";
+      os = "eval $(opam env)";
       ev = "npx esy nvim";
       evf = "npx esy nvim $(fzf)";
+
+      envd = "nvim -d .env .env.example";
 
       dots = "cd $HOME/dotfiles && nvim";
       nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
       nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";
       nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
-
-      note = "tmux split-window -h 'cd $HOME/library/Mobile\\\ Documents/iCloud~md~obsidian/Documents/p1xelHer0 && nvim $(fzf)'";
 
       fixusb = "sudo killall -STOP -c usbd";
 
@@ -399,14 +275,14 @@ in
     };
   };
 
-  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/_darwin/hammerspoon/init.lua";
+  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
 
-  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
+  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/zellij/config.kdl";
   programs.zellij = {
     enable = true;
   };
 
-  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmux.conf";
+  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -427,11 +303,11 @@ in
       "--color=preview-bg:-1"
       "--color=hl:reverse:3"
       "--color=fg+:7"
-      "--color=bg+:8"
+      "--color=bg+:18"
       "--color=gutter:-1"
       "--color=hl+:reverse:3"
       "--color=info:8"
-      "--color=border:8"
+      "--color=border:16"
       "--color=prompt:2"
       "--color=pointer:2"
       "--color=marker:2"
@@ -444,10 +320,7 @@ in
 
   xdg.configFile."theme".text = "dark";
 
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/lua";
-  xdg.configFile."nvim/fnl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/fnl";
-  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/after";
-  xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
+  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/nvim/lua";
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -460,8 +333,8 @@ in
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    userName = "p1xelHer0";
-    userEmail = "p_nagy@icloud.com";
+    userName = "Pontus Nagy";
+    userEmail = "pontus.nagy@savr.com";
     includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
     /**/
     /* extraConfig = { */
@@ -589,6 +462,7 @@ in
       # fontFamily = "BlexMono Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
       # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+
     in
     {
       enable = true;
@@ -629,31 +503,31 @@ in
 
           normal = {
             family = fontFamily;
-            style = "Regular";
+            style = "SemiBold";
           };
 
           bold = {
             family = fontFamily;
-            style = "Bold";
+            style = "ExtraBold";
           };
 
           italic = {
             family = fontFamily;
-            style = "Italic";
+            style = "SemiBold Italic";
           };
 
           bold_italic = {
             family = fontFamily;
-            style = "Bold Italic";
+            style = "ExtraBold Italic";
           };
 
           offset = {
-            x = 0;
+            x = 1;
             y = 4;
           };
 
           glyph_offset = {
-            x = 1;
+            x = 0;
             y = 2;
           };
         };
@@ -670,11 +544,9 @@ in
         ];
       };
     };
-
-  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
-  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/oxocarbon_dark.conf";
-  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/github_colorblind_dark.conf";
-  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kanagawa.conf";
+  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
+  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/oxocarbon_dark.conf";
+  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/github_colorblind_dark.conf";
   programs.kitty = {
     enable = true;
   };
