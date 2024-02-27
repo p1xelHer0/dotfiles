@@ -10,6 +10,11 @@ local M = {
   },
 
   {
+    "tpope/vim-sleuth",
+    event = "VeryLazy",
+  },
+
+  {
     "tpope/vim-projectionist",
     event = "VeryLazy",
     opts = {
