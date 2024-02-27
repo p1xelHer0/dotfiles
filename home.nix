@@ -1,15 +1,9 @@
-{ inputs, config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
 {
   home.stateVersion = "23.11";
-
-  nixpkgs = {
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
-  };
 
   home.packages = with pkgs; [
     # Fonts
@@ -24,23 +18,24 @@ in
     })
 
     # Tools
-    bat
+    # bat
     curl
-    delta
+    # delta
     entr
     eza
     fd
     ffmpeg
-    flyctl
+    # flyctl
     fswatch
     gh
-    gifsicle
+    # gifsicle
     gnused
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
     imagemagick
     jq
+    neofetch
     p7zip
     readline
     reattach-to-user-namespace
@@ -91,7 +86,7 @@ in
     # Web
     fnm
     # nodePackages.yarn
-    nodePackages.pnpm
+    # nodePackages.pnpm
     # nodePackages.vercel
     nodePackages.prettier
     nodePackages.eslint
@@ -110,6 +105,7 @@ in
     rustup
     cargo-watch
     cargo-nextest
+    wasmer
     # rust-analyzer - install this with Rustup instead
     # to make sure it matches the compiler
 
@@ -117,21 +113,21 @@ in
     # haskellPackages.ghcup
 
     # Elm
-    elmPackages.elm
-    elmPackages.elm-format
-    elmPackages.elm-language-server
-    elmPackages.elm-review
-    elmPackages.elm-test
+    # elmPackages.elm
+    # elmPackages.elm-format
+    # elmPackages.elm-language-server
+    # elmPackages.elm-review
+    # elmPackages.elm-test
 
     # BQN
-    cbqn
+    # cbqn
 
     # Python
     # nodePackages.pyright
     # python310Packages.autopep8
 
     # Go
-    # go
+    go
     # gopls
     # go install github.com/mattn/efm-langserver@latest
     # go install github.com/segmentio/golines@latest
@@ -207,6 +203,9 @@ in
       ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
       ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
 
+      ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
+      ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
+
       RESCRIPT_LSP =
         "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
 
@@ -254,9 +253,12 @@ in
       # export CC=gcc-13
 
       # Odin
-      export PATH=/opt/homebrew/opt/llvm@14/bin:$PATH
+      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
       export PATH=$ODIN_ROOT:$PATH
       export PATH=$ODIN_TOOLS:$PATH
+
+      export PATH=$ZIGUP:$PATH
+      export PATH=$ZLS:$PATH
 
       # use the maximum amount of file descriptors
       ulimit -n 24576
@@ -334,12 +336,12 @@ in
       scan_timeout = 10;
 
       character = {
-        success_symbol = "[λ](bold green)";
-        error_symbol = "[λ](bold red)";
+        success_symbol = "[;](bold green)";
+        error_symbol = "[;](bold red)";
       };
 
       format = ''
-        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
       directory = { read_only = "X"; };
@@ -354,7 +356,7 @@ in
       git_status = {
         format = "$all_status$ahead_behind ";
 
-        conflicted = "";
+        conflicted = "[=](red)";
 
         ahead = "[>](yellow)";
         behind = "[<](yellow)";
@@ -367,7 +369,7 @@ in
         renamed = ''["](green)'';
         deleted = "[-](red)";
 
-        stashed = "[# ](bold blue)";
+        stashed = "[#](bold blue)";
       };
 
       cmd_duration = {
@@ -390,11 +392,16 @@ in
         symbol = "[rust](red)";
       };
 
+      zig = {
+        format = "[$symbol($version)]($style) ";
+        symbol = "[zig](yellow)";
+      };
+
       nix_shell = {
         format = "[$symbol$state( ($name))]($style) ";
         symbol = "[nix](blue)";
-        impure_msg = "i";
-        pure_msg = "p";
+        impure_msg = "";
+        pure_msg = "";
       };
     };
   };

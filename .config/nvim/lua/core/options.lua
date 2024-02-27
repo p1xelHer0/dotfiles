@@ -143,3 +143,5 @@ o.previewheight   = 12
 o.splitbelow      = true
 o.splitright      = true
 -- stylua: ignore end
+
+require("core.theme").setup()

@@ -40,7 +40,9 @@ local ensure_installed = {
   "tsx",
   "typescript",
   "vim",
+  "wgsl",
   "yaml",
+  "zig",
 }
 
 local M = {
@@ -59,7 +61,7 @@ local M = {
       ensure_installed = ensure_installed,
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true,
+        additional_vim_regex_highlighting = false,
       },
       indent = {
         enable = true,
@@ -198,6 +200,7 @@ local M = {
   },
 
   {
+    enabled = true,
     "m-demare/hlargs.nvim",
     event = function()
       return require("internal.events").lazyFile
@@ -247,25 +250,6 @@ local M = {
       return require("internal.events").lazyFile
     end,
     opts = {},
-  },
-
-  {
-    "hiphish/rainbow-delimiters.nvim",
-    event = function()
-      return require("internal.events").lazyFile
-    end,
-    opts = {
-      strategy = {
-        -- ...
-      },
-      query = {
-        -- ...
-      },
-    },
-    config = function(_, opts)
-      require("rainbow-delimiters.setup").setup(opts)
-      -- vim.api.nvim_set_hl(0, "@punctuation.bracket.scheme", { link = "DiagnosticUnderlineError" })
-    end,
   },
 }
 

@@ -40,3 +40,5 @@ k("n", "<Leader>L", function()
 end, opts)
 
 k("n", "<Leader>0", ":Inspect<CR>", opts)
+
+k("n", "<Leader>s", ":!make run<CR>", opts)

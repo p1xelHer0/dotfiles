@@ -10,55 +10,6 @@ local M = {
   },
 
   {
-    enabled = false,
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
-        "S",
-        mode = { "n", "o", "x" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash Treesitter",
-      },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Treesitter Search",
-      },
-      {
-        "<C-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
-      },
-    },
-  },
-
-  {
     "tpope/vim-projectionist",
     event = "VeryLazy",
     opts = {
@@ -84,15 +35,13 @@ local M = {
         [".env*.local"] = {
           alternate = ".env{}",
         },
-      },
 
-      -- OCaml
-      ["dune*|*.opam|esy.json"] = {
-        ["**.ml"] = {
-          alternate = "{}.mli",
-        },
+        -- OCaml
         ["**.mli"] = {
           alternate = "{}.ml",
+        },
+        ["**.ml"] = {
+          alternate = "{}.mli",
         },
       },
 
@@ -147,18 +96,19 @@ local M = {
         quiet = true,
       },
       formatters_by_ft = {
-        javascript = { "prettierd" },
-        css = { "prettierd" },
-        sass = { "prettierd" },
-        scss = { "prettierd" },
-        sh = { "shfmt" },
-        odin = { "odinfmt" },
-        elm = { "elm-format" },
-        lua = { "stylua" },
+        -- javascript = { "prettierd" },
+        -- css = { "prettierd" },
+        -- sass = { "prettierd" },
+        -- scss = { "prettierd" },
+        -- sh = { "shfmt" },
+        -- odin = { "odinfmt" },
+        -- zig = { "zig fmt" },
+        -- elm = { "elm-format" },
+        -- lua = { "stylua" },
         -- markdown = { "mdformat" },
-        nix = { "nixformat" },
-        ocaml = { "ocamlformat" },
-        rust = { "rustfmt" },
+        -- nix = { "nixformat" },
+        -- ocaml = { "ocamlformat" },
+        -- rust = { "rustfmt" },
       },
     },
     config = function(_, opts)
@@ -195,7 +145,7 @@ local M = {
       "Trouble",
     },
     opts = {
-      severity = vim.diagnostic.severity.ERROR,
+      -- severity = vim.diagnostic.severity.ERROR,
       icons = false,
       use_diagnostic_signs = true,
     },

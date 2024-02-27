@@ -32,5 +32,10 @@ return {
 
     --- Common Lisp
     -- vim.g["conjure#client#common_lisp#swank#connection#default_port"] = 50005
+
+    -- Gambit
+    vim.g["conjure#client#scheme#stdio#command"] = "gsi"
+    vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "%d*> "
+    vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
   end,
 }

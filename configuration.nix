@@ -122,20 +122,20 @@ in
 
     onActivation = {
       upgrade = false;
-      # cleanup = "zap";
+      cleanup = "zap";
     };
 
     taps = [
       "DevCleaner/devcleaner"
-      "cyclone-scheme/cyclone"
+      # "cyclone-scheme/cyclone"
       "fsouza/prettierd"
       "homebrew/bundle"
       "homebrew/cask"
       "homebrew/cask-versions"
       "homebrew/core"
-      "osx-cross/arm"
-      "osx-cross/avr"
-      "qmk/qmk"
+      # "osx-cross/arm"
+      # "osx-cross/avr"
+      # "qmk/qmk"
     ];
 
     brews = [
@@ -143,22 +143,26 @@ in
       "fsouza/prettierd/prettierd"
 
       # QMK
-      "qmk/qmk/qmk"
+      # "qmk/qmk/qmk"
       # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
-      "avr-gcc@8"
-      "arm-gcc-bin@8"
+      # "avr-gcc@8"
+      # "arm-gcc-bin@8"
 
-      "llvm@14"
+      "openssl@3"
+      "pkg-config"
+      "llvm@17"
       "gcc@13"
       "ncurses"
+      "raylib"
       "sdl2"
       "sdl2_image"
       "sdl2_mixer"
       "sdl2_ttf"
       "sdl2_net"
+      "glfw"
 
       "roswell"
-      "cyclone-scheme/cyclone/cyclone-bootstrap"
+      # "cyclone-scheme/cyclone/cyclone-bootstrap"
     ];
 
     casks = [
@@ -169,6 +173,7 @@ in
       "element"
       "firefox"
       "firefox-developer-edition"
+      "godot"
       "google-chrome"
       "gpg-suite-no-mail"
       "grandperspective"
@@ -181,6 +186,7 @@ in
       "obsidian"
       "orbstack"
       "racket"
+      "rectangle"
       "retroarch-metal"
       "runelite"
       "secretive"

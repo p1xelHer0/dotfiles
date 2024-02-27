@@ -28,9 +28,6 @@ end
 
 function M.on_attach(client, bufnr)
   require("keymap.lsp").setup(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
-    -- require("navic-nvim").attach(client, bufnr)
-  end
 
   -- vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

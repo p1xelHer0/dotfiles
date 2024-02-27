@@ -71,6 +71,23 @@ local M = {
     ft = ft,
     build = "cargo build --release",
   },
+
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    ft = ft,
+    opts = {
+      strategy = {
+        -- ...
+      },
+      query = {
+        -- ...
+      },
+    },
+    config = function(_, opts)
+      require("rainbow-delimiters.setup").setup(opts)
+      -- vim.api.nvim_set_hl(0, "@punctuation.bracket.scheme", { link = "DiagnosticUnderlineError" })
+    end,
+  },
 }
 
 return M
