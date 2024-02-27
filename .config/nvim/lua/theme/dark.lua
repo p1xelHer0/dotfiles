@@ -42,7 +42,6 @@ local C = {
 -- stylua: ignore end
 
 --- @diagnostic disable: undefined-global
---  selene: allow(undefined_variable)
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {

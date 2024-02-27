@@ -58,7 +58,6 @@ in
     rnix-lsp
 
     # Lua
-    selene
     stylua
     sumneko-lua-language-server
 

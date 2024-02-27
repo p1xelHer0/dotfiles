@@ -276,24 +276,13 @@ local M = {
       local completion = null_ls.builtins.completion
       local diagnostics = null_ls.builtins.diagnostics
       local formatting = null_ls.builtins.formatting
-      -- local hover = null_ls.builtins.hover
 
       local sources = {
+        formatting.stylua,
+        formatting.prettierd,
         actions.gitsigns,
-        actions.proselint.with({
-          filetypes = { "markdown", "tex" },
-          command = "proselint",
-          args = { "--json" },
-        }),
         actions.refactoring,
-
         completion.spell,
-
-        diagnostics.yamllint,
-        diagnostics.misspell.with({
-          filetypes = { "markdown", "text", "txt" },
-          args = { "$FILENAME" },
-        }),
         diagnostics.write_good.with({
           filetypes = { "markdown", "tex", "" },
           extra_filetypes = { "txt", "text" },
@@ -306,48 +295,16 @@ local M = {
           command = "proselint",
           args = { "--json" },
         }),
-
-        formatting.elm_format,
-        formatting.trim_newlines,
-        formatting.trim_whitespace,
+        actions.proselint.with({
+          filetypes = { "markdown", "tex" },
+          command = "proselint",
+          args = { "--json" },
+        }),
       }
-
-      local function add_builtin_if_exists(bin, type)
-        if vim.fn.exepath(bin) ~= "" then
-          table.insert(sources, null_ls.builtins[type][bin])
-        end
-      end
-
-      local d = "diagnostics"
-      local ca = "code_actions"
-      local fmt = "formatting"
-
-      add_builtin_if_exists("eslint_d", d)
-      add_builtin_if_exists("eslint_d", ca)
-      add_builtin_if_exists("selene", d)
-      add_builtin_if_exists("shellcheck", d)
-
-      add_builtin_if_exists("ocamlformat", fmt)
-      add_builtin_if_exists("prettierd", fmt)
-      add_builtin_if_exists("mdformat", fmt)
-      add_builtin_if_exists("rustfmt", fmt)
-      add_builtin_if_exists("shfmt", fmt)
-      add_builtin_if_exists("stylua", fmt)
 
       local config = {
         sources = sources,
         fallback_severity = vim.diagnostic.severity.WARN,
-        root_dir = lspconfig.util.root_pattern(
-          "*.opam",
-          ".git",
-          ".neoconf.json",
-          ".null-ls-root",
-          "Makefile",
-          "dune-project",
-          "esy.json",
-          "package.json",
-          "tsconfig.json"
-        ),
         on_attach = on_attach,
       }
 

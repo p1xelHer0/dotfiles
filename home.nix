@@ -79,7 +79,6 @@ in
     rnix-lsp
 
     # Lua
-    selene
     stylua
     sumneko-lua-language-server
 
@@ -457,7 +456,7 @@ in
   xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
     extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
