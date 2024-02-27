@@ -90,38 +90,15 @@ local M = {
       },
     },
     opts = {
+      notify_on_error = false,
       format_on_save = {
         timeout_ms = 500,
         lsp_fallback = true,
         quiet = true,
       },
-      formatters_by_ft = {
-        -- javascript = { "prettierd" },
-        -- css = { "prettierd" },
-        -- sass = { "prettierd" },
-        -- scss = { "prettierd" },
-        -- sh = { "shfmt" },
-        -- odin = { "odinfmt" },
-        -- zig = { "zig fmt" },
-        -- elm = { "elm-format" },
-        -- lua = { "stylua" },
-        -- markdown = { "mdformat" },
-        -- nix = { "nixformat" },
-        -- ocaml = { "ocamlformat" },
-        -- rust = { "rustfmt" },
-      },
     },
     config = function(_, opts)
-      opts.formatters = opts.formatters or {}
-      for f, o in pairs(opts.formatters) do
-        local ok, formatter = pcall(require, "conform.formatters." .. f)
-        opts.formatters[f] = vim.tbl_deep_extend("force", {}, ok and formatter or {}, o)
-      end
-
       require("conform").setup(opts)
-    end,
-    init = function()
-      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
 
