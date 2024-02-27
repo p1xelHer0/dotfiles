@@ -8,10 +8,6 @@ function M.get_lazy_path()
   return vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 end
 
-function M.get_hotpot_path()
-  return vim.fn.stdpath("data") .. "/lazy/hotpot.nvim"
-end
-
 function M.get_icons()
   local error = "🚨"
   local warn = "🚧"
