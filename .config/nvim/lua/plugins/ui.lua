@@ -1,13 +1,7 @@
 local M = {
   {
-    enable = false,
-    -- dir = "/Users/p1xelher0/code/github/p1xelHer0/oxocarbon.nvim",
     "nyoom-engineering/oxocarbon.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function(_, opts)
-      -- vim.cmd([[colorscheme oxocarbon]])
-    end,
+    event = "VeryLazy",
   },
 
   {
@@ -16,12 +10,17 @@ local M = {
   },
 
   {
-    "rebelot/kanagawa.nvim",
+    "sainnhe/everforest",
     event = "VeryLazy",
+  },
+
+  {
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     config = function(_, opts)
       vim.cmd([[colorscheme kanagawa]])
+      require("core.theme").setup()
     end,
   },
 
