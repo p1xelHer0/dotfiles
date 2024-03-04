@@ -544,6 +544,7 @@ in
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
   xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/oxocarbon_dark.conf";
   xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/github_colorblind_dark.conf";
+  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kanagawa.conf";
   programs.kitty = {
     enable = true;
   };
