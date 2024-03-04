@@ -17,6 +17,7 @@ function M.get_icons()
   local warn = "🚧"
   local info = "🧵"
   local hint = "🍬"
+  local ok = "🥳"
   local done = "🎉"
   local working = ""
   local removed = "🗑"
@@ -39,6 +40,7 @@ function M.get_icons()
       Warn = warn,
       Info = info,
       Hint = hint,
+      Ok = ok,
     },
     severity = {
       error,

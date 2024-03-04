@@ -111,6 +111,10 @@ local M = {
         },
       })
 
+      nvim_lspconfig.wgsl_analyzer.setup({
+        cmd = { "/Users/p1xelher0/.cargo/bin/wgsl_analyzer" },
+      })
+
       nvim_lspconfig.rescriptls.setup({
         capabilities = capabilities,
         cmd = {
@@ -148,17 +152,17 @@ local M = {
         on_attach = on_attach,
       })
 
-      nvim_lspconfig.clangd.setup({
-        capabilities = capabilities,
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--suggest-missing-includes",
-          "--clang-tidy",
-          "--header-insertion=iwyu",
-        },
-        on_attach = on_attach,
-      })
+      -- nvim_lspconfig.clangd.setup({
+      --   capabilities = capabilities,
+      --   cmd = {
+      --     "clangd",
+      --     "--background-index",
+      --     "--suggest-missing-includes",
+      --     "--clang-tidy",
+      --     "--header-insertion=iwyu",
+      --   },
+      --   on_attach = on_attach,
+      -- })
 
       -- cargo install --git https://github.com/rydesun/fennel-language-server
       require("lspconfig.configs").fennel_language_server = {
@@ -240,11 +244,15 @@ local M = {
         "elixirls",
         "elmls",
         "fennel_language_server",
+        "glsl_analyzer",
         "cl_lsp",
+        "ccls",
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
+        "ols",
         -- "racket_langserver", -- raco pkg install racket-langserver
         "rnix",
         "taplo",
+        "zls",
       }
 
       for _, server in ipairs(servers) do
@@ -348,10 +356,9 @@ local M = {
   },
 
   {
-    enabled = true,
-    "simrat39/rust-tools.nvim",
+    "mrcjkb/rustaceanvim",
+    version = "^3",
     dependencies = {
-      { "neovim/nvim-lspconfig" },
       {
         "Saecki/crates.nvim",
         opts = {
@@ -364,51 +371,49 @@ local M = {
     },
     ft = "rust",
     event = "BufEnter Cargo.toml",
-    config = function()
-      -- check ~/.vscode/extensions/ for correct version
-      local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/"
-      local codelldb_path = extension_path .. "adapter/codelldb"
-      local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-
-      require("rust-tools").setup({
-        server = {
-          cmd = {
-            "/Users/p1xelher0/.rustup/toolchains/nightly-aarch64-apple-darwin/bin/rust-analyzer",
-          },
-          -- cmd = { "/nix/store/bc23kmwxgwlyvpxdnfr92n2kw7j67im8-rust-default-1.68.0-nightly-2022-12-13/bin/rust-analyzer" },
-          capabilities = require("internal.lsp").capabilities(),
-          -- on_attach = require("internal.lsp").on_attach,
-          standalone = false,
-
-          settings = {
-            ["rust-analyzer"] = {
-              assist = {
-                importGranularity = "module",
-                importPrefix = "by_self",
+    opts = {
+      tools = {},
+      server = {
+        on_attach = function(client, bufnr)
+          local on_attach = require("internal.lsp").on_attach
+          on_attach(client, bufnr)
+        end,
+        settings = {
+          ["rust-analyzer"] = {
+            assist = {
+              importGranularity = "module",
+              importPrefix = "by_self",
+            },
+            cargo = {
+              loadOutDirsFromCheck = true,
+            },
+            checkOnSave = {
+              allFeatures = true,
+              overrideCommand = {
+                "cargo",
+                "clippy",
+                "--workspace",
+                "--message-format=json",
+                "--all-features",
               },
-              cargo = {
-                loadOutDirsFromCheck = true,
-              },
-              checkOnSave = {
-                allFeatures = true,
-                overrideCommand = {
-                  "cargo",
-                  "clippy",
-                  "--workspace",
-                  "--message-format=json",
-                  "--all-features",
-                },
-              },
-              procMacro = {
-                enable = true,
-              },
+            },
+            procMacro = {
+              enable = true,
             },
           },
         },
-        dap = {
-          adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-        },
-      })
+      },
+    },
+    config = function(_, opts)
+      vim.g.rustaceanvim = opts
+    end,
+  },
+
+  {
+    "https://gitlab.com/yorickpeterse/nvim-dd.git",
+    opts = {},
+    config = function(_, opts)
+      require("dd").setup(opts)
     end,
   },
 

@@ -1,20 +1,15 @@
-{ inputs, config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
 {
   home.stateVersion = "23.11";
 
-  nixpkgs = {
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
-  };
-
   home.packages = with pkgs; [
     # Fonts
     (nerdfonts.override {
       fonts = [
+        "Hack"
         "IBMPlexMono"
         "IosevkaTerm"
         "JetBrainsMono"
@@ -23,24 +18,24 @@ in
     })
 
     # Tools
-    bat
-    cmake
+    # bat
     curl
-    delta
+    # delta
     entr
     eza
     fd
     ffmpeg
-    flyctl
+    # flyctl
     fswatch
     gh
-    gifsicle
+    # gifsicle
     gnused
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
     imagemagick
     jq
+    neofetch
     p7zip
     readline
     reattach-to-user-namespace
@@ -59,8 +54,18 @@ in
     zoxide
 
     # C/C++
-    # ncurses6
-    gcc
+    ncurses6
+    # cmake
+    # gcc13
+    ccls
+    # vscode-extensions.vadimcn.vscode-lldb
+
+    # Zig
+    # zig
+
+    # Odin
+    # odin
+    # ols
 
     # Writing
     ispell
@@ -81,7 +86,7 @@ in
     # Web
     fnm
     # nodePackages.yarn
-    nodePackages.pnpm
+    # nodePackages.pnpm
     # nodePackages.vercel
     nodePackages.prettier
     nodePackages.eslint
@@ -100,28 +105,29 @@ in
     rustup
     cargo-watch
     cargo-nextest
+    wasmer
     # rust-analyzer - install this with Rustup instead
     # to make sure it matches the compiler
 
-    # C/C++/Rust
-    # vscode-extensions.vadimcn.vscode-lldb
+    # Haskell
+    # haskellPackages.ghcup
 
     # Elm
-    elmPackages.elm
-    elmPackages.elm-format
-    elmPackages.elm-language-server
-    elmPackages.elm-review
-    elmPackages.elm-test
+    # elmPackages.elm
+    # elmPackages.elm-format
+    # elmPackages.elm-language-server
+    # elmPackages.elm-review
+    # elmPackages.elm-test
 
     # BQN
-    cbqn
+    # cbqn
 
     # Python
     # nodePackages.pyright
     # python310Packages.autopep8
 
     # Go
-    # go
+    go
     # gopls
     # go install github.com/mattn/efm-langserver@latest
     # go install github.com/segmentio/golines@latest
@@ -139,6 +145,10 @@ in
     # gerbil # brew
     # gerbil-unstable # brew
     # cyclone-scheme # brew
+    chicken
+    gambit
+    guile
+    # mitscheme
 
     # Clojure
     # clojure
@@ -190,6 +200,12 @@ in
       GOPATH = "$HOME/go";
       GOPATH_BIN = "$GOPATH/bin";
 
+      ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
+      ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
+
+      ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
+      ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
+
       RESCRIPT_LSP =
         "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
 
@@ -213,11 +229,14 @@ in
       export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
+
+      # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      export PKG_CONFIG_PATH=" /opt/homebrew/opt/openssl@3/lib/pkgconfig"
+      export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
       export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
+
       export PATH=$GOPATH:$PATH
       export PATH=$GOPATH_BIN:$PATH
 
@@ -230,14 +249,23 @@ in
       export PATH=$ROSWELL_BIN:$PATH
       export PATH=$QLOT_BIN:$PATH
 
+      # Gerbil
+      # export CC=gcc-13
+
+      # Odin
+      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
+      export PATH=$ODIN_ROOT:$PATH
+      export PATH=$ODIN_TOOLS:$PATH
+
+      export PATH=$ZIGUP:$PATH
+      export PATH=$ZLS:$PATH
+
       # use the maximum amount of file descriptors
       ulimit -n 24576
 
       source "$DOTS_BIN/fzf_git"
 
       eval "$(zoxide init zsh)"
-
-      eval "$(direnv hook zsh)"
 
       eval "$(fnm env)"
 
@@ -308,12 +336,12 @@ in
       scan_timeout = 10;
 
       character = {
-        success_symbol = "[λ](bold green)";
-        error_symbol = "[λ](bold red)";
+        success_symbol = "[;](bold green)";
+        error_symbol = "[;](bold red)";
       };
 
       format = ''
-        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
       directory = { read_only = "X"; };
@@ -328,7 +356,7 @@ in
       git_status = {
         format = "$all_status$ahead_behind ";
 
-        conflicted = "";
+        conflicted = "[=](red)";
 
         ahead = "[>](yellow)";
         behind = "[<](yellow)";
@@ -341,7 +369,7 @@ in
         renamed = ''["](green)'';
         deleted = "[-](red)";
 
-        stashed = "[# ](bold blue)";
+        stashed = "[#](bold blue)";
       };
 
       cmd_duration = {
@@ -364,11 +392,16 @@ in
         symbol = "[rust](red)";
       };
 
+      zig = {
+        format = "[$symbol($version)]($style) ";
+        symbol = "[zig](yellow)";
+      };
+
       nix_shell = {
         format = "[$symbol$state( ($name))]($style) ";
         symbol = "[nix](blue)";
-        impure_msg = "i";
-        pure_msg = "p";
+        impure_msg = "";
+        pure_msg = "";
       };
     };
   };
@@ -648,6 +681,7 @@ in
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
   xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/oxocarbon_dark.conf";
   xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/github_colorblind_dark.conf";
+  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kanagawa.conf";
   programs.kitty = {
     enable = true;
   };
