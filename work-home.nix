@@ -5,12 +5,6 @@ in
 {
   home.stateVersion = "23.11";
 
-  nixpkgs = {
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
-  };
-
   home.packages = with pkgs; [
     # Fonts
     (nerdfonts.override {
@@ -70,6 +64,7 @@ in
 
     # Web
     fnm
+    biome
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
@@ -88,6 +83,7 @@ in
     # PHP
     php82
     php82Packages.composer
+    phpactor
 
     # Ruby
     cocoapods
@@ -171,6 +167,7 @@ in
       ev = "npx esy nvim";
       evf = "npx esy nvim $(fzf)";
 
+      yamld = "nvim -d ./.docker/local/docker-compose.yml ./.docker/local/docker-compose.yml.example";
       envd = "nvim -d .env .env.example";
 
       dots = "cd $HOME/dotfiles && nvim";
@@ -323,7 +320,7 @@ in
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/nvim/lua";
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    # package = pkgs.neovim-nightly;
     extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
