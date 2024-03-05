@@ -38,9 +38,9 @@
                   ./home.nix
                 ];
 
-                nixpkgs.overlays = with inputs; [
-                  neovim-nightly-overlay.overlay
-                ];
+                # nixpkgs.overlays = with inputs; [
+                #   neovim-nightly-overlay.overlay
+                # ];
               };
             }
           ];

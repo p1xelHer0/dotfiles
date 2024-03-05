@@ -77,7 +77,7 @@ o.breakindentopt  = "shift:2,min:20"
 o.number          = false
 o.relativenumber  = false
 o.signcolumn      = "no"
-o.cursorline      = false
+o.cursorline      = true
 
 o.winwidth        = 30
 o.winminwidth     = 10

@@ -85,22 +85,20 @@ local M = {
     event = function()
       return require("internal.events").lazyFile
     end,
-
     keys = {
       {
         "<Leader><Leader>f",
         function()
-          require("conform").format()
+          require("conform").format({
+            timeout_ms = 500,
+            lsp_fallback = true,
+            quiet = true,
+          })
         end,
       },
     },
     opts = {
       notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-        quiet = true,
-      },
     },
     config = function(_, opts)
       require("conform").setup(opts)

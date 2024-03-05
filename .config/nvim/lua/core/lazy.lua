@@ -5,7 +5,7 @@ require("lazy").setup({
   lockfile = require("core.config").get_dotfiles_path() .. "/.config/nvim/lazy-lock.json",
   install = {
     colorscheme = {
-      "kanagawa",
+      "github_dark_colorblind",
     },
   },
   change_detection = {

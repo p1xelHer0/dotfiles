@@ -49,7 +49,6 @@ local M = {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     build = ":TSUpdate",
@@ -65,24 +64,6 @@ local M = {
       },
       indent = {
         enable = true,
-      },
-      refactor = {
-        navigation = {
-          enable = true,
-          keymaps = {
-            goto_definition = "gnd",
-            list_definitions = "gnD",
-            list_definitions_toc = "gO",
-            goto_next_usage = "<a-*>",
-            goto_previous_usage = "<a-#>",
-          },
-        },
-        smart_rename = {
-          enable = true,
-          keymaps = {
-            smart_rename = "grr",
-          },
-        },
       },
       textobjects = {
         --   select = {
@@ -193,44 +174,33 @@ local M = {
 
   {
     "windwp/nvim-ts-autotag",
-    event = function()
-      return require("internal.events").lazyFile
-    end,
+    ft = {
+      "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "tsx",
+      "jsx",
+      "rescript",
+      "xml",
+      "php",
+      "markdown",
+      "astro",
+      "glimmer",
+      "handlebars",
+      "hbs",
+    },
     opts = {},
   },
 
   {
-    enabled = true,
-    "m-demare/hlargs.nvim",
-    event = function()
-      return require("internal.events").lazyFile
-    end,
-    config = function(_, opts)
-      vim.api.nvim_create_augroup("LspAttach_hlargs", { clear = true })
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = "LspAttach_hlargs",
-        callback = function(args)
-          if not (args.data and args.data.client_id) then
-            return
-          end
-
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          local capabilities = client.server_capabilities
-          if capabilities.semanticTokensProvider and capabilities.semanticTokensProvider.full then
-            require("hlargs").disable_buf(args.buf)
-          end
-        end,
-      })
-
-      require("hlargs").setup(opts)
-    end,
-  },
-
-  {
-    enabled = false,
     "nvim-neotest/neotest",
     dependencies = {
       "rouge8/neotest-rust",
+      "lawrence-laz/neotest-zig",
     },
     config = function()
       require("keymap.neotest").setup()
@@ -239,6 +209,7 @@ local M = {
           require("neotest-rust")({
             args = { "--no-capture" },
           }),
+          require("neotest-zig"),
         },
       })
     end,

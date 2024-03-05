@@ -58,6 +58,7 @@ in
     # cmake
     # gcc13
     ccls
+    emscripten
     # vscode-extensions.vadimcn.vscode-lldb
 
     # Zig
