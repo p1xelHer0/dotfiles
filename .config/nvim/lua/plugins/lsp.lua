@@ -15,21 +15,6 @@ local M = {
       },
       { "hrsh7th/cmp-nvim-lsp" },
       { "j-hui/fidget.nvim" },
-      -- {
-      --   "SmiteshP/nvim-navic",
-      --   dependencies = {
-      --     "MunifTanjim/nui.nvim",
-      --   },
-      --   config = true,
-      -- },
-      -- {
-      --   "SmiteshP/nvim-navbuddy",
-      --   dependencies = {
-      --     "MunifTanjim/nui.nvim",
-      --   },
-      --   cmd = "Navbuddy",
-      --   config = true,
-      -- },
       { "jose-elias-alvarez/typescript.nvim" },
     },
     event = { "BufReadPre", "BufNewFile" },
@@ -251,7 +236,7 @@ local M = {
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
         "ols",
         -- "racket_langserver", -- raco pkg install racket-langserver
-        "rnix",
+        "nil_ls",
         "taplo",
         "zls",
       }

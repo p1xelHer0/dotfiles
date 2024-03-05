@@ -55,7 +55,7 @@ in
 
     # Nix
     nixfmt
-    rnix-lsp
+    nil
 
     # Lua
     stylua

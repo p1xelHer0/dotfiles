@@ -85,20 +85,13 @@ local M = {
     event = function()
       return require("internal.events").lazyFile
     end,
-    keys = {
-      {
-        "<Leader><Leader>f",
-        function()
-          require("conform").format({
-            timeout_ms = 500,
-            lsp_fallback = true,
-            quiet = true,
-          })
-        end,
-      },
-    },
     opts = {
       notify_on_error = false,
+      formatters_by_ft = {
+        lua = { "stylua" },
+        elm = { "elm_format" },
+      },
+      format_on_save = { timeout_ms = 500, lsp_fallback = true },
     },
     config = function(_, opts)
       require("conform").setup(opts)

@@ -7,6 +7,10 @@ windows:
       layout: even-horizontal
       panes:
         - nvim
+        - npm run elm:watch
+
+  - frontier-docker:
+      panes:
         - npm run docker
 
   - api:

@@ -68,6 +68,10 @@ local M = {
           end,
         },
         sources = sources,
+        -- Have to think about this one
+        -- completion = {
+        --   autocomplete = false,
+        -- },
       })
 
       cmp.setup.filetype("gitcommit", {

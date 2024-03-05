@@ -73,6 +73,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "hiphish/rainbow-delimiters.nvim",
     ft = ft,
     opts = {

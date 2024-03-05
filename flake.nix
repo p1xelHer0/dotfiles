@@ -25,7 +25,7 @@
       };
     in
     {
-      darwinConfigurations = rec {
+      darwinConfigurations = {
         p1xelBook = darwinSystem {
           system = "aarch64-darwin";
           modules = [
@@ -38,9 +38,9 @@
                   ./home.nix
                 ];
 
-                # nixpkgs.overlays = with inputs; [
-                #   neovim-nightly-overlay.overlay
-                # ];
+                nixpkgs.overlays = [
+                  neovim-nightly-overlay.overlay
+                ];
               };
             }
           ];
@@ -53,7 +53,15 @@
             home-manager.darwinModules.home-manager
             {
               nixpkgs = nixpkgsConfig;
-              home-manager.users.pontusnagy = import ./work-home.nix;
+              home-manager.users.pontusnagy = {
+	      	imports = [
+			./work-home.nix
+		];
+
+		nixpkgs.overlays = [
+                  neovim-nightly-overlay.overlay
+                ];
+ 	      };
             }
           ];
         };

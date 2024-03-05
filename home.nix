@@ -77,7 +77,7 @@ in
     cachix
     niv
     nixfmt
-    rnix-lsp
+    nil
 
     # Lua
     stylua
