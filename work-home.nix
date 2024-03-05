@@ -63,6 +63,7 @@ in
 
     # Web
     fnm
+    biome
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
@@ -81,6 +82,7 @@ in
     # PHP
     php82
     php82Packages.composer
+    phpactor
 
     # Ruby
     cocoapods
@@ -164,6 +166,7 @@ in
       ev = "npx esy nvim";
       evf = "npx esy nvim $(fzf)";
 
+      yamld = "nvim -d ./.docker/local/docker-compose.yml ./.docker/local/docker-compose.yml.example";
       envd = "nvim -d .env .env.example";
 
       dots = "cd $HOME/dotfiles && nvim";
@@ -316,6 +319,7 @@ in
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/nvim/lua";
   programs.neovim = {
     enable = true;
+    # package = pkgs.neovim-nightly;
     extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
@@ -539,6 +543,7 @@ in
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
   xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/oxocarbon_dark.conf";
   xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/github_colorblind_dark.conf";
+  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kanagawa.conf";
   programs.kitty = {
     enable = true;
   };
