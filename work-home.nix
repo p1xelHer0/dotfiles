@@ -48,13 +48,15 @@ in
     zola
     zoxide
 
+    # ngrok
+
     # Writing
     ispell
     nodePackages.write-good
     proselint
 
     # Nix
-    nixfmt
+    nixpkgs-fmt
     nil
 
     # Lua

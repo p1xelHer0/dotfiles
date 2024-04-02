@@ -17,4 +17,4 @@ windows:
       root: ~/code/github/savrcom/laravel-data-api
       layout: even-horizontal
       panes:
-        - ./savr up
+        - ./savr up-all
