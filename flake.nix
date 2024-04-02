@@ -54,14 +54,14 @@
             {
               nixpkgs = nixpkgsConfig;
               home-manager.users.pontusnagy = {
-	      	imports = [
-			./work-home.nix
-		];
+                imports = [
+                  ./work-home.nix
+                ];
 
-		nixpkgs.overlays = [
+                nixpkgs.overlays = [
                   neovim-nightly-overlay.overlay
                 ];
- 	      };
+              };
             }
           ];
         };

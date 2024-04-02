@@ -227,6 +227,7 @@ local M = {
 
       local servers = {
         "clojure_lsp",
+        "biome",
         "elixirls",
         "elmls",
         "fennel_language_server",

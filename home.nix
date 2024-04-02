@@ -76,7 +76,7 @@ in
     # Nix
     cachix
     niv
-    nixfmt
+    nixpkgs-fmt
     nil
 
     # Lua
