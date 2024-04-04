@@ -9,6 +9,8 @@ o.syntax          = "off"
 
 o.shortmess       = "aoIcFW"
 
+o.tabstop         = 4
+
 o.fillchars = {
   stl             = " ",
   stlnc           = " ",
@@ -74,9 +76,9 @@ o.showmode        = false
 o.scrolloff       = scrolloff
 o.sidescrolloff   = scrolloff
 o.breakindentopt  = "shift:2,min:20"
-o.number          = false
-o.relativenumber  = false
-o.signcolumn      = "no"
+o.number          = true
+o.relativenumber  = true
+o.signcolumn      = "yes"
 o.cursorline      = true
 
 o.winwidth        = 30

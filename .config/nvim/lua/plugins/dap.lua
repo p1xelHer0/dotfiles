@@ -5,6 +5,9 @@ local M = {
     "theHamsta/nvim-dap-virtual-text",
     {
       "rcarriga/nvim-dap-ui",
+      dependencies = {
+        "nvim-neotest/nvim-nio",
+      },
       opts = {},
       config = function(_, opts)
         require("dapui").setup(opts)
@@ -47,7 +50,6 @@ local M = {
       runInTerminal = false,
     }
 
-
     dap.configurations.zig = {
       lldb_zig,
     }
@@ -55,7 +57,6 @@ local M = {
     dap.configurations.odin = {
       lldb_odin,
     }
-
 
     require("keymap.dap").setup()
   end,

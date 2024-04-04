@@ -354,6 +354,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "https://gitlab.com/yorickpeterse/nvim-dd.git",
     opts = {},
     config = function(_, opts)

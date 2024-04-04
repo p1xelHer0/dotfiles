@@ -5,13 +5,17 @@ local M = {
   },
 
   {
-    "projekt0n/github-nvim-theme",
+    dir = "~/dotfiles/.config/nvim/lua/colors",
     lazy = false,
     priority = 1000,
     config = function(_, opts)
-      vim.cmd([[colorscheme github_dark_colorblind]])
-      require("core.theme").setup()
+      vim.cmd([[colorscheme colors]])
     end,
+  },
+
+  {
+    "projekt0n/github-nvim-theme",
+    event = "VeryLazy",
   },
 
   {

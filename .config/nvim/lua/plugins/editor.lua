@@ -114,6 +114,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "folke/trouble.nvim",
     cmd = {
       "TroubleToggle",

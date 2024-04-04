@@ -10,7 +10,7 @@ local M = {
     harpoon.setup(opts)
 
     k("n", "<Leader>a", function()
-      harpoon:list():append()
+      harpoon:list():add()
     end, k_opts)
 
     k("n", "<C-e>", function()
