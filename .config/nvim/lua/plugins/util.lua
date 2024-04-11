@@ -33,6 +33,12 @@ local M = {
   },
 
   {
+    "https://github.com/m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+
+  {
     "narutoxy/silicon.lua",
     opts = {
       theme = "auto",
