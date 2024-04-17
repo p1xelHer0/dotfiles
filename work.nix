@@ -129,9 +129,9 @@ in
       "DevCleaner/devcleaner"
       "fsouza/prettierd"
       "homebrew/bundle"
-      "homebrew/cask"
+      # "homebrew/cask"
       "homebrew/cask-versions"
-      "homebrew/core"
+      # "homebrew/core"
     ];
 
     brews = [

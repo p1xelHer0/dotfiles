@@ -93,6 +93,7 @@ local M = {
   },
 
   {
+    disabled = true,
     "levouh/tint.nvim",
     opts = {},
   },
