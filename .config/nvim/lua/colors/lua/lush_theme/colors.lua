@@ -157,6 +157,169 @@ local theme = lush(function(injected_functions)
 
 
     -------------------------------------------------------------------------------------------------------------------
+    --- Tree-sitter - [h: treesitter-hightlight-groups]
+    -------------------------------------------------------------------------------------------------------------------
+    -- sym("@variable")                    { }, -- various variable names
+    -- sym("@variable.builtin")            { }, -- built-in variable names (e.g. `this`, `self`)
+    -- sym("@variable.parameter")          { }, -- parameters of a function
+    -- sym("@variable.parameter.builtin")  { }, -- special parameters (e.g. `_`, `it`)
+    -- sym("@variable.member")             { }, -- object and struct fields
+
+    -- sym("@constant")                    { }, -- constant identifiers
+    -- sym("@constant.builtin")            { }, -- built-in constant values
+    -- sym("@constant.macro")              { }, -- constants defined by the preprocessor
+
+    -- sym("@module")                      { }, -- modules or namespaces
+    -- sym("@module.builtin")              { }, -- built-in modules or namespaces
+    -- sym("@label")                       { }, -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
+
+    -- sym("@string")                      { }, -- string literals
+    -- sym("@string.documentation")        { }, -- string documenting code (e.g. Python docstrings)
+    -- sym("@string.regexp")               { }, -- regular expressions
+    -- sym("@string.escape")               { }, -- escape sequences
+    -- sym("@string.special")              { }, -- other special strings (e.g. dates)
+    -- sym("@string.special.symbol")       { }, -- symbols or atoms
+    -- sym("@string.special.path")         { }, -- filenames
+    -- sym("@string.special.url")          { }, -- URIs (e.g. hyperlinks)
+
+    -- sym("@character")                   { }, -- character literals
+    -- sym("@character.special")           { }, -- special characters (e.g. wildcards)
+
+    -- sym("@boolean")                     { }, -- boolean literals
+    -- sym("@number")                      { }, -- numeric literals
+    -- sym("@number.float")                { }, -- floating-point number literals
+
+    -- sym("@type")                        { }, -- type or class definitions and annotations
+    -- sym("@type.builtin")                { }, -- built-in types
+    -- sym("@type.definition")             { }, -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
+
+    -- sym("@attribute")                   { }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
+    -- sym("@attribute.builtin")           { }, -- builtin annotations (e.g. `@property` in Python)
+    -- sym("@property")                    { }, -- the key in key/value pairs
+
+    -- sym("@function")                    { }, -- function definitions
+    -- sym("@function.builtin")            { }, -- built-in functions
+    -- sym("@function.call")               { }, -- function calls
+    -- sym("@function.macro")              { }, -- preprocessor macros
+
+    -- sym("@function.method")             { }, -- method definitions
+    -- sym("@function.method.call")        { }, -- method calls
+
+    -- sym("@constructor")                 { }, -- constructor calls and definitions
+    -- sym("@operator")                    { }, -- symbolic operators (e.g. `+`, `*`)
+
+    -- sym("@keyword")                     { }, -- keywords not fitting into specific categories
+    -- sym("@keyword.coroutine")           { }, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
+    -- sym("@keyword.function")            { }, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
+    -- sym("@keyword.operator")            { }, -- operators that are English words (e.g. `and`, `or`)
+    -- sym("@keyword.import")              { }, -- keywords for including modules (e.g. `import`, `from` in Python)
+    -- sym("@keyword.type")                { }, -- keywords defining composite types (e.g. `struct`, `enum`)
+    -- sym("@keyword.modifier")            { }, -- keywords defining type modifiers (e.g. `const`, `static`, `public`)
+    -- sym("@keyword.repeat")              { }, -- keywords related to loops (e.g. `for`, `while`)
+    -- sym("@keyword.return")              { }, -- keywords like `return` and `yield`
+    -- sym("@keyword.debug")               { }, -- keywords related to debugging
+    -- sym("@keyword.exception")           { }, -- keywords related to exceptions (e.g. `throw`, `catch`)
+
+    -- sym("@keyword.conditional")         { }, -- keywords related to conditionals (e.g. `if`, `else`)
+    -- sym("@keyword.conditional.ternary") { }, -- ternary operator (e.g. `?`, `:`)
+
+    -- sym("@keyword.directive")           { }, -- various preprocessor directives and shebangs
+    -- sym("@keyword.directive.define")    { }, -- preprocessor definition directives
+
+    -- sym("@punctuation.delimiter")       { }, -- delimiters (e.g. `;`, `.`, `,`)
+    -- sym("@punctuation.bracket")         { }, -- brackets (e.g. `()`, `{}`, `[]`)
+    -- sym("@punctuation.special")         { }, -- special symbols (e.g. `{}` in string interpolation)
+
+    -- sym("@comment")                     { }, -- line and block comments
+    -- sym("@comment.documentation")       { }, -- comments documenting code
+
+    -- sym("@comment.error")               { }, -- error-type comments (e.g. `ERROR`, `FIXME`, `DEPRECATED`)
+    -- sym("@comment.warning")             { }, -- warning-type comments (e.g. `WARNING`, `FIX`, `HACK`)
+    -- sym("@comment.todo")                { }, -- todo-type comments (e.g. `TODO`, `WIP`)
+    -- sym("@comment.note")                { }, -- note-type comments (e.g. `NOTE`, `INFO`, `XXX`)
+
+    -- sym("@markup.strong")               { }, -- bold text
+    -- sym("@markup.italic")               { }, -- italic text
+    -- sym("@markup.strikethrough")        { }, -- struck-through text
+    -- sym("@markup.underline")            { }, -- underlined text (only for literal underline markup!)
+
+    -- sym("@markup.heading")              { }, -- headings, titles (including markers)
+    -- sym("@markup.heading.1")            { }, -- top-level heading
+    -- sym("@markup.heading.2")            { }, -- section heading
+    -- sym("@markup.heading.3")            { }, -- subsection heading
+    -- sym("@markup.heading.4")            { }, -- and so on
+    -- sym("@markup.heading.5")            { }, -- and so forth
+    -- sym("@markup.heading.6")            { }, -- six levels ought to be enough for anybody
+
+    -- sym("@markup.quote")                { }, -- block quotes
+    -- sym("@markup.math")                 { }, -- math environments (e.g. `$ ... $` in LaTeX)
+
+    -- sym("@markup.link")                 { }, -- text references, footnotes, citations, etc.
+    -- sym("@markup.link.label")           { }, -- link, reference descriptions
+    -- sym("@markup.link.url")             { }, -- URL-style links
+
+    -- sym("@markup.raw")                  { }, -- literal or verbatim text (e.g. inline code)
+    -- sym("@markup.raw.block")            { }, -- literal or verbatim text as a stand-alone block
+
+    -- sym("@markup.list")                 { }, -- list markers
+    -- sym("@markup.list.checked")         { }, -- checked todo-style list markers
+    -- sym("@markup.list.unchecked")       { }, -- unchecked todo-style list markers
+
+    -- sym("@diff.plus")                   { }, -- added text (for diff files)
+    -- sym("@diff.minus")                  { }, -- deleted text (for diff files)
+    -- sym("@diff.delta")                  { }, -- changed text (for diff files)
+
+    -- sym("@tag")                         { }, -- XML-style tag names (e.g. in XML, HTML, etc.)
+    -- sym("@tag.builtin")                 { }, -- XML-style tag names (e.g. HTML5 tags)
+    -- sym("@tag.attribute")               { }, -- XML-style tag attributes
+    -- sym("@tag.delimiter")               { }, -- XML-style tag delimiters
+
+    -- TreesitterContext { },
+    -- TreesitterContextLineNumber { },
+    -- TreesitterContextSeparator { },
+    -- TreesitterContextBottom { },
+    -- TreesitterContextLineNumberBottom { },
+
+    -------------------------------------------------------------------------------------------------------------------
+    --- LSP - [h: lsp-semantic-highlight]
+    -------------------------------------------------------------------------------------------------------------------
+    -- sym("@lsp.type.class")          { }, -- Identifiers that declare or reference a class type
+    -- sym("@lsp.type.comment")        { }, -- Tokens that represent a comment
+    -- sym("@lsp.type.decorator")      { }, -- Identifiers that declare or reference decorators and annotations
+    -- sym("@lsp.type.enum")           { }, -- Identifiers that declare or reference an enumeration type
+    -- sym("@lsp.type.enumMember")     { }, -- Identifiers that declare or reference an enumeration property, constant, or member
+    -- sym("@lsp.type.event")          { }, -- Identifiers that declare an event property
+    -- sym("@lsp.type.function")       { }, -- Identifiers that declare a function
+    -- sym("@lsp.type.interface")      { }, -- Identifiers that declare or reference an interface type
+    -- sym("@lsp.type.keyword")        { }, -- Tokens that represent a language keyword
+    -- sym("@lsp.type.macro")          { }, -- Identifiers that declare a macro
+    -- sym("@lsp.type.method")         { }, -- Identifiers that declare a member function or method
+    -- sym("@lsp.type.modifier")       { }, -- Tokens that represent a modifier
+    -- sym("@lsp.type.namespace")      { }, -- Identifiers that declare or reference a namespace, module, or package
+    -- sym("@lsp.type.number")         { }, -- Tokens that represent a number literal
+    -- sym("@lsp.type.operator")       { }, -- Tokens that represent an operator
+    -- sym("@lsp.type.parameter")      { }, -- Identifiers that declare or reference a function or method parameters
+    -- sym("@lsp.type.property")       { }, -- Identifiers that declare or reference a member property, member field, or member variable
+    -- sym("@lsp.type.regexp")         { }, -- Tokens that represent a regular expression literal
+    -- sym("@lsp.type.string")         { }, -- Tokens that represent a string literal
+    -- sym("@lsp.type.struct")         { }, -- Identifiers that declare or reference a struct type
+    -- sym("@lsp.type.type")           { }, -- Identifiers that declare or reference a type that is not covered above
+    -- sym("@lsp.type.typeParameter")  { }, -- Identifiers that declare or reference a type parameter
+    -- sym("@lsp.type.variable")       { }, -- Identifiers that declare or reference a local or global variable
+    --
+    -- sym("@lsp.mod.abstract")        { }, -- Types and member functions that are abstract
+    -- sym("@lsp.mod.async")           { }, -- Functions that are marked async
+    -- sym("@lsp.mod.declaration")     { }, -- Declarations of symbols
+    -- sym("@lsp.mod.defaultLibrary")  { }, -- Symbols that are part of the standard library
+    -- sym("@lsp.mod.definition")      { }, -- Definitions of symbols, for example, in header files
+    -- sym("@lsp.mod.deprecated")      { }, -- Symbols that should no longer be used
+    -- sym("@lsp.mod.documentation")   { }, -- Occurrences of symbols in documentation
+    -- sym("@lsp.mod.modification")    { }, -- Variable references where the variable is assigned to
+    -- sym("@lsp.mod.readonly")        { }, -- Readonly variables and member fields (constants)
+    -- sym("@lsp.mod.static")          { }, -- Class members (static members)
+
+
+    -------------------------------------------------------------------------------------------------------------------
     --- Diagnostics
     -------------------------------------------------------------------------------------------------------------------
     DiagnosticUnnecessary      { fg = Comment.fg },
@@ -189,83 +352,6 @@ local theme = lush(function(injected_functions)
     SpellCap                   { DiagnosticUnderlineWarn },
     SpellLocal                 { DiagnosticUnderlineInfo },
     SpellRare                  { DiagnosticUnderlineHint },
-
-
-    -------------------------------------------------------------------------------------------------------------------
-    --- Tree-sitter
-    -------------------------------------------------------------------------------------------------------------------
-    -- sym"@text.literal"        { },
-    -- sym"@text.reference"      { },
-    -- sym"@text.title"          { },
-    -- sym"@text.uri"            { },
-    -- sym"@text.underline"      { },
-    -- sym"@text.todo"           { },
-    -- sym"@comment"             { },
-    -- sym"@punctuation"         { },
-    -- sym"@constant"            { },
-    -- sym"@constant.builtin"    { },
-    -- sym"@constant.macro"      { },
-    -- sym"@define"              { },
-    -- sym"@macro"               { },
-    -- sym"@string"              { },
-    -- sym"@string.escape"       { },
-    -- sym"@string.special"      { },
-    -- sym"@character"           { },
-    -- sym"@character.special"   { },
-    -- sym"@number"              { },
-    -- sym"@boolean"             { },
-    -- sym"@float"               { },
-    -- sym"@function"            { },
-    -- sym"@function.builtin"    { },
-    -- sym"@function.macro"      { },
-    -- sym"@parameter"           { },
-    -- sym"@method"              { },
-    -- sym"@field"               { },
-    -- sym"@property"            { },
-    -- sym"@constructor"         { },
-    -- sym"@conditional"         { },
-    -- sym"@repeat"              { },
-    -- sym"@label"               { },
-    -- sym"@operator"            { },
-    -- sym"@keyword"             { },
-    -- sym"@exception"           { },
-    -- sym"@variable"            { },
-    -- sym"@type"                { },
-    -- sym"@type.definition"     { },
-    -- sym"@storageclass"        { },
-    -- sym"@structure"           { },
-    -- sym"@namespace"           { },
-    -- sym"@include"             { },
-    -- sym"@preproc"             { },
-    -- sym"@debug"               { },
-    -- sym"@tag"                 { },
-
-
-    -------------------------------------------------------------------------------------------------------------------
-    --- LSP
-    -------------------------------------------------------------------------------------------------------------------
-    -- sym"@lsp.type.class"          { },
-    -- sym"@lsp.type.decorator"      { },
-    -- sym"@lsp.type.enum"           { },
-    -- sym"@lsp.type.enumMember"     { },
-    -- sym"@lsp.type.function"       { },
-    -- sym"@lsp.type.interface"      { },
-    -- sym"@lsp.type.macro"          { },
-    -- sym"@lsp.type.method"         { },
-    -- sym"@lsp.type.namespace"      { },
-    -- sym"@lsp.type.parameter"      { },
-    -- sym"@lsp.type.property"       { },
-    -- sym"@lsp.type.struct"         { },
-    -- sym"@lsp.type.type"           { },
-    -- sym"@lsp.type.typeParameter"  { },
-    -- sym"@lsp.type.variable"       { },
-
-    -- LspReferenceText              { },
-    -- LspReferenceRead              { },
-    -- LspReferenceWrite             { },
-    -- LspCodeLens                   { },
-    -- LspCodeLensSeparator          { },
-    -- LspSignatureActiveParameter   { },
 
 
     -------------------------------------------------------------------------------------------------------------------
