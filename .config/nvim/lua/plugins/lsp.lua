@@ -138,6 +138,18 @@ local M = {
         on_attach = on_attach,
       })
 
+      nvim_lspconfig.nil_ls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
+          },
+        },
+      })
+
       -- nvim_lspconfig.clangd.setup({
       --   capabilities = capabilities,
       --   cmd = {
@@ -237,7 +249,6 @@ local M = {
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
         "ols",
         -- "racket_langserver", -- raco pkg install racket-langserver
-        "nil_ls",
         "taplo",
         "zls",
       }
