@@ -76,10 +76,8 @@ local M = {
     },
     {
       mode = "n",
-      "<Leader>r",
-      function()
-        require("telescope").extensions.refactoring.refactors()
-      end,
+      "<Leader>sh",
+      "<Cmd>Telescope help_tags<CR>",
       { silent = true, noremap = true },
     },
   },

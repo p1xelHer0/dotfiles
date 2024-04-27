@@ -209,14 +209,6 @@ in
   };
 
   # nighthook
-  # if there's no 'live.yml' alacritty config initially,
-  # copy it from the default config
-  environment.extraInit = ''
-    test -f ~/.config/alacritty/live.yml || \
-      cp ~/.config/alacritty/alacritty.yml \
-      ~/.config/alacritty/live.yml
-  '';
-
   launchd.user.agents = {
     "nighthook" = {
       serviceConfig = {
@@ -235,11 +227,12 @@ in
             fi
 
             alacrittySwitchTheme() {
-              DIR=/Users/p1xelher0/.config/alacritty
+              FROM=/Users/p1xelher0/dotfiles/.config/alacritty
+              TO=/Users/p1xelher0/.config/alacritty
               if [[  $MODE == "dark"  ]]; then
-                cp -f $DIR/dark.yml $DIR/live.yml
+                ln -fs $FROM/dark.toml $TO/live.toml
               elif [[  $MODE == "light"  ]]; then
-                cp -f $DIR/light.yml $DIR/live.yml
+                ln -fs $FROM/light.toml $TO/live.toml
               fi
             }
 

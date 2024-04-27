@@ -20,7 +20,6 @@ in
     bat
     bitwarden-cli
     curl
-    delta
     entr
     eza
     fd
