@@ -15,6 +15,11 @@ local M = {
   },
 
   {
+    "teranex/jk-jumps.vim",
+    event = "VeryLazy",
+  },
+
+  {
     "tpope/vim-projectionist",
     event = "VeryLazy",
     opts = {
