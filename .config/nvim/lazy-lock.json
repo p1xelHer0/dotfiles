@@ -26,6 +26,7 @@
   "hardtime.nvim": { "branch": "main", "commit": "eaf4bc31b86419c26ad7b3a142dd36ca545ca2e4" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "janet.vim": { "branch": "master", "commit": "e5899fdf8049b4d92c3cd4e95710248f7b48c24b" },
+  "jk-jumps.vim": { "branch": "master", "commit": "9f21ca0c5f54a96300375bfebf01252b70d3c807" },
   "kanagawa.nvim": { "branch": "master", "commit": "23ae977e5a46dbf976d051ad2b57f5ed789871d8" },
   "lazy.nvim": { "branch": "main", "commit": "3f13f080434ac942b150679223d54f5ca91e0d52" },
   "lsp_signature.nvim": { "branch": "master", "commit": "c6aeb2f1d2538bbdfdaab1664d9d4c3c75aa9db8" },

@@ -380,6 +380,9 @@ local M = {
     "ray-x/lsp_signature.nvim",
     opts = {
       floating_window = false,
+      hint_prefix = ": ",
+      hint_scheme = "Function",
+      hi_parameter = "LspSignatureActiveParameter",
     },
   },
 
