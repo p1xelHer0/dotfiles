@@ -456,10 +456,10 @@ in
 
   programs.alacritty =
     let
-      fontFamily = "IosevkaTerm Nerd Font Mono";
+      # fontFamily = "IosevkaTerm Nerd Font Mono";
       # fontFamily = "BlexMono Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
-      # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
 
     in
     {

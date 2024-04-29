@@ -10,7 +10,7 @@ windows:
         - npm run docker
 
   - api:
-      root: ~/code/github/savrcom/laravel-data-api
+      root: ~/code/github/savrcom/behemoth
       layout: even-horizontal
       panes:
         - ./savr up
