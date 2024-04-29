@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
+  tomlFormat = pkgs.formats.toml { };
 in
 {
   home.stateVersion = "23.11";
@@ -18,9 +19,7 @@ in
     })
 
     # Tools
-    # bat
     curl
-    # delta
     entr
     eza
     fd
@@ -452,7 +451,6 @@ in
   xdg.configFile."theme".text = "dark";
 
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/lua";
-  xdg.configFile."nvim/fnl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/fnl";
   xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/after";
   xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
   programs.neovim = {
@@ -470,17 +468,6 @@ in
     userName = "p1xelHer0";
     userEmail = "p_nagy@icloud.com";
     includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
-    /**/
-    /* extraConfig = { */
-    /*   diff.colorAdded = "2"; */
-    /*   diff.colorChanged = "3"; */
-    /*   diff.colorUntracked = "2"; */
-    /*   diff.colorMoved = "2"; */
-    /* }; */
-    /**/
-    /* delta = { */
-    /*   enable = true; */
-    /* }; */
   };
 
   programs.direnv = {
@@ -491,111 +478,12 @@ in
     };
   };
 
-  xdg.configFile."alacritty/dark.yml".text =
-    let
-      darkColors = {
-        colors = {
-          primary = {
-            background = "0x0d1117";
-            foreground = "0xc9d1d9";
-          };
-
-          cursor = {
-            cursor = "0xc9d1d9";
-            text = "0x0d1117";
-          };
-
-          normal = {
-            black = "0x0d1117";
-            red = "0xff7b72";
-            green = "0x58a6ff";
-            yellow = "0xd29922";
-            blue = "0x58a6ff";
-            magenta = "0xbc8cff";
-            cyan = "0x39c5cf";
-            white = "0xb1bac4";
-          };
-
-          bright = {
-            black = "0x6e7681";
-            red = "0xffa198";
-            green = "0x79c0ff";
-            yellow = "0xe3b341";
-            blue = "0x79c0ff";
-            magenta = "0xbc8cff";
-            cyan = "0x39c5cf";
-            white = "0xb1bac4";
-          };
-
-          indexed_colors = [
-            { index = 16; color = "0x5d646e"; }
-            { index = 17; color = "0x4c525b"; }
-            { index = 18; color = "0x3b4149"; }
-            { index = 19; color = "0x2c3037"; }
-            { index = 20; color = "0x262a30"; }
-          ];
-        };
-      };
-    in
-    builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-      (builtins.toJSON (config.programs.alacritty.settings // darkColors));
-
-
-  xdg.configFile."alacritty/light.yml".text =
-    let
-      lightColors = {
-        colors = {
-          primary = {
-            background = "0xffffff";
-            foreground = "0x1b1f24";
-          };
-
-          cursor = {
-            cursor = "0x24292f";
-            text = "0xffffff";
-          };
-
-          normal = {
-            black = "0xffffff";
-            red = "0xcf222e";
-            green = "0x0550ae";
-            yellow = "0x4d2d00";
-            blue = "0x0969da";
-            magenta = "0x8250df";
-            cyan = "0x1b7c83";
-            white = "0x6e7781";
-          };
-
-          bright = {
-            black = "0x57606a";
-            red = "0xa40e26";
-            green = "0x0969da";
-            yellow = "0x633c01";
-            blue = "0x218bff";
-            magenta = "0x8250df";
-            cyan = "0x1b7c83";
-            white = "0x6e7781";
-          };
-
-          indexed_colors = [
-            { index = 16; color = "0x9ca4ad"; }
-            { index = 17; color = "0xadb4bb"; }
-            { index = 18; color = "0xbec4c9"; }
-            { index = 19; color = "0xcfd4d7"; }
-            { index = 20; color = "0xe1e4e6"; }
-          ];
-        };
-      };
-    in
-    builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-      (builtins.toJSON (config.programs.alacritty.settings // lightColors));
-
   programs.alacritty =
     let
-      fontFamily = "IosevkaTerm Nerd Font Mono";
+      # fontFamily = "IosevkaTerm Nerd Font Mono";
       # fontFamily = "BlexMono Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
-      # fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
     in
     {
       enable = true;
@@ -613,8 +501,6 @@ in
           startup_mode = "Windowed";
           option_as_alt = "Both";
         };
-
-        draw_bold_text_with_bright_colors = false;
 
         live_config_reload = true;
 
@@ -634,25 +520,10 @@ in
         font = {
           size = 18;
 
-          normal = {
-            family = fontFamily;
-            style = "Regular";
-          };
-
-          bold = {
-            family = fontFamily;
-            style = "Bold";
-          };
-
-          italic = {
-            family = fontFamily;
-            style = "Italic";
-          };
-
-          bold_italic = {
-            family = fontFamily;
-            style = "Bold Italic";
-          };
+          normal.family = fontFamily;
+          bold.family = fontFamily;
+          italic.family = fontFamily;
+          bold_italic.family = fontFamily;
 
           offset = {
             x = 0;
@@ -665,16 +536,20 @@ in
           };
         };
 
-        key_bindings = [
-          {
-            key = "Paste";
-            action = "Paste";
-          }
-          {
-            key = "Copy";
-            action = "Copy";
-          }
-        ];
+        keyboard = {
+          bindings = [
+            {
+              key = "Paste";
+              action = "Paste";
+            }
+            {
+              key = "Copy";
+              action = "Copy";
+            }
+          ];
+        };
+
+        import = [ "~/.config/alacritty/live.toml" ];
       };
     };
 

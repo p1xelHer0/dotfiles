@@ -182,6 +182,18 @@ local M = {
         },
       }
 
+      nvim_lspconfig.nil_ls.setup({
+        capabilities = capabilities,
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
+          },
+        },
+        on_attach = on_attach,
+      })
+
       -- install roswell: https://github.com/roswell/roswell/wiki/Installation
       -- add ~/.roswell/bin to your $PATH
       -- install qlot, manually, not with roswell: https://github.com/fukamachi/qlot#installation
@@ -245,7 +257,7 @@ local M = {
         "fennel_language_server",
         "glsl_analyzer",
         "cl_lsp",
-        "ccls",
+        -- "ccls",
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
         "ols",
         -- "racket_langserver", -- raco pkg install racket-langserver
@@ -362,6 +374,16 @@ local M = {
     config = function(_, opts)
       vim.g.rustaceanvim = opts
     end,
+  },
+
+  {
+    "ray-x/lsp_signature.nvim",
+    opts = {
+      floating_window = false,
+      hint_prefix = ": ",
+      hint_scheme = "Function",
+      hi_parameter = "LspSignatureActiveParameter",
+    },
   },
 
   {

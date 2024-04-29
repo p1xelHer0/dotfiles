@@ -1,0 +1,11 @@
+[font.normal]
+style = "Medium"
+
+[font.bold]
+style = "ExtraBold"
+
+[font.italic]
+style = "Medium Italic"
+
+[font.bold_italic]
+style = "ExtraBold Italic"
