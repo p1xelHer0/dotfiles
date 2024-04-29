@@ -489,10 +489,6 @@ in
       enable = true;
 
       settings = {
-        env = {
-          TERM = "alacritty";
-        };
-
         window = {
           padding.x = 16;
           padding.y = 16;

@@ -11,7 +11,7 @@
 -- Yb,_,d88b,,_   ,d8b,  ,d8b,,8'_   8) ,d8     I8,
 --  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
 --
-
+-- https://github.com/neovim/neovim/pull/26334
 local lush = require("lush")
 local hsl = lush.hsl
 
@@ -29,27 +29,27 @@ local C = {
     red     = hsl("#c37878"),
     green   = hsl("#7f9375"),
     yellow  = hsl("#c49e6a"),
-    blue    = hsl("#477e76"),
-    magenta = hsl("#c48884"),
-    cyan    = hsl("#b5a488"),
-    white   = hsl("#b5a488"),
+    blue    = hsl("#84a8a1"),
+    magenta = hsl("#7b7c94"),
+    cyan    = hsl("#477e76"),
+    white   = hsl("#dbc7a5"),
   },
   bright = {
     black   = hsl("#706957"),
-    red     = hsl("#daa4a3"),
-    green   = hsl("#a8b6a1"),
+    red     = hsl("#ff9d9d"),
+    green   = hsl("#00ff00"),
     yellow  = hsl("#dabd9a"),
-    blue    = hsl("#84a8a1"),
-    magenta = hsl("#b5a488"),
-    cyan    = hsl("#b5a488"),
-    white   = hsl("#ffffff"),
+    blue    = hsl("#00b5ea"),
+    magenta = hsl("#dea1bb"),
+    cyan    = hsl("#73ccbf"),
+    white   = hsl("#ececec"),
   },
   index = {
-    i16     = hsl("#13171c"),
-    i17     = hsl("#1c2226"),
-    i18     = hsl("#262d30"),
-    i19     = hsl("#31383b"),
-    i20     = hsl("#3c4445"),
+    i16     = hsl("#111c1f"),
+    i17     = hsl("#152326"),
+    i18     = hsl("#19292e"),
+    i19     = hsl("#1d3036"),
+    i20     = hsl("#22373d"),
   },
 }
 -- stylua: ignore end
@@ -77,10 +77,8 @@ local theme = lush(function(injected_functions)
     Folded        { fg = C.normal.white },
     FoldColumn    { fg = C.index.i20 },
     SignColumn    { fg = C.bright.black },
-    IncSearch     { fg = bg, bg = C.normal.white },
-    Substitute    { fg = bg, bg = C.bright.red },
     LineNr        { fg = C.bright.black },
-    MatchParen    { fg = C.bright.white, bg = C.normal.blue, gui = "bold" },
+    MatchParen    { fg = bg, bg = C.bright.green },
     ModeMsg       { Normal },
     MsgArea       { fg = C.bright.black },
     -- MsgSeparator  { },
@@ -92,16 +90,18 @@ local theme = lush(function(injected_functions)
     PmenuSbar     { bg = C.index.i18 },
     PmenuThumb    { bg = C.bright.black },
     Question      { MoreMsg },
-    -- QuickFixLine  { },
-    Search        { fg = bg, bg = C.bright.yellow },
+    QuickFixLine  { fg = C.normal.cyan },
+    Search        { fg = bg, bg = C.bright.red },
+    IncSearch     { fg = bg, bg = C.normal.red },
+    Substitute    { fg = bg, bg = C.bright.yellow },
     SpecialKey    { fg = bg, bg = C.normal.red, gui = "bold" },
-    StatusLine    { fg = C.normal.white },
-    StatusLineNC  { fg = C.index.i20 },
-    TabLine       { bg = C.index.i17 },
+    StatusLine    { fg = bg, bg = C.bright.black },
+    StatusLineNC  { fg = C.bright.black },
+    TabLine       { fg = C.bright.black },
     TabLineFill   { },
     TabLineSel    { },
     Title         { fg = C.normal.magenta, gui = "bold" },
-    Visual        { gui = "reverse"},
+    Visual        { fg = bg, bg = C.normal.magenta },
     -- VisualNOS     { },
     WarningMsg    { fg = C.normal.yellow },
     Whitespace    { fg = C.index.i20 },
@@ -121,45 +121,45 @@ local theme = lush(function(injected_functions)
     Comment         { fg = C.bright.black, gui = "italic" },
 
     Constant        { fg = C.normal.green },
-      String        { Constant },
-      Character     { Constant },
-      Number        { fg = C.normal.blue },
-      Boolean       { fg = C.normal.yellow },
+    String        { Constant },
+    Character     { Constant },
+    Number        { fg = C.normal.cyan },
+    Boolean       { fg = C.normal.yellow },
 
     Identifier     { Normal },
-      Function     { fg = C.bright.blue },
+    Function     { fg = C.normal.blue },
 
     Statement         { Normal },
-      Conditional     { },
-      Repeat          { },
-      Label           { },
-      Operator        { fg = C.normal.yellow },
-      Keyword         { fg = C.normal.green },
-      Exception       { fg = C.normal.red },
+    Conditional     { },
+    Repeat          { },
+    Label           { },
+    Operator        { fg = C.normal.yellow },
+    Keyword         { fg = C.normal.green },
+    Exception       { fg = C.normal.red },
 
     PreProc           { Normal },
-      -- Include         { },
-      -- Define          { },
-      -- Macro           { },
-      -- PreCondit       { },
+    -- Include         { },
+    -- Define          { },
+    -- Macro           { },
+    -- PreCondit       { },
 
     Type              { fg = C.normal.green },
-      -- StorageClass    { },
-      -- Structure       { },
-      -- Typedef         { },
+    -- StorageClass    { },
+    -- Structure       { },
+    -- Typedef         { },
 
     Special           { Normal },
-      -- SpecialChar     { },
-      -- Tag             { },
-      -- Delimiter       { },
-      -- SpecialComment  { },
-      -- Debug           { },
+    -- SpecialChar     { },
+    -- Tag             { },
+    Delimiter       { fg = C.bright.black },
+    -- SpecialComment  { },
+    -- Debug           { },
 
 
     -------------------------------------------------------------------------------------------------------------------
     --- Tree-sitter - [h: treesitter-hightlight-groups]
     -------------------------------------------------------------------------------------------------------------------
-    -- sym("@variable")                    { }, -- various variable names
+    sym("@variable")                    { Normal }, -- various variable names
     -- sym("@variable.builtin")            { }, -- built-in variable names (e.g. `this`, `self`)
     -- sym("@variable.parameter")          { }, -- parameters of a function
     -- sym("@variable.parameter.builtin")  { }, -- special parameters (e.g. `_`, `it`)
@@ -357,14 +357,14 @@ local theme = lush(function(injected_functions)
     -------------------------------------------------------------------------------------------------------------------
     --- Diff & Git
     -------------------------------------------------------------------------------------------------------------------
-    DiffAdd     { bg = C.normal.green.da(55) },
-    DiffDelete  { bg = C.normal.red.da(55) },
+    DiffAdd     { fg = C.normal.blue, bg = C.normal.blue.da(80) },
+    DiffDelete  { fg = C.normal.yellow, bg = C.normal.yellow.da(80) },
     DiffChange  { bg = C.normal.yellow.da(55) },
     DiffText    { bg = C.normal.blue.da(50) },
-    GitAdd      { fg = C.normal.green },
-    GitDelete   { fg = C.normal.red },
-    GitChange   { fg = C.normal.yellow },
-    GitNew      { fg = C.normal.blue },
+    GitAdd      { fg = C.normal.blue },
+    GitDelete   { fg = C.normal.yellow },
+    GitChange   { fg = C.bright.yellow },
+    GitNew      { fg = C.bright.blue },
 
 
     -------------------------------------------------------------------------------------------------------------------

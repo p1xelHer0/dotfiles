@@ -53,6 +53,22 @@ api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+api.nvim_create_autocmd("BufEnter", {
+  pattern = "**/.config/alacritty/*.toml",
+  group = group,
+  callback = function(args)
+    require("colorizer").attach_to_buffer(0, { mode = "background", css = true })
+  end,
+})
+
+api.nvim_create_autocmd("BufEnter", {
+  pattern = "**/lush_theme/colors.lua",
+  group = group,
+  callback = function(args)
+    vim.cmd([[Lushify]])
+  end,
+})
+
 -- Set tmux title to current Neovim buffer
 if vim.env.TMUX then
   api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile", "BufEnter", "FocusGained" }, {
