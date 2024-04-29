@@ -1,0 +1,11 @@
+[font.normal]
+style = "Light"
+
+[font.bold]
+style = "SemiBold"
+
+[font.italic]
+style = "Light Italic"
+
+[font.bold_italic]
+style = "SemiBold Italic"
