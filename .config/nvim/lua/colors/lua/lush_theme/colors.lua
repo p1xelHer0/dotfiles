@@ -93,11 +93,13 @@ local theme = lush(function(injected_functions)
     PmenuThumb    { bg = C.bright.black },
     Question      { MoreMsg },
     QuickFixLine  { fg = C.normal.cyan },
-    Search        { fg = bg, bg = C.bright.yellow },
+
+    -- TODO: Sort these out, create some kind of grouping for Selections Search, PmenuSel, CurSearch, TelescopeMatching
+    Search        { fg = bg, bg = C.normal.blue },
     CurSearch     { fg = bg, bg = C.alert.green },
     IncSearch     { Search },
-    Substitute    { fg = bg, bg = C.bright.yellow },
-    SpecialKey    { fg = bg, bg = C.normal.red, gui = "bold" },
+    Substitute    { gui = "reverse" },
+    SpecialKey    { fg = bg, bg = C.normal.magenta },
     StatusLine    { fg = bg, bg = C.bright.black },
     StatusLineNC  { fg = C.bright.black },
     TabLine       { fg = C.bright.black },
@@ -158,6 +160,19 @@ local theme = lush(function(injected_functions)
     Delimiter       { fg = C.bright.black },
     -- SpecialComment  { },
     -- Debug           { },
+
+
+    ---------------------------------------------------------------------------------------------------------------------
+    --- Diff & Git
+    -------------------------------------------------------------------------------------------------------------------
+    DiffAdd     { fg = C.normal.blue, bg = C.normal.blue.da(80) },
+    DiffDelete  { fg = C.normal.yellow, bg = C.normal.yellow.da(80) },
+    DiffChange  { bg = C.normal.yellow.da(55) },
+    DiffText    { bg = C.normal.blue.da(50) },
+    GitAdd      { fg = C.normal.blue },
+    GitDelete   { fg = C.normal.yellow },
+    GitChange   { fg = C.normal.yellow },
+    GitNew      { fg = C.normal.blue },
 
 
     -------------------------------------------------------------------------------------------------------------------
@@ -269,22 +284,16 @@ local theme = lush(function(injected_functions)
     -- sym("@markup.list.checked")         { }, -- checked todo-style list markers
     -- sym("@markup.list.unchecked")       { }, -- unchecked todo-style list markers
 
-    -- sym("@diff.plus")                   { }, -- added text (for diff files)
-    -- sym("@diff.minus")                  { }, -- deleted text (for diff files)
-    -- sym("@diff.delta")                  { }, -- changed text (for diff files)
+    sym("@diff.plus")                   { DiffAdd }, -- added text (for diff files)
+    sym("@diff.minus")                  { DiffDelete }, -- deleted text (for diff files)
+    sym("@diff.delta")                  { DiffChange }, -- changed text (for diff files)
 
     -- sym("@tag")                         { }, -- XML-style tag names (e.g. in XML, HTML, etc.)
     -- sym("@tag.builtin")                 { }, -- XML-style tag names (e.g. HTML5 tags)
     -- sym("@tag.attribute")               { }, -- XML-style tag attributes
     -- sym("@tag.delimiter")               { }, -- XML-style tag delimiters
 
-    -- TreesitterContext { bg = NormalFloat.bg },
-    -- TreesitterContextLineNumber { LineNr },
-    -- TreesitterContextSeparator { },
-    -- TreesitterContextBottom { },
-    -- TreesitterContextLineNumberBottom { },
-
-    -------------------------------------------------------------------------------------------------------------------
+        -------------------------------------------------------------------------------------------------------------------
     --- LSP - [h: lsp-semantic-highlight]
     -------------------------------------------------------------------------------------------------------------------
     -- sym("@lsp.type.class")          { }, -- Identifiers that declare or reference a class type
@@ -359,30 +368,26 @@ local theme = lush(function(injected_functions)
 
 
     -------------------------------------------------------------------------------------------------------------------
-    --- Diff & Git
-    -------------------------------------------------------------------------------------------------------------------
-    DiffAdd     { fg = C.normal.blue, bg = C.normal.blue.da(80) },
-    DiffDelete  { fg = C.normal.yellow, bg = C.normal.yellow.da(80) },
-    DiffChange  { bg = C.normal.yellow.da(55) },
-    DiffText    { bg = C.normal.blue.da(50) },
-    GitAdd      { fg = C.normal.blue },
-    GitDelete   { fg = C.normal.yellow },
-    GitChange   { fg = C.bright.yellow },
-    GitNew      { fg = C.bright.blue },
-
-
-    -------------------------------------------------------------------------------------------------------------------
     --- Plugins
     -------------------------------------------------------------------------------------------------------------------
+    -- TreesitterContext { bg = NormalFloat.bg },
+    -- TreesitterContextLineNumber { LineNr },
+    -- TreesitterContextSeparator { },
+    -- TreesitterContextBottom { },
+    -- TreesitterContextLineNumberBottom { },
+
+
     GitSignsAdd           { GitAdd },
     GitSignsDelete        { GitDelete },
     GitSignsChange        { GitChange },
     GitSignsNew           { GitNew },
 
+
     NeogitDiffAdd         { DiffAdd },
     NeogitDiffDelete      { DiffDelete },
     NeogitDiffChange      { DiffChange },
     NeogitDiffText        { DiffText },
+
 
     NvimTreeGitDirty      { GitChange },
     NvimTreeGitStaged     { GitNew },
@@ -391,6 +396,8 @@ local theme = lush(function(injected_functions)
     NvimTreeGitNew        { GitAdd },
     NvimTreeGitDeleted    { GitDelete },
 
+
+    TelescopeMatching         { fg = Search.bg },
 
     TelescopePromptBorder     { Pmenu },
     TelescopePromptTitle      { NormalFloat },
