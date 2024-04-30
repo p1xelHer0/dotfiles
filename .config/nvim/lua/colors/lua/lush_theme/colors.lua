@@ -51,7 +51,7 @@ local C = {
     red     = hsl("#ff0000"),
     green   = hsl("#00ff00"),
     blue    = hsl("#00fbff"),
-  }
+  },
 }
 -- stylua: ignore end
 
@@ -70,7 +70,7 @@ local theme = lush(function(injected_functions)
     -- lCursor       { }
     -- CursorIM      { },
     Directory     { fg = C.normal.green, gui = "bold" },
-    EndOfBuffer   { fg = C.index.i17 },
+    EndOfBuffer   { fg = C.index.i16 },
     -- TermCursor    { },
     TermCursorNC  { },
     ErrorMsg      { fg = C.normal.red },
@@ -86,8 +86,9 @@ local theme = lush(function(injected_functions)
     MoreMsg       { fg = C.normal.green, gui = "bold" },
     NonText       { EndOfBuffer },
     -- NormalNC      { Normal.li(100) },
-    Pmenu         { bg = C.index.i16 },
-    PmenuSel      { bg = C.index.i18 },
+    -- TODO: Sort these out, create some kind of grouping with Float, TeleScope, Pmenu, etc
+    Pmenu         { bg = C.index.i17 },
+    PmenuSel      { gui = "reverse" },
     PmenuSbar     { bg = C.index.i18 },
     PmenuThumb    { bg = C.bright.black },
     Question      { MoreMsg },
@@ -103,7 +104,7 @@ local theme = lush(function(injected_functions)
     TabLineFill   { },
     TabLineSel    { },
     Title         { fg = C.normal.magenta, gui = "bold" },
-    Visual        { fg = bg, bg = C.normal.magenta },
+    Visual        { gui = "reverse" },
     -- VisualNOS     { },
     WarningMsg    { fg = C.normal.yellow },
     Whitespace    { fg = C.index.i20 },
@@ -113,9 +114,9 @@ local theme = lush(function(injected_functions)
     -- Ignore        { },
     Error         { ErrorMsg },
     Todo          { fg = bg, bg = C.normal.magenta },
-    -- NormalFloat   { },
+    NormalFloat   { CursorLine },
+    FloatBorder   { NormalFloat },
     FloatTitle    { Title },
-    -- FloatBorder   { fg = C.index.i20, bg = C.index.i20 },
 
     -------------------------------------------------------------------------------------------------------------------
     --- Syntax
@@ -126,13 +127,14 @@ local theme = lush(function(injected_functions)
     String        { Constant },
     Character     { Constant },
     Number        { fg = C.normal.cyan },
-    Boolean       { fg = C.normal.yellow },
+    Boolean       { Number },
 
     Identifier     { Normal },
-    Function     { fg = C.normal.blue },
+    -- Function     { fg = C.normal.blue },
+    Function     { Normal },
 
     Statement         { Normal },
-    Conditional     { },
+    Conditional     { fg = C.normal.yellow },
     Repeat          { },
     Label           { },
     Operator        { fg = C.normal.yellow },
@@ -171,7 +173,7 @@ local theme = lush(function(injected_functions)
     -- sym("@constant.builtin")            { }, -- built-in constant values
     -- sym("@constant.macro")              { }, -- constants defined by the preprocessor
 
-    -- sym("@module")                      { }, -- modules or namespaces
+    sym("@module")                      { Constant }, -- modules or namespaces
     -- sym("@module.builtin")              { }, -- built-in modules or namespaces
     -- sym("@label")                       { }, -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
 
@@ -210,19 +212,19 @@ local theme = lush(function(injected_functions)
     -- sym("@constructor")                 { }, -- constructor calls and definitions
     -- sym("@operator")                    { }, -- symbolic operators (e.g. `+`, `*`)
 
-    -- sym("@keyword")                     { }, -- keywords not fitting into specific categories
-    -- sym("@keyword.coroutine")           { }, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
-    -- sym("@keyword.function")            { }, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
-    -- sym("@keyword.operator")            { }, -- operators that are English words (e.g. `and`, `or`)
-    -- sym("@keyword.import")              { }, -- keywords for including modules (e.g. `import`, `from` in Python)
-    -- sym("@keyword.type")                { }, -- keywords defining composite types (e.g. `struct`, `enum`)
-    -- sym("@keyword.modifier")            { }, -- keywords defining type modifiers (e.g. `const`, `static`, `public`)
-    -- sym("@keyword.repeat")              { }, -- keywords related to loops (e.g. `for`, `while`)
-    -- sym("@keyword.return")              { }, -- keywords like `return` and `yield`
-    -- sym("@keyword.debug")               { }, -- keywords related to debugging
-    -- sym("@keyword.exception")           { }, -- keywords related to exceptions (e.g. `throw`, `catch`)
+    sym("@keyword")                     { Keyword }, -- keywords not fitting into specific categories
+    sym("@keyword.coroutine")           { Operator }, -- keywords related to coroutines (e.g. `go` in Go, `async/await` in Python)
+    sym("@keyword.function")            { Function }, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
+    sym("@keyword.operator")            { Operator }, -- operators that are English words (e.g. `and`, `or`)
+    sym("@keyword.import")              { Keyword }, -- keywords for including modules (e.g. `import`, `from` in Python)
+    sym("@keyword.type")                { Type }, -- keywords defining composite types (e.g. `struct`, `enum`)
+    sym("@keyword.modifier")            { Keyword }, -- keywords defining type modifiers (e.g. `const`, `static`, `public`)
+    sym("@keyword.repeat")              { Operator }, -- keywords related to loops (e.g. `for`, `while`)
+    sym("@keyword.return")              { Operator }, -- keywords like `return` and `yield`
+    sym("@keyword.debug")               { Operator }, -- keywords related to debugging
+    sym("@keyword.exception")           { Error }, -- keywords related to exceptions (e.g. `throw`, `catch`)
 
-    -- sym("@keyword.conditional")         { }, -- keywords related to conditionals (e.g. `if`, `else`)
+    sym("@keyword.conditional")         { Conditional }, -- keywords related to conditionals (e.g. `if`, `else`)
     -- sym("@keyword.conditional.ternary") { }, -- ternary operator (e.g. `?`, `:`)
 
     -- sym("@keyword.directive")           { }, -- various preprocessor directives and shebangs
@@ -230,7 +232,7 @@ local theme = lush(function(injected_functions)
 
     -- sym("@punctuation.delimiter")       { }, -- delimiters (e.g. `;`, `.`, `,`)
     -- sym("@punctuation.bracket")         { }, -- brackets (e.g. `()`, `{}`, `[]`)
-    -- sym("@punctuation.special")         { }, -- special symbols (e.g. `{}` in string interpolation)
+    sym("@punctuation.special")         { Function }, -- special symbols (e.g. `{}` in string interpolation)
 
     -- sym("@comment")                     { }, -- line and block comments
     -- sym("@comment.documentation")       { }, -- comments documenting code
@@ -276,8 +278,8 @@ local theme = lush(function(injected_functions)
     -- sym("@tag.attribute")               { }, -- XML-style tag attributes
     -- sym("@tag.delimiter")               { }, -- XML-style tag delimiters
 
-    -- TreesitterContext { },
-    -- TreesitterContextLineNumber { },
+    -- TreesitterContext { bg = NormalFloat.bg },
+    -- TreesitterContextLineNumber { LineNr },
     -- TreesitterContextSeparator { },
     -- TreesitterContextBottom { },
     -- TreesitterContextLineNumberBottom { },
@@ -390,20 +392,19 @@ local theme = lush(function(injected_functions)
     NvimTreeGitDeleted    { GitDelete },
 
 
-    -- TelescopeBorder           { FloatBorder },
-    TelescopePreviewBorder    { bg = C.index.i20 },
-    TelescopePreviewTitle     { Substitute },
-    TelescopePreviewNormal    { bg = C.index.i20 },
-
-    TelescopePromptBorder     { bg = C.index.i16 },
-    TelescopePromptTitle      { fg = bg, bg = ErrorMsg.fg },
-    TelescopePromptNormal     { bg = C.index.i16 },
+    TelescopePromptBorder     { Pmenu },
+    TelescopePromptTitle      { NormalFloat },
+    TelescopePromptNormal     { TelescopePromptBorder },
     TelescopePromptCounter    { fg = Number.fg },
     TelescopePromptPrefix     { fg = Operator.fg },
 
-    TelescopeResultsBorder    { bg = C.index.i16 },
-    TelescopeResultsTitle     { fg = bg, bg = Constant.fg },
-    TelescopeResultsNormal    { bg = C.index.i16 },
+    TelescopePreviewBorder    { NormalFloat },
+    TelescopePreviewTitle     { TelescopePromptBorder },
+    TelescopePreviewNormal    { TelescopePreviewBorder },
+
+    TelescopeResultsBorder    { fg = "NONE", bg = C.index.i17 },
+    TelescopeResultsTitle     { TelescopePreviewBorder },
+    TelescopeResultsNormal    { bg = TelescopeResultsBorder.bg },
 
 -- TelescopeTitle|1 col 1| TelescopeTitle
 -- TelescopeBorder|1 col 1| TelescopeBorder

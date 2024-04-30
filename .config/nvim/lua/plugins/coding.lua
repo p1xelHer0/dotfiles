@@ -17,6 +17,17 @@ local M = {
     config = function()
       local cmp = require("cmp")
 
+      local window = {
+        completion = {
+          winhighlight = "Normal:Pmenu",
+        },
+        documentation = {
+          winhighlight = "Normal:CursorLine",
+        },
+      }
+
+      local view = { entries = "native" }
+
       local sources = {
         {
           name = "nvim_lsp",
@@ -26,9 +37,7 @@ local M = {
           end,
         },
         { name = "treesitter", group_index = 1 },
-
         { name = "luasnip", group_index = 2 },
-
         { name = "path", group_index = 3 },
         { name = "buffer", group_index = 3 },
       }
@@ -52,6 +61,8 @@ local M = {
       end
 
       cmp.setup({
+        window = window,
+        view = view,
         mapping = cmp.mapping.preset.insert({
           ["<C-y>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
@@ -84,21 +95,21 @@ local M = {
         }),
       })
 
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-      })
+      -- cmp.setup.cmdline({ "/", "?" }, {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = {
+      --     { name = "buffer" },
+      --   },
+      -- })
+      --
+      -- cmp.setup.cmdline(":", {
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = cmp.config.sources({
+      --     { name = "path" },
+      --   }, {
+      --     { name = "cmdline" },
+      --   }),
+      -- })
     end,
   },
 
