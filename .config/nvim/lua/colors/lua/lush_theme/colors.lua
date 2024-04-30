@@ -19,10 +19,6 @@ local hsl = lush.hsl
 -- stylua: ignore start
 local bg    = hsl("#0d1117")
 local fg    = hsl("#b5a488")
-local bg_d1 = bg.da(10)
-local bg_d2 = bg.da(30)
-local bg_l1 = bg.li(5)
-local bg_l2 = bg.li(10)
 
 local C = {
   normal = {
@@ -51,6 +47,11 @@ local C = {
     i19     = hsl("#1d3036"),
     i20     = hsl("#22373d"),
   },
+  alert = {
+    red     = hsl("#ff0000"),
+    green   = hsl("#00ff00"),
+    blue    = hsl("#00fbff"),
+  }
 }
 -- stylua: ignore end
 
@@ -91,8 +92,9 @@ local theme = lush(function(injected_functions)
     PmenuThumb    { bg = C.bright.black },
     Question      { MoreMsg },
     QuickFixLine  { fg = C.normal.cyan },
-    Search        { fg = bg, bg = C.bright.red },
-    IncSearch     { fg = bg, bg = C.normal.red },
+    Search        { fg = bg, bg = C.bright.yellow },
+    CurSearch     { fg = bg, bg = C.alert.green },
+    IncSearch     { Search },
     Substitute    { fg = bg, bg = C.bright.yellow },
     SpecialKey    { fg = bg, bg = C.normal.red, gui = "bold" },
     StatusLine    { fg = bg, bg = C.bright.black },
@@ -111,9 +113,9 @@ local theme = lush(function(injected_functions)
     -- Ignore        { },
     Error         { ErrorMsg },
     Todo          { fg = bg, bg = C.normal.magenta },
-    NormalFloat   { },
+    -- NormalFloat   { },
     FloatTitle    { Title },
-    FloatBorder   { fg = bg_d1, bg = bg_d1 },
+    -- FloatBorder   { fg = C.index.i20, bg = C.index.i20 },
 
     -------------------------------------------------------------------------------------------------------------------
     --- Syntax
@@ -388,20 +390,20 @@ local theme = lush(function(injected_functions)
     NvimTreeGitDeleted    { GitDelete },
 
 
-    TelescopeBorder           { FloatBorder },
-    TelescopePreviewBorder    { bg = bg_d1 },
+    -- TelescopeBorder           { FloatBorder },
+    TelescopePreviewBorder    { bg = C.index.i20 },
     TelescopePreviewTitle     { Substitute },
-    TelescopePreviewNormal    { bg = bg_d1 },
+    TelescopePreviewNormal    { bg = C.index.i20 },
 
-    TelescopePromptBorder     { bg = bg_l1 },
+    TelescopePromptBorder     { bg = C.index.i16 },
     TelescopePromptTitle      { fg = bg, bg = ErrorMsg.fg },
-    TelescopePromptNormal     { bg = bg_l1 },
+    TelescopePromptNormal     { bg = C.index.i16 },
     TelescopePromptCounter    { fg = Number.fg },
     TelescopePromptPrefix     { fg = Operator.fg },
 
-    TelescopeResultsBorder    { bg = bg_d2 },
+    TelescopeResultsBorder    { bg = C.index.i16 },
     TelescopeResultsTitle     { fg = bg, bg = Constant.fg },
-    TelescopeResultsNormal    { bg = bg_d2 },
+    TelescopeResultsNormal    { bg = C.index.i16 },
 
 -- TelescopeTitle|1 col 1| TelescopeTitle
 -- TelescopeBorder|1 col 1| TelescopeBorder
