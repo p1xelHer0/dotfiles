@@ -269,7 +269,37 @@ local M = {
   {
     "folke/todo-comments.nvim",
     event = "VeryLazy",
-    opts = {},
+    -- FIXME: TESTING
+    -- TODO: TESTING
+    -- WARN: TESTING
+    -- PERF: TESTING
+    -- HACK: TESTING
+    -- INFO: TESTING
+    -- TEST: TESTING
+    opts = {
+      keywords = {
+        FIX = {
+          icon = "!",
+          color = "error",
+          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+        },
+        TODO = { icon = "", color = "todo" },
+        HACK = { icon = "", color = "warning" },
+        WARN = { icon = "", color = "warning", alt = { "WARNING", "XXX" } },
+        PERF = { icon = "", color = "hint", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = "", color = "info", alt = { "INFO" } },
+        TEST = { icon = "⏲", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+      },
+      colors = {
+        error = { "DiagnosticError" },
+        warning = { "DiagnosticWarn" },
+        info = { "DiagnosticInfo" },
+        hint = { "DiagnosticHint" },
+        default = { "Identifier" },
+        test = { "Identifier" },
+        todo = { "Todo" },
+      },
+    },
   },
 
   {

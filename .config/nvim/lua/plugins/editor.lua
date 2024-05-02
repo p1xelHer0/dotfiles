@@ -119,67 +119,41 @@ local M = {
   },
 
   {
-    enabled = false,
     "folke/trouble.nvim",
-    cmd = {
-      "TroubleToggle",
-      "Trouble",
-    },
-    opts = {
-      -- severity = vim.diagnostic.severity.ERROR,
-      icons = false,
-      use_diagnostic_signs = true,
-    },
+    branch = "dev", -- IMPORTANT!
     keys = {
       {
         "<leader>xx",
-        "<Cmd>TroubleToggle document_diagnostics<CR>",
-        desc = "Document Diagnostics (Trouble)",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
       },
       {
         "<leader>xX",
-        "<Cmd>TroubleToggle workspace_diagnostics<CR>",
-        desc = "Workspace Diagnostics (Trouble)",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
       },
       {
         "<leader>xL",
-        "<Cmd>TroubleToggle loclist<CR>",
+        "<cmd>Trouble loclist toggle<cr>",
         desc = "Location List (Trouble)",
       },
       {
         "<leader>xQ",
-        "<Cmd>TroubleToggle quickfix<CR>",
+        "<cmd>Trouble qflist toggle<cr>",
         desc = "Quickfix List (Trouble)",
       },
-      {
-        "[q",
-        function()
-          if require("trouble").is_open() then
-            require("trouble").previous({ skip_groups = true, jump = true })
-          else
-            local ok, err = pcall(vim.cmd.cprev)
-            if not ok then
-              vim.notify(err, vim.log.levels.ERROR)
-            end
-          end
-        end,
-        desc = "Previous trouble/quickfix item",
-      },
-      {
-        "]q",
-        function()
-          if require("trouble").is_open() then
-            require("trouble").next({ skip_groups = true, jump = true })
-          else
-            local ok, err = pcall(vim.cmd.cnext)
-            if not ok then
-              vim.notify(err, vim.log.levels.ERROR)
-            end
-          end
-        end,
-        desc = "Next trouble/quickfix item",
-      },
     },
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
   },
 
   {
