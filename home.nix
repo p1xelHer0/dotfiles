@@ -34,7 +34,7 @@ in
     hyperfine
     imagemagick
     jq
-    neofetch
+    # neofetch
     p7zip
     readline
     reattach-to-user-namespace
@@ -42,7 +42,7 @@ in
     shellcheck
     silicon
     simple-http-server
-    slides
+    # slides
     tmuxinator
     tree
     tree-sitter
@@ -185,8 +185,10 @@ in
   programs.zsh = {
     enable = true;
 
-    enableAutosuggestions = false;
     enableCompletion = true;
+    autosuggestion = {
+      enable = true;
+    };
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -522,13 +524,13 @@ in
           bold_italic.family = fontFamily;
 
           offset = {
-            x = 0;
-            y = 4;
+            x = 1;
+            y = 2;
           };
 
           glyph_offset = {
-            x = 1;
-            y = 2;
+            x = 0;
+            y = 1;
           };
         };
 

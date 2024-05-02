@@ -17,7 +17,6 @@ in
     })
 
     # Tools
-    bat
     bitwarden-cli
     curl
     entr
@@ -27,24 +26,19 @@ in
     gh
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
-    hyperfine
     jq
     p7zip
     reattach-to-user-namespace
     redis
     ripgrep
-    scc
     shellcheck
     silicon
-    simple-http-server
-    slides
     tmuxinator
     tree
     tree-sitter
     watchman
     wget
     yamllint
-    zola
     zoxide
 
     # ngrok
@@ -76,7 +70,7 @@ in
     nodePackages.tailwindcss
 
     # Elm
-    elmPackages.elm
+    # elmPackages.elm # broken right now
     elmPackages.elm-language-server
     elmPackages.elm-format
 
@@ -102,8 +96,10 @@ in
   programs.zsh = {
     enable = true;
 
-    enableAutosuggestions = false;
     enableCompletion = true;
+    autosuggestion = {
+      enable = true;
+    };
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -354,121 +350,17 @@ in
     };
   };
 
-  xdg.configFile."alacritty/dark.yml".text =
-    let
-      darkColors = {
-        colors = {
-          primary = {
-            background = "0x0d1117";
-            foreground = "0xc9d1d9";
-          };
-
-          cursor = {
-            cursor = "0xc9d1d9";
-            text = "0x0d1117";
-          };
-
-          normal = {
-            black = "0x0d1117";
-            red = "0xff7b72";
-            green = "0x58a6ff";
-            yellow = "0xd29922";
-            blue = "0x58a6ff";
-            magenta = "0xbc8cff";
-            cyan = "0x39c5cf";
-            white = "0xb1bac4";
-          };
-
-          bright = {
-            black = "0x6e7681";
-            red = "0xffa198";
-            green = "0x79c0ff";
-            yellow = "0xe3b341";
-            blue = "0x79c0ff";
-            magenta = "0xbc8cff";
-            cyan = "0x39c5cf";
-            white = "0xb1bac4";
-          };
-
-          indexed_colors = [
-            { index = 16; color = "0x5d646e"; }
-            { index = 17; color = "0x4c525b"; }
-            { index = 18; color = "0x3b4149"; }
-            { index = 19; color = "0x2c3037"; }
-            { index = 20; color = "0x262a30"; }
-          ];
-        };
-      };
-    in
-    builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-      (builtins.toJSON (config.programs.alacritty.settings // darkColors));
-
-
-  xdg.configFile."alacritty/light.yml".text =
-    let
-      lightColors = {
-        colors = {
-          primary = {
-            background = "0xffffff";
-            foreground = "0x1b1f24";
-          };
-
-          cursor = {
-            cursor = "0x24292f";
-            text = "0xffffff";
-          };
-
-          normal = {
-            black = "0xffffff";
-            red = "0xcf222e";
-            green = "0x0550ae";
-            yellow = "0x4d2d00";
-            blue = "0x0969da";
-            magenta = "0x8250df";
-            cyan = "0x1b7c83";
-            white = "0x6e7781";
-          };
-
-          bright = {
-            black = "0x57606a";
-            red = "0xa40e26";
-            green = "0x0969da";
-            yellow = "0x633c01";
-            blue = "0x218bff";
-            magenta = "0x8250df";
-            cyan = "0x1b7c83";
-            white = "0x6e7781";
-          };
-
-          indexed_colors = [
-            { index = 16; color = "0x9ca4ad"; }
-            { index = 17; color = "0xadb4bb"; }
-            { index = 18; color = "0xbec4c9"; }
-            { index = 19; color = "0xcfd4d7"; }
-            { index = 20; color = "0xe1e4e6"; }
-          ];
-        };
-      };
-    in
-    builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-      (builtins.toJSON (config.programs.alacritty.settings // lightColors));
-
   programs.alacritty =
     let
       # fontFamily = "IosevkaTerm Nerd Font Mono";
       # fontFamily = "BlexMono Nerd Font Mono";
       # fontFamily = "MesloLGL Nerd Font Mono";
       fontFamily = "JetBrainsMonoNL Nerd Font Mono";
-
     in
     {
       enable = true;
 
       settings = {
-        env = {
-          TERM = "alacritty";
-        };
-
         window = {
           padding.x = 16;
           padding.y = 16;
@@ -477,8 +369,6 @@ in
           startup_mode = "Windowed";
           option_as_alt = "Both";
         };
-
-        draw_bold_text_with_bright_colors = false;
 
         live_config_reload = true;
 
@@ -498,49 +388,39 @@ in
         font = {
           size = 18;
 
-          normal = {
-            family = fontFamily;
-            style = "SemiBold";
-          };
-
-          bold = {
-            family = fontFamily;
-            style = "ExtraBold";
-          };
-
-          italic = {
-            family = fontFamily;
-            style = "SemiBold Italic";
-          };
-
-          bold_italic = {
-            family = fontFamily;
-            style = "ExtraBold Italic";
-          };
+          normal.family = fontFamily;
+          bold.family = fontFamily;
+          italic.family = fontFamily;
+          bold_italic.family = fontFamily;
 
           offset = {
             x = 1;
-            y = 4;
+            y = 2;
           };
 
           glyph_offset = {
             x = 0;
-            y = 2;
+            y = 1;
           };
         };
 
-        key_bindings = [
-          {
-            key = "Paste";
-            action = "Paste";
-          }
-          {
-            key = "Copy";
-            action = "Copy";
-          }
-        ];
+        keyboard = {
+          bindings = [
+            {
+              key = "Paste";
+              action = "Paste";
+            }
+            {
+              key = "Copy";
+              action = "Copy";
+            }
+          ];
+        };
+
+        import = [ "~/.config/alacritty/live.toml" ];
       };
     };
+
   xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
   xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/oxocarbon_dark.conf";
   xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/github_colorblind_dark.conf";

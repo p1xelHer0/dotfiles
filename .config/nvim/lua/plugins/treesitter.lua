@@ -9,6 +9,7 @@ local ensure_installed = {
   "elm",
   "erlang",
   "fennel",
+  "glsl",
   "haskell",
   "html",
   "http",
