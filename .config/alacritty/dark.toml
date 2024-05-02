@@ -27,13 +27,13 @@ cyan    = "#b5a488"
 white   = "#ffffff"
 
 [font.normal]
-style = "Light"
+style = "Regular"
 
 [font.bold]
-style = "SemiBold"
+style = "Bold"
 
 [font.italic]
-style = "Light Italic"
+style = "Italic"
 
 [font.bold_italic]
-style = "SemiBold Italic"
+style = "Bold Italic"

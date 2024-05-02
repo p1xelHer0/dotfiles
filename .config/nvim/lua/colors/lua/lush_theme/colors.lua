@@ -50,6 +50,7 @@ local C = {
   alert = {
     red     = hsl("#ff0000"),
     green   = hsl("#00ff00"),
+    yellow  = hsl("#ffff00"),
     blue    = hsl("#00fbff"),
   },
 }
@@ -96,7 +97,7 @@ local theme = lush(function(injected_functions)
 
     -- TODO: Sort these out, create some kind of grouping for Selections Search, PmenuSel, CurSearch, TelescopeMatching
     Search        { fg = bg, bg = C.normal.blue },
-    CurSearch     { fg = bg, bg = C.alert.green },
+    CurSearch     { fg = bg, bg = C.alert.yellow },
     IncSearch     { Search },
     Substitute    { gui = "reverse" },
     SpecialKey    { fg = bg, bg = C.normal.magenta },
@@ -375,6 +376,10 @@ local theme = lush(function(injected_functions)
     -- TreesitterContextSeparator { },
     -- TreesitterContextBottom { },
     -- TreesitterContextLineNumberBottom { },
+
+
+    MatchParenCur { MatchParen },
+    MatchWordCur { MatchParen },
 
 
     GitSignsAdd           { GitAdd },

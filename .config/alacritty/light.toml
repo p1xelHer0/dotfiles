@@ -28,13 +28,13 @@ cyan    = "#0d1117"
 white   = "#000000"
 
 [font.normal]
-style = "Regular"
+style = "Medium"
 
 [font.bold]
-style = "Bold"
+style = "ExtraBold"
 
 [font.italic]
-style = "Italic"
+style = "Medium Italic"
 
 [font.bold_italic]
-style = "Bold Italic"
+style = "ExtraBold Italic"

@@ -395,12 +395,12 @@ in
 
           offset = {
             x = 1;
-            y = 2;
+            y = 1;
           };
 
           glyph_offset = {
             x = 0;
-            y = 1;
+            y = 0;
           };
         };
 
