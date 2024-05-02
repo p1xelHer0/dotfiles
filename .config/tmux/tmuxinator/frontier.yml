@@ -6,8 +6,8 @@ windows:
   - frontier:
       layout: even-horizontal
       panes:
-        - nvim
         - npm run elm:watch
+        - nvim
 
   - frontier-docker:
       panes:
