@@ -1,13 +1,32 @@
 local M = {
+
+  {
+    "f-person/auto-dark-mode.nvim",
+    lazy = false,
+    priority = 999,
+    opts = {
+      update_interval = 1000,
+      set_dark_mode = function()
+        vim.cmd([[set background=dark]])
+        vim.cmd("colorscheme colors")
+      end,
+      set_light_mode = function()
+        vim.cmd([[set background=light]])
+        vim.cmd([[colorscheme rose-pine-dawn]])
+      end,
+    },
+  },
+
   {
     dir = "~/dotfiles/.config/nvim/lua/colors",
     lazy = false,
     priority = 1000,
-    config = function(_, opts)
-      -- SUMMER TIME RIGHT NOW!
-      vim.cmd([[set background=light]])
-      vim.cmd([[colorscheme rose-pine-dawn]])
-    end,
+  },
+
+  {
+    "rose-pine/neovim",
+    lazy = false,
+    priority = 1000,
   },
 
   {
@@ -17,11 +36,6 @@ local M = {
 
   {
     "shaunsingh/solarized.nvim",
-    event = "VeryLazy",
-  },
-
-  {
-    "rose-pine/neovim",
     event = "VeryLazy",
   },
 
