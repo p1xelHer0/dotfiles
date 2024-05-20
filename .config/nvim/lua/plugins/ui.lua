@@ -1,16 +1,28 @@
 local M = {
   {
+    dir = "~/dotfiles/.config/nvim/lua/colors",
+    lazy = false,
+    priority = 1000,
+    config = function(_, opts)
+      -- SUMMER TIME RIGHT NOW!
+      vim.cmd([[set background=light]])
+      vim.cmd([[colorscheme rose-pine-dawn]])
+    end,
+  },
+
+  {
     "nyoom-engineering/oxocarbon.nvim",
     event = "VeryLazy",
   },
 
   {
-    dir = "~/dotfiles/.config/nvim/lua/colors",
-    lazy = false,
-    priority = 1000,
-    config = function(_, opts)
-      vim.cmd([[colorscheme colors]])
-    end,
+    "shaunsingh/solarized.nvim",
+    event = "VeryLazy",
+  },
+
+  {
+    "rose-pine/neovim",
+    event = "VeryLazy",
   },
 
   {
@@ -283,12 +295,12 @@ local M = {
           color = "error",
           alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
         },
-        TODO = { icon = "", color = "todo" },
+        TODO = { icon = "*", color = "todo" },
         HACK = { icon = "", color = "warning" },
-        WARN = { icon = "", color = "warning", alt = { "WARNING", "XXX" } },
+        WARN = { icon = "W", color = "warning", alt = { "WARNING", "XXX" } },
         PERF = { icon = "", color = "hint", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        NOTE = { icon = "", color = "info", alt = { "INFO" } },
-        TEST = { icon = "⏲", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+        NOTE = { icon = "i", color = "info", alt = { "INFO" } },
+        TEST = { icon = "t", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
       },
       colors = {
         error = { "DiagnosticError" },
@@ -297,7 +309,7 @@ local M = {
         hint = { "DiagnosticHint" },
         default = { "Identifier" },
         test = { "Identifier" },
-        todo = { "Todo" },
+        todo = { "DiagnosticInfo" },
       },
     },
   },

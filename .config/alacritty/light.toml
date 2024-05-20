@@ -1,32 +1,32 @@
-[colors.primary]
-foreground = "#0d1117"
-background = "#b5a488"
-
-[colors.cursor]
-
-[colors.normal]
-black   = "#b5a488"
-red     = "#c37878"
-green   = "#7f9375"
-yellow  = "#c49e6a"
-blue    = "#477e76"
-magenta = "#c48884"
-cyan    = "#0d1117"
-white   = "#0d1117"
-
-[colors]
-draw_bold_text_with_bright_colors = true
-
-[colors.bright]
-black   = "#706957"
-red     = "#daa4a3"
-green   = "#a8b6a1"
-yellow  = "#dabd9a"
-blue    = "#84a8a1"
-magenta = "#0d1117"
-cyan    = "#0d1117"
-white   = "#000000"
-
+# [colors.primary]
+# foreground = "#0d1117"
+# background = "#b5a488"
+#
+# [colors.cursor]
+#
+# [colors.normal]
+# black   = "#b5a488"
+# red     = "#c37878"
+# green   = "#7f9375"
+# yellow  = "#c49e6a"
+# blue    = "#477e76"
+# magenta = "#c48884"
+# cyan    = "#0d1117"
+# white   = "#0d1117"
+#
+# [colors]
+# draw_bold_text_with_bright_colors = true
+#
+# [colors.bright]
+# black   = "#706957"
+# red     = "#daa4a3"
+# green   = "#a8b6a1"
+# yellow  = "#dabd9a"
+# blue    = "#84a8a1"
+# magenta = "#0d1117"
+# cyan    = "#0d1117"
+# white   = "#000000"
+#
 [font.normal]
 style = "Medium"
 
@@ -38,3 +38,45 @@ style = "Medium Italic"
 
 [font.bold_italic]
 style = "ExtraBold Italic"
+
+# https://github.com/alacritty/alacritty-theme/blob/master/themes/rose-pine-dawn.toml
+
+[colors.primary]
+background = '#faf4ed'
+foreground = '#575279'
+
+[colors.cursor]
+text   = '#575279'
+cursor = '#cecacd'
+
+[colors.vi_mode_cursor]
+text   = '#575279'
+cursor = '#cecacd'
+
+[colors.selection]
+text       = '#575279'
+background = '#dfdad9'
+
+[colors.normal]
+black   = '#f2e9e1'
+red     = '#b4637a'
+green   = '#286983'
+yellow  = '#ea9d34'
+blue    = '#56949f'
+magenta = '#907aa9'
+cyan    = '#d7827e'
+white   = '#575279'
+
+[colors.bright]
+black   = '#9893a5'
+red     = '#b4637a'
+green   = '#286983'
+yellow  = '#ea9d34'
+blue    = '#56949f'
+magenta = '#907aa9'
+cyan    = '#d7827e'
+white   = '#575279'
+
+[colors.hints]
+start = { foreground = '#797593', background = '#fffaf3' }
+end   = { foreground = '#9893a5', background = '#fffaf3' }

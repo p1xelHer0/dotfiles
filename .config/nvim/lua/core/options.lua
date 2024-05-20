@@ -2,6 +2,7 @@ local o = vim.opt
 local blend = 7
 
 local scrolloff = require("core.config").get_options().scrolloff
+local indent_size = 2
 
 -- stylua: ignore start
 o.termguicolors   = true
@@ -9,7 +10,11 @@ o.syntax          = "off"
 
 o.shortmess       = "aoIcFW"
 
-o.tabstop         = 4
+o.expandtab =     true
+o.shiftwidth =    indent_size
+o.smartindent =   true
+o.tabstop =       indent_size * 2
+o.softtabstop =   indent_size * 4
 
 o.fillchars = {
   stl             = " ",
@@ -33,12 +38,13 @@ o.fillchars = {
 o.list            = true
 o.listchars = {
   eol             = " " ,
-  tab             = "» ",
+  tab             = "⇥ ",
   trail           = "·" ,
   extends         = "→" ,
   precedes        = "←" ,
   nbsp            = "␣" ,
 }
+o.wrap            = false
 o.showbreak       = "↪ "
 o.conceallevel    = 2
 

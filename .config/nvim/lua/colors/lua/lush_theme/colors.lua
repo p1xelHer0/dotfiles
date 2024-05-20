@@ -213,7 +213,7 @@ local theme = lush(function(injected_functions)
     -- sym("@type.builtin")                { }, -- built-in types
     -- sym("@type.definition")             { }, -- identifiers in type definitions (e.g. `typedef <type> <identifier>` in C)
 
-    -- sym("@attribute")                   { }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
+    sym("@attribute")                   { fg = C.normal.blue }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
     -- sym("@attribute.builtin")           { }, -- builtin annotations (e.g. `@property` in Python)
     -- sym("@property")                    { }, -- the key in key/value pairs
 
@@ -248,7 +248,7 @@ local theme = lush(function(injected_functions)
 
     -- sym("@punctuation.delimiter")       { }, -- delimiters (e.g. `;`, `.`, `,`)
     -- sym("@punctuation.bracket")         { }, -- brackets (e.g. `()`, `{}`, `[]`)
-    sym("@punctuation.special")         { Function }, -- special symbols (e.g. `{}` in string interpolation)
+    sym("@punctuation.special")         { fg = C.normal.cyan }, -- special symbols (e.g. `{}` in string interpolation)
 
     -- sym("@comment")                     { }, -- line and block comments
     -- sym("@comment.documentation")       { }, -- comments documenting code
@@ -309,7 +309,7 @@ local theme = lush(function(injected_functions)
     -- sym("@lsp.type.macro")          { }, -- Identifiers that declare a macro
     -- sym("@lsp.type.method")         { }, -- Identifiers that declare a member function or method
     -- sym("@lsp.type.modifier")       { }, -- Tokens that represent a modifier
-    -- sym("@lsp.type.namespace")      { }, -- Identifiers that declare or reference a namespace, module, or package
+    sym("@lsp.type.namespace")      { Normal }, -- Identifiers that declare or reference a namespace, module, or package
     -- sym("@lsp.type.number")         { }, -- Tokens that represent a number literal
     -- sym("@lsp.type.operator")       { }, -- Tokens that represent an operator
     -- sym("@lsp.type.parameter")      { }, -- Identifiers that declare or reference a function or method parameters
