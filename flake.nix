@@ -46,20 +46,16 @@
           ];
         };
 
-        Pontus-SAVR-MacBook = darwinSystem {
-          system = "x86_64-darwin";
+        Pontuss-MacBook-Pro = darwinSystem {
+          system = "aarch64-darwin";
           modules = [
             ./work.nix
             home-manager.darwinModules.home-manager
             {
               nixpkgs = nixpkgsConfig;
-              home-manager.users.pontusnagy = {
+              home-manager.users."pontus.nagy" = {
                 imports = [
                   ./work-home.nix
-                ];
-
-                nixpkgs.overlays = [
-                  neovim-nightly-overlay.overlay
                 ];
               };
             }

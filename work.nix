@@ -30,14 +30,14 @@ in
     zsh
   ];
 
-  environment.darwinConfig = "/Users/pontusnagy/dotfiles/work.nix";
+  environment.darwinConfig = "/Users/pontus.nagy/dotfiles/work.nix";
 
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
-  users.users.pontusnagy = {
+  users.users."pontus.nagy" = {
     shell = pkgs.zsh;
-    home = /Users/pontusnagy;
+    home = /Users/pontus.nagy;
   };
 
   # Add ability to used TouchID for sudo authentication
@@ -55,7 +55,7 @@ in
       tilesize = 64;
     };
 
-    screencapture.location = "/Users/pontusnagy/Pictures/screenshots";
+    screencapture.location = "/Users/pontus.nagy/Pictures/screenshots";
 
     finder = {
       AppleShowAllExtensions = true;
@@ -171,9 +171,9 @@ in
       serviceConfig = {
         Label = "nighthook";
         WatchPaths =
-          [ "/Users/pontusnagy/Library/Preferences/.GlobalPreferences.plist" ];
+          [ "/Users/pontus.nagy/Library/Preferences/.GlobalPreferences.plist" ];
         EnvironmentVariables = {
-          PATH = (builtins.replaceStrings [ "$HOME" ] [ "/Users/pontusnagy" ] config.environment.systemPath);
+          PATH = (builtins.replaceStrings [ "$HOME" ] [ "/Users/pontus.nagy" ] config.environment.systemPath);
         };
         ProgramArguments = [
           "${pkgs.writeShellScript "nighthook-action" ''
@@ -184,8 +184,8 @@ in
             fi
 
             alacrittySwitchTheme() {
-              FROM=/Users/pontusnagy/dotfiles/.config/alacritty
-              TO=/Users/pontusnagy/.config/alacritty
+              FROM=/Users/pontus.nagy/dotfiles/.config/alacritty
+              TO=/Users/pontus.nagy/.config/alacritty
               if [[  $MODE == "dark"  ]]; then
                 ln -fs $FROM/dark.toml $TO/live.toml
               elif [[  $MODE == "light"  ]]; then
