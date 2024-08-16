@@ -59,8 +59,11 @@ in
 
     finder = {
       AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       CreateDesktop = true;
+      FXDefaultSearchScope = "SCcf";
       FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
       QuitMenuItem = true;
       _FXShowPosixPathInTitle = true;
     };
@@ -108,12 +111,6 @@ in
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToControl = true;
-  };
-
-  fonts = {
-    fontDir = {
-      enable = true;
-    };
   };
 
   homebrew = {

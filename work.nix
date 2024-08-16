@@ -1,23 +1,5 @@
 { config, pkgs, lib, ... }:
-let
-  homeDir = builtins.getEnv ("HOME");
-  user = builtins.getEnv ("USER");
-in
 {
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-
-    # https://github.com/NixOS/nix/issues/7273
-    auto-optimise-store = false;
-
-    # Recommended when using `direnv` etc.
-    keep-derivations = true;
-    keep-outputs = true;
-  };
-
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
@@ -59,8 +41,11 @@ in
 
     finder = {
       AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       CreateDesktop = true;
+      FXDefaultSearchScope = "SCcf";
       FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
       QuitMenuItem = true;
       _FXShowPosixPathInTitle = true;
     };
@@ -110,12 +95,6 @@ in
     remapCapsLockToControl = true;
   };
 
-  fonts = {
-    fontDir = {
-      enable = true;
-    };
-  };
-
   homebrew = {
     enable = true;
     global.brewfile = true;
@@ -130,7 +109,7 @@ in
       "fsouza/prettierd"
       "homebrew/bundle"
       # "homebrew/cask"
-      "homebrew/cask-versions"
+      # "homebrew/cask-versions"
       # "homebrew/core"
     ];
 
@@ -144,7 +123,8 @@ in
       "alt-tab"
       "appcleaner"
       "devcleaner"
-      "google-chrome"
+      # "google-chrome"
+      "firefox"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
@@ -152,11 +132,13 @@ in
       "linearmouse"
       "mockoon"
       "ngrok"
+      "notion"
       "obsidian"
       "orbstack"
       "secretive"
       "tableplus"
       "visual-studio-code"
+      "zed"
     ];
 
     masApps = {
