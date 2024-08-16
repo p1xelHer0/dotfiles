@@ -40,7 +40,6 @@ in
     reattach-to-user-namespace
     ripgrep
     shellcheck
-    silicon
     simple-http-server
     # slides
     tmuxinator
@@ -91,9 +90,7 @@ in
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
-    nodePackages.vscode-json-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-css-languageserver-bin
+    nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.tailwindcss
@@ -462,7 +459,7 @@ in
   xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    # package = pkgs.neovim; # this enables nightly
     extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;

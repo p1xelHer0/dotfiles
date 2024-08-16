@@ -1,23 +1,5 @@
 { config, pkgs, lib, ... }:
-let
-  homeDir = builtins.getEnv ("HOME");
-  user = builtins.getEnv ("USER");
-in
 {
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-
-    # https://github.com/NixOS/nix/issues/7273
-    auto-optimise-store = false;
-
-    # Recommended when using `direnv` etc.
-    keep-derivations = true;
-    keep-outputs = true;
-  };
-
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
@@ -30,14 +12,14 @@ in
     zsh
   ];
 
-  environment.darwinConfig = "/Users/pontusnagy/dotfiles/work.nix";
+  environment.darwinConfig = "/Users/pontus.nagy/dotfiles/work.nix";
 
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
-  users.users.pontusnagy = {
+  users.users."pontus.nagy" = {
     shell = pkgs.zsh;
-    home = /Users/pontusnagy;
+    home = /Users/pontus.nagy;
   };
 
   # Add ability to used TouchID for sudo authentication
@@ -55,12 +37,15 @@ in
       tilesize = 64;
     };
 
-    screencapture.location = "/Users/pontusnagy/Pictures/screenshots";
+    screencapture.location = "/Users/pontus.nagy/Pictures/screenshots";
 
     finder = {
       AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       CreateDesktop = true;
+      FXDefaultSearchScope = "SCcf";
       FXEnableExtensionChangeWarning = false;
+      FXPreferredViewStyle = "Nlsv";
       QuitMenuItem = true;
       _FXShowPosixPathInTitle = true;
     };
@@ -110,12 +95,6 @@ in
     remapCapsLockToControl = true;
   };
 
-  fonts = {
-    fontDir = {
-      enable = true;
-    };
-  };
-
   homebrew = {
     enable = true;
     global.brewfile = true;
@@ -130,7 +109,7 @@ in
       "fsouza/prettierd"
       "homebrew/bundle"
       # "homebrew/cask"
-      "homebrew/cask-versions"
+      # "homebrew/cask-versions"
       # "homebrew/core"
     ];
 
@@ -144,7 +123,8 @@ in
       "alt-tab"
       "appcleaner"
       "devcleaner"
-      "google-chrome"
+      # "google-chrome"
+      "firefox"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
@@ -152,11 +132,13 @@ in
       "linearmouse"
       "mockoon"
       "ngrok"
+      "notion"
       "obsidian"
       "orbstack"
       "secretive"
       "tableplus"
       "visual-studio-code"
+      "zed"
     ];
 
     masApps = {
@@ -171,9 +153,9 @@ in
       serviceConfig = {
         Label = "nighthook";
         WatchPaths =
-          [ "/Users/pontusnagy/Library/Preferences/.GlobalPreferences.plist" ];
+          [ "/Users/pontus.nagy/Library/Preferences/.GlobalPreferences.plist" ];
         EnvironmentVariables = {
-          PATH = (builtins.replaceStrings [ "$HOME" ] [ "/Users/pontusnagy" ] config.environment.systemPath);
+          PATH = (builtins.replaceStrings [ "$HOME" ] [ "/Users/pontus.nagy" ] config.environment.systemPath);
         };
         ProgramArguments = [
           "${pkgs.writeShellScript "nighthook-action" ''
@@ -184,8 +166,8 @@ in
             fi
 
             alacrittySwitchTheme() {
-              FROM=/Users/pontusnagy/dotfiles/.config/alacritty
-              TO=/Users/pontusnagy/.config/alacritty
+              FROM=/Users/pontus.nagy/dotfiles/.config/alacritty
+              TO=/Users/pontus.nagy/.config/alacritty
               if [[  $MODE == "dark"  ]]; then
                 ln -fs $FROM/dark.toml $TO/live.toml
               elif [[  $MODE == "light"  ]]; then

@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
@@ -32,7 +32,6 @@ in
     redis
     ripgrep
     shellcheck
-    silicon
     tmuxinator
     tree
     tree-sitter
@@ -62,15 +61,13 @@ in
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
-    nodePackages.vscode-json-languageserver-bin
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-css-languageserver-bin
+    nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.tailwindcss
 
     # Elm
-    # elmPackages.elm # broken right now
+    elmPackages.elm
     elmPackages.elm-language-server
     elmPackages.elm-format
 
@@ -91,7 +88,7 @@ in
     nodePackages.yaml-language-server
   ];
 
-  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/_darwin/karabiner/";
+  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/karabiner/";
 
   programs.zsh = {
     enable = true;
@@ -268,14 +265,14 @@ in
     };
   };
 
-  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
+  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
 
-  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/zellij/config.kdl";
+  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/zellij/config.kdl";
   programs.zellij = {
     enable = true;
   };
 
-  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/tmux/tmux.conf";
+  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -313,10 +310,10 @@ in
 
   xdg.configFile."theme".text = "dark";
 
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/nvim/lua";
+  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/nvim/lua";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    # package = pkgs.neovim; # this enables nightly
     extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
@@ -420,12 +417,4 @@ in
         import = [ "~/.config/alacritty/live.toml" ];
       };
     };
-
-  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kitty.conf";
-  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/oxocarbon_dark.conf";
-  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/github_colorblind_dark.conf";
-  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/pontusnagy/dotfiles/.config/kitty/kanagawa.conf";
-  programs.kitty = {
-    enable = true;
-  };
 }

@@ -2,19 +2,20 @@
   description = "p1xelHer0's system";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.0";
 
-    nix-darwin.url = "github:lnl7/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1.0";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, neovim-nightly-overlay, ... } @ inputs:
+  outputs = { nix, nix-darwin, home-manager, neovim-nightly-overlay, ... }:
     let
       inherit (nix-darwin.lib) darwinSystem;
 
@@ -23,6 +24,10 @@
           allowUnfree = true;
         };
       };
+
+      overlays = [
+        neovim-nightly-overlay.overlays.default
+      ];
     in
     {
       darwinConfigurations = {
@@ -34,32 +39,29 @@
             {
               nixpkgs = nixpkgsConfig;
               home-manager.users.p1xelher0 = {
+                nixpkgs.overlays = overlays;
+
                 imports = [
                   ./home.nix
-                ];
-
-                nixpkgs.overlays = [
-                  neovim-nightly-overlay.overlay
                 ];
               };
             }
           ];
         };
 
-        Pontus-SAVR-MacBook = darwinSystem {
-          system = "x86_64-darwin";
+        Pontuss-MacBook-Pro = darwinSystem {
+          system = "aarch64-darwin";
           modules = [
+            nix.darwinModules.default
             ./work.nix
             home-manager.darwinModules.home-manager
             {
               nixpkgs = nixpkgsConfig;
-              home-manager.users.pontusnagy = {
+              home-manager.users."pontus.nagy" = {
+                nixpkgs.overlays = overlays;
+
                 imports = [
                   ./work-home.nix
-                ];
-
-                nixpkgs.overlays = [
-                  neovim-nightly-overlay.overlay
                 ];
               };
             }
