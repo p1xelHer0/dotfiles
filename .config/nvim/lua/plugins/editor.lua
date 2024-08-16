@@ -120,7 +120,6 @@ local M = {
 
   {
     "folke/trouble.nvim",
-    branch = "dev", -- IMPORTANT!
     keys = {
       {
         "<leader>xx",

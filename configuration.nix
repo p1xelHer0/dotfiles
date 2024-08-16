@@ -205,6 +205,7 @@ in
       Telegram = 747648890;
       Typesy = 1059295091;
       Xcode = 497799835;
+      Mattermost = 1614666244;
     };
   };
 

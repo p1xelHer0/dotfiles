@@ -387,6 +387,51 @@ local theme = lush(function(injected_functions)
     GitSignsChange        { GitChange },
     GitSignsNew           { GitNew },
 
+-- 'signs.add.hl' is now deprecated, please define highlight 'GitSignsAdd'
+-- 'signs.add.numhl' is now deprecated, please define highlight 'GitSignsAddNr'
+-- 'signs.change.hl' is now deprecated, please define highlight 'GitSignsChange'
+-- 'signs.change.numhl' is now deprecated, please define highlight 'GitSignsChangeNr'
+-- 'signs.changedelete.hl' is now deprecated, please define highlight 'GitSignsChangedelete'
+-- 'signs.changedelete.numhl' is now deprecated, please define highlight 'GitSignsChangedeleteNr'
+-- 'signs.delete.hl' is now deprecated, please define highlight 'GitSignsDelete'
+-- 'signs.delete.numhl' is now deprecated, please define highlight 'GitSignsDeleteNr'
+-- 'signs.topdelete.hl' is now deprecated, please define highlight 'GitSignsTopdelete'
+-- 'signs.topdelete.numhl' is now deprecated, please define highlight 'GitSignsTopdeleteNr'
+-- 'signs.untracked.hl' is now deprecated, please define highlight 'GitSignsUntracked'
+-- 'signs.untracked.numhl' is now deprecated, please define highlight 'GitSignsUntrackedNr'
+    -- --      signs = {
+    --     add = {
+    --       hl = "GitSignsAdd",
+    --       text = require("core.config").get_icons().git.add,
+    --       numhl = "GitSignsAddNr",
+    --     },
+    --     change = {
+    --       hl = "GitSignsChange",
+    --       text = require("core.config").get_icons().git.change,
+    --       numhl = "GitSignsChangeNr",
+    --     },
+    --     delete = {
+    --       hl = "GitSignsDelete",
+    --       text = require("core.config").get_icons().git.delete,
+    --       numhl = "GitSignsDeleteNr",
+    --     },
+    --     topdelete = {
+    --       hl = "GitSignsDelete",
+    --       text = require("core.config").get_icons().git.top_delete,
+    --       numhl = "GitSignsDeleteNr",
+    --     },
+    --     changedelete = {
+    --       hl = "GitSignsChange",
+    --       text = require("core.config").get_icons().git.change_delete,
+    --       numhl = "GitSignsChangeNr",
+    --     },
+    --     untracked = {
+    --       hl = "GitSignsAdd",
+    --       text = require("core.config").get_icons().git.untracked,
+    --       numhl = "GitSignsAddNr",
+    --     },
+    --
+    --
 
     NeogitDiffAdd         { DiffAdd },
     NeogitDiffDelete      { DiffDelete },

@@ -10,11 +10,15 @@ o.syntax          = "off"
 
 o.shortmess       = "aoIcFW"
 
-o.expandtab =     true
-o.shiftwidth =    indent_size
-o.smartindent =   true
-o.tabstop =       indent_size * 2
-o.softtabstop =   indent_size * 4
+o.expandtab       = true
+o.shiftwidth      = indent_size
+o.smartindent     = true
+o.tabstop         = indent_size * 2
+o.softtabstop     = indent_size * 4
+
+o.foldmethod      = "expr"
+o.foldexpr        = "nvim_treesitter#foldexpr()"
+o.foldenable      = false
 
 o.fillchars = {
   stl             = " ",
@@ -44,7 +48,7 @@ o.listchars = {
   precedes        = "←" ,
   nbsp            = "␣" ,
 }
-o.wrap            = false
+o.wrap            = true
 o.showbreak       = "↪ "
 o.conceallevel    = 2
 
