@@ -216,6 +216,7 @@ local M = {
             html = "html",
           },
         },
+        root_dir = require("lspconfig.util").root_pattern(".git"),
         settings = {
           tailwindCSS = {
             includeLanguages = {
