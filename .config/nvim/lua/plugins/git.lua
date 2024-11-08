@@ -48,40 +48,21 @@ local M = {
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "Gitsigns " },
     opts = {
-      signs = {
-        add = {
-          hl = "GitSignsAdd",
-          text = require("core.config").get_icons().git.add,
-          numhl = "GitSignsAddNr",
-        },
-        change = {
-          hl = "GitSignsChange",
-          text = require("core.config").get_icons().git.change,
-          numhl = "GitSignsChangeNr",
-        },
-        delete = {
-          hl = "GitSignsDelete",
-          text = require("core.config").get_icons().git.delete,
-          numhl = "GitSignsDeleteNr",
-        },
-        topdelete = {
-          hl = "GitSignsDelete",
-          text = require("core.config").get_icons().git.top_delete,
-          numhl = "GitSignsDeleteNr",
-        },
-        changedelete = {
-          hl = "GitSignsChange",
-          text = require("core.config").get_icons().git.change_delete,
-          numhl = "GitSignsChangeNr",
-        },
-        untracked = {
-          hl = "GitSignsAdd",
-          text = require("core.config").get_icons().git.untracked,
-          numhl = "GitSignsAddNr",
-        },
-      },
       on_attach = function(bufnr)
         require("keymap.git").setup(bufnr)
+
+        vim.api.nvim_set_hl(0, "GitSignsAdd", { link = "GitSignsAdd" })
+        vim.api.nvim_set_hl(0, "GitSignsAddNr", { link = "GitSignsAddNr" })
+        vim.api.nvim_set_hl(0, "GitSignsChange", { link = "GitSignsChange" })
+        vim.api.nvim_set_hl(0, "GitSignsChangeNr", { link = "GitSignsChangeNr" })
+        vim.api.nvim_set_hl(0, "GitSignsChangedelete", { link = "GitSignsChange" })
+        vim.api.nvim_set_hl(0, "GitSignsChangedeleteNr", { link = "GitSignsChangeNr" })
+        vim.api.nvim_set_hl(0, "GitSignsDelete", { link = "GitSignsDelete" })
+        vim.api.nvim_set_hl(0, "GitSignsDeleteNr", { link = "GitSignsDeleteNr" })
+        vim.api.nvim_set_hl(0, "GitSignsTopdelete", { link = "GitSignsDelete" })
+        vim.api.nvim_set_hl(0, "GitSignsTopdeleteNr", { link = "GitSignsDeleteNr" })
+        vim.api.nvim_set_hl(0, "GitSignsUntracked", { link = "GitSignsAdd" })
+        vim.api.nvim_set_hl(0, "GitSignsUntrackedNr", { link = "GitSignsAddNr" })
       end,
     },
   },

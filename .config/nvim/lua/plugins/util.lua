@@ -34,7 +34,6 @@ local M = {
 
   {
     "https://github.com/m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
 
@@ -43,7 +42,9 @@ local M = {
     keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
   },
 
-  { "nvim-lua/plenary.nvim", lazy = true },
+  -- dependencies
+  { "nvim-lua/plenary.nvim" },
+  { "MunifTanjim/nui.nvim" },
 }
 
 return M

@@ -14,7 +14,7 @@ windows:
         - npm run docker
 
   - api:
-      root: ~/code/github/savrcom/behemoth
+      root: ~/code/github/savrcom/docker
       layout: even-horizontal
       panes:
-        - ./savr up-all
+        - docker-compose up -d

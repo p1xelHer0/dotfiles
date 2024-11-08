@@ -161,6 +161,25 @@ local M = {
   },
 
   {
+    enabled = false,
+    "yetone/avante.nvim",
+    build = "make lua51",
+    event = "VeryLazy",
+    opts = {
+      provider = "copilot",
+    },
+    dependencies = {
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
+
+  {
     "JoosepAlviste/nvim-ts-context-commentstring",
     lazy = true,
     opts = {

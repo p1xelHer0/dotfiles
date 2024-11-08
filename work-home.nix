@@ -27,6 +27,7 @@ in
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     jq
+    mob
     p7zip
     reattach-to-user-namespace
     redis
@@ -58,22 +59,25 @@ in
     # Web
     fnm
     biome
+    tailwindcss-language-server
     nodePackages.prettier
     nodePackages.eslint
     nodePackages.eslint_d
     nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
-    nodePackages.tailwindcss
 
     # Elm
     elmPackages.elm
-    elmPackages.elm-language-server
     elmPackages.elm-format
+    elmPackages.elm-language-server
+    elmPackages.elm-test
 
     # PHP
-    php82
-    php82Packages.composer
+    # php82
+    # php82Packages.composer
+    php83
+    php83Packages.composer
     phpactor
 
     # Ruby

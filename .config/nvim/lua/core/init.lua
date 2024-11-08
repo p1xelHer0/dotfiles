@@ -28,6 +28,7 @@ g.loaded_perl_provider = 0
 require("core.options")
 require("keymap")
 require("core.autocmd")
+require("core.theme").setup()
 
 local lazy_path = require("core.config").get_lazy_path()
 if not vim.loop.fs_stat(lazy_path) then
