@@ -145,6 +145,7 @@ in
       # "avr-gcc@8"
       # "arm-gcc-bin@8"
 
+      "ghcup"
       "openssl@3"
       "pkg-config"
       "llvm@17"
@@ -169,7 +170,6 @@ in
       "discord"
       "element"
       "firefox"
-      "firefox-developer-edition"
       "godot"
       "google-chrome"
       "gpg-suite-no-mail"
