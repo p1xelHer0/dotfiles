@@ -90,13 +90,6 @@ local M = {
         on_attach = on_attach,
       })
 
-      require("typescript").setup({
-        server = {
-          capabilities = capabilities,
-          on_attach = on_attach,
-        },
-      })
-
       nvim_lspconfig.wgsl_analyzer.setup({
         cmd = { "/Users/p1xelher0/.cargo/bin/wgsl_analyzer" },
       })
@@ -148,6 +141,12 @@ local M = {
             },
           },
         },
+      })
+
+      nvim_lspconfig.hls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = { "haskell", "lhaskell", "cabal" },
       })
 
       -- nvim_lspconfig.clangd.setup({
@@ -250,19 +249,21 @@ local M = {
       })
 
       local servers = {
-        "clojure_lsp",
         "biome",
+        "cl_lsp",
+        "clojure_lsp",
         "elixirls",
         "elmls",
         "fennel_language_server",
         "glsl_analyzer",
-        "cl_lsp",
-        -- "ccls",
         "ocamllsp", -- opam install ocaml-lsp-server - usually in local switch
         "ols",
-        -- "racket_langserver", -- raco pkg install racket-langserver
+        "ts_ls",
+        "roc_ls",
         "taplo",
         "zls",
+        -- "ccls",
+        -- "racket_langserver", -- raco pkg install racket-langserver
       }
 
       for _, server in ipairs(servers) do
