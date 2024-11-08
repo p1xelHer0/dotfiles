@@ -34,6 +34,7 @@ local ensure_installed = {
   "query",
   "racket",
   "regex",
+  "roc",
   "rust",
   "scheme",
   "scss",

@@ -9,11 +9,11 @@ function M.get_lazy_path()
 end
 
 function M.get_icons()
-  local error = "🚨"
-  local warn = "🚧"
-  local info = "🧵"
-  local hint = "🍬"
-  local ok = "🥳"
+  local error = "e"
+  local warn = "w"
+  local info = "i"
+  local hint = "h"
+  local ok = "o"
   local done = "🎉"
   local working = ""
   local removed = "🗑"

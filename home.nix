@@ -57,6 +57,7 @@ in
     # gcc13
     ccls
     emscripten
+    nasm
     # vscode-extensions.vadimcn.vscode-lldb
 
     # Zig
@@ -118,7 +119,8 @@ in
     # BQN
     # cbqn
 
-    # Python
+    # Python oh no
+    python3
     # nodePackages.pyright
     # python310Packages.autopep8
 
@@ -156,6 +158,9 @@ in
     # racket # broken on macOS - using brew
     # racket-minimal # broken on macOS - using brew
     # raco pkg install racket-langserver
+
+    # Lua
+    luajit
 
     # Fennel
     luaPackages.fennel
