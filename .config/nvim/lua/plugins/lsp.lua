@@ -122,15 +122,6 @@ local M = {
         on_attach = on_attach,
       })
 
-      nvim_lspconfig.jsonls.setup({
-        capabilities = capabilities,
-        cmd = {
-          "json-languageserver",
-          "--stdio",
-        },
-        on_attach = on_attach,
-      })
-
       nvim_lspconfig.nil_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -254,6 +245,7 @@ local M = {
         "cl_lsp",
         "clojure_lsp",
         "elixirls",
+        "jsonls",
         "elmls",
         "fennel_language_server",
         "glsl_analyzer",
