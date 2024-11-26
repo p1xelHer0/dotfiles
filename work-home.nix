@@ -371,8 +371,6 @@ in
           option_as_alt = "Both";
         };
 
-        live_config_reload = true;
-
         mouse.hide_when_typing = true;
 
         scrolling.history = 0;
@@ -418,7 +416,10 @@ in
           ];
         };
 
-        import = [ "~/.config/alacritty/live.toml" ];
+        general = {
+          live_config_reload = true;
+          import = [ "~/.config/alacritty/live.toml" ];
+        };
       };
     };
 }
