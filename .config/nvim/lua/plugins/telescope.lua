@@ -41,7 +41,7 @@ local M = {
     {
       mode = "n",
       "<Leader>d",
-      "<Cmd>Telescope diagnostics<CR>",
+      "<Cmd>lua require 'plugins.telescope'.diagnostics()<CR>",
       { silent = true },
     },
     {
@@ -153,6 +153,13 @@ M.project_files = function()
   else
     builtin.find_files(opts)
   end
+end
+
+M.diagnostics = function()
+  require("telescope.builtin").diagnostics({
+    {},
+    severity = vim.diagnostic.severity.ERROR,
+  })
 end
 
 return M
