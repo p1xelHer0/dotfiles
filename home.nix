@@ -19,6 +19,7 @@ in
     })
 
     # Tools
+    cmake
     curl
     entr
     eza
@@ -39,6 +40,7 @@ in
     readline
     reattach-to-user-namespace
     ripgrep
+    ninja
     shellcheck
     simple-http-server
     # slides
@@ -56,7 +58,6 @@ in
     # cmake
     # gcc13
     ccls
-    emscripten
     nasm
     # vscode-extensions.vadimcn.vscode-lldb
 

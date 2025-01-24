@@ -43,7 +43,7 @@ local M = {
 
   -- Paredit variants
   {
-    enabled = true,
+    enabled = false,
     "julienvincent/nvim-paredit",
     ft = ft,
     config = function()
@@ -66,14 +66,14 @@ local M = {
   },
 
   {
-    enabled = false,
+    enabled = true,
     "eraserhd/parinfer-rust",
     ft = ft,
     build = "cargo build --release",
   },
 
   {
-    enabled = false,
+    enabled = true,
     "hiphish/rainbow-delimiters.nvim",
     ft = ft,
     opts = {

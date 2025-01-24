@@ -1,15 +1,7 @@
 [core]
   autocrlf = input
-  pager = delta
 [init]
   defaultBranch = main
-[interactive]
-  diffFilter = delta --color-only
-[delta]
-  navigate = true
-  side-by-side = true
-  line-numbers-left-format = "{np:^4} "
-  line-numbers-right-format = " {np:^4}"
 [merge]
   conflictstyle = diff3
 [diff]

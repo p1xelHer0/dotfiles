@@ -24,6 +24,22 @@ local M = {
     event = "VeryLazy",
     opts = {
       ["*"] = {
+        -- C
+        ["*.c"] = {
+          alternate = "{}.h",
+        },
+        ["*.h"] = {
+          alternate = "{}.c",
+        },
+
+        -- sokol_shdc
+        ["**.glsl"] = {
+          alternate = "{}.glsl.h",
+        },
+        ["**.glsl.odin"] = {
+          alternate = "{}.glsl",
+        },
+
         -- Elm
         ["app/elm/App/*Service.elm"] = {
           alternate = "app/elm/App/{}.elm",
@@ -97,6 +113,7 @@ local M = {
         elm = { "elm_format" },
         javascript = { "biome" },
         typescript = { "biome" },
+        ["*"] = { "trim_whitespace", "trim_newlines" },
       },
       format_on_save = { timeout_ms = 500, lsp_fallback = true },
     },

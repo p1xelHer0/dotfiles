@@ -145,6 +145,8 @@ in
       # "avr-gcc@8"
       # "arm-gcc-bin@8"
 
+      "emscripten"
+      "java"
       "ghcup"
       "openssl@3"
       "pkg-config"

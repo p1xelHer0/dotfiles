@@ -2,77 +2,99 @@
   "description": "left_option ['; to åäö",
   "manipulators": [
     {
-      "type": "basic",
       "from": {
         "key_code": "open_bracket",
         "modifiers": { "mandatory": ["left_option"] }
       },
-      "to": [{ "key_code": "a", "modifiers": ["left_option"] }]
+      "to": [
+        {
+          "key_code": "a",
+          "modifiers": ["left_option"]
+        }
+      ],
+      "type": "basic"
     },
     {
-      "type": "basic",
       "from": {
         "key_code": "open_bracket",
-        "modifiers": {
-          "mandatory": ["left_option", "left_shift"]
-        }
-      },
-      "to": [{ "key_code": "a", "modifiers": ["left_option", "left_shift"] }]
-    },
-
-    {
-      "type": "basic",
-      "from": {
-        "key_code": "quote",
-        "modifiers": {
-          "mandatory": ["left_option"]
-        }
+        "modifiers": { "mandatory": ["left_option", "left_shift"] }
       },
       "to": [
-        { "key_code": "u", "modifiers": ["left_option"] },
+        {
+          "key_code": "a",
+          "modifiers": ["left_option", "left_shift"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "quote",
+        "modifiers": { "mandatory": ["left_option"] }
+      },
+      "to": [
+        {
+          "key_code": "u",
+          "modifiers": ["left_option"]
+        },
         { "key_code": "a" }
-      ]
+      ],
+      "type": "basic"
     },
     {
-      "type": "basic",
       "from": {
         "key_code": "quote",
-        "modifiers": {
-          "mandatory": ["left_option", "left_shift"]
-        }
+        "modifiers": { "mandatory": ["left_option", "left_shift"] }
       },
       "to": [
-        { "key_code": "u", "modifiers": ["left_option"] },
-        { "key_code": "a", "modifiers": ["left_shift"] }
-      ]
+        {
+          "key_code": "u",
+          "modifiers": ["left_option"]
+        },
+        {
+          "key_code": "a",
+          "modifiers": ["left_shift"]
+        }
+      ],
+      "type": "basic"
     },
-
     {
-      "type": "basic",
       "from": {
         "key_code": "semicolon",
-        "modifiers": {
-          "mandatory": ["left_option"]
-        }
+        "modifiers": { "mandatory": ["left_option"] }
       },
       "to": [
-        { "key_code": "u", "modifiers": ["left_option"] },
+        {
+          "key_code": "u",
+          "modifiers": ["left_option"]
+        },
         { "key_code": "o" }
-      ]
+      ],
+      "type": "basic"
     },
-
     {
-      "type": "basic",
       "from": {
         "key_code": "semicolon",
-        "modifiers": {
-          "mandatory": ["left_option", "left_shift"]
-        }
+        "modifiers": { "mandatory": ["left_option", "left_shift"] }
       },
       "to": [
-        { "key_code": "u", "modifiers": ["left_option"] },
-        { "key_code": "o", "modifiers": ["left_shift"] }
-      ]
+        {
+          "key_code": "u",
+          "modifiers": ["left_option"]
+        },
+        {
+          "key_code": "o",
+          "modifiers": ["left_shift"]
+        }
+      ],
+      "type": "basic"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "Default profile",
+      "selected": true,
+      "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
     }
   ]
 }

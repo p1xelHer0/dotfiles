@@ -149,18 +149,6 @@ local M = {
         filetypes = { "haskell", "lhaskell", "cabal" },
       })
 
-      -- nvim_lspconfig.clangd.setup({
-      --   capabilities = capabilities,
-      --   cmd = {
-      --     "clangd",
-      --     "--background-index",
-      --     "--suggest-missing-includes",
-      --     "--clang-tidy",
-      --     "--header-insertion=iwyu",
-      --   },
-      --   on_attach = on_attach,
-      -- })
-
       -- cargo install --git https://github.com/rydesun/fennel-language-server
       require("lspconfig.configs").fennel_language_server = {
         default_config = {
@@ -252,6 +240,7 @@ local M = {
       local servers = {
         "biome",
         "cl_lsp",
+        "clangd",
         "clojure_lsp",
         "elixirls",
         "elmls",
@@ -410,6 +399,14 @@ local M = {
   {
     "bakpakin/janet.vim",
     ft = "janet",
+    -- keys = {
+    --   {
+    --     mode = "n",
+    --     "<Leader>s",
+    --     ":%!cat %.tested<CR>:w<CR>",
+    --     { noremap = true, silent = true },
+    --   },
+    -- },
   },
 
   {
