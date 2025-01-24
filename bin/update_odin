@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+START_PATH="$PWD"
+
+cd $ODIN_ROOT
+git pull
+./build_odin.sh release
+make -C ./vendor/stb/src
+make -C ./vendor/miniaudio/src
+
+cd $ODIN_TOOLS
+git pull
+./build.sh
+
+cd $START_PATH
