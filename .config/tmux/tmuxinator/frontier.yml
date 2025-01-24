@@ -11,7 +11,7 @@ windows:
 
   - frontier-docker:
       panes:
-        - npm run docker
+        - npm run stage
 
   - api:
       root: ~/code/github/savrcom/docker
