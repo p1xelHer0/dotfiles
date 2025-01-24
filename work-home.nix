@@ -271,11 +271,6 @@ in
 
   xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
 
-  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/zellij/config.kdl";
-  programs.zellij = {
-    enable = true;
-  };
-
   xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
