@@ -8,7 +8,7 @@ local M = {
         opts = {
           experimental = { pathStrict = true },
           library = {
-            plugins = { "neotest", "nvim-dap-ui" },
+            plugins = { "nvim-dap-ui" },
             types = true,
           },
         },

@@ -4,22 +4,34 @@ let
   user = builtins.getEnv ("USER");
 in
 {
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
 
-    # https://github.com/NixOS/nix/issues/7273
-    auto-optimise-store = false;
+  # error: Determinate detected, aborting activation
+  # Determinate uses its own daemon to manage the Nix installation that
+  # conflicts with nix-darwin’s native Nix management.
+  #
+  # To turn off nix-darwin’s management of the Nix installation, set:
+  #
+  #     nix.enable = false;
+  #
+  # This will allow you to use nix-darwin with Determinate. Some nix-darwin
+  # functionality that relies on managing the Nix installation, like the
+  # `nix.*` options to adjust Nix settings or configure a Linux builder,
+  # will be unavailable.
+  nix.enable = false;
 
-    # Recommended when using `direnv` etc.
-    keep-derivations = true;
-    keep-outputs = true;
-  };
-
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  # nix.settings = {
+  #   experimental-features = [
+  #     "nix-command"
+  #     "flakes"
+  #   ];
+  #
+  #   # https://github.com/NixOS/nix/issues/7273
+  #   auto-optimise-store = false;
+  #
+  #   # Recommended when using `direnv` etc.
+  #   keep-derivations = true;
+  #   keep-outputs = true;
+  # };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
@@ -154,14 +166,15 @@ in
       "gcc@13"
       "ncurses"
       "raylib"
-      "sdl2"
-      "sdl2_image"
-      "sdl2_mixer"
-      "sdl2_ttf"
-      "sdl2_net"
+      "sdl3"
+      # "sdl2"
+      # "sdl2_image"
+      # "sdl2_mixer"
+      # "sdl2_ttf"
+      # "sdl2_net"
       "glfw"
 
-      "roswell"
+      # "roswell"
       # "cyclone-scheme/cyclone/cyclone-bootstrap"
     ];
 
@@ -172,7 +185,7 @@ in
       "discord"
       "element"
       "firefox"
-      "godot"
+      # "godot"
       "google-chrome"
       "gpg-suite-no-mail"
       "grandperspective"
@@ -180,18 +193,18 @@ in
       "karabiner-elements"
       "keycastr"
       "linearmouse"
-      "mactex-no-gui"
+      # "mactex-no-gui"
       "obs"
       "obsidian"
       "orbstack"
-      "racket"
-      "rectangle"
+      # "racket"
+      # "rectangle"
       "retroarch-metal"
       "runelite"
       "secretive"
       "spotify"
       "visual-studio-code"
-      "vlc"
+      # "vlc"
       "zulip"
     ];
 

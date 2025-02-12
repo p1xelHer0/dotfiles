@@ -8,15 +8,18 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override {
-      fonts = [
-        "Hack"
-        "IBMPlexMono"
-        "IosevkaTerm"
-        "JetBrainsMono"
-        "Meslo"
-      ];
-    })
+    # THIS WILL BREAK?
+    # https://www.reddit.com/r/NixOS/comments/1h1nc2a/nerdfonts_has_been_separated_into_individual_font/
+    nerd-fonts.jetbrains-mono
+    # (nerdfonts.override {
+    #   fonts = [
+    #     "Hack"
+    #     "IBMPlexMono"
+    #     "IosevkaTerm"
+    #     "JetBrainsMono"
+    #     "Meslo"
+    #   ];
+    # })
 
     # Tools
     cmake
@@ -30,7 +33,10 @@ in
     gh
     # gifsicle
     gnused
-    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
+    (pkgs.writeShellScriptBin "
+        gsed
+        " "
+        exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
     imagemagick
@@ -69,13 +75,13 @@ in
     # ols
 
     # Writing
-    ispell
-    nodePackages.write-good
-    proselint
+    # ispell
+    # nodePackages.write-good
+    # proselint
 
     # Nix
-    cachix
-    niv
+    # cachix
+    # niv
     nixpkgs-fmt
     nil
 
@@ -89,7 +95,7 @@ in
     # nodePackages.pnpm
     # nodePackages.vercel
     nodePackages.prettier
-    nodePackages.eslint
+    # nodePackages.eslint
     nodePackages.eslint_d
     nodePackages.vscode-langservers-extracted
     nodePackages.typescript
@@ -101,9 +107,9 @@ in
 
     # Rust
     rustup
-    cargo-watch
-    cargo-nextest
-    wasmer
+    # cargo-watch
+    # cargo-nextest
+    # wasmer
     # rust-analyzer - install this with Rustup instead
     # to make sure it matches the compiler
 
@@ -144,9 +150,9 @@ in
     # gerbil # brew
     # gerbil-unstable # brew
     # cyclone-scheme # brew
-    chicken
-    gambit
-    guile
+    # chicken
+    # gambit
+    # guile
     # mitscheme
 
     # Clojure
@@ -180,7 +186,7 @@ in
     taplo-lsp
 
     # YAML
-    nodePackages.yaml-language-server
+    # nodePackages.yaml-language-server
   ];
 
   xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
@@ -414,7 +420,7 @@ in
 
   xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
   programs.zellij = {
-    enable = true;
+    enable = false;
   };
 
   xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmux.conf";

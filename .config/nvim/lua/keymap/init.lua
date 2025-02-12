@@ -42,4 +42,4 @@ end, opts)
 k("n", "<Leader>0", ":Inspect<CR>", opts)
 
 k("n", "<Leader>S", ":!make run<CR>", opts)
-k("n", "<Leader>s", ":!./build.sh native<CR>", opts)
+k("n", "<Leader>s", ":!./build.sh<CR>", opts)

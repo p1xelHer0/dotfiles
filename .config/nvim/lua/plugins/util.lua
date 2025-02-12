@@ -33,6 +33,7 @@ local M = {
   },
 
   {
+    enabled = false,
     "https://github.com/m4xshen/hardtime.nvim",
     opts = {},
   },

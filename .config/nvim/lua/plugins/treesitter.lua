@@ -199,25 +199,6 @@ local M = {
   },
 
   {
-    "nvim-neotest/neotest",
-    dependencies = {
-      "rouge8/neotest-rust",
-      "lawrence-laz/neotest-zig",
-    },
-    config = function()
-      require("keymap.neotest").setup()
-      require("neotest").setup({
-        adapters = {
-          require("neotest-rust")({
-            args = { "--no-capture" },
-          }),
-          require("neotest-zig"),
-        },
-      })
-    end,
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter-context",
     event = function()
       return require("internal.events").lazyFile
