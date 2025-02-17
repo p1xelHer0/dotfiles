@@ -115,7 +115,7 @@ local M = {
         typescript = { "biome" },
         ["*"] = { "trim_whitespace", "trim_newlines" },
       },
-      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+      format_on_save = { timeout_ms = 500, lsp_fallback = "never" },
     },
     config = function(_, opts)
       require("conform").setup(opts)

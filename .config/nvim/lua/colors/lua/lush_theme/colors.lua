@@ -110,7 +110,7 @@ local theme = lush(function(injected_functions)
     Visual        { gui = "reverse" },
     -- VisualNOS     { },
     WarningMsg    { fg = C.normal.yellow },
-    Whitespace    { fg = C.index.i20 },
+    Whitespace    { fg = C.index.i16 },
     Winseparator  { },
     WildMenu      { PmenuSel },
     -- Underlined    { gui = "underline" },
