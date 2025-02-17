@@ -64,6 +64,7 @@ local M = {
       })
 
       local nvim_lspconfig = require("lspconfig")
+      local nvim_lspconfig_configs = require("lspconfig.configs")
       local on_attach = require("internal.lsp").on_attach
       local capabilities = require("internal.lsp").capabilities()
 
@@ -94,15 +95,17 @@ local M = {
         cmd = { "/Users/p1xelher0/.cargo/bin/wgsl_analyzer" },
       })
 
-      nvim_lspconfig.rescriptls.setup({
-        capabilities = capabilities,
-        cmd = {
-          "node",
-          "/Users/p1xelher0/.vscode/extensions/chenglou92.rescript-vscode-1.2.0/server/out/server.js",
-          "--stdio",
-        },
-        on_attach = on_attach,
-      })
+      if not nvim_lspconfig_configs.hlsl_tools then
+        nvim_lspconfig_configs.hlsl_tools = {
+          default_config = {
+            cmd = {
+              "/Users/p1xelher0/.vscode/extensions/timgjones.hlsltools-1.1.303/bin/osx-x64/ShaderTools.LanguageServer",
+            },
+            root_dir = nvim_lspconfig.util.root_pattern(".git"),
+            filetypes = { "hlsl" },
+          },
+        }
+      end
 
       nvim_lspconfig.html.setup({
         capabilities = capabilities,
@@ -244,6 +247,7 @@ local M = {
         "roc_ls",
         "taplo",
         "zls",
+        "hlsl_tools",
         -- "ccls",
         -- "racket_langserver", -- raco pkg install racket-langserver
       }

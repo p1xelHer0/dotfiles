@@ -11,6 +11,7 @@ local ensure_installed = {
   "fennel",
   "glsl",
   "haskell",
+  "hlsl",
   "html",
   "http",
   "janet_simple",

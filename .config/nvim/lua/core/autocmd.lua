@@ -49,7 +49,7 @@ api.nvim_create_autocmd("BufEnter", {
   pattern = ".env**",
   group = group,
   callback = function(args)
-    vim.diagnostic.disable(args.buf)
+    vim.diagnostic.enable(false, args.buf)
   end,
 })
 
@@ -67,6 +67,12 @@ api.nvim_create_autocmd("BufEnter", {
   callback = function(args)
     vim.cmd([[Lushify]])
   end,
+})
+
+vim.filetype.add({
+  extension = {
+    hlsl = "hlsl",
+  },
 })
 
 -- Set tmux title to current Neovim buffer
