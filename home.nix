@@ -573,4 +573,9 @@ in
   programs.kitty = {
     enable = true;
   };
+
+  # xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/aerospace/aerospace.toml/";
+  programs.aerospace = {
+    enable = false;
+  };
 }

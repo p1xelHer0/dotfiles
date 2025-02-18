@@ -43,3 +43,4 @@ k("n", "<Leader>0", ":Inspect<CR>", opts)
 
 k("n", "<Leader>S", ":!make run<CR>", opts)
 k("n", "<Leader>s", ":!./build.sh<CR>", opts)
+k("n", "<Leader>c", "o////////////////////////////////////////<ESC>", opts)
