@@ -8,18 +8,7 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    # THIS WILL BREAK?
-    # https://www.reddit.com/r/NixOS/comments/1h1nc2a/nerdfonts_has_been_separated_into_individual_font/
     nerd-fonts.jetbrains-mono
-    # (nerdfonts.override {
-    #   fonts = [
-    #     "Hack"
-    #     "IBMPlexMono"
-    #     "IosevkaTerm"
-    #     "JetBrainsMono"
-    #     "Meslo"
-    #   ];
-    # })
 
     # Tools
     cmake
@@ -43,6 +32,7 @@ in
     jq
     # neofetch
     p7zip
+    python313Packages.ply
     readline
     reattach-to-user-namespace
     ripgrep

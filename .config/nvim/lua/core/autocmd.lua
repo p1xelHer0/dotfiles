@@ -72,6 +72,7 @@ api.nvim_create_autocmd("BufEnter", {
 vim.filetype.add({
   extension = {
     hlsl = "hlsl",
+    hlsli = "hlsl",
   },
 })
 

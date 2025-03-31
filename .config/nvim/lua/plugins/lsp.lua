@@ -95,17 +95,12 @@ local M = {
         cmd = { "/Users/p1xelher0/.cargo/bin/wgsl_analyzer" },
       })
 
-      if not nvim_lspconfig_configs.hlsl_tools then
-        nvim_lspconfig_configs.hlsl_tools = {
-          default_config = {
-            cmd = {
-              "/Users/p1xelher0/.vscode/extensions/timgjones.hlsltools-1.1.303/bin/osx-x64/ShaderTools.LanguageServer",
-            },
-            root_dir = nvim_lspconfig.util.root_pattern(".git"),
-            filetypes = { "hlsl" },
-          },
-        }
-      end
+      nvim_lspconfig.slangd.setup({
+        cmd = {
+          "/Users/p1xelher0/code/github/p1xelHer0/gamedev/sdl-game-thing/bin/slang-2025.6.1-macos-aarch64/bin/slangd",
+          -- "/Users/p1xelher0/.vscode/extensions/timgjones.hlsltools-1.1.303/bin/osx-x64/ShaderTools.LanguageServer",
+        },
+      })
 
       nvim_lspconfig.html.setup({
         capabilities = capabilities,
@@ -247,7 +242,6 @@ local M = {
         "roc_ls",
         "taplo",
         "zls",
-        "hlsl_tools",
         -- "ccls",
         -- "racket_langserver", -- raco pkg install racket-langserver
       }
