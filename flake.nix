@@ -4,7 +4,8 @@
   inputs = {
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.27.1";
 
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0";
+    # nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";

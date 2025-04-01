@@ -112,7 +112,7 @@ in
     # cbqn
 
     # Python oh no
-    python3
+    # python3
     # nodePackages.pyright
     # python310Packages.autopep8
 
