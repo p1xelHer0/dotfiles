@@ -17,7 +17,6 @@ in
     eza
     fd
     ffmpeg
-    # flyctl
     fswatch
     gh
     # gifsicle
@@ -30,16 +29,12 @@ in
     hyperfine
     imagemagick
     jq
-    # neofetch
     p7zip
-    python313Packages.ply
     readline
     reattach-to-user-namespace
     ripgrep
     ninja
     shellcheck
-    simple-http-server
-    # slides
     tmuxinator
     tree
     tree-sitter
@@ -50,7 +45,7 @@ in
     zoxide
 
     # C/C++
-    ncurses6
+    # ncurses6
     # cmake
     # gcc13
     ccls
@@ -160,12 +155,12 @@ in
     luajit
 
     # Fennel
-    luaPackages.fennel
+    # luaPackages.fennel
     # cargo install --git https://github.com/rydesun/fennel-language-server
 
     # Janet
-    janet
-    jpm
+    # janet
+    # jpm
 
     # Erlang/Elixir
     # elixir
