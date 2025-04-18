@@ -70,9 +70,6 @@ o.undofile        = true
 o.exrc            = false
 o.errorbells      = false
 
-o.spelllang       = "en_us"
-o.spellfile       = require("core.config").get_dotfiles_path() .. "/.config/nvim/spell/en.uft-8.add"
-
 o.ignorecase      = true
 o.smartcase       = true
 o.completeopt     = "menu,menuone,noselect"

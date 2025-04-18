@@ -18,7 +18,7 @@ local M = {
   },
 
   {
-    dir = "~/dotfiles/.config/nvim/lua/colors",
+    dir = "~/dotfiles/nvim/lua/colors",
     lazy = false,
     priority = 1000,
   },

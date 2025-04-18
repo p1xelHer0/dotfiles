@@ -103,7 +103,7 @@
 
     taps = [
       "DevCleaner/devcleaner"
-      "fsouza/prettierd"
+      # "fsouza/prettierd"
       "homebrew/bundle"
       # "homebrew/cask"
       # "homebrew/cask-versions"
@@ -111,13 +111,13 @@
     ];
 
     brews = [
-      "fsouza/prettierd/prettierd"
-      "mas"
-      "ncurses"
+      # "fsouza/prettierd/prettierd"
+      # "mas"
+      # "ncurses"
     ];
 
     casks = [
-      "alt-tab"
+      # "alt-tab"
       "appcleaner"
       "devcleaner"
       # "google-chrome"
@@ -125,7 +125,7 @@
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
-      "keycastr"
+      # "keycastr"
       "linearmouse"
       "mockoon"
       "ngrok"
@@ -139,8 +139,8 @@
     ];
 
     masApps = {
-      Developer = 640199958;
-      Xcode = 497799835;
+      # Developer = 640199958;
+      # Xcode = 497799835;
     };
   };
 

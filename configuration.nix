@@ -1,10 +1,5 @@
 { config, pkgs, lib, ... }:
-let
-  homeDir = builtins.getEnv ("HOME");
-  user = builtins.getEnv ("USER");
-in
 {
-
   # error: Determinate detected, aborting activation
   # Determinate uses its own daemon to manage the Nix installation that
   # conflicts with nix-darwin’s native Nix management.
@@ -137,7 +132,7 @@ in
     taps = [
       "DevCleaner/devcleaner"
       # "cyclone-scheme/cyclone"
-      "fsouza/prettierd"
+      # "fsouza/prettierd"
       "homebrew/bundle"
       # "homebrew/cask"
       "homebrew/cask-versions"
@@ -149,8 +144,6 @@ in
 
     brews = [
       "mas"
-      "fsouza/prettierd/prettierd"
-
       # QMK
       # "qmk/qmk/qmk"
       # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
@@ -163,7 +156,7 @@ in
       "openssl@3"
       "pkg-config"
       "llvm@17"
-      "bear"
+      # "bear"
       "raylib"
       "sdl3"
       # "sdl2"
@@ -178,7 +171,9 @@ in
     ];
 
     casks = [
-      "alt-tab"
+      "ghostty"
+
+      # "alt-tab"
       "appcleaner"
       "devcleaner"
       "discord"
@@ -186,7 +181,7 @@ in
       "firefox"
       # "godot"
       "google-chrome"
-      "gpg-suite-no-mail"
+      # "gpg-suite-no-mail"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
@@ -201,7 +196,7 @@ in
       "retroarch-metal"
       "runelite"
       "secretive"
-      "spotify"
+      # "spotify"
       "visual-studio-code"
       # "vlc"
       "zulip"

@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  tomlFormat = pkgs.formats.toml { };
 in
 {
   home.stateVersion = "23.11";
@@ -15,6 +14,7 @@ in
     nerd-fonts.bigblue-terminal
 
     # Tools
+    aerospace
     cmake
     curl
     entr
@@ -80,19 +80,20 @@ in
 
     # Web
     fnm
+    biome
     # nodePackages.yarn
     # nodePackages.pnpm
     # nodePackages.vercel
-    nodePackages.prettier
+    # nodePackages.prettier
     # nodePackages.eslint
-    nodePackages.eslint_d
+    # nodePackages.eslint_d
     nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.tailwindcss
 
     # OCaml
-    opam
+    # opam
 
     # Rust
     rustup
@@ -122,7 +123,7 @@ in
 
     # Go
     go
-    # gopls
+    gopls
     # go install github.com/mattn/efm-langserver@latest
     # go install github.com/segmentio/golines@latest
     # go install github.com/client9/misspell/cmd/misspell@latest
@@ -207,13 +208,10 @@ in
       ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
       ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
 
-      RESCRIPT_LSP =
-        "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
+      # MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
 
-      MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
-
-      ROSWELL_BIN = "$HOME/.roswell/bin";
-      QLOT_BIN = "$HOME/.qlot/bin";
+      # ROSWELL_BIN = "$HOME/.roswell/bin";
+      # QLOT_BIN = "$HOME/.qlot/bin";
 
       TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
 
@@ -245,7 +243,7 @@ in
 
       export PATH=$RESCRIPT_LSP:$PATH
 
-      export PATH=$MACTEX_BIN:$PATH
+      # export PATH=$MACTEX_BIN:$PATH
 
       export PATH=$ROSWELL_BIN:$PATH
       export PATH=$QLOT_BIN:$PATH
@@ -272,7 +270,7 @@ in
 
       eval "$(fnm env)"
 
-      eval "$(opam env)"
+      # eval "$(opam env)"
     '';
 
     shellAliases = {
@@ -282,13 +280,7 @@ in
       "ts" = "tmux-sessionizer";
       "ta" = "tmux a";
 
-      ip = "dig +short myip.opendns.com @resolver1.opendns.com";
-
-      perf = "for i in $(seq 1 10);
-      do /usr/bin/time $SHELL -i -c exit; done";
-
       dre = "darwin-rebuild edit";
-      drb = "nix build $HOME/dotfiles#darwinConfigurations.p1xelBook.system";
       drs =
         "darwin-rebuild switch --flake $HOME/dotfiles";
 
@@ -296,9 +288,9 @@ in
       vim = "nvim";
       vf = "nvim $(fzf)";
 
-      opameval = "eval $(opam env)";
-      ev = "npx esy nvim";
-      evf = "npx esy nvim $(fzf)";
+      # opameval = "eval $(opam env)";
+      # ev = "npx esy nvim";
+      # evf = "npx esy nvim $(fzf)";
 
       dots = "cd $HOME/dotfiles && nvim";
       nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
@@ -306,8 +298,6 @@ in
       nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
 
       note = "tmux split-window -h 'cd $HOME/library/Mobile\\\ Documents/iCloud~md~obsidian/Documents/p1xelHer0 && nvim $(fzf)'";
-
-      fixusb = "sudo killall -STOP -c usbd";
 
       rl = "exec zsh";
 
@@ -454,9 +444,9 @@ in
 
   xdg.configFile."theme".text = "dark";
 
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/lua";
-  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/after";
-  xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
+  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/after";
+  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lua";
+  xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lsp";
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim; # this enables nightly
@@ -558,20 +548,14 @@ in
       };
     };
 
-  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
-  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/oxocarbon_dark.conf";
-  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/github_colorblind_dark.conf";
-  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kanagawa.conf";
-  programs.kitty = {
-    enable = true;
-  };
-
-  # xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/aerospace/aerospace.toml/";
-  programs.aerospace = {
-    enable = false;
-  };
+  xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/aerospace.toml";
+  # programs.aerospace = {
+  #   enable = true;
+  # };
 
   home.file."Library/Preferences/clangd/config.yaml" = {
     source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/clangd.yaml";
   };
+
+  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/ghostty";
 }

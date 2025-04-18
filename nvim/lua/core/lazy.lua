@@ -2,7 +2,7 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  lockfile = require("core.config").get_dotfiles_path() .. "/.config/nvim/lazy-lock.json",
+  lockfile = require("core.config").get_dotfiles_path() .. "/nvim/lazy-lock.json",
   install = {
     colorscheme = {
       "colors",

@@ -7,14 +7,11 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    (nerdfonts.override {
-      fonts = [
-        "IBMPlexMono"
-        "IosevkaTerm"
-        "JetBrainsMono"
-        "Meslo"
-      ];
-    })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka-term
+    nerd-fonts.blex-mono
+    nerd-fonts.gohufont
+    nerd-fonts.bigblue-terminal
 
     # Tools
     bitwarden-cli
@@ -25,7 +22,6 @@ in
     fswatch
     gh
     (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
-    htop
     jq
     mob
     p7zip
@@ -44,9 +40,9 @@ in
     # ngrok
 
     # Writing
-    ispell
-    nodePackages.write-good
-    proselint
+    # ispell
+    # nodePackages.write-good
+    # proselint
 
     # Nix
     nixpkgs-fmt
@@ -60,9 +56,9 @@ in
     fnm
     biome
     tailwindcss-language-server
-    nodePackages.prettier
-    nodePackages.eslint
-    nodePackages.eslint_d
+    # nodePackages.prettier
+    # nodePackages.eslint
+    # nodePackages.eslint_d
     nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
@@ -147,22 +143,13 @@ in
       "ts" = "tmux-sessionizer";
       "ta" = "tmux a";
 
-      ip = "dig +short myip.opendns.com @resolver1.opendns.com";
-
-      perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
-
       dre = "darwin-rebuild edit";
-      drb = "nix build $HOME/dotfiles#darwinConfigurations.p1xelBook.system";
       drs =
         "darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
       vf = "nvim $(fzf)";
-
-      os = "eval $(opam env)";
-      ev = "npx esy nvim";
-      evf = "npx esy nvim $(fzf)";
 
       yamld = "nvim -d ./.docker/local/docker-compose.yml ./.docker/local/docker-compose.yml.example";
       envd = "nvim -d .env .env.example";
@@ -171,8 +158,6 @@ in
       nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
       nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";
       nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
-
-      fixusb = "sudo killall -STOP -c usbd";
 
       rl = "exec zsh";
 
@@ -309,7 +294,7 @@ in
 
   xdg.configFile."theme".text = "dark";
 
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/nvim/lua";
+  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lua";
   programs.neovim = {
     enable = true;
     # package = pkgs.neovim; # this enables nightly

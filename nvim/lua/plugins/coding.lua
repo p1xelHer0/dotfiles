@@ -130,7 +130,7 @@ local M = {
       local dotfiles_dir = require("core.config").get_dotfiles_path()
 
       require("luasnip.loaders.from_lua").load({
-        paths = { dotfiles_dir .. "/.config/nvim/lua/LuaSnip/" },
+        paths = { dotfiles_dir .. "/nvim/lua/LuaSnip/" },
       })
     end,
     keys = {
