@@ -1,0 +1,16 @@
+[core]
+  autocrlf = input
+[init]
+  defaultBranch = main
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
+[color]
+  ui = auto
+[color "status"]
+  added = 2
+  changed = 3
+  untracked = 2
+[color "branch"]
+  remote = 6

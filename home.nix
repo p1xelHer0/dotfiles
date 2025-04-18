@@ -1,122 +1,313 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
+let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+  tomlFormat = pkgs.formats.toml { };
+in
 {
-  programs.home-manager.enable = true;
-
-  home.stateVersion = "20.03";
+  home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
-    bash
+    # Fonts
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka-term
+    nerd-fonts.blex-mono
+    nerd-fonts.gohufont
+    nerd-fonts.bigblue-terminal
+
+    # Tools
+    cmake
     curl
-    direnv
-    fasd
+    entr
+    eza
+    fd
+    ffmpeg
     fswatch
-    gitAndTools.diff-so-fancy
-    gnupg
+    gh
+    # gifsicle
+    gnused
+    (pkgs.writeShellScriptBin "
+        gsed
+        " "
+        exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
+    hyperfine
+    imagemagick
     jq
-    niv
+    p7zip
+    readline
     reattach-to-user-namespace
     ripgrep
+    ninja
     shellcheck
-    starship
+    tmuxinator
+    tree
+    tree-sitter
+    watchman
     wget
+    yamllint
+    zola
+    zoxide
 
-    # fonts
-    jetbrains-mono
+    # C/C++
+    # ncurses6
+    # cmake
+    # gcc13
+    ccls
+    nasm
+    # vscode-extensions.vadimcn.vscode-lldb
 
-    # keyboards
-    # dfu-util
+    # Zig
+    # zig
 
-    # window manager
-    skhd
-    yabai
+    # Odin
+    # odin
+    # ols
 
-    # nix
-    nixfmt
-    rnix-lsp
+    # Writing
+    # ispell
+    # nodePackages.write-good
+    # proselint
 
-    # haskell
-    # cabal-install
-    # stack
+    # Nix
+    # cachix
+    # niv
+    nixpkgs-fmt
+    nil
 
-    # ocaml
-    bs-platform
+    # Lua
+    stylua
+    sumneko-lua-language-server
+
+    # Web
+    fnm
+    # nodePackages.yarn
+    # nodePackages.pnpm
+    # nodePackages.vercel
+    nodePackages.prettier
+    # nodePackages.eslint
+    nodePackages.eslint_d
+    nodePackages.vscode-langservers-extracted
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.tailwindcss
+
+    # OCaml
     opam
 
-    # rust
-    # rustup
+    # Rust
+    rustup
+    # cargo-watch
+    # cargo-nextest
+    # wasmer
+    # rust-analyzer - install this with Rustup instead
+    # to make sure it matches the compiler
 
-    # java...?
-    # openjdk
+    # Haskell
+    # haskellPackages.ghcup
+
+    # Elm
+    # elmPackages.elm
+    # elmPackages.elm-format
+    # elmPackages.elm-language-server
+    # elmPackages.elm-review
+    # elmPackages.elm-test
+
+    # BQN
+    # cbqn
+
+    # Python oh no
+    # python3
+    # nodePackages.pyright
+    # python310Packages.autopep8
+
+    # Go
+    go
+    # gopls
+    # go install github.com/mattn/efm-langserver@latest
+    # go install github.com/segmentio/golines@latest
+    # go install github.com/client9/misspell/cmd/misspell@latest
+
+    ## Lisps
+
+    # Common Lisp
+    # sbcl # installed with roswell
+    # roswell # brew
+    # lispPackages.quicklisp # handled with ros install qlot
+    # sbclPackages.qlot # see https://github.com/fukamachi/qlot#installation
+
+    # Scheme
+    # gerbil # brew
+    # gerbil-unstable # brew
+    # cyclone-scheme # brew
+    # chicken
+    # gambit
+    # guile
+    # mitscheme
+
+    # Clojure
+    # clojure
+    # leiningen
+    # clojure-lsp
+    # cljfmt
+
+    # Racket
+    # racket # broken on macOS - using brew
+    # racket-minimal # broken on macOS - using brew
+    # raco pkg install racket-langserver
+
+    # Lua
+    luajit
+
+    # Fennel
+    # luaPackages.fennel
+    # cargo install --git https://github.com/rydesun/fennel-language-server
+
+    # Janet
+    # janet
+    # jpm
+
+    # Erlang/Elixir
+    # elixir
+    # elixir_ls
+
+    # TOML
+    taplo-cli
+    taplo-lsp
+
+    # YAML
+    # nodePackages.yaml-language-server
   ];
 
-  fonts.fontconfig = { enable = true; };
+  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
 
   programs.zsh = {
     enable = true;
 
-    enableAutosuggestions = false;
     enableCompletion = true;
+    autosuggestion = {
+      enable = true;
+    };
 
     sessionVariables = {
       EDITOR = "nvim";
       LC_ALL = "en_US.UTF-8";
 
-      DOTS_BIN = "$HOME/dotfiles/bin";
-      DOTS_DARWIN_BIN = "$HOME/dotfiles/bin/_darwin";
+      DOTS = "$HOME/dotfiles";
+      DOTS_BIN = "$DOTS/bin";
+      DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
+
+      GOPATH = "$HOME/go";
+      GOPATH_BIN = "$GOPATH/bin";
+
+      ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
+      ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
+
+      SDL_SHADERCROSS = "$HOME/dotfiles/bin/SDL3_shadercross-3.0.0-darwin-arm64-x64/bin";
+
+      ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
+      ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
+
+      RESCRIPT_LSP =
+        "/Users/p1xelher0/.config/nvim/plugged/vim-rescript/rescript-vscode/extension/server/darwin/";
+
+      MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
+
+      ROSWELL_BIN = "$HOME/.roswell/bin";
+      QLOT_BIN = "$HOME/.qlot/bin";
+
+      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
+
+      RPROMPT = " ";
     };
 
     envExtra = ''
-      # profile zsh
-      # zmodload zsh/zprof
+        bindkey -s ^f "
+      tmux-sessionizer\
+      n "
     '';
 
     initExtra = ''
+      export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
 
+      # Secretive
+      export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+      export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
+
+      export PATH=/opt/homebrew/bin:$PATH
+      export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
+
+      export PATH=$GOPATH:$PATH
+      export PATH=$GOPATH_BIN:$PATH
+
+      export PATH=$DOTS_BIN:$PATH
+
+      export PATH=$RESCRIPT_LSP:$PATH
+
+      export PATH=$MACTEX_BIN:$PATH
+
+      export PATH=$ROSWELL_BIN:$PATH
+      export PATH=$QLOT_BIN:$PATH
+
+      # Gerbil
+      # export CC=gcc-13
+
+      # Odin
+      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
+      export PATH=$ODIN_ROOT:$PATH
+      export PATH=$ODIN_TOOLS:$PATH
+
+      export PATH=$SDL_SHADERCROSS:$PATH
+
+      export PATH=$ZIGUP:$PATH
+      export PATH=$ZLS:$PATH
+
+      # use the maximum amount of file descriptors
+      ulimit -n 24576
+
       source "$DOTS_BIN/fzf_git"
 
-      eval "$(fasd --init auto)"
+      eval "$(zoxide init zsh)"
 
-      eval "$(fnm env --multi)"
-
-      eval "$(direnv hook zsh)"
+      eval "$(fnm env)"
 
       eval "$(opam env)"
-
-      source "$HOME/dev/repo/private/puck/puck.zsh"
-
-      # eval "$(starship init zsh)"
-
-      # profile zsh
-      # zprof
     '';
 
     shellAliases = {
+      "l" = "clear";
       ":q" = "tmux kill-pane";
 
+      "ts" = "tmux-sessionizer";
+      "ta" = "tmux a";
+
       ip = "dig +short myip.opendns.com @resolver1.opendns.com";
-      ipl =
-        "ifconfig | grep -Eo 'inet (addr:)?([0-9]*.){3}[0-9]*' | grep -Eo '([0-9]*.){3}[0-9]*' | grep -v '127.0.0.1'";
 
-      perf = "for i in $(seq 1 10); do /usr/bin/time $SHELL -i -c exit; done";
-
-      hme = "home-manager edit";
-      hms = "home-manager switch";
+      perf = "for i in $(seq 1 10);
+      do /usr/bin/time $SHELL -i -c exit; done";
 
       dre = "darwin-rebuild edit";
+      drb = "nix build $HOME/dotfiles#darwinConfigurations.p1xelBook.system";
       drs =
-        "darwin-rebuild switch -I darwin-config=$HOME/dotfiles/darwin-configuration.nix";
+        "darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
       vf = "nvim $(fzf)";
-      ev = "esy nvim";
+
+      opameval = "eval $(opam env)";
+      ev = "npx esy nvim";
+      evf = "npx esy nvim $(fzf)";
 
       dots = "cd $HOME/dotfiles && nvim";
-      swap = "tmux split-window 'cd $HOME/.local/share/nvim/swap && nvim'";
+      nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
+      nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";
+      nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
+
+      note = "tmux split-window -h 'cd $HOME/library/Mobile\\\ Documents/iCloud~md~obsidian/Documents/p1xelHer0 && nvim $(fzf)'";
+
+      fixusb = "sudo killall -STOP -c usbd";
 
       rl = "exec zsh";
 
@@ -124,295 +315,263 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
-
-      love = "$HOME/love2d/love.app/Contents/MacOS/love";
     };
 
     plugins = [
-      {
-        name = "zsh-vim-mode";
-        file = "zsh-vim-mode.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "softmoth";
-          repo = "zsh-vim-mode";
-          rev = "1fb4fec7c38815e55bc1b33e7c2136069278c798";
-          sha256 = "1dxi18cpvbc96jl6w6j8r6zwpz8brjrnkl4kp8x1lzzariwm25sd";
-        };
-      }
-      {
-        name = "fast-syntax-highlighting";
-        file = "fast-syntax-highlighting.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "zdharma";
-          repo = "fast-syntax-highlighting";
-          rev = "v1.28";
-          sha256 = "106s7k9n7ssmgybh0kvdb8359f3rz60gfvxjxnxb4fg5gf1fs088";
-        };
-      }
+      # {
+      #   name = "zsh-vi-mode";
+      #   file = "zsh-vi-mode.plugin.zsh";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "jeffreytse";
+      #     repo = "zsh-vi-mode";
+      #     rev = "v0.8.3";
+      #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
+      #   };
+      # }
     ];
   };
 
-  programs.tmux = { enable = true; };
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      add_newline = false;
+      scan_timeout = 10;
+
+      character = {
+        success_symbol = "[;](bold green)";
+        error_symbol = "[;](bold red)";
+      };
+
+      format = ''
+        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
+        $character'';
+
+      directory = { read_only = "X"; };
+
+      git_branch.format = "$branch ";
+
+      git_commit = {
+        style = "bold cyan";
+        tag_disabled = true;
+      };
+
+      git_status = {
+        format = "$all_status$ahead_behind ";
+
+        conflicted = "[=](red)";
+
+        ahead = "[>](yellow)";
+        behind = "[<](yellow)";
+        diverged = "[?](bold red)";
+
+        staged = "[^](green)";
+        modified = "[~](yellow)";
+
+        untracked = "[+](green)";
+        renamed = ''["](green)'';
+        deleted = "[-](red)";
+
+        stashed = "[#](bold blue)";
+      };
+
+      cmd_duration = {
+        format = "[$duration]($style) ";
+        style = "yellow";
+      };
+
+      nodejs = {
+        format = "[$symbol($version)]($style) ";
+        symbol = "[node](green)";
+      };
+
+      ocaml = {
+        format = "[$symbol($version)]($style) ";
+        symbol = "[ocaml](yellow)";
+      };
+
+      rust = {
+        format = "[$symbol($version)]($style) ";
+        symbol = "[rust](red)";
+      };
+
+      zig = {
+        format = "[$symbol($version)]($style) ";
+        symbol = "[zig](yellow)";
+      };
+
+      nix_shell = {
+        format = "[$symbol$state( ($name))]($style) ";
+        symbol = "[nix](blue)";
+        impure_msg = "";
+        pure_msg = "";
+      };
+    };
+  };
+
+  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/_darwin/hammerspoon/init.lua";
+
+  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
+  programs.zellij = {
+    enable = false;
+  };
+
+  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmux.conf";
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs; [
+      tmuxPlugins.tmux-fzf
+    ];
+  };
 
   programs.fzf = {
     enable = true;
 
     enableZshIntegration = true;
 
-    defaultCommand = "rg --files --hidden --follow";
+    defaultCommand = "rg --files --hidden --smart-case";
     defaultOptions = [
-      "--color=fg:-1"
-      # "--color=bg:0"
-      # "--color=preview-fg:0"
-      # "--color=preview-bg:0"
-      # "--color=hl:2"
-      "--color=fg+:0"
-      "--color=bg+:3"
+      "--color=fg:7"
+      "--color=bg:-1"
+      "--color=preview-fg:7"
+      "--color=preview-bg:-1"
+      "--color=hl:reverse:3"
+      "--color=fg+:7"
+      "--color=bg+:8"
       "--color=gutter:-1"
-      "--color=hl+:8"
-      # "--color=info:0"
-      # "--color=border:0"
-      # "--color=prompt:0"
-      # "--color=pointer:-1"
-      # "--color=marker:-1"
-      # "--color=spinner:-1"
-      # "--color=header:-1"
+      "--color=hl+:reverse:3"
+      "--color=info:8"
+      "--color=border:8"
+      "--color=prompt:2"
+      "--color=pointer:2"
+      "--color=marker:2"
+      "--color=spinner:1"
+      "--color=header:8"
 
-      # "--color=prompt:2,pointer:0,marker:3,spinner:1"
       "--reverse --no-bold --no-unicode --preview-window=hidden"
     ];
-
-    fileWidgetCommand = "rg --files --hidden --follow";
-    fileWidgetOptions = [
-      "--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-    ];
-
-    changeDirWidgetCommand = "rg --files --hidden --follow";
-    changeDirWidgetOptions = [ ];
-
-    historyWidgetCommand = "";
-    historyWidgetOptions = [ ];
   };
 
+  xdg.configFile."theme".text = "dark";
+
+  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/lua";
+  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/after";
+  xdg.configFile."nvim/spell".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/nvim/spell";
   programs.neovim = {
     enable = true;
-
-    extraConfig = builtins.readFile ~/dotfiles/conf/nvim/.vimrc;
-
-    withNodeJs = true;
-
-    plugins = with pkgs.vimPlugins; [
-      ale
-      editorconfig-vim
-      fzf-vim
-      neoformat
-      nerdtree
-      nerdtree-git-plugin
-      supertab
-      vim-commentary
-      vim-easy-align
-      vim-fugitive
-      vim-plug
-      vim-repeat
-      vim-signify
-      vim-slash
-      vim-tmux-focus-events
-      vim-tmux-navigator
-
-      coc-nvim
-      coc-fzf
-
-      coc-tsserver
-      coc-jest
-      typescript-vim
-      vim-javascript
-
-      coc-css
-
-      coc-json
-      vim-json
-
-      coc-html
-
-      rust-vim
-      coc-rls
-      coc-rust-analyzer
-
-      haskell-vim
-
-      vim-markdown
-
-      vim-graphql
-
-      vim-nix
-    ];
+    # package = pkgs.neovim; # this enables nightly
+    extraConfig = "lua require('init')";
+    withNodeJs = false;
+    withPython3 = false;
+    withRuby = false;
   };
 
   programs.git = {
     enable = true;
     package = pkgs.gitAndTools.gitFull;
-    userName = "Pontus Nagy";
-    userEmail = "pontusnagy@gmail.com";
-    includes = [{ path = "~/dotfiles/conf/git/.gitconfig"; }];
+    userName = "p1xelHer0";
+    userEmail = "p_nagy@icloud.com";
+    includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
   };
 
-  # xdg.configFile."alacritty/light.yml".text = let
-  #   lightColors = {
-  #     colors = {
-  #       primary.foreground = "#080807";
-  #       primary.background = "#faeed7";
-
-  #       normal = {
-  #         black = "#faeed7";
-  #         red = "#423730";
-  #         green = "#585c4c";
-  #         yellow = "#30261b";
-  #         blue = "#080807";
-  #         magenta = "#080807";
-  #         cyan = "#080807";
-  #         white = "#080807";
-  #       };
-
-  #       bright = {
-  #         black = "#c9bfad";
-  #         red = "#bf9d88";
-  #         green = "#9da488";
-  #         yellow = "#d1a47f";
-  #         blue = "#080807";
-  #         magenta = "#080807";
-  #         cyan = "#080807";
-  #         white = "#080807";
-  #       };
-
-  #       indexed_colors = [
-  #         {
-  #           index = 16;
-  #           color = "#f2e6d0";
-  #         }
-  #         {
-  #           index = 17;
-  #           color = "#ebdfca";
-  #         }
-  #         {
-  #           index = 18;
-  #           color = "#e3d7c3";
-  #         }
-  #         {
-  #           index = 19;
-  #           color = "#dbd0bd";
-  #         }
-  #         {
-  #           index = 20;
-  #           color = "#d4c9b6";
-  #         }
-  #       ];
-  #     };
-  #   };
-  # in builtins.replaceStrings [ "\\\\" ] [ "\\" ]
-  # (builtins.toJSON (config.programs.alacritty.settings // lightColors));
-
-  programs.alacritty = {
+  programs.direnv = {
     enable = true;
 
-    settings = {
-      window = {
-        padding.x = 30;
-        padding.y = 30;
+    nix-direnv = {
+      enable = true;
+    };
+  };
 
-        decorations = "buttonless";
-        startup_mode = "Windowed";
-      };
+  programs.alacritty =
+    let
+      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+      # fontFamily = "IosevkaTerm Nerd Font Mono";
+      # fontFamily = "BlexMono Nerd Font Mono";
+      # fontFamily = "BigBlueTerm437 Nerd Font Mono";
+      # fontFamily = "GohuFont 14 Nerd Font Mono";
+      # fontFamily = "GohuFont uni11 Nerd Font Mono";
+      # fontFamily = "Atkinson Hyperlegible Mono";
+    in
+    {
+      enable = true;
 
-      draw_bold_text_with_bright_colors = true;
+      settings = {
+        window = {
+          padding.x = 16;
+          padding.y = 16;
 
-      live_config_reload = true;
+          decorations = "buttonless";
+          startup_mode = "Windowed";
+          option_as_alt = "Both";
+        };
 
-      mouse.hide_when_typing = true;
 
-      scrolling.history = 0;
+        mouse.hide_when_typing = true;
 
-      selection.save_to_clipboard = false;
+        scrolling.history = 0;
 
-      visual_bell.duration = 0;
+        selection.save_to_clipboard = false;
 
-      cursor = {
-        style = "Block";
-        unfocused_hollow = true;
-      };
-
-      font = {
-        size = 16;
-
-        normal = { family = "JetBrains Mono"; };
-
-        use_thin_strokes = false;
-      };
-
-      colors = {
-        primary.background = "0x080807";
-        primary.foreground = "0xb5a488";
+        bell.duration = 0;
 
         cursor = {
-          cursor = "0xb5a488";
-          text = "0x080807";
+          style = "Block";
+          unfocused_hollow = true;
         };
 
-        normal = {
-          black = "0x080807";
-          red = "0xbf9d88";
-          green = "0x9da488";
-          yellow = "0xd1a47f";
-          blue = "0xb5a488";
-          magenta = "0xb5a488";
-          cyan = "0xb5a488";
-          white = "0xb5a488";
+        font = {
+          size = 14;
+
+          normal.family = fontFamily;
+          bold.family = fontFamily;
+          italic.family = fontFamily;
+          bold_italic.family = fontFamily;
+
+          offset = {
+            x = 0;
+            y = 0;
+          };
+
+          glyph_offset = {
+            x = 0;
+            y = 0;
+          };
         };
 
-        bright = {
-          black = "0x30302c";
-          red = "0xb5a488";
-          green = "0xb5a488";
-          yellow = "0xb5a488";
-          blue = "0xb5a488";
-          magenta = "0xb5a488";
-          cyan = "0xb5a488";
-          white = "0xb5a488";
+        keyboard = {
+          bindings = [
+            {
+              key = "Paste";
+              action = "Paste";
+            }
+            {
+              key = "Copy";
+              action = "Copy";
+            }
+          ];
         };
 
-        indexed_colors = [
-          {
-            index = 16;
-            color = "0x0d0d0b";
-          }
-          {
-            index = 17;
-            color = "0x121210";
-          }
-          {
-            index = 18;
-            color = "0x1a1917";
-          }
-          {
-            index = 19;
-            color = "0x242320";
-          }
-          {
-            index = 20;
-            color = "0x2b2b27";
-          }
-        ];
+        general = {
+          live_config_reload = true;
+          import = [ "~/.config/alacritty/live.toml" ];
+        };
       };
-
-      key_bindings = [
-        {
-          key = "Paste";
-          action = "Paste";
-        }
-        {
-          key = "Copy";
-          action = "Copy";
-        }
-      ];
     };
+
+  xdg.configFile."kitty/kitty.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kitty.conf";
+  xdg.configFile."kitty/oxocarbon_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/oxocarbon_dark.conf";
+  xdg.configFile."kitty/github_colorblind_dark.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/github_colorblind_dark.conf";
+  xdg.configFile."kitty/kanagawa.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/kitty/kanagawa.conf";
+  programs.kitty = {
+    enable = true;
+  };
+
+  # xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/aerospace/aerospace.toml/";
+  programs.aerospace = {
+    enable = false;
+  };
+
+  home.file."Library/Preferences/clangd/config.yaml" = {
+    source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/clangd.yaml";
   };
 }

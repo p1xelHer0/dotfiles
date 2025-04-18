@@ -1,0 +1,187 @@
+{
+    "description": "left_option ['; to åäö",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "open_bracket",
+                "modifiers": { "mandatory": ["left_option"] }
+            },
+            "to": [
+                {
+                    "key_code": "a",
+                    "modifiers": ["left_option"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "open_bracket",
+                "modifiers": { "mandatory": ["left_option", "left_shift"] }
+            },
+            "to": [
+                {
+                    "key_code": "a",
+                    "modifiers": ["left_option", "left_shift"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "quote",
+                "modifiers": { "mandatory": ["left_option"] }
+            },
+            "to": [
+                {
+                    "key_code": "u",
+                    "modifiers": ["left_option"]
+                },
+                { "key_code": "a" }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "quote",
+                "modifiers": { "mandatory": ["left_option", "left_shift"] }
+            },
+            "to": [
+                {
+                    "key_code": "u",
+                    "modifiers": ["left_option"]
+                },
+                {
+                    "key_code": "a",
+                    "modifiers": ["left_shift"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "semicolon",
+                "modifiers": { "mandatory": ["left_option"] }
+            },
+            "to": [
+                {
+                    "key_code": "u",
+                    "modifiers": ["left_option"]
+                },
+                { "key_code": "o" }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "semicolon",
+                "modifiers": { "mandatory": ["left_option", "left_shift"] }
+            },
+            "to": [
+                {
+                    "key_code": "u",
+                    "modifiers": ["left_option"]
+                },
+                {
+                    "key_code": "o",
+                    "modifiers": ["left_shift"]
+                }
+            ],
+            "type": "basic"
+        }
+    ],
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "WASD + QE -> ESDF + WR",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.RedCandleGames\\.NineSols$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "d" },
+                                "to": [{ "key_code": "s" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.RedCandleGames\\.NineSols$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "e" },
+                                "to": [{ "key_code": "w" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.RedCandleGames\\.NineSols$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "s" },
+                                "to": [{ "key_code": "a" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.RedCandleGames\\.NineSols$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "f" },
+                                "to": [{ "key_code": "d" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.RedCandleGames\\.NineSols$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "r" },
+                                "to": [{ "key_code": "e" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.RedCandleGames\\.NineSols$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "w" },
+                                "to": [{ "key_code": "q" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}

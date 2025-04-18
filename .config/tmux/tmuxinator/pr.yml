@@ -1,0 +1,16 @@
+---
+name: PR
+root: ~/code/github/savrcom/frontier-pr
+
+windows:
+  - frontier:
+      layout: even-horizontal
+      panes:
+        - nvim
+        - npm run docker
+
+  - api:
+      root: ~/code/github/savrcom/behemoth
+      layout: even-horizontal
+      panes:
+        - ./savr up

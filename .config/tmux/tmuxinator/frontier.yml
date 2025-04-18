@@ -1,0 +1,20 @@
+---
+name: savr
+root: ~/code/github/savrcom/frontier
+
+windows:
+  - frontier:
+      layout: even-horizontal
+      panes:
+        - npm run elm:watch
+        - nvim
+
+  - frontier-docker:
+      panes:
+        - npm run stage
+
+  - api:
+      root: ~/code/github/savrcom/docker
+      layout: even-horizontal
+      panes:
+        - docker-compose up -d
