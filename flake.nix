@@ -10,7 +10,7 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "https://flakehub.com/f/nix-community/home-manager/0.1.0";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";

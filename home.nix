@@ -9,6 +9,10 @@ in
   home.packages = with pkgs; [
     # Fonts
     nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka-term
+    nerd-fonts.blex-mono
+    nerd-fonts.gohufont
+    nerd-fonts.bigblue-terminal
 
     # Tools
     cmake
@@ -480,10 +484,13 @@ in
 
   programs.alacritty =
     let
+      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
       # fontFamily = "IosevkaTerm Nerd Font Mono";
       # fontFamily = "BlexMono Nerd Font Mono";
-      # fontFamily = "MesloLGL Nerd Font Mono";
-      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
+      # fontFamily = "BigBlueTerm437 Nerd Font Mono";
+      # fontFamily = "GohuFont 14 Nerd Font Mono";
+      # fontFamily = "GohuFont uni11 Nerd Font Mono";
+      # fontFamily = "Atkinson Hyperlegible Mono";
     in
     {
       enable = true;
@@ -513,7 +520,7 @@ in
         };
 
         font = {
-          size = 18;
+          size = 14;
 
           normal.family = fontFamily;
           bold.family = fontFamily;
@@ -521,8 +528,8 @@ in
           bold_italic.family = fontFamily;
 
           offset = {
-            x = 1;
-            y = 1;
+            x = 0;
+            y = 0;
           };
 
           glyph_offset = {
@@ -562,5 +569,9 @@ in
   # xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/aerospace/aerospace.toml/";
   programs.aerospace = {
     enable = false;
+  };
+
+  home.file."Library/Preferences/clangd/config.yaml" = {
+    source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/clangd.yaml";
   };
 }

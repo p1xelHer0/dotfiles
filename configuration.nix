@@ -163,8 +163,7 @@ in
       "openssl@3"
       "pkg-config"
       "llvm@17"
-      "gcc@13"
-      "ncurses"
+      "bear"
       "raylib"
       "sdl3"
       # "sdl2"
@@ -208,17 +207,17 @@ in
       "zulip"
     ];
 
-    masApps = {
-      "Key Codes" = 414568915;
-      Developer = 640199958;
-      Lungo = 1263070803;
-      Messenger = 1480068668;
-      Slack = 803453959;
-      Telegram = 747648890;
-      Typesy = 1059295091;
-      Xcode = 497799835;
-      Mattermost = 1614666244;
-    };
+    # masApps = {
+    #   "Key Codes" = 414568915;
+    #   Developer = 640199958;
+    #   Lungo = 1263070803;
+    #   Messenger = 1480068668;
+    #   Slack = 803453959;
+    #   Telegram = 747648890;
+    #   Typesy = 1059295091;
+    #   Xcode = 497799835;
+    #   Mattermost = 1614666244;
+    # };
   };
 
   # nighthook
