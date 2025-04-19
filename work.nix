@@ -3,6 +3,21 @@
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+  ids.gids.nixbld = 350;
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
+    # https://github.com/NixOS/nix/issues/7273
+    auto-optimise-store = false;
+
+    # Recommended when using `direnv` etc.
+    keep-derivations = true;
+    keep-outputs = true;
+  };
 
   environment.systemPackages = with pkgs; [
     pam-reattach

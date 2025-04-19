@@ -1,36 +1,23 @@
 { config, pkgs, lib, ... }:
 {
-  # error: Determinate detected, aborting activation
-  # Determinate uses its own daemon to manage the Nix installation that
-  # conflicts with nix-darwin’s native Nix management.
-  #
-  # To turn off nix-darwin’s management of the Nix installation, set:
-  #
-  #     nix.enable = false;
-  #
-  # This will allow you to use nix-darwin with Determinate. Some nix-darwin
-  # functionality that relies on managing the Nix installation, like the
-  # `nix.*` options to adjust Nix settings or configure a Linux builder,
-  # will be unavailable.
-  nix.enable = false;
-
-  # nix.settings = {
-  #   experimental-features = [
-  #     "nix-command"
-  #     "flakes"
-  #   ];
-  #
-  #   # https://github.com/NixOS/nix/issues/7273
-  #   auto-optimise-store = false;
-  #
-  #   # Recommended when using `direnv` etc.
-  #   keep-derivations = true;
-  #   keep-outputs = true;
-  # };
-
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+  ids.gids.nixbld = 350;
+
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
+    # https://github.com/NixOS/nix/issues/7273
+    auto-optimise-store = false;
+
+    # Recommended when using `direnv` etc.
+    keep-derivations = true;
+    keep-outputs = true;
+  };
 
   environment.systemPackages = with pkgs; [
     pam-reattach

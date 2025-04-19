@@ -2,9 +2,6 @@
   description = "p1xelHer0's system";
 
   inputs = {
-    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.27.1";
-
-    # nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
@@ -13,10 +10,13 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0-3.tar.gz";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nix, nix-darwin, home-manager, ... }:
+  outputs = { nix-darwin, home-manager, lix-module, ... }:
     let
       inherit (nix-darwin.lib) darwinSystem;
 
@@ -35,6 +35,7 @@
         p1xelBook = darwinSystem {
           system = "aarch64-darwin";
           modules = [
+            lix-module.nixosModules.default
             ./configuration.nix
             home-manager.darwinModules.home-manager
             {
@@ -53,7 +54,7 @@
         Pontuss-MacBook-Pro = darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            nix.darwinModules.default
+            lix-module.nixosModules.default
             ./work.nix
             home-manager.darwinModules.home-manager
             {
