@@ -54,7 +54,7 @@ api.nvim_create_autocmd("BufEnter", {
 })
 
 api.nvim_create_autocmd("BufEnter", {
-  pattern = "**/.config/alacritty/*.toml",
+  pattern = "**/.config/ghostty/themes/*",
   group = group,
   callback = function(args)
     require("colorizer").attach_to_buffer(0, { mode = "background", css = true })

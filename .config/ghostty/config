@@ -6,8 +6,4 @@ window-padding-balance = true
 window-padding-x = 20
 window-padding-y = 12
 
-# Font
-font-family = JetBrainsMono NFM SemiBold
-font-family-bold = JetBrainsMono NFM ExtraBold
-font-family-italic = JetBrainsMono NFM SemiBold Italic
-font-family-bold-italic = JetBrainsMono NFM ExtraBold Italic
+font-size = 16

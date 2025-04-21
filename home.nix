@@ -442,8 +442,6 @@ in
     ];
   };
 
-  xdg.configFile."theme".text = "dark";
-
   xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/after";
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lua";
   xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lsp";
@@ -471,82 +469,6 @@ in
       enable = true;
     };
   };
-
-  programs.alacritty =
-    let
-      fontFamily = "JetBrainsMonoNL Nerd Font Mono";
-      # fontFamily = "IosevkaTerm Nerd Font Mono";
-      # fontFamily = "BlexMono Nerd Font Mono";
-      # fontFamily = "BigBlueTerm437 Nerd Font Mono";
-      # fontFamily = "GohuFont 14 Nerd Font Mono";
-      # fontFamily = "GohuFont uni11 Nerd Font Mono";
-      # fontFamily = "Atkinson Hyperlegible Mono";
-    in
-    {
-      enable = true;
-
-      settings = {
-        window = {
-          padding.x = 16;
-          padding.y = 16;
-
-          decorations = "buttonless";
-          startup_mode = "Windowed";
-          option_as_alt = "Both";
-        };
-
-
-        mouse.hide_when_typing = true;
-
-        scrolling.history = 0;
-
-        selection.save_to_clipboard = false;
-
-        bell.duration = 0;
-
-        cursor = {
-          style = "Block";
-          unfocused_hollow = true;
-        };
-
-        font = {
-          size = 14;
-
-          normal.family = fontFamily;
-          bold.family = fontFamily;
-          italic.family = fontFamily;
-          bold_italic.family = fontFamily;
-
-          offset = {
-            x = 0;
-            y = 0;
-          };
-
-          glyph_offset = {
-            x = 0;
-            y = 0;
-          };
-        };
-
-        keyboard = {
-          bindings = [
-            {
-              key = "Paste";
-              action = "Paste";
-            }
-            {
-              key = "Copy";
-              action = "Copy";
-            }
-          ];
-        };
-
-        general = {
-          live_config_reload = true;
-          import = [ "~/.config/alacritty/live.toml" ];
-        };
-      };
-    };
 
   xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/aerospace.toml";
   # programs.aerospace = {

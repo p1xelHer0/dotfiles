@@ -132,6 +132,8 @@
     ];
 
     casks = [
+      "ghostty"
+
       # "alt-tab"
       "appcleaner"
       "devcleaner"
@@ -156,41 +158,6 @@
     masApps = {
       # Developer = 640199958;
       # Xcode = 497799835;
-    };
-  };
-
-  # nighthook
-  launchd.user.agents = {
-    "nighthook" = {
-      serviceConfig = {
-        Label = "nighthook";
-        WatchPaths =
-          [ "/Users/pontus.nagy/Library/Preferences/.GlobalPreferences.plist" ];
-        EnvironmentVariables = {
-          PATH = (builtins.replaceStrings [ "$HOME" ] [ "/Users/pontus.nagy" ] config.environment.systemPath);
-        };
-        ProgramArguments = [
-          "${pkgs.writeShellScript "nighthook-action" ''
-            if defaults read -g AppleInterfaceStyle &>/dev/null ; then
-              MODE="dark"
-            else
-              MODE="light"
-            fi
-
-            alacrittySwitchTheme() {
-              FROM=/Users/pontus.nagy/dotfiles/.config/alacritty
-              TO=/Users/pontus.nagy/.config/alacritty
-              if [[  $MODE == "dark"  ]]; then
-                ln -fs $FROM/dark.toml $TO/live.toml
-              elif [[  $MODE == "light"  ]]; then
-                ln -fs $FROM/light.toml $TO/live.toml
-              fi
-            }
-
-            alacrittySwitchTheme $@
-          ''}"
-        ];
-      };
     };
   };
 }

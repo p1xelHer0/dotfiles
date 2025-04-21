@@ -6,6 +6,7 @@ palette = 4=#8caaee
 palette = 5=#f4b8e4
 palette = 6=#81c8be
 palette = 7=#a5adce
+
 palette = 8=#626880
 palette = 9=#e67172
 palette = 10=#8ec772
@@ -14,9 +15,17 @@ palette = 12=#7b9ef0
 palette = 13=#f2a4db
 palette = 14=#5abfb5
 palette = 15=#b5bfe2
+
 background = #303446
 foreground = #c6d0f5
+
 cursor-color = #f2d5cf
 cursor-text = #c6d0f5
+
 selection-background = #626880
 selection-foreground = #c6d0f5
+
+font-family = JetBrainsMono NFM Medium
+font-family-bold = JetBrainsMono NFM Bold
+font-family-italic = JetBrainsMono NFM Medium Italic
+font-family-bold-italic = JetBrainsMono NFM Bold Italic

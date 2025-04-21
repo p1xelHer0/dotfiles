@@ -201,39 +201,4 @@
     #   Mattermost = 1614666244;
     # };
   };
-
-  # nighthook
-  launchd.user.agents = {
-    "nighthook" = {
-      serviceConfig = {
-        Label = "nighthook";
-        WatchPaths =
-          [ "/Users/p1xelher0/Library/Preferences/.GlobalPreferences.plist" ];
-        EnvironmentVariables = {
-          PATH = (builtins.replaceStrings [ "$HOME" ] [ "/Users/p1xelher0" ] config.environment.systemPath);
-        };
-        ProgramArguments = [
-          "${pkgs.writeShellScript "nighthook-action" ''
-            if defaults read -g AppleInterfaceStyle &>/dev/null ; then
-              MODE="dark"
-            else
-              MODE="light"
-            fi
-
-            alacrittySwitchTheme() {
-              FROM=/Users/p1xelher0/dotfiles/.config/alacritty
-              TO=/Users/p1xelher0/.config/alacritty
-              if [[  $MODE == "dark"  ]]; then
-                ln -fs $FROM/dark.toml $TO/live.toml
-              elif [[  $MODE == "light"  ]]; then
-                ln -fs $FROM/light.toml $TO/live.toml
-              fi
-            }
-
-            alacrittySwitchTheme $@
-          ''}"
-        ];
-      };
-    };
-  };
 }
