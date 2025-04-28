@@ -2,11 +2,12 @@ local lazy_file_event = require("base.config").lazy_file_event
 
 local M = {
   {
-    "folke/tokyonight.nvim",
+    "zenbones-theme/zenbones.nvim",
+    dependencies = "rktjmp/lush.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd.colorscheme("zenbones")
     end,
   },
 
@@ -24,6 +25,13 @@ local M = {
 
   {
     "echasnovski/mini.ai",
+    version = false,
+    event = "VeryLazy",
+    opts = {},
+  },
+
+  {
+    "echasnovski/mini.surround",
     version = false,
     event = "VeryLazy",
     opts = {},
@@ -179,6 +187,12 @@ local M = {
     opts = {
       view = {
         style = "sign",
+      },
+      mappings = {
+        goto_prev = "[c",
+        goto_next = "]c",
+        goto_first = "[C",
+        goto_last = "]C",
       },
     },
   },

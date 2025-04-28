@@ -22,7 +22,7 @@ require("lazy").setup({
   },
   install = {
     colorscheme = {
-      "default",
+      "zenbones",
     },
   },
   change_detection = {

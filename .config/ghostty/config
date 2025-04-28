@@ -1,5 +1,5 @@
 # Theme
-theme = dark:dark,light:catppuccin-latte
+theme = dark:zenbones_dark,light:zenbones_light
 
 # Window
 window-padding-balance = true

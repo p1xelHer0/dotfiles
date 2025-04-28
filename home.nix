@@ -445,10 +445,9 @@ in
   xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/after";
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lua";
   xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lsp";
+  xdg.configFile."nvim/init.lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/init.lua";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim; # this enables nightly
-    extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
     withRuby = false;
