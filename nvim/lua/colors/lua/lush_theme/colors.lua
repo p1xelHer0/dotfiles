@@ -382,10 +382,10 @@ local theme = lush(function(injected_functions)
     MatchWordCur { MatchParen },
 
 
-    GitSignsAdd           { GitAdd },
-    GitSignsDelete        { GitDelete },
-    GitSignsChange        { GitChange },
-    GitSignsNew           { GitNew },
+    -- GitSignsAdd           { GitAdd },
+    -- GitSignsDelete        { GitDelete },
+    -- GitSignsChange        { GitChange },
+    -- GitSignsNew           { GitNew },
 
 -- 'signs.add.hl' is now deprecated, please define highlight 'GitSignsAdd'
 -- 'signs.add.numhl' is now deprecated, please define highlight 'GitSignsAddNr'

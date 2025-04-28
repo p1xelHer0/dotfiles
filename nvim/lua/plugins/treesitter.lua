@@ -1,51 +1,32 @@
+local lazy_file_event = require("base.config").lazy_file_event
+
 local ensure_installed = {
   "bash",
-  "c",
-  "clojure",
-  "commonlisp",
-  "cpp",
-  "css",
-  "elixir",
-  "elm",
-  "erlang",
-  "fennel",
-  "glsl",
-  "haskell",
-  "hlsl",
-  "html",
-  "http",
-  "janet_simple",
-  "javascript",
-  "jsdoc",
-  "json",
-  "json5",
-  "jsonc",
-  "kdl",
-  "llvm",
-  "lua",
+  "nu",
   "make",
-  "markdown",
-  "markdown_inline",
   "nix",
-  "ocaml",
-  "ocaml_interface",
-  "ocamllex",
-  "odin",
-  "python",
-  "query",
-  "racket",
-  "regex",
-  "roc",
-  "rust",
-  "scheme",
-  "scss",
-  "toml",
-  "tsx",
-  "typescript",
   "vim",
-  "wgsl",
-  "yaml",
+  "scheme",
+  "c",
+  "cpp",
+  "odin",
   "zig",
+  "rust",
+  "python",
+  "lua",
+  "glsl",
+  "hlsl",
+  "wgsl",
+  "html",
+  "css",
+  "scss",
+  "javascript",
+  "typescript",
+  "elm",
+  "json",
+  "yaml",
+  "toml",
+  "markdown",
 }
 
 local M = {
@@ -55,10 +36,7 @@ local M = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     build = ":TSUpdate",
-    event = function()
-      return require("internal.events").lazyFile
-    end,
-
+    event = lazy_file_event,
     opts = {
       ensure_installed = ensure_installed,
       highlight = {
@@ -159,15 +137,20 @@ local M = {
       },
     },
     config = function(_, opts)
+      local map = function(keys, func, desc, mode)
+        mode = mode or "n"
+        vim.keymap.set(mode, keys, func, { noremap = true, desc = "Tree-sitter: " .. desc })
+      end
+
+      map("<Leader>0", ":Inspect<CR>", "inspect")
+
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
 
   {
     "andymass/vim-matchup",
-    event = function()
-      return require("internal.events").lazyFile
-    end,
+    event = lazy_file_event,
     opts = {},
     init = function()
       -- vim.g.matchup_matchparen_deferred = 1
@@ -176,34 +159,8 @@ local M = {
   },
 
   {
-    "windwp/nvim-ts-autotag",
-    ft = {
-      "html",
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "svelte",
-      "vue",
-      "tsx",
-      "jsx",
-      "rescript",
-      "xml",
-      "php",
-      "markdown",
-      "astro",
-      "glimmer",
-      "handlebars",
-      "hbs",
-    },
-    opts = {},
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter-context",
-    event = function()
-      return require("internal.events").lazyFile
-    end,
+    event = lazy_file_event,
     opts = {},
   },
 }

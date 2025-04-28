@@ -1,0 +1,5 @@
+require("base.options")
+require("base.lazy")
+require("base.lsp")
+require("base.gui")
+require("base.term")
