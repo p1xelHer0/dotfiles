@@ -172,7 +172,6 @@ local M = {
     opts = {
       integrations = {
         diffview = true,
-        telescope = true,
       },
     },
     config = function(_, opts)
@@ -242,10 +241,8 @@ local M = {
     ft = "lua",
     opts = {
       library = {
-        {
-          path = "${3rd}/luv/library",
-          words = { "vim%.uv" },
-        },
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },

@@ -188,3 +188,14 @@ if vim.opt_local.cursorline:get() then
     end,
   })
 end
+
+vim.diagnostic.config({
+  severity_sort = true,
+  virtual_text = true,
+  jump = {
+    float = {
+      source = "if_many",
+      focusable = false,
+    },
+  },
+})
