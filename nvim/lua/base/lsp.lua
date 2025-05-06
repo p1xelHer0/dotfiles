@@ -29,9 +29,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("nil_ls")
 vim.lsp.enable("ols")
 vim.lsp.enable("clangd")
-vim.lsp.enable("luals")
 
 -- diagnostics
 vim.diagnostic.config({

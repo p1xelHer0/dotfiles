@@ -24,11 +24,6 @@ in
     fswatch
     gh
     # gifsicle
-    gnused
-    (pkgs.writeShellScriptBin "
-        gsed
-        " "
-        exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     htop
     hyperfine
     imagemagick
@@ -180,6 +175,10 @@ in
   ];
 
   xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
+
+  programs.nushell = {
+    enable = true;
+  };
 
   programs.zsh = {
     enable = true;
