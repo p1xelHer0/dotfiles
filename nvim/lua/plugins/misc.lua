@@ -2,6 +2,12 @@ local lazy_file_event = require("base.config").lazy_file_event
 
 local M = {
   {
+    "f-person/auto-dark-mode.nvim",
+    opts = {},
+    lazy = false,
+    priority = 1000,
+  },
+  {
     "zenbones-theme/zenbones.nvim",
     dependencies = "rktjmp/lush.nvim",
     lazy = false,
@@ -10,6 +16,8 @@ local M = {
       vim.cmd.colorscheme("zenbones")
     end,
   },
+
+  --
 
   {
     "NMAC427/guess-indent.nvim",
@@ -36,6 +44,8 @@ local M = {
     event = "VeryLazy",
     opts = {},
   },
+
+  --
 
   {
     "folke/todo-comments.nvim",
@@ -99,6 +109,8 @@ local M = {
     },
   },
 
+  --
+
   {
     "akinsho/toggleterm.nvim",
     lazy = false,
@@ -139,7 +151,11 @@ local M = {
     end,
   },
 
+  --
+
   { "MagicDuck/grug-far.nvim", opts = {} },
+
+  --
 
   {
     "NeogitOrg/neogit",
@@ -195,6 +211,9 @@ local M = {
       },
     },
   },
+
+  --
+
   {
     "echasnovski/mini.comment",
     version = false,
@@ -202,7 +221,8 @@ local M = {
     opts = {},
   },
 
-  -- formatting
+  --
+
   {
     "stevearc/conform.nvim",
     cmd = { "ConformInfo" },
@@ -232,9 +252,20 @@ local M = {
     },
   },
 
+  --
+
+  {
+    "stevearc/oil.nvim",
+    opts = {},
+    lazy = false,
+  },
+
+  --
+
   { "christoomey/vim-tmux-navigator" },
 
-  -- deps and dev
+  --
+
   { "nvim-lua/plenary.nvim" },
   {
     "folke/lazydev.nvim",

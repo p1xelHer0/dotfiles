@@ -1,6 +1,7 @@
 local lazy_file_event = require("base.config").lazy_file_event
 
 return {
+  enabled = false,
   "saghen/blink.cmp",
   event = lazy_file_event,
   -- optional: provides snippets for the snippet source
