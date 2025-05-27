@@ -223,7 +223,7 @@ in
       n "
     '';
 
-    initExtra = ''
+    initContent = ''
       export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH

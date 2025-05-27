@@ -29,6 +29,7 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
+  system.primaryUser = "p1xelher0";
   users.users.p1xelher0 = {
     shell = pkgs.zsh;
     home = /Users/p1xelher0;
@@ -175,6 +176,7 @@
       "keycastr"
       "linearmouse"
       # "mactex-no-gui"
+      "mpv"
       "obs"
       "obsidian"
       "orbstack"
