@@ -29,7 +29,8 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
-  users.users."pontus.nagy" = {
+  system.primaryUser = "pontus.nagy";
+  users.users."pontus.nagy "= {
     shell = pkgs.zsh;
     home = /Users/pontus.nagy;
   };
@@ -129,6 +130,7 @@
       # "fsouza/prettierd/prettierd"
       # "mas"
       # "ncurses"
+      "git"
     ];
 
     casks = [

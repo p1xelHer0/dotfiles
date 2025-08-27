@@ -141,6 +141,7 @@
       "emscripten"
       "java"
       "ghcup"
+      "git"
       "openssl@3"
       "pkg-config"
       "llvm@17"

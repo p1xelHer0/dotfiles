@@ -279,9 +279,9 @@ in
       "ts" = "tmux-sessionizer";
       "ta" = "tmux a";
 
-      dre = "darwin-rebuild edit";
+      dre = "sudo darwin-rebuild edit";
       drs =
-        "darwin-rebuild switch --flake $HOME/dotfiles";
+        "sudo darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
@@ -453,7 +453,7 @@ in
   };
 
   programs.git = {
-    enable = true;
+    enable = false;
     package = pkgs.gitAndTools.gitFull;
     userName = "p1xelHer0";
     userEmail = "p_nagy@icloud.com";

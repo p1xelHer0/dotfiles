@@ -21,7 +21,6 @@ in
     fd
     fswatch
     gh
-    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     jq
     mob
     p7zip
@@ -143,9 +142,9 @@ in
       "ts" = "tmux-sessionizer";
       "ta" = "tmux a";
 
-      dre = "darwin-rebuild edit";
+      dre = "sudo darwin-rebuild edit";
       drs =
-        "darwin-rebuild switch --flake $HOME/dotfiles";
+        "sudo darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
@@ -292,20 +291,19 @@ in
     ];
   };
 
-  xdg.configFile."theme".text = "dark";
-
+  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/after";
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lua";
+  xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lsp";
+  xdg.configFile."nvim/init.lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/init.lua";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim; # this enables nightly
-    extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
     withRuby = false;
   };
 
   programs.git = {
-    enable = true;
+    enable = false;
     package = pkgs.gitAndTools.gitFull;
     userName = "Pontus Nagy";
     userEmail = "pontus.nagy@savr.com";
@@ -331,5 +329,5 @@ in
     };
   };
 
-  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/ghostty";
+  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/ghostty";
 }
