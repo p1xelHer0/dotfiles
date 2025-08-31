@@ -52,6 +52,7 @@
                   ./home.nix
                 ];
               };
+              home-manager.backupFileExtension = "backup"; 
             }
           ];
         };
@@ -71,6 +72,7 @@
                   ./work-home.nix
                 ];
               };
+              home-manager.backupFileExtension = "backup"; 
             }
           ];
         };
