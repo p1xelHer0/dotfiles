@@ -12,16 +12,16 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    # lix-module = {
+    #   url = "git+https://git.lix.systems/lix-project/nixos-module";
+    #   inputs.lix.follows = "lix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nix-darwin, home-manager, lix-module, ... }:
+  outputs = { nix-darwin, home-manager, ... }:
     let
       inherit (nix-darwin.lib) darwinSystem;
 
@@ -40,7 +40,7 @@
         p1xelBook = darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            lix-module.nixosModules.default
+            # lix-module.nixosModules.default
             ./configuration.nix
             home-manager.darwinModules.home-manager
             {
@@ -59,7 +59,7 @@
         Pontuss-MacBook-Pro = darwinSystem {
           system = "aarch64-darwin";
           modules = [
-            lix-module.nixosModules.default
+            # lix-module.nixosModules.default
             ./work.nix
             home-manager.darwinModules.home-manager
             {
