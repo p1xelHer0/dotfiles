@@ -104,26 +104,25 @@ in
       DOTS = "$HOME/dotfiles";
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
+      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
+
+      RPROMPT = " ";
     };
 
     envExtra = ''
       bindkey -s ^f "tmux-sessionizer\n"
     '';
 
-    initExtra = ''
+    initContent = ''
       export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
-
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
 
+      # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+      export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
-
-      export TMUXINATOR_CONFIG=$DOTS/.config/tmux/tmuxinator
-
-      export RPROMPT=""
 
       # use the maximum amount of file descriptors
       ulimit -n 24576
@@ -188,12 +187,12 @@ in
       scan_timeout = 10;
 
       character = {
-        success_symbol = "[λ](bold green)";
-        error_symbol = "[λ](bold red)";
+        success_symbol = "[;](bold green)";
+        error_symbol = "[;](bold red)";
       };
 
       format = ''
-        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
       directory = { read_only = "X"; };
@@ -208,7 +207,7 @@ in
       git_status = {
         format = "$all_status$ahead_behind ";
 
-        conflicted = "";
+        conflicted = "[=](red)";
 
         ahead = "[>](yellow)";
         behind = "[<](yellow)";
@@ -221,7 +220,7 @@ in
         renamed = ''["](green)'';
         deleted = "[-](red)";
 
-        stashed = "[# ](bold blue)";
+        stashed = "[#](bold blue)";
       };
 
       cmd_duration = {
@@ -247,8 +246,8 @@ in
       nix_shell = {
         format = "[$symbol$state( ($name))]($style) ";
         symbol = "[nix](blue)";
-        impure_msg = "i";
-        pure_msg = "p";
+        impure_msg = "";
+        pure_msg = "";
       };
     };
   };
@@ -276,11 +275,11 @@ in
       "--color=preview-bg:-1"
       "--color=hl:reverse:3"
       "--color=fg+:7"
-      "--color=bg+:18"
+      "--color=bg+:8"
       "--color=gutter:-1"
       "--color=hl+:reverse:3"
       "--color=info:8"
-      "--color=border:16"
+      "--color=border:8"
       "--color=prompt:2"
       "--color=pointer:2"
       "--color=marker:2"
@@ -308,17 +307,6 @@ in
     userName = "Pontus Nagy";
     userEmail = "pontus.nagy@savr.com";
     includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
-    /**/
-    /* extraConfig = { */
-    /*   diff.colorAdded = "2"; */
-    /*   diff.colorChanged = "3"; */
-    /*   diff.colorUntracked = "2"; */
-    /*   diff.colorMoved = "2"; */
-    /* }; */
-    /**/
-    /* delta = { */
-    /*   enable = true; */
-    /* }; */
   };
 
   programs.direnv = {
