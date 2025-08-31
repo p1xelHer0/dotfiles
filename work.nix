@@ -30,9 +30,9 @@
   environment.shells = [ pkgs.zsh ];
 
   system.primaryUser = "pontus.nagy";
-  users.users."pontus.nagy "= {
+  users.users."pontus.nagy" = {
     shell = pkgs.zsh;
-    home = /Users/pontus.nagy;
+    home = "/Users/pontus.nagy";
   };
 
   # Add ability to used TouchID for sudo authentication

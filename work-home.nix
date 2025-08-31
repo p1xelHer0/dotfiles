@@ -14,7 +14,7 @@ in
     nerd-fonts.bigblue-terminal
 
     # Tools
-    bitwarden-cli
+    # bitwarden-cli
     curl
     entr
     eza
