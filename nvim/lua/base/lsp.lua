@@ -29,10 +29,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.lsp.enable("biome")
+vim.lsp.enable("clangd")
+vim.lsp.enable("elmls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("ols")
-vim.lsp.enable("clangd")
+vim.lsp.enable("tailwindcss")
 
 -- diagnostics
 vim.diagnostic.config({
