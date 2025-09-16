@@ -256,6 +256,9 @@ local M = {
 
   {
     "stevearc/oil.nvim",
+    keys = {
+      { "<Leader>n", "<CMD>Oil<CR>", { desc = "Open parent directory" } },
+    },
     opts = {},
     lazy = false,
   },

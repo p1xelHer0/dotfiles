@@ -18,12 +18,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local fzf_lua = require("fzf-lua")
 
     -- stylua: ignore start
+    map("gra", function() fzf_lua.lsp_code_action() end,       "fzf - goto definition")
     map("gd",  function() fzf_lua.lsp_definitions() end,       "fzf - goto definition")
     map("gD",  function() fzf_lua.lsp_declarations() end,      "fzf - goto declaration")
     map("grr", function() fzf_lua.lsp_references() end,        "fzf - references")
     map("gri", function() fzf_lua.lsp_implementations() end,   "fzf - goto implementation")
     map("grt", function() fzf_lua.lsp_typedefs() end,          "fzf - goto type definition")
-    map("gs",  function() fzf_lua.lsp_document_symbols() end,  "fzf - symbols")
+    map("gO",  function() fzf_lua.lsp_document_symbols() end,  "fzf - symbols")
     map("gS",  function() fzf_lua.lsp_workspace_symbols() end, "fzf - workspace symbols")
     -- stylua: ignore end
   end,
