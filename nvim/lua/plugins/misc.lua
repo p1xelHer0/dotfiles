@@ -269,6 +269,10 @@ local M = {
 
   --
 
+  { "LunarVim/bigfile.nvim" },
+
+  --
+
   { "nvim-lua/plenary.nvim" },
   {
     "folke/lazydev.nvim",
