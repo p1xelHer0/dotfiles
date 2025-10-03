@@ -242,6 +242,7 @@ local M = {
       formatters_by_ft = {
         lua = { "stylua" },
         elm = { "elm_format" },
+        go = { "gofumpt" },
         javascript = { "biome" },
         typescript = { "biome" },
         ["*"] = { "trim_whitespace", "trim_newlines" },

@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.lsp.enable("biome")
 vim.lsp.enable("clangd")
 vim.lsp.enable("elmls")
+vim.lsp.enable("gopls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("ols")

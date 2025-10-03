@@ -73,6 +73,8 @@ in
     gopls
     gotools
     go-tools
+    delve
+    gofumpt
 
     # PHP
     # php82
@@ -82,8 +84,8 @@ in
     phpactor
 
     # Ruby
-    cocoapods
-    ruby
+    # cocoapods
+    # ruby
 
     # TOML
     taplo-cli

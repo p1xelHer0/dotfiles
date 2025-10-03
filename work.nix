@@ -139,7 +139,7 @@
     casks = [
       "ghostty"
 
-      # "alt-tab"
+      "alt-tab"
       "appcleaner"
       "devcleaner"
       # "google-chrome"

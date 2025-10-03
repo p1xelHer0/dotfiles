@@ -12,6 +12,7 @@ local ensure_installed = {
   "odin",
   "zig",
   "rust",
+  "go",
   "python",
   "lua",
   "glsl",

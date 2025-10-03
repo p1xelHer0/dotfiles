@@ -121,6 +121,8 @@ in
     gopls
     gotools
     go-tools
+    delve
+    gofumpt
     # go install github.com/mattn/efm-langserver@latest
     # go install github.com/segmentio/golines@latest
     # go install github.com/client9/misspell/cmd/misspell@latest
