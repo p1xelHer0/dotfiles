@@ -68,6 +68,12 @@ in
     elmPackages.elm-language-server
     elmPackages.elm-test
 
+    # Go
+    go
+    gopls
+    gotools
+    go-tools
+
     # PHP
     # php82
     # php82Packages.composer

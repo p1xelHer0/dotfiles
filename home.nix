@@ -119,6 +119,8 @@ in
     # Go
     go
     gopls
+    gotools
+    go-tools
     # go install github.com/mattn/efm-langserver@latest
     # go install github.com/segmentio/golines@latest
     # go install github.com/client9/misspell/cmd/misspell@latest
