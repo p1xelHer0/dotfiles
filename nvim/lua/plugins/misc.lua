@@ -7,6 +7,13 @@ local M = {
     lazy = false,
     priority = 1000,
   },
+
+  {
+    dir = "~/dotfiles/nvim/lua/colors",
+    lazy = false,
+    priority = 1000,
+  },
+
   {
     "zenbones-theme/zenbones.nvim",
     dependencies = "rktjmp/lush.nvim",
@@ -26,6 +33,7 @@ local M = {
 
   {
     "echasnovski/mini.pairs",
+    enabled = false,
     version = false,
     event = "VeryLazy",
     opts = {},
@@ -44,6 +52,8 @@ local M = {
     event = "VeryLazy",
     opts = {},
   },
+
+  { "tpope/vim-repeat" },
 
   --
 
@@ -158,6 +168,81 @@ local M = {
   --
 
   {
+    "tpope/vim-projectionist",
+    event = lazy_file_event,
+    keys = {
+      {
+        "<Leader>p",
+        "<CMD>A<CR>",
+        mode = "n",
+        desc = "Projectionist: alternative file",
+      },
+    },
+    opts = {
+      ["*"] = {
+        -- C
+        ["*.c"] = {
+          alternate = "{}.h",
+        },
+        ["*.h"] = {
+          alternate = "{}.c",
+        },
+
+        -- sokol_shdc
+        ["**.glsl"] = {
+          alternate = "{}.glsl.h",
+        },
+        ["**.glsl.odin"] = {
+          alternate = "{}.glsl",
+        },
+
+        -- Elm
+        ["app/elm/App/*Service.elm"] = {
+          alternate = "app/elm/App/{}.elm",
+        },
+        ["app/elm/App/Pages/*.elm"] = {
+          alternate = "app/elm/App/Pages/{}Service.elm",
+        },
+        ["app/elm/App/Fullscreens/*.elm"] = {
+          alternate = "app/elm/App/Fullscreens/{}Service.elm",
+        },
+        ["app/elm/App/Services/*.elm"] = {
+          alternate = "app/elm/App/Services/{}Service.elm",
+        },
+
+        -- .env
+        [".env*"] = {
+          alternate = ".env{}.local",
+        },
+        [".env*.local"] = {
+          alternate = ".env{}",
+        },
+
+        -- OCaml
+        ["**.mli"] = {
+          alternate = "{}.ml",
+        },
+        ["**.ml"] = {
+          alternate = "{}.mli",
+        },
+      },
+
+      -- Gerbil
+      ["gerbil.pkg"] = {
+        ["**-test.ss"] = {
+          alternate = "{}.ss",
+        },
+        ["**.ss"] = {
+          alternate = "{}-test.ss",
+        },
+      },
+    },
+    config = function(_, opts)
+      vim.g.projectionist_heuristics = opts
+    end,
+  },
+
+  {
     "NeogitOrg/neogit",
     dependencies = {
       {
@@ -258,7 +343,11 @@ local M = {
   {
     "stevearc/oil.nvim",
     keys = {
-      { "<Leader>n", "<CMD>Oil<CR>", { desc = "Open parent directory" } },
+      {
+        "<Leader>n",
+        "<CMD>Oil<CR>",
+        desc = "Open parent directory",
+      },
     },
     opts = {},
     lazy = false,

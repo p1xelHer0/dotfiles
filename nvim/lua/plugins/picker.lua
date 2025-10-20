@@ -8,12 +8,36 @@ local M = {
       return {
         { "hide", "telescope" }, -- hide: restore the picker state entirely
         fzf_colors = true,
+        -- winopts = {
+        --   border = border,
+        --   preview = {
+        --     border = border,
+        --     winopts = {},
+        --   },
+        -- },
         winopts = {
-          border = border,
-          preview = {
-            border = border,
-            winopts = {},
+          height = 0.8,
+          width = 0.8,
+          row = 0.8,
+          -- border = "rounded",
+        },
+        fzf_opts = {
+          ["--no-info"] = "",
+          ["--info"] = "hidden",
+          ["--padding"] = "13%,5%,13%,5%",
+          ["--no-header"] = "",
+          ["--no-scrollbar"] = "",
+        },
+        formatter = "path.filename_first",
+        files = {},
+        lsp = {
+          symbols = {
+            locate = true,
           },
+        },
+        diagnostics = {
+          prompt = "Diagnostics",
+          severity_limit = "error",
         },
         hls = {
           -- normal = "NormalFloat",
@@ -28,6 +52,7 @@ local M = {
           },
           fzf = {
             true, -- inherit default keymaps
+            ["ctrl-q"] = "select-all+accept",
           },
         },
       }

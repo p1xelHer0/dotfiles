@@ -15,6 +15,7 @@ in
 
     # Tools
     # bitwarden-cli
+    aerospace
     curl
     entr
     eza
@@ -324,6 +325,11 @@ in
       enable = true;
     };
   };
+
+  xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/aerospace.toml";
+  # programs.aerospace = {
+  #   enable = true;
+  # };
 
   xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/ghostty";
 }
