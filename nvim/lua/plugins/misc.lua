@@ -58,6 +58,11 @@ local M = {
   --
 
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- NOTE: Already lazy loaded as per docs
+  },
+
+  {
     "folke/todo-comments.nvim",
     event = lazy_file_event,
 
@@ -92,31 +97,29 @@ local M = {
   },
 
   {
-    {
-      "NvChad/nvim-colorizer.lua",
-      cmd = {
-        "ColorizerAttachToBuffer",
-        "ColorizerDetachFromBuffer",
-        "ColorizerReloadAllBuffers",
-        "ColorizerToggle",
-      },
-      opts = {
-        user_default_options = {
-          names = false,
-          mode = "background",
-        },
-      },
-      config = function(_, opts)
-        vim.api.nvim_create_autocmd("BufEnter", {
-          pattern = "**/.config/alacritty/*.toml",
-          callback = function()
-            require("colorizer").attach_to_buffer(0, { mode = "background", css = true })
-          end,
-        })
-
-        require("colorizer").setup(opts)
-      end,
+    "NvChad/nvim-colorizer.lua",
+    cmd = {
+      "ColorizerAttachToBuffer",
+      "ColorizerDetachFromBuffer",
+      "ColorizerReloadAllBuffers",
+      "ColorizerToggle",
     },
+    opts = {
+      user_default_options = {
+        names = false,
+        mode = "background",
+      },
+    },
+    config = function(_, opts)
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "**/.config/alacritty/*.toml",
+        callback = function()
+          require("colorizer").attach_to_buffer(0, { mode = "background", css = true })
+        end,
+      })
+
+      require("colorizer").setup(opts)
+    end,
   },
 
   --
