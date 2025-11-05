@@ -28,6 +28,7 @@ local ensure_installed = {
   "yaml",
   "toml",
   "markdown",
+  "gitignore",
 }
 
 local M = {
