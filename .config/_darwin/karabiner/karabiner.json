@@ -95,6 +95,29 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Exchange hyphen and underscore",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "hyphen" },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "hyphen",
+                                    "modifiers": { "mandatory": ["shift"] }
+                                },
+                                "to": [{ "key_code": "hyphen" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "WASD + QE -> ESDF + WR",
                         "manipulators": [
                             {
