@@ -37,6 +37,7 @@ vim.lsp.enable("gopls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("ols")
+vim.lsp.enable("slangd")
 vim.lsp.enable("tailwindcss")
 
 -- diagnostics

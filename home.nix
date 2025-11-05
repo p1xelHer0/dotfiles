@@ -43,6 +43,8 @@ in
     zola
     zoxide
 
+    shader-slang
+
     # C/C++
     # ncurses6
     # cmake
