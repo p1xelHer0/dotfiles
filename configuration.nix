@@ -177,7 +177,6 @@
       "hammerspoon"
       "karabiner-elements"
       "keycastr"
-      "linearmouse"
       # "mactex-no-gui"
       "mpv"
       "obs"

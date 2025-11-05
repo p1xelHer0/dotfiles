@@ -148,7 +148,6 @@
       "hammerspoon"
       "karabiner-elements"
       # "keycastr"
-      "linearmouse"
       "mockoon"
       "ngrok"
       "notion"
