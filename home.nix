@@ -208,8 +208,6 @@ in
       ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
       ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
 
-      SDL_SHADERCROSS = "$HOME/dotfiles/bin/SDL3_shadercross-3.0.0-darwin-arm64-x64/bin";
-
       ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
       ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
 
@@ -260,8 +258,6 @@ in
       export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
       export PATH=$ODIN_ROOT:$PATH
       export PATH=$ODIN_TOOLS:$PATH
-
-      export PATH=$SDL_SHADERCROSS:$PATH
 
       export PATH=$ZIGUP:$PATH
       export PATH=$ZLS:$PATH
