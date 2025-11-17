@@ -199,3 +199,10 @@ vim.diagnostic.config({
     },
   },
 })
+
+vim.filetype.add({
+  extension = {
+    hlsl = "hlsl",
+    hlsli = "hlsl",
+  },
+})
