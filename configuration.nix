@@ -164,7 +164,7 @@
     casks = [
       "ghostty"
 
-      # "alt-tab"
+      "alt-tab"
       "appcleaner"
       "devcleaner"
       "discord"
@@ -179,6 +179,7 @@
       "keycastr"
       # "mactex-no-gui"
       "mpv"
+      "netnewswire"
       "obs"
       "obsidian"
       "orbstack"
