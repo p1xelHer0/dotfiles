@@ -156,7 +156,9 @@ in
 
       v = "nvim";
       vim = "nvim";
-      vf = "nvim $(fzf)";
+      vp = "nvim -c 'lua require(\"fzf-lua\").files()'";
+      vf = "nvim -c 'lua require(\"fzf-lua\").live_grep_native()'";
+      vg = "nvim -c 'lua require(\"neogit\").open()'";
 
       yamld = "nvim -d ./.docker/local/docker-compose.yml ./.docker/local/docker-compose.yml.example";
       envd = "nvim -d .env .env.example";

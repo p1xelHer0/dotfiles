@@ -287,7 +287,9 @@ in
 
       v = "nvim";
       vim = "nvim";
-      vf = "nvim $(fzf)";
+      vp = "nvim -c 'lua require(\"fzf-lua\").files()'";
+      vf = "nvim -c 'lua require(\"fzf-lua\").live_grep_native()'";
+      vg = "nvim -c 'lua require(\"neogit\").open()'";
 
       # opameval = "eval $(opam env)";
       # ev = "npx esy nvim";
