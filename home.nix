@@ -244,10 +244,6 @@ in
 
       export PATH=$DOTS_BIN:$PATH
 
-      export PATH=$RESCRIPT_LSP:$PATH
-
-      # export PATH=$MACTEX_BIN:$PATH
-
       export PATH=$ROSWELL_BIN:$PATH
       export PATH=$QLOT_BIN:$PATH
 

@@ -78,7 +78,6 @@ vim.opt.timeoutlen      = 300
 vim.opt.updatetime      = 250
 vim.opt.redrawtime      = 100
 
-vim.opt.fileformats     = "unix"
 vim.opt.encoding        = "utf-8"
 vim.opt.fileencoding    = "utf-8"
 

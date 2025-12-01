@@ -5,6 +5,7 @@ end
 
 -- stylua: ignore start
 map("<Leader>s", ":!./build_hot_reload.sh<CR>", "Build hot reload DLL")
+map("<Leader>S", ":!./build_hot_reload.sh hot<CR>", "Build hot reload DLL including metagen")
 -- map("<Leader>s",      ":!odin run ./sim86 -debug -- part_1/listing_0039_more_movs<CR>", "Build perf_aware part_1")
 map("<Leader>c",      "o////////////////////////////////////////<ESC>",                           "Comment section")
 map("<Localleader>f", "ebyeofmt.printfln(\"<ESC>pa: %v\", <ESC>pa)<ESC>",                         "`fmt.printfln` current word")
