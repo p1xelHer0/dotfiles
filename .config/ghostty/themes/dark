@@ -1,31 +1,31 @@
-palette = 0=#0d1117
-palette = 1=#c37878
-palette = 2=#7f9375
-palette = 3=#c49e6a
-palette = 4=#477e76
-palette = 5=#c48884
-palette = 6=#b5a488
-palette = 7=#b5a488
+background = 2D353B
+foreground = D3C6AA
+cursor-color = 56635F
+selection-background = 543A48
+selection-foreground = D3C6AA
 
-palette = 8=#706957
-palette = 9=#daa4a3
-palette = 10=#a8b6a1
-palette = 11=#dabd9a
-palette = 12=#84a8a1
-palette = 13=#b5a488
-palette = 14=#b5a488
-palette = 15=#ffffff
+palette = 0=#232A2E
 
-background = #0d1117
-foreground = #b5a488
+palette = 1=#E67E80
+palette = 2=#A7C080
+palette = 3=#DBBC7F
+palette = 4=#7FBBB3
+palette = 5=#D699B6
+palette = 6=#83C092
 
-cursor-color = #ffffff
-cursor-text = #0d1117
+palette = 7=#4F585E
+palette = 8=#3D484D
 
-selection-background = #477e76
-selection-foreground = #ffffff
+palette = 9=#543A48
+palette = 10=#425047
+palette = 11=#4D4C43
+palette = 12=#3A515D
+palette = 13=#514045
+palette = 14=#83C092
 
-font-family = JetBrainsMono NFM SemiBold
-font-family-bold = JetBrainsMono NFM ExtraBold
-font-family-italic = JetBrainsMono NFM SemiBold Italic
-font-family-bold-italic = JetBrainsMono NFM ExtraBold Italic
+palette = 15=#D3C6AA
+
+font-family = IosevkaTerm NFM SemiBold
+font-family-bold = IosevkaTerm NFM ExtraBold
+font-family-italic = IosevkaTerm NFM Bold Italic
+font-family-bold-italic = IosevkaTerm NFM ExtraBold Italic

@@ -20,7 +20,30 @@ local M = {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("zenbones")
+      -- vim.cmd.colorscheme("zenbones")
+    end,
+  },
+
+  {
+    "neanias/everforest-nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, opts)
+      require("everforest").setup(opts)
+      vim.cmd.colorscheme("everforest")
+    end,
+  },
+
+  --
+
+  {
+    "nvim-lualine/lualine.nvim",
+    enabled = false,
+    opts = {},
+    config = function(_, opts)
+      local lualine = require("lualine")
+      lualine.setup(opts)
     end,
   },
 

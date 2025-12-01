@@ -1,5 +1,5 @@
 # Theme
-theme = dark:Zenbones Dark,light:Zenbones Light
+theme = dark:dark,light:light
 
 # Window
 window-padding-balance = true
@@ -8,14 +8,4 @@ window-padding-y = 12
 
 font-size = 16
 
-font-family = JetBrainsMono NFM SemiBold
-font-family-bold = JetBrainsMono NFM ExtraBold
-font-family-italic = JetBrainsMono NFM SemiBold Italic
-font-family-bold-italic = JetBrainsMono NFM ExtraBold Italic
-
-# theme = dark:Borland,light:Borland
-# font-family = BigBlueTermPlus Nerd Font Mono
-# font-family-bold = BigBlueTermPlus Nerd Font Mono
-# font-family-italic = BigBlueTermPlus Nerd Font Mono
-# font-family-bold-italic = BigBlueTermPlus Nerd Font Mono
 font-synthetic-style = false
