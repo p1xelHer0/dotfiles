@@ -65,6 +65,7 @@ local M = {
       { "<C-p>",     function() require("fzf-lua").files() end,                 desc = "Find Files" },
       { "<Leader>f", function() require("fzf-lua").live_grep_native() end,      desc = "Grep" },
       { "<Leader>F", function() require("fzf-lua").grep_cword() end,            desc = "Visual selection or word", mode = { "n", "x" } },
+      { "<Leader>T", function() require("fzf-lua").builtin() end,               desc = "FzfLua Builtins", mode = { "n", "x" } },
       { "<Leader>b", function() require("fzf-lua").buffers() end,               desc = "Buffers" },
       { "<Leader>d", function() require("fzf-lua").diagnostics_workspace() end, desc = "Diagnostics" },
       { "<Leader>D", function() require("fzf-lua").diagnostics_document() end,  desc = "Buffer Diagnostics" },
