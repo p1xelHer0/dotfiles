@@ -1,31 +1,28 @@
-background = 2D353B
-foreground = D3C6AA
-cursor-color = 56635F
-selection-background = 543A48
-selection-foreground = D3C6AA
+font-family = JetBrainsMono NFM Medium
+font-family-bold = JetBrainsMono NFM SemiBold
+font-family-italic = JetBrainsMono NFM Medium
+font-family-bold-italic = JetBrainsMono NFM SemiBold Italic
 
-palette = 0=#232A2E
-
-palette = 1=#E67E80
-palette = 2=#A7C080
-palette = 3=#DBBC7F
-palette = 4=#7FBBB3
-palette = 5=#D699B6
-palette = 6=#83C092
-
-palette = 7=#4F585E
-palette = 8=#3D484D
-
-palette = 9=#543A48
-palette = 10=#425047
-palette = 11=#4D4C43
-palette = 12=#3A515D
-palette = 13=#514045
-palette = 14=#83C092
-
-palette = 15=#D3C6AA
-
-font-family = IosevkaTerm NFM SemiBold
-font-family-bold = IosevkaTerm NFM ExtraBold
-font-family-italic = IosevkaTerm NFM Bold Italic
-font-family-bold-italic = IosevkaTerm NFM ExtraBold Italic
+# /Applications/Ghostty.app/Contents/Resources/ghostty/themes/Zenbones Dark
+palette = 0=#1c1917
+palette = 1=#de6e7c
+palette = 2=#819b69
+palette = 3=#b77e64
+palette = 4=#6099c0
+palette = 5=#b279a7
+palette = 6=#66a5ad
+palette = 7=#b4bdc3
+palette = 8=#4d4540
+palette = 9=#e8838f
+palette = 10=#8bae68
+palette = 11=#d68c67
+palette = 12=#61abda
+palette = 13=#cf86c1
+palette = 14=#65b8c1
+palette = 15=#888f94
+background = #1c1917
+foreground = #b4bdc3
+cursor-color = #c4cacf
+cursor-text = #1c1917
+selection-background = #3d4042
+selection-foreground = #b4bdc3

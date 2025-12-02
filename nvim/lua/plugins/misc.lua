@@ -20,7 +20,7 @@ local M = {
     lazy = false,
     priority = 1000,
     config = function()
-      -- vim.cmd.colorscheme("zenbones")
+      vim.cmd.colorscheme("zenbones")
     end,
   },
 
@@ -31,7 +31,7 @@ local M = {
     opts = {},
     config = function(_, opts)
       require("everforest").setup(opts)
-      vim.cmd.colorscheme("everforest")
+      -- vim.cmd.colorscheme("everforest")
     end,
   },
 
