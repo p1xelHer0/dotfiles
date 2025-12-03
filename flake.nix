@@ -21,7 +21,8 @@
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nix-darwin, home-manager, ... }:
+  outputs =
+    { nix-darwin, home-manager, ... }:
     let
       inherit (nix-darwin.lib) darwinSystem;
 
@@ -52,7 +53,7 @@
                   ./home.nix
                 ];
               };
-              home-manager.backupFileExtension = "backup"; 
+              home-manager.backupFileExtension = "backup";
             }
           ];
         };
@@ -72,7 +73,7 @@
                   ./work-home.nix
                 ];
               };
-              home-manager.backupFileExtension = "backup"; 
+              home-manager.backupFileExtension = "backup";
             }
           ];
         };

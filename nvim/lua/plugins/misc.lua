@@ -377,6 +377,7 @@ local M = {
       notify_on_error = false,
       formatters_by_ft = {
         lua = { "stylua" },
+        nix = { "nixfmt" },
         elm = { "elm_format" },
         go = { "gofumpt" },
         javascript = { "biome" },
