@@ -380,6 +380,7 @@ local M = {
         nix = { "nixfmt" },
         elm = { "elm_format" },
         go = { "gofumpt" },
+        zig = { "zigfmt" },
         javascript = { "biome" },
         typescript = { "biome" },
         ["*"] = { "trim_whitespace", "trim_newlines" },

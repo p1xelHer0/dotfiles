@@ -39,6 +39,7 @@ vim.lsp.enable("nil_ls")
 vim.lsp.enable("ols")
 vim.lsp.enable("slangd")
 vim.lsp.enable("tailwindcss")
+vim.lsp.enable("zls")
 
 -- diagnostics
 vim.diagnostic.config({
