@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
@@ -46,8 +51,8 @@ in
     # proselint
 
     # Nix
-    nixpkgs-fmt
     nil
+    nixfmt-rfc-style
 
     # Lua
     stylua
@@ -97,7 +102,8 @@ in
     nodePackages.yaml-language-server
   ];
 
-  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/karabiner/";
+  xdg.configFile."karabiner/".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/karabiner/";
 
   programs.zsh = {
     enable = true;
@@ -161,8 +167,7 @@ in
       "ta" = "tmux a";
 
       dre = "sudo darwin-rebuild edit";
-      drs =
-        "sudo darwin-rebuild switch --flake $HOME/dotfiles";
+      drs = "sudo darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
@@ -216,7 +221,9 @@ in
         $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
-      directory = { read_only = "X"; };
+      directory = {
+        read_only = "X";
+      };
 
       git_branch.format = "$branch ";
 
@@ -273,9 +280,11 @@ in
     };
   };
 
-  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
+  xdg.configFile."hammerspoon/init.lua".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
 
-  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/tmux/tmux.conf";
+  xdg.configFile."tmux/tmux.conf".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -314,7 +323,8 @@ in
   xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/after";
   xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lua";
   xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lsp";
-  xdg.configFile."nvim/init.lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/init.lua";
+  xdg.configFile."nvim/init.lua".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/init.lua";
   programs.neovim = {
     enable = true;
     withNodeJs = false;
@@ -327,7 +337,7 @@ in
     package = pkgs.gitAndTools.gitFull;
     userName = "Pontus Nagy";
     userEmail = "pontus.nagy@savr.com";
-    includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
+    includes = [ { path = "~/dotfiles/.config/git/.gitconfig"; } ];
   };
 
   programs.direnv = {
@@ -338,7 +348,8 @@ in
     };
   };
 
-  xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/aerospace.toml";
+  xdg.configFile."aerospace/aerospace.toml".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/aerospace.toml";
   # programs.aerospace = {
   #   enable = true;
   # };
