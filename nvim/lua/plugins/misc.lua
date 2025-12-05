@@ -12,6 +12,9 @@ local M = {
     dir = "~/dotfiles/nvim/lua/colors",
     lazy = false,
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("colors")
+    end,
   },
 
   {
@@ -20,7 +23,7 @@ local M = {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("zenbones")
+      -- vim.cmd.colorscheme("zenbones")
     end,
   },
 

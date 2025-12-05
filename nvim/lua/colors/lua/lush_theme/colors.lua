@@ -137,7 +137,7 @@ local theme = lush(function(injected_functions)
     Function     { Normal },
 
     Statement         { Normal },
-    Conditional     { fg = C.normal.yellow },
+    Conditional     { fg = C.bright.white },
     Repeat          { },
     Label           { },
     Operator        { fg = C.normal.yellow },
