@@ -33,6 +33,7 @@ in
     reattach-to-user-namespace
     redis
     ripgrep
+    scc
     shellcheck
     tmuxinator
     tree
@@ -119,6 +120,10 @@ in
       DOTS = "$HOME/dotfiles";
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
+
+      ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
+      ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
+
       TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
 
       RPROMPT = " ";
@@ -138,6 +143,11 @@ in
       export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
+
+      # Odin
+      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
+      export PATH=$ODIN_ROOT:$PATH
+      export PATH=$ODIN_TOOLS:$PATH
 
       # use the maximum amount of file descriptors
       ulimit -n 24576

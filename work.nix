@@ -137,6 +137,9 @@
       # "fsouza/prettierd/prettierd"
       # "mas"
       # "ncurses"
+      "openssl@3"
+      "llvm@17"
+      "sdl3"
       "git"
       "node"
     ];
