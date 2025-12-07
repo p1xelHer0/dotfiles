@@ -24,7 +24,7 @@ require("lazy").setup({
     colorscheme = {
       -- "everforest",
       -- "zenbones",
-      "colors",
+      -- "colors",
     },
   },
   change_detection = {

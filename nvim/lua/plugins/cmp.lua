@@ -1,9 +1,8 @@
 local lazy_file_event = require("base.config").lazy_file_event
 
 return {
-  enabled = false,
+  enabled = true,
   "saghen/blink.cmp",
-  event = lazy_file_event,
   -- optional: provides snippets for the snippet source
   dependencies = { "rafamadriz/friendly-snippets" },
 
@@ -31,8 +30,6 @@ return {
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = { preset = "default" },
 
-    signature = { enabled = true },
-
     appearance = {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
@@ -40,25 +37,19 @@ return {
     },
 
     -- (Default) Only show the documentation popup when manually triggered
-    completion = {
-      menu = { auto_show = false },
-      documentation = { auto_show = true },
-    },
+    completion = { documentation = { auto_show = false } },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      -- add lazydev to your completion providers
-      default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-      providers = {
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          -- make lazydev completions top priority (see `:h blink.cmp`)
-          score_offset = 100,
-        },
-      },
+      default = { "lsp", "path", "snippets", "buffer" },
     },
+
+    -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+    -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+    -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+    --
+    -- See the fuzzy documentation for more information
     fuzzy = { implementation = "prefer_rust_with_warning" },
   },
   opts_extend = { "sources.default" },
