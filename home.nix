@@ -78,7 +78,7 @@ in
 
     # Lua
     stylua
-    sumneko-lua-language-server
+    lua-language-server
 
     # Web
     fnm
@@ -178,8 +178,7 @@ in
     # elixir_ls
 
     # TOML
-    taplo-cli
-    taplo-lsp
+    taplo
 
     # YAML
     # nodePackages.yaml-language-server
@@ -466,8 +465,12 @@ in
   programs.git = {
     enable = false;
     package = pkgs.gitAndTools.gitFull;
-    userName = "p1xelHer0";
-    userEmail = "p_nagy@icloud.com";
+    settings = {
+      user = {
+        name = "p1xelHer0";
+        email = "p_nagy@icloud.com";
+      };
+    };
     includes = [ { path = "~/dotfiles/.config/git/.gitconfig"; } ];
   };
 

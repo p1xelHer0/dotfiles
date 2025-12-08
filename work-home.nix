@@ -56,7 +56,7 @@ in
 
     # Lua
     stylua
-    sumneko-lua-language-server
+    lua-language-server
 
     # Web
     fnm
@@ -95,8 +95,7 @@ in
     # ruby
 
     # TOML
-    taplo-cli
-    taplo-lsp
+    taplo
 
     # YAML
     nodePackages.yaml-language-server
@@ -335,8 +334,13 @@ in
   programs.git = {
     enable = false;
     package = pkgs.gitAndTools.gitFull;
-    userName = "Pontus Nagy";
-    userEmail = "pontus.nagy@savr.com";
+    settings = {
+      user = {
+        name = "Pontus Nagy";
+        email = "pontus.nagy@savr.com";
+      };
+    };
+
     includes = [ { path = "~/dotfiles/.config/git/.gitconfig"; } ];
   };
 
