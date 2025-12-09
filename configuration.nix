@@ -24,6 +24,7 @@
   environment.systemPackages = with pkgs; [
     pam-reattach
     zsh
+    nushell
   ];
 
   environment.darwinConfig = "/Users/p1xelher0/dotfiles/configuration.nix";
