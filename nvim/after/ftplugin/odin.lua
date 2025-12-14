@@ -15,4 +15,12 @@ map("<Localleader>f", "yeofmt.printfln(\"<ESC>pa: %v\", <ESC>pa)<ESC>",         
 -- stylua: ignore start
 vim.opt.shiftwidth = 2
 vim.opt.tabstop    = 2
+vim.opt.listchars  = {
+  eol              = " " ,
+  tab              = "  ",
+  trail            = "·" ,
+  extends          = "→" ,
+  precedes         = "←" ,
+  nbsp             = "␣" ,
+}
 -- stylua: ignore end

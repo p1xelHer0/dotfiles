@@ -96,6 +96,7 @@
                 "rules": [
                     {
                         "description": "Exchange hyphen and underscore",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": { "key_code": "hyphen" },

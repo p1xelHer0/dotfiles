@@ -1,11 +1,8 @@
-# Theme
-theme = dark:dark,light:light
-
-# Window
 window-padding-balance = true
 window-padding-x = 20
 window-padding-y = 12
 
 font-size = 16
-
 font-synthetic-style = false
+
+theme = dark:dark,light:light

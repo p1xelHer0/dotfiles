@@ -12,11 +12,15 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka-term
-    nerd-fonts.blex-mono
-    nerd-fonts.gohufont
     nerd-fonts.bigblue-terminal
+    nerd-fonts.blex-mono
+    nerd-fonts.cousine
+    nerd-fonts.gohufont
+    nerd-fonts.iosevka-term
+    nerd-fonts.iosevka-term-slab
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.lilex
+    nerd-fonts.monaspace
 
     # Tools
     aerospace

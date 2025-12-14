@@ -147,6 +147,7 @@
       "git"
       "openssl@3"
       "pkg-config"
+      "llvm@21"
       "llvm@17"
       # "bear"
       "raylib"

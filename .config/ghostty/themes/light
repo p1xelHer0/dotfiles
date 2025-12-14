@@ -3,6 +3,21 @@ font-family-bold = JetBrainsMono NFM Medium
 font-family-italic = JetBrainsMono NFM Light Italic
 font-family-bold-italic = JetBrainsMono NFM Medium Italic
 
+# font-family = IosevkaTerm NFM
+# font-family-bold = IosevkaTerm NFM Bold
+# font-family-italic = IosevkaTerm NFM Italic
+# font-family-bold-italic = IosevkaTerm NFM Bold Italic
+
+# font-family = BlexMono Nerd Font Mono
+# font-family-bold = BlexMono Nerd Font Mono Bold
+# font-family-italic = BlexMono Nerd Font Mono Italic
+# font-family-bold-italic = BlexMono Nerd Font Mono Bold Italic
+
+# font-family = Lilex Nerd Font Mono
+# font-family-bold = Lilex Nerd Font Mono Bold
+# font-family-italic = Lilex Nerd Font Mono Italic
+# font-family-bold-italic = Lilex Nerd Font Mono Bold Italic
+
 # /Applications/Ghostty.app/Contents/Resources/ghostty/themes/Zenbones Light"
 palette = 0=#f0edec
 palette = 1=#a8334c

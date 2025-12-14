@@ -20,6 +20,13 @@ map("<Leader>x", ":x<CR>",  "e[x]it")
 map("<Leader>X", ":x!<CR>", "e[x]it!")
 map("<Leader>e", ":e<CR>",  "[e]dit")
 
+map("<C-e>", "<Esc><S-A>", "end of line", "i")
+
+map("n",     "nzzzv",   "keep cursor position during search n")
+map("N",     "Nzzzv",   "keep cursor position during search N")
+map("<C-u>", "<C-u>zz", "center cursor after C-u")
+map("<C-d>", "<C-d>zz", "center cursor after C-d")
+
 map("<Leader>/", "<Cmd>noh<CR>", "clear highlights")
 -- stylua: ignore end
 
