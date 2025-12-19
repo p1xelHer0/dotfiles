@@ -20,13 +20,6 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = {
-    colorscheme = {
-      -- "everforest",
-      -- "zenbones",
-      -- "colors",
-    },
-  },
   change_detection = {
     notify = false,
   },

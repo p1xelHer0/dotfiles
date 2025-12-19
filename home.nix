@@ -15,12 +15,14 @@ in
     nerd-fonts.bigblue-terminal
     nerd-fonts.blex-mono
     nerd-fonts.cousine
+    nerd-fonts.fantasque-sans-mono
     nerd-fonts.gohufont
     nerd-fonts.iosevka-term
     nerd-fonts.iosevka-term-slab
     nerd-fonts.jetbrains-mono
     nerd-fonts.lilex
     nerd-fonts.monaspace
+    maple-mono.truetype
 
     # Tools
     aerospace
@@ -237,7 +239,6 @@ in
     '';
 
     initContent = ''
-      export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
 
@@ -264,8 +265,12 @@ in
       export PATH=$ODIN_ROOT:$PATH
       export PATH=$ODIN_TOOLS:$PATH
 
+      # Zig
       export PATH=$ZIGUP:$PATH
       export PATH=$ZLS:$PATH
+
+      # Rust
+      export PATH=$HOME/.cargo/bin:$PATH
 
       # use the maximum amount of file descriptors
       ulimit -n 24576

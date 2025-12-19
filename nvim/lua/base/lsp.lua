@@ -18,7 +18,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local fzf_lua = require("fzf-lua")
 
     -- stylua: ignore start
-    map("gra", function() fzf_lua.lsp_code_action() end,       "fzf - goto definition")
     map("gd",  function() fzf_lua.lsp_definitions() end,       "fzf - goto definition")
     map("gD",  function() fzf_lua.lsp_declarations() end,      "fzf - goto declaration")
     map("grr", function() fzf_lua.lsp_references() end,        "fzf - references")
@@ -39,6 +38,7 @@ vim.lsp.enable("nil_ls")
 vim.lsp.enable("ols")
 vim.lsp.enable("slangd")
 vim.lsp.enable("tailwindcss")
+vim.lsp.enable("taplo")
 vim.lsp.enable("zls")
 
 -- diagnostics

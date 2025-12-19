@@ -8,6 +8,7 @@ local lisps = {
 }
 
 local M = {
+  enabled = false,
   "Olical/conjure",
   ft = lisps,
   dependencies = {

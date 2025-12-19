@@ -9,6 +9,7 @@ local ensure_installed = {
   "scheme",
   "c",
   "cpp",
+  "objc",
   "odin",
   "zig",
   "rust",
@@ -29,6 +30,7 @@ local ensure_installed = {
   "toml",
   "markdown",
   "gitignore",
+  "typst",
 }
 
 local M = {

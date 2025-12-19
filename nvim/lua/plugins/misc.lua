@@ -3,17 +3,19 @@ local lazy_file_event = require("base.config").lazy_file_event
 local M = {
   {
     "f-person/auto-dark-mode.nvim",
-    opts = {},
     lazy = false,
     priority = 1000,
+    opts = {},
+    config = function(_, opts) end,
   },
 
   {
     dir = "~/dotfiles/nvim/lua/colors",
     lazy = false,
     priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme("colors")
+    opts = {},
+    config = function(_, opts)
+      vim.cmd.colorscheme("colors")
     end,
   },
 
@@ -22,9 +24,8 @@ local M = {
     dependencies = "rktjmp/lush.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("zenbones")
-    end,
+    opts = {},
+    config = function() end,
   },
 
   {
@@ -34,7 +35,16 @@ local M = {
     opts = {},
     config = function(_, opts)
       require("everforest").setup(opts)
-      -- vim.cmd.colorscheme("everforest")
+    end,
+  },
+
+  {
+    url = "https://git.liten.app/krig/filth-theme",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, opts)
+      vim.o.background = "dark"
     end,
   },
 
@@ -383,6 +393,7 @@ local M = {
         nix = { "nixfmt" },
         elm = { "elm_format" },
         go = { "gofumpt" },
+        toml = { "taplo" },
         zig = { "zigfmt" },
         javascript = { "biome" },
         typescript = { "biome" },

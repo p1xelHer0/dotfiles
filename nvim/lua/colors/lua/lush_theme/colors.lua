@@ -51,7 +51,7 @@ local C = {
     red     = hsl("#ff0000"),
     green   = hsl("#00ff00"),
     yellow  = hsl("#ffff00"),
-    blue    = hsl("#00fbff"),
+    blue    = hsl("#0000ff"),
   },
 }
 -- stylua: ignore end
@@ -80,7 +80,7 @@ local theme = lush(function(injected_functions)
     FoldColumn    { fg = C.index.i20 },
     SignColumn    { fg = C.bright.black },
     LineNr        { fg = C.bright.black },
-    MatchParen    { fg = bg, bg = C.bright.green },
+    MatchParen    { fg = fg, bg = C.alert.blue },
     ModeMsg       { Normal },
     MsgArea       { fg = C.bright.black },
     -- MsgSeparator  { },
@@ -98,23 +98,23 @@ local theme = lush(function(injected_functions)
     -- TODO: Sort these out, create some kind of grouping for Selections Search, PmenuSel, CurSearch, TelescopeMatching
     Search        { fg = bg, bg = C.normal.blue },
     CurSearch     { fg = bg, bg = C.alert.yellow },
-    IncSearch     { Search },
+    IncSearch     { fg = bg, bg = C.alert.green },
     Substitute    { gui = "reverse" },
     SpecialKey    { fg = bg, bg = C.normal.magenta },
-    StatusLine    { fg = bg, bg = C.bright.black },
+    StatusLine    { fg = C.bright.black },
     StatusLineNC  { fg = C.bright.black },
     TabLine       { fg = C.bright.black },
     TabLineFill   { },
     TabLineSel    { },
     Title         { fg = C.normal.magenta, gui = "bold" },
-    Visual        { gui = "reverse" },
+    Visual        { fg = bg, bg = C.normal.blue },
     -- VisualNOS     { },
     WarningMsg    { fg = C.normal.yellow },
-    Whitespace    { fg = C.index.i16 },
+    Whitespace    { fg = C.index.i20 },
     Winseparator  { },
     WildMenu      { PmenuSel },
-    -- Underlined    { gui = "underline" },
-    -- Ignore        { },
+    Underlined    { gui = "underline" },
+    Ignore        { },
     Error         { ErrorMsg },
     Todo          { fg = bg, bg = C.normal.magenta },
     NormalFloat   { CursorLine },
@@ -124,42 +124,42 @@ local theme = lush(function(injected_functions)
     -------------------------------------------------------------------------------------------------------------------
     --- Syntax
     -------------------------------------------------------------------------------------------------------------------
-    Comment         { fg = C.bright.black, gui = "italic" },
+    Comment       { fg = C.bright.black },
 
-    Constant        { fg = C.normal.green },
-    String        { Constant },
-    Character     { Constant },
+    Constant      { Normal },
+    String        { fg = C.normal.green },
+    Character     { String },
     Number        { fg = C.normal.cyan },
     Boolean       { Number },
 
-    Identifier     { Normal },
+    Identifier    { Normal },
     -- Function     { fg = C.normal.blue },
-    Function     { Normal },
+    Function      { Normal },
 
-    Statement         { Normal },
-    Conditional     { fg = C.bright.white },
-    Repeat          { },
-    Label           { },
-    Operator        { fg = C.normal.yellow },
-    Keyword         { fg = C.normal.green },
-    Exception       { fg = C.normal.red },
+    Statement     { Normal },
+    Conditional   { fg = C.bright.white },
+    Repeat        { Conditional },
+    Label         { Conditional },
+    Operator      { Normal },
+    Keyword       { Normal },
+    Exception     { fg = C.normal.red },
 
-    PreProc           { Normal },
+    PreProc       { Normal },
     -- Include         { },
     -- Define          { },
     -- Macro           { },
     -- PreCondit       { },
 
-    Type              { fg = C.normal.green },
+    Type           { Normal },
     -- StorageClass    { },
     -- Structure       { },
     -- Typedef         { },
 
     Special           { Normal },
-    -- SpecialChar     { },
+    SpecialChar     { Number },
     -- Tag             { },
     Delimiter       { fg = C.bright.black },
-    -- SpecialComment  { },
+    SpecialComment  { },
     -- Debug           { },
 
 
@@ -189,7 +189,7 @@ local theme = lush(function(injected_functions)
     -- sym("@constant.builtin")            { }, -- built-in constant values
     -- sym("@constant.macro")              { }, -- constants defined by the preprocessor
 
-    sym("@module")                      { Constant }, -- modules or namespaces
+    -- sym("@module")                      { }, -- modules or namespaces
     -- sym("@module.builtin")              { }, -- built-in modules or namespaces
     -- sym("@label")                       { }, -- `GOTO` and other labels (e.g. `label:` in C), including heredoc labels
 
@@ -235,7 +235,7 @@ local theme = lush(function(injected_functions)
     sym("@keyword.import")              { Keyword }, -- keywords for including modules (e.g. `import`, `from` in Python)
     sym("@keyword.type")                { Type }, -- keywords defining composite types (e.g. `struct`, `enum`)
     sym("@keyword.modifier")            { Keyword }, -- keywords defining type modifiers (e.g. `const`, `static`, `public`)
-    sym("@keyword.repeat")              { Operator }, -- keywords related to loops (e.g. `for`, `while`)
+    sym("@keyword.repeat")              { Repeat }, -- keywords related to loops (e.g. `for`, `while`)
     sym("@keyword.return")              { Operator }, -- keywords like `return` and `yield`
     sym("@keyword.debug")               { Operator }, -- keywords related to debugging
     sym("@keyword.exception")           { Error }, -- keywords related to exceptions (e.g. `throw`, `catch`)

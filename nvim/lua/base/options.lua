@@ -76,7 +76,7 @@ vim.opt.listchars = {
   precedes        = "←" ,
   nbsp            = "␣" ,
 }
-vim.opt.wrap            = true
+vim.opt.wrap            = false
 vim.opt.showbreak       = "↪ "
 vim.opt.conceallevel    = 2
 

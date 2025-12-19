@@ -2,7 +2,21 @@ window-padding-balance = true
 window-padding-x = 20
 window-padding-y = 12
 
-font-size = 16
+font-size = 18
 font-synthetic-style = false
+# font-family = JetBrainsMono Nerd Font Mono
+# font-family = JetBrainsMonoNL Nerd Font Mono
+# font-family = IosevkaTerm Nerd Font Mono
+# font-family = IosevkaTermSlab Nerd Font Mono
+# font-family = BlexMono Nerd Font Mono
+# font-family = Lilex Nerd Font Mono
+# font-family = Maple Mono
+# font-family = MonaspiceNe Nerd Font Mono
+# font-family = MonaspiceAr Nerd Font Mono
+# font-family = MonaspiceXe Nerd Font Mono
+# font-family = MonaspiceRn Nerd Font Mono
+# font-family = MonaspiceKr Nerd Font Mono
+font-family = FantasqueSansM Nerd Font Mono
+# font-family = Cousine Nerd Font Mono
 
 theme = dark:dark,light:light
