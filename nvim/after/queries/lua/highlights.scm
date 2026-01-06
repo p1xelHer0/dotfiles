@@ -2,10 +2,5 @@
 
 ; Treat certain infix operators as functions
 [
-  "+"
-  "-"
-  "*"
-  "/"
-  "%"
-  "%%"
-] @function
+  "or"
+] @conditional

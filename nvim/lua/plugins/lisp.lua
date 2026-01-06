@@ -8,63 +8,45 @@ local lisps = {
 }
 
 local M = {
-  enabled = false,
-  "Olical/conjure",
-  ft = lisps,
-  dependencies = {
-    {
-      "PaterJason/cmp-conjure",
-      config = function()
-        local cmp = require("cmp")
-        local config = cmp.get_config()
-        table.insert(config.sources, {
-          name = "buffer",
-          option = {
-            sources = {
-              { name = "conjure" },
-            },
-          },
-        })
-        cmp.setup(config)
-      end,
-    },
-  },
-  opts = {},
-  config = function(_, opts)
-    require("conjure.main").main()
-    require("conjure.mapping")["on-filetype"]()
-  end,
-  init = function()
-    vim.g["conjure#debug"] = false
-    vim.g["conjure#extract#tree_sitter#enabled"] = true
-
-    vim.g["conjure#mapping#log_split"] = "lx" -- most other plugins use `x`
-
-    -- Common Lisp
-    vim.g["conjure#client#common_lisp#swank#connection#default_port"] = 50005
-
-    -- Gambit
-    vim.g["conjure#client#scheme#stdio#command"] = "gsi"
-    vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "%d*> "
-    vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
-  end,
-
-  -- vim-sexp variants
-  {
-    enabled = false,
-    "tpope/vim-sexp-mappings-for-regular-people",
-    dependencies = {
-      "guns/vim-sexp",
-      "tpope/vim-surround",
-    },
-    ft = lisps,
-  },
+  --   enabled = false,
+  --   "Olical/conjure",
+  --   -- ft = lisps,
+  --   opts = {},
+  --   config = function(_, opts)
+  --     require("conjure.main").main()
+  --     require("conjure.mapping")["on-filetype"]()
+  --   end,
+  --   init = function()
+  --     vim.g["conjure#debug"] = false
+  --     vim.g["conjure#extract#tree_sitter#enabled"] = true
+  --
+  --     vim.g["conjure#mapping#log_split"] = "lx" -- most other plugins use `x`
+  --
+  --     -- Common Lisp
+  --     vim.g["conjure#client#common_lisp#swank#connection#default_port"] = 50005
+  --
+  --     -- Gambit
+  --     vim.g["conjure#client#scheme#stdio#command"] = "gsi"
+  --     vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "%d*> "
+  --     vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
+  --   end,
+  --
+  --   -- vim-sexp variants
+  --   {
+  --     enabled = false,
+  --     "tpope/vim-sexp-mappings-for-regular-people",
+  --     dependencies = {
+  --       "guns/vim-sexp",
+  --       "tpope/vim-surround",
+  --     },
+  --     -- ft = lisps,
+  --   },
 
   -- Paredit variants
   {
     enabled = false,
     "julienvincent/nvim-paredit",
-    ft = lisps,
+    -- ft = lisps,
     config = function()
       require("nvim-paredit").setup({
         indent = {
@@ -78,10 +60,8 @@ local M = {
   {
     enabled = false,
     "gpanders/nvim-parinfer",
-    ft = lisps,
-    init = function()
-      vim.b.parinfer_comment_chars = { ";", "#;" }
-    end,
+    -- ft = lisps,
+    init = function() vim.b.parinfer_comment_chars = { ";", "#;" } end,
   },
 
   {
@@ -111,7 +91,7 @@ local M = {
 
   {
     "bakpakin/janet.vim",
-    fp = lisps,
+    ft = lisps,
   },
 }
 

@@ -4,5 +4,6 @@ local map = function(keys, func, desc, mode)
 end
 
 -- stylua: ignore start
-map("<Leader>s", ":!zig build<CR>", "Zig build")
+map("<Leader>s", ":!zig build<CR>",                                "Zig build")
 map("<Leader>c", "o////////////////////////////////////////<ESC>", "Comment section")
+-- stylua: ignore end

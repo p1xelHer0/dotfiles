@@ -5,6 +5,7 @@ local ensure_installed = {
   "nu",
   "make",
   "nix",
+  "kdl",
   "vim",
   "scheme",
   "c",
@@ -152,6 +153,7 @@ local M = {
       end
 
       map("<Leader>0", ":Inspect<CR>", "inspect")
+      map("<Leader>-", ":InspectTree<CR>", "inspect tree")
 
       require("nvim-treesitter.configs").setup(opts)
     end,
@@ -161,10 +163,7 @@ local M = {
     "andymass/vim-matchup",
     event = lazy_file_event,
     opts = {},
-    init = function()
-      -- vim.g.matchup_matchparen_deferred = 1
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
+    init = function() vim.g.matchup_matchparen_offscreen = {} end,
   },
 
   {

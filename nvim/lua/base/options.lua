@@ -1,131 +1,100 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-
-local map = function(keys, func, desc, mode)
-  mode = mode or "n"
-  vim.keymap.set(mode, keys, func, { noremap = true, desc = "Base: " .. desc })
-end
-
--- stylua: ignore start
-map(" ", "", "unbind leader conflict [n]")
-map(",", "", "unbind localleader conflicts [n]")
-map(" ", "", "unbind leader conflict [x]", "x")
-map(",", "", "unbind localleader conflicts [x]", "x")
-
-map("<Leader>w", ":w<CR>",  "[w]rite")
-map("<Leader>W", ":w!<CR>", "[w]rite!")
-map("<Leader>q", ":q<CR>",  "[q]uit")
-map("<Leader>Q", ":q!<CR>", "[q]it!")
-map("<Leader>x", ":x<CR>",  "e[x]it")
-map("<Leader>X", ":x!<CR>", "e[x]it!")
-map("<Leader>e", ":e<CR>",  "[e]dit")
-
-map("<C-e>", "<Esc><S-A>", "end of line", "i")
-
-map("n",     "nzzzv",   "keep cursor position during search n")
-map("N",     "Nzzzv",   "keep cursor position during search N")
-map("<C-u>", "<C-u>zz", "center cursor after C-u")
-map("<C-d>", "<C-d>zz", "center cursor after C-d")
-
-map("<Leader>/", "<Cmd>noh<CR>", "clear highlights")
--- stylua: ignore end
-
 local options = require("base.config").get_options()
 
 -- stylua: ignore start
-vim.opt.termguicolors   = true
-vim.opt.syntax          = "off"
+vim.g.mapleader       = " "
+vim.g.maplocalleader  = ","
 
-vim.opt.shortmess       = "aoIcFW"
+vim.o.clipboard       = "unnamedplus"
+vim.o.grepformat      = "%f:%l:%c:%m"
+vim.o.grepprg         = "rg --vimgrep"
+vim.o.shada           = "'100,<50,s10,:1000,/100,@100,h" -- Limit ShaDa file (for startup)
+vim.o.switchbuf       = "usetab"       -- Use already opened buffers when switching
+vim.o.undofile        = true           -- Enable persistent undo
+vim.o.updatetime      = 250
 
-vim.opt.expandtab       = true
-vim.opt.shiftwidth      = 2
-vim.opt.smartindent     = true
-vim.opt.tabstop         = 2
-vim.opt.softtabstop     = 0
+vim.o.scrolloff       = options.scrolloff
+vim.o.sidescrolloff   = options.scrolloff
 
-vim.opt.foldmethod      = "expr"
-vim.opt.foldexpr        = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable      = false
-
+-- UI
+vim.o.breakindent     = true
+vim.o.breakindentopt  = "list:-1"
+vim.o.conceallevel    = 2
+vim.o.cursorline      = true
+vim.o.cursorlineopt   = "screenline,number" -- Show cursor line per screen line
+vim.o.list            = true
+vim.o.number          = true
+vim.o.pumblend        = options.blend
+vim.o.pumheight       = 15
+vim.o.relativenumber  = true
+vim.o.shortmess       = "aoIcFW"
+vim.o.showmode        = false
+vim.o.signcolumn      = "yes"
+vim.o.splitbelow      = true
+vim.o.splitkeep       = "screen"
+vim.o.splitright      = true
+vim.o.winblend        = options.blend
+vim.o.winborder       = "solid"
+vim.o.wrap            = false
 vim.opt.fillchars = {
-  stl             = " ",
-  stlnc           = " ",
-  wbr             = " ",
-  horiz           = " ",
-  horizup         = " ",
-  horizdown       = " ",
-  vert            = " ",
-  vertleft        = " ",
-  vertright       = " ",
-  verthoriz       = " ",
-  fold            = "·",
-  foldopen        = "-",
-  foldclose       = "+",
-  foldsep         = " ",
-  diff            = "-",
-  msgsep          = " ",
-  eob             = "~",
+  stl                 = " ",
+  stlnc               = " ",
+  wbr                 = " ",
+  horiz               = "━",
+  horizup             = "┻",
+  horizdown           = "┳",
+  vert                = "┃",
+  vertleft            = "┫",
+  vertright           = "┣",
+  verthoriz           = "╋",
+  fold                = "─",
+  foldopen            = "",
+  foldclose           = "",
+  foldsep             = "│",
+  diff                = "░",
+  msgsep              = " ",
+  eob                 = "~",
+  lastline            = "@",
 }
-vim.opt.list            = true
 vim.opt.listchars = {
-  eol             = " " ,
-  tab             = "- ",
-  trail           = "·" ,
-  extends         = "→" ,
-  precedes        = "←" ,
-  nbsp            = "␣" ,
+  eol                 = " " ,
+  tab                 = "> ",
+  trail               = "·" ,
+  extends             = "…" ,
+  precedes            = "…" ,
+  nbsp                = "␣" ,
 }
-vim.opt.wrap            = false
-vim.opt.showbreak       = "↪ "
-vim.opt.conceallevel    = 2
 
-vim.opt.ttimeoutlen     = 10
-vim.opt.timeoutlen      = 300
-vim.opt.updatetime      = 250
-vim.opt.redrawtime      = 100
+-- Fold
+vim.o.foldlevel       = 10
+vim.o.foldmethod      = "indent"
+vim.o.foldnestmax     = 10
+vim.o.foldtext        = ""
 
-vim.opt.encoding        = "utf-8"
-vim.opt.fileencoding    = "utf-8"
+-- Editing
+vim.o.autoindent      = true
+vim.o.expandtab       = true
+vim.o.formatoptions   = "rqnl1j"-- Improve comment editing
+vim.o.ignorecase      = true    -- Ignore case during search
+vim.o.incsearch       = true    -- Show search matches while typing
+vim.o.infercase       = true    -- Infer case in built-in completion
+vim.o.shiftwidth      = 2
+vim.o.smartcase       = true    -- Respect case if search pattern has upper case
+vim.o.smartindent     = true
+vim.o.spelloptions    = 'camel' -- Treat camelCase word parts as separate words
+vim.o.tabstop         = 2
+vim.o.virtualedit     = 'block' -- Allow going past end of line in blockwise mode
+vim.o.iskeyword       = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
+vim.o.formatlistpat   = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 
-vim.opt.grepprg         = 'rg --hidden --vimgrep --smart-case'
-vim.opt.grepformat      = "%f:%l:%c:%m"
+-- Completion
+vim.o.complete        = ".,w,b,kspell"                  -- Use less sources
+vim.o.completeopt     = "menuone,noselect,fuzzy,nosort" -- Use custom behavior
+vim.o.wildoptions     = "pum" -- Display the completion matches using the popup menu in the same style as the ins-completion-menu.
 
-vim.opt.clipboard       = "unnamedplus"
-
-vim.opt.undofile        = true
-vim.opt.exrc            = false
-vim.opt.errorbells      = false
-
-vim.opt.ignorecase      = true
-vim.opt.smartcase       = true
-vim.opt.completeopt     = "menu,menuone,noselect"
-vim.opt.infercase       = true
-vim.opt.wildoptions     = "pum"
-vim.opt.pumheight       = 15
-vim.opt.pumblend        = options.blend
-vim.opt.wildignorecase  = true
-
-vim.opt.showmode        = false
-vim.opt.scrolloff       = options.scrolloff
-vim.opt.sidescrolloff   = options.scrolloff
-vim.opt.breakindentopt  = "shift:2,min:20"
-vim.opt.number          = true
-vim.opt.relativenumber  = true
-vim.opt.signcolumn      = "yes"
-vim.opt.cursorline      = true
-
-vim.opt.winwidth        = 30
-vim.opt.winminwidth     = 10
-vim.opt.winblend        = options.blend
-vim.opt.winborder       = "single"
-vim.opt.helpheight      = 12
-vim.opt.previewheight   = 12
-vim.opt.splitbelow      = true
-vim.opt.splitright      = true
+vim.o.wildignorecase  = true
 -- stylua: ignore end
 
--- perf
+-- Perf
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_getscript = 1
 vim.g.loaded_getscriptPlugin = 1
@@ -150,61 +119,86 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-map("<Leader>0", ":Inspect<CR>", "tree-sitter - inspect")
+-- /////////////////////////////////
+
+local map = function(keys, func, desc, mode)
+  mode = mode or "n"
+  vim.keymap.set(mode, keys, func, { noremap = true, desc = "Base: " .. desc })
+end
+
+-- stylua: ignore start
+map(" ", "", "unbind leader conflict [n]")
+map(",", "", "unbind localleader conflicts [n]")
+map(" ", "", "unbind leader conflict [x]", "x")
+map(",", "", "unbind localleader conflicts [x]", "x")
+
+map("<Leader>w", ":w<CR>",  "[w]rite")
+map("<Leader>W", ":w!<CR>", "[w]rite!")
+map("<Leader>q", ":q<CR>",  "[q]uit")
+map("<Leader>Q", ":q!<CR>", "[q]it!")
+map("<Leader>x", ":x<CR>",  "e[x]it")
+map("<Leader>X", ":x!<CR>", "e[x]it!")
+map("<Leader>e", ":e<CR>",  "[e]dit")
+
+map("<Leader>/", "<Cmd>noh<CR>", "clear highlights")
+-- stylua: ignore end
+
+-- //////////////////////
 
 local base_options_group = vim.api.nvim_create_augroup("base.options", {})
-
--- Don't list quickfix buffers
-vim.api.nvim_create_autocmd("FileType", {
-  group = base_options_group,
-  pattern = "qf",
-  callback = function()
-    vim.opt_local.buflisted = false
-  end,
-})
-
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = base_options_group,
-  pattern = "*",
-  callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 400 })
-  end,
-})
-
--- Hide cursorline in Insert mode
-if vim.opt_local.cursorline:get() then
-  vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave", "InsertEnter" }, {
+local autocmd = function(event, pattern, callback, desc)
+  vim.api.nvim_create_autocmd(event, {
     group = base_options_group,
-    pattern = "*",
-    callback = function()
-      if vim.opt_local.cursorline:get() then
-        vim.opt_local.cursorline = false
-      end
-    end,
-  })
-
-  vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter", "InsertLeave" }, {
-    group = base_options_group,
-    pattern = "*",
-    callback = function()
-      if not vim.opt_local.cursorline:get() then
-        vim.opt_local.cursorline = true
-      end
-    end,
+    pattern = pattern,
+    callback = callback,
+    desc = "Base: " .. desc,
   })
 end
 
+autocmd("FileType", "qf", function() vim.opt_local.buflisted = false end, "don't list quickfix buffers in buffer list")
+
+-- Don't auto-wrap comments and don't insert comment leader after hitting 'o'
+-- Do on `FileType` to always override these changes from filetype plugins
+autocmd("FileType", nil, function()
+  vim.opt_local.formatoptions:remove("c")
+  vim.opt_local.formatoptions:remove("o")
+end, "fix 'o' with comments")
+
+autocmd("TextYankPost", "*", function() vim.hl.on_yank({ higroup = "Search", timeout = 400 }) end, "highlight on yank")
+
+-- Hide cursorline in Insert mode
+if vim.opt_local.cursorline:get() then
+  autocmd({ "WinLeave", "BufLeave", "InsertEnter" }, "*", function()
+    if vim.opt_local.cursorline:get() then vim.opt_local.cursorline = false end
+  end, "hide cursorline when leaving buffer")
+
+  autocmd({ "WinEnter", "BufEnter", "InsertLeave" }, "*", function()
+    if not vim.opt_local.cursorline:get() then vim.opt_local.cursorline = true end
+  end, "show cursorline when entering buffer")
+end
+
+-- autocmd("BufWritePost", "theme.lua", function() vim.cmd("Lazy reload mibo") end, "reload theme on save")
+
+-- ///////////////////////////
+
 vim.diagnostic.config({
+  signs = { priority = 9999, severity = { min = "WARN", max = "ERROR" } },
   severity_sort = true,
-  virtual_text = true,
+  virtual_lines = false,
+  virtual_text = {
+    current_line = true,
+    severity = { min = "ERROR", max = "ERROR" },
+  },
   jump = {
     float = {
       source = "if_many",
       focusable = false,
     },
   },
+  update_in_insert = false,
 })
+
+-- TODO: move
 
 vim.filetype.add({
   extension = {
@@ -212,3 +206,18 @@ vim.filetype.add({
     hlsli = "hlsl",
   },
 })
+
+vim.filetype.add({
+  pattern = {
+    [".*"] = {
+      function(path, buf)
+        return vim.bo[buf].filetype ~= "bigfile" and path and vim.fn.getfsize(path) > options.bigfile_size and "bigfile"
+          or nil
+      end,
+    },
+  },
+})
+
+autocmd("FileType", "bigfile", function(event)
+  vim.schedule(function() vim.bo[event.buf].syntax = vim.filetype.match({ buf = event.buf }) or "" end)
+end, "bigfile")

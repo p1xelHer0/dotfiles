@@ -30,6 +30,4 @@ local map = function(keys, func, desc, mode)
   vim.keymap.set(mode, keys, func, { desc = "Lazy: " .. desc })
 end
 
--- stylua: ignore start
 map("<Leader>L", function() require("lazy").home() end, "home")
--- stylua: ignore end

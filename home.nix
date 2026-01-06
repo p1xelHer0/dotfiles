@@ -32,6 +32,7 @@ in
     eza
     fd
     ffmpeg
+    figlet
     fswatch
     gh
     # gifsicle
@@ -83,8 +84,9 @@ in
     nixfmt-rfc-style
 
     # Lua
-    stylua
     lua-language-server
+    selene
+    stylua
 
     # Web
     fnm
@@ -124,10 +126,10 @@ in
     # BQN
     # cbqn
 
-    # Python oh no
-    # python3
-    # nodePackages.pyright
-    # python310Packages.autopep8
+    # Python
+    uv
+    ruff
+    ty
 
     # Go
     go
@@ -208,10 +210,15 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       LC_ALL = "en_US.UTF-8";
+      RPROMPT = " ";
 
       DOTS = "$HOME/dotfiles";
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
+
+      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
+
+      CODELLDB_BIN = "$HOME/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/adapter";
 
       GOPATH = "$HOME/go";
       GOPATH_BIN = "$GOPATH/bin";
@@ -221,15 +228,6 @@ in
 
       ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
       ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
-
-      # MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
-
-      # ROSWELL_BIN = "$HOME/.roswell/bin";
-      # QLOT_BIN = "$HOME/.qlot/bin";
-
-      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
-
-      RPROMPT = " ";
     };
 
     envExtra = ''
@@ -241,24 +239,23 @@ in
     initContent = ''
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
+      source "$DOTS_BIN/fzf_git"
 
       # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
       export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
-      export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
 
-      export PATH=$GOPATH:$PATH
-      export PATH=$GOPATH_BIN:$PATH
+      # use the maximum amount of file descriptors
+      ulimit -n 24576
 
-      export PATH=$DOTS_BIN:$PATH
+      eval "$(zoxide init zsh)"
 
-      export PATH=$ROSWELL_BIN:$PATH
-      export PATH=$QLOT_BIN:$PATH
+      eval "$(fnm env)"
 
-      # Gerbil
-      # export CC=gcc-13
+      # LLDB
+      export PATH=$CODELLDB_BIN:$PATH
 
       # Odin
       export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
@@ -272,16 +269,9 @@ in
       # Rust
       export PATH=$HOME/.cargo/bin:$PATH
 
-      # use the maximum amount of file descriptors
-      ulimit -n 24576
-
-      source "$DOTS_BIN/fzf_git"
-
-      eval "$(zoxide init zsh)"
-
-      eval "$(fnm env)"
-
-      # eval "$(opam env)"
+      # Go
+      export PATH=$GOPATH:$PATH
+      export PATH=$GOPATH_BIN:$PATH
     '';
 
     shellAliases = {
@@ -419,7 +409,7 @@ in
   xdg.configFile."zellij/config.kdl".source =
     mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
   programs.zellij = {
-    enable = false;
+    enable = true;
   };
 
   xdg.configFile."tmux/tmux.conf".source =

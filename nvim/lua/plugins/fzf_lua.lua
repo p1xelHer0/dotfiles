@@ -8,28 +8,22 @@ local M = {
       return {
         { "hide", "telescope" }, -- hide: restore the picker state entirely
         fzf_colors = true,
-        -- winopts = {
-        --   border = border,
-        --   preview = {
-        --     border = border,
-        --     winopts = {},
-        --   },
-        -- },
         winopts = {
-          height = 0.8,
-          width = 0.8,
-          row = 0.8,
-          -- border = "rounded",
+          border = border,
+          preview = {
+            border = border,
+            winopts = {},
+          },
         },
         fzf_opts = {
           ["--no-info"] = "",
           ["--info"] = "hidden",
-          ["--padding"] = "13%,5%,13%,5%",
+          ["--padding"] = "2,1,1,2",
           ["--no-header"] = "",
           ["--no-scrollbar"] = "",
         },
         formatter = "path.filename_first",
-        files = {},
+        -- files = {},
         lsp = {
           symbols = {
             locate = true,
@@ -38,11 +32,6 @@ local M = {
         diagnostics = {
           prompt = "Diagnostics",
           severity_limit = "error",
-        },
-        hls = {
-          -- normal = "NormalFloat",
-          -- border = "FloatBorder",
-          -- search = "NormalFloat",
         },
         keymap = {
           builtin = {
@@ -57,9 +46,7 @@ local M = {
         },
       }
     end,
-    config = function(_, opts)
-      require("fzf-lua").setup(opts)
-    end,
+    config = function(_, opts) require("fzf-lua").setup(opts) end,
     keys = {
       -- stylua: ignore start
       { "<C-p>",     function() require("fzf-lua").files() end,                 desc = "Find Files" },

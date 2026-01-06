@@ -1,3 +1,3 @@
-vim.opt_local.spell = true
-vim.opt_local.wrap = true
-vim.opt_local.textwidth = 72
+vim.o.spell = true
+vim.o.wrap = true
+vim.o.textwidth = 72

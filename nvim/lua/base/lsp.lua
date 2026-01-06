@@ -39,9 +39,5 @@ vim.lsp.enable("ols")
 vim.lsp.enable("slangd")
 vim.lsp.enable("tailwindcss")
 vim.lsp.enable("taplo")
+vim.lsp.enable("ty")
 vim.lsp.enable("zls")
-
--- diagnostics
-vim.diagnostic.config({
-  virtual_text = true,
-})

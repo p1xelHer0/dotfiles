@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-O0, -Wall, -pedantic-errors]
+  Add: []

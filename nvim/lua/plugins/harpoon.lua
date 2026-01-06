@@ -12,17 +12,11 @@ return {
       vim.keymap.set(mode, keys, func, { desc = "Harpoon: " .. desc })
     end
 
-    map("<Leader>a", function()
-      harpoon:list():add()
-    end, "Add")
-    map("<C-e>", function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
-    end, "toggle quick menu")
+    map("<Leader>a", function() harpoon:list():add() end, "Add")
+    map("<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "toggle quick menu")
 
     for i = 1, 9 do
-      map("<Leader>" .. i, function()
-        harpoon:list():select(i)
-      end, "select " .. i)
+      map("<Leader>" .. i, function() harpoon:list():select(i) end, "select " .. i)
     end
   end,
 }

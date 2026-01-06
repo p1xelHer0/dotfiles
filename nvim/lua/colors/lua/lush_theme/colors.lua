@@ -162,19 +162,17 @@ local theme = lush(function(injected_functions)
     SpecialComment  { },
     -- Debug           { },
 
-
     ---------------------------------------------------------------------------------------------------------------------
     --- Diff & Git
     -------------------------------------------------------------------------------------------------------------------
-    DiffAdd     { fg = C.normal.blue, bg = C.normal.blue.da(80) },
-    DiffDelete  { fg = C.normal.yellow, bg = C.normal.yellow.da(80) },
-    DiffChange  { bg = C.normal.yellow.da(55) },
-    DiffText    { bg = C.normal.blue.da(50) },
-    GitAdd      { fg = C.normal.blue },
-    GitDelete   { fg = C.normal.yellow },
-    GitChange   { fg = C.normal.yellow },
-    GitNew      { fg = C.normal.blue },
-
+    -- DiffAdd     { fg = C.normal.blue, bg = C.normal.blue.da(80) },
+    -- DiffDelete  { fg = C.normal.yellow, bg = C.normal.yellow.da(80) },
+    -- DiffChange  { bg = C.normal.yellow.da(55) },
+    -- DiffText    { bg = C.normal.blue.da(50) },
+    -- GitAdd      { fg = C.normal.blue },
+    -- GitDelete   { fg = C.normal.yellow },
+    -- GitChange   { fg = C.normal.yellow },
+    -- GitNew      { fg = C.normal.blue },
 
     -------------------------------------------------------------------------------------------------------------------
     --- Tree-sitter - [h: treesitter-hightlight-groups]
@@ -285,9 +283,9 @@ local theme = lush(function(injected_functions)
     -- sym("@markup.list.checked")         { }, -- checked todo-style list markers
     -- sym("@markup.list.unchecked")       { }, -- unchecked todo-style list markers
 
-    sym("@diff.plus")                   { DiffAdd }, -- added text (for diff files)
-    sym("@diff.minus")                  { DiffDelete }, -- deleted text (for diff files)
-    sym("@diff.delta")                  { DiffChange }, -- changed text (for diff files)
+    -- sym("@diff.plus")                   { DiffAdd }, -- added text (for diff files)
+    -- sym("@diff.minus")                  { DiffDelete }, -- deleted text (for diff files)
+    -- sym("@diff.delta")                  { DiffChange }, -- changed text (for diff files)
 
     -- sym("@tag")                         { }, -- XML-style tag names (e.g. in XML, HTML, etc.)
     -- sym("@tag.builtin")                 { }, -- XML-style tag names (e.g. HTML5 tags)
@@ -377,161 +375,21 @@ local theme = lush(function(injected_functions)
     -- TreesitterContextBottom { },
     -- TreesitterContextLineNumberBottom { },
 
-
     MatchParenCur { MatchParen },
     MatchWordCur { MatchParen },
 
+    -- NeogitDiffAdd             { DiffAdd },
+    -- NeogitDiffDelete          { DiffDelete },
+    -- NeogitDiffChange          { DiffChange },
+    -- NeogitDiffText            { DiffText },
+    -- NeogitDiffAdditions       { DiffAdd },
+    -- NeogitDiffDeletions       { DiffDelete },
+    -- NeogitDiffAddLighlight    { DiffAdd },
+    -- NeogitDiffDeleteHighlight { DiffDelete },
+    -- NeogitDiffAddCursor       { GitAdd },
+    -- NeogitDiffDeleteCursor    { DiffDelete },
 
-    -- GitSignsAdd           { GitAdd },
-    -- GitSignsDelete        { GitDelete },
-    -- GitSignsChange        { GitChange },
-    -- GitSignsNew           { GitNew },
-
--- 'signs.add.hl' is now deprecated, please define highlight 'GitSignsAdd'
--- 'signs.add.numhl' is now deprecated, please define highlight 'GitSignsAddNr'
--- 'signs.change.hl' is now deprecated, please define highlight 'GitSignsChange'
--- 'signs.change.numhl' is now deprecated, please define highlight 'GitSignsChangeNr'
--- 'signs.changedelete.hl' is now deprecated, please define highlight 'GitSignsChangedelete'
--- 'signs.changedelete.numhl' is now deprecated, please define highlight 'GitSignsChangedeleteNr'
--- 'signs.delete.hl' is now deprecated, please define highlight 'GitSignsDelete'
--- 'signs.delete.numhl' is now deprecated, please define highlight 'GitSignsDeleteNr'
--- 'signs.topdelete.hl' is now deprecated, please define highlight 'GitSignsTopdelete'
--- 'signs.topdelete.numhl' is now deprecated, please define highlight 'GitSignsTopdeleteNr'
--- 'signs.untracked.hl' is now deprecated, please define highlight 'GitSignsUntracked'
--- 'signs.untracked.numhl' is now deprecated, please define highlight 'GitSignsUntrackedNr'
-    -- --      signs = {
-    --     add = {
-    --       hl = "GitSignsAdd",
-    --       text = require("core.config").get_icons().git.add,
-    --       numhl = "GitSignsAddNr",
-    --     },
-    --     change = {
-    --       hl = "GitSignsChange",
-    --       text = require("core.config").get_icons().git.change,
-    --       numhl = "GitSignsChangeNr",
-    --     },
-    --     delete = {
-    --       hl = "GitSignsDelete",
-    --       text = require("core.config").get_icons().git.delete,
-    --       numhl = "GitSignsDeleteNr",
-    --     },
-    --     topdelete = {
-    --       hl = "GitSignsDelete",
-    --       text = require("core.config").get_icons().git.top_delete,
-    --       numhl = "GitSignsDeleteNr",
-    --     },
-    --     changedelete = {
-    --       hl = "GitSignsChange",
-    --       text = require("core.config").get_icons().git.change_delete,
-    --       numhl = "GitSignsChangeNr",
-    --     },
-    --     untracked = {
-    --       hl = "GitSignsAdd",
-    --       text = require("core.config").get_icons().git.untracked,
-    --       numhl = "GitSignsAddNr",
-    --     },
-    --
-    --
-
-    NeogitDiffAdd         { DiffAdd },
-    NeogitDiffDelete      { DiffDelete },
-    NeogitDiffChange      { DiffChange },
-    NeogitDiffText        { DiffText },
-
-
-    NvimTreeGitDirty      { GitChange },
-    NvimTreeGitStaged     { GitNew },
-    NvimTreeGitMerge      { GitDelete },
-    NvimTreeGitRenamed    { GitAdd },
-    NvimTreeGitNew        { GitAdd },
-    NvimTreeGitDeleted    { GitDelete },
-
-
-    TelescopeMatching         { fg = Search.bg },
-
-    TelescopePromptBorder     { Pmenu },
-    TelescopePromptTitle      { NormalFloat },
-    TelescopePromptNormal     { TelescopePromptBorder },
-    TelescopePromptCounter    { fg = Number.fg },
-    TelescopePromptPrefix     { fg = Operator.fg },
-
-    TelescopePreviewBorder    { NormalFloat },
-    TelescopePreviewTitle     { TelescopePromptBorder },
-    TelescopePreviewNormal    { TelescopePreviewBorder },
-
-    TelescopeResultsBorder    { fg = "NONE", bg = C.index.i17 },
-    TelescopeResultsTitle     { TelescopePreviewBorder },
-    TelescopeResultsNormal    { bg = TelescopeResultsBorder.bg },
-
--- TelescopeTitle|1 col 1| TelescopeTitle
--- TelescopeBorder|1 col 1| TelescopeBorder
--- TelescopeNormal|1 col 1| TelescopeNormal
--- TelescopeMatching|1 col 1| TelescopeMatching
--- TelescopeMultiIcon|1 col 1| TelescopeMultiIcon
--- TelescopeSelection|1 col 1| TelescopeSelection
--- TelescopePreviewDate|1 col 1| TelescopePreviewDate
--- TelescopePreviewLine|1 col 1| TelescopePreviewLine
--- TelescopePreviewLink|1 col 1| TelescopePreviewLink
--- TelescopePreviewPipe|1 col 1| TelescopePreviewPipe
--- TelescopePreviewRead|1 col 1| TelescopePreviewRead
--- TelescopePreviewSize|1 col 1| TelescopePreviewSize
--- TelescopePreviewUser|1 col 1| TelescopePreviewUser
--- TelescopePreviewBlock|1 col 1| TelescopePreviewBlock
--- TelescopePreviewGroup|1 col 1| TelescopePreviewGroup
--- TelescopePreviewMatch|1 col 1| TelescopePreviewMatch
--- TelescopePreviewTitle|1 col 1| TelescopePreviewTitle
--- TelescopePreviewWrite|1 col 1| TelescopePreviewWrite
--- TelescopePromptPrefix|1 col 1| TelescopePromptPrefix
--- TelescopeResultsClass|1 col 1| TelescopeResultsClass
--- TelescopeResultsField|1 col 1| TelescopeResultsField
--- TelescopeResultsTitle|1 col 1| TelescopeResultsTitle
--- TelescopePreviewBorder|1 col 1| TelescopePreviewBorder
--- TelescopePreviewHyphen|1 col 1| TelescopePreviewHyphen
--- TelescopePreviewNormal|1 col 1| TelescopePreviewNormal
--- TelescopePreviewSocket|1 col 1| TelescopePreviewSocket
--- TelescopePreviewSticky|1 col 1| TelescopePreviewSticky
--- TelescopePromptCounter|1 col 1| TelescopePromptCounter
--- TelescopeResultsBorder|1 col 1| TelescopeResultsBorder
--- TelescopeResultsLineNr|1 col 1| TelescopeResultsLineNr
--- TelescopeResultsMethod|1 col 1| TelescopeResultsMethod
--- TelescopeResultsNormal|1 col 1| TelescopeResultsNormal
--- TelescopeResultsNumber|1 col 1| TelescopeResultsNumber
--- TelescopeResultsStruct|1 col 1| TelescopeResultsStruct
--- TelescopeMultiSelection|1 col 1| TelescopeMultiSelection
--- TelescopePreviewCharDev|1 col 1| TelescopePreviewCharDev
--- TelescopePreviewExecute|1 col 1| TelescopePreviewExecute
--- TelescopePreviewMessage|1 col 1| TelescopePreviewMessage
--- TelescopeResultsComment|1 col 1| TelescopeResultsComment
--- TelescopeResultsDiffAdd|1 col 1| TelescopeResultsDiffAdd
--- TelescopeSelectionCaret|1 col 1| TelescopeSelectionCaret
--- TelescopeResultsConstant|1 col 1| TelescopeResultsConstant
--- TelescopeResultsFunction|1 col 1| TelescopeResultsFunction
--- TelescopeResultsOperator|1 col 1| TelescopeResultsOperator
--- TelescopeResultsVariable|1 col 1| TelescopeResultsVariable
--- TelescopePreviewDirectory|1 col 1| TelescopePreviewDirectory
--- TelescopeResultsDiffChange|1 col 1| TelescopeResultsDiffChange
--- TelescopeResultsDiffDelete|1 col 1| TelescopeResultsDiffDelete
--- TelescopeResultsIdentifier|1 col 1| TelescopeResultsIdentifier
--- TelescopeResultsDiffUntracked|1 col 1| TelescopeResultsDiffUntracked
--- TelescopeResultsSpecialComment|1 col 1| TelescopeResultsSpecialComment
--- TelescopePreviewMessageFillchar|1 col 1| TelescopePreviewMessageFillchar
-
-
-    -- NvimTreeBookmark          { Normal },
-    -- NvimTreeSymlink           { },
-    -- NvimTreeImageFile         { Normal },
-    -- NvimTreeExecFile          { },
-    NvimTreeFolderIcon        { Directory },
-    -- NvimTreeOpenedFile        { },
-    -- NvimTreeRootFolder        { },
-    -- NvimTreeSpecialFile       { },
-    -- NvimTreeIndentMarker      { },
-    -- NvimTreeModifiedFile      { },
-    -- NvimTreeWindowPicker      { },
-    -- NvimTreeLiveFilterPrefix  { },
-
-
-    MiniIndentscopeSymbol { fg = CursorLine.bg },
+    MiniIndentscopeSymbol { Delimiter },
   }
 end)
 
