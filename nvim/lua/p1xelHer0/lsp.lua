@@ -1,10 +1,9 @@
--- lsp
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
     -- enable auto-complation
-    vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false })
+    vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 
     -- remappings
     local map = function(keys, func, desc, mode)
@@ -16,7 +15,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("ga", vim.lsp.buf.code_action, "code action")
 
     local fzf_lua = require("fzf-lua")
-
     -- stylua: ignore start
     map("gd",  function() fzf_lua.lsp_definitions() end,       "fzf - goto definition")
     map("gD",  function() fzf_lua.lsp_declarations() end,      "fzf - goto declaration")

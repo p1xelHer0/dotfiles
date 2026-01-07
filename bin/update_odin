@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-set -eou pipefail
+set -eu
 
 START_PATH="$PWD"
 

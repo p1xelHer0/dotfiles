@@ -1,8 +1,8 @@
-local base_config = require("base.config")
-local lazy_path = base_config.get_lazy_path()
+local C = require("p1xelHer0.config")
+local lazy_path = C.lazy_path()
 
 if not (vim.uv or vim.loop).fs_stat(lazy_path) then
-  local lazy_repo = base_config.get_lazy_repo()
+  local lazy_repo = C.lazy_repo()
   local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazy_repo, lazy_path })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({

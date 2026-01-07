@@ -1,4 +1,4 @@
-local options = require("base.config").get_options()
+local O = require("p1xelHer0.config").options()
 
 -- stylua: ignore start
 vim.g.mapleader       = " "
@@ -12,8 +12,8 @@ vim.o.switchbuf       = "usetab"       -- Use already opened buffers when switch
 vim.o.undofile        = true           -- Enable persistent undo
 vim.o.updatetime      = 250
 
-vim.o.scrolloff       = options.scrolloff
-vim.o.sidescrolloff   = options.scrolloff
+vim.o.scrolloff       = O.scrolloff
+vim.o.sidescrolloff   = O.scrolloff
 
 -- UI
 vim.o.breakindent     = true
@@ -23,7 +23,7 @@ vim.o.cursorline      = true
 vim.o.cursorlineopt   = "screenline,number" -- Show cursor line per screen line
 vim.o.list            = true
 vim.o.number          = true
-vim.o.pumblend        = options.blend
+vim.o.pumblend        = O.blend
 vim.o.pumheight       = 15
 vim.o.relativenumber  = true
 vim.o.shortmess       = "aoIcFW"
@@ -32,7 +32,7 @@ vim.o.signcolumn      = "yes"
 vim.o.splitbelow      = true
 vim.o.splitkeep       = "screen"
 vim.o.splitright      = true
-vim.o.winblend        = options.blend
+vim.o.winblend        = O.blend
 vim.o.winborder       = "solid"
 vim.o.wrap            = false
 vim.opt.fillchars = {
@@ -211,7 +211,7 @@ vim.filetype.add({
   pattern = {
     [".*"] = {
       function(path, buf)
-        return vim.bo[buf].filetype ~= "bigfile" and path and vim.fn.getfsize(path) > options.bigfile_size and "bigfile"
+        return vim.bo[buf].filetype ~= "bigfile" and path and vim.fn.getfsize(path) > O.bigfile_size and "bigfile"
           or nil
       end,
     },

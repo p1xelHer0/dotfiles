@@ -1,5 +1,5 @@
-local base_config = require("base.config")
-local dotfiles_path = base_config.get_dotfiles_path()
+local C = require("p1xelHer0.config")
+local dotfiles_path = C.dotfiles_path()
 
 local function input_sync(opts)
   local co = coroutine.running()
@@ -75,16 +75,12 @@ return {
         dapui.close({})
       end
 
-      -- TODO: fancy
-      -- local sign = vim.fn.sign_define
-      -- sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-      -- sign("DapBreakpointCondition", {
-      --   text = "●",
-      --   texthl = "DapBreakpointCondition",
-      --   linehl = "",
-      --   numhl = "",
-      -- })
-      -- sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+      local sign = vim.fn.sign_define
+      -- stylua: ignore start
+      sign("DapBreakpoint",          { text = "●", texthl = "DapBreakpoint",          linehl = "", numhl = "" })
+      sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+      sign("DapLogPoint",            { text = "◆", texthl = "DapLogPoint",            linehl = "", numhl = "" })
+      -- stylua: ignore end
 
       local codelldb = {
         type = "server",
@@ -110,9 +106,7 @@ return {
             local result = input_sync({
               prompt = "program arguments: ",
             })
-
             if result == nil then return dap.ABORT end
-
             return vim.split(result, " ")
           end,
           initCommands = { lldb_init_cmd },
@@ -140,11 +134,6 @@ return {
           configured = false,
           config = function() require("gopher.dap").setup() end,
         },
-        -- TODO: the fancy extension
-        -- rust = {
-        --   configured = false,
-        --   config = function() require("gopher.dap").setup() end,
-        -- },
       }
 
       local on_ft = function(ft)

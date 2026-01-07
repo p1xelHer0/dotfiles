@@ -1,51 +1,49 @@
+local border = { " ", " ", " ", " ", " ", " ", " ", " " }
+
 local M = {
   {
-    enabled = true,
     "ibhagwan/fzf-lua",
-    opts = function()
-      local border = { " ", " ", " ", " ", " ", " ", " ", " " }
-
-      return {
-        { "hide", "telescope" }, -- hide: restore the picker state entirely
-        fzf_colors = true,
-        winopts = {
+    event = "VeryLazy",
+    opts = {
+      { "hide", "telescope" }, -- hide: restore the picker state entirely
+      fzf_colors = true,
+      winopts = {
+        border = border,
+        preview = {
           border = border,
-          preview = {
-            border = border,
-            winopts = {},
-          },
+          winopts = {},
         },
-        fzf_opts = {
-          ["--no-info"] = "",
-          ["--info"] = "hidden",
-          ["--padding"] = "2,1,1,2",
-          ["--no-header"] = "",
-          ["--no-scrollbar"] = "",
+      },
+      fzf_opts = {
+        ["--no-info"] = "",
+        ["--info"] = "hidden",
+        ["--padding"] = "2,1,1,2",
+        ["--no-header"] = "",
+        ["--no-scrollbar"] = "",
+      },
+      formatter = "path.filename_first",
+      -- files = {},
+      lsp = {
+        symbols = {
+          locate = true,
         },
-        formatter = "path.filename_first",
-        -- files = {},
-        lsp = {
-          symbols = {
-            locate = true,
-          },
+      },
+      diagnostics = {
+        prompt = "Diagnostics",
+        severity_limit = "error",
+      },
+      keymap = {
+        builtin = {
+          true, -- inherit default keymaps
+          ["ctrl-u"] = "preview-page-up",
+          ["ctrl-d"] = "preview-page-down",
         },
-        diagnostics = {
-          prompt = "Diagnostics",
-          severity_limit = "error",
+        fzf = {
+          true, -- inherit default keymaps
+          ["ctrl-q"] = "select-all+accept",
         },
-        keymap = {
-          builtin = {
-            true, -- inherit default keymaps
-            ["ctrl-u"] = "preview-page-up",
-            ["ctrl-d"] = "preview-page-down",
-          },
-          fzf = {
-            true, -- inherit default keymaps
-            ["ctrl-q"] = "select-all+accept",
-          },
-        },
-      }
-    end,
+      },
+    },
     config = function(_, opts) require("fzf-lua").setup(opts) end,
     keys = {
       -- stylua: ignore start
