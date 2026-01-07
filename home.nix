@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 let
@@ -40,11 +39,13 @@ in
     hyperfine
     imagemagick
     jq
+    jujutsu
     p7zip
     readline
     reattach-to-user-namespace
     ripgrep
     ninja
+    nushell
     shellcheck
     tmuxinator
     tree
@@ -193,11 +194,13 @@ in
   ];
 
   xdg.configFile."karabiner/".source =
-    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/karabiner/";
 
-  programs.nushell = {
-    enable = true;
-  };
+  home.file."Library/Application Support/nushell/config.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/config.nu";
+
+  home.file."Library/Application Support/nushell/env.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/env.nu";
 
   programs.zsh = {
     enable = true;
@@ -216,7 +219,7 @@ in
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
 
-      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
+      TMUXINATOR_CONFIG = "$DOTS/config/tmux/tmuxinator";
 
       CODELLDB_BIN = "$HOME/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/adapter";
 
@@ -404,16 +407,16 @@ in
   };
 
   xdg.configFile."hammerspoon/init.lua".source =
-    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/_darwin/hammerspoon/init.lua";
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/_darwin/hammerspoon/init.lua";
 
   xdg.configFile."zellij/config.kdl".source =
-    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/zellij/config.kdl";
   programs.zellij = {
     enable = true;
   };
 
   xdg.configFile."tmux/tmux.conf".source =
-    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmux.conf";
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -470,7 +473,7 @@ in
         email = "p_nagy@icloud.com";
       };
     };
-    includes = [ { path = "~/dotfiles/.config/git/.gitconfig"; } ];
+    includes = [ { path = "~/dotfiles/config/git/.gitconfig"; } ];
   };
 
   programs.direnv = {
@@ -482,14 +485,11 @@ in
   };
 
   xdg.configFile."aerospace/aerospace.toml".source =
-    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/aerospace.toml";
-  # programs.aerospace = {
-  #   enable = true;
-  # };
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/aerospace.toml";
 
   home.file."Library/Preferences/clangd/config.yaml" = {
-    source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/clangd.yaml";
+    source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/clangd.yaml";
   };
 
-  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/ghostty";
+  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/ghostty";
 }

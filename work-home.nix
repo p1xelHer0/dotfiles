@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 let
@@ -34,7 +33,9 @@ in
     fswatch
     gh
     jq
+    jujutsu
     mob
+    nushell
     p7zip
     reattach-to-user-namespace
     redis
@@ -109,7 +110,13 @@ in
   ];
 
   xdg.configFile."karabiner/".source =
-    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/karabiner/";
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/karabiner/";
+
+  home.file."Library/Application Support/nushell/config.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/config.nu";
+
+  home.file."Library/Application Support/nushell/env.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/env.nu";
 
   programs.zsh = {
     enable = true;
@@ -130,7 +137,7 @@ in
       ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
       ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
 
-      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
+      TMUXINATOR_CONFIG = "$DOTS/config/tmux/tmuxinator";
 
       RPROMPT = " ";
     };
@@ -286,10 +293,10 @@ in
   };
 
   xdg.configFile."hammerspoon/init.lua".source =
-    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/hammerspoon/init.lua";
 
   xdg.configFile."tmux/tmux.conf".source =
-    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/tmux/tmux.conf";
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -347,7 +354,7 @@ in
       };
     };
 
-    includes = [ { path = "~/dotfiles/.config/git/.gitconfig"; } ];
+    includes = [ { path = "~/dotfiles/config/git/.gitconfig"; } ];
   };
 
   programs.direnv = {
@@ -359,10 +366,7 @@ in
   };
 
   xdg.configFile."aerospace/aerospace.toml".source =
-    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/aerospace.toml";
-  # programs.aerospace = {
-  #   enable = true;
-  # };
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/aerospace.toml";
 
-  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/ghostty";
+  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/ghostty";
 }
