@@ -156,15 +156,12 @@ in
 
       export PATH=/opt/homebrew/bin:$PATH
 
-      # Odin
+      # LLVM
       export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
+
+      # Odin
       export PATH=$ODIN_ROOT:$PATH
       export PATH=$ODIN_TOOLS:$PATH
-
-      # use the maximum amount of file descriptors
-      ulimit -n 24576
-
-      source "$DOTS_BIN/fzf_git"
 
       eval "$(zoxide init zsh)"
 

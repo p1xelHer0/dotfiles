@@ -145,10 +145,7 @@
 
     taps = [
       "DevCleaner/devcleaner"
-      # "cyclone-scheme/cyclone"
-      # "fsouza/prettierd"
       "homebrew/bundle"
-      # "homebrew/cask"
       "homebrew/cask-versions"
       # "homebrew/core"
       # "osx-cross/arm"
@@ -158,6 +155,7 @@
 
     brews = [
       "mas"
+
       # QMK
       # "qmk/qmk/qmk"
       # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
@@ -172,14 +170,9 @@
       "pkg-config"
       "llvm@21"
       "llvm@17"
-      # "bear"
+      "gcc@15"
       "raylib"
       "sdl3"
-      # "sdl2"
-      # "sdl2_image"
-      # "sdl2_mixer"
-      # "sdl2_ttf"
-      # "sdl2_net"
       "glfw"
 
       # "roswell"
@@ -188,34 +181,25 @@
 
     casks = [
       "ghostty"
-
       "alt-tab"
       "appcleaner"
       "devcleaner"
       "discord"
       "element"
       "firefox"
-      # "godot"
       "google-chrome"
-      # "gpg-suite-no-mail"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
       "keycastr"
-      # "mactex-no-gui"
       "mpv"
       "netnewswire"
       "obs"
       "obsidian"
-      "orbstack"
-      # "racket"
-      # "rectangle"
       "retroarch-metal"
       "runelite"
       "secretive"
-      # "spotify"
       "visual-studio-code"
-      # "vlc"
       "zulip"
     ];
 

@@ -25,7 +25,6 @@ in
 
     # Tools
     aerospace
-    cmake
     curl
     entr
     eza
@@ -59,12 +58,8 @@ in
     shader-slang
 
     # C/C++
-    # ncurses6
-    # cmake
-    # gcc13
-    ccls
     nasm
-    # vscode-extensions.vadimcn.vscode-lldb
+    vscode-extensions.vadimcn.vscode-lldb
 
     # Zig
     # zig
@@ -242,16 +237,12 @@ in
     initContent = ''
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
-      source "$DOTS_BIN/fzf_git"
 
       # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
       export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
-
-      # use the maximum amount of file descriptors
-      ulimit -n 24576
 
       eval "$(zoxide init zsh)"
 
@@ -260,8 +251,13 @@ in
       # LLDB
       export PATH=$CODELLDB_BIN:$PATH
 
+      # LLVM
+      export PATH=/opt/homebrew/opt/llvm@21/bin:$PATH
+
+      # GCC
+      export PATH=/opt/homebrew/opt/gcc@15/bin:$PATH
+
       # Odin
-      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
       export PATH=$ODIN_ROOT:$PATH
       export PATH=$ODIN_TOOLS:$PATH
 

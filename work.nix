@@ -144,17 +144,11 @@
 
     taps = [
       "DevCleaner/devcleaner"
-      # "fsouza/prettierd"
       "homebrew/bundle"
-      # "homebrew/cask"
-      # "homebrew/cask-versions"
-      # "homebrew/core"
     ];
 
     brews = [
-      # "fsouza/prettierd/prettierd"
       # "mas"
-      # "ncurses"
       "openssl@3"
       "llvm@17"
       "sdl3"
@@ -164,21 +158,16 @@
 
     casks = [
       "ghostty"
-
       "alt-tab"
       "appcleaner"
       "devcleaner"
-      # "google-chrome"
       "firefox"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
-      # "keycastr"
-      "mockoon"
       "ngrok"
       "notion"
       "obsidian"
-      "orbstack"
       "secretive"
       "tableplus"
       "visual-studio-code"
