@@ -210,12 +210,6 @@ local M = {
         ["app/elm/App/Pages/*.elm"] = {
           alternate = "app/elm/App/Pages/{}Service.elm",
         },
-        ["app/elm/App/Fullscreens/*.elm"] = {
-          alternate = "app/elm/App/Fullscreens/{}Service.elm",
-        },
-        ["app/elm/App/Services/*.elm"] = {
-          alternate = "app/elm/App/Services/{}Service.elm",
-        },
 
         -- OCaml
         ["**.mli"] = {

@@ -12,11 +12,17 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka-term
-    nerd-fonts.blex-mono
-    nerd-fonts.gohufont
     nerd-fonts.bigblue-terminal
+    nerd-fonts.blex-mono
+    nerd-fonts.cousine
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.gohufont
+    nerd-fonts.iosevka-term
+    nerd-fonts.iosevka-term-slab
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.lilex
+    nerd-fonts.monaspace
+    maple-mono.truetype
 
     # Tools
     # bitwarden-cli
@@ -55,8 +61,9 @@ in
     nixfmt-rfc-style
 
     # Lua
-    stylua
     lua-language-server
+    selene
+    stylua
 
     # Web
     fnm

@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
   nix.package = pkgs.lixPackageSets.stable.lix;
 
@@ -49,16 +44,38 @@
   system.defaults = {
     dock = {
       autohide = true;
-      autohide-delay = 0.0;
-      autohide-time-modifier = 0.0;
+      showhidden = true;
+
+      mouse-over-hilite-stack = true;
       minimize-to-application = true;
-      mru-spaces = false;
-      orientation = "bottom";
+
       show-recents = false;
+      mru-spaces = false;
+
       tilesize = 64;
+      orientation = "bottom";
+      magnification = false;
+
+      enable-spring-load-actions-on-all-items = true;
     };
 
-    screencapture.location = "/Users/pontus.nagy/Pictures/screenshots";
+    CustomSystemPreferences."com.apple.dock" = {
+      autohide-time-modifier = 0.0;
+      autohide-delay = 0.0;
+      expose-animation-duration = 0.0;
+      springboard-show-duration = 0.0;
+      springboard-hide-duration = 0.0;
+      springboard-page-duration = 0.0;
+
+      wvous-tl-corner = 0;
+      wvous-tr-corner = 0;
+      wvous-bl-corner = 0;
+      wvous-br-corner = 0;
+
+      launchanim = 0;
+    };
+
+    screencapture.location = "/Users/p1xelher0/Pictures/screenshots";
 
     finder = {
       AppleShowAllExtensions = true;
@@ -82,10 +99,13 @@
 
     NSGlobalDomain = {
       AppleFontSmoothing = 0;
-      AppleKeyboardUIMode = 3;
-      ApplePressAndHoldEnabled = false;
+
       AppleShowAllExtensions = true;
       AppleShowScrollBars = "WhenScrolling";
+
+      AppleKeyboardUIMode = 3;
+      ApplePressAndHoldEnabled = false;
+
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
       NSAutomaticCapitalizationEnabled = false;
@@ -106,10 +126,8 @@
     NSGlobalDomain."com.apple.springing.enabled" = false;
     NSGlobalDomain."com.apple.sound.beep.volume" = 0.4723665;
     NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
+    ".GlobalPreferences"."com.apple.sound.beep.sound" = "/System/Library/Sounds/Frog.aiff";
   };
-
-  system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
-    "/System/Library/Sounds/Frog.aiff";
 
   system.keyboard = {
     enableKeyMapping = true;
