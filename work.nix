@@ -144,24 +144,27 @@
 
     taps = [
       "DevCleaner/devcleaner"
+      "FelixKratz/formulae"
       "homebrew/bundle"
+      "nikitabobko/tap"
     ];
 
     brews = [
-      # "mas"
-      "openssl@3"
-      "llvm@17"
-      "sdl3"
+      "FelixKratz/formulae/sketchybar"
       "git"
+      "llvm@17"
       "node"
+      "openssl@3"
+      "sdl3"
     ];
 
     casks = [
-      "ghostty"
+      "nikitabobko/tap/aerospace"
       "alt-tab"
       "appcleaner"
       "devcleaner"
       "firefox"
+      "ghostty"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
@@ -173,10 +176,5 @@
       "visual-studio-code"
       "zed"
     ];
-
-    masApps = {
-      # Developer = 640199958;
-      # Xcode = 497799835;
-    };
   };
 }

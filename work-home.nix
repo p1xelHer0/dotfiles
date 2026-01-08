@@ -24,8 +24,6 @@ in
     maple-mono.truetype
 
     # Tools
-    # bitwarden-cli
-    aerospace
     curl
     entr
     eza
@@ -50,13 +48,6 @@ in
     yamllint
     zoxide
 
-    # ngrok
-
-    # Writing
-    # ispell
-    # nodePackages.write-good
-    # proselint
-
     # Nix
     nil
     nixfmt-rfc-style
@@ -70,9 +61,6 @@ in
     fnm
     biome
     tailwindcss-language-server
-    # nodePackages.prettier
-    # nodePackages.eslint
-    # nodePackages.eslint_d
     nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
@@ -92,8 +80,6 @@ in
     gofumpt
 
     # PHP
-    # php82
-    # php82Packages.composer
     php83
     php83Packages.composer
     phpactor
@@ -184,13 +170,7 @@ in
       vf = "nvim -c 'lua require(\"fzf-lua\").live_grep_native()'";
       vg = "nvim -c 'lua require(\"neogit\").open()'";
 
-      yamld = "nvim -d ./.docker/local/docker-compose.yml ./.docker/local/docker-compose.yml.example";
-      envd = "nvim -d .env .env.example";
-
       dots = "cd $HOME/dotfiles && nvim";
-      nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
-      nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";
-      nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
 
       rl = "exec zsh";
 
@@ -199,19 +179,6 @@ in
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
     };
-
-    plugins = [
-      # {
-      #   name = "zsh-vi-mode";
-      #   file = "zsh-vi-mode.plugin.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "jeffreytse";
-      #     repo = "zsh-vi-mode";
-      #     rev = "v0.8.3";
-      #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
-      #   };
-      # }
-    ];
   };
 
   programs.starship = {
@@ -292,6 +259,12 @@ in
   xdg.configFile."hammerspoon/init.lua".source =
     mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/hammerspoon/init.lua";
 
+  xdg.configFile."zellij/config.kdl".source =
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/zellij/config.kdl";
+  programs.zellij = {
+    enable = true;
+  };
+
   xdg.configFile."tmux/tmux.conf".source =
     mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/tmux/tmux.conf";
   programs.tmux = {
@@ -341,19 +314,6 @@ in
     withRuby = false;
   };
 
-  programs.git = {
-    enable = false;
-    package = pkgs.gitAndTools.gitFull;
-    settings = {
-      user = {
-        name = "Pontus Nagy";
-        email = "pontus.nagy@savr.com";
-      };
-    };
-
-    includes = [ { path = "~/dotfiles/config/git/.gitconfig"; } ];
-  };
-
   programs.direnv = {
     enable = true;
 
@@ -364,6 +324,9 @@ in
 
   xdg.configFile."aerospace/aerospace.toml".source =
     mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/aerospace.toml";
+
+  xdg.configFile."sketchybar/sketchybarrc".source =
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/sketchybarrc";
 
   xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/ghostty";
 }

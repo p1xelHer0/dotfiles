@@ -24,7 +24,6 @@ in
     maple-mono.truetype
 
     # Tools
-    aerospace
     curl
     entr
     eza
@@ -33,18 +32,15 @@ in
     figlet
     fswatch
     gh
-    # gifsicle
-    htop
     hyperfine
     imagemagick
     jq
     jujutsu
+    nushell
     p7zip
     readline
     reattach-to-user-namespace
     ripgrep
-    ninja
-    nushell
     shellcheck
     tmuxinator
     tree
@@ -55,72 +51,25 @@ in
     zola
     zoxide
 
-    shader-slang
-
     # C/C++
+    ninja
     nasm
     vscode-extensions.vadimcn.vscode-lldb
 
-    # Zig
-    # zig
-
-    # Odin
-    # odin
-    # ols
-
-    # Writing
-    # ispell
-    # nodePackages.write-good
-    # proselint
-
     # Nix
-    # cachix
-    # niv
     nil
     nixfmt-rfc-style
+
+    # Slang
+    shader-slang
 
     # Lua
     lua-language-server
     selene
     stylua
 
-    # Web
-    fnm
-    biome
-    # nodePackages.yarn
-    # nodePackages.pnpm
-    # nodePackages.vercel
-    # nodePackages.prettier
-    # nodePackages.eslint
-    # nodePackages.eslint_d
-    nodePackages.vscode-langservers-extracted
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.tailwindcss
-
-    # OCaml
-    # opam
-
     # Rust
     rustup
-    # cargo-watch
-    # cargo-nextest
-    # wasmer
-    # rust-analyzer - install this with Rustup instead
-    # to make sure it matches the compiler
-
-    # Haskell
-    # haskellPackages.ghcup
-
-    # Elm
-    # elmPackages.elm
-    # elmPackages.elm-format
-    # elmPackages.elm-language-server
-    # elmPackages.elm-review
-    # elmPackages.elm-test
-
-    # BQN
-    # cbqn
 
     # Python
     uv
@@ -134,58 +83,12 @@ in
     go-tools
     delve
     gofumpt
-    # go install github.com/mattn/efm-langserver@latest
-    # go install github.com/segmentio/golines@latest
-    # go install github.com/client9/misspell/cmd/misspell@latest
-
-    ## Lisps
-
-    # Common Lisp
-    # sbcl # installed with roswell
-    # roswell # brew
-    # lispPackages.quicklisp # handled with ros install qlot
-    # sbclPackages.qlot # see https://github.com/fukamachi/qlot#installation
-
-    # Scheme
-    # gerbil # brew
-    # gerbil-unstable # brew
-    # cyclone-scheme # brew
-    # chicken
-    # gambit
-    # guile
-    # mitscheme
-
-    # Clojure
-    # clojure
-    # leiningen
-    # clojure-lsp
-    # cljfmt
-
-    # Racket
-    # racket # broken on macOS - using brew
-    # racket-minimal # broken on macOS - using brew
-    # raco pkg install racket-langserver
 
     # Lua
     luajit
 
-    # Fennel
-    # luaPackages.fennel
-    # cargo install --git https://github.com/rydesun/fennel-language-server
-
-    # Janet
-    # janet
-    # jpm
-
-    # Erlang/Elixir
-    # elixir
-    # elixir_ls
-
     # TOML
     taplo
-
-    # YAML
-    # nodePackages.yaml-language-server
   ];
 
   xdg.configFile."karabiner/".source =
@@ -307,19 +210,6 @@ in
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
     };
-
-    plugins = [
-      # {
-      #   name = "zsh-vi-mode";
-      #   file = "zsh-vi-mode.plugin.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "jeffreytse";
-      #     repo = "zsh-vi-mode";
-      #     rev = "v0.8.3";
-      #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
-      #   };
-      # }
-    ];
   };
 
   programs.starship = {
@@ -460,18 +350,6 @@ in
     withRuby = false;
   };
 
-  programs.git = {
-    enable = false;
-    package = pkgs.gitAndTools.gitFull;
-    settings = {
-      user = {
-        name = "p1xelHer0";
-        email = "p_nagy@icloud.com";
-      };
-    };
-    includes = [ { path = "~/dotfiles/config/git/.gitconfig"; } ];
-  };
-
   programs.direnv = {
     enable = true;
 
@@ -482,6 +360,9 @@ in
 
   xdg.configFile."aerospace/aerospace.toml".source =
     mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/aerospace.toml";
+
+  xdg.configFile."sketchybar/sketchybarrc".source =
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/sketchybarrc";
 
   home.file."Library/Preferences/clangd/config.yaml" = {
     source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/clangd.yaml";

@@ -145,8 +145,10 @@
 
     taps = [
       "DevCleaner/devcleaner"
+      "FelixKratz/formulae"
       "homebrew/bundle"
-      "homebrew/cask-versions"
+      "nikitabobko/tap"
+
       # "homebrew/core"
       # "osx-cross/arm"
       # "osx-cross/avr"
@@ -154,8 +156,6 @@
     ];
 
     brews = [
-      "mas"
-
       # QMK
       # "qmk/qmk/qmk"
       # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
@@ -163,36 +163,33 @@
       # "arm-gcc-bin@8"
 
       "emscripten"
-      "java"
-      "ghcup"
+      "gcc@15"
       "git"
+      "java"
+      "llvm@17"
+      "llvm@21"
+      "mas"
       "openssl@3"
       "pkg-config"
-      "llvm@21"
-      "llvm@17"
-      "gcc@15"
       "raylib"
       "sdl3"
-      "glfw"
-
-      # "roswell"
-      # "cyclone-scheme/cyclone/cyclone-bootstrap"
+      "FelixKratz/formulae/sketchybar"
     ];
 
     casks = [
-      "ghostty"
+      "nikitabobko/tap/aerospace"
       "alt-tab"
       "appcleaner"
       "devcleaner"
       "discord"
       "element"
       "firefox"
+      "ghostty"
       "google-chrome"
       "grandperspective"
       "hammerspoon"
       "karabiner-elements"
       "keycastr"
-      "mpv"
       "netnewswire"
       "obs"
       "obsidian"
