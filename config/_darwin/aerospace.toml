@@ -8,7 +8,7 @@ config-version = 2
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  "exec-and-forget borders active_color=0x477e76 inactive_color=0x16161a width=8.0"
+  "exec-and-forget borders active_color=0xff477e76 inactive_color=0xff706957 width=8.0"
 ]
 
 # Start AeroSpace at login
@@ -47,9 +47,11 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
-                         "C", "D", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
-                         "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+persistent-workspaces = [
+  "1", "2", "3", "4", "5", "6", "7", "8", "9",
+  "A", "B", "C", "D", "E", "F", "G", "I", "M", "N", "O",
+  "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -70,7 +72,7 @@ on-mode-changed = []
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    inner.horizontal = 8
+    inner.horizontal = 12
     inner.vertical =   8
     outer.left =       8
     outer.bottom =     8
@@ -104,7 +106,7 @@ on-mode-changed = []
     # You can uncomment the following lines to open up terminal with alt + enter shortcut
     # (like in i3)
     # alt-enter = '''exec-and-forget osascript -e '
-    # tell application "Terminal"
+    # tell application "Ghostty"
     #     do script
     #     activate
     # end tell'
@@ -207,9 +209,9 @@ on-mode-changed = []
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-    esc = ['reload-config', 'mode main']
-    r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    esc =       ['reload-config',                 'mode main']
+    r =         ['flatten-workspace-tree',        'mode main'] # reset layout
+    f =         ['layout floating tiling',        'mode main'] # Toggle between floating and tiling layout
     backspace = ['close-all-windows-but-current', 'mode main']
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
