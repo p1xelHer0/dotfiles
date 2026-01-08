@@ -105,6 +105,8 @@
       AppleKeyboardUIMode = 3;
       ApplePressAndHoldEnabled = false;
 
+      NSWindowShouldDragOnGesture = true;
+
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
       NSAutomaticCapitalizationEnabled = false;
@@ -150,6 +152,7 @@
     ];
 
     brews = [
+      "FelixKratz/formulae/borders"
       "FelixKratz/formulae/sketchybar"
       "git"
       "llvm@17"
@@ -159,7 +162,6 @@
     ];
 
     casks = [
-      "nikitabobko/tap/aerospace"
       "alt-tab"
       "appcleaner"
       "devcleaner"
@@ -169,6 +171,7 @@
       "hammerspoon"
       "karabiner-elements"
       "ngrok"
+      "nikitabobko/tap/aerospace"
       "notion"
       "obsidian"
       "secretive"

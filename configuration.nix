@@ -106,6 +106,8 @@
       AppleKeyboardUIMode = 3;
       ApplePressAndHoldEnabled = false;
 
+      NSWindowShouldDragOnGesture = true;
+
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
       NSAutomaticCapitalizationEnabled = false;
@@ -162,6 +164,8 @@
       # "avr-gcc@8"
       # "arm-gcc-bin@8"
 
+      "FelixKratz/formulae/borders"
+      "FelixKratz/formulae/sketchybar"
       "emscripten"
       "gcc@15"
       "git"
@@ -173,11 +177,9 @@
       "pkg-config"
       "raylib"
       "sdl3"
-      "FelixKratz/formulae/sketchybar"
     ];
 
     casks = [
-      "nikitabobko/tap/aerospace"
       "alt-tab"
       "appcleaner"
       "devcleaner"
@@ -191,6 +193,7 @@
       "karabiner-elements"
       "keycastr"
       "netnewswire"
+      "nikitabobko/tap/aerospace"
       "obs"
       "obsidian"
       "retroarch-metal"
