@@ -150,8 +150,6 @@ in
 
       eval "$(zoxide init zsh)"
 
-      eval "$(fnm env)"
-
       # LLDB
       export PATH=$CODELLDB_BIN:$PATH
 

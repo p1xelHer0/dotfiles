@@ -1,5 +1,3 @@
-local border = { " ", " ", " ", " ", " ", " ", " ", " " }
-
 local M = {
   {
     "ibhagwan/fzf-lua",
@@ -8,9 +6,7 @@ local M = {
       { "hide", "telescope" }, -- hide: restore the picker state entirely
       fzf_colors = true,
       winopts = {
-        border = border,
         preview = {
-          border = border,
           winopts = {},
         },
       },
@@ -22,7 +18,6 @@ local M = {
         ["--no-scrollbar"] = "",
       },
       formatter = "path.filename_first",
-      -- files = {},
       lsp = {
         symbols = {
           locate = true,
