@@ -24,7 +24,6 @@
   environment.systemPackages = with pkgs; [
     pam-reattach
     zsh
-    nushell
   ];
 
   environment.darwinConfig = "/Users/p1xelher0/dotfiles/configuration.nix";
@@ -146,61 +145,89 @@
     };
 
     taps = [
-      "DevCleaner/devcleaner"
-      "FelixKratz/formulae"
       "homebrew/bundle"
+
+      # Tools
+      "FelixKratz/formulae"
       "nikitabobko/tap"
 
-      # "homebrew/core"
-      # "osx-cross/arm"
-      # "osx-cross/avr"
-      # "qmk/qmk"
+      # Maintanence
+      "DevCleaner/devcleaner"
+
+      # QMK
+      "qmk/qmk"
     ];
 
     brews = [
-      # QMK
-      # "qmk/qmk/qmk"
-      # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
-      # "avr-gcc@8"
-      # "arm-gcc-bin@8"
+      # AppStore
+      "mas"
 
+      # Tools
       "FelixKratz/formulae/borders"
       "FelixKratz/formulae/sketchybar"
+
+      # Emscripten
       "emscripten"
-      "gcc@15"
-      "git"
       "java"
-      "llvm@17"
-      "llvm@21"
-      "mas"
+
+      # Dev
+      "git"
       "openssl@3"
       "pkg-config"
-      "raylib"
+
+      # C/C++
+      "gcc@15"
+      "llvm@17"
+      "llvm@21"
+
+      # Gamedev
       "sdl3"
+      "raylib"
     ];
 
     casks = [
-      "alt-tab"
-      "appcleaner"
-      "devcleaner"
-      "discord"
-      "element"
-      "firefox"
+      # Dev
       "ghostty"
-      "google-chrome"
-      "grandperspective"
+      "secretive"
+
+      # Tools
+      "alt-tab"
       "hammerspoon"
       "karabiner-elements"
       "keycastr"
-      "netnewswire"
       "nikitabobko/tap/aerospace"
       "obs"
+
+      # Maintanence
+      "appcleaner"
+      "devcleaner"
+      "grandperspective"
+
+      # Chat
+      "discord"
+      "element"
+      "zulip"
+
+      # Browsing
+      "netnewswire"
+      "firefox"
+      "google-chrome"
+
+      # Text
       "obsidian"
+      "visual-studio-code"
+      "zed"
+
+      # Games
       "retroarch-metal"
       "runelite"
-      "secretive"
-      "visual-studio-code"
-      "zulip"
+
+      # QMK
+      # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
+      "qmk/qmk/qmk"
+      "avr-gcc@8"
+      "arm-none-eabi-binutils"
+      "arm-none-eabi-gcc@8"
     ];
 
     masApps = {

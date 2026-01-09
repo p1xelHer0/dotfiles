@@ -35,6 +35,7 @@ in
     mob
     nushell
     p7zip
+    qmk
     reattach-to-user-namespace
     redis
     ripgrep

@@ -145,39 +145,63 @@
     };
 
     taps = [
-      "DevCleaner/devcleaner"
-      "FelixKratz/formulae"
       "homebrew/bundle"
+
+      # Tools
+      "FelixKratz/formulae"
       "nikitabobko/tap"
+
+      # Maintanence
+      "DevCleaner/devcleaner"
     ];
 
     brews = [
+      # Tools
       "FelixKratz/formulae/borders"
       "FelixKratz/formulae/sketchybar"
+
+      # Dev
       "git"
-      "llvm@17"
       "node"
       "openssl@3"
-      "sdl3"
+
+      # QMK
+      # "qmk/qmk/qmk"
     ];
 
     casks = [
-      "alt-tab"
-      "appcleaner"
-      "devcleaner"
-      "firefox"
+      # Dev
       "ghostty"
-      "grandperspective"
-      "hammerspoon"
-      "karabiner-elements"
       "ngrok"
-      "nikitabobko/tap/aerospace"
-      "notion"
-      "obsidian"
       "secretive"
       "tableplus"
+
+      # Tools
+      "alt-tab"
+      "hammerspoon"
+      "nikitabobko/tap/aerospace"
+      "karabiner-elements"
+
+      # Maintanence
+      "appcleaner"
+      "devcleaner"
+      "grandperspective"
+
+      # Browsing
+      "firefox"
+
+      # Text
+      "notion"
+      "obsidian"
       "visual-studio-code"
       "zed"
+
+      # QMK
+      # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
+      # "qmk/qmk/qmk"
+      # "avr-gcc@8"
+      # "arm-none-eabi-binutils"
+      # "arm-none-eabi-gcc@8"
     ];
   };
 }

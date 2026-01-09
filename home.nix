@@ -38,6 +38,7 @@ in
     jujutsu
     nushell
     p7zip
+    qmk
     readline
     reattach-to-user-namespace
     ripgrep
