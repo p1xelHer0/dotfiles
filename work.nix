@@ -164,9 +164,6 @@
       "git"
       "node"
       "openssl@3"
-
-      # QMK
-      # "qmk/qmk/qmk"
     ];
 
     casks = [
@@ -195,13 +192,6 @@
       "obsidian"
       "visual-studio-code"
       "zed"
-
-      # QMK
-      # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
-      # "qmk/qmk/qmk"
-      # "avr-gcc@8"
-      # "arm-none-eabi-binutils"
-      # "arm-none-eabi-gcc@8"
     ];
   };
 }

@@ -153,9 +153,6 @@
 
       # Maintanence
       "DevCleaner/devcleaner"
-
-      # QMK
-      "qmk/qmk"
     ];
 
     brews = [
@@ -221,13 +218,6 @@
       # Games
       "retroarch-metal"
       "runelite"
-
-      # QMK
-      # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
-      "qmk/qmk/qmk"
-      "avr-gcc@8"
-      "arm-none-eabi-binutils"
-      "arm-none-eabi-gcc@8"
     ];
 
     masApps = {
