@@ -1,11 +1,11 @@
 local M = {
-  -- {
-  --   dir = "~/code/codeberg/p1xelHer0/mibo",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {},
-  --   config = function(_, opts) vim.cmd.colorscheme("mibo") end,
-  -- },
+  {
+    dir = "~/code/codeberg/p1xelHer0/mibo",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, opts) vim.cmd.colorscheme("mibo") end,
+  },
 
   {
     "zenbones-theme/zenbones.nvim",
@@ -13,7 +13,9 @@ local M = {
     lazy = false,
     priority = 1000,
     opts = {},
-    config = function(_, opts) vim.cmd.colorscheme("zenburned") end,
+    config = function(_, opts)
+      -- vim.cmd.colorscheme("zenburned")
+    end,
   },
 
   {
