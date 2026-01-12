@@ -87,9 +87,8 @@ local M = {
         })
       end
       attach_colorize_on_pattern("**/ghostty/themes/**")
-      attach_colorize_on_pattern("colors.lua")
-      attach_colorize_on_pattern("palette.lua")
-      attach_colorize_on_pattern("mibo.toml")
+      attach_colorize_on_pattern("colors_dark.lua")
+      attach_colorize_on_pattern("colors_light.lua")
       require("colorizer").setup(opts)
     end,
   },
