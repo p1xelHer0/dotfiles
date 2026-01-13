@@ -4,7 +4,7 @@ local map = function(keys, func, desc, mode)
 end
 
 -- stylua: ignore start
-map("<Leader>s", ":Lazy reload mibo<CR>", "Build")
+map("<Leader>s", ":Lazy reload mibo<CR>", "build")
 -- stylua: ignore end
 
 local ft_plugin_lua = vim.api.nvim_create_augroup("ftplugin.lua", {})
@@ -16,3 +16,5 @@ local autocmd = function(event, pattern, callback, desc)
     desc = "ft=lua: " .. desc,
   })
 end
+
+vim.lsp.enable("lua_ls")

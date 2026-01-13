@@ -9,7 +9,7 @@ function M.options()
   return {
     scrolloff = 5,
     blend = 0,
-    bigfile_size = 1024 * 1024 * 1.5, -- 1.5 MB
+    bigfile_size = 1024 * 100 * 1.5,
   }
 end
 

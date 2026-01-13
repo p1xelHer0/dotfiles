@@ -31,7 +31,9 @@ local function pick_program()
   return result
 end
 
-return {
+local k = "plugins.dap: "
+
+local M = {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -40,12 +42,14 @@ return {
       "theHamsta/nvim-dap-virtual-text",
     },
     keys = {
-      { "<leader>bo", function() require("dapui").toggle() end },
-      { "<leader>bc", ":DapContinue<CR>" },
-      { "<leader>bb", ":DapToggleBreakpoint<CR>" },
-      { "<leader>bB", function() require("dap").toggle_breakpoint(vim.fn.input("[DAP] Condition > ")) end },
+      -- stylua: ignore start
+      { "<leader>bo", function() require("dapui").toggle() end,                                            k .. "toggle DAP UI" },
+      { "<leader>bc", ":DapContinue<CR>",                                                                  k .. "continue" },
+      { "<leader>bb", ":DapToggleBreakpoint<CR>",                                                          k .. "toggle breakpoint" },
+      { "<leader>bB", function() require("dap").toggle_breakpoint(vim.fn.input("[DAP] Condition > ")) end, k .. "toggle conditional breakpoint" },
+      -- stylua: ignore end
     },
-    config = function()
+    config = function(_, opts)
       local dap = require("dap")
       local dapui = require("dapui")
       local daputil = require("dap.utils")
@@ -92,7 +96,7 @@ return {
       }
 
       dap.adapters.codelldb = codelldb
-      local lldb_init_cmd = "command source " .. dotfiles_path .. "/lldb/.lldbinit"
+      local lldbinit_cmd = "command source " .. dotfiles_path .. "/lldb/.lldbinit"
 
       local lldb_default_config = {
         {
@@ -109,7 +113,7 @@ return {
             if result == nil then return dap.ABORT end
             return vim.split(result, " ")
           end,
-          initCommands = { lldb_init_cmd },
+          initCommands = { lldbinit_cmd },
         },
         {
           name = "Attach & Debug",
@@ -118,7 +122,7 @@ return {
           stopOnEntry = false,
           program = pick_program,
           pid = daputil.pick_process,
-          initCommands = { lldb_init_cmd },
+          initCommands = { lldbinit_cmd },
         },
       }
 
@@ -140,7 +144,7 @@ return {
         local curr_ft = lazy_load_ft[ft]
         if curr_ft and not curr_ft.configured then
           vim.schedule_wrap(
-            function() vim.notify("Lazy loading " .. ft .. " DAP configuration", vim.log.levels.INFO) end
+            function() vim.notify(k .. "lazy loading " .. ft .. " DAP configuration", vim.log.levels.INFO) end
           )
           curr_ft.config()
           curr_ft.configured = true
@@ -162,7 +166,9 @@ return {
         })
       end
 
-      autocmd("FileType", ft_pattern, function(data) on_ft(data.match) end, "Lazy load DAP config for ft")
+      autocmd("FileType", ft_pattern, function(data) on_ft(data.match) end, k .. "lazy load DAP config for ft")
     end,
   },
 }
+
+return M

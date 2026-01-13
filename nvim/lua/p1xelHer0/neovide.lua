@@ -1,7 +1,7 @@
 if vim.g.neovide == true then
   local map = function(keys, func, desc, mode)
     mode = mode or "n"
-    vim.keymap.set(mode, keys, func, { desc = "Neovide: " .. desc })
+    vim.keymap.set(mode, keys, func, { desc = "p1xelHer0.neovide: " .. desc })
   end
 
   vim.o.guifont = "JetBrainsMono Nerd Font Mono:h14"

@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- remappings
     local map = function(keys, func, desc, mode)
       mode = mode or "n"
-      vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "LSP: " .. desc })
+      vim.keymap.set(mode, keys, func, { buffer = args.buf, desc = "p1xelHer0.lsp: " .. desc })
     end
 
     map("gn", vim.lsp.buf.rename, "rename")
@@ -26,16 +26,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- stylua: ignore end
   end,
 })
-
-vim.lsp.enable("biome")
-vim.lsp.enable("clangd")
-vim.lsp.enable("elmls")
-vim.lsp.enable("gopls")
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("nil_ls")
-vim.lsp.enable("ols")
-vim.lsp.enable("slangd")
-vim.lsp.enable("tailwindcss")
-vim.lsp.enable("taplo")
-vim.lsp.enable("ty")
-vim.lsp.enable("zls")

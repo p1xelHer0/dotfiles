@@ -33,6 +33,8 @@ local ensure_installed = {
   "zig",
 }
 
+local k = "plugins.tree-sitter: "
+
 local M = {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -41,6 +43,12 @@ local M = {
     },
     build = ":TSUpdate",
     event = lazy_file_event,
+    -- stylua: ignore start
+    keys = {
+      { "<Leader>0", ":Inspect<CR>",     k .. "inspect" },
+      { "<Leader>-", ":InspectTree<CR>", k .. "inspect tree" },
+    },
+    -- stylua: ignore end
     opts = {
       ensure_installed = ensure_installed,
       highlight = {
@@ -145,17 +153,7 @@ local M = {
         },
       },
     },
-    config = function(_, opts)
-      local map = function(keys, func, desc, mode)
-        mode = mode or "n"
-        vim.keymap.set(mode, keys, func, { noremap = true, desc = "Tree-sitter: " .. desc })
-      end
-
-      map("<Leader>0", ":Inspect<CR>", "inspect")
-      map("<Leader>-", ":InspectTree<CR>", "inspect tree")
-
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
 
   {

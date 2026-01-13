@@ -27,7 +27,7 @@ require("lazy").setup({
 
 local map = function(keys, func, desc, mode)
   mode = mode or "n"
-  vim.keymap.set(mode, keys, func, { desc = "Lazy: " .. desc })
+  vim.keymap.set(mode, keys, func, { desc = "p1xelHer0.lazy: " .. desc })
 end
 
 map("<Leader>L", function() require("lazy").home() end, "home")

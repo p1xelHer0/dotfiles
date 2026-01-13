@@ -97,16 +97,19 @@ local M = {
     "folke/flash.nvim",
     event = lazy_file_event,
     opts = {},
-    keys = {
-      -- stylua: ignore start
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash: jump" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash: Treesitter" },
-      { "r", mode = {           "o" }, function() require("flash").remote() end,            desc = "Flash: remote" },
-      { "R", mode = {      "x", "o" }, function() require("flash").treesitter_search() end, desc = "Flash: Treesitter Search" },
+    keys = function(_, _)
+      local k = "plugins.flash: "
+      return {
+        -- stylua: ignore start
+        { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = k .. "jump" },
+        { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = k .. "tree-sitter" },
+        { "r", mode = {           "o" }, function() require("flash").remote() end,            desc = k .. "remote" },
+        { "R", mode = {      "x", "o" }, function() require("flash").treesitter_search() end, desc = k .. "tree-sitter Search" },
 
-      { "<C-s>", mode = "c", function() require("flash").toggle() end,                      desc = "Flash: Toggle Search" },
-      -- stylua: ignore end
-    },
+        { "<C-s>", mode = "c", function() require("flash").toggle() end,                      desc = k .. "toggle Search" },
+        -- stylua: ignore end
+      }
+    end,
   },
 
   {
@@ -120,7 +123,7 @@ local M = {
 
       local map = function(keys, func, desc, mode)
         mode = mode or "n"
-        vim.keymap.set(mode, keys, func, { desc = "Harpoon: " .. desc })
+        vim.keymap.set(mode, keys, func, { desc = "plugins.harpoon: " .. desc })
       end
 
       map("<Leader>a", function() harpoon:list():add() end, "Add")
@@ -135,14 +138,14 @@ local M = {
   {
     "tpope/vim-projectionist",
     event = lazy_file_event,
-    keys = {
-      {
-        "<Leader>p",
-        "<CMD>A<CR>",
-        mode = "n",
-        desc = "Projectionist: alternative file",
-      },
-    },
+    keys = function(_, _)
+      local k = "plugins.vim-projectionist: "
+      return {
+        -- stylua: ignore start
+        { "<Leader>p", "<CMD>A<CR>", mode = "n", desc = k .. "alternative file", },
+        -- stylua: ignore end
+      }
+    end,
     opts = {
       ["*"] = {
         -- C
@@ -209,12 +212,14 @@ local M = {
         },
       },
     },
-    keys = {
-      {
-        "<Leader>G",
-        function() require("neogit").open() end,
-      },
-    },
+    keys = function(_, _)
+      local k = "plugins.neogit: "
+      return {
+        -- stylua: ignore start
+        { "<Leader>G", function() require("neogit").open() end, k .. "open" },
+        -- stylua: ignore end
+      }
+    end,
     opts = {
       integrations = {
         diffview = true,
@@ -249,14 +254,14 @@ local M = {
     "stevearc/conform.nvim",
     cmd = { "ConformInfo" },
     event = lazy_file_event,
-    keys = {
-      {
-        "<Leader><Leader>f",
-        function() require("conform").format({ async = true, lsp_format = "fallback" }) end,
-        mode = "",
-        desc = "Format buffer",
-      },
-    },
+    keys = function(_, _)
+      local k = "plugins.conform.nvim: "
+      return {
+        -- stylua: ignore start
+        { "<Leader><Leader>f", function() require("conform").format({ async = true, lsp_format = "fallback" }) end, mode = "", desc = k .. "format buffer" },
+        -- stylua: ignore end
+      }
+    end,
     opts = {
       notify_on_error = false,
       formatters_by_ft = {
@@ -277,13 +282,14 @@ local M = {
 
   {
     "stevearc/oil.nvim",
-    keys = {
-      {
-        "<Leader>n",
-        "<CMD>Oil<CR>",
-        desc = "Open parent directory",
-      },
-    },
+    keys = function(_, _)
+      local k = "plugins.oil.nvim: "
+      return {
+        -- stylua: ignore start
+        { "<Leader>n", "<CMD>Oil<CR>", desc = k .. "open parent directory" },
+        -- stylua: ignore end
+      }
+    end,
     opts = {},
     lazy = false,
   },

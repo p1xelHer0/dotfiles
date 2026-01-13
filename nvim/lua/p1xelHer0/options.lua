@@ -123,7 +123,7 @@ vim.g.loaded_ruby_provider = 0
 
 local map = function(keys, func, desc, mode)
   mode = mode or "n"
-  vim.keymap.set(mode, keys, func, { noremap = true, desc = "Base: " .. desc })
+  vim.keymap.set(mode, keys, func, { noremap = true, desc = "p1xelHer0.options: " .. desc })
 end
 
 -- stylua: ignore start
@@ -145,13 +145,13 @@ map("<Leader>/", "<Cmd>noh<CR>", "clear highlights")
 
 -- //////////////////////
 
-local base_options_group = vim.api.nvim_create_augroup("base.options", {})
+local options_group = vim.api.nvim_create_augroup("p1xelHer0.options", {})
 local autocmd = function(event, pattern, callback, desc)
   vim.api.nvim_create_autocmd(event, {
-    group = base_options_group,
+    group = options_group,
     pattern = pattern,
     callback = callback,
-    desc = "Base: " .. desc,
+    desc = "p1xelHer0.options: " .. desc,
   })
 end
 
@@ -177,8 +177,6 @@ if vim.opt_local.cursorline:get() then
   end, "show cursorline when entering buffer")
 end
 
--- autocmd("BufWritePost", "theme.lua", function() vim.cmd("Lazy reload mibo") end, "reload theme on save")
-
 -- ///////////////////////////
 
 vim.diagnostic.config({
@@ -196,26 +194,6 @@ vim.diagnostic.config({
     },
   },
   update_in_insert = false,
-})
-
--- TODO: move
-
-vim.filetype.add({
-  extension = {
-    hlsl = "hlsl",
-    hlsli = "hlsl",
-  },
-})
-
-vim.filetype.add({
-  pattern = {
-    [".*"] = {
-      function(path, buf)
-        return vim.bo[buf].filetype ~= "bigfile" and path and vim.fn.getfsize(path) > O.bigfile_size and "bigfile"
-          or nil
-      end,
-    },
-  },
 })
 
 autocmd("FileType", "bigfile", function(event)
