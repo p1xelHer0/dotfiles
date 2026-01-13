@@ -303,11 +303,7 @@ in
     ];
   };
 
-  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/after";
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lua";
-  xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lsp";
-  xdg.configFile."nvim/init.lua".source =
-    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/init.lua";
+  xdg.configFile."nvim".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim";
   programs.neovim = {
     enable = true;
     withNodeJs = false;
