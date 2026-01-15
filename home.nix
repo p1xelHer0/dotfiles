@@ -59,7 +59,7 @@ in
 
     # Nix
     nil
-    nixfmt-rfc-style
+    nixfmt
 
     # Slang
     shader-slang

@@ -51,7 +51,7 @@ in
 
     # Nix
     nil
-    nixfmt-rfc-style
+    nixfmt
 
     # Lua
     lua-language-server
