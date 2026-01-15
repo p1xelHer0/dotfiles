@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
@@ -7,37 +11,37 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka-term
-    nerd-fonts.blex-mono
-    nerd-fonts.gohufont
     nerd-fonts.bigblue-terminal
+    nerd-fonts.blex-mono
+    nerd-fonts.cousine
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.gohufont
+    nerd-fonts.iosevka-term
+    nerd-fonts.iosevka-term-slab
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.lilex
+    nerd-fonts.monaspace
+    maple-mono.truetype
 
     # Tools
-    aerospace
-    cmake
     curl
     entr
     eza
     fd
     ffmpeg
+    figlet
     fswatch
     gh
-    # gifsicle
-    gnused
-    (pkgs.writeShellScriptBin "
-        gsed
-        " "
-        exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
-    htop
     hyperfine
     imagemagick
     jq
+    jujutsu
+    nushell
     p7zip
+    qmk
     readline
     reattach-to-user-namespace
     ripgrep
-    ninja
     shellcheck
     tmuxinator
     tree
@@ -49,137 +53,53 @@ in
     zoxide
 
     # C/C++
-    # ncurses6
-    # cmake
-    # gcc13
-    ccls
+    ninja
     nasm
-    # vscode-extensions.vadimcn.vscode-lldb
-
-    # Zig
-    # zig
-
-    # Odin
-    # odin
-    # ols
-
-    # Writing
-    # ispell
-    # nodePackages.write-good
-    # proselint
+    vscode-extensions.vadimcn.vscode-lldb
 
     # Nix
-    # cachix
-    # niv
-    nixpkgs-fmt
     nil
+    nixfmt-rfc-style
+
+    # Slang
+    shader-slang
 
     # Lua
+    lua-language-server
+    selene
     stylua
-    sumneko-lua-language-server
-
-    # Web
-    fnm
-    biome
-    # nodePackages.yarn
-    # nodePackages.pnpm
-    # nodePackages.vercel
-    # nodePackages.prettier
-    # nodePackages.eslint
-    # nodePackages.eslint_d
-    nodePackages.vscode-langservers-extracted
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.tailwindcss
-
-    # OCaml
-    # opam
 
     # Rust
     rustup
-    # cargo-watch
-    # cargo-nextest
-    # wasmer
-    # rust-analyzer - install this with Rustup instead
-    # to make sure it matches the compiler
 
-    # Haskell
-    # haskellPackages.ghcup
-
-    # Elm
-    # elmPackages.elm
-    # elmPackages.elm-format
-    # elmPackages.elm-language-server
-    # elmPackages.elm-review
-    # elmPackages.elm-test
-
-    # BQN
-    # cbqn
-
-    # Python oh no
-    # python3
-    # nodePackages.pyright
-    # python310Packages.autopep8
+    # Python
+    uv
+    ruff
+    ty
 
     # Go
     go
     gopls
-    # go install github.com/mattn/efm-langserver@latest
-    # go install github.com/segmentio/golines@latest
-    # go install github.com/client9/misspell/cmd/misspell@latest
-
-    ## Lisps
-
-    # Common Lisp
-    # sbcl # installed with roswell
-    # roswell # brew
-    # lispPackages.quicklisp # handled with ros install qlot
-    # sbclPackages.qlot # see https://github.com/fukamachi/qlot#installation
-
-    # Scheme
-    # gerbil # brew
-    # gerbil-unstable # brew
-    # cyclone-scheme # brew
-    # chicken
-    # gambit
-    # guile
-    # mitscheme
-
-    # Clojure
-    # clojure
-    # leiningen
-    # clojure-lsp
-    # cljfmt
-
-    # Racket
-    # racket # broken on macOS - using brew
-    # racket-minimal # broken on macOS - using brew
-    # raco pkg install racket-langserver
+    gotools
+    go-tools
+    delve
+    gofumpt
 
     # Lua
     luajit
 
-    # Fennel
-    # luaPackages.fennel
-    # cargo install --git https://github.com/rydesun/fennel-language-server
-
-    # Janet
-    # janet
-    # jpm
-
-    # Erlang/Elixir
-    # elixir
-    # elixir_ls
-
     # TOML
-    taplo-cli
-    taplo-lsp
-
-    # YAML
-    # nodePackages.yaml-language-server
+    taplo
   ];
 
-  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/karabiner/";
+  xdg.configFile."karabiner/".source =
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/karabiner/";
+
+  home.file."Library/Application Support/nushell/config.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/config.nu";
+
+  home.file."Library/Application Support/nushell/env.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/env.nu";
 
   programs.zsh = {
     enable = true;
@@ -192,10 +112,15 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       LC_ALL = "en_US.UTF-8";
+      RPROMPT = " ";
 
       DOTS = "$HOME/dotfiles";
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
+
+      TMUXINATOR_CONFIG = "$DOTS/config/tmux/tmuxinator";
+
+      CODELLDB_BIN = "$HOME/.vscode/extensions/vadimcn.vscode-lldb-1.12.1/adapter";
 
       GOPATH = "$HOME/go";
       GOPATH_BIN = "$GOPATH/bin";
@@ -203,19 +128,8 @@ in
       ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
       ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
 
-      SDL_SHADERCROSS = "$HOME/dotfiles/bin/SDL3_shadercross-3.0.0-darwin-arm64-x64/bin";
-
       ZIGUP = "$HOME/code/github/marler8997/zigup/bin";
       ZLS = "$HOME/code/github/zigtools/zls/zig-out/bin";
-
-      # MACTEX_BIN = "/usr/local/texlive/2023/bin/universal-darwin";
-
-      # ROSWELL_BIN = "$HOME/.roswell/bin";
-      # QLOT_BIN = "$HOME/.qlot/bin";
-
-      TMUXINATOR_CONFIG = "$DOTS/.config/tmux/tmuxinator";
-
-      RPROMPT = " ";
     };
 
     envExtra = ''
@@ -224,8 +138,7 @@ in
       n "
     '';
 
-    initExtra = ''
-      export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
+    initContent = ''
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
 
@@ -234,43 +147,32 @@ in
       export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
-      export PATH=/opt/homebrew/opt/ncurses/bin:$PATH
-
-      export PATH=$GOPATH:$PATH
-      export PATH=$GOPATH_BIN:$PATH
-
-      export PATH=$DOTS_BIN:$PATH
-
-      export PATH=$RESCRIPT_LSP:$PATH
-
-      # export PATH=$MACTEX_BIN:$PATH
-
-      export PATH=$ROSWELL_BIN:$PATH
-      export PATH=$QLOT_BIN:$PATH
-
-      # Gerbil
-      # export CC=gcc-13
-
-      # Odin
-      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
-      export PATH=$ODIN_ROOT:$PATH
-      export PATH=$ODIN_TOOLS:$PATH
-
-      export PATH=$SDL_SHADERCROSS:$PATH
-
-      export PATH=$ZIGUP:$PATH
-      export PATH=$ZLS:$PATH
-
-      # use the maximum amount of file descriptors
-      ulimit -n 24576
-
-      source "$DOTS_BIN/fzf_git"
 
       eval "$(zoxide init zsh)"
 
-      eval "$(fnm env)"
+      # LLDB
+      export PATH=$CODELLDB_BIN:$PATH
 
-      # eval "$(opam env)"
+      # LLVM
+      export PATH=/opt/homebrew/opt/llvm@21/bin:$PATH
+
+      # GCC
+      export PATH=/opt/homebrew/opt/gcc@15/bin:$PATH
+
+      # Odin
+      export PATH=$ODIN_ROOT:$PATH
+      export PATH=$ODIN_TOOLS:$PATH
+
+      # Zig
+      export PATH=$ZIGUP:$PATH
+      export PATH=$ZLS:$PATH
+
+      # Rust
+      export PATH=$HOME/.cargo/bin:$PATH
+
+      # Go
+      export PATH=$GOPATH:$PATH
+      export PATH=$GOPATH_BIN:$PATH
     '';
 
     shellAliases = {
@@ -280,13 +182,14 @@ in
       "ts" = "tmux-sessionizer";
       "ta" = "tmux a";
 
-      dre = "darwin-rebuild edit";
-      drs =
-        "darwin-rebuild switch --flake $HOME/dotfiles";
+      dre = "sudo darwin-rebuild edit";
+      drs = "sudo darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
-      vf = "nvim $(fzf)";
+      vp = "nvim -c 'lua require(\"fzf-lua\").files()'";
+      vf = "nvim -c 'lua require(\"fzf-lua\").live_grep_native()'";
+      vg = "nvim -c 'lua require(\"neogit\").open()'";
 
       # opameval = "eval $(opam env)";
       # ev = "npx esy nvim";
@@ -306,19 +209,6 @@ in
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
     };
-
-    plugins = [
-      # {
-      #   name = "zsh-vi-mode";
-      #   file = "zsh-vi-mode.plugin.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "jeffreytse";
-      #     repo = "zsh-vi-mode";
-      #     rev = "v0.8.3";
-      #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
-      #   };
-      # }
-    ];
   };
 
   programs.starship = {
@@ -337,7 +227,9 @@ in
         $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
-      directory = { read_only = "X"; };
+      directory = {
+        read_only = "X";
+      };
 
       git_branch.format = "$branch ";
 
@@ -399,14 +291,17 @@ in
     };
   };
 
-  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/_darwin/hammerspoon/init.lua";
+  xdg.configFile."hammerspoon/init.lua".source =
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/_darwin/hammerspoon/init.lua";
 
-  xdg.configFile."zellij/config.kdl".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/zellij/config.kdl";
+  xdg.configFile."zellij/config.kdl".source =
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/zellij/config.kdl";
   programs.zellij = {
-    enable = false;
+    enable = true;
   };
 
-  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/tmux/tmux.conf";
+  xdg.configFile."tmux/tmux.conf".source =
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -442,24 +337,12 @@ in
     ];
   };
 
-  xdg.configFile."nvim/after".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/after";
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lua";
-  xdg.configFile."nvim/lsp".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim/lsp";
+  xdg.configFile."nvim".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/nvim";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim; # this enables nightly
-    extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
     withRuby = false;
-  };
-
-  programs.git = {
-    enable = true;
-    package = pkgs.gitAndTools.gitFull;
-    userName = "p1xelHer0";
-    userEmail = "p_nagy@icloud.com";
-    includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
   };
 
   programs.direnv = {
@@ -470,14 +353,15 @@ in
     };
   };
 
-  xdg.configFile."aerospace/aerospace.toml".source = mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/.config/_darwin/aerospace.toml";
-  # programs.aerospace = {
-  #   enable = true;
-  # };
+  xdg.configFile."aerospace/aerospace.toml".source =
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/aerospace.toml";
+
+  xdg.configFile."sketchybar/sketchybarrc".source =
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/sketchybarrc";
 
   home.file."Library/Preferences/clangd/config.yaml" = {
-    source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/clangd.yaml";
+    source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/clangd.yaml";
   };
 
-  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/ghostty";
+  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/ghostty";
 }

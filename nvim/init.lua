@@ -1,0 +1,5 @@
+require("p1xelHer0.options")
+require("p1xelHer0.lazy")
+require("p1xelHer0.lsp")
+require("p1xelHer0.terminal")
+require("p1xelHer0.neovide")

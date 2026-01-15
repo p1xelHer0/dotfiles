@@ -1,5 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
@@ -29,9 +31,10 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
+  system.primaryUser = "pontus.nagy";
   users.users."pontus.nagy" = {
     shell = pkgs.zsh;
-    home = /Users/pontus.nagy;
+    home = "/Users/pontus.nagy";
   };
 
   # Add ability to used TouchID for sudo authentication
@@ -40,16 +43,38 @@
   system.defaults = {
     dock = {
       autohide = true;
-      autohide-delay = 0.0;
-      autohide-time-modifier = 0.0;
+      showhidden = true;
+
+      mouse-over-hilite-stack = true;
       minimize-to-application = true;
-      mru-spaces = false;
-      orientation = "bottom";
+
       show-recents = false;
+      mru-spaces = false;
+
       tilesize = 64;
+      orientation = "bottom";
+      magnification = false;
+
+      enable-spring-load-actions-on-all-items = true;
     };
 
-    screencapture.location = "/Users/pontus.nagy/Pictures/screenshots";
+    CustomSystemPreferences."com.apple.dock" = {
+      autohide-time-modifier = 0.0;
+      autohide-delay = 0.0;
+      expose-animation-duration = 0.0;
+      springboard-show-duration = 0.0;
+      springboard-hide-duration = 0.0;
+      springboard-page-duration = 0.0;
+
+      wvous-tl-corner = 0;
+      wvous-tr-corner = 0;
+      wvous-bl-corner = 0;
+      wvous-br-corner = 0;
+
+      launchanim = 0;
+    };
+
+    screencapture.location = "/Users/p1xelher0/Pictures/screenshots";
 
     finder = {
       AppleShowAllExtensions = true;
@@ -73,10 +98,15 @@
 
     NSGlobalDomain = {
       AppleFontSmoothing = 0;
-      AppleKeyboardUIMode = 3;
-      ApplePressAndHoldEnabled = false;
+
       AppleShowAllExtensions = true;
       AppleShowScrollBars = "WhenScrolling";
+
+      AppleKeyboardUIMode = 3;
+      ApplePressAndHoldEnabled = false;
+
+      NSWindowShouldDragOnGesture = true;
+
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
       NSAutomaticCapitalizationEnabled = false;
@@ -97,10 +127,8 @@
     NSGlobalDomain."com.apple.springing.enabled" = false;
     NSGlobalDomain."com.apple.sound.beep.volume" = 0.4723665;
     NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
+    ".GlobalPreferences"."com.apple.sound.beep.sound" = "/System/Library/Sounds/Frog.aiff";
   };
-
-  system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
-    "/System/Library/Sounds/Frog.aiff";
 
   system.keyboard = {
     enableKeyMapping = true;
@@ -117,47 +145,53 @@
     };
 
     taps = [
-      "DevCleaner/devcleaner"
-      # "fsouza/prettierd"
       "homebrew/bundle"
-      # "homebrew/cask"
-      # "homebrew/cask-versions"
-      # "homebrew/core"
+
+      # Tools
+      "FelixKratz/formulae"
+      "nikitabobko/tap"
+
+      # Maintanence
+      "DevCleaner/devcleaner"
     ];
 
     brews = [
-      # "fsouza/prettierd/prettierd"
-      # "mas"
-      # "ncurses"
+      # Tools
+      "FelixKratz/formulae/borders"
+      "FelixKratz/formulae/sketchybar"
+
+      # Dev
+      "git"
+      "node"
+      "openssl@3"
     ];
 
     casks = [
+      # Dev
       "ghostty"
-
-      # "alt-tab"
-      "appcleaner"
-      "devcleaner"
-      # "google-chrome"
-      "firefox"
-      "grandperspective"
-      "hammerspoon"
-      "karabiner-elements"
-      # "keycastr"
-      "linearmouse"
-      "mockoon"
       "ngrok"
-      "notion"
-      "obsidian"
-      "orbstack"
       "secretive"
       "tableplus"
+
+      # Tools
+      "alt-tab"
+      "hammerspoon"
+      "nikitabobko/tap/aerospace"
+      "karabiner-elements"
+
+      # Maintanence
+      "appcleaner"
+      "devcleaner"
+      "grandperspective"
+
+      # Browsing
+      "firefox"
+
+      # Text
+      "notion"
+      "obsidian"
       "visual-studio-code"
       "zed"
     ];
-
-    masApps = {
-      # Developer = 640199958;
-      # Xcode = 497799835;
-    };
   };
 }

@@ -1,5 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
@@ -29,6 +31,7 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.zsh ];
 
+  system.primaryUser = "p1xelher0";
   users.users.p1xelher0 = {
     shell = pkgs.zsh;
     home = /Users/p1xelher0;
@@ -40,13 +43,35 @@
   system.defaults = {
     dock = {
       autohide = true;
-      autohide-delay = 0.0;
-      autohide-time-modifier = 0.0;
+      showhidden = true;
+
+      mouse-over-hilite-stack = true;
       minimize-to-application = true;
-      mru-spaces = false;
-      orientation = "bottom";
+
       show-recents = false;
+      mru-spaces = false;
+
       tilesize = 64;
+      orientation = "bottom";
+      magnification = false;
+
+      enable-spring-load-actions-on-all-items = true;
+    };
+
+    CustomSystemPreferences."com.apple.dock" = {
+      autohide-time-modifier = 0.0;
+      autohide-delay = 0.0;
+      expose-animation-duration = 0.0;
+      springboard-show-duration = 0.0;
+      springboard-hide-duration = 0.0;
+      springboard-page-duration = 0.0;
+
+      wvous-tl-corner = 0;
+      wvous-tr-corner = 0;
+      wvous-bl-corner = 0;
+      wvous-br-corner = 0;
+
+      launchanim = 0;
     };
 
     screencapture.location = "/Users/p1xelher0/Pictures/screenshots";
@@ -73,10 +98,15 @@
 
     NSGlobalDomain = {
       AppleFontSmoothing = 0;
-      AppleKeyboardUIMode = 3;
-      ApplePressAndHoldEnabled = false;
+
       AppleShowAllExtensions = true;
       AppleShowScrollBars = "WhenScrolling";
+
+      AppleKeyboardUIMode = 3;
+      ApplePressAndHoldEnabled = false;
+
+      NSWindowShouldDragOnGesture = true;
+
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
       NSAutomaticCapitalizationEnabled = false;
@@ -97,10 +127,8 @@
     NSGlobalDomain."com.apple.springing.enabled" = false;
     NSGlobalDomain."com.apple.sound.beep.volume" = 0.4723665;
     NSGlobalDomain."com.apple.sound.beep.feedback" = 0;
+    ".GlobalPreferences"."com.apple.sound.beep.sound" = "/System/Library/Sounds/Frog.aiff";
   };
-
-  system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" =
-    "/System/Library/Sounds/Frog.aiff";
 
   system.keyboard = {
     enableKeyMapping = true;
@@ -117,88 +145,89 @@
     };
 
     taps = [
-      "DevCleaner/devcleaner"
-      # "cyclone-scheme/cyclone"
-      # "fsouza/prettierd"
       "homebrew/bundle"
-      # "homebrew/cask"
-      "homebrew/cask-versions"
-      # "homebrew/core"
-      # "osx-cross/arm"
-      # "osx-cross/avr"
-      # "qmk/qmk"
+
+      # Tools
+      "FelixKratz/formulae"
+      "nikitabobko/tap"
+
+      # Maintanence
+      "DevCleaner/devcleaner"
     ];
 
     brews = [
+      # AppStore
       "mas"
-      # QMK
-      # "qmk/qmk/qmk"
-      # https://github.com/qmk/qmk_firmware/blob/master/util/install/macos.sh
-      # "avr-gcc@8"
-      # "arm-gcc-bin@8"
 
+      # Tools
+      "FelixKratz/formulae/borders"
+      "FelixKratz/formulae/sketchybar"
+
+      # Emscripten
       "emscripten"
       "java"
-      "ghcup"
+
+      # Dev
+      "git"
       "openssl@3"
       "pkg-config"
-      "llvm@17"
-      # "bear"
-      "raylib"
-      "sdl3"
-      # "sdl2"
-      # "sdl2_image"
-      # "sdl2_mixer"
-      # "sdl2_ttf"
-      # "sdl2_net"
-      "glfw"
 
-      # "roswell"
-      # "cyclone-scheme/cyclone/cyclone-bootstrap"
+      # C/C++
+      "gcc@15"
+      "llvm@17"
+      "llvm@21"
+
+      # Gamedev
+      "sdl3"
+      "raylib"
     ];
 
     casks = [
+      # Dev
       "ghostty"
+      "secretive"
 
-      # "alt-tab"
-      "appcleaner"
-      "devcleaner"
-      "discord"
-      "element"
-      "firefox"
-      # "godot"
-      "google-chrome"
-      # "gpg-suite-no-mail"
-      "grandperspective"
+      # Tools
+      "alt-tab"
       "hammerspoon"
       "karabiner-elements"
       "keycastr"
-      "linearmouse"
-      # "mactex-no-gui"
+      "nikitabobko/tap/aerospace"
       "obs"
+
+      # Maintanence
+      "appcleaner"
+      "devcleaner"
+      "grandperspective"
+
+      # Chat
+      "discord"
+      "element"
+      "zulip"
+
+      # Browsing
+      "netnewswire"
+      "firefox"
+      "google-chrome"
+
+      # Text
       "obsidian"
-      "orbstack"
-      # "racket"
-      # "rectangle"
+      "visual-studio-code"
+      "zed"
+
+      # Games
       "retroarch-metal"
       "runelite"
-      "secretive"
-      # "spotify"
-      "visual-studio-code"
-      # "vlc"
-      "zulip"
     ];
 
-    # masApps = {
-    #   "Key Codes" = 414568915;
-    #   Developer = 640199958;
-    #   Lungo = 1263070803;
-    #   Messenger = 1480068668;
-    #   Slack = 803453959;
-    #   Telegram = 747648890;
-    #   Typesy = 1059295091;
-    #   Xcode = 497799835;
-    #   Mattermost = 1614666244;
-    # };
+    masApps = {
+      "Key Codes" = 414568915;
+      Developer = 640199958;
+      Lungo = 1263070803;
+      Slack = 803453959;
+      Typesy = 1059295091;
+      Xcode = 497799835;
+      Mattermost = 1614666244;
+    };
   };
 }

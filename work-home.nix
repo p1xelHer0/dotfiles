@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in
@@ -7,27 +11,35 @@ in
 
   home.packages = with pkgs; [
     # Fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka-term
-    nerd-fonts.blex-mono
-    nerd-fonts.gohufont
     nerd-fonts.bigblue-terminal
+    nerd-fonts.blex-mono
+    nerd-fonts.cousine
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.gohufont
+    nerd-fonts.iosevka-term
+    nerd-fonts.iosevka-term-slab
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.lilex
+    nerd-fonts.monaspace
+    maple-mono.truetype
 
     # Tools
-    bitwarden-cli
     curl
     entr
     eza
     fd
     fswatch
     gh
-    (pkgs.writeShellScriptBin "gsed" "exec ${pkgs.gnused}/bin/sed \"$@\"") # https://github.com/nvim-pack/nvim-spectre/issues/101
     jq
+    jujutsu
     mob
+    nushell
     p7zip
+    qmk
     reattach-to-user-namespace
     redis
     ripgrep
+    scc
     shellcheck
     tmuxinator
     tree
@@ -37,28 +49,19 @@ in
     yamllint
     zoxide
 
-    # ngrok
-
-    # Writing
-    # ispell
-    # nodePackages.write-good
-    # proselint
-
     # Nix
-    nixpkgs-fmt
     nil
+    nixfmt-rfc-style
 
     # Lua
+    lua-language-server
+    selene
     stylua
-    sumneko-lua-language-server
 
     # Web
     fnm
     biome
     tailwindcss-language-server
-    # nodePackages.prettier
-    # nodePackages.eslint
-    # nodePackages.eslint_d
     nodePackages.vscode-langservers-extracted
     nodePackages.typescript
     nodePackages.typescript-language-server
@@ -69,26 +72,38 @@ in
     elmPackages.elm-language-server
     elmPackages.elm-test
 
+    # Go
+    go
+    gopls
+    gotools
+    go-tools
+    delve
+    gofumpt
+
     # PHP
-    # php82
-    # php82Packages.composer
     php83
     php83Packages.composer
     phpactor
 
     # Ruby
-    cocoapods
-    ruby
+    # cocoapods
+    # ruby
 
     # TOML
-    taplo-cli
-    taplo-lsp
+    taplo
 
     # YAML
     nodePackages.yaml-language-server
   ];
 
-  xdg.configFile."karabiner/".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/karabiner/";
+  xdg.configFile."karabiner/".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/karabiner/";
+
+  home.file."Library/Application Support/nushell/config.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/config.nu";
+
+  home.file."Library/Application Support/nushell/env.nu".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/nushell/env.nu";
 
   programs.zsh = {
     enable = true;
@@ -105,31 +120,35 @@ in
       DOTS = "$HOME/dotfiles";
       DOTS_BIN = "$DOTS/bin";
       DOTS_DARWIN_BIN = "$DOTS_BIN/_darwin";
+
+      ODIN_ROOT = "$HOME/code/github/odin-lang/Odin";
+      ODIN_TOOLS = "$HOME/code/github/DanielGavin/ols";
+
+      TMUXINATOR_CONFIG = "$DOTS/config/tmux/tmuxinator";
+
+      RPROMPT = " ";
     };
 
     envExtra = ''
       bindkey -s ^f "tmux-sessionizer\n"
     '';
 
-    initExtra = ''
-      export TERMINFO_DIRS=$TERMINFO_DIRS:$HOME/.local/share/terminfo
-
+    initContent = ''
       export PATH=$DOTS_BIN:$PATH
       export PATH=$DOTS_DARWIN_BIN:$PATH
 
+      # Secretive
       export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-      export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+      export PKG_CONFIG_PATH=/opt/homebrew/opt/openssl@3/lib/pkgconfig
 
       export PATH=/opt/homebrew/bin:$PATH
 
-      export TMUXINATOR_CONFIG=$DOTS/.config/tmux/tmuxinator
+      # LLVM
+      export PATH=/opt/homebrew/opt/llvm@17/bin:$PATH
 
-      export RPROMPT=""
-
-      # use the maximum amount of file descriptors
-      ulimit -n 24576
-
-      source "$DOTS_BIN/fzf_git"
+      # Odin
+      export PATH=$ODIN_ROOT:$PATH
+      export PATH=$ODIN_TOOLS:$PATH
 
       eval "$(zoxide init zsh)"
 
@@ -143,21 +162,16 @@ in
       "ts" = "tmux-sessionizer";
       "ta" = "tmux a";
 
-      dre = "darwin-rebuild edit";
-      drs =
-        "darwin-rebuild switch --flake $HOME/dotfiles";
+      dre = "sudo darwin-rebuild edit";
+      drs = "sudo darwin-rebuild switch --flake $HOME/dotfiles";
 
       v = "nvim";
       vim = "nvim";
-      vf = "nvim $(fzf)";
-
-      yamld = "nvim -d ./.docker/local/docker-compose.yml ./.docker/local/docker-compose.yml.example";
-      envd = "nvim -d .env .env.example";
+      vp = "nvim -c 'lua require(\"fzf-lua\").files()'";
+      vf = "nvim -c 'lua require(\"fzf-lua\").live_grep_native()'";
+      vg = "nvim -c 'lua require(\"neogit\").open()'";
 
       dots = "cd $HOME/dotfiles && nvim";
-      nvsh = "tmux split-window 'cd $HOME/.local/share/nvim && nvim'";
-      nvst = "tmux split-window 'cd $HOME/.local/state/nvim && nvim'";
-      nvc = "tmux split-window 'cd $HOME/.cache/nvim && nvim'";
 
       rl = "exec zsh";
 
@@ -166,19 +180,6 @@ in
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
     };
-
-    plugins = [
-      # {
-      #   name = "zsh-vi-mode";
-      #   file = "zsh-vi-mode.plugin.zsh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "jeffreytse";
-      #     repo = "zsh-vi-mode";
-      #     rev = "v0.8.3";
-      #     sha256 = "13ack8bxa92mg1dp2q2n3j1fhc6pnv7dv7wm2sjcxnx6nf9i3766";
-      #   };
-      # }
-    ];
   };
 
   programs.starship = {
@@ -189,15 +190,17 @@ in
       scan_timeout = 10;
 
       character = {
-        success_symbol = "[λ](bold green)";
-        error_symbol = "[λ](bold red)";
+        success_symbol = "[;](bold green)";
+        error_symbol = "[;](bold red)";
       };
 
       format = ''
-        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$erlang$nodejs$ocaml$rust$nix_shell$cmd_duration$jobs$time$status
+        $username$hostname$shlvl$directory$git_branch$git_commit$git_state$git_status$nodejs$ocaml$rust$zig$nix_shell$cmd_duration$jobs$time$status
         $character'';
 
-      directory = { read_only = "X"; };
+      directory = {
+        read_only = "X";
+      };
 
       git_branch.format = "$branch ";
 
@@ -209,7 +212,7 @@ in
       git_status = {
         format = "$all_status$ahead_behind ";
 
-        conflicted = "";
+        conflicted = "[=](red)";
 
         ahead = "[>](yellow)";
         behind = "[<](yellow)";
@@ -222,7 +225,7 @@ in
         renamed = ''["](green)'';
         deleted = "[-](red)";
 
-        stashed = "[# ](bold blue)";
+        stashed = "[#](bold blue)";
       };
 
       cmd_duration = {
@@ -248,15 +251,23 @@ in
       nix_shell = {
         format = "[$symbol$state( ($name))]($style) ";
         symbol = "[nix](blue)";
-        impure_msg = "i";
-        pure_msg = "p";
+        impure_msg = "";
+        pure_msg = "";
       };
     };
   };
 
-  xdg.configFile."hammerspoon/init.lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/_darwin/hammerspoon/init.lua";
+  xdg.configFile."hammerspoon/init.lua".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/hammerspoon/init.lua";
 
-  xdg.configFile."tmux/tmux.conf".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/.config/tmux/tmux.conf";
+  xdg.configFile."zellij/config.kdl".source =
+    mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/config/zellij/config.kdl";
+  programs.zellij = {
+    enable = true;
+  };
+
+  xdg.configFile."tmux/tmux.conf".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/tmux/tmux.conf";
   programs.tmux = {
     enable = true;
     plugins = with pkgs; [
@@ -277,11 +288,11 @@ in
       "--color=preview-bg:-1"
       "--color=hl:reverse:3"
       "--color=fg+:7"
-      "--color=bg+:18"
+      "--color=bg+:8"
       "--color=gutter:-1"
       "--color=hl+:reverse:3"
       "--color=info:8"
-      "--color=border:16"
+      "--color=border:8"
       "--color=prompt:2"
       "--color=pointer:2"
       "--color=marker:2"
@@ -292,35 +303,12 @@ in
     ];
   };
 
-  xdg.configFile."theme".text = "dark";
-
-  xdg.configFile."nvim/lua".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim/lua";
+  xdg.configFile."nvim".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/nvim";
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim; # this enables nightly
-    extraConfig = "lua require('init')";
     withNodeJs = false;
     withPython3 = false;
     withRuby = false;
-  };
-
-  programs.git = {
-    enable = true;
-    package = pkgs.gitAndTools.gitFull;
-    userName = "Pontus Nagy";
-    userEmail = "pontus.nagy@savr.com";
-    includes = [{ path = "~/dotfiles/.config/git/.gitconfig"; }];
-    /**/
-    /* extraConfig = { */
-    /*   diff.colorAdded = "2"; */
-    /*   diff.colorChanged = "3"; */
-    /*   diff.colorUntracked = "2"; */
-    /*   diff.colorMoved = "2"; */
-    /* }; */
-    /**/
-    /* delta = { */
-    /*   enable = true; */
-    /* }; */
   };
 
   programs.direnv = {
@@ -331,5 +319,11 @@ in
     };
   };
 
-  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/p1xelher0/dotfiles/.config/ghostty";
+  xdg.configFile."aerospace/aerospace.toml".source =
+    mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/_darwin/aerospace.toml";
+
+  xdg.configFile."sketchybar/sketchybarrc".source =
+    mkOutOfStoreSymlink "/Users/p1xelHer0/dotfiles/config/_darwin/sketchybarrc";
+
+  xdg.configFile."ghostty".source = mkOutOfStoreSymlink "/Users/pontus.nagy/dotfiles/config/ghostty";
 }

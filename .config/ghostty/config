@@ -1,9 +1,0 @@
-# Theme
-theme = dark:dark,light:catppuccin-latte
-
-# Window
-window-padding-balance = true
-window-padding-x = 20
-window-padding-y = 12
-
-font-size = 16
