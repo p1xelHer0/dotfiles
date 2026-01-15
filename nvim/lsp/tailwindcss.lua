@@ -6,18 +6,15 @@ return {
     "html",
     "php",
     "css",
-    "scss",
     "javascript",
     "typescript",
   },
-  root_markers = {
-    "postcss.config.cjs",
-    ".git",
-  },
-  init_options = {
-    userLanguages = {
-      elm = "html",
-      html = "html",
+  root_markers = { ".git" },
+  capabilities = {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = true,
+      },
     },
   },
   settings = {
